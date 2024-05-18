@@ -162,8 +162,36 @@ def calcular_puntos_y_posiciones(df):
 
     return df_stats
 
-#### Reestructurar la informacion extraida.
 
+# Función para calcular la tabla general
+def calcular_tabla_general(grupo):
+    # Crear un DataFrame vacío para la tabla general
+    tabla_general = pd.DataFrame(columns=["Equipo", "PJ", "PG", "PP", "NP", "PTS", "PC", "PR", "DIF", "%VICT"])
+
+    # Iterar sobre cada categoría en el grupo
+    for categoria in grupo["categorias"]:
+        df_categoria = pd.DataFrame(categoria["tabla_posiciones"])
+
+        # Ajustar puntos para U9 MIXTO y U11 MIXTO
+        if categoria["categoria"] in ["U9 MIXTO", "Mini Mixto"]:
+            df_categoria["PTS"] = 0-df_categoria["NP"]
+        
+        # Agregar los datos a la tabla general
+        tabla_general = pd.concat([tabla_general, df_categoria])
+
+    # Agrupar por equipo y recalcular las estadísticas
+    tabla_general = tabla_general.groupby("Equipo").sum()
+    tabla_general["DIF"] = tabla_general["PC"] - tabla_general["PR"]
+    tabla_general["%VICT"] = (tabla_general["PG"] / tabla_general["PJ"]) * 100
+    tabla_general = tabla_general.reset_index()
+
+    # Ordenar la tabla general por puntos, diferencia de goles y porcentaje de victorias
+    tabla_general = tabla_general.sort_values(by=["PTS", "DIF", "%VICT"], ascending=False).reset_index(drop=True)
+
+    return tabla_general
+
+
+#### Reestructurar la informacion extraida.
 # Cargar el JSON con los datos de los partidos
 with open("competencia.json", "r") as file:
     datos_partidos = json.load(file)
@@ -208,8 +236,19 @@ for fase in data["fases"]:
                 df_posiciones = calcular_puntos_y_posiciones(df)
                 categoria["tabla_posiciones"] = df_posiciones.to_dict(orient="records")
 
+print("Tabla de posiciones correctamente realizada")
+
+for fase in data["fases"]:
+    for grupo in fase["grupos"]:
+        # Calcular la tabla general
+        try:
+            tabla_general = calcular_tabla_general(grupo)
+            grupo["tabla_general"] = tabla_general.to_dict(orient="records")
+        except KeyError:
+            print(grupo)
+
 # Guardar la estructura actualizada en un archivo JSON
 with open("formativas_febamba.json", "w") as file:
     json.dump(data, file, indent=4)
   
-print("Tabla de posiciones correctamente realizada")
+print("Tabla General correctamente realizada")
