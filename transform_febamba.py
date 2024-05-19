@@ -45,7 +45,6 @@ def reestructured_data(data) -> dict:
     return competencia
         
     
-
 # Función para calcular los puntos y la tabla de posiciones
 def calcular_puntos_y_posiciones(df):
     stats = {}
