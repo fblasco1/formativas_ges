@@ -116,8 +116,8 @@ def calcular_tabla_general(nueva_estructura):
 
                     tabla_general_categoria = []
                     for equipo, datos in equipos_dict_categoria.items():
-                        datos['DIF'] = datos['PR'] - datos['PC']
-                        datos['%VICT'] = (datos['PG'] / datos['PJ']) * 100 if datos['PJ'] > 0 else 0
+                        datos['DIF'] = datos['PC'] - datos['PR']
+                        datos['%VICT'] = round((datos['PG'] / datos['PJ']) * 100) if datos['PJ'] > 0 else 0
                         tabla_general_categoria.append({
                             "Equipo": equipo,
                             "PJ": datos['PJ'],
@@ -142,8 +142,8 @@ def calcular_tabla_general(nueva_estructura):
 
                 tabla_general_zona = []
                 for equipo, datos in equipos_dict_zona.items():
-                    datos['DIF'] = datos['PR'] - datos['PC']
-                    datos['%VICT'] = (datos['PG'] / datos['PJ']) * 100 if datos['PJ'] > 0 else 0
+                    datos['DIF'] = datos['PC'] - datos['PR']
+                    datos['%VICT'] = round((datos['PG'] / datos['PJ']) * 100) if datos['PJ'] > 0 else 0
                     tabla_general_zona.append({
                         "Equipo": equipo,
                         "PJ": datos['PJ'],
