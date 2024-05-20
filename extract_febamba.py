@@ -97,6 +97,40 @@ for categoria_index, categoria in enumerate(competencia["categorias"]):
                     visitante = cells[3].text.strip()
                     fecha_partido = cells[4].text.strip()
 
+                    if local == "LOS INDIOS U13 NEGRO" or local == "LOS INDIOS U15 NEGRO" or local == "LOS INDIOS U17 NEGRO" or local == "LOS INDIOS U21 NEGRO":
+                        local = "LOS INDIOS DE MORENO NEGRO"
+                    if visitante == "LOS INDIOS U13 NEGRO" or visitante == "LOS INDIOS U15 NEGRO" or visitante == "LOS INDIOS U21 NEGRO":
+                        visitante = "LOS INDIOS DE MORENO NEGRO"
+                    
+                    if local == "LOS INDIOS U9 BLANCO" or local == "LOS INDIOS MINI BLANCO" or local == "LOS INDIOS U13 BLANCO" or local == "LOS INDIOS U15 BLANCO" or local == "LOS INDIOS U17 BLANCO" or local == "LOS INDIOS U21 BLANCO":
+                        local = "LOS INDIOS DE MORENO BLANCO"
+                    if visitante == "LOS INDIOS U9 BLANCO" or visitante == "LOS INDIOS MINI BLANCO" or visitante == "LOS INDIOS U13 BLANCO" or visitante == "LOS INDIOS U15 BLANCO" or visitante == "LOS INDIOS U21 BLANCO":
+                        visitante = "LOS INDIOS DE MORENO BLANCO"
+
+                    if local == "BANCO NACION":
+                        local = "BANCO NACIÓN"
+                    if visitante == "BANCO NACION":
+                        visitante = "BANCO NACIÓN"
+                    
+                    if local == "JUVENTUD":
+                        local = "JUVENTUD UNIDA"
+                    if visitante == "JUVENTUD":
+                        visitante = "JUVENTUD UNIDA"
+                    
+                    if local == "DEP.MORON BLANCO":
+                        local = "DEP. MORON BLANCO"
+                    if visitante == "DEP.MORON BLANCO":
+                        visitante = "DEP. MORON BLANCO"
+                    if local == "DEP.MORON ROJO":
+                        local = "DEP. MORON ROJO"
+                    if visitante == "DEP.MORON ROJO":
+                        visitante = "DEP. MORON ROJO"
+                    
+                    if local == "ALL BOYS SAAVEDRA":
+                        local = "ALL BOYS DE SAAVEDRA"
+                    if visitante == "ALL BOYS SAAVEDRA":
+                        visitante = "ALL BOYS DE SAAVEDRA"
+
                     # Crear un diccionario con la información del partido
                     partido = {
                         "Partido_ID": partido_id,
@@ -117,3 +151,5 @@ for categoria_index, categoria in enumerate(competencia["categorias"]):
 # Escribir la estructura competencia en un archivo JSON
 with open('competencia.json', 'w') as json_file:
     json.dump(competencia, json_file, indent=4)
+
+print("Se ha extraido exitosamente todos los partidos")
