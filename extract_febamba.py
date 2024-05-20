@@ -99,12 +99,12 @@ for categoria_index, categoria in enumerate(competencia["categorias"]):
 
                     if local == "LOS INDIOS U13 NEGRO" or local == "LOS INDIOS U15 NEGRO" or local == "LOS INDIOS U17 NEGRO" or local == "LOS INDIOS U21 NEGRO":
                         local = "LOS INDIOS DE MORENO NEGRO"
-                    if visitante == "LOS INDIOS U13 NEGRO" or visitante == "LOS INDIOS U15 NEGRO" or visitante == "LOS INDIOS U21 NEGRO":
+                    if visitante == "LOS INDIOS U13 NEGRO" or visitante == "LOS INDIOS U15 NEGRO" or visitante == "LOS INDIOS U17 NEGRO" or visitante == "LOS INDIOS U21 NEGRO":
                         visitante = "LOS INDIOS DE MORENO NEGRO"
                     
                     if local == "LOS INDIOS U9 BLANCO" or local == "LOS INDIOS MINI BLANCO" or local == "LOS INDIOS U13 BLANCO" or local == "LOS INDIOS U15 BLANCO" or local == "LOS INDIOS U17 BLANCO" or local == "LOS INDIOS U21 BLANCO":
                         local = "LOS INDIOS DE MORENO BLANCO"
-                    if visitante == "LOS INDIOS U9 BLANCO" or visitante == "LOS INDIOS MINI BLANCO" or visitante == "LOS INDIOS U13 BLANCO" or visitante == "LOS INDIOS U15 BLANCO" or visitante == "LOS INDIOS U21 BLANCO":
+                    if visitante == "LOS INDIOS U9 BLANCO" or visitante == "LOS INDIOS MINI BLANCO" or visitante == "LOS INDIOS U13 BLANCO" or visitante == "LOS INDIOS U15 BLANCO" or visitante == "LOS INDIOS U17 BLANCO" or  visitante == "LOS INDIOS U21 BLANCO":
                         visitante = "LOS INDIOS DE MORENO BLANCO"
 
                     if local == "BANCO NACION":
@@ -130,6 +130,11 @@ for categoria_index, categoria in enumerate(competencia["categorias"]):
                         local = "ALL BOYS DE SAAVEDRA"
                     if visitante == "ALL BOYS SAAVEDRA":
                         visitante = "ALL BOYS DE SAAVEDRA"
+
+                    if local == "INDEPENDIENTE de BURZACO":
+                        local = "INDEPENDIENTE DE BURZACO"
+                    if visitante == "INDEPENDIENTE de BURZACO":
+                        visitante = "INDEPENDIENTE DE BURZACO"
 
                     # Crear un diccionario con la información del partido
                     partido = {
