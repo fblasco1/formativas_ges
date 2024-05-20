@@ -136,6 +136,11 @@ for categoria_index, categoria in enumerate(competencia["categorias"]):
                     if visitante == "INDEPENDIENTE de BURZACO":
                         visitante = "INDEPENDIENTE DE BURZACO"
 
+                    if local == "QUILMES A.C":
+                        local = "QUILMES A.C."
+                    if visitante == "QUILMES A.C":
+                        visitante = "QUILMES A.C."
+                        
                     # Crear un diccionario con la información del partido
                     partido = {
                         "Partido_ID": partido_id,
