@@ -113,29 +113,48 @@ def calcular_puntos_y_posiciones(df):
                 if puntos_local > puntos_visitante:
                     ganador = local
                     perdedor = visitante
+
+                    if ganador not in stats:
+                        stats[ganador] = {"Partidos Jugados": 1, "Partidos Ganados": 1, "Partidos Perdidos": 0, "Partidos no presentados": 0, "PUNTOS": 2, "Puntos Convertidos": puntos_local, "Puntos Recibidos": puntos_visitante}
+                    else:
+                        stats[ganador]["Partidos Jugados"] += 1
+                        stats[ganador]["Partidos Ganados"] += 1
+                        stats[ganador]["PUNTOS"] += 2
+                        stats[ganador]["Puntos Convertidos"] += puntos_local
+                        stats[ganador]["Puntos Recibidos"] += puntos_visitante
+
+                    if perdedor not in stats:
+                        stats[perdedor] = {"Partidos Jugados": 1, "Partidos Ganados": 0, "Partidos Perdidos": 1, "Partidos no presentados": 0, "PUNTOS": 1, "Puntos Convertidos": puntos_visitante, "Puntos Recibidos": puntos_local}
+                    else:
+                        stats[perdedor]["Partidos Jugados"] += 1
+                        stats[perdedor]["Partidos Perdidos"] += 1
+                        stats[perdedor]["PUNTOS"] += 1
+                        stats[perdedor]["Puntos Convertidos"] += puntos_visitante
+                        stats[perdedor]["Puntos Recibidos"] += puntos_local
+
                 elif puntos_local < puntos_visitante:
                     ganador = visitante
                     perdedor = local
+                    if ganador not in stats:
+                        stats[ganador] = {"Partidos Jugados": 1, "Partidos Ganados": 1, "Partidos Perdidos": 0, "Partidos no presentados": 0, "PUNTOS": 2, "Puntos Convertidos": puntos_visitante, "Puntos Recibidos": puntos_local}
+                    else:
+                        stats[ganador]["Partidos Jugados"] += 1
+                        stats[ganador]["Partidos Ganados"] += 1
+                        stats[ganador]["PUNTOS"] += 2
+                        stats[ganador]["Puntos Convertidos"] += puntos_visitante
+                        stats[ganador]["Puntos Recibidos"] += puntos_local
+
+                    if perdedor not in stats:
+                        stats[perdedor] = {"Partidos Jugados": 1, "Partidos Ganados": 0, "Partidos Perdidos": 1, "Partidos no presentados": 0, "PUNTOS": 1, "Puntos Convertidos": puntos_local, "Puntos Recibidos": puntos_visitante}
+                    else:
+                        stats[perdedor]["Partidos Jugados"] += 1
+                        stats[perdedor]["Partidos Perdidos"] += 1
+                        stats[perdedor]["PUNTOS"] += 1
+                        stats[perdedor]["Puntos Convertidos"] += puntos_local
+                        stats[perdedor]["Puntos Recibidos"] += puntos_visitante
                 else:
                     continue
-                
-                if ganador not in stats:
-                    stats[ganador] = {"Partidos Jugados": 1, "Partidos Ganados": 1, "Partidos Perdidos": 0, "Partidos no presentados": 0, "PUNTOS": 2, "Puntos Convertidos": puntos_local, "Puntos Recibidos": puntos_visitante}
-                else:
-                    stats[ganador]["Partidos Jugados"] += 1
-                    stats[ganador]["Partidos Ganados"] += 1
-                    stats[ganador]["PUNTOS"] += 2
-                    stats[ganador]["Puntos Convertidos"] += puntos_local
-                    stats[ganador]["Puntos Recibidos"] += puntos_visitante
-
-                if perdedor not in stats:
-                    stats[perdedor] = {"Partidos Jugados": 1, "Partidos Ganados": 0, "Partidos Perdidos": 1, "Partidos no presentados": 0, "PUNTOS": 1, "Puntos Convertidos": puntos_visitante, "Puntos Recibidos": puntos_local}
-                else:
-                    stats[perdedor]["Partidos Jugados"] += 1
-                    stats[perdedor]["Partidos Perdidos"] += 1
-                    stats[perdedor]["PUNTOS"] += 1
-                    stats[perdedor]["Puntos Convertidos"] += puntos_visitante
-                    stats[perdedor]["Puntos Recibidos"] += puntos_local
+       
         except ValueError:
             print(row)
             continue
