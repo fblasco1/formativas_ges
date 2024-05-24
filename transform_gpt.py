@@ -164,8 +164,108 @@ def calcular_tabla_general(nueva_estructura):
                 except KeyError:
                         print(fase["fase"])
 
+def calcular_posiciones(tabla_posiciones, partidos):
+    # 1. Desempate Olímpico
+    equipos_empatados = encontrar_equipos_empatados(tabla_posiciones)
+    tabla_posiciones = desempate_olimpico(equipos_empatados, partidos, tabla_posiciones)
+
+    try:
+        # 2. Coeficiente / Gol Average
+        tabla_posiciones.sort(key=lambda x: (x['PC'] / x['PR']), reverse=True)
+
+        # 3. Promedio de victorias
+        tabla_posiciones.sort(key=lambda x: (x['PG'] / x['PJ']), reverse=True)
+    except ZeroDivisionError:
+        pass
+
+    return tabla_posiciones
+
+def encontrar_equipos_empatados(tabla_posiciones):
+    equipos_empatados = []
+    for i in range(len(tabla_posiciones)):
+        if i > 0 and tabla_posiciones[i]['PTS'] == tabla_posiciones[i - 1]['PTS']:
+            equipos_empatados.append(tabla_posiciones[i])
+        else:
+            if len(equipos_empatados) > 1:
+                return equipos_empatados
+            equipos_empatados = []
+    if len(equipos_empatados) > 1:
+        return equipos_empatados
+    return []
+
+def desempate_olimpico(equipos, partidos, tabla_posiciones):
+    if len(equipos) == 2:
+        equipo1, equipo2 = equipos[0], equipos[1]
+        puntos_e1, puntos_e2 = 0, 0
+        dif_gol_e1, dif_gol_e2 = 0, 0
+        total_gol_e1, total_gol_e2 = 0, 0
+
+        for partido in partidos:
+            if partido['Local'] == equipo1['Equipo'] and partido['Visitante'] == equipo2['Equipo']:
+                puntos_e1 += int(partido['Puntos LOCAL'])
+                puntos_e2 += int(partido['Puntos VISITA'])
+                dif_gol_e1 += int(partido['Puntos LOCAL']) - int(partido['Puntos VISITA'])
+                dif_gol_e2 += int(partido['Puntos VISITA']) - int(partido['Puntos LOCAL'])
+                total_gol_e1 += int(partido['Puntos LOCAL'])
+                total_gol_e2 += int(partido['Puntos VISITA'])
+            elif partido['Local'] == equipo2['Equipo'] and partido['Visitante'] == equipo1['Equipo']:
+                puntos_e2 += int(partido['Puntos LOCAL'])
+                puntos_e1 += int(partido['Puntos VISITA'])
+                dif_gol_e2 += int(partido['Puntos LOCAL']) - int(partido['Puntos VISITA'])
+                dif_gol_e1 += int(partido['Puntos VISITA']) - int(partido['Puntos LOCAL'])
+                total_gol_e2 += int(partido['Puntos LOCAL'])
+                total_gol_e1 += int(partido['Puntos VISITA'])
+
+        if puntos_e1 != puntos_e2:
+            equipos.sort(key=lambda x: puntos_e1 if x['Equipo'] == equipo1['Equipo'] else puntos_e2, reverse=True)
+        elif dif_gol_e1 != dif_gol_e2:
+            equipos.sort(key=lambda x: dif_gol_e1 if x['Equipo'] == equipo1['Equipo'] else dif_gol_e2, reverse=True)
+        elif total_gol_e1 != total_gol_e2:
+            equipos.sort(key=lambda x: total_gol_e1 if x['Equipo'] == equipo1['Equipo'] else total_gol_e2, reverse=True)
+
+    elif len(equipos) > 2:
+        equipos.sort(key=lambda x: x['Equipo'])  # Ordenar equipos alfabéticamente
+        for i, equipo in enumerate(equipos):
+            equipo['posicion_temporal'] = i + 1
+
+        partidos_equipos = [partido for partido in partidos if partido['Local'] in [equipo['Equipo'] for equipo in equipos] and partido['Visitante'] in [equipo['Equipo'] for equipo in equipos]]
+
+        for partido in partidos_equipos:
+            local = next((equipo for equipo in equipos if equipo['Equipo'] == partido['Local']), None)
+            visitante = next((equipo for equipo in equipos if equipo['Equipo'] == partido['Visitante']), None)
+            if local and visitante:
+                if int(partido['Puntos LOCAL']) > int(partido['Puntos VISITA']):
+                    local['PTS'] += 2
+                elif int(partido['Puntos LOCAL']) < int(partido['Puntos VISITA']):
+                    visitante['PTS'] += 2
+                else:
+                    local['PTS'] += 1
+                    visitante['PTS'] += 1
+
+        equipos.sort(key=lambda x: (x['PTS'], x['DIF'], x['PC'] / x['PJ'], x['posicion_temporal']), reverse=True)
+
+        for equipo in equipos:
+            del equipo['posicion_temporal']
+
+    # Actualizar tabla de posiciones con el orden resuelto por desempate olímpico
+    for i in range(len(tabla_posiciones)):
+        for equipo in equipos:
+            if tabla_posiciones[i]['Equipo'] == equipo['Equipo']:
+                tabla_posiciones[i] = equipo
+    return tabla_posiciones
+
 # Reorganizar los datos
 nueva_estructura = combinar_datos_por_nivel_zona(data)
+
+for nivel in nueva_estructura:
+    for zona in nivel["zonas"]:
+        for fase in zona["fases"]:
+            for categoria in fase["categorias"]:
+                if categoria["categoria"] not in ["U9 MIXTO", "Mini Mixto"]:
+                    for subzona in categoria["subzonas"]:
+                        tabla_nueva = calcular_posiciones(subzona["tabla_posiciones"], subzona["partidos"])
+                        subzona["tabla_posiciones"] = tabla_nueva
+
 
 # Calcular tablas generales
 calcular_tabla_general(nueva_estructura)
