@@ -23,6 +23,7 @@ def aplicar_desempates(tabla_posiciones, partidos):
     tabla_posiciones.sort(key=lambda x: x['Pos'])
     return tabla_posiciones
 
+
 def encontrar_equipos_empatados(tabla_posiciones):
     equipos_empatados = []
     empates = []
@@ -38,6 +39,7 @@ def encontrar_equipos_empatados(tabla_posiciones):
         empates.append(equipos_empatados)
     
     return empates
+
 
 def desempate_olimpico(equipos, partidos, tabla_posiciones):
     pos_inicio = equipos[0]['Pos']  # La posición de inicio para actualizar las posiciones
@@ -129,6 +131,7 @@ def desempate_olimpico(equipos, partidos, tabla_posiciones):
 
     return tabla_posiciones, desempate_resuelto
 
+
 def desempate_coeficiente(equipos, tabla_posiciones):
     pos_inicio = equipos[0]['Pos']  # La posición de inicio para actualizar las posiciones
     desempate_resuelto = False
@@ -143,6 +146,7 @@ def desempate_coeficiente(equipos, tabla_posiciones):
         equipo['Pos'] = i
 
     return tabla_posiciones, desempate_resuelto
+
 
 def desempate_promedio_victorias(equipos, tabla_posiciones):
     pos_inicio = equipos[0]['Pos']  # La posición de inicio para actualizar las posiciones
@@ -445,33 +449,272 @@ def crear_nueva_estructura(data) -> dict:
     
     return combinar_datos_por_nivel_zona(competencia)
            
+def calcular_tabla_general(grupo):
+    for nivel in grupo:
+        for zona in nivel['zonas']:
+            for fase in zona['fases']:
+                equipos_dict_zona = defaultdict(lambda: {'PJ': 0, 'PG': 0, 'PP': 0, 'NP': 0, 'PTS': 0, 'PC': 0, 'PR': 0})
+
+                for categoria in fase['categorias']:
+                    # Crear un DataFrame vacío para la tabla general de la categoría
+                    tabla_general_categoria = pd.DataFrame(columns=["Equipo", "PJ", "PG", "PP", "NP", "PTS", "PC", "PR", "DIF", "%VICT"])
+
+                    # Procesar cada subzona de la categoría
+                    for subzona in categoria["subzonas"]:
+                        df_categoria = pd.DataFrame(subzona["tabla_posiciones"])
+
+                        # Ajustar puntos para U9 MIXTO y U11 MIXTO
+                        if categoria["categoria"] in ["U9 MIXTO", "Mini Mixto"]:
+                            df_categoria["PTS"] = 0 - df_categoria["NP"]
+                        
+                        # Agregar los datos a la tabla general de la categoría
+                        tabla_general_categoria = pd.concat([tabla_general_categoria, df_categoria])
+
+                    # Agrupar por equipo y recalcular las estadísticas
+                    tabla_general_categoria = tabla_general_categoria.groupby("Equipo").sum()
+                    tabla_general_categoria["DIF"] = tabla_general_categoria["PC"] - tabla_general_categoria["PR"]
+                    tabla_general_categoria["%VICT"] = (tabla_general_categoria["PG"] / tabla_general_categoria["PJ"]) * 100
+                    tabla_general_categoria = tabla_general_categoria.reset_index()
+
+                    # Procesar los partidos interzonales
+                    for partido in categoria.get('partidos', []):
+                        local = partido["Local"]
+                        visitante = partido["Visitante"]
+                        try:
+                            puntos_local = int(partido["Puntos LOCAL"])
+                            puntos_visitante = int(partido["Puntos VISITA"])
+
+                            # Verificar si ambos equipos no se presentaron
+                            if puntos_local == 1 and puntos_visitante == 1:
+                                tabla_general_categoria.loc[tabla_general_categoria["Equipo"] == local, "NP"] += 1
+                                tabla_general_categoria.loc[tabla_general_categoria["Equipo"] == local, "PJ"] += 1
+                                tabla_general_categoria.loc[tabla_general_categoria["Equipo"] == visitante, "NP"] += 1
+                                tabla_general_categoria.loc[tabla_general_categoria["Equipo"] == visitante, "PJ"] += 1 
+                                
+                                if categoria['categoria'] in ["U9 MIXTO", "Mini Mixto"]:
+                                    tabla_general_categoria.loc[tabla_general_categoria["Equipo"] == local, "PTS"] -= 1
+                                    tabla_general_categoria.loc[tabla_general_categoria["Equipo"] == visitante, "PTS"] -= 1
+                                    
+                            # Verificar si un equipo ganó y el otro no se presentó
+                            elif puntos_local == 20 and puntos_visitante == 0:
+                                tabla_general_categoria.loc[tabla_general_categoria["Equipo"] == local, "PJ"] += 1
+                                tabla_general_categoria.loc[tabla_general_categoria["Equipo"] == local, "PG"] += 1
+                                tabla_general_categoria.loc[tabla_general_categoria["Equipo"] == local, "PTS"] += 2
+                                tabla_general_categoria.loc[tabla_general_categoria["Equipo"] == local, "PC"] += puntos_local
+                                tabla_general_categoria.loc[tabla_general_categoria["Equipo"] == local, "DIF"] += puntos_local - puntos_visitante
+                                
+                                tabla_general_categoria.loc[tabla_general_categoria["Equipo"] == visitante, "NP"] += 1
+                                tabla_general_categoria.loc[tabla_general_categoria["Equipo"] == visitante, "PJ"] += 1
+                                tabla_general_categoria.loc[tabla_general_categoria["Equipo"] == visitante, "DIF"] += puntos_visitante - puntos_local
+                                
+                                if categoria['categoria'] in ["U9 MIXTO", "Mini Mixto"]:
+                                    tabla_general_categoria.loc[tabla_general_categoria["Equipo"] == visitante, "PTS"] -= 1
+                                    
+                            elif puntos_visitante == 20 and puntos_local == 0:
+                                tabla_general_categoria.loc[tabla_general_categoria["Equipo"] == visitante, "PJ"] += 1
+                                tabla_general_categoria.loc[tabla_general_categoria["Equipo"] == visitante, "PG"] += 1
+                                tabla_general_categoria.loc[tabla_general_categoria["Equipo"] == visitante, "PTS"] += 2
+                                tabla_general_categoria.loc[tabla_general_categoria["Equipo"] == visitante, "PC"] += puntos_visitante
+                                tabla_general_categoria.loc[tabla_general_categoria["Equipo"] == visitante, "DIF"] += puntos_visitante - puntos_local
+                                
+                                tabla_general_categoria.loc[tabla_general_categoria["Equipo"] == local, "NP"] += 1
+                                tabla_general_categoria.loc[tabla_general_categoria["Equipo"] == local, "PJ"] += 1
+                                tabla_general_categoria.loc[tabla_general_categoria["Equipo"] == local, "DIF"] += puntos_local - puntos_visitante
+                                
+                                if categoria['categoria'] in ["U9 MIXTO", "Mini Mixto"]:
+                                    tabla_general_categoria.loc[tabla_general_categoria["Equipo"] == local, "PTS"] -= 1
+                                    
+                            else:
+                                if puntos_local > puntos_visitante:
+                                    ganador = local
+                                    perdedor = visitante
+                                else:
+                                    ganador = visitante
+                                    perdedor = local
+
+                                tabla_general_categoria.loc[tabla_general_categoria["Equipo"] == ganador, "PJ"] += 1
+                                tabla_general_categoria.loc[tabla_general_categoria["Equipo"] == ganador, "PG"] += 1
+                                tabla_general_categoria.loc[tabla_general_categoria["Equipo"] == ganador, "PTS"] += 2
+                                tabla_general_categoria.loc[tabla_general_categoria["Equipo"] == ganador, "PC"] += max(puntos_local, puntos_visitante)
+                                tabla_general_categoria.loc[tabla_general_categoria["Equipo"] == ganador, "PR"] += min(puntos_local, puntos_visitante)
+                                tabla_general_categoria.loc[tabla_general_categoria["Equipo"] == ganador, "DIF"] += abs(puntos_local - puntos_visitante)
+
+                                tabla_general_categoria.loc[tabla_general_categoria["Equipo"] == perdedor, "PJ"] += 1
+                                tabla_general_categoria.loc[tabla_general_categoria["Equipo"] == perdedor, "PP"] += 1
+                                tabla_general_categoria.loc[tabla_general_categoria["Equipo"] == perdedor, "PC"] += min(puntos_local, puntos_visitante)
+                                tabla_general_categoria.loc[tabla_general_categoria["Equipo"] == perdedor, "PR"] += max(puntos_local, puntos_visitante)
+                                tabla_general_categoria.loc[tabla_general_categoria["Equipo"] == perdedor, "DIF"] += min(puntos_local, puntos_visitante) - max(puntos_local, puntos_visitante)
+                        except ValueError:
+                            continue
+
+                    # Ordenar y almacenar la tabla general de la categoría
+                    tabla_general_categoria = tabla_general_categoria.sort_values(by=["PTS", "DIF", "%VICT"], ascending=False).reset_index(drop=True)
+                    categoria["tabla_general"] = tabla_general_categoria.to_dict(orient="records")
+
+                    # Agregar estadísticas a la tabla general de la zona
+                    for _, equipo in tabla_general_categoria.iterrows():
+                        nombre_equipo = equipo['Equipo']
+                        equipos_dict_zona[nombre_equipo]['PJ'] += equipo['PJ']
+                        equipos_dict_zona[nombre_equipo]['PG'] += equipo['PG']
+                        equipos_dict_zona[nombre_equipo]['PP'] += equipo['PP']
+                        equipos_dict_zona[nombre_equipo]['NP'] += equipo['NP']
+                        equipos_dict_zona[nombre_equipo]['PTS'] += equipo['PTS']
+                        equipos_dict_zona[nombre_equipo]['PC'] += equipo['PC']
+                        equipos_dict_zona[nombre_equipo]['PR'] += equipo['PR']
+
+                # Crear la tabla general de la zona
+                tabla_general_zona = []
+                for equipo, datos in equipos_dict_zona.items():
+                    datos['DIF'] = datos['PC'] - datos['PR']
+                    datos['%VICT'] = round((datos['PG'] / datos['PJ']) * 100) if datos['PJ'] > 0 else 0
+                    tabla_general_zona.append({
+                        "Equipo": equipo,
+                        "PJ": datos['PJ'],
+                        "PG": datos['PG'],
+                        "PP": datos['PP'],
+                        "NP": datos['NP'],
+                        "PTS": datos['PTS'],
+                        "PC": datos['PC'],
+                        "PR": datos['PR'],
+                        "DIF": datos['DIF'],
+                        "%VICT": datos['%VICT']
+                    })
+
+                # Ordenar y almacenar la tabla general de la zona
+                tabla_general_zona_df = pd.DataFrame(tabla_general_zona).sort_values(by=["PTS", "DIF", "%VICT"], ascending=False).reset_index(drop=True)
+                fase['tabla_general'] = tabla_general_zona_df.to_dict(orient="records")
 
 # Función para calcular la tabla general
-def calcular_tabla_general(grupo):
-    # Crear un DataFrame vacío para la tabla general
-    tabla_general = pd.DataFrame(columns=["Equipo", "PJ", "PG", "PP", "NP", "PTS", "PC", "PR", "DIF", "%VICT"])
-
-    # Iterar sobre cada categoría en el grupo
-    for categoria in grupo["categorias"]:
-        df_categoria = pd.DataFrame(categoria["tabla_posiciones"])
-
-        # Ajustar puntos para U9 MIXTO y U11 MIXTO
-        if categoria["categoria"] in ["U9 MIXTO", "Mini Mixto"]:
-            df_categoria["PTS"] = 0-df_categoria["NP"]
-        
-        # Agregar los datos a la tabla general
-        tabla_general = pd.concat([tabla_general, df_categoria])
-
-    # Agrupar por equipo y recalcular las estadísticas
-    tabla_general = tabla_general.groupby("Equipo").sum()
-    tabla_general["DIF"] = tabla_general["PC"] - tabla_general["PR"]
-    tabla_general["%VICT"] = (tabla_general["PG"] / tabla_general["PJ"]) * 100
-    tabla_general = tabla_general.reset_index()
-
-    # Ordenar la tabla general por puntos, diferencia de goles y porcentaje de victorias
-    tabla_general = tabla_general.sort_values(by=["PTS", "DIF", "%VICT"], ascending=False).reset_index(drop=True)
-
-    return tabla_general
+#def calcular_tabla_general(categoria):
+#    # Crear un DataFrame vacío para la tabla general
+#    tabla_general = pd.DataFrame(columns=["Equipo", "PJ", "PG", "PP", "NP", "PTS", "PC", "PR", "DIF", "%VICT"])
+#
+#    # Iterar sobre cada categoría en el grupo
+#    for subzona in categoria["subzonas"]:
+#        df_categoria = pd.DataFrame(subzona["tabla_posiciones"])
+#
+#        # Ajustar puntos para U9 MIXTO y U11 MIXTO
+#        if categoria["categoria"] in ["U9 MIXTO", "Mini Mixto"]:
+#            df_categoria["PTS"] = 0-df_categoria["NP"]
+#        
+#        # Agregar los datos a la tabla general
+#        tabla_general = pd.concat([tabla_general, df_categoria])
+#
+#    # Agrupar por equipo y recalcular las estadísticas
+#    tabla_general = tabla_general.groupby("Equipo").sum()
+#    tabla_general["DIF"] = tabla_general["PC"] - tabla_general["PR"]
+#    tabla_general["%VICT"] = (tabla_general["PG"] / tabla_general["PJ"]) * 100
+#    tabla_general = tabla_general.reset_index()
+#
+#    for partido in categoria['partidos']:
+#        local = partido["Local"]
+#        visitante = partido["Visitante"]
+#        try:
+#            puntos_local = int(partido["Puntos LOCAL"])
+#            puntos_visitante = int(partido["Puntos VISITA"])
+#
+#            # Verificar si ambos equipos no se presentaron
+#            if puntos_local == 1 and puntos_visitante == 1:
+#                if categoria['categoria'] in ["U9 MIXTO", "Mini Mixto"]:
+#                    tabla_general.loc[local]['NP'] += 1
+#                    tabla_general.loc[local]['PJ'] += 1
+#                    tabla_general.loc[local]['PTS'] -= 1
+#                    tabla_general.loc[visitante]['NP'] += 1
+#                    tabla_general.loc[visitante]['PJ'] += 1
+#                    tabla_general.loc[visitante]['PTS'] -= 1
+#                else:
+#                    tabla_general.loc[local]['NP'] += 1
+#                    tabla_general.loc[local]['PJ'] += 1
+#                    tabla_general.loc[visitante]['NP'] += 1
+#                    tabla_general.loc[visitante]['PJ'] += 1 
+#            
+#            # Verificar si un equipo ganó y el otro no se presentó
+#            elif puntos_local == 20 and puntos_visitante == 0:
+#                if categoria['categoria'] in ["U9 MIXTO", "Mini Mixto"]:
+#                    tabla_general.loc[local]['PJ'] += 1
+#                    tabla_general.loc[local]['PG'] += 1
+#                    tabla_general.loc[local]['PTS'] += 2
+#                    tabla_general.loc[local]['PC'] += puntos_local
+#                    tabla_general.loc[local]['DIF'] += puntos_local - puntos_visitante
+#                    tabla_general.loc[visitante]['NP'] += 1
+#                    tabla_general.loc[visitante]['PJ'] += 1
+#                    tabla_general.loc[visitante]['PTS'] -= 1
+#                    tabla_general.loc[visitante]['DIF'] += puntos_visitante - puntos_local
+#                else:
+#                    tabla_general.loc[local]['PTS'] += 2
+#                    tabla_general.loc[local]['PG'] += 1
+#                    tabla_general.loc[local]['PJ'] += 1
+#                    tabla_general.loc[local]['PC'] += puntos_local
+#                    tabla_general.loc[local]['DIF'] += puntos_local - puntos_visitante
+#                    tabla_general.loc[visitante]['NP'] += 1
+#                    tabla_general.loc[visitante]['PJ'] += 1 
+#                    tabla_general.loc[visitante]['DIF'] += puntos_visitante - puntos_local
+#                
+#            
+#            elif puntos_visitante == 20 and puntos_local == 0:
+#                if categoria['categoria'] in ["U9 MIXTO", "Mini Mixto"]:
+#                    tabla_general.loc[visitante]['PJ'] += 1
+#                    tabla_general.loc[visitante]['PG'] += 1
+#                    tabla_general.loc[visitante]['PTS'] += 2
+#                    tabla_general.loc[visitante]['PC'] += puntos_local
+#                    tabla_general.loc[visitante]['DIF'] += puntos_local - puntos_visitante
+#                    tabla_general.loc[local]['NP'] += 1
+#                    tabla_general.loc[local]['PJ'] += 1
+#                    tabla_general.loc[local]['PTS'] -= 1
+#                    tabla_general.loc[local]['DIF'] += puntos_visitante - puntos_local
+#                else:
+#                    tabla_general.loc[visitante]['PTS'] += 2
+#                    tabla_general.loc[visitante]['PG'] += 1
+#                    tabla_general.loc[visitante]['PJ'] += 1
+#                    tabla_general.loc[visitante]['PC'] += puntos_local
+#                    tabla_general.loc[visitante]['DIF'] += puntos_visitante - puntos_local
+#                    tabla_general.loc[local]['NP'] += 1
+#                    tabla_general.loc[local]['PJ'] += 1 
+#                    tabla_general.loc[local]['DIF'] += puntos_local - puntos_visitante
+#                
+#            else:
+#                if puntos_local > puntos_visitante:
+#                    ganador = local
+#                    perdedor = visitante
+#                    tabla_general.loc[ganador]["PJ"] += 1
+#                    tabla_general.loc[ganador]["PG"] += 1
+#                    tabla_general.loc[ganador]["PTS"] += 2
+#                    tabla_general.loc[ganador]["PC"] += puntos_local
+#                    tabla_general.loc[ganador]["PR"] += puntos_visitante
+#                    tabla_general.loc[ganador]["DIF"] += puntos_local - puntos_visitante
+#
+#                    tabla_general.loc[perdedor]["PJ"] += 1
+#                    tabla_general.loc[perdedor]["PP"] += 1
+#                    tabla_general.loc[perdedor]["PTS"] += 1
+#                    tabla_general.loc[perdedor]["PC"] += puntos_visitante
+#                    tabla_general.loc[perdedor]["PR"] += puntos_local
+#                    tabla_general.loc[perdedor]["DIF"] += puntos_visitante - puntos_local
+#                elif puntos_visitante < puntos_local:
+#                    ganador = visitante
+#                    perdedor = local
+#                    tabla_general.loc[ganador]["PJ"] += 1
+#                    tabla_general.loc[ganador]["PG"] += 1
+#                    tabla_general.loc[ganador]["PTS"] += 2
+#                    tabla_general.loc[ganador]["PC"] += puntos_visitante
+#                    tabla_general.loc[ganador]["PR"] += puntos_local
+#                    tabla_general.loc[ganador]["DIF"] += puntos_visitante - puntos_local
+#
+#                    tabla_general.loc[perdedor]["PJ"] += 1
+#                    tabla_general.loc[perdedor]["PP"] += 1
+#                    tabla_general.loc[perdedor]["PTS"] += 1
+#                    tabla_general.loc[perdedor]["PC"] += puntos_local
+#                    tabla_general.loc[perdedor]["PR"] += puntos_visitante
+#                    tabla_general.loc[perdedor]["DIF"] += puntos_local - puntos_visitante
+#                else:
+#                    continue
+#        except ValueError:
+#            continue
+#        
+#    tabla_general["%VICT"] = (tabla_general["PG"] / tabla_general["PJ"]) * 100
+#    # Ordenar la tabla general por puntos, diferencia de goles y porcentaje de victorias
+#    tabla_general = tabla_general.sort_values(by=["PTS", "DIF", "%VICT"], ascending=False).reset_index(drop=True)
+#
+#    return tabla_general
 
 #### Reestructurar la informacion extraida.
 # Cargar el JSON con los datos de los partidos
@@ -479,24 +722,21 @@ with open("competencia.json", "r") as file:
     datos_partidos = json.load(file)
 
 data = crear_nueva_estructura(datos_partidos)
+calcular_tabla_general(data)
+
+print("Los datos han sido reestructurados con éxito")
+
+#for nivel in data:
+#    for zona in nivel['zonas']:
+#        for fase in zona['fases']:
+#            for categoria in fase['categorias']:
+#                # Calcular la tabla general
+#                try:
+#                    tabla_general = calcular_tabla_general(categoria)
+#                    categoria["tabla_general"] = tabla_general.to_dict(orient="records")
+#                except KeyError:
+#                    print(categoria)
 
 ## Guardar los datos actualizados en un nuevo archivo JSON
 with open("formativas_febamba.json", "w") as file:
     json.dump(data, file, indent=4)
-
-print("Los datos han sido reestructurados con éxito")
-
-#for fase in data["fases"]:
-#    for grupo in fase["grupos"]:
-#        # Calcular la tabla general
-#        try:
-#            tabla_general = calcular_tabla_general(grupo)
-#            grupo["tabla_general"] = tabla_general.to_dict(orient="records")
-#        except KeyError:
-#            print(grupo)
-#
-## Guardar la estructura actualizada en un archivo JSON
-#with open("formativas_febamba.json", "w") as file:
-#    json.dump(data, file, indent=4)
-#  
-#print("Tabla General correctamente realizada")

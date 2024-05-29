@@ -48,7 +48,7 @@ def resaltar_equipos_cat(df, nivel):
     return styles
 
 # Load data from the reorganized JSON file
-with open('nueva_estructura_formativas_febamba.json', 'r', encoding='utf-8') as f:
+with open('formativas_febamba.json', 'r', encoding='utf-8') as f:
     data = json.load(f)
 
 def main():
@@ -65,6 +65,7 @@ def main():
 
         st.text("Art. 3, 4, 19, 27 del Reglamento 2024 explican las sanciones a los equipos que no presenten en una categoria")
         st.text("En el link de formato de competencias puedes ver como es la organización de los niveles y clasificación a LFF")
+        st.text("Las tablas generales puede que no reflejen las posiciones reales de los equipos debido que no contemplan el desempate olimpico")
     
     nav_col1, nav_col2, nav_col3 = st.columns([1,1,1])
 
@@ -246,6 +247,18 @@ def main():
                         df_tabla_general_categoria = pd.DataFrame(categoria['tabla_general'])
                         tabla_general_styles_cat = resaltar_equipos_cat(df_tabla_general_categoria, nivel_seleccionado)
                         st.dataframe(df_tabla_general_categoria.style.apply(lambda _: tabla_general_styles_cat, axis=None), hide_index=True)
+                
+                        # Selector de jornadas
+                        jornadas = sorted(set(partido["Jornada"] for partido in categoria['partidos']))
+                        jornada_seleccionada = st.selectbox(f"Selecciona una jornada interzonal para {categoria['categoria']} - {fase_seleccionada}:", jornadas)
+
+                        # Filtrar partidos por jornada
+                        partidos_jornada = [partido for partido in categoria['partidos'] if partido["Jornada"] == jornada_seleccionada]
+
+                        # Mostrar partidos de la jornada en una tabla
+                        df_partidos = pd.DataFrame(partidos_jornada).set_index("Partido_ID")
+                        df_partidos = df_partidos[["Local", "Puntos LOCAL", "Puntos VISITA", "Visitante", "Fecha"]]
+                        st.table(df_partidos)
                 elif categoria['categoria'] in col2_cats:
                     # Mostrar tabla de posiciones
                     with col2:
@@ -253,6 +266,18 @@ def main():
                         df_tabla_general_categoria = pd.DataFrame(categoria['tabla_general'])
                         tabla_general_styles_cat = resaltar_equipos_cat(df_tabla_general_categoria, nivel_seleccionado)
                         st.dataframe(df_tabla_general_categoria.style.apply(lambda _: tabla_general_styles_cat, axis=None), hide_index=True)
+                
+                        # Selector de jornadas
+                        jornadas = sorted(set(partido["Jornada"] for partido in categoria['partidos']))
+                        jornada_seleccionada = st.selectbox(f"Selecciona una jornada interzonal para {categoria['categoria']} - {fase_seleccionada}:", jornadas)
+
+                        # Filtrar partidos por jornada
+                        partidos_jornada = [partido for partido in categoria['partidos'] if partido["Jornada"] == jornada_seleccionada]
+
+                        # Mostrar partidos de la jornada en una tabla
+                        df_partidos = pd.DataFrame(partidos_jornada).set_index("Partido_ID")
+                        df_partidos = df_partidos[["Local", "Puntos LOCAL", "Puntos VISITA", "Visitante", "Fecha"]]
+                        st.table(df_partidos)
                 elif categoria['categoria'] in col3_cats:
                     # Mostrar tabla de posiciones
                     with col3:
@@ -260,6 +285,19 @@ def main():
                         df_tabla_general_categoria = pd.DataFrame(categoria['tabla_general'])
                         tabla_general_styles_cat = resaltar_equipos_cat(df_tabla_general_categoria, nivel_seleccionado)
                         st.dataframe(df_tabla_general_categoria.style.apply(lambda _: tabla_general_styles_cat, axis=None), hide_index=True)
+            
+                        # Selector de jornadas
+                        jornadas = sorted(set(partido["Jornada"] for partido in categoria['partidos']))
+                        jornada_seleccionada = st.selectbox(f"Selecciona una jornada interzonal para {categoria['categoria']} - {fase_seleccionada}:", jornadas)
+
+                        # Filtrar partidos por jornada
+                        partidos_jornada = [partido for partido in categoria['partidos'] if partido["Jornada"] == jornada_seleccionada]
+
+                        # Mostrar partidos de la jornada en una tabla
+                        df_partidos = pd.DataFrame(partidos_jornada).set_index("Partido_ID")
+                        df_partidos = df_partidos[["Local", "Puntos LOCAL", "Puntos VISITA", "Visitante", "Fecha"]]
+                        st.table(df_partidos)
+
             except KeyError:
                 st.subheader(f"{categoria}")
             
