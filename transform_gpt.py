@@ -1,67 +1,9 @@
 import json
 import pandas as pd
-from collections import defaultdict
 
 # Cargar datos del archivo JSON
 with open('formativas_febamba.json', 'r', encoding='utf-8') as f:
     data = json.load(f)
-
-# Función para combinar datos por nivel y zona geográfica
-def combinar_datos_por_nivel_zona(data):
-    nueva_estructura = []
-
-    # Estructura para almacenar datos intermedios
-    niveles_dict = defaultdict(lambda: defaultdict(lambda: defaultdict(lambda: defaultdict(lambda: {"subzonas": []}))))
-
-    for fase in data['fases']:
-        fase_nombre = fase['fase']
-        for grupo in fase['grupos']:
-            nivel_zona = grupo['grupo'].split(' ', 3)[:3]  # Obtener NIVEL, ZONA y SUBZONA
-            nivel = nivel_zona[0] + ' ' + nivel_zona[1]
-            try:
-                zona = nivel_zona[2]
-                subzona = grupo['grupo']
-            
-                for categoria in grupo['categorias']:
-                    categoria_nombre = categoria['categoria']
-                    cat_url = categoria['url']
-                    try:
-                        niveles_dict[nivel][zona][fase_nombre][categoria_nombre]["url"] = cat_url
-                        niveles_dict[nivel][zona][fase_nombre][categoria_nombre]["subzonas"].append({
-                            "subzona": subzona,
-                            "partidos": categoria['partidos'],
-                            "tabla_posiciones": categoria['tabla_posiciones']
-                        })
-                    except KeyError:
-                        print(grupo["grupo"])
-            except IndexError:
-                    print(grupo["grupo"])
-    for nivel, zonas in niveles_dict.items():
-        zona_list = []
-        for zona, fases in zonas.items():
-            fase_list = []
-            for fase, categorias in fases.items():
-                cat_list = []
-                for categoria, datos in categorias.items():
-                    cat_list.append({
-                        "categoria": categoria,
-                        "cat_url": datos["url"],
-                        "subzonas": datos["subzonas"]
-                    })
-                fase_list.append({
-                    "fase": fase,
-                    "categorias": cat_list
-                })
-            zona_list.append({
-                "zona": zona,
-                "fases": fase_list
-            })
-        nueva_estructura.append({
-            "nivel": nivel,
-            "zonas": zona_list
-        })
-
-    return nueva_estructura
 
 # Función para calcular la tabla general de cada zona y categoría
 def calcular_tabla_general(nueva_estructura):
@@ -255,7 +197,7 @@ def desempate_olimpico(equipos, partidos, tabla_posiciones):
     return tabla_posiciones
 
 # Reorganizar los datos
-nueva_estructura = combinar_datos_por_nivel_zona(data)
+#nueva_estructura = combinar_datos_por_nivel_zona(data)
 
 for nivel in nueva_estructura:
     for zona in nivel["zonas"]:
