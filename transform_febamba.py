@@ -376,12 +376,6 @@ def combinar_datos_por_nivel_zona(data):
                 cat_list = []
                 for categoria, datos in categorias.items():
                     try:
-                        #if categoria == "U17 Masculino":
-                        #    for dato in datos["subzonas"]:
-                        #        if dato["subzona"] == 'NIVEL 1 OESTE LFF "B"':
-                        #            print(categoria + " " + dato["subzona"])
-                        #            print(dato["partidos"])
-                        #            print(dato["tabla_posiciones"])
                         cat_list.append({
                             "categoria": categoria,
                             "cat_url": datos["url"],
@@ -499,7 +493,8 @@ def calcular_tabla_general(grupo):
                             elif puntos_local == 20 and puntos_visitante == 0:
                                 tabla_general_categoria.loc[tabla_general_categoria["Equipo"] == local, "PJ"] += 1
                                 tabla_general_categoria.loc[tabla_general_categoria["Equipo"] == local, "PG"] += 1
-                                tabla_general_categoria.loc[tabla_general_categoria["Equipo"] == local, "PTS"] += 2
+                                if categoria['categoria'] not in ["U9 MIXTO", "Mini Mixto"]:
+                                    tabla_general_categoria.loc[tabla_general_categoria["Equipo"] == local, "PTS"] += 2
                                 tabla_general_categoria.loc[tabla_general_categoria["Equipo"] == local, "PC"] += puntos_local
                                 tabla_general_categoria.loc[tabla_general_categoria["Equipo"] == local, "DIF"] += puntos_local - puntos_visitante
                                 
@@ -513,7 +508,8 @@ def calcular_tabla_general(grupo):
                             elif puntos_visitante == 20 and puntos_local == 0:
                                 tabla_general_categoria.loc[tabla_general_categoria["Equipo"] == visitante, "PJ"] += 1
                                 tabla_general_categoria.loc[tabla_general_categoria["Equipo"] == visitante, "PG"] += 1
-                                tabla_general_categoria.loc[tabla_general_categoria["Equipo"] == visitante, "PTS"] += 2
+                                if categoria['categoria'] not in ["U9 MIXTO", "Mini Mixto"]:    
+                                    tabla_general_categoria.loc[tabla_general_categoria["Equipo"] == visitante, "PTS"] += 2
                                 tabla_general_categoria.loc[tabla_general_categoria["Equipo"] == visitante, "PC"] += puntos_visitante
                                 tabla_general_categoria.loc[tabla_general_categoria["Equipo"] == visitante, "DIF"] += puntos_visitante - puntos_local
                                 
