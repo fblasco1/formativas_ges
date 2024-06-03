@@ -530,13 +530,16 @@ def calcular_tabla_general(grupo):
 
                                 tabla_general_categoria.loc[tabla_general_categoria["Equipo"] == ganador, "PJ"] += 1
                                 tabla_general_categoria.loc[tabla_general_categoria["Equipo"] == ganador, "PG"] += 1
-                                tabla_general_categoria.loc[tabla_general_categoria["Equipo"] == ganador, "PTS"] += 2
+                                if categoria['categoria'] not in ["U9 MIXTO", "Mini Mixto"]:    
+                                    tabla_general_categoria.loc[tabla_general_categoria["Equipo"] == ganador, "PTS"] += 2
                                 tabla_general_categoria.loc[tabla_general_categoria["Equipo"] == ganador, "PC"] += max(puntos_local, puntos_visitante)
                                 tabla_general_categoria.loc[tabla_general_categoria["Equipo"] == ganador, "PR"] += min(puntos_local, puntos_visitante)
                                 tabla_general_categoria.loc[tabla_general_categoria["Equipo"] == ganador, "DIF"] += abs(puntos_local - puntos_visitante)
 
                                 tabla_general_categoria.loc[tabla_general_categoria["Equipo"] == perdedor, "PJ"] += 1
                                 tabla_general_categoria.loc[tabla_general_categoria["Equipo"] == perdedor, "PP"] += 1
+                                if categoria['categoria'] not in ["U9 MIXTO", "Mini Mixto"]:    
+                                    tabla_general_categoria.loc[tabla_general_categoria["Equipo"] == perdedor, "PTS"] += 1
                                 tabla_general_categoria.loc[tabla_general_categoria["Equipo"] == perdedor, "PC"] += min(puntos_local, puntos_visitante)
                                 tabla_general_categoria.loc[tabla_general_categoria["Equipo"] == perdedor, "PR"] += max(puntos_local, puntos_visitante)
                                 tabla_general_categoria.loc[tabla_general_categoria["Equipo"] == perdedor, "DIF"] += min(puntos_local, puntos_visitante) - max(puntos_local, puntos_visitante)
