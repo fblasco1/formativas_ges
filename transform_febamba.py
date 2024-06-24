@@ -321,52 +321,53 @@ def combinar_datos_por_nivel_zona(data):
         fase_nombre = fase['fase']
         for grupo in fase['grupos']:
             nivel_zona = grupo['grupo'].split(' ', 3)[:3]  # Obtener NIVEL, ZONA y SUBZONA
-            nivel = nivel_zona[0] + ' ' + nivel_zona[1]
-            try:
-                zona = nivel_zona[2]
-                subzona = grupo['grupo']
+            if 'ÚNICO' not in nivel_zona:
+                nivel = nivel_zona[0] + ' ' + nivel_zona[1]
+                try:
+                    zona = nivel_zona[2]
+                    subzona = grupo['grupo']
+                
+                    for categoria in grupo['categorias']:
+                        categoria_nombre = categoria['categoria']
+                        niveles_dict[nivel][zona][fase_nombre][categoria_nombre]["url"] = categoria['url']
+                        
+                        partidos = categoria["partidos"]
+    
+                        # Corregir el formato de la fecha y filtrar los partidos que no se han jugado
+                        partidos_jugados = []
+                        partido_error_fecha = []
             
-                for categoria in grupo['categorias']:
-                    categoria_nombre = categoria['categoria']
-                    niveles_dict[nivel][zona][fase_nombre][categoria_nombre]["url"] = categoria['url']
-                    
-                    partidos = categoria["partidos"]
-
-                    # Corregir el formato de la fecha y filtrar los partidos que no se han jugado
-                    partidos_jugados = []
-                    partido_error_fecha = []
-        
-                    for partido in partidos:
-                        try:
-                            fecha_partido = datetime.strptime(partido["Fecha"], "%d/%m/%Y%H:%M")
-                        except ValueError:
+                        for partido in partidos:
                             try:
-                                fecha_partido = datetime.strptime(partido["Fecha"], "%d/%m/%Y")
+                                fecha_partido = datetime.strptime(partido["Fecha"], "%d/%m/%Y%H:%M")
                             except ValueError:
-                                partido_error_fecha.append(partido)
-                        if fecha_partido <= fecha_actual and (partido["Puntos LOCAL"] != '' or partido["Puntos VISITA"] != ''):
-                            partidos_jugados.append(partido)
-        
-                    if len(partidos_jugados) == 0:       
-                        if fase_nombre == "1ER ETAPA":
-                            niveles_dict[nivel][zona][fase_nombre][categoria_nombre]["subzonas"].append({
-                                "subzona": subzona,
-                                "partidos": partidos
-                            })
+                                try:
+                                    fecha_partido = datetime.strptime(partido["Fecha"], "%d/%m/%Y")
+                                except ValueError:
+                                    partido_error_fecha.append(partido)
+                            if fecha_partido <= fecha_actual and (partido["Puntos LOCAL"] != '' or partido["Puntos VISITA"] != ''):
+                                partidos_jugados.append(partido)
+            
+                        if len(partidos_jugados) == 0:       
+                            if fase_nombre == "1ER ETAPA":
+                                niveles_dict[nivel][zona][fase_nombre][categoria_nombre]["subzonas"].append({
+                                    "subzona": subzona,
+                                    "partidos": partidos
+                                })
+                            else:
+                                niveles_dict[nivel][zona]["1ER ETAPA"][categoria_nombre]["partidos"] = partidos
                         else:
-                            niveles_dict[nivel][zona]["1ER ETAPA"][categoria_nombre]["partidos"] = partidos
-                    else:
-                        if fase_nombre == "1ER ETAPA":
-                            niveles_dict[nivel][zona][fase_nombre][categoria_nombre]["subzonas"].append({
-                                "subzona": subzona,
-                                "partidos": partidos,
-                                "tabla_posiciones": calcular_puntos_y_posiciones(partidos_jugados),
-                            })
-                        else:
-                            niveles_dict[nivel][zona]["1ER ETAPA"][categoria_nombre]["partidos"] = partidos
-                    
-            except IndexError:
-                    print(IndexError, grupo["grupo"])
+                            if fase_nombre == "1ER ETAPA":
+                                niveles_dict[nivel][zona][fase_nombre][categoria_nombre]["subzonas"].append({
+                                    "subzona": subzona,
+                                    "partidos": partidos,
+                                    "tabla_posiciones": calcular_puntos_y_posiciones(partidos_jugados),
+                                })
+                            else:
+                                niveles_dict[nivel][zona]["1ER ETAPA"][categoria_nombre]["partidos"] = partidos
+                        
+                except IndexError:
+                        print(IndexError, grupo["grupo"])
 
     for nivel, zonas in niveles_dict.items():
         zona_list = []
