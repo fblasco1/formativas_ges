@@ -1,5 +1,6 @@
 import json
 import requests
+import time
 
 from bs4 import BeautifulSoup
 
@@ -38,6 +39,7 @@ def obtener_fases(cat_url):
     soup = BeautifulSoup(html_content, 'html.parser')
     # Obtener fases
     fases_select = soup.find("select", {"name": "DDLFases"})
+    time.sleep(2)
     fases = []
     for option in fases_select.find_all("option"):
         fase_id = option["value"]
