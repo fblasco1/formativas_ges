@@ -81,7 +81,7 @@
                         ]
                     },
                     {
-                        "CLUB": "BA.NA.DE.",
+                        "CLUB": "BANADE",
                         "CATEGORIAS": [
                             {
                                 "categoria": "JUVENILES",
@@ -764,6 +764,16 @@
                                 "partidos no completados": 0
                             },
                             {
+                                "categoria": "PREINFANTILES",
+                                "partidos jugados": 26,
+                                "partidos no completados": 0
+                            },
+                            {
+                                "categoria": "MINI",
+                                "partidos jugados": 25,
+                                "partidos no completados": 0
+                            },
+                            {
                                 "categoria": "PREMINI",
                                 "partidos jugados": 25,
                                 "partidos no completados": 4
@@ -1327,21 +1337,6 @@
                                 "categoria": "PREMINI",
                                 "partidos jugados": 23,
                                 "partidos no completados": 1
-                            }
-                        ]
-                    },
-                    {
-                        "CLUB": "CLUB DEPORTIVO SAN ANDRÉS",
-                        "CATEGORIAS": [
-                            {
-                                "categoria": "PREINFANTILES",
-                                "partidos jugados": 26,
-                                "partidos no completados": 0
-                            },
-                            {
-                                "categoria": "MINI",
-                                "partidos jugados": 25,
-                                "partidos no completados": 0
                             }
                         ]
                     },
@@ -2674,6 +2669,11 @@
                                 "partidos no completados": 0
                             },
                             {
+                                "categoria": "INFANTILES",
+                                "partidos jugados": 25,
+                                "partidos no completados": 1
+                            },
+                            {
                                 "categoria": "PREINFANTILES",
                                 "partidos jugados": 26,
                                 "partidos no completados": 0
@@ -2682,6 +2682,16 @@
                                 "categoria": "MINI",
                                 "partidos jugados": 25,
                                 "partidos no completados": 3
+                            },
+                            {
+                                "categoria": "PREMINI",
+                                "partidos jugados": 26,
+                                "partidos no completados": 3
+                            },
+                            {
+                                "categoria": "Mosquitos",
+                                "partidos jugados": 9,
+                                "partidos no completados": 0
                             }
                         ]
                     },
@@ -2842,6 +2852,31 @@
                                 "categoria": "JUVENILES",
                                 "partidos jugados": 25,
                                 "partidos no completados": 0
+                            },
+                            {
+                                "categoria": "CADETES",
+                                "partidos jugados": 26,
+                                "partidos no completados": 0
+                            },
+                            {
+                                "categoria": "INFANTILES",
+                                "partidos jugados": 26,
+                                "partidos no completados": 1
+                            },
+                            {
+                                "categoria": "PREINFANTILES",
+                                "partidos jugados": 25,
+                                "partidos no completados": 0
+                            },
+                            {
+                                "categoria": "MINI",
+                                "partidos jugados": 26,
+                                "partidos no completados": 2
+                            },
+                            {
+                                "categoria": "PREMINI",
+                                "partidos jugados": 26,
+                                "partidos no completados": 3
                             },
                             {
                                 "categoria": "Mosquitos",
@@ -3267,61 +3302,6 @@
                                 "categoria": "PREMINI",
                                 "partidos jugados": 11,
                                 "partidos no completados": 10
-                            }
-                        ]
-                    },
-                    {
-                        "CLUB": "GIMNASIA ESGRIMA DE ITUZAIGO",
-                        "CATEGORIAS": [
-                            {
-                                "categoria": "CADETES",
-                                "partidos jugados": 26,
-                                "partidos no completados": 0
-                            },
-                            {
-                                "categoria": "INFANTILES",
-                                "partidos jugados": 26,
-                                "partidos no completados": 1
-                            }
-                        ]
-                    },
-                    {
-                        "CLUB": "ARGENTINOS DE CASTELAR A",
-                        "CATEGORIAS": [
-                            {
-                                "categoria": "INFANTILES",
-                                "partidos jugados": 25,
-                                "partidos no completados": 1
-                            },
-                            {
-                                "categoria": "PREMINI",
-                                "partidos jugados": 26,
-                                "partidos no completados": 3
-                            },
-                            {
-                                "categoria": "Mosquitos",
-                                "partidos jugados": 9,
-                                "partidos no completados": 0
-                            }
-                        ]
-                    },
-                    {
-                        "CLUB": "G.E.ITUZAINGO",
-                        "CATEGORIAS": [
-                            {
-                                "categoria": "PREINFANTILES",
-                                "partidos jugados": 25,
-                                "partidos no completados": 0
-                            },
-                            {
-                                "categoria": "MINI",
-                                "partidos jugados": 26,
-                                "partidos no completados": 2
-                            },
-                            {
-                                "categoria": "PREMINI",
-                                "partidos jugados": 26,
-                                "partidos no completados": 3
                             }
                         ]
                     },
@@ -3937,6 +3917,31 @@
                                 "categoria": "JUVENILES",
                                 "partidos jugados": 22,
                                 "partidos no completados": 3
+                            },
+                            {
+                                "categoria": "CADETES",
+                                "partidos jugados": 22,
+                                "partidos no completados": 2
+                            },
+                            {
+                                "categoria": "INFANTILES",
+                                "partidos jugados": 21,
+                                "partidos no completados": 0
+                            },
+                            {
+                                "categoria": "PREINFANTILES",
+                                "partidos jugados": 22,
+                                "partidos no completados": 7
+                            },
+                            {
+                                "categoria": "MINI",
+                                "partidos jugados": 21,
+                                "partidos no completados": 9
+                            },
+                            {
+                                "categoria": "PREMINI",
+                                "partidos jugados": 17,
+                                "partidos no completados": 11
                             }
                         ]
                     },
@@ -5107,36 +5112,6 @@
                                 "categoria": "Mosquitos",
                                 "partidos jugados": 3,
                                 "partidos no completados": 1
-                            }
-                        ]
-                    },
-                    {
-                        "CLUB": "BURZACO F.C. B",
-                        "CATEGORIAS": [
-                            {
-                                "categoria": "CADETES",
-                                "partidos jugados": 22,
-                                "partidos no completados": 2
-                            },
-                            {
-                                "categoria": "INFANTILES",
-                                "partidos jugados": 21,
-                                "partidos no completados": 0
-                            },
-                            {
-                                "categoria": "PREINFANTILES",
-                                "partidos jugados": 22,
-                                "partidos no completados": 7
-                            },
-                            {
-                                "categoria": "MINI",
-                                "partidos jugados": 21,
-                                "partidos no completados": 9
-                            },
-                            {
-                                "categoria": "PREMINI",
-                                "partidos jugados": 17,
-                                "partidos no completados": 11
                             }
                         ]
                     },
@@ -6899,46 +6874,6 @@
                                 "partidos no completados": 0
                             }
                         ]
-                    },
-                    {
-                        "CLUB": "UAI URQUIZA",
-                        "CATEGORIAS": [
-                            {
-                                "categoria": "Mosquitos",
-                                "partidos jugados": 1,
-                                "partidos no completados": 0
-                            }
-                        ]
-                    },
-                    {
-                        "CLUB": "Argentinos Juniors",
-                        "CATEGORIAS": [
-                            {
-                                "categoria": "Mosquitos",
-                                "partidos jugados": 1,
-                                "partidos no completados": 0
-                            }
-                        ]
-                    },
-                    {
-                        "CLUB": "PINOCHO",
-                        "CATEGORIAS": [
-                            {
-                                "categoria": "Mosquitos",
-                                "partidos jugados": 1,
-                                "partidos no completados": 0
-                            }
-                        ]
-                    },
-                    {
-                        "CLUB": "Racing club sede capital",
-                        "CATEGORIAS": [
-                            {
-                                "categoria": "Mosquitos",
-                                "partidos jugados": 1,
-                                "partidos no completados": 1
-                            }
-                        ]
                     }
                 ]
             }
@@ -6951,11 +6886,36 @@
                 "zona": "SUR",
                 "clubes": [
                     {
-                        "CLUB": "CAÑUELAS FC - Sub 19",
+                        "CLUB": "CAÑUELAS FC",
                         "CATEGORIAS": [
                             {
                                 "categoria": "JUVENILES",
                                 "partidos jugados": 28,
+                                "partidos no completados": 0
+                            },
+                            {
+                                "categoria": "CADETES",
+                                "partidos jugados": 29,
+                                "partidos no completados": 0
+                            },
+                            {
+                                "categoria": "INFANTILES",
+                                "partidos jugados": 25,
+                                "partidos no completados": 0
+                            },
+                            {
+                                "categoria": "PREINFANTILES",
+                                "partidos jugados": 26,
+                                "partidos no completados": 0
+                            },
+                            {
+                                "categoria": "MINI",
+                                "partidos jugados": 26,
+                                "partidos no completados": 0
+                            },
+                            {
+                                "categoria": "PREMINI",
+                                "partidos jugados": 23,
                                 "partidos no completados": 0
                             }
                         ]
@@ -7346,7 +7306,7 @@
                         ]
                     },
                     {
-                        "CLUB": "CLUB GIMNASIA Y ESGRIMA LA PLATA",
+                        "CLUB": "CLUB GIMNASIA Y ESGRIMA LA PLATA AZUL",
                         "CATEGORIAS": [
                             {
                                 "categoria": "JUVENILES",
@@ -7626,7 +7586,7 @@
                         ]
                     },
                     {
-                        "CLUB": "BOCA JUNIORS \"B\"",
+                        "CLUB": "BOCA JUNIORS AMARILLO",
                         "CATEGORIAS": [
                             {
                                 "categoria": "JUVENILES",
@@ -7731,7 +7691,7 @@
                         ]
                     },
                     {
-                        "CLUB": "G.E.LOMAS B",
+                        "CLUB": "G.E DE LOMAS DE ZAMORA B",
                         "CATEGORIAS": [
                             {
                                 "categoria": "JUVENILES",
@@ -7871,7 +7831,7 @@
                         ]
                     },
                     {
-                        "CLUB": "SPORTIVO ALSINA ORO",
+                        "CLUB": "SPORTIVO ALSINA",
                         "CATEGORIAS": [
                             {
                                 "categoria": "JUVENILES",
@@ -8111,12 +8071,17 @@
                         ]
                     },
                     {
-                        "CLUB": "JUV.DE CAÑUELAS",
+                        "CLUB": "JUVENTUD UNIDA",
                         "CATEGORIAS": [
                             {
                                 "categoria": "JUVENILES",
                                 "partidos jugados": 28,
                                 "partidos no completados": 0
+                            },
+                            {
+                                "categoria": "CADETES",
+                                "partidos jugados": 26,
+                                "partidos no completados": 1
                             },
                             {
                                 "categoria": "INFANTILES",
@@ -8126,6 +8091,16 @@
                             {
                                 "categoria": "PREINFANTILES",
                                 "partidos jugados": 27,
+                                "partidos no completados": 0
+                            },
+                            {
+                                "categoria": "MINI",
+                                "partidos jugados": 23,
+                                "partidos no completados": 0
+                            },
+                            {
+                                "categoria": "PREMINI",
+                                "partidos jugados": 23,
                                 "partidos no completados": 0
                             }
                         ]
@@ -8376,7 +8351,7 @@
                         ]
                     },
                     {
-                        "CLUB": "G.E.LOMAS A",
+                        "CLUB": "G.E DE LOMAS DE ZAMORA A",
                         "CATEGORIAS": [
                             {
                                 "categoria": "JUVENILES",
@@ -8476,76 +8451,6 @@
                             {
                                 "categoria": "PREMINI",
                                 "partidos jugados": 16,
-                                "partidos no completados": 0
-                            }
-                        ]
-                    },
-                    {
-                        "CLUB": "CAÑUELAS FC - Sub 17",
-                        "CATEGORIAS": [
-                            {
-                                "categoria": "CADETES",
-                                "partidos jugados": 29,
-                                "partidos no completados": 0
-                            }
-                        ]
-                    },
-                    {
-                        "CLUB": "JUVENTUD UNIDA",
-                        "CATEGORIAS": [
-                            {
-                                "categoria": "CADETES",
-                                "partidos jugados": 26,
-                                "partidos no completados": 1
-                            },
-                            {
-                                "categoria": "MINI",
-                                "partidos jugados": 23,
-                                "partidos no completados": 0
-                            },
-                            {
-                                "categoria": "PREMINI",
-                                "partidos jugados": 23,
-                                "partidos no completados": 0
-                            }
-                        ]
-                    },
-                    {
-                        "CLUB": "CAÑUELAS FC - Sub 15",
-                        "CATEGORIAS": [
-                            {
-                                "categoria": "INFANTILES",
-                                "partidos jugados": 25,
-                                "partidos no completados": 0
-                            }
-                        ]
-                    },
-                    {
-                        "CLUB": "CAÑUELAS FC - Sub 13",
-                        "CATEGORIAS": [
-                            {
-                                "categoria": "PREINFANTILES",
-                                "partidos jugados": 26,
-                                "partidos no completados": 0
-                            }
-                        ]
-                    },
-                    {
-                        "CLUB": "CAÑUELAS FC - Mini",
-                        "CATEGORIAS": [
-                            {
-                                "categoria": "MINI",
-                                "partidos jugados": 26,
-                                "partidos no completados": 0
-                            }
-                        ]
-                    },
-                    {
-                        "CLUB": "CAÑUELAS FC",
-                        "CATEGORIAS": [
-                            {
-                                "categoria": "PREMINI",
-                                "partidos jugados": 23,
                                 "partidos no completados": 0
                             }
                         ]
@@ -8806,7 +8711,7 @@
                         ]
                     },
                     {
-                        "CLUB": "GEI AZUL",
+                        "CLUB": "Club GEI AZUL",
                         "CATEGORIAS": [
                             {
                                 "categoria": "JUVENILES",
@@ -9436,7 +9341,7 @@
                         ]
                     },
                     {
-                        "CLUB": "GEI BLANCO",
+                        "CLUB": "Club GEI BLANCO",
                         "CATEGORIAS": [
                             {
                                 "categoria": "JUVENILES",
@@ -9646,7 +9551,7 @@
                         ]
                     },
                     {
-                        "CLUB": "CLUB PORTUGUES",
+                        "CLUB": "CLUB PORTUGUES DEL GRAN BUENOS AIRES",
                         "CATEGORIAS": [
                             {
                                 "categoria": "JUVENILES",
@@ -9926,7 +9831,7 @@
                         ]
                     },
                     {
-                        "CLUB": "ARGENTINOS DE CASTELAR A",
+                        "CLUB": "ARGENTINO DE CASTELAR NORTE",
                         "CATEGORIAS": [
                             {
                                 "categoria": "JUVENILES",
@@ -10136,7 +10041,7 @@
                         ]
                     },
                     {
-                        "CLUB": "G.E.LOMAS A",
+                        "CLUB": "G.E DE LOMAS DE ZAMORA A",
                         "CATEGORIAS": [
                             {
                                 "categoria": "JUVENILES",
@@ -11141,7 +11046,7 @@
                         ]
                     },
                     {
-                        "CLUB": "ARGENTINOS JRS.",
+                        "CLUB": "ARGENTINOS JUNIORS",
                         "CATEGORIAS": [
                             {
                                 "categoria": "JUVENILES",
@@ -12196,7 +12101,7 @@
                         ]
                     },
                     {
-                        "CLUB": "SP.ESCOBAR",
+                        "CLUB": "SPORTIVO ESCOBAR",
                         "CATEGORIAS": [
                             {
                                 "categoria": "JUVENILES",
@@ -12217,6 +12122,16 @@
                                 "categoria": "PREINFANTILES",
                                 "partidos jugados": 26,
                                 "partidos no completados": 0
+                            },
+                            {
+                                "categoria": "MINI",
+                                "partidos jugados": 24,
+                                "partidos no completados": 0
+                            },
+                            {
+                                "categoria": "PREMINI",
+                                "partidos jugados": 24,
+                                "partidos no completados": 1
                             }
                         ]
                     },
@@ -12256,7 +12171,7 @@
                         ]
                     },
                     {
-                        "CLUB": "CLUB 3 DE FEBRERO BLANCO",
+                        "CLUB": "CLUB TRES DE FEBRERO BLANCO",
                         "CATEGORIAS": [
                             {
                                 "categoria": "JUVENILES",
@@ -12396,11 +12311,36 @@
                         ]
                     },
                     {
-                        "CLUB": "BCO.NACION",
+                        "CLUB": "BANCO NACIÓN",
                         "CATEGORIAS": [
                             {
                                 "categoria": "JUVENILES",
                                 "partidos jugados": 27,
+                                "partidos no completados": 0
+                            },
+                            {
+                                "categoria": "CADETES",
+                                "partidos jugados": 25,
+                                "partidos no completados": 1
+                            },
+                            {
+                                "categoria": "INFANTILES",
+                                "partidos jugados": 25,
+                                "partidos no completados": 0
+                            },
+                            {
+                                "categoria": "PREINFANTILES",
+                                "partidos jugados": 25,
+                                "partidos no completados": 0
+                            },
+                            {
+                                "categoria": "MINI",
+                                "partidos jugados": 25,
+                                "partidos no completados": 0
+                            },
+                            {
+                                "categoria": "PREMINI",
+                                "partidos jugados": 24,
                                 "partidos no completados": 0
                             }
                         ]
@@ -12441,7 +12381,7 @@
                         ]
                     },
                     {
-                        "CLUB": "PORTEÑO ATLETIC CLUB ZARATE CAMPANA",
+                        "CLUB": "PORTEÑO ATLETICO CLUB",
                         "CATEGORIAS": [
                             {
                                 "categoria": "JUVENILES",
@@ -12694,8 +12634,28 @@
                                 "partidos no completados": 5
                             },
                             {
+                                "categoria": "CADETES",
+                                "partidos jugados": 23,
+                                "partidos no completados": 7
+                            },
+                            {
+                                "categoria": "INFANTILES",
+                                "partidos jugados": 23,
+                                "partidos no completados": 1
+                            },
+                            {
                                 "categoria": "PREINFANTILES",
                                 "partidos jugados": 22,
+                                "partidos no completados": 2
+                            },
+                            {
+                                "categoria": "MINI",
+                                "partidos jugados": 20,
+                                "partidos no completados": 1
+                            },
+                            {
+                                "categoria": "PREMINI",
+                                "partidos jugados": 19,
                                 "partidos no completados": 2
                             }
                         ]
@@ -12806,7 +12766,7 @@
                         ]
                     },
                     {
-                        "CLUB": "TORTUGUITAS BASKET",
+                        "CLUB": "COOPERATIVA TORTUGUITAS",
                         "CATEGORIAS": [
                             {
                                 "categoria": "JUVENILES",
@@ -12876,7 +12836,7 @@
                         ]
                     },
                     {
-                        "CLUB": "CLUB 3 DE FEBRERO AZUL",
+                        "CLUB": "CLUB TRES DE FEBRERO AZUL",
                         "CATEGORIAS": [
                             {
                                 "categoria": "JUVENILES",
@@ -13086,91 +13046,6 @@
                         ]
                     },
                     {
-                        "CLUB": "BANCO NACIÓN",
-                        "CATEGORIAS": [
-                            {
-                                "categoria": "CADETES",
-                                "partidos jugados": 25,
-                                "partidos no completados": 1
-                            },
-                            {
-                                "categoria": "INFANTILES",
-                                "partidos jugados": 25,
-                                "partidos no completados": 0
-                            },
-                            {
-                                "categoria": "PREINFANTILES",
-                                "partidos jugados": 25,
-                                "partidos no completados": 0
-                            },
-                            {
-                                "categoria": "MINI",
-                                "partidos jugados": 25,
-                                "partidos no completados": 0
-                            },
-                            {
-                                "categoria": "PREMINI",
-                                "partidos jugados": 24,
-                                "partidos no completados": 0
-                            }
-                        ]
-                    },
-                    {
-                        "CLUB": "DEPORTIVO MORON B -Sub 17",
-                        "CATEGORIAS": [
-                            {
-                                "categoria": "CADETES",
-                                "partidos jugados": 23,
-                                "partidos no completados": 7
-                            }
-                        ]
-                    },
-                    {
-                        "CLUB": "DEPORTIVO MORON B - Sub 15",
-                        "CATEGORIAS": [
-                            {
-                                "categoria": "INFANTILES",
-                                "partidos jugados": 23,
-                                "partidos no completados": 1
-                            }
-                        ]
-                    },
-                    {
-                        "CLUB": "SPORTIVO ESCOBAR",
-                        "CATEGORIAS": [
-                            {
-                                "categoria": "MINI",
-                                "partidos jugados": 24,
-                                "partidos no completados": 0
-                            },
-                            {
-                                "categoria": "PREMINI",
-                                "partidos jugados": 24,
-                                "partidos no completados": 1
-                            }
-                        ]
-                    },
-                    {
-                        "CLUB": "DEPORTIVO MORON B - Mini",
-                        "CATEGORIAS": [
-                            {
-                                "categoria": "MINI",
-                                "partidos jugados": 20,
-                                "partidos no completados": 1
-                            }
-                        ]
-                    },
-                    {
-                        "CLUB": "DEPORTIVO MORON B - Premini",
-                        "CATEGORIAS": [
-                            {
-                                "categoria": "PREMINI",
-                                "partidos jugados": 19,
-                                "partidos no completados": 2
-                            }
-                        ]
-                    },
-                    {
                         "CLUB": "ARGENTINO DE CASTELAR CENTRO",
                         "CATEGORIAS": [
                             {
@@ -13226,7 +13101,7 @@
                         ]
                     },
                     {
-                        "CLUB": "ARGENTINOS DE CASTELAR A",
+                        "CLUB": "ARGENTINO DE CASTELAR NORTE",
                         "CATEGORIAS": [
                             {
                                 "categoria": "JUVENILES",
@@ -13261,7 +13136,7 @@
                         ]
                     },
                     {
-                        "CLUB": "G.E.LOMAS A",
+                        "CLUB": "G.E DE LOMAS DE ZAMORA A",
                         "CATEGORIAS": [
                             {
                                 "categoria": "JUVENILES",
@@ -13891,7 +13766,7 @@
                         ]
                     },
                     {
-                        "CLUB": "CLUB GIMNASIA Y ESGRIMA LA PLATA",
+                        "CLUB": "CLUB GIMNASIA Y ESGRIMA LA PLATA AZUL",
                         "CATEGORIAS": [
                             {
                                 "categoria": "INFANTILES",
@@ -13931,7 +13806,7 @@
                         ]
                     },
                     {
-                        "CLUB": "GEI AZUL",
+                        "CLUB": "Club GEI AZUL",
                         "CATEGORIAS": [
                             {
                                 "categoria": "PREINFANTILES",
@@ -15511,7 +15386,7 @@
                         ]
                     },
                     {
-                        "CLUB": "FERROCARRIL OESTE",
+                        "CLUB": "FERROCARRIL OESTE A",
                         "CATEGORIAS": [
                             {
                                 "categoria": "JUVENILES",
@@ -15866,7 +15741,7 @@
                         ]
                     },
                     {
-                        "CLUB": "GEI BLANCO",
+                        "CLUB": "Club GEI BLANCO",
                         "CATEGORIAS": [
                             {
                                 "categoria": "JUVENILES",
@@ -16006,7 +15881,7 @@
                         ]
                     },
                     {
-                        "CLUB": "CLUB PORTUGUES",
+                        "CLUB": "CLUB PORTUGUES DEL GRAN BUENOS AIRES",
                         "CATEGORIAS": [
                             {
                                 "categoria": "JUVENILES",
@@ -16356,12 +16231,37 @@
                         ]
                     },
                     {
-                        "CLUB": "U19 INDIOS BLANCO",
+                        "CLUB": "LOS INDIOS DE MORENO BLANCO",
                         "CATEGORIAS": [
                             {
                                 "categoria": "JUVENILES",
                                 "partidos jugados": 27,
                                 "partidos no completados": 0
+                            },
+                            {
+                                "categoria": "CADETES",
+                                "partidos jugados": 27,
+                                "partidos no completados": 0
+                            },
+                            {
+                                "categoria": "INFANTILES",
+                                "partidos jugados": 26,
+                                "partidos no completados": 0
+                            },
+                            {
+                                "categoria": "PREINFANTILES",
+                                "partidos jugados": 25,
+                                "partidos no completados": 1
+                            },
+                            {
+                                "categoria": "MINI",
+                                "partidos jugados": 24,
+                                "partidos no completados": 1
+                            },
+                            {
+                                "categoria": "PREMINI",
+                                "partidos jugados": 20,
+                                "partidos no completados": 4
                             }
                         ]
                     },
@@ -16545,7 +16445,7 @@
                         "CATEGORIAS": [
                             {
                                 "categoria": "JUVENILES",
-                                "partidos jugados": 25,
+                                "partidos jugados": 24,
                                 "partidos no completados": 0
                             },
                             {
@@ -16555,7 +16455,7 @@
                             },
                             {
                                 "categoria": "INFANTILES",
-                                "partidos jugados": 25,
+                                "partidos jugados": 24,
                                 "partidos no completados": 0
                             },
                             {
@@ -16611,7 +16511,7 @@
                         ]
                     },
                     {
-                        "CLUB": "C.A.S.A PADUA",
+                        "CLUB": "C.A.S.A PADUA A",
                         "CATEGORIAS": [
                             {
                                 "categoria": "JUVENILES",
@@ -16755,7 +16655,7 @@
                         "CATEGORIAS": [
                             {
                                 "categoria": "JUVENILES",
-                                "partidos jugados": 27,
+                                "partidos jugados": 26,
                                 "partidos no completados": 0
                             },
                             {
@@ -16786,7 +16686,7 @@
                         ]
                     },
                     {
-                        "CLUB": "GEI AZUL",
+                        "CLUB": "Club GEI AZUL",
                         "CATEGORIAS": [
                             {
                                 "categoria": "JUVENILES",
@@ -16856,12 +16756,37 @@
                         ]
                     },
                     {
-                        "CLUB": "U19 INDIOS NEGRO",
+                        "CLUB": "LOS INDIOS DE MORENO NEGRO",
                         "CATEGORIAS": [
                             {
                                 "categoria": "JUVENILES",
                                 "partidos jugados": 27,
                                 "partidos no completados": 0
+                            },
+                            {
+                                "categoria": "CADETES",
+                                "partidos jugados": 26,
+                                "partidos no completados": 0
+                            },
+                            {
+                                "categoria": "INFANTILES",
+                                "partidos jugados": 25,
+                                "partidos no completados": 0
+                            },
+                            {
+                                "categoria": "PREINFANTILES",
+                                "partidos jugados": 27,
+                                "partidos no completados": 0
+                            },
+                            {
+                                "categoria": "MINI",
+                                "partidos jugados": 27,
+                                "partidos no completados": 1
+                            },
+                            {
+                                "categoria": "PREMINI",
+                                "partidos jugados": 27,
+                                "partidos no completados": 2
                             }
                         ]
                     },
@@ -16950,7 +16875,7 @@
                             },
                             {
                                 "categoria": "INFANTILES",
-                                "partidos jugados": 25,
+                                "partidos jugados": 24,
                                 "partidos no completados": 0
                             },
                             {
@@ -16971,7 +16896,7 @@
                         ]
                     },
                     {
-                        "CLUB": "ARGENTINOS DE CASTELAR A",
+                        "CLUB": "ARGENTINO DE CASTELAR NORTE",
                         "CATEGORIAS": [
                             {
                                 "categoria": "JUVENILES",
@@ -17111,107 +17036,7 @@
                         ]
                     },
                     {
-                        "CLUB": "U17 INDIOS BLANCO",
-                        "CATEGORIAS": [
-                            {
-                                "categoria": "CADETES",
-                                "partidos jugados": 27,
-                                "partidos no completados": 0
-                            }
-                        ]
-                    },
-                    {
-                        "CLUB": "U17 INDIOS NEGRO",
-                        "CATEGORIAS": [
-                            {
-                                "categoria": "CADETES",
-                                "partidos jugados": 26,
-                                "partidos no completados": 0
-                            }
-                        ]
-                    },
-                    {
-                        "CLUB": "U15 INDIOS BLANCO",
-                        "CATEGORIAS": [
-                            {
-                                "categoria": "INFANTILES",
-                                "partidos jugados": 26,
-                                "partidos no completados": 0
-                            }
-                        ]
-                    },
-                    {
-                        "CLUB": "U15 INDIOS NEGRO",
-                        "CATEGORIAS": [
-                            {
-                                "categoria": "INFANTILES",
-                                "partidos jugados": 25,
-                                "partidos no completados": 0
-                            }
-                        ]
-                    },
-                    {
-                        "CLUB": "U13 INDIOS BLANCO",
-                        "CATEGORIAS": [
-                            {
-                                "categoria": "PREINFANTILES",
-                                "partidos jugados": 25,
-                                "partidos no completados": 1
-                            }
-                        ]
-                    },
-                    {
-                        "CLUB": "U13 INDIOS NEGRO",
-                        "CATEGORIAS": [
-                            {
-                                "categoria": "PREINFANTILES",
-                                "partidos jugados": 27,
-                                "partidos no completados": 0
-                            }
-                        ]
-                    },
-                    {
-                        "CLUB": "MINI INDIOS NEGRO",
-                        "CATEGORIAS": [
-                            {
-                                "categoria": "MINI",
-                                "partidos jugados": 27,
-                                "partidos no completados": 1
-                            }
-                        ]
-                    },
-                    {
-                        "CLUB": "MINI INDIOS BLANCO",
-                        "CATEGORIAS": [
-                            {
-                                "categoria": "MINI",
-                                "partidos jugados": 24,
-                                "partidos no completados": 1
-                            }
-                        ]
-                    },
-                    {
-                        "CLUB": "PREMINI INDIOS NEGRO",
-                        "CATEGORIAS": [
-                            {
-                                "categoria": "PREMINI",
-                                "partidos jugados": 27,
-                                "partidos no completados": 2
-                            }
-                        ]
-                    },
-                    {
-                        "CLUB": "PREMINI INDIOS BLANCO",
-                        "CATEGORIAS": [
-                            {
-                                "categoria": "PREMINI",
-                                "partidos jugados": 20,
-                                "partidos no completados": 4
-                            }
-                        ]
-                    },
-                    {
-                        "CLUB": "FERROCARRIL OESTE",
+                        "CLUB": "FERROCARRIL OESTE A",
                         "CATEGORIAS": [
                             {
                                 "categoria": "JUVENILES",
@@ -17837,16 +17662,6 @@
                                 "categoria": "PREMINI",
                                 "partidos jugados": 24,
                                 "partidos no completados": 2
-                            }
-                        ]
-                    },
-                    {
-                        "CLUB": "CAÑUELAS FC - Sub19",
-                        "CATEGORIAS": [
-                            {
-                                "categoria": "JUVENILES",
-                                "partidos jugados": 26,
-                                "partidos no completados": 0
                             }
                         ]
                     },
@@ -19111,48 +18926,33 @@
                         ]
                     },
                     {
-                        "CLUB": "CAÑUELAS FC - Sub 17",
+                        "CLUB": "CAÑUELAS FC",
                         "CATEGORIAS": [
+                            {
+                                "categoria": "JUVENILES",
+                                "partidos jugados": 26,
+                                "partidos no completados": 0
+                            },
                             {
                                 "categoria": "CADETES",
                                 "partidos jugados": 25,
                                 "partidos no completados": 0
-                            }
-                        ]
-                    },
-                    {
-                        "CLUB": "CAÑUELAS FC - Sub 15",
-                        "CATEGORIAS": [
+                            },
                             {
                                 "categoria": "INFANTILES",
                                 "partidos jugados": 25,
                                 "partidos no completados": 0
-                            }
-                        ]
-                    },
-                    {
-                        "CLUB": "CAÑUELAS FC - Sub 13",
-                        "CATEGORIAS": [
+                            },
                             {
                                 "categoria": "PREINFANTILES",
                                 "partidos jugados": 25,
                                 "partidos no completados": 0
-                            }
-                        ]
-                    },
-                    {
-                        "CLUB": "CAÑUELAS FC - Mini",
-                        "CATEGORIAS": [
+                            },
                             {
                                 "categoria": "MINI",
                                 "partidos jugados": 25,
                                 "partidos no completados": 1
-                            }
-                        ]
-                    },
-                    {
-                        "CLUB": "CAÑUELAS FC - Premini",
-                        "CATEGORIAS": [
+                            },
                             {
                                 "categoria": "PREMINI",
                                 "partidos jugados": 24,
@@ -19231,7 +19031,7 @@
                         ]
                     },
                     {
-                        "CLUB": "FERROCARRIL OESTE",
+                        "CLUB": "FERROCARRIL OESTE A",
                         "CATEGORIAS": [
                             {
                                 "categoria": "JUVENILES",
@@ -19526,7 +19326,7 @@
                         ]
                     },
                     {
-                        "CLUB": "CLUB 3 DE FEBRERO AZUL",
+                        "CLUB": "CLUB TRES DE FEBRERO AZUL",
                         "CATEGORIAS": [
                             {
                                 "categoria": "JUVENILES",
@@ -19692,6 +19492,11 @@
                                 "categoria": "MINI",
                                 "partidos jugados": 25,
                                 "partidos no completados": 0
+                            },
+                            {
+                                "categoria": "PREMINI",
+                                "partidos jugados": 26,
+                                "partidos no completados": 2
                             }
                         ]
                     },
@@ -20396,7 +20201,7 @@
                         ]
                     },
                     {
-                        "CLUB": "CLUB 3 DE FEBRERO BLANCO",
+                        "CLUB": "CLUB TRES DE FEBRERO BLANCO",
                         "CATEGORIAS": [
                             {
                                 "categoria": "JUVENILES",
@@ -20521,18 +20326,13 @@
                         ]
                     },
                     {
-                        "CLUB": "SP.ESCOBAR",
+                        "CLUB": "SPORTIVO ESCOBAR",
                         "CATEGORIAS": [
                             {
                                 "categoria": "CADETES",
                                 "partidos jugados": 25,
                                 "partidos no completados": 0
-                            }
-                        ]
-                    },
-                    {
-                        "CLUB": "SPORTIVO ESCOBAR",
-                        "CATEGORIAS": [
+                            },
                             {
                                 "categoria": "MINI",
                                 "partidos jugados": 27,
@@ -20542,16 +20342,6 @@
                                 "categoria": "PREMINI",
                                 "partidos jugados": 22,
                                 "partidos no completados": 0
-                            }
-                        ]
-                    },
-                    {
-                        "CLUB": "CIUDAD DE BUENOS AIRES",
-                        "CATEGORIAS": [
-                            {
-                                "categoria": "PREMINI",
-                                "partidos jugados": 26,
-                                "partidos no completados": 2
                             }
                         ]
                     },
@@ -20831,7 +20621,7 @@
                         ]
                     },
                     {
-                        "CLUB": "GEI AZUL",
+                        "CLUB": "Club GEI AZUL",
                         "CATEGORIAS": [
                             {
                                 "categoria": "JUVENILES",
@@ -20876,7 +20666,7 @@
                         ]
                     },
                     {
-                        "CLUB": "FERROCARRIL OESTE",
+                        "CLUB": "FERROCARRIL OESTE A",
                         "CATEGORIAS": [
                             {
                                 "categoria": "JUVENILES",
@@ -20946,6 +20736,36 @@
                         ]
                     },
                     {
+                        "CLUB": "CLARIDAD",
+                        "CATEGORIAS": [
+                            {
+                                "categoria": "JUVENILES",
+                                "partidos jugados": 1,
+                                "partidos no completados": 0
+                            },
+                            {
+                                "categoria": "INFANTILES",
+                                "partidos jugados": 1,
+                                "partidos no completados": 0
+                            }
+                        ]
+                    },
+                    {
+                        "CLUB": "PORTEÑO ATLETICO CLUB",
+                        "CATEGORIAS": [
+                            {
+                                "categoria": "JUVENILES",
+                                "partidos jugados": 1,
+                                "partidos no completados": 0
+                            },
+                            {
+                                "categoria": "INFANTILES",
+                                "partidos jugados": 1,
+                                "partidos no completados": 0
+                            }
+                        ]
+                    },
+                    {
                         "CLUB": "G.E DE LOMAS DE ZAMORA A",
                         "CATEGORIAS": [
                             {
@@ -20981,7 +20801,7 @@
                         ]
                     },
                     {
-                        "CLUB": "ARGENTINOS DE CASTELAR A",
+                        "CLUB": "ARGENTINO DE CASTELAR NORTE",
                         "CATEGORIAS": [
                             {
                                 "categoria": "JUVENILES",
@@ -21351,10 +21171,15 @@
                         ]
                     },
                     {
-                        "CLUB": "U17 INDIOS NEGRO",
+                        "CLUB": "LOS INDIOS DE MORENO NEGRO",
                         "CATEGORIAS": [
                             {
                                 "categoria": "CADETES",
+                                "partidos jugados": 1,
+                                "partidos no completados": 0
+                            },
+                            {
+                                "categoria": "INFANTILES",
                                 "partidos jugados": 1,
                                 "partidos no completados": 0
                             }
@@ -21370,7 +21195,7 @@
                             },
                             {
                                 "categoria": "INFANTILES",
-                                "partidos jugados": 1,
+                                "partidos jugados": 2,
                                 "partidos no completados": 0
                             },
                             {
@@ -21382,26 +21207,6 @@
                     },
                     {
                         "CLUB": "ITALIANO",
-                        "CATEGORIAS": [
-                            {
-                                "categoria": "INFANTILES",
-                                "partidos jugados": 1,
-                                "partidos no completados": 0
-                            }
-                        ]
-                    },
-                    {
-                        "CLUB": "U15 INDIOS NEGRO",
-                        "CATEGORIAS": [
-                            {
-                                "categoria": "INFANTILES",
-                                "partidos jugados": 1,
-                                "partidos no completados": 0
-                            }
-                        ]
-                    },
-                    {
-                        "CLUB": "CLARIDAD",
                         "CATEGORIAS": [
                             {
                                 "categoria": "INFANTILES",
@@ -21946,7 +21751,7 @@
                         ]
                     },
                     {
-                        "CLUB": "DEF. BANFIELD",
+                        "CLUB": "DEFENSORES DE BANFIELD",
                         "CATEGORIAS": [
                             {
                                 "categoria": "JUVENILES",
@@ -23176,7 +22981,7 @@
                 "zona": "NORTE",
                 "clubes": [
                     {
-                        "CLUB": "CLUB 3 DE FEBRERO BLANCO",
+                        "CLUB": "CLUB TRES DE FEBRERO BLANCO",
                         "CATEGORIAS": [
                             {
                                 "categoria": "JUVENILES",
@@ -23351,7 +23156,7 @@
                         ]
                     },
                     {
-                        "CLUB": "CIUDAD DE BUENOS AIRES",
+                        "CLUB": "CIUDAD DE BUENOS AIRES A",
                         "CATEGORIAS": [
                             {
                                 "categoria": "JUVENILES",
@@ -24016,7 +23821,7 @@
                         ]
                     },
                     {
-                        "CLUB": "CLUB 3 DE FEBRERO AZUL",
+                        "CLUB": "CLUB TRES DE FEBRERO AZUL",
                         "CATEGORIAS": [
                             {
                                 "categoria": "JUVENILES",
@@ -24651,7 +24456,7 @@
                 "zona": "CENTRO",
                 "clubes": [
                     {
-                        "CLUB": "FERROCARRIL OESTE",
+                        "CLUB": "FERROCARRIL OESTE A",
                         "CATEGORIAS": [
                             {
                                 "categoria": "JUVENILES",

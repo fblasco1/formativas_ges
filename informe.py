@@ -50,41 +50,61 @@ melted_df = pd.melt(grouped_df, id_vars=['Temporada', 'Club', 'Categoria'],
 
 # Configuración de Streamlit
 st.title('Visualización de Partidos por Categoría y Temporada')
-selected_clubs = st.multiselect('Selecciona uno o más Clubes', melted_df['Club'].unique())
+
+# Ordenar los clubes alfabéticamente
+sorted_clubs = sorted(melted_df['Club'].unique())
+
+# Crear el selector de clubes con los clubes ordenados alfabéticamente
+selected_clubs = st.multiselect('Selecciona uno o más Clubes', sorted_clubs)
 
 # Filtrar los datos por los clubes seleccionados
 filtered_df = melted_df[melted_df['Club'].isin(selected_clubs)]
 
 # Agrupar los datos por temporada, categoría y estado, sumando los partidos
 if not filtered_df.empty:
+    ordered_categories = ['JUVENILES', 'CADETES', 'INFANTILES', 'PREINFANTILES', 'MINI', 'PREMINI']
+
+    # Asegurarse de que las categorías están en el orden correcto
+    filtered_df['Categoria'] = pd.Categorical(filtered_df['Categoria'], categories=ordered_categories, ordered=True)
+
     aggregated_df = filtered_df.groupby(['Temporada', 'Categoria', 'Estado']).agg({
         'Partidos': 'sum'
     }).reset_index()
-    
+
+    # Filtrar los datos para eliminar las filas donde el total de partidos es 0
+    aggregated_df = aggregated_df[aggregated_df['Partidos'] > 0]
+
     # Crear un nuevo DataFrame para el tooltip
     tooltip_df = filtered_df.groupby(['Temporada', 'Categoria', 'Estado', 'Club']).agg({
         'Partidos': 'sum'
     }).reset_index()
-    
+
+    # Ordenar el tooltip_df por temporada, categoría y estado
+    tooltip_df = tooltip_df.sort_values(by=['Temporada', 'Categoria', 'Estado', 'Club'])
+
     # Crear el gráfico interactivo con plotly
     fig = px.bar(
         aggregated_df,
         x='Categoria',
         y='Partidos',
         color='Estado',
-        barmode='group',
+        barmode='overlay',
         facet_col='Temporada',
-        category_orders={'Categoria': sorted(aggregated_df['Categoria'].unique())},
+        category_orders={'Categoria': ordered_categories},
         title=f'Partidos Jugados y No Completados por Categoría y Temporada - {", ".join(selected_clubs)}',
         labels={'Partidos': 'Cantidad de Partidos', 'Categoria': 'Categoría'},
+        color_discrete_map={'Partidos Jugados': 'green', 'Partidos No Completados': 'red'}
     )
 
     # Añadir información detallada al tooltip
     custom_data = []
     for temp, cat, est in zip(aggregated_df['Temporada'], aggregated_df['Categoria'], aggregated_df['Estado']):
         clubs_data = tooltip_df[(tooltip_df['Temporada'] == temp) & (tooltip_df['Categoria'] == cat) & (tooltip_df['Estado'] == est)]
-        breakdown = "<br>".join([f"{row['Club']}: {row['Partidos']}" for row in clubs_data.to_dict('records')])
-        custom_data.append(breakdown)
+        breakdown = "<br>".join([f"{row['Club']}: {row['Partidos']}" for row in clubs_data.to_dict('records') if row['Partidos'] > 0])
+        if breakdown:  # Solo agregar si hay datos válidos
+            custom_data.append(breakdown)
+        # Imprimir la barra y su tooltip correspondiente
+        print(f"Barra - Temporada: {temp}, Categoría: {cat}, Estado: {est}, Custom Data: {breakdown}")
 
     fig.update_traces(
         customdata=custom_data,

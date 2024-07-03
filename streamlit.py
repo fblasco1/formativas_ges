@@ -116,6 +116,21 @@ def main():
             total_partidos = 0
             no_presentados = 0
             datos_np_equipos = {}
+            total_partidos += len(categoria["partidos"]) 
+            for p in categoria["partidos"]:
+                try:
+                    if (int(p["Puntos LOCAL"]) == 20 and int(p["Puntos VISITA"]) == 0): 
+                        datos_np_equipos[p["Visitante"]] = datos_np_equipos.get(p["Visitante"], 0) + 1
+                        no_presentados += 1
+                    elif (int(p["Puntos LOCAL"]) == 0 and int(p["Puntos VISITA"]) == 20):
+                        datos_np_equipos[p["Local"]] = datos_np_equipos.get(p["Local"], 0) + 1
+                        no_presentados += 1
+                    elif(int(p["Puntos LOCAL"]) == 1 and int(p["Puntos VISITA"]) == 1):
+                        datos_np_equipos[p["Local"]] = datos_np_equipos.get(p["Local"], 0) + 1
+                        datos_np_equipos[p["Visitante"]] = datos_np_equipos.get(p["Visitante"], 0) + 1
+                        no_presentados += 1
+                except ValueError:
+                    total_partidos -= 1
             for subzona in categoria["subzonas"]:
                 partidos = subzona["partidos"]
                 total_partidos += len(partidos)
