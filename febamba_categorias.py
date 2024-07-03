@@ -4,22 +4,28 @@ import re
 import time
 from bs4 import BeautifulSoup
 
-def cargar_json(filename):
-    with open(filename, 'r') as file:
+def hacer_solicitud(url, max_intentos=10):
+    intentos = 0
+    while intentos < max_intentos:
+        try:
+            response = requests.get(url)
+            if response.status_code == 200:
+                return response.content
+            else:
+                print(f"Error al hacer solicitud a {url}: {response.status_code}")
+        except Exception as e:
+            print(f"Excepción al hacer solicitud a {url}: {e}")
+        intentos += 1
+        time.sleep(1)  # Espera 1 segundo antes de intentar nuevamente
+    return None
+
+def cargar_json(file_path):
+    with open(file_path, 'r', encoding='utf-8') as file:
         return json.load(file)
 
-def guardar_json(data, filename):
-    with open(filename, 'w') as file:
-        json.dump(data, file, indent=4)
-
-def hacer_solicitud(url):
-    try:
-        response = requests.get(url)
-        response.raise_for_status()
-        return response.text
-    except requests.exceptions.RequestException as e:
-        print(f"Error al realizar la solicitud a {url}: {e}")
-        return None
+def guardar_json(data, file_path):
+    with open(file_path, 'w', encoding='utf-8') as file:
+        json.dump(data, file, ensure_ascii=False, indent=4)
 
 def obtener_grupos(fase_url):
     html_content = hacer_solicitud(fase_url)
@@ -75,6 +81,8 @@ def normalizar_nombre_equipo(nombre):
         "LOS INDIOS U15 NEGRO": "LOS INDIOS DE MORENO NEGRO",
         "LOS INDIOS U17 NEGRO": "LOS INDIOS DE MORENO NEGRO",
         "LOS INDIOS U21 NEGRO": "LOS INDIOS DE MORENO NEGRO",
+        "LOS INDIOS A": "LOS INDIOS DE MORENO NEGRO",
+        "LOS INDIOS B": "LOS INDIOS DE MORENO BLANCO",
         "LOS INDIOS U9 BLANCO": "LOS INDIOS DE MORENO BLANCO",
         "LOS INDIOS MINI BLANCO": "LOS INDIOS DE MORENO BLANCO",
         "LOS INDIOS U13 BLANCO": "LOS INDIOS DE MORENO BLANCO",
@@ -83,13 +91,179 @@ def normalizar_nombre_equipo(nombre):
         "LOS INDIOS U21 BLANCO": "LOS INDIOS DE MORENO BLANCO",
         "BANCO NACION": "BANCO NACIÓN",
         "JUVENTUD": "JUVENTUD UNIDA",
+        "DEPORTIVO MORON": "DEP. MORON BLANCO",
+        "DEPORTIVO MORON - Mini": "DEP. MORON BLANCO",
+        "DEPORTIVO MORON - Premini": "DEP. MORON BLANCO",
         "DEP.MORON BLANCO": "DEP. MORON BLANCO",
         "DEP.MORON ROJO": "DEP. MORON ROJO",
+        "DEPORTIVO MORON B": "DEP. MORON ROJO",
+        "DEPORTIVO MORON B - Sub 19": "DEP. MORON ROJO",
+        "DEPORTIVO MORON B - Sub 17": "DEP. MORON ROJO",
+        "DEPORTIVO MORON B - Sub 13": "DEP. MORON ROJO",
         "ALL BOYS SAAVEDRA": "ALL BOYS DE SAAVEDRA",
         "INDEPENDIENTE de BURZACO": "INDEPENDIENTE DE BURZACO",
-        "QUILMES A.C": "QUILMES A.C."
+        "QUILMES": "QUILMES A.C.",
+        "QUILMES A.C": "QUILMES A.C.",
+        "CAÑUELAS - Sub 19": "CAÑUELAS FC",
+        "CAÑUELAS - Sub 17": "CAÑUELAS FC",
+        "CAÑUELAS - Sub 15": "CAÑUELAS FC",
+        "CAÑUELAS - Sub 13": "CAÑUELAS FC",
+        "CAÑUELAS - Mini": "CAÑUELAS FC",
+        "CAÑUELAS - Premini": "CAÑUELAS FC",
+        "CANUELAS F.C.": "CAÑUELAS FC",
+        "NÁUTICO BUCHARDO A": "NAUTICO BUCHARDO A",
+        "NAUTICO BUCHARDO CENTRO (B)": "NAUTICO BUCHARDO B",
+        "NAUTICO BUCHARDO CENTRO \"B\"": "NAUTICO BUCHARDO B",
+        "NAUTICO BUCHARDO NORTE (A)": "NAUTICO BUCHARDO A",
+        "NAUTICO BUCHARDO NORTE \"A\"": "NAUTICO BUCHARDO A",
+        "NAUTICO BUCHARDO NORTE": "NAUTICO BUCHARDO A",
+        "NAUTICO BUCHARDO": "NAUTICO BUCHARDO A",
+        "UBA": "UNIVERSIDAD DE BUENOS AIRES",
+        "BA.NA.DE": "BANADE",
+        "TRES DE FEBRERO": "CLUB TRES DE FEBRERO BLANCO",
+        "TRES DE FEBRERO B": "CLUB TRES DE FEBRERO AZUL",
+        "CIRCULO URQUIZA": "CIRCULO URQUIZA AZUL",
+        "PLATENSE B": "PLATENSE BLANCO",
+        "PLATENSE \"B\"": "PLATENSE BLANCO",
+        "PLATENSE A": "PLATENSE MARRON",
+        "PLATENSE \"A\"": "PLATENSE MARRON",
+        "NAUTICO HACOAJ B": "NAUTICO HACOAJ AZUL",
+        "NAUTICO HACOAJ": "NAUTICO HACOAJ BLANCO",
+        "SAN FERNANDO B": "SAN FERNANDO BLANCO",
+        "SAN FERNANDO": "SAN FERNANDO AZUL",
+        "SP.VILLA BALLESTER": "SPORTIVO VILLA BALLESTER",
+        "BALLESTER": "SPORTIVO VILLA BALLESTER",
+        "SP.BALLESTER": "SPORTIVO VILLA BALLESTER",
+        "SOC.BECCAR": "SOCIAL BECCAR",
+        "U.V.MUNRO": "UNION VECINAL DE MUNRO",
+        "HARRODS": "HARRODS GATH Y CHAVES",
+        "LAS HERAS": "LAS HERAS A",
+        "CAZA Y PESCA": "CAZA Y PESCA A",
+        "ATL.BOULOGNE": "ATLETICO BOULOGNE",
+        "VILLA ADELINA": "U.V.V.ADELINA",
+        "U.V.V.A. UNION VECINAL VILLA ADELINA" : "U.V.V.ADELINA",
+        "CIUDAD DE BS.AS.": "CIUDAD DE BUENOS AIRES A",
+        "CIUDAD DE BS.AS. B": "CIUDAD DE BUENOS AIRES B",
+        "12 DE OCTUBRE": "CLUB 12 DE OCTUBRE",
+        "CLUB DEPORTIVO SAN ANDRES": "DEPORTIVO SAN ANDRES",
+        "G.E.V.PARQUE": "GEVP BLANCO",
+        "G.E.V.PARQUE B": "GEVP CELESTE",
+        "A.F.A.L.P.": "A.F.A.L.P. A",
+        'A.F.A.L.P. "A"': "A.F.A.L.P. A",
+        "BOCA JUNIORS": "BOCA JUNIORS AZUL",
+        "BOCA JUNIORS \"A\"": "BOCA JUNIORS AZUL",
+        "BOCA JUNIORS \"AZUL\"": "BOCA JUNIORS AZUL",
+        "BOCA JUNIORS B": "BOCA JUNIORS AMARILLO",
+        "BOCA JUNIORS \"AMARILLO\"": "BOCA JUNIORS AMARILLO",
+        "LANUS": "LANUS A",
+        "HURACAN DE SAN JUSTO A" : "HURACAN DE SAN JUSTO ROJO",
+        "HURACAN DE SAN JUSTO B" : "HURACAN DE SAN JUSTO BLANCO",
+        "G.Y E. DE LOMAS DE ZAMORA": "G.E DE LOMAS DE ZAMORA A",
+        "G Y E DE LOMAS DE ZAMORA": "G.E DE LOMAS DE ZAMORA A",
+        "G.Y E. DE LOMAS DE ZAMORA B": "G.E DE LOMAS DE ZAMORA B",
+        "G Y E DE LOMAS DE ZAMORA B": "G.E DE LOMAS DE ZAMORA B",
+        "PEDRO ECHAGUE B": "PEDRO ECHAGUE AMARILLO",
+        "PEDRO ECHAGUE": "PEDRO ECHAGUE AZUL",
+        "MORON": "MORON A",
+        "VELEZ SARSFIELD": "VELEZ SARSFIELD BLANCO",
+        "VELEZ SARSFIELD B": "VELEZ SARSFIELD AZUL",
+        "GIMNASIA Y ESGRIMA DE ITUZAINGO B": "Club GEI BLANCO",
+        "GIMNASIA Y ESGRIMA DE ITUZAINGO": "Club GEI AZUL",
+        "GIMNASIA ESGRIMA DE ITUZAINGO B": "Club GEI BLANCO",
+        "GIMNASIA ESGRIMA DE ITUZAINGO": "Club GEI AZUL",
+        "G.E.ITUZAINGO B": "Club GEI BLANCO",
+        "G Y E DE ITUZAINGO B": "Club GEI BLANCO",
+        "DEF.DE S.LUGARES": "DEFENSORES DE SANTOS LUGARES",
+        "ITALIANO J.C.PAZ": "ITALIANO DE JOSE C PAZ",
+        "RAMOS MEJIA LTC. B" : "RAMOS MEJIA LTC B",
+        "RAMOS MEJIA LTC." : "RAMOS MEJIA LTC",
+        "ARGENTINOS DE CASTELAR B": "ARGENTINO DE CASTELAR CENTRO",
+        "ARGENTINO DE CASTELAR SUR": "ARGENTINO DE CASTELAR CENTRO",
+        "ARGENTINOS DE CASTELAR": "ARGENTINO DE CASTELAR NORTE",
+        "ARGENTINO DE CASTELAR A": "ARGENTINO DE CASTELAR NORTE",
+        "S.A.DE PADUA B": "C.A.S.A PADUA B",
+        "S.A.DE PADUA": "C.A.S.A PADUA A",
+        "C.A.S.A DE PADUA": "C.A.S.A PADUA A",
+        "CLUB ATLETICO EL PALOMAR": "EL PALOMAR",
+        "S.I.T.A.S.":"SITAS",
+        "ESTUDIANTIL PORTENO": "ESTUDIANTIL PORTEÑO A",
+        "ESTUDIANTIL PORTENO B": "ESTUDIANTIL PORTEÑO B",
+        "ESTUDIANTIL PORTEÑO \"A\"": "ESTUDIANTIL PORTEÑO A",
+        "ESTUDIANTIL PORTEÑO \"B\"": "ESTUDIANTIL PORTEÑO B",
+        "INST.SARMIENTO A": "INSTITUCION SARMIENTO VERDE",
+        "INST.SARMIENTO B": "INSTITUCION SARMIENTO BLANCO",
+        "INSTITUCION SARMIENTO": "INSTITUCION SARMIENTO VERDE",
+        "INSTITUCION SARMIENTO B": "INSTITUCION SARMIENTO BLANCO",
+        "SAN MIGUEL Blanco": "SAN MIGUEL BLANCO",
+        "UNIVERSIDAD LA MATANZA": "UNLAM A",
+        "UNLAM": "UNLAM A",
+        "MIDLAND FC": "MIDLAND",
+        "ALEM": "LEANDRO N ALEM",
+        "ALEM LEANDRO N.": "LEANDRO N ALEM",
+        "ALEM LEANDRO N": "LEANDRO N ALEM",
+        "UNITARIOS": "UNITARIOS DE MARCOS PAZ",
+        "DEF.DE HURLINGHAM": "DEFENSORES DE HURLINGHAM VERDE",
+        "DEF.HURLINGHAM": "DEFENSORES DE HURLINGHAM VERDE",
+        "DEFENSORES DE HURLINGHAM": "DEFENSORES DE HURLINGHAM VERDE",
+        "MUNICIPALIDAD AVELLANEDA":"MUNICIPALIDAD DE AVELLANEDA",
+        "MUNIC.AVELLANEDA": "MUNICIPALIDAD DE AVELLANEDA",
+        "BURZACO F.C.": "BURZACO FC A",
+        "BURZACO FC": "BURZACO FC A",
+        "COLON F.C.": "COLON FC",
+        "DEF.BANFIELD": "DEFENSORES DE BANFIELD",
+        "INDEP.DE BURZACO" : "INDEPENDIENTE DE BURZACO",
+        "BERNAL": "CLUB ATLETICO BERNAL",
+        "VARELA JUNIOR": "VARELA JRS",
+        "COUNTRY C.I.B.": "COUNTRY BANFIELD",
+        "VILLA ESPANA": "VILLA ESPAÑA",
+        "CLUB ATLETICO TEMPERLEY": "TEMPERLEY",
+        "C.A.TEMPERLEY": "TEMPERLEY",
+        "RACING": "RACING CLUB",
+        "CLUB SOCIAL Y DEPORTIVO PINOCHO VERDE": "PINOCHO VERDE",
+        "CLUB SOCIAL Y DEPORTIVO PINOCHO BLANCO": "PINOCHO BLANCO",
+        "CLUB PINOCHO": "PINOCHO",
+        "JOSE HERNANDEZ": "JOSE HERNANDEZ A",
+        "SAN LORENZO": "SAN LORENZO AZUL",
+        "SAN LORENZO B": "SAN LORENZO ROJO",
+        "U.GRAL.ARMENIA": "ARMENIA",
+        "C.A. NUEVA CHICAGO": "NUEVA CHICAGO",
+        "EL TALAR A": "EL TALAR",
+        "IMPERIO JRS. B": "IMPERIO NEGRO",
+        "IMPERIO JRS.": "IMPERIO BLANCO",
+        "IMPERIO JRS": "IMPERIO BLANCO",
+        "ALL BOYS": "ALL BOYS BLANCO",
+        "U.A.I URQUIZA": "UAI URQUIZA",
+        "CLUB COLEGIALES B": "COLEGIALES NEGRO",
+        "CLUB COLEGIALES A": "COLEGIALES BLANCO",
+        "COLEGIALES A": "COLEGIALES BLANCO",
+        "COLEGIALES B": "COLEGIALES NEGRO",
+        "COLEGIO COPELLO": "COPELLO",
+        "VILLA GRAL. MITRE": "VILLA MITRE",
+        "ATENEO P.VERSAILLES": "APV",
+        "ATENEO P. VERSAILLES": "APV",
+        "OHA MACABI": "MACABI",
+        "G.E.BUENOS AIRES": "GEBA",
+        "ARQUITECTURA": "ARQUITECTURA NEGRO",
+        "FERRO CARRIL OESTE": "FERROCARRIL OESTE A",
+        "FERRO CARRIL OESTE B": "FERROCARRIL OESTE B",
+        "FERRO CARRIL OESTE C": "FERROCARRIL OESTE C",
+        "Club Social Deportivo y Cultural Moreno": "MORENO DE QUILMES",
+        "PAMPERO": "CLUB ATLETICO PAMPERO",
+        "CLUB VECINAL LA UNION": "LA UNION",
+        "COOP DE TORTUGUITAS": "COOPERATIVA TORTUGUITAS"
     }
     return correcciones.get(nombre, nombre)
+
+def partido_existe(partidos, partido):
+    for p in partidos:
+        if (p["Local"] == partido["Local"] and
+            p["Visitante"] == partido["Visitante"] and
+            p["Puntos LOCAL"] == partido["Puntos LOCAL"] and
+            p["Puntos VISITA"] == partido["Puntos VISITA"] and
+            p["Fecha"] == partido["Fecha"] and
+            p["Jornada"] == partido["Jornada"]):
+            return True
+    return False
 
 def extraer_partidos(torneo, categoria_index, fase_index, grupo_index):
     grupo = torneo["categorias"][categoria_index]["fases"][fase_index]["grupos"][grupo_index]
@@ -131,8 +305,10 @@ def extraer_partidos(torneo, categoria_index, fase_index, grupo_index):
 
             if "partidos" not in torneo["categorias"][categoria_index]["fases"][fase_index]["grupos"][grupo_index]:
                 torneo["categorias"][categoria_index]["fases"][fase_index]["grupos"][grupo_index]["partidos"] = []
-            torneo["categorias"][categoria_index]["fases"][fase_index]["grupos"][grupo_index]["partidos"].append(partido)
-    print(f"Partidos extraídos para el grupo {grupo['grupo_url']}: {torneo['categorias'][categoria_index]['fases'][fase_index]['grupos'][grupo_index]}")
+
+            if not partido_existe(torneo["categorias"][categoria_index]["fases"][fase_index]["grupos"][grupo_index]["partidos"], partido):
+                torneo["categorias"][categoria_index]["fases"][fase_index]["grupos"][grupo_index]["partidos"].append(partido)
+
 
 def filtrar_torneos_formativas(data):
     torneos_formativas = []
