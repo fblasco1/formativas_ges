@@ -2,6 +2,9 @@ import requests
 import json
 import re
 import time
+import pandas as pd
+from datetime import datetime
+from collections import defaultdict
 from bs4 import BeautifulSoup
 
 def hacer_solicitud(url, max_intentos=10):
@@ -302,62 +305,6 @@ def normalizar_nombre_equipo(nombre):
     }
     return correcciones.get(nombre, nombre)
 
-def partido_existe(partidos, partido):
-    for p in partidos:
-        if (p["Local"] == partido["Local"] and
-            p["Visitante"] == partido["Visitante"] and
-            p["Puntos LOCAL"] == partido["Puntos LOCAL"] and
-            p["Puntos VISITA"] == partido["Puntos VISITA"] and
-            p["Fecha"] == partido["Fecha"] and
-            p["Jornada"] == partido["Jornada"]):
-            return True
-    return False
-
-def extraer_partidos(torneo, categoria_index, fase_index, grupo_index):
-    grupo = torneo["categorias"][categoria_index]["fases"][fase_index]["grupos"][grupo_index]
-    html_content = hacer_solicitud(grupo["grupo_url"])
-    if html_content is None:
-        print(f"No se pudo obtener el contenido HTML para {grupo['grupo_url']}")
-        return
-    soup = BeautifulSoup(html_content, 'html.parser')
-    tab_pane = soup.find("div", id="calendario")
-    if not tab_pane:
-        print(f"No se encontró el panel de calendario en {grupo['grupo_url']}")
-        return
-    tables = tab_pane.find_all("table")
-    partido_id = 1
-    for table in tables:
-        jornada_fecha = table.find_previous("h4").text.strip()
-        try:
-            jornada, fecha = jornada_fecha.split(" - ")
-        except ValueError:
-            continue
-        for row in table.find_all("tr")[1:]:
-
-            cells = row.find_all("td")
-            local = normalizar_nombre_equipo(cells[0].text.strip())
-            puntos_local = cells[1].text.strip()
-            puntos_visitante = cells[2].text.strip()
-            visitante = normalizar_nombre_equipo(cells[3].text.strip())
-            fecha_partido = cells[4].text.strip()
-            partido = {
-                "Partido_ID": partido_id,
-                "Local": local,
-                "Puntos LOCAL": puntos_local,
-                "Puntos VISITA": puntos_visitante,
-                "Visitante": visitante,
-                "Fecha": fecha_partido,
-                "Jornada": jornada
-            }
-            partido_id += 1
-
-            if "partidos" not in torneo["categorias"][categoria_index]["fases"][fase_index]["grupos"][grupo_index]:
-                torneo["categorias"][categoria_index]["fases"][fase_index]["grupos"][grupo_index]["partidos"] = []
-
-            if not partido_existe(torneo["categorias"][categoria_index]["fases"][fase_index]["grupos"][grupo_index]["partidos"], partido):
-                torneo["categorias"][categoria_index]["fases"][fase_index]["grupos"][grupo_index]["partidos"].append(partido)
-
-
 def filtrar_torneos_formativas(data):
     torneos_formativas = []
     for competencia in data['competencias']:
@@ -371,32 +318,901 @@ def filtrar_torneos_formativas(data):
 
     return torneos_formativas
 
-def main():
-    data = cargar_json('gesdeportiva.json')
-    torneos_formativas = filtrar_torneos_formativas(data)
-    for torneo in torneos_formativas:
-        print(f"Torneo: {torneo['torneo']}, URL: {torneo['url']}")
-        html_content = hacer_solicitud(torneo['url'])
-        if html_content is None:
-            continue
-        soup = BeautifulSoup(html_content, 'html.parser')
-        torneo["categorias"] = []
-        categorias_select = soup.find("select", {"name": "DDLCategorias"})
-        if not categorias_select:
-            print(f"No se encontraron categorías en {torneo['url']}")
-            continue
-        for option in categorias_select.find_all("option"):
-            cat_id = option["value"]
-            cat = option.text
-            cat_url = f"{torneo['url']}=&categoria={cat_id}"
-            fases = obtener_fases(cat_url)
-            torneo["categorias"].append({"cat_id": cat_id, "cat": cat, "cat_url": cat_url, "fases": fases})
-            for categoria_index, categoria in enumerate(torneo["categorias"]):
-                for fase_index, fase in enumerate(categoria["fases"]):
-                    for grupo_index, _ in enumerate(fase["grupos"]):
-                        extraer_partidos(torneo, categoria_index, fase_index, grupo_index)
-    guardar_json(torneos_formativas, 'categorias.json')
-    print("Se ha extraído exitosamente todos los partidos")
+def aplicar_desempates(tabla_posiciones, partidos):
+    # Encontrar los equipos empatados en la tabla
+    empates = encontrar_equipos_empatados(tabla_posiciones)
+    
+    for equipos_empatados in empates:
+        # Aplicar desempate olímpico
+        tabla_posiciones, desempate_resuelto = desempate_olimpico(equipos_empatados, partidos, tabla_posiciones)
+        
+        # Si el desempate olímpico no resolvió el empate, aplicar el siguiente criterio
+        if not desempate_resuelto:
+            tabla_posiciones, desempate_resuelto = desempate_coeficiente(equipos_empatados, tabla_posiciones)
+        
+        # Si el empate aún persiste, aplicar el último criterio
+        if not desempate_resuelto:
+            tabla_posiciones, desempate_resuelto = desempate_promedio_victorias(equipos_empatados, tabla_posiciones)
+    
+    # Ordenar la tabla por la posición
+    tabla_posiciones.sort(key=lambda x: x['Pos'])
+    return tabla_posiciones
 
+def encontrar_equipos_empatados(tabla_posiciones):
+    equipos_empatados = []
+    empates = []
+    for i in range(len(tabla_posiciones)):
+        if i > 0 and tabla_posiciones[i]['Pos'] == tabla_posiciones[i - 1]['Pos']:
+            equipos_empatados.append(tabla_posiciones[i])
+        else:
+            if len(equipos_empatados) > 1:
+                empates.append(equipos_empatados)
+            equipos_empatados = [tabla_posiciones[i]]
+    
+    if len(equipos_empatados) > 1:
+        empates.append(equipos_empatados)
+    
+    return empates
+
+def desempate_olimpico(equipos, partidos, tabla_posiciones):
+    pos_inicio = equipos[0]['Pos']  # La posición de inicio para actualizar las posiciones
+    desempate_resuelto = False
+    
+    if len(equipos) == 2:  # Si hay un empate de 2 equipos
+        equipo1, equipo2 = equipos[0], equipos[1]
+        ganados_e1, ganados_e2 = 0, 0
+        puntos_e1, puntos_e2 = 0, 0
+        dif_gol_e1, dif_gol_e2 = 0, 0
+        
+        for partido in partidos:
+            if partido['Local'] == equipo1['Equipo'] and partido['Visitante'] == equipo2['Equipo']:
+                puntos_e1 += int(partido['Puntos LOCAL'])
+                puntos_e2 += int(partido['Puntos VISITA'])
+                if puntos_e1 > puntos_e2:
+                    ganados_e1 += 1
+                else:
+                    ganados_e2 += 1
+                dif_gol_e1 += int(partido['Puntos LOCAL']) - int(partido['Puntos VISITA'])
+                dif_gol_e2 += int(partido['Puntos VISITA']) - int(partido['Puntos LOCAL'])
+            elif partido['Local'] == equipo2['Equipo'] and partido['Visitante'] == equipo1['Equipo']:
+                puntos_e2 += int(partido['Puntos LOCAL'])
+                puntos_e1 += int(partido['Puntos VISITA'])
+                if puntos_e1 > puntos_e2:
+                    ganados_e1 += 1
+                else:
+                    ganados_e2 += 1
+                dif_gol_e2 += int(partido['Puntos LOCAL']) - int(partido['Puntos VISITA'])
+                dif_gol_e1 += int(partido['Puntos VISITA']) - int(partido['Puntos LOCAL'])
+
+        if ganados_e1 != ganados_e2:
+            equipos.sort(key=lambda x: ganados_e1 if x['Equipo'] == equipo1['Equipo'] else ganados_e2, reverse=True)
+            desempate_resuelto = True
+        elif dif_gol_e1 != dif_gol_e2:
+            equipos.sort(key=lambda x: dif_gol_e1 if x['Equipo'] == equipo1['Equipo'] else dif_gol_e2, reverse=True)
+            desempate_resuelto = True
+        elif equipo1["DIF"] != equipo2["DIF"]:
+            equipos.sort(key=lambda x: equipo1["DIF"] if x['Equipo'] == equipo1['Equipo'] else equipo2["DIF"], reverse=True)
+            desempate_resuelto = True
+        
+        # Si el desempate resuelve el empate
+        if desempate_resuelto:
+            for i, equipo in enumerate(equipos, start=pos_inicio):
+                equipo['Pos'] = i
+            equipos.clear()  # Limpiar el listado de equipos empatados
+
+    elif len(equipos) > 2:  # Si hay un empate de más de 2 equipos
+        # Crear una nueva clasificación temporal solo con los partidos entre los equipos empatados
+        clasificacion_temporal = {equipo['Equipo']: {'PTS': 0, 'DIF': 0, 'PC': 0, 'PJ': 0} for equipo in equipos}
+
+        for partido in partidos:
+            if partido['Local'] in clasificacion_temporal and partido['Visitante'] in clasificacion_temporal:
+                local = partido['Local']
+                visitante = partido['Visitante']
+                puntos_local = int(partido['Puntos LOCAL'])
+                puntos_visitante = int(partido['Puntos VISITA'])
+                
+                clasificacion_temporal[local]['PC'] += puntos_local
+                clasificacion_temporal[local]['PJ'] += 1
+                clasificacion_temporal[visitante]['PC'] += puntos_visitante
+                clasificacion_temporal[visitante]['PJ'] += 1
+                
+                if puntos_local > puntos_visitante:
+                    clasificacion_temporal[local]['PTS'] += 2
+                elif puntos_local < puntos_visitante:
+                    clasificacion_temporal[visitante]['PTS'] += 2
+                else:
+                    clasificacion_temporal[local]['PTS'] += 1
+                    clasificacion_temporal[visitante]['PTS'] += 1
+                
+                clasificacion_temporal[local]['DIF'] += puntos_local - puntos_visitante
+                clasificacion_temporal[visitante]['DIF'] += puntos_visitante - puntos_local
+
+        # Ordenar la clasificación temporal por puntos, diferencia de goles y promedio de puntos
+        equipos.sort(key=lambda x: (
+            clasificacion_temporal[x['Equipo']]['PTS'],
+            clasificacion_temporal[x['Equipo']]['DIF'],
+            clasificacion_temporal[x['Equipo']]['PC'] / clasificacion_temporal[x['Equipo']]['PJ']
+        ), reverse=True)
+
+        # Verificar si el desempate se resolvió
+        if len(set(clasificacion_temporal[equipo['Equipo']]['PTS'] for equipo in equipos)) > 1:
+            desempate_resuelto = True
+        
+        if desempate_resuelto:
+            for i, equipo in enumerate(equipos, start=pos_inicio):
+                equipo['Pos'] = i
+
+    return tabla_posiciones, desempate_resuelto
+
+def desempate_coeficiente(equipos, tabla_posiciones):
+    pos_inicio = equipos[0]['Pos']  # La posición de inicio para actualizar las posiciones
+    desempate_resuelto = False
+    
+    equipos.sort(key=lambda x: x['PC'] / x['PR'], reverse=True)
+
+    # Verificar si el desempate se resolvió
+    if len(set(equipo['PC'] / equipo['PR'] for equipo in equipos)) > 1:
+        desempate_resuelto = True
+    
+    for i, equipo in enumerate(equipos, start=pos_inicio):
+        equipo['Pos'] = i
+
+    return tabla_posiciones, desempate_resuelto
+
+def desempate_promedio_victorias(equipos, tabla_posiciones):
+    pos_inicio = equipos[0]['Pos']  # La posición de inicio para actualizar las posiciones
+    desempate_resuelto = False
+    
+    equipos.sort(key=lambda x: x['PG'] / x['PJ'], reverse=True)
+
+    # Verificar si el desempate se resolvió
+    if len(set(equipo['PG'] / equipo['PJ'] for equipo in equipos)) > 1:
+        desempate_resuelto = True
+    
+    for i, equipo in enumerate(equipos, start=pos_inicio):
+        equipo['Pos'] = i 
+
+    return tabla_posiciones, desempate_resuelto
+
+fecha_actual = datetime.now()
+
+# Función para calcular los puntos y la tabla de posiciones
+def calcular_puntos_y_posiciones(partidos):
+    stats = {}
+    # Iterar sobre cada fila del DataFrame
+    for partido in partidos:
+        local = partido["Local"]
+        visitante = partido["Visitante"]
+        try:
+            puntos_local = int(partido["Puntos LOCAL"])
+            puntos_visitante = int(partido["Puntos VISITA"])
+
+            # Verificar si ambos equipos no se presentaron
+            if puntos_local == 1 and puntos_visitante == 1:
+                if local not in stats:
+                    stats[local] = {"Partidos Jugados": 1, "Partidos Ganados": 0, "Partidos Perdidos": 0, "Partidos no presentados": 1, "PUNTOS": 0, "Puntos Convertidos": 0, "Puntos Recibidos": 0}
+                else:
+                    stats[local]["Partidos Jugados"] += 1
+                    stats[local]["Partidos no presentados"] += 1
+
+                if visitante not in stats:
+                    stats[visitante] = {"Partidos Jugados": 1, "Partidos Ganados": 0, "Partidos Perdidos": 0, "Partidos no presentados": 1, "PUNTOS": 0, "Puntos Convertidos": 0, "Puntos Recibidos": 0}
+                else:
+                    stats[visitante]["Partidos Jugados"] += 1
+                    stats[visitante]["Partidos no presentados"] += 1
+
+            # Verificar si un equipo ganó y el otro no se presentó
+            elif puntos_local == 20 and puntos_visitante == 0:
+                if local not in stats:
+                    stats[local] = {"Partidos Jugados": 1, "Partidos Ganados": 1, "Partidos Perdidos": 0, "Partidos no presentados": 0, "PUNTOS": 2, "Puntos Convertidos": puntos_local, "Puntos Recibidos": puntos_visitante}
+                else:
+                    stats[local]["Partidos Jugados"] += 1
+                    stats[local]["Partidos Ganados"] += 1
+                    stats[local]["PUNTOS"] += 2
+                    stats[local]["Puntos Convertidos"] += puntos_local
+                    stats[local]["Puntos Recibidos"] += puntos_visitante
+
+                if visitante not in stats:
+                    stats[visitante] = {"Partidos Jugados": 1, "Partidos Ganados": 0, "Partidos Perdidos": 0, "Partidos no presentados": 1, "PUNTOS": 0, "Puntos Convertidos": puntos_visitante, "Puntos Recibidos": puntos_local}
+                else:
+                    stats[visitante]["Partidos Jugados"] += 1
+                    stats[visitante]["Partidos no presentados"] += 1
+                    stats[visitante]["Puntos Convertidos"] += puntos_visitante
+                    stats[visitante]["Puntos Recibidos"] += puntos_local
+
+            # Verificar si un equipo ganó y el otro no se presentó
+            elif puntos_visitante == 20 and puntos_local == 0:
+                if visitante not in stats:
+                    stats[visitante] = {"Partidos Jugados": 1, "Partidos Ganados": 1, "Partidos Perdidos": 0, "Partidos no presentados": 0, "PUNTOS": 2, "Puntos Convertidos": puntos_visitante, "Puntos Recibidos": puntos_local}
+                else:
+                    stats[visitante]["Partidos Jugados"] += 1
+                    stats[visitante]["Partidos Ganados"] += 1
+                    stats[visitante]["PUNTOS"] += 2
+                    stats[visitante]["Puntos Convertidos"] += puntos_visitante
+                    stats[visitante]["Puntos Recibidos"] += puntos_local
+
+                if local not in stats:
+                    stats[local] = {"Partidos Jugados": 1, "Partidos Ganados": 0, "Partidos Perdidos": 0, "Partidos no presentados": 1, "PUNTOS": 0, "Puntos Convertidos": puntos_local, "Puntos Recibidos": puntos_visitante}
+                else:
+                    stats[local]["Partidos Jugados"] += 1
+                    stats[local]["Partidos no presentados"] += 1
+                    stats[local]["Puntos Convertidos"] += puntos_local
+                    stats[local]["Puntos Recibidos"] += puntos_visitante
+
+            # Calcular el ganador y el perdedor
+            else:
+                if puntos_local > puntos_visitante:
+                    ganador = local
+                    perdedor = visitante
+
+                    if ganador not in stats:
+                        stats[ganador] = {"Partidos Jugados": 1, "Partidos Ganados": 1, "Partidos Perdidos": 0, "Partidos no presentados": 0, "PUNTOS": 2, "Puntos Convertidos": puntos_local, "Puntos Recibidos": puntos_visitante}
+                    else:
+                        stats[ganador]["Partidos Jugados"] += 1
+                        stats[ganador]["Partidos Ganados"] += 1
+                        stats[ganador]["PUNTOS"] += 2
+                        stats[ganador]["Puntos Convertidos"] += puntos_local
+                        stats[ganador]["Puntos Recibidos"] += puntos_visitante
+
+                    if perdedor not in stats:
+                        stats[perdedor] = {"Partidos Jugados": 1, "Partidos Ganados": 0, "Partidos Perdidos": 1, "Partidos no presentados": 0, "PUNTOS": 1, "Puntos Convertidos": puntos_visitante, "Puntos Recibidos": puntos_local}
+                    else:
+                        stats[perdedor]["Partidos Jugados"] += 1
+                        stats[perdedor]["Partidos Perdidos"] += 1
+                        stats[perdedor]["PUNTOS"] += 1
+                        stats[perdedor]["Puntos Convertidos"] += puntos_visitante
+                        stats[perdedor]["Puntos Recibidos"] += puntos_local
+
+                elif puntos_local < puntos_visitante:
+                    ganador = visitante
+                    perdedor = local
+                    if ganador not in stats:
+                        stats[ganador] = {"Partidos Jugados": 1, "Partidos Ganados": 1, "Partidos Perdidos": 0, "Partidos no presentados": 0, "PUNTOS": 2, "Puntos Convertidos": puntos_visitante, "Puntos Recibidos": puntos_local}
+                    else:
+                        stats[ganador]["Partidos Jugados"] += 1
+                        stats[ganador]["Partidos Ganados"] += 1
+                        stats[ganador]["PUNTOS"] += 2
+                        stats[ganador]["Puntos Convertidos"] += puntos_visitante
+                        stats[ganador]["Puntos Recibidos"] += puntos_local
+
+                    if perdedor not in stats:
+                        stats[perdedor] = {"Partidos Jugados": 1, "Partidos Ganados": 0, "Partidos Perdidos": 1, "Partidos no presentados": 0, "PUNTOS": 1, "Puntos Convertidos": puntos_local, "Puntos Recibidos": puntos_visitante}
+                    else:
+                        stats[perdedor]["Partidos Jugados"] += 1
+                        stats[perdedor]["Partidos Perdidos"] += 1
+                        stats[perdedor]["PUNTOS"] += 1
+                        stats[perdedor]["Puntos Convertidos"] += puntos_local
+                        stats[perdedor]["Puntos Recibidos"] += puntos_visitante
+                else:
+                    continue
+       
+        except ValueError:
+            continue
+
+    # Crear DataFrame con los datos calculados
+    df_stats = pd.DataFrame.from_dict(stats, orient='index')
+    df_stats.index.name = 'Equipo'
+    df_stats.reset_index(inplace=True)
+    df_stats["PJ"] = df_stats["Partidos Jugados"]
+    df_stats["PTS"] = df_stats["PUNTOS"]
+    df_stats["PG"] = df_stats["Partidos Ganados"]
+    df_stats["PP"] = df_stats["Partidos Perdidos"]
+    df_stats["NP"] = df_stats["Partidos no presentados"]
+    df_stats["PC"] = df_stats["Puntos Convertidos"]
+    df_stats["PR"] = df_stats["Puntos Recibidos"]
+    df_stats["DIF"] = df_stats["PC"] - df_stats["PR"]
+    df_stats["%VICT"] = (df_stats["PG"] / df_stats["PJ"]) * 100
+    df_stats.fillna(0, inplace=True)
+    df_stats.drop(columns=["Partidos Jugados", "PUNTOS", "Partidos Ganados", "Partidos Perdidos", "Partidos no presentados", "Puntos Convertidos", "Puntos Recibidos"], inplace=True)
+    
+    # Ordenar DataFrame por Puntos y Porcentaje de Victorias
+    df_stats.sort_values(by=["PTS", "%VICT"], ascending=[False, False], inplace=True)
+
+    # Asignar posiciones y manejar empates
+    df_stats["Pos"] = range(1, len(df_stats) + 1)
+    pos_actual = 1
+    for i in range(1, len(df_stats)):
+        if df_stats.iloc[i]["PTS"] == df_stats.iloc[i-1]["PTS"]:
+            df_stats.at[df_stats.index[i], "Pos"] = pos_actual
+        else:
+            pos_actual = i + 1
+            df_stats.at[df_stats.index[i], "Pos"] = pos_actual
+
+    return aplicar_desempates(df_stats.to_dict(orient="records"), partidos)
+
+# Función para combinar datos por nivel y zona geográfica
+def combinar_datos_por_nivel_zona(data):
+    nueva_estructura = []
+    
+    # Estructura para almacenar datos intermedios
+    niveles_dict = defaultdict(lambda: defaultdict(lambda: defaultdict(lambda: defaultdict(lambda: {"subzonas": []}))))
+
+    for fase in data['fases']:
+        fase_nombre = fase['fase']
+        for grupo in fase['grupos']:
+            if fase["torneo"] == "Torneo Formativas 2019":
+                if fase_nombre in ["SUR 1RA FASE", "OESTE 1RA FASE", "CENTRO 1RA FASE", "NORTE 1RA FASE"]:
+                    nivel_zona = grupo['grupo'].split(' ')[1:3]  # Obtener ZONA, NIVEL, SUBZONA
+                    nivel = f"NIVEL {nivel_zona[1]}"
+                    try:
+                        zona = nivel_zona[0]
+                        subzona = nivel_zona[2]
+
+                        for categoria in grupo['categorias']:
+                            categoria_nombre = categoria['categoria']
+                            niveles_dict[nivel][zona]["1ER FASE"][categoria_nombre]["url"] = categoria['url']
+
+                            partidos = categoria["partidos"]
+
+                            # Corregir el formato de la fecha y filtrar los partidos que no se han jugado
+                            partidos_jugados = []
+                            partido_error_fecha = []
+
+                            for partido in partidos:
+                                try:
+                                    fecha_partido = datetime.strptime(partido["Fecha"], "%d/%m/%Y%H:%M")
+                                except ValueError:
+                                    try:
+                                        fecha_partido = datetime.strptime(partido["Fecha"], "%d/%m/%Y")
+                                    except ValueError:
+                                        partido_error_fecha.append(partido)
+                                if fecha_partido <= fecha_actual and (partido["Puntos LOCAL"] != '' or partido["Puntos VISITA"] != ''):
+                                    partidos_jugados.append(partido)
+
+                            if len(partidos_jugados) == 0:       
+                                niveles_dict[nivel][zona]["1ER FASE"][categoria_nombre]["partidos"] = partidos
+                            else:
+                                niveles_dict[nivel][zona]["1ER FASE"][categoria_nombre]["subzonas"].append({
+                                    "subzona": subzona,
+                                    "partidos": partidos,
+                                    "tabla_posiciones": calcular_puntos_y_posiciones(partidos_jugados),
+                                })
+
+                    except IndexError:
+                            print(IndexError, grupo["grupo"])
+                elif fase_nombre in ["CONFERENCIA 1 2DA FASE", "CONFERENCIA 2 2DA FASE"]:
+                    nivel_zona = grupo['grupo'].split(' ')  # Obtener SUBZONA, ZONA, NIVEL
+                    print(nivel_zona)
+                    nivel = f"NIVEL {nivel_zona[3]}"
+                    try:
+                        zona = nivel_zona[2]
+                        subzona = nivel_zona[1]
+
+                        for categoria in grupo['categorias']:
+                            categoria_nombre = categoria['categoria']
+                            niveles_dict[nivel][zona]["2DA FASE"][categoria_nombre]["url"] = categoria['url']
+
+                            partidos = categoria["partidos"]
+
+                            # Corregir el formato de la fecha y filtrar los partidos que no se han jugado
+                            partidos_jugados = []
+                            partido_error_fecha = []
+
+                            for partido in partidos:
+                                try:
+                                    fecha_partido = datetime.strptime(partido["Fecha"], "%d/%m/%Y%H:%M")
+                                except ValueError:
+                                    try:
+                                        fecha_partido = datetime.strptime(partido["Fecha"], "%d/%m/%Y")
+                                    except ValueError:
+                                        partido_error_fecha.append(partido)
+                                if fecha_partido <= fecha_actual and (partido["Puntos LOCAL"] != '' or partido["Puntos VISITA"] != ''):
+                                    partidos_jugados.append(partido)
+
+                            if len(partidos_jugados) == 0:       
+                                niveles_dict[nivel][zona]["2DA FASE"][categoria_nombre]["partidos"] = partidos
+                            else:
+                                niveles_dict[nivel][zona]["2DA FASE"][categoria_nombre]["subzonas"].append({
+                                    "subzona": subzona,
+                                    "partidos": partidos,
+                                    "tabla_posiciones": calcular_puntos_y_posiciones(partidos_jugados),
+                                })
+
+                    except IndexError:
+                            print(IndexError, grupo["grupo"])
+                elif fase_nombre in ["CONFERENCIA SUR 2 2DA FASE"]:
+                    nivel_zona = grupo['grupo'].split(' ')  # Obtener ZONA, SUBZONA, NIVEL
+                    print(nivel_zona)
+                    nivel = f"NIVEL {nivel_zona[3]}"
+                    try:
+                        zona = nivel_zona[1]
+                        subzona = nivel_zona[2]
+
+                        for categoria in grupo['categorias']:
+                            categoria_nombre = categoria['categoria']
+                            niveles_dict[nivel][zona]["2DA FASE"][categoria_nombre]["url"] = categoria['url']
+
+                            partidos = categoria["partidos"]
+
+                            # Corregir el formato de la fecha y filtrar los partidos que no se han jugado
+                            partidos_jugados = []
+                            partido_error_fecha = []
+
+                            for partido in partidos:
+                                try:
+                                    fecha_partido = datetime.strptime(partido["Fecha"], "%d/%m/%Y%H:%M")
+                                except ValueError:
+                                    try:
+                                        fecha_partido = datetime.strptime(partido["Fecha"], "%d/%m/%Y")
+                                    except ValueError:
+                                        partido_error_fecha.append(partido)
+                                if fecha_partido <= fecha_actual and (partido["Puntos LOCAL"] != '' or partido["Puntos VISITA"] != ''):
+                                    partidos_jugados.append(partido)
+
+                            if len(partidos_jugados) == 0:       
+                                niveles_dict[nivel][zona]["2DA FASE"][categoria_nombre]["partidos"] = partidos
+                            else:
+                                niveles_dict[nivel][zona]["2DA FASE"][categoria_nombre]["subzonas"].append({
+                                    "subzona": subzona,
+                                    "partidos": partidos,
+                                    "tabla_posiciones": calcular_puntos_y_posiciones(partidos_jugados),
+                                })
+
+                    except IndexError:
+                            print(IndexError, grupo["grupo"])
+                elif fase_nombre in ["CONFERENCIA 3 SUR 2DA FASE"]:
+                    nivel = "NIVEL 3"
+                    try:
+                        zona = "SUR"
+
+                        for categoria in grupo['categorias']:
+                            categoria_nombre = categoria['categoria']
+                            niveles_dict[nivel][zona]["2DA FASE"][categoria_nombre]["url"] = categoria['url']
+
+                            partidos = categoria["partidos"]
+
+                            # Corregir el formato de la fecha y filtrar los partidos que no se han jugado
+                            partidos_jugados = []
+                            partido_error_fecha = []
+
+                            for partido in partidos:
+                                try:
+                                    fecha_partido = datetime.strptime(partido["Fecha"], "%d/%m/%Y%H:%M")
+                                except ValueError:
+                                    try:
+                                        fecha_partido = datetime.strptime(partido["Fecha"], "%d/%m/%Y")
+                                    except ValueError:
+                                        partido_error_fecha.append(partido)
+                                if fecha_partido <= fecha_actual and (partido["Puntos LOCAL"] != '' or partido["Puntos VISITA"] != ''):
+                                    partidos_jugados.append(partido)
+
+                            if len(partidos_jugados) == 0:       
+                                niveles_dict[nivel][zona]["2DA FASE"][categoria_nombre]["partidos"] = partidos
+                            else:
+                                niveles_dict[nivel][zona]["2DA FASE"][categoria_nombre]["subzonas"].append({
+                                    "subzona": "UNICO",
+                                    "partidos": partidos,
+                                    "tabla_posiciones": calcular_puntos_y_posiciones(partidos_jugados),
+                                })
+
+                    except IndexError:
+                            print(IndexError, grupo["grupo"])
+                elif fase_nombre == "INTERCONFERENCIAS":
+                    nivel = "INTERCONFERENCIAS"
+                    try:
+                        zona = "UNICA"
+                        subzona = grupo["grupo"]
+
+                        for categoria in grupo['categorias']:
+                            categoria_nombre = categoria['categoria']
+                            niveles_dict[nivel][zona]["REGULAR"][categoria_nombre]["url"] = categoria['url']
+
+                            partidos = categoria["partidos"]
+
+                            # Corregir el formato de la fecha y filtrar los partidos que no se han jugado
+                            partidos_jugados = []
+                            partido_error_fecha = []
+
+                            for partido in partidos:
+                                try:
+                                    fecha_partido = datetime.strptime(partido["Fecha"], "%d/%m/%Y%H:%M")
+                                except ValueError:
+                                    try:
+                                        fecha_partido = datetime.strptime(partido["Fecha"], "%d/%m/%Y")
+                                    except ValueError:
+                                        partido_error_fecha.append(partido)
+                                if fecha_partido <= fecha_actual and (partido["Puntos LOCAL"] != '' or partido["Puntos VISITA"] != ''):
+                                    partidos_jugados.append(partido)
+
+                            if len(partidos_jugados) == 0:       
+                                niveles_dict[nivel][zona]["REGULAR"][categoria_nombre]["partidos"] = partidos
+                            else:
+                                niveles_dict[nivel][zona]["REGULAR"][categoria_nombre]["subzonas"].append({
+                                    "subzona": subzona,
+                                    "partidos": partidos,
+                                    "tabla_posiciones": calcular_puntos_y_posiciones(partidos_jugados),
+                                })
+
+                    except IndexError:
+                            print(IndexError, grupo["grupo"])
+                else:
+                    continue
+            if fase["torneo"] == "TORNEO FORMATIVAS 2022":
+                if fase_nombre in ["FASE DE CLASIFICACION 1", "FASE DE CLASIFICACION 2", "FASE DE CLASIFICACION 3"]:
+                    nivel_fase = fase_nombre.split(' ')[:3]
+                    zona, subzona = grupo["grupo"].split(' ')
+                    nivel = f"NIVEL {nivel_fase[3]}"
+                    try:
+                        for categoria in grupo['categorias']:
+                            categoria_nombre = categoria['categoria']
+                            niveles_dict[nivel][zona]["CLASIFICACION"][categoria_nombre]["url"] = categoria['url']
+
+                            partidos = categoria["partidos"]
+
+                            # Corregir el formato de la fecha y filtrar los partidos que no se han jugado
+                            partidos_jugados = []
+                            partido_error_fecha = []
+
+                            for partido in partidos:
+                                try:
+                                    fecha_partido = datetime.strptime(partido["Fecha"], "%d/%m/%Y%H:%M")
+                                except ValueError:
+                                    try:
+                                        fecha_partido = datetime.strptime(partido["Fecha"], "%d/%m/%Y")
+                                    except ValueError:
+                                        partido_error_fecha.append(partido)
+                                if fecha_partido <= fecha_actual and (partido["Puntos LOCAL"] != '' or partido["Puntos VISITA"] != ''):
+                                    partidos_jugados.append(partido)
+
+                            if len(partidos_jugados) == 0:       
+                                niveles_dict[nivel][zona]["CLASIFICACION"][categoria_nombre]["partidos"] = partidos
+                            else:
+                                niveles_dict[nivel][zona]["CLASIFICACION"][categoria_nombre]["subzonas"].append({
+                                    "subzona": subzona,
+                                    "partidos": partidos,
+                                    "tabla_posiciones": calcular_puntos_y_posiciones(partidos_jugados),
+                                })
+
+                    except IndexError:
+                            print(IndexError, grupo["grupo"])
+                elif fase_nombre in ["NIVEL 1", "NIVEL 2", "NIVEL 3"]:
+                    nivel_zona = grupo['grupo'].split(' ', 2)[:2]  # Obtener ZONA y SUBZONA
+                    nivel = fase_nombre
+                    try:
+                        zona = nivel_zona[0]
+                        subzona = nivel_zona[2]
+
+                        for categoria in grupo['categorias']:
+                            categoria_nombre = categoria['categoria']
+                            niveles_dict[nivel][zona]["2DA FASE"][categoria_nombre]["url"] = categoria['url']
+
+                            partidos = categoria["partidos"]
+
+                            # Corregir el formato de la fecha y filtrar los partidos que no se han jugado
+                            partidos_jugados = []
+                            partido_error_fecha = []
+
+                            for partido in partidos:
+                                try:
+                                    fecha_partido = datetime.strptime(partido["Fecha"], "%d/%m/%Y%H:%M")
+                                except ValueError:
+                                    try:
+                                        fecha_partido = datetime.strptime(partido["Fecha"], "%d/%m/%Y")
+                                    except ValueError:
+                                        partido_error_fecha.append(partido)
+                                if fecha_partido <= fecha_actual and (partido["Puntos LOCAL"] != '' or partido["Puntos VISITA"] != ''):
+                                    partidos_jugados.append(partido)
+
+                            if len(partidos_jugados) == 0:       
+                                niveles_dict[nivel][zona]["2DA FASE"][categoria_nombre]["partidos"] = partidos
+                            else:
+                                niveles_dict[nivel][zona]["2DA FASE"][categoria_nombre]["subzonas"].append({
+                                    "subzona": subzona,
+                                    "partidos": partidos,
+                                    "tabla_posiciones": calcular_puntos_y_posiciones(partidos_jugados),
+                                })
+
+                    except IndexError:
+                            print(IndexError, grupo["grupo"])
+                elif fase_nombre == "INTERCONFERENCIAS":
+                    nivel = "INTERCONFERENCIAS"
+                    try:
+                        zona = "UNICA"
+                        subzona = grupo["grupo"]
+
+                        for categoria in grupo['categorias']:
+                            categoria_nombre = categoria['categoria']
+                            niveles_dict[nivel][zona]["REGULAR"][categoria_nombre]["url"] = categoria['url']
+
+                            partidos = categoria["partidos"]
+
+                            # Corregir el formato de la fecha y filtrar los partidos que no se han jugado
+                            partidos_jugados = []
+                            partido_error_fecha = []
+
+                            for partido in partidos:
+                                try:
+                                    fecha_partido = datetime.strptime(partido["Fecha"], "%d/%m/%Y%H:%M")
+                                except ValueError:
+                                    try:
+                                        fecha_partido = datetime.strptime(partido["Fecha"], "%d/%m/%Y")
+                                    except ValueError:
+                                        partido_error_fecha.append(partido)
+                                if fecha_partido <= fecha_actual and (partido["Puntos LOCAL"] != '' or partido["Puntos VISITA"] != ''):
+                                    partidos_jugados.append(partido)
+
+                            if len(partidos_jugados) == 0:       
+                                niveles_dict[nivel][zona]["REGULAR"][categoria_nombre]["partidos"] = partidos
+                            else:
+                                niveles_dict[nivel][zona]["REGULAR"][categoria_nombre]["subzonas"].append({
+                                    "subzona": subzona,
+                                    "partidos": partidos,
+                                    "tabla_posiciones": calcular_puntos_y_posiciones(partidos_jugados),
+                                })
+
+                    except IndexError:
+                            print(IndexError, grupo["grupo"])
+                else:
+                    continue
+            if fase["torneo"] == "FORMATIVAS 2023":
+                if fase_nombre == "FASE REGULAR":
+                    # La expresión regular para capturar las partes
+                    pattern = r'(\w+)\s(\d+)"(\w)"'
+                    # Iterar sobre la lista de cadenas y aplicar la expresión regular
+                    for s in grupo["grupo"]:
+                        match = re.match(pattern, s)
+                        if match:
+                            zona = match.group(1)
+                            nivel = f"NIVEL {match.group(2)}"
+                            subzona = match.group(3)
+                        else:
+                            print(f'No match found for string: {s}')
+                    try:
+                        for categoria in grupo['categorias']:
+                            categoria_nombre = categoria['categoria']
+                            niveles_dict[nivel][zona]["CLASIFICACION"][categoria_nombre]["url"] = categoria['url']
+
+                            partidos = categoria["partidos"]
+
+                            # Corregir el formato de la fecha y filtrar los partidos que no se han jugado
+                            partidos_jugados = []
+                            partido_error_fecha = []
+
+                            for partido in partidos:
+                                try:
+                                    fecha_partido = datetime.strptime(partido["Fecha"], "%d/%m/%Y%H:%M")
+                                except ValueError:
+                                    try:
+                                        fecha_partido = datetime.strptime(partido["Fecha"], "%d/%m/%Y")
+                                    except ValueError:
+                                        partido_error_fecha.append(partido)
+                                if fecha_partido <= fecha_actual and (partido["Puntos LOCAL"] != '' or partido["Puntos VISITA"] != ''):
+                                    partidos_jugados.append(partido)
+
+                            if len(partidos_jugados) == 0:       
+                                niveles_dict[nivel][zona]["CLASIFICACION"][categoria_nombre]["partidos"] = partidos
+                            else:
+                                niveles_dict[nivel][zona]["CLASIFICACION"][categoria_nombre]["subzonas"].append({
+                                    "subzona": subzona,
+                                    "partidos": partidos,
+                                    "tabla_posiciones": calcular_puntos_y_posiciones(partidos_jugados),
+                                })
+
+                    except IndexError:
+                            print(IndexError, grupo["grupo"])
+                elif fase_nombre in ["CONFERENCIA 1", "CONFERENCIA 2"]:
+                    # La expresión regular para capturar las partes
+                    pattern = r'(\w+)\s(\d+)\s?"?(\w)?"?'
+
+                    # Iterar sobre la lista de cadenas y aplicar la expresión regular
+                    for s in grupo["grupo"]:
+                        match = re.match(pattern, s)
+                        if match:
+                            zona = match.group(1)
+                            nivel = f"NIVEL {match.group(2)}"
+                            subzona = match.group(3)
+                        else:
+                            print(f'No match found for string: {s}')
+                    try:
+                        for categoria in grupo['categorias']:
+                            categoria_nombre = categoria['categoria']
+                            niveles_dict[nivel][zona]["2DA FASE"][categoria_nombre]["url"] = categoria['url']
+
+                            partidos = categoria["partidos"]
+
+                            # Corregir el formato de la fecha y filtrar los partidos que no se han jugado
+                            partidos_jugados = []
+                            partido_error_fecha = []
+
+                            for partido in partidos:
+                                try:
+                                    fecha_partido = datetime.strptime(partido["Fecha"], "%d/%m/%Y%H:%M")
+                                except ValueError:
+                                    try:
+                                        fecha_partido = datetime.strptime(partido["Fecha"], "%d/%m/%Y")
+                                    except ValueError:
+                                        partido_error_fecha.append(partido)
+                                if fecha_partido <= fecha_actual and (partido["Puntos LOCAL"] != '' or partido["Puntos VISITA"] != ''):
+                                    partidos_jugados.append(partido)
+
+                            if len(partidos_jugados) == 0:       
+                                niveles_dict[nivel][zona]["2DA FASE"][categoria_nombre]["partidos"] = partidos
+                            else:
+                                niveles_dict[nivel][zona]["2DA FASE"][categoria_nombre]["subzonas"].append({
+                                    "subzona": subzona,
+                                    "partidos": partidos,
+                                    "tabla_posiciones": calcular_puntos_y_posiciones(partidos_jugados),
+                                })
+
+                    except IndexError:
+                            print(IndexError, grupo["grupo"])
+                elif fase_nombre == "INTERCONFERENCIAS":
+                    nivel = "INTERCONFERENCIAS"
+                    try:
+                        zona = "UNICA"
+                        subzona = grupo["grupo"]
+
+                        for categoria in grupo['categorias']:
+                            categoria_nombre = categoria['categoria']
+                            niveles_dict[nivel][zona]["REGULAR"][categoria_nombre]["url"] = categoria['url']
+
+                            partidos = categoria["partidos"]
+
+                            # Corregir el formato de la fecha y filtrar los partidos que no se han jugado
+                            partidos_jugados = []
+                            partido_error_fecha = []
+
+                            for partido in partidos:
+                                try:
+                                    fecha_partido = datetime.strptime(partido["Fecha"], "%d/%m/%Y%H:%M")
+                                except ValueError:
+                                    try:
+                                        fecha_partido = datetime.strptime(partido["Fecha"], "%d/%m/%Y")
+                                    except ValueError:
+                                        partido_error_fecha.append(partido)
+                                if fecha_partido <= fecha_actual and (partido["Puntos LOCAL"] != '' or partido["Puntos VISITA"] != ''):
+                                    partidos_jugados.append(partido)
+
+                            if len(partidos_jugados) == 0:       
+                                niveles_dict[nivel][zona]["REGULAR"][categoria_nombre]["partidos"] = partidos
+                            else:
+                                niveles_dict[nivel][zona]["REGULAR"][categoria_nombre]["subzonas"].append({
+                                    "subzona": subzona,
+                                    "partidos": partidos,
+                                    "tabla_posiciones": calcular_puntos_y_posiciones(partidos_jugados),
+                                })
+
+                    except IndexError:
+                            print(IndexError, grupo["grupo"])
+                else:
+                    continue
+            if fase["torneo"] == "FORMATIVAS 2024":
+                nivel_zona = grupo['grupo'].split(' ', 3)[:3]  # Obtener NIVEL, ZONA y SUBZONA
+                if 'ÚNICO' not in nivel_zona:
+                    nivel = nivel_zona[0] + ' ' + nivel_zona[1]
+                    try:
+                        zona = nivel_zona[2]
+                        subzona = grupo['grupo']
+
+                        for categoria in grupo['categorias']:
+                            categoria_nombre = categoria['categoria']
+                            niveles_dict[nivel][zona][fase_nombre][categoria_nombre]["url"] = categoria['url']
+
+                            partidos = categoria["partidos"]
+
+                            # Corregir el formato de la fecha y filtrar los partidos que no se han jugado
+                            partidos_jugados = []
+                            partido_error_fecha = []
+
+                            for partido in partidos:
+                                try:
+                                    fecha_partido = datetime.strptime(partido["Fecha"], "%d/%m/%Y%H:%M")
+                                except ValueError:
+                                    try:
+                                        fecha_partido = datetime.strptime(partido["Fecha"], "%d/%m/%Y")
+                                    except ValueError:
+                                        partido_error_fecha.append(partido)
+                                if fecha_partido <= fecha_actual and (partido["Puntos LOCAL"] != '' or partido["Puntos VISITA"] != ''):
+                                    partidos_jugados.append(partido)
+
+                            if len(partidos_jugados) == 0:       
+                                if fase_nombre == "1ER ETAPA":
+                                    niveles_dict[nivel][zona][fase_nombre][categoria_nombre]["subzonas"].append({
+                                        "subzona": subzona,
+                                        "partidos": partidos
+                                    })
+                                else:
+                                    niveles_dict[nivel][zona]["1ER ETAPA"][categoria_nombre]["partidos"] = partidos
+                            else:
+                                if fase_nombre == "1ER ETAPA":
+                                    niveles_dict[nivel][zona][fase_nombre][categoria_nombre]["subzonas"].append({
+                                        "subzona": subzona,
+                                        "partidos": partidos,
+                                        "tabla_posiciones": calcular_puntos_y_posiciones(partidos_jugados),
+                                    })
+                                else:
+                                    niveles_dict[nivel][zona]["1ER ETAPA"][categoria_nombre]["partidos"] = partidos
+
+                    except IndexError:
+                            print(IndexError, grupo["grupo"])
+
+    for nivel, zonas in niveles_dict.items():
+        zona_list = []
+        for zona, fases in zonas.items():
+            fase_list = []
+            for fase, categorias in fases.items():
+                cat_list = []
+                for categoria, datos in categorias.items():
+                    try:
+                        cat_list.append({
+                            "categoria": categoria,
+                            "cat_url": datos["url"],
+                            "subzonas": datos["subzonas"],
+                            "partidos": datos["partidos"]
+                        })
+                    except KeyError:
+                        pass
+                if fase == "1ER ETAPA":
+                    fase_list.append({
+                        "fase": fase,
+                        "categorias": cat_list
+                    })
+            zona_list.append({
+                "zona": zona,
+                "fases": fase_list
+            })
+        nueva_estructura.append({
+            "nivel": nivel,
+            "zonas": zona_list
+        })
+
+    return nueva_estructura
+
+def crear_nueva_estructura(data) -> dict:
+    competencia = {
+        "fases": []
+    }
+
+    for categoria in data["categorias"]:
+        torneo = data["torneo"]
+        for fase in categoria["fases"]:
+            # Verificamos si la fase ya existe en la lista de fases de la competencia
+            fase_existente = next((f for f in competencia["fases"] if f["fase"] == fase["fase"]), None)
+            if fase_existente is None:
+                # Si la fase no existe, la agregamos a la lista de fases de la competencia
+                fase_dict = {
+                    "torneo": torneo,
+                    "fase": fase["fase"],
+                    "grupos": []
+                }
+                competencia["fases"].append(fase_dict)
+                fase_existente = fase_dict
+
+            for grupo in fase["grupos"]:
+                # Verificamos si el grupo ya existe en la fase actual
+                grupo_existente = next((g for g in fase_existente["grupos"] if g["grupo"] == grupo["grupo"]), None)
+                if grupo_existente is None:
+                    # Si el grupo no existe, lo agregamos a la lista de grupos de la fase
+                    grupo_dict = {
+                        "grupo": grupo["grupo"],
+                        "categorias": []
+                    }
+                    fase_existente["grupos"].append(grupo_dict)
+                    grupo_existente = grupo_dict
+                try:
+                    # Agregamos la información de la categoría y sus partidos al grupo
+                    grupo_existente["categorias"].append({
+                        "categoria": categoria["cat"],
+                        "url": grupo["grupo_url"],
+                        "partidos": grupo["partidos"]
+                    })
+                except KeyError:
+                    print(grupo["grupo"])
+                    pass
+    
+    return combinar_datos_por_nivel_zona(competencia)
+
+
+def main():
+    data = cargar_json('categorias.json')
+    for torneo in data:
+        print(f"Torneo: {torneo['torneo']}, URL: {torneo['url']}")
+        estructura = crear_nueva_estructura(torneo)
+        print("Los datos han sido reestructurados con éxito")
+
+        ## Guardar los datos actualizados en un nuevo archivo JSON
+        with open(f"{torneo['torneo']}.json", "w") as file:
+            json.dump(estructura, file, indent=4)
+        
 if __name__ == "__main__":
     main()

@@ -101,10 +101,7 @@ if not filtered_df.empty:
     for temp, cat, est in zip(aggregated_df['Temporada'], aggregated_df['Categoria'], aggregated_df['Estado']):
         clubs_data = tooltip_df[(tooltip_df['Temporada'] == temp) & (tooltip_df['Categoria'] == cat) & (tooltip_df['Estado'] == est)]
         breakdown = "<br>".join([f"{row['Club']}: {row['Partidos']}" for row in clubs_data.to_dict('records') if row['Partidos'] > 0])
-        if breakdown:  # Solo agregar si hay datos válidos
-            custom_data.append(breakdown)
-        # Imprimir la barra y su tooltip correspondiente
-        print(f"Barra - Temporada: {temp}, Categoría: {cat}, Estado: {est}, Custom Data: {breakdown}")
+        custom_data.append(breakdown)
 
     fig.update_traces(
         customdata=custom_data,
