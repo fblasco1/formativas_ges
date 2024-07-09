@@ -355,7 +355,10 @@ def combinar_datos_por_nivel_zona(data):
                                     "partidos": partidos
                                 })
                             else:
-                                niveles_dict[nivel][zona]["1ER ETAPA"][categoria_nombre]["partidos"] = partidos
+                                try: 
+                                    niveles_dict[nivel][zona]["1ER ETAPA"][categoria_nombre]["partidos"].extend(partidos)
+                                except KeyError:
+                                    niveles_dict[nivel][zona]["1ER ETAPA"][categoria_nombre]["partidos"] = partidos
                         else:
                             if fase_nombre == "1ER ETAPA":
                                 niveles_dict[nivel][zona][fase_nombre][categoria_nombre]["subzonas"].append({
@@ -364,7 +367,10 @@ def combinar_datos_por_nivel_zona(data):
                                     "tabla_posiciones": calcular_puntos_y_posiciones(partidos_jugados),
                                 })
                             else:
-                                niveles_dict[nivel][zona]["1ER ETAPA"][categoria_nombre]["partidos"] = partidos
+                                try: 
+                                    niveles_dict[nivel][zona]["1ER ETAPA"][categoria_nombre]["partidos"].extend(partidos)
+                                except KeyError:
+                                    niveles_dict[nivel][zona]["1ER ETAPA"][categoria_nombre]["partidos"] = partidos
                         
                 except IndexError:
                         print(IndexError, grupo["grupo"])
@@ -431,6 +437,7 @@ def crear_nueva_estructura(data) -> dict:
                     }
                     fase_existente["grupos"].append(grupo_dict)
                     grupo_existente = grupo_dict
+
                 try:
                     # Agregamos la información de la categoría y sus partidos al grupo
                     grupo_existente["categorias"].append({
