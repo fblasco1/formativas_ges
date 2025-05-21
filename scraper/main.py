@@ -16,6 +16,7 @@ from mapeos.loader import (
 from parsers.fases import parsear_fase
 from parsers.grupos import parsear_grupo
 from parsers.jornadas import parsear_jornada
+from parsers.rondas import inferir_ronda
 from utils.logger import get_logger
 from utils.requester import hacer_solicitud
 
@@ -55,11 +56,22 @@ class FebambaScraper:
             if not cat_id or cat_id == "0" or "Seleccionar" in cat_web:
                 continue
 
-            if cat_web == "Mosquitos":
+            if cat_web.lower() == "mosquitos":
                 logger.info("Saltando categoría: Mosquitos")
                 continue
 
-            cat_mapa = self.categorias_map.get(cat_web, cat_web)
+            # Buscar ignorando mayúsculas/minúsculas
+            cat_mapa = self.categorias_map.get(cat_web, None)
+            if cat_mapa is None:
+                # Intentar buscar por lower-case
+                cat_mapa = next(
+                    (
+                        v
+                        for k, v in self.categorias_map.items()
+                        if k.lower() == cat_web.lower()
+                    ),
+                    cat_web,
+                )
             logger.info(
                 f"Procesando Categoría: {cat_web} ➔ Mapeada como {cat_mapa}, ID: {cat_id}"
             )
@@ -185,20 +197,47 @@ class FebambaScraper:
                     c.text.strip() for c in cells[:4]
                 ]
 
+                # Si los puntos están vacíos, el partido no se jugó; lo omitimos
+                if not pts_local_raw or not pts_visitante_raw:
+                    continue
+
+                ronda_inferida = inferir_ronda(
+                    year,
+                    cat_mapa,
+                    fase_info.get("nivel", ""),
+                    fase_info.get("zona", ""),
+                    jornada,
+                    fase_info.get("fase", ""),
+                    local_raw,
+                    visitante_raw,
+                    self.equipos_map,
+                )
+
                 partido = {
                     "anio": year,
                     "categoria": cat_mapa,
                     "fase": fase_info.get("fase"),
-                    "ronda": fase_info.get("ronda"),
+                    "ronda": (
+                        ronda_inferida
+                        if ronda_inferida is not None
+                        and ronda_inferida != "Desconocido"
+                        else (
+                            fase_info["ronda"]
+                            if fase_info.get("ronda") != "Desconocido"
+                            else ronda
+                        )
+                    ),
                     "nivel": (
-                        grupo_info.get("nivel")
-                        if grupo_info
-                        else fase_info.get("nivel")
+                        fase_info["nivel"]
+                        if fase_info["nivel"] != "Desconocido"
+                        else grupo_info.get("nivel", "Desconocido")
                     ),
                     "zona": (
-                        grupo_info.get("zona") if grupo_info else fase_info.get("zona")
+                        fase_info["zona"]
+                        if fase_info["zona"] != "Desconocido"
+                        else grupo_info.get("zona", "Desconocido")
                     ),
-                    "grupo": grupo_info.get("grupo") if grupo_info else "UNICO",
+                    "grupo": grupo_info.get("grupo", "Desconocido"),
                     "jornada": jornada,
                     "fecha": fecha,
                     "local": normalizar_equipo(local_raw, self.equipos_map),

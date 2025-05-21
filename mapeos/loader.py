@@ -6,13 +6,13 @@ BASE_DIR = os.path.dirname(__file__)
 
 
 def cargar_mapeo_categorias() -> Dict[str, str]:
-    path = os.path.join(BASE_DIR, "categorias.json")
+    path = os.path.join(BASE_DIR, "categorias_map.json")
     with open(path, "r", encoding="utf-8") as f:
         return json.load(f)
 
 
 def cargar_mapeo_equipos() -> Dict[str, str]:
-    path = os.path.join(BASE_DIR, "equipos.json")
+    path = os.path.join(BASE_DIR, "equipos_map.json")
     with open(path, "r", encoding="utf-8") as f:
         return json.load(f)
 

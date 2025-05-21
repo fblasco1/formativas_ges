@@ -17,11 +17,12 @@ def inferir_ronda(
     fase: str,
     local: str,
     visitante: str,
+    equipos_map,
 ) -> Optional[str]:
     """
     Deduce la ronda en Playoffs o Final Four, según año de torneo.
     """
-    if fase.upper() == "PLAYOFFS":
+    if fase.upper() == "PLAYOFF":
         if anio == 2022:
             return inferir_ronda_2022_playoff(categoria, nivel, zona, jornada)
         if anio in [2023, 2024]:
@@ -32,10 +33,12 @@ def inferir_ronda(
 
     elif fase.upper() == "FINAL FOUR":
         if anio == 2022:
-            return inferir_ronda_2022_final_four(local, visitante, categoria, nivel)
+            return inferir_ronda_2022_final_four(
+                local, visitante, categoria, nivel, equipos_map
+            )
         if anio in [2023, 2024]:
             return inferir_ronda_generica_final_four(
-                local, visitante, categoria, nivel, jornada
+                local, visitante, categoria, nivel, jornada, equipos_map
             )
 
     return None
@@ -49,7 +52,7 @@ def inferir_ronda_2022_playoff(
     j = int(jornada)
     c, n, z = categoria.upper(), nivel.upper(), zona.upper()
 
-    if c == "U19":
+    if c == "JUVENILES":
         if n in ["INTERCONFERENCIA", "1"]:
             return _map_ronda(j, [1, 2, 3, 4])
         if n == "2":
@@ -65,7 +68,7 @@ def inferir_ronda_2022_playoff(
                 else _map_ronda(j, [1, 2])
             )
 
-    if c == "U17":
+    if c == "CADETES":
         if n in ["INTERCONFERENCIA", "1", "2"]:
             return _map_ronda(j, [1, 2, 3, 4])
         if n == "3":
@@ -75,7 +78,7 @@ def inferir_ronda_2022_playoff(
                 else _map_ronda(j, [1, 2])
             )
 
-    if c == "U15":
+    if c == "INFANTILES":
         if n in ["INTERCONFERENCIA", "1", "2"]:
             return _map_ronda(j, [1, 2, 3, 4])
         if n == "3" and z == "SUR":
@@ -92,13 +95,17 @@ def inferir_ronda_2022_cuartos_nivel3(jornada: str) -> Optional[str]:
 
 
 def inferir_ronda_2022_final_four(
-    local: str, visitante: str, categoria: str, nivel: str
+    local: str, visitante: str, categoria: str, nivel: str, equipos_map
 ) -> Optional[str]:
-    llave = f"{normalizar_equipo(local)}-{normalizar_equipo(visitante)}"
+    llave = f"{normalizar_equipo(local, equipos_map)}-{normalizar_equipo(visitante, equipos_map)}"
     return (
         "SEMIFINAL"
-        if llave in _final_four_semifinales(categoria, nivel)
-        else ("FINAL" if llave in _final_four_finales(categoria, nivel) else None)
+        if llave in _final_four_semifinales(categoria, nivel, equipos_map)
+        else (
+            "FINAL"
+            if llave in _final_four_finales(categoria, nivel, equipos_map)
+            else None
+        )
     )
 
 
@@ -109,14 +116,14 @@ def inferir_ronda_generica_playoff(jornada: str) -> Optional[str]:
 
 
 def inferir_ronda_generica_final_four(
-    local: str, visitante: str, categoria: str, nivel: str, jornada: str
+    local: str, visitante: str, categoria: str, nivel: str, jornada: str, equipos_map
 ) -> Optional[str]:
     if not jornada.isdigit():
         return None
-    llave = f"{normalizar_equipo(local)}-{normalizar_equipo(visitante)}"
-    if llave in _final_four_semifinales(categoria, nivel):
+    llave = f"{normalizar_equipo(local, equipos_map)}-{normalizar_equipo(visitante, equipos_map)}"
+    if llave in _final_four_semifinales(categoria, nivel, equipos_map):
         return "SEMIFINAL"
-    if llave in _final_four_finales(categoria, nivel):
+    if llave in _final_four_finales(categoria, nivel, equipos_map):
         return "FINAL"
     return {1: "SEMIFINAL", 2: "FINAL"}.get(int(jornada))
 
@@ -137,63 +144,63 @@ def _map_ronda(jornada: int, estructura: list) -> Optional[str]:
     return None
 
 
-def _final_four_semifinales(categoria: str, nivel: str) -> set:
+def _final_four_semifinales(categoria: str, nivel: str, equipos_map) -> set:
     c, n = categoria.upper(), nivel.upper()
     raw = {
-        ("U19", "2"): [
+        ("JUVENILES", "2"): [
             "COOPERARIOS DE QUILMES-EL TALAR",
             "VICTORIA-ARGENTINOS DE CASTELAR B",
         ],
-        ("U19", "1"): [
+        ("JUVENILES", "1"): [
             "SAN LORENZO AZUL-RACING CLUB",
             "C S D PRESIDENTE DERQUI-SP.ESCOBAR",
         ],
-        ("U17", "2"): [
+        ("CADETES", "2"): [
             "SOCIEDAD HEBRAICA ARGENTINA-ARGENTINOS DE CASTELAR B",
             "17 DE AGOSTO-CLUB SOCIAL Y ATLETICO EZEIZA",
         ],
-        ("U17", "1"): [
+        ("CADETES", "1"): [
             "CAZA Y PESCA A-C S D PRESIDENTE DERQUI",
             "PINOCHO-CAÑUELAS FC - Sub17",
         ],
-        ("U15", "2"): [
+        ("IFNATILES", "2"): [
             "17 DE AGOSTO-LOS ANDES",
             "SAN MIGUEL-CLUB 3 DE FEBRERO AZUL",
         ],
-        ("U15", "1"): [
+        ("INFANTILES", "1"): [
             "IMPERIO BLANCO-CLUB GIMNASIA Y ESGRIMA DE LA PLATA",
             "C S D PRESIDENTE DERQUI-CAZA Y PESCA A",
         ],
-        ("U13", "2"): [
+        ("PREINFANTILES", "2"): [
             "U GRAL.ARMENIA-CLUB SOCIAL ALEJANDRO KORN",
             "SAN MIGUEL-VICTORIA",
         ],
-        ("U15", "1"): [
+        ("PREINFANTILES", "1"): [
             "QUILMES A.C-COMUNICACIONES",
             "CLUB 3 DE FEBRERO BLANCO-GEI AZUL",
         ],
     }
     return {
-        f"{normalizar_equipo(a)}-{normalizar_equipo(b)}"
+        f"{normalizar_equipo(a, equipos_map)}-{normalizar_equipo(b, equipos_map)}"
         for a_b in raw.get((c, n), [])
         for a, b in [a_b.split("-")]
     }
 
 
-def _final_four_finales(categoria: str, nivel: str) -> set:
+def _final_four_finales(categoria: str, nivel: str, equipos_map) -> set:
     c, n = categoria.upper(), nivel.upper()
     raw = {
-        ("U19", "2"): ["EL TALAR-VICTORIA"],
-        ("U19", "1"): ["SAN LORENZO AZUL-SP.ESCOBAR"],
-        ("U17", "2"): ["SOCIEDAD HEBRAICA ARGENTINA-CLUB SOCIAL Y ATLETICO EZEIZA"],
-        ("U17", "1"): ["PINOCHO-CAZA Y PESCA A"],
-        ("U15", "2"): ["SAN MIGUEL-17 DE AGOSTO"],
-        ("U15", "1"): ["CLUB GIMNASIA Y ESGRIMA DE LA PLATA-CAZA Y PESCA A"],
-        ("U13", "2"): ["VICTORIA-CLUB SOCIAL ALEJANDRO KORN"],
-        ("U13", "1"): ["QUILMES A.C-GEI AZUL"],
+        ("JUVENILES", "2"): ["EL TALAR-VICTORIA"],
+        ("JUVENILES", "1"): ["SAN LORENZO AZUL-SP.ESCOBAR"],
+        ("CADETES", "2"): ["SOCIEDAD HEBRAICA ARGENTINA-CLUB SOCIAL Y ATLETICO EZEIZA"],
+        ("CADETES", "1"): ["PINOCHO-CAZA Y PESCA A"],
+        ("INFANTILES", "2"): ["SAN MIGUEL-17 DE AGOSTO"],
+        ("INFANTILES", "1"): ["CLUB GIMNASIA Y ESGRIMA DE LA PLATA-CAZA Y PESCA A"],
+        ("PREINFANTILES", "2"): ["VICTORIA-CLUB SOCIAL ALEJANDRO KORN"],
+        ("PREINFANTILES", "1"): ["QUILMES A.C-GEI AZUL"],
     }
     return {
-        f"{normalizar_equipo(a)}-{normalizar_equipo(b)}"
+        f"{normalizar_equipo(a, equipos_map)}-{normalizar_equipo(b, equipos_map)}"
         for a_b in raw.get((c, n), [])
         for a, b in [a_b.split("-")]
     }
