@@ -5,7 +5,7 @@ import plotly.graph_objs as go
 
 # Cargar y limpiar datos
 df = pd.read_csv(
-    r"c:\Users\Matias Garcia\OneDrive - UTN.BA\Repo Nuevo\PaginaLeyendas\formativas_ges\Data\procesada\19-24.csv",
+    "Data/procesada/19-24.csv",
     sep=";"
 )
 df['zona'] = df['zona'].str.strip().str.upper()
@@ -19,7 +19,7 @@ df = df[~df['categoria'].isin(["MINI", "PREMINI"])]
 
 # Cargar Power Ranking
 df_power = pd.read_csv(
-    r"c:\Users\Matias Garcia\OneDrive - UTN.BA\Repo Nuevo\PaginaLeyendas\formativas_ges\Data\procesada\Ranking2019-2024.csv"
+    "Data/procesada/Ranking2019-2024.csv"
 ).rename(columns={"Puntos": "Power Ranking 2019-2024"})
 
 ranking_dict = df_power.set_index('Equipo')['Power Ranking 2019-2024'].to_dict()
