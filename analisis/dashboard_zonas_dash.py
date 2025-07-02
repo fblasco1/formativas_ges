@@ -8,13 +8,14 @@ df = pd.read_csv(
     "Data/procesada/19-24.csv",
     sep=";"
 )
+
 df['zona'] = df['zona'].str.strip().str.upper()
 df['categoria'] = df['categoria'].str.strip().str.upper()
 df['local'] = df['local'].str.strip().str.upper()
 df['visitante'] = df['visitante'].str.strip().str.upper()
 df['fase'] = df['fase'].str.strip().str.upper()
-for col in ['zona', 'categoria', 'local', 'visitante', 'fase']:
-    df = df[df[col] != "DESCONOCIDO"]
+for col in ['nivel', 'zona', 'fase', 'ronda', 'categoria', 'local', 'visitante']:
+    df = df[(df[col] != "DESCONOCIDO") & (df[col] != "DESCONOCIDA")]
 df = df[~df['categoria'].isin(["MINI", "PREMINI"])]
 
 # Cargar Power Ranking
@@ -181,8 +182,8 @@ def tabla_promedios_por_region(df):
         })
     return rows
 
-# --- TABLA INTERCONFERENCIA ---
-def tabla_interconferencia(df):
+# --- TABLA INTERCONFERENCIA CON DETALLE POR EQUIPO ---
+def tabla_interconferencia(df, region_expandida=None):
     # Mapeo de equipo a región (solo equipos de SUR, OESTE, NORTE, CENTRO)
     equipos_region = {}
     for region in ["SUR", "OESTE", "NORTE", "CENTRO"]:
@@ -190,8 +191,14 @@ def tabla_interconferencia(df):
         for eq in equipos:
             equipos_region[eq] = region
 
-    df_inter = df[df['zona'] == "INTERCONFERENCIA"]
-    conteo = {r: 0 for r in ["SUR", "OESTE", "NORTE", "CENTRO"]}
+    # Filtrar solo partidos de Interconferencia y Fase Regular
+    df_inter = df[(df["fase"] == "FASE REGULAR") & (df['zona'] == "INTERCONFERENCIA")]
+
+    categorias = ["PREINFANTILES", "INFANTILES", "CADETES", "JUVENILES"]
+    conteo = {r: {cat: 0 for cat in categorias} for r in ["SUR", "OESTE", "NORTE", "CENTRO"]}
+    conteo_totales = {r: 0 for r in ["SUR", "OESTE", "NORTE", "CENTRO"]}
+    equipos_ganadores = {r: {} for r in ["SUR", "OESTE", "NORTE", "CENTRO"]}
+
     for _, row in df_inter.iterrows():
         # Determinar ganador
         if row['ptsL'] > row['ptsV']:
@@ -199,123 +206,220 @@ def tabla_interconferencia(df):
         else:
             ganador = row['visitante']
         region_ganador = equipos_region.get(ganador, "OTRO")
+        categoria = row.get('categoria', '').strip().upper()
         if region_ganador in conteo:
-            conteo[region_ganador] += 1
+            if categoria in categorias:
+                conteo[region_ganador][categoria] += 1
+            conteo_totales[region_ganador] += 1
+            # Conteo por equipo y categoría
+            if ganador not in equipos_ganadores[region_ganador]:
+                equipos_ganadores[region_ganador][ganador] = {cat: 0 for cat in categorias}
+                equipos_ganadores[region_ganador][ganador]['TOTALES'] = 0
+            if categoria in categorias:
+                equipos_ganadores[region_ganador][ganador][categoria] += 1
+            equipos_ganadores[region_ganador][ganador]['TOTALES'] += 1
+
     # Formato para tabla
-    return [{"Región": r, "Partidos ganados": conteo[r]} for r in conteo]
+    resultado = []
+    for r in ["SUR", "OESTE", "NORTE", "CENTRO"]:
+        fila = {"Región": r}
+        for cat in categorias:
+            fila[cat] = conteo[r][cat]
+        fila["TOTALES"] = conteo_totales[r]
+        resultado.append(fila)
+        # Si la región está expandida, agregar filas de equipos ordenados por cantidad de ganados (power ranking si hay empate)
+        if region_expandida == r:
+            equipos_ordenados = sorted(
+                equipos_ganadores[r].items(),
+                key=lambda x: (-x[1]['TOTALES'], -ranking_dict.get(x[0], -9999), x[0])
+            )
+            for eq, datos in equipos_ordenados:
+                fila_eq = {"Región": f"   {eq}"}
+                for cat in categorias:
+                    fila_eq[cat] = datos[cat]
+                fila_eq["TOTALES"] = datos["TOTALES"]
+                resultado.append(fila_eq)
+    return resultado
 
 # Layout Dash con filtro de región y fase (sin nivel)
+
 regiones_disponibles = sorted(df['zona'].unique())
 fases_disponibles = sorted(df['fase'].unique())
 niveles_disponibles = sorted(df['nivel'].unique())
+temporadas_disponibles = sorted(df['anio'].unique()) if 'anio' in df.columns else []
+rondas_disponibles = sorted(df['ronda'].unique()) if 'ronda' in df.columns else []
 
+
+# --- NUEVO LAYOUT VISUAL ---
+
+# --- NUEVO LAYOUT CON TABS ---
 app = Dash(__name__, external_stylesheets=[dbc.themes.BOOTSTRAP])
 
-app.layout = html.Div([
-    html.H2("Análisis de formativas de Febamba", style={"font-size": "2.2rem", "margin-bottom": "1.5rem"}),
-    dbc.Row(id="graficos-torta", className="mb-4"),
+filtros_layout = dbc.Container([
     dbc.Row([
         dbc.Col([
-            html.Label("Filtrar por región:", style={"font-size": "1.2rem"}),
+            html.Label("Región", style={"font-size": "1.1rem", "marginBottom": "0.2rem"}),
             dcc.Dropdown(
                 options=[{"label": "TODAS", "value": "TODAS"}] + [{"label": z, "value": z} for z in regiones_disponibles],
                 value=["TODAS"],
                 id="region-filter",
                 clearable=False,
                 multi=True,
-                style={"font-size": "1.1rem"}
-            )
-        ], width=3),
+                style={"font-size": "1.05rem", "minWidth": "120px"}
+            ),
+        ], width=2),
         dbc.Col([
-            html.Label("Filtrar por fase:", style={"font-size": "1.2rem"}),
+            html.Label("Temporada", style={"font-size": "1.1rem", "marginBottom": "0.2rem"}),
+            dcc.Dropdown(
+                options=[{"label": "TODAS", "value": "TODAS"}] + [{"label": str(t), "value": str(t)} for t in temporadas_disponibles],
+                value=["TODAS"],
+                id="temporada-filter",
+                clearable=False,
+                multi=True,
+                style={"font-size": "1.05rem", "minWidth": "120px"}
+            ),
+        ], width=2),
+        dbc.Col([
+            html.Label("Fase", style={"font-size": "1.1rem", "marginBottom": "0.2rem"}),
             dcc.Dropdown(
                 options=[{"label": "TODAS", "value": "TODAS"}] + [{"label": f, "value": f} for f in fases_disponibles],
                 value=["TODAS"],
                 id="fase-filter",
                 clearable=False,
                 multi=True,
-                style={"font-size": "1.1rem"}
-            )
-        ], width=3),
+                style={"font-size": "1.05rem", "minWidth": "120px"}
+            ),
+        ], width=2),
         dbc.Col([
-            html.Label("Filtrar por nivel (solo gráficos):", style={"font-size": "1.2rem"}),
+            html.Label("Ronda", style={"font-size": "1.1rem", "marginBottom": "0.2rem"}),
+            dcc.Dropdown(
+                options=[{"label": "TODAS", "value": "TODAS"}] + [{"label": str(r), "value": str(r)} for r in rondas_disponibles],
+                value=["TODAS"],
+                id="ronda-filter",
+                clearable=False,
+                multi=True,
+                style={"font-size": "1.05rem", "minWidth": "120px"}
+            ),
+        ], width=2),
+        dbc.Col([
+            html.Label("Nivel (solo gráficos)", style={"font-size": "1.1rem", "marginBottom": "0.2rem"}),
             dcc.Dropdown(
                 options=[{"label": "TODOS", "value": "TODOS"}] + [{"label": n, "value": n} for n in niveles_disponibles],
                 value=["TODOS"],
                 id="nivel-torta-filter",
                 clearable=False,
                 multi=True,
-                style={"font-size": "1.1rem"}
+                style={"font-size": "1.05rem", "minWidth": "120px"}
             )
-        ], width=3)
-    ], className="mb-4"),
-    # TABLA PROMEDIOS POR REGIÓN
-    html.H4("Promedio de puntos por partido según región", style={"margin-top": "2rem"}),
-    dash_table.DataTable(
-        id='tabla-promedios-region',
-        columns=[
-            {"name": "Región", "id": "Región"},
-            {"name": "Prom. ganador", "id": "Prom. ganador"},
-            {"name": "Prom. perdedor", "id": "Prom. perdedor"},
-        ],
-        data=[],
-        style_cell={'font-size': '1.1rem', 'textAlign': 'center'},
-        style_header={'fontWeight': 'bold', 'font-size': '1.2rem', 'backgroundColor': '#e0e0e0'},
-    ),
-    # TABLA INTERCONFERENCIA
-    html.H4("Partidos ganados por región en Interconferencia", style={"margin-top": "2rem"}),
-    dash_table.DataTable(
-        id='tabla-interconferencia',
-        columns=[
-            {"name": "Región", "id": "Región"},
-            {"name": "Partidos ganados", "id": "Partidos ganados"},
-        ],
-        data=[],
-        style_cell={'font-size': '1.1rem', 'textAlign': 'center'},
-        style_header={'fontWeight': 'bold', 'font-size': '1.2rem', 'backgroundColor': '#e0e0e0'},
-    ),
-    dash_table.DataTable(
-        id='tabla',
-        columns=[
-            {"name": "Posición", "id": "posicion", "presentation": "markdown"},
-            {"name": "Equipo", "id": "equipo", "presentation": "markdown"},
-            {"name": "PJ", "id": "pj"},
-            {"name": "Ganados", "id": "ganados"},
-            {"name": "Perdidos", "id": "perdidos"},
-            {"name": "Diferencia de Gol", "id": "diferencia"},
-            {"name": "Power Ranking 2019-2024", "id": "power_ranking"}
-        ],
-        data=[],
-        style_data={
-            'font-size': '1.25rem',
-            'whiteSpace': 'normal',
-            'height': 'auto',
-        },
-        style_header={
-            'fontWeight': 'bold',
-            'font-size': '1.3rem',
-            'backgroundColor': '#e0e0e0'
-        },
-        style_cell={
-            'padding': '6px 4px',
-            'minWidth': '60px', 'width': '70px', 'maxWidth': '120px',
-            'textAlign': 'center'
-        },
-        style_cell_conditional=[
-            {'if': {'column_id': 'equipo'}, 'minWidth': '120px', 'width': '180px', 'maxWidth': '250px', 'textAlign': 'left'},
-            {'if': {'column_id': 'posicion'}, 'width': '60px', 'maxWidth': '70px'},
-            {'if': {'column_id': 'power_ranking'}, 'width': '90px', 'maxWidth': '100px'},
-        ],
-        style_data_conditional=[
-            {
-                'if': {'filter_query': '{temporada} = "TOTAL"'},
-                'fontWeight': 'bold',
-                'backgroundColor': '#f0f0f0'
-            }
-        ],
-        row_selectable='single'
-    )
-])
+        ], width=2),
+    ], className="mb-4 justify-content-center g-2"),
+], fluid=True, style={"paddingLeft": "0.5rem", "paddingRight": "0.5rem", "maxWidth": "1400px"})
+
+tab_general = dbc.Container([
+    dbc.Row([
+        dbc.Col([
+            html.H4("Distribución de diferencias por región", style={"marginTop": "1.5rem", "marginBottom": "1rem", "textAlign": "center"}),
+            dbc.Row(id="graficos-torta", className="mb-4 justify-content-center"),
+        ], width=12)
+    ]),
+    dbc.Row([
+        dbc.Col([
+            html.H4("Promedio de puntos por partido según región", style={"marginTop": "2.5rem", "marginBottom": "1rem", "textAlign": "center"}),
+            dash_table.DataTable(
+                id='tabla-promedios-region',
+                columns=[
+                    {"name": "Región", "id": "Región"},
+                    {"name": "Prom. ganador", "id": "Prom. ganador"},
+                    {"name": "Prom. perdedor", "id": "Prom. perdedor"},
+                ],
+                data=[],
+                style_cell={'font-size': '1.1rem', 'textAlign': 'center'},
+                style_header={'fontWeight': 'bold', 'font-size': '1.2rem', 'backgroundColor': '#e0e0e0'},
+                style_table={"marginBottom": "2.5rem"}
+            ),
+        ], width=12)
+    ]),
+    dbc.Row([
+        dbc.Col([
+            html.H4("Partidos ganados por región en Interconferencia", style={"marginTop": "2.5rem", "marginBottom": "1rem", "textAlign": "center"}),
+            dash_table.DataTable(
+                id='tabla-interconferencia',
+                columns=[
+                    {"name": "Región", "id": "Región"},
+                    {"name": "PREINFANTILES", "id": "PREINFANTILES"},
+                    {"name": "INFANTILES", "id": "INFANTILES"},
+                    {"name": "CADETES", "id": "CADETES"},
+                    {"name": "JUVENILES", "id": "JUVENILES"},
+                    {"name": "TOTALES", "id": "TOTALES"},
+                ],
+                data=[],
+                style_cell={'font-size': '1.1rem', 'textAlign': 'center'},
+                style_header={'fontWeight': 'bold', 'font-size': '1.2rem', 'backgroundColor': '#e0e0e0'},
+                style_table={"marginBottom": "2.5rem"},
+                row_selectable='single',
+            ),
+        ], width=12)
+    ]),
+], fluid=True, style={"paddingLeft": "0.5rem", "paddingRight": "0.5rem", "maxWidth": "1400px"})
+
+tab_power_ranking = dbc.Container([
+    dbc.Row([
+        dbc.Col([
+            html.H4("Ranking de equipos", style={"marginTop": "2.5rem", "marginBottom": "1rem", "textAlign": "center"}),
+            dash_table.DataTable(
+                id='tabla',
+                columns=[
+                    {"name": "Posición", "id": "posicion", "presentation": "markdown"},
+                    {"name": "Equipo", "id": "equipo", "presentation": "markdown"},
+                    {"name": "PJ", "id": "pj"},
+                    {"name": "Ganados", "id": "ganados"},
+                    {"name": "Perdidos", "id": "perdidos"},
+                    {"name": "Diferencia de Gol", "id": "diferencia"},
+                    {"name": "Power Ranking 2019-2024", "id": "power_ranking"}
+                ],
+                data=[],
+                style_data={
+                    'font-size': '1.25rem',
+                    'whiteSpace': 'normal',
+                    'height': 'auto',
+                },
+                style_header={
+                    'fontWeight': 'bold',
+                    'font-size': '1.3rem',
+                    'backgroundColor': '#e0e0e0'
+                },
+                style_cell={
+                    'padding': '6px 4px',
+                    'minWidth': '60px', 'width': '70px', 'maxWidth': '120px',
+                    'textAlign': 'center'
+                },
+                style_cell_conditional=[
+                    {'if': {'column_id': 'equipo'}, 'minWidth': '120px', 'width': '180px', 'maxWidth': '250px', 'textAlign': 'left'},
+                    {'if': {'column_id': 'posicion'}, 'width': '60px', 'maxWidth': '70px'},
+                    {'if': {'column_id': 'power_ranking'}, 'width': '90px', 'maxWidth': '100px'},
+                ],
+                style_data_conditional=[
+                    {
+                        'if': {'filter_query': '{temporada} = "TOTAL"'},
+                        'fontWeight': 'bold',
+                        'backgroundColor': '#f0f0f0'
+                    }
+                ],
+                row_selectable='single',
+                style_table={"marginBottom": "2.5rem"}
+            ),
+        ], width=12)
+    ]),
+], fluid=True, style={"paddingLeft": "0.5rem", "paddingRight": "0.5rem", "maxWidth": "1400px"})
+
+app.layout = html.Div([
+    html.H2("Análisis de formativas de Febamba", style={"font-size": "2.2rem", "marginBottom": "2.5rem", "textAlign": "center", "letterSpacing": "0.04em"}),
+    filtros_layout,
+    dcc.Tabs(id="main-tabs", value="general", children=[
+        dcc.Tab(label="General", value="general", children=[tab_general]),
+        dcc.Tab(label="Power Ranking", value="power_ranking", children=[tab_power_ranking]),
+    ]),
+], style={"backgroundColor": "#f9f9f9"})
 
 def get_table_data(df_totales, expanded_equipo=None):
     data = []
@@ -353,23 +457,27 @@ import dash
     Output("tabla", "data"),
     [Input("tabla", "active_cell"),
      Input("region-filter", "value"),
+     Input("temporada-filter", "value"),
      Input("fase-filter", "value"),
+     Input("ronda-filter", "value"),
      Input("tabla", "id")],
     State("tabla", "data")
 )
-def unified_callback(cell, region_sel, fase_sel, _id, current_data):
+def unified_callback(cell, region_sel, temporada_sel, fase_sel, ronda_sel, _id, current_data):
     ctx = dash.callback_context
     df_filtrado = df.copy()
     # Región
-    if not region_sel or "TODAS" in region_sel:
-        pass
-    else:
+    if region_sel and "TODAS" not in region_sel:
         df_filtrado = df_filtrado[df_filtrado['zona'].isin(region_sel)]
+    # Temporada
+    if temporada_sel and "TODAS" not in temporada_sel and 'anio' in df_filtrado.columns:
+        df_filtrado = df_filtrado[df_filtrado['anio'].astype(str).isin([str(t) for t in temporada_sel])]
     # Fase
-    if not fase_sel or "TODAS" in fase_sel:
-        pass
-    else:
+    if fase_sel and "TODAS" not in fase_sel:
         df_filtrado = df_filtrado[df_filtrado['fase'].isin(fase_sel)]
+    # Ronda
+    if ronda_sel and "TODAS" not in ronda_sel:
+        df_filtrado = df_filtrado[df_filtrado['ronda'].astype(str).isin([str(r) for r in ronda_sel])]
     equipos_filtrados = sorted(set(df_filtrado['local']).union(set(df_filtrado['visitante'])))
     equipos_ordenados_local = sorted(
         equipos_filtrados,
@@ -385,7 +493,9 @@ def unified_callback(cell, region_sel, fase_sel, _id, current_data):
 
     if not ctx.triggered or ctx.triggered[0]['prop_id'].endswith('.id') or \
        ctx.triggered[0]['prop_id'].startswith('region-filter') or \
-       ctx.triggered[0]['prop_id'].startswith('fase-filter'):
+       ctx.triggered[0]['prop_id'].startswith('temporada-filter') or \
+       ctx.triggered[0]['prop_id'].startswith('fase-filter') or \
+       ctx.triggered[0]['prop_id'].startswith('ronda-filter'):
         return get_table_data(df_totales_local)
     if not cell:
         return current_data
@@ -401,25 +511,22 @@ def unified_callback(cell, region_sel, fase_sel, _id, current_data):
 @app.callback(
     Output("graficos-torta", "children"),
     [Input("region-filter", "value"),
+     Input("temporada-filter", "value"),
      Input("fase-filter", "value"),
+     Input("ronda-filter", "value"),
      Input("nivel-torta-filter", "value")]
 )
-def update_graficos_torta(region_sel, fase_sel, nivel_sel):
+def update_graficos_torta(region_sel, temporada_sel, fase_sel, ronda_sel, nivel_sel):
     df_filtrado = df.copy()
-    # Región
-    if not region_sel or "TODAS" in region_sel:
-        pass
-    else:
+    if region_sel and "TODAS" not in region_sel:
         df_filtrado = df_filtrado[df_filtrado['zona'].isin(region_sel)]
-    # Fase
-    if not fase_sel or "TODAS" in fase_sel:
-        pass
-    else:
+    if temporada_sel and "TODAS" not in temporada_sel and 'anio' in df_filtrado.columns:
+        df_filtrado = df_filtrado[df_filtrado['anio'].astype(str).isin([str(t) for t in temporada_sel])]
+    if fase_sel and "TODAS" not in fase_sel:
         df_filtrado = df_filtrado[df_filtrado['fase'].isin(fase_sel)]
-    # Nivel (solo para gráficos)
-    if not nivel_sel or "TODOS" in nivel_sel:
-        pass
-    else:
+    if ronda_sel and "TODAS" not in ronda_sel:
+        df_filtrado = df_filtrado[df_filtrado['ronda'].astype(str).isin([str(r) for r in ronda_sel])]
+    if nivel_sel and "TODOS" not in nivel_sel:
         df_filtrado = df_filtrado[df_filtrado['nivel'].isin(nivel_sel)]
     data_por_region = calcular_diferencias_por_region(df_filtrado)
     return graficos_torta_por_region(data_por_region)
@@ -428,41 +535,60 @@ def update_graficos_torta(region_sel, fase_sel, nivel_sel):
 @app.callback(
     Output("tabla-promedios-region", "data"),
     [Input("region-filter", "value"),
+     Input("temporada-filter", "value"),
      Input("fase-filter", "value"),
+     Input("ronda-filter", "value"),
      Input("nivel-torta-filter", "value")]
 )
-def update_tabla_promedios(region_sel, fase_sel, nivel_sel):
+def update_tabla_promedios(region_sel, temporada_sel, fase_sel, ronda_sel, nivel_sel):
     df_filtrado = df.copy()
-    if not region_sel or "TODAS" in region_sel:
-        pass
-    else:
+    if region_sel and "TODAS" not in region_sel:
         df_filtrado = df_filtrado[df_filtrado['zona'].isin(region_sel)]
-    if not fase_sel or "TODAS" in fase_sel:
-        pass
-    else:
+    if temporada_sel and "TODAS" not in temporada_sel and 'anio' in df_filtrado.columns:
+        df_filtrado = df_filtrado[df_filtrado['anio'].astype(str).isin([str(t) for t in temporada_sel])]
+    if fase_sel and "TODAS" not in fase_sel:
         df_filtrado = df_filtrado[df_filtrado['fase'].isin(fase_sel)]
-    if not nivel_sel or "TODOS" in nivel_sel:
-        pass
-    else:
+    if ronda_sel and "TODAS" not in ronda_sel:
+        df_filtrado = df_filtrado[df_filtrado['ronda'].astype(str).isin([str(r) for r in ronda_sel])]
+    if nivel_sel and "TODOS" not in nivel_sel:
         df_filtrado = df_filtrado[df_filtrado['nivel'].isin(nivel_sel)]
     return tabla_promedios_por_region(df_filtrado)
 
+
+# --- CALLBACK INTERACTIVO PARA TABLA INTERCONFERENCIA ---
 @app.callback(
     Output("tabla-interconferencia", "data"),
-    [Input("fase-filter", "value"),
-     Input("nivel-torta-filter", "value")]
+    [Input("tabla-interconferencia", "active_cell"),
+     Input("region-filter", "value"),
+     Input("temporada-filter", "value"),
+     Input("fase-filter", "value"),
+     Input("ronda-filter", "value"),
+     Input("nivel-torta-filter", "value")],
+    State("tabla-interconferencia", "data")
 )
-def update_tabla_interconferencia(fase_sel, nivel_sel):
+def update_tabla_interconferencia(active_cell, region_sel, temporada_sel, fase_sel, ronda_sel, nivel_sel, current_data):
     df_filtrado = df.copy()
-    if not fase_sel or "TODAS" in fase_sel:
-        pass
-    else:
+    if region_sel and "TODAS" not in region_sel:
+        df_filtrado = df_filtrado[df_filtrado['zona'].isin(region_sel)]
+    if temporada_sel and "TODAS" not in temporada_sel and 'anio' in df_filtrado.columns:
+        df_filtrado = df_filtrado[df_filtrado['anio'].astype(str).isin([str(t) for t in temporada_sel])]
+    if fase_sel and "TODAS" not in fase_sel:
         df_filtrado = df_filtrado[df_filtrado['fase'].isin(fase_sel)]
-    if not nivel_sel or "TODOS" in nivel_sel:
-        pass
-    else:
+    if ronda_sel and "TODAS" not in ronda_sel:
+        df_filtrado = df_filtrado[df_filtrado['ronda'].astype(str).isin([str(r) for r in ronda_sel])]
+    if nivel_sel and "TODOS" not in nivel_sel:
         df_filtrado = df_filtrado[df_filtrado['nivel'].isin(nivel_sel)]
-    return tabla_interconferencia(df_filtrado)
+
+    region_expandida = None
+    if active_cell and active_cell.get('column_id') == 'Región':
+        row_idx = active_cell.get('row')
+        if current_data and 0 <= row_idx < len(current_data):
+            region_val = current_data[row_idx].get('Región', '').strip()
+            # Solo expandir si es una región principal
+            if region_val in ["SUR", "OESTE", "NORTE", "CENTRO"]:
+                region_expandida = region_val
+
+    return tabla_interconferencia(df_filtrado, region_expandida=region_expandida)
 
 if __name__ == "__main__":
     app.run(debug=True)
