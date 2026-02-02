@@ -1,0 +1,28 @@
+{
+  "descripcion": "Mapeo temporada -> id_competencia GES para categorías formativas FeBAMBA. Actualizar cada campaña cuando GES publique nuevas competencias.",
+  "widget_key": "c93924c3-1e13-4bf5-8f86-6386aeebba20",
+  "fecha_inicio": "2022-1-1",
+  "fecha_fin": "2026-12-30",
+  "competencias": [
+    {
+      "id_competencia": 1623,
+      "nombre": "FORMATIVAS 2025",
+      "temporada": "2025"
+    },
+    {
+      "id_competencia": 1178,
+      "nombre": "FORMATIVAS 2024",
+      "temporada": "2024"
+    },
+    {
+      "id_competencia": 682,
+      "nombre": "FORMATIVAS 2023",
+      "temporada": "2023"
+    },
+    {
+      "id_competencia": 307,
+      "nombre": "TORNEO FORMATIVAS 2022",
+      "temporada": "2022"
+    }
+  ]
+}
