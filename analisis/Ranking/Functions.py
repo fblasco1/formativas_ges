@@ -3,7 +3,7 @@ import os
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
 
 import pandas as pd
-from utils.open_csv import leer_csv_con_encoding_detectado , leer_csv_con_encoding_detectado_Comas
+from utils.open_csv import leer_csv_con_encoding_detectado
 
 #Lee y devuelve una lista de equipos.
 def crear_ranking_base(data):

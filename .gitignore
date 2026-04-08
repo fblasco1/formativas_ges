@@ -17,3 +17,5 @@ estructura_por_fase_y_grupo_sin_mosquitos.csv
 febamba_estructura_ges.csv
 
 /venv
+__pycache__/
+*.py[cod]
