@@ -1,0 +1,85 @@
+---
+description: Schema de datos, estructura de gesdeportiva.json y normalización de categorías. Auto-activo en archivos de Data/, mapeos/, pipelines/ y analisis/.
+globs: Data/**,mapeos/**/*.py,mapeos/**/*.json,pipelines/**/*.py,analisis/**/*.py
+alwaysApply: false
+---
+
+# Schema de Datos — FeBAMBA Formativas
+
+## Estructura de `gesdeportiva.json`
+
+Contiene competencias de múltiples federaciones. Cada entrada relevante incluye como mínimo `id`, `url`, `federacion`, `torneo`.
+
+**Importante**: **no** hay campo fiable `Anio`. El año se infiere del texto del torneo:
+
+```python
+import re
+
+def inferir_anio(nombre_torneo: str) -> int | None:
+    match = re.search(r"(20\d{2})", nombre_torneo)
+    return int(match.group(1)) if match else None
+```
+
+## Filtro de torneos FeBAMBA Formativas
+
+```python
+FEDERACIONES_FEBAMBA = {
+    "FEDERACION DE BASQUETBOL DEL AREA METROPOLITANA DE BUENOS AIRES",
+}
+
+KEYWORDS_FORMATIVAS = ("formativas", "formativa")
+
+def es_torneo_formativas_febamba(entry: dict) -> bool:
+    es_febamba = entry.get("federacion", "") in FEDERACIONES_FEBAMBA
+    torneo = entry.get("torneo", "").lower()
+    es_formativas = any(k in torneo for k in KEYWORDS_FORMATIVAS)
+    return es_febamba and es_formativas
+```
+
+## Schema del partido (salida `FebambaScraper`)
+
+Implementación objetivo: `scraper/scraper.py`. Cada fila/dict de partido incluye al menos:
+
+| Key         | Tipo  | Ejemplo              | Notas                                    |
+|-------------|-------|----------------------|------------------------------------------|
+| `anio`      | int   | 2022                 | De `inferir_anio`, no del JSON crudo     |
+| `categoria` | str   | "CADETES"            | Tras mapeo vía `mapeos/categorias_map.json` |
+| `fase`      | str   | "Fase Regular"       | Texto del HTML                           |
+| `ronda`     | str   | "Jornada 3"          |                                          |
+| `nivel`     | str   | "Nivel 1"            |                                          |
+| `zona`      | str   | "Zona Norte"         |                                          |
+| `grupo`     | str   | "Grupo A"            |                                          |
+| `jornada`   | str   | "3"                  |                                          |
+| `fecha`     | str   | "15/04/2022"         | Puede ser vacío                          |
+| `local`     | str   | "CLUB ATLETICO X"    | Tras `normalizar_equipo` en normalize   |
+| `ptsL`      | str→int| "72" → 72           | Entero tras normalize                    |
+| `visitante` | str   | ...                  | Idem                                     |
+| `ptsV`      | str→int| ...                  | Idem                                     |
+
+## Columnas en `pipelines/normalize.py` (dataset procesado)
+
+| Columna       | Tipo   | Cómo se calcula                                              |
+|---------------|--------|--------------------------------------------------------------|
+| `ptsL`, `ptsV`| int    | `pd.to_numeric(..., errors="coerce").fillna(0).astype(int)` |
+| `diferencia`  | int    | `abs(ptsL - ptsV)`                                           |
+| `ganador`     | str    | Club con más puntos                                          |
+| `perdedor`    | str    | Club con menos puntos                                        |
+| `is_forfeit`  | bool   | True si ambos puntos 0 (no jugado)                           |
+| `age_group`   | str    | Nombre **canónico** desde `categorias_map.json` (valor destino)|
+| `genero`      | str    | `"MASCULINO"` / `"FEMENINO"` / `"MIXTO"` según reglas de negocio |
+
+**Motor de ranking**: el factor de etapa **S** se calcula en el ranking a partir de **`fase`**, **`ronda`** y **`nivel`** (producto de pesos), no hace falta persistir `tournament_stage` en el parquet salvo análisis exploratorio explícito.
+
+## Categorías canónicas → `mapeos/categorias_map.json`
+
+- Fuente única: el JSON; **no** duplicar mapas grandes en Python.
+- Flujo: `categoria.upper().strip()` → lookup; si no hay match → WARNING y fallback al valor original o política acordada.
+- Los **valores** del JSON son los nombres canónicos usados como `age_group` (p. ej. `PREMINI`, `MINI`, `PREINFANTILES`, `INFANTILES`, `CADETES`, `JUVENILES`, `MOSQUITOS` — mantener alineado al archivo real del repo).
+
+## Calidad
+
+- `ptsL` y `ptsV` ≥ 0 tras conversión.
+- Empate con puntos iguales: válido pero poco común → INFO.
+- `local == visitante` en el mismo registro → WARNING.
+- `anio` en rango razonable para formativas (p. ej. 2019–2030 según contexto).
+- Salida objetivo: `Data/procesada/matches_clean.parquet` y `matches_clean.csv`.

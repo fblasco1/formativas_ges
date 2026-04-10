@@ -1,0 +1,103 @@
+---
+description: Estándares Python para todo el proyecto. Auto-activo en cualquier .py.
+globs: **/*.py
+alwaysApply: false
+---
+
+# Estándares Python — FeBAMBA Formativas
+
+## Herramientas
+
+- Formatter: `black` (100 chars/línea)
+- Linter: `ruff` (reemplaza flake8 + isort)
+- Tests: `pytest`
+- Verificar antes de commit: `ruff check . && black --check . && pytest tests/ -q`
+
+## Type hints
+
+```python
+# ✅ Siempre en funciones públicas
+def calcular_grp(match: dict, rating_perdedor: float) -> tuple[float, float]: ...
+
+# ❌ Nunca sin hints en funciones públicas
+def calcular_grp(match, rating): ...
+```
+
+## Logging — NUNCA print()
+
+```python
+from utils.logger import get_logger
+logger = get_logger(__name__)
+
+logger.info("Procesando categoría: %s → %s", cat_raw, cat_mapa)
+logger.warning("Club sin mapeo: %s — usando nombre original", nombre)
+logger.error("Fallo HTTP en %s — abortando torneo", url)
+```
+
+## Pandas
+
+```python
+df_sub = df[df["anio"] == 2024].copy()            # .copy() siempre en subsets
+df["diferencia"] = (df["ptsL"] - df["ptsV"]).abs()  # vectorizado > apply
+df["ptsL"] = pd.to_numeric(df["ptsL"], errors="coerce").fillna(0).astype(int)
+# NO usar inplace=True
+```
+
+## Manejo de errores
+
+```python
+# ✅ Específico
+try:
+    df = pd.read_parquet(ruta)
+except FileNotFoundError:
+    logger.error("Archivo no encontrado: %s", ruta)
+    return pd.DataFrame()
+
+# ❌ Nunca silenciar
+try: ...
+except Exception: pass
+```
+
+## Docstrings
+
+- Lógica de negocio → **español**
+- Utilidades técnicas → inglés
+```python
+def calcular_indice_competitividad(df: pd.DataFrame) -> float:
+    """Retorna el porcentaje de partidos con diferencia <= 10 puntos."""
+
+def detect_encoding(filepath: str) -> str:
+    """Detect file encoding using chardet. Returns encoding string."""
+```
+
+## Nomenclatura
+
+| Tipo       | Convención        | Ejemplo                    |
+|------------|-------------------|----------------------------|
+| Variables  | `snake_case`      | `rating_previo`            |
+| Funciones  | `snake_case`      | `calcular_grp`             |
+| Clases     | `PascalCase`      | `FeBAMBARanking`           |
+| Constantes | `UPPER_SNAKE`     | `PHASE_WEIGHT`             |
+| Archivos   | `snake_case.py`   | `ranking_config.py`        |
+
+## Tamaño y estructura
+
+- Máximo **300 líneas** por archivo `.py`
+- Si supera → dividir en submódulos con `__init__.py` que reexporta lo público
+- Constantes numéricas del ranking → `analisis/ranking_config.py` (+ tablas de pesos en `analisis/ranking/stage_weights.py` si aplica), no inline
+
+## `.gitignore` mínimo requerido
+
+```gitignore
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+Data/procesada/
+Data/raw/
+outputs/*.csv
+outputs/*.json
+*.log
+.DS_Store
+.github-pr-body-temp.md
+```

@@ -1,0 +1,84 @@
+---
+description: Convenciones para el pipeline ETL (scraper, parsers, mapeos, pipelines, utils). Auto-activo en esos módulos.
+globs: scraper/**/*.py,parsers/**/*.py,mapeos/**/*.py,pipelines/**/*.py,utils/**/*.py,corregir_*.py
+alwaysApply: false
+---
+
+# ETL Pipeline — Convenciones y Arquitectura
+
+## Flujo objetivo
+
+```
+gesdeportiva.json
+      │  filtrar federación FeBAMBA + keyword formativas (ver 01-data-schema)
+      ▼
+python -m pipelines.run_scraper
+      │
+      ▼
+scraper/scraper.py — FebambaScraper
+      │  usa
+      ├── utils/requester.py
+      ├── parsers/fases.py      → dict con fase, ronda, nivel, zona, grupo
+      ├── parsers/grupos.py
+      ├── parsers/jornadas.py
+      └── parsers/rondas.py     → siempre dict (ver abajo)
+      │
+      ▼
+Data/raw/  (CSVs por torneo o convención acordada)
+      │
+      ▼
+python -m pipelines.normalize
+      │  usa mapeos/loader.py + utils/open_csv.py
+      ▼
+Data/procesada/matches_clean.parquet + matches_clean.csv
+```
+
+**Legacy**: `corregir_nombres_postscrap.py` y scraping vía `pipelines/pipeline2019-2025.py` + `scraper/main.py` deben converger al flujo anterior.
+
+## `scraper/scraper.py`
+
+- `FebambaScraper.__init__(base_url: str)`; carga mapeos si aplica.
+- `scrap_torneo(torneo_info: dict)`: `year = inferir_anio(torneo_info["torneo"])` — **no** usar solo `torneo_info.get("Anio")` del JSON.
+- Omitir categoría `"mosquitos"` donde la regla de negocio lo indique.
+- Omitir partidos sin puntos válidos en origen → log INFO.
+- Retries HTTP: `utils/requester.py` (tenacity si está configurado).
+
+## `parsers/`
+
+- Funciones puras; sin imports desde `scraper/`.
+- `parsear_fase(year, fase_text) -> dict` con keys siempre presentes; usar fallback tipo `"Desconocido"` / `"Desconocida"`.
+- **`inferir_ronda(...)`** devuelve **siempre un `dict`** (p. ej. `ronda`, `llave`, `nivel`); no `str` suelto.
+
+## `mapeos/`
+
+- JSON + `loader.py`: `cargar_mapeo_categorias`, `cargar_mapeo_equipos`, `normalizar_equipo`.
+- Aliases nuevos → **solo JSON**.
+
+## `pipelines/normalize.py`
+
+- Lee CSVs raw con encoding detectado (`chardet`).
+- Aplica `normalizar_equipo`; deriva `diferencia`, `ganador`, `perdedor`, `is_forfeit`, `age_group`, `genero`.
+- Escribe `matches_clean.*` sin nombres con espacios ni rangos de años hardcodeados.
+- Warnings por filas dudosas; no silenciar pérdidas de datos.
+
+## Entry point `pipelines/run_scraper.py` (plantilla)
+
+Hasta existir `pipelines/filter.py`, puede inline el helper `es_torneo_formativas_febamba` de la rule 01 o importarlo desde un módulo común:
+
+```python
+"""Entry point para scraping FeBAMBA Formativas."""
+import json
+from scraper.scraper import FebambaScraper  # o scraper.main mientras migra
+
+# es_torneo_formativas_febamba: copiar desde 01-data-schema o módulo compartido
+
+if __name__ == "__main__":
+    with open("gesdeportiva.json", encoding="utf-8") as f:
+        data = json.load(f)
+    torneos = [t for t in data["competencias"] if es_torneo_formativas_febamba(t)]
+    scraper = FebambaScraper(base_url="https://competicionescabb.gesdeportiva.es")
+    for torneo in torneos:
+        scraper.scrap_torneo(torneo)
+```
+
+Invocación: `python -m pipelines.run_scraper`

@@ -1,0 +1,87 @@
+---
+description: Motor de Ranking FeBAMBA (adaptación FIBA) y métricas de análisis. Auto-activo en analisis/.
+globs: analisis/**/*.py
+alwaysApply: false
+---
+
+# Motor de Ranking FeBAMBA — Fórmula y Convenciones
+
+## Fórmula base (adaptada FIBA)
+
+```
+Perdedor:  G  = B × R × S
+Ganador:   GW = G × W × O × A × M
+```
+
+- **B, R**: según `analisis/ranking_config.py` (factor base y fuerza relativa del resultado).
+- **O**: función del rating **pre-partido** del perdedor (**TL**).
+- **A**: localía / cancha neutral.
+- **M**: margen de victoria (umbral configurable).
+- **S**: factor de **etapa** = **producto** de pesos aplicados a texto de **`fase`**, **`ronda`** y **`nivel`** (ver `stage_weights.py`). No sustituir por un único enum de “etapa de torneo” sin esta descomposición, salvo decisión explícita de negocio documentada.
+
+## Configuración — `analisis/ranking_config.py`
+
+Mantener aquí (entre otros):
+
+- `BASE_FACTOR`, `WINNING_FACTOR`, factores de visitante, margen, umbral
+- `DISCOUNT_FACTOR`, `INITIAL_RATING`
+- `REGION_FACTOR` (puede arrancar en `{"default": 1.0}`)
+- `CATEGORY_WEIGHT` (o `AGE_GROUP_WEIGHT`): ponderaciones por **categoría canónica** alineada a `mapeos/categorias_map.json`
+
+Ejemplo ilustrativo de pesos multiplicandos de S (valores reales solo en código):
+
+```python
+# analisis/ranking/stage_weights.py — concepto
+PHASE_WEIGHT: dict[str, float]   # claves = substrings normalizados de fase
+ROUND_WEIGHT: dict[str, float]   # idem ronda
+LEVEL_WEIGHT: dict[str, float]   # idem nivel
+
+def stage_multiplier(fase: str, ronda: str, nivel: str) -> float:
+    return (
+        lookup_phase(fase)
+        * lookup_round(ronda)
+        * lookup_level(nivel)
+    )
+```
+
+## Implementación — paquete `analisis/ranking/`
+
+**Objetivo** (no crear `analisis/ranking.py` como archivo suelto: colisiona con el paquete):
+
+```
+analisis/ranking_config.py
+analisis/ranking/
+  __init__.py           # export FeBAMBARanking, etc.
+  stage_weights.py
+  febamba_ranking.py    # clase FeBAMBARanking
+  ranking_general.py
+  data_loader.py
+  ranking_runner.py     # opcional
+```
+
+### Clase `FeBAMBARanking` (contrato)
+
+- `initialize_club(club: str)`: rating inicial si no existe.
+- `process_match(match: dict) -> tuple[float, float]`: calcula GRP; usa TL **antes** de actualizar ratings.
+- `apply_seasonal_discount()`: al inicio de cada temporada lógica.
+- `get_ranking() -> pd.DataFrame`: posición, club, rating, partidos, victorias, derrotas.
+- Historial opcional por partido: `factor_etapa` (S), `fase`, `ronda`, `nivel`.
+
+## Reglas de proceso
+
+- Orden **cronológico**: por `anio` y, si existe, `fecha` parseada; si no hay fecha, heurística documentada (no inventar `tournament_stage` solo para orden).
+- `is_forfeit is True` → **excluir** del cálculo.
+- **Mixtos**: modelar con columna `genero` y definición de qué rankings actualizan esos partidos; **no** aplicar por defecto un `MIXTO_FACTOR` 0.5 mágico sobre el GRP salvo regla de negocio explícita en config.
+- Rankings separados por `(age_group, genero)` donde aplique; ranking general = agregación con `CATEGORY_WEIGHT`.
+
+## Otros módulos en `analisis/`
+
+```
+competitividad.py, metricas.py, campeones.py, eda.py, ...
+```
+
+`score_calidad_formativa` (u homólogo) = combinación acordada de equilibrio, diversidad de campeones y participación.
+
+## Legacy
+
+Código bajo `analisis/Ranking/` (mayúscula) debe migrarse al paquete `analisis/ranking/`; hasta entonces no duplicar fórmulas contradictorias sin comentario de depuración.

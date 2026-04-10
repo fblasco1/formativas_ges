@@ -1,0 +1,81 @@
+---
+description: Contexto siempre activo del proyecto FeBAMBA Formativas. Define arquitectura, objetivos y problemas estructurales conocidos.
+globs:
+alwaysApply: true
+---
+
+# FeBAMBA Formativas — Contexto del Proyecto
+
+## Qué es y qué hace
+
+Pipeline ETL + dashboard analítico para torneos de básquet de formativas FeBAMBA (2019–2025).
+
+### Objetivos de análisis (negocio)
+
+1. **Ranking de performance por club**, inspirado en la lógica del [ranking FIBA de selecciones](https://assets.fiba.basketball/image/upload/documents-events-world-fiba-ranking-men-how-it-works.pdf) (adaptado a clubes y a reglamento FeBAMBA: fases, zonas, categorías).
+2. **Competitividad entre regiones** (zonas): matrices, índices y comparación de desempeño cruzado donde los datos lo permitan.
+3. **Diferencia de puntos por fase y categoría** (distribución, evolución, outliers).
+4. **Campeones por nivel/categoría y aporte por región** (conteos y concentración).
+5. **Evaluación de formatos** (parejo vs disparejo, calidad formativa/competencia): métricas de equilibrio, diversidad de campeones y participación — ver `03-ranking-formula.mdc` y análisis dedicados.
+
+Los nombres de categoría **cambian por año** en la fuente; la comparación longitudinal exige categoría canónica vía `mapeos/categorias_map.json` + trazabilidad del nombre crudo (ver `01-data-schema.mdc`).
+
+- **Fuente**: `competicionescabb.gesdeportiva.es` — scrapeado vía HTML con BeautifulSoup
+- **Config de torneos**: `gesdeportiva.json` — muchas federaciones; FeBAMBA se filtra por federación + keyword formativas (ver `01-data-schema.mdc`)
+- **Stack ETL**: Python 3.11+, BeautifulSoup, Pandas, chardet, pyarrow (Parquet)
+- **Stack Dashboard**: Dash 3.x + Dash Bootstrap Components 2.x (Streamlit en `visualizaciones/` es **LEGACY** — no extender)
+- **Output de datos**: `Data/procesada/` — objetivo `matches_clean.parquet` + `matches_clean.csv`
+
+### Cursor: skills y subagentes del repo
+
+- **Skills** (workflows reutilizables): `.cursor/skills/*/SKILL.md`
+- **Subagentes** (instrucciones especializadas): `.cursor/agents/*.md`
+
+## Estructura de carpetas (objetivo + transición)
+
+```
+formativas_ges/
+├── .cursor/
+│   ├── rules/           ← reglas Cursor
+│   ├── skills/          ← skills del proyecto
+│   └── agents/          ← subagentes del proyecto
+├── Data/
+│   ├── raw/             ← CSVs por torneo (post-scrape objetivo)
+│   └── procesada/       ← matches_clean.* (objetivo)
+├── analisis/            ← métricas, ranking, dashboards en evolución
+│   └── ranking/         ← paquete objetivo del motor (snake_case)
+├── mapeos/              ← JSON + loader.py
+├── outputs/             ← exportes de análisis
+├── parsers/
+├── pipelines/           ← run_scraper.py, normalize.py (objetivo)
+├── scraper/
+│   ├── scraper.py       ← FebambaScraper (objetivo)
+│   └── main.py          ← legacy / re-export durante migración
+├── tests/
+├── utils/
+├── visualizaciones/     ← Streamlit LEGACY
+├── gesdeportiva.json
+├── corregir_nombres_postscrap.py  ← legacy; reemplazar por pipelines/normalize.py
+└── requirements.txt
+```
+
+**Legacy actual**: puede existir lógica de ranking bajo `analisis/Ranking/` (mayúscula); la línea nueva debe ir a `analisis/ranking/` y tests a `tests/test_ranking.py`.
+
+## Problemas estructurales conocidos (no reintroducir)
+
+1. `FebambaScraper` consolidado en `scraper/scraper.py`; entrypoint `python -m pipelines.run_scraper` (objetivo). Mientras tanto `pipelines/pipeline2019-2025.py` puede importar `scraper.main`.
+2. `corregir_nombres_postscrap.py` en raíz → sustituir por `pipelines/normalize.py` sin nombres de archivo con espacios.
+3. No commitear `__pycache__/` ni `*.pyc`.
+4. Archivos temporales tipo `.github-pr-body-temp.md` no deben versionarse.
+5. **`gesdeportiva.json` no tiene `Anio`**: inferir año del nombre del torneo (`inferir_anio`).
+6. `matplotlib` / `seaborn` en requirements por legado; **dashboard nuevo**: Plotly solo.
+7. **GitPython**: no añadir usos nuevos sin propósito claro.
+
+## Reglas siempre activas
+
+- NO usar Streamlit para código nuevo — todo dashboard va en Dash
+- NO usar `print()` para debug — usar `utils/logger.py`
+- NO hardcodear IDs de torneos ni equipos en Python — `gesdeportiva.json` y `mapeos/`
+- NO commitear `__pycache__`, `*.pyc`, ni CSV de `Data/procesada/` si la política del repo los ignora
+- Máximo **300 líneas** por archivo `.py` — partir en módulos si se supera
+- **Type hints** obligatorios en funciones y métodos **públicos**

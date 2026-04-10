@@ -1,0 +1,61 @@
+---
+description: Patrones obligatorios para el dashboard Dash. Auto-activo en dashboard/, app.py y analisis/dashboard_zonas_dash.py.
+globs: dashboard/**/*.py,app.py,analisis/dashboard_zonas_dash.py
+alwaysApply: false
+---
+
+# Dashboard Dash — Patrones y Convenciones
+
+## Arquitectura objetivo
+
+```
+dashboard/
+├── app.py                    ← instancia Dash, páginas, layout raíz
+├── assets/
+│   ├── styles.css
+│   └── logo.png
+├── pages/
+│   ├── ranking.py
+│   ├── competitividad.py
+│   ├── diferencia_pts.py
+│   ├── campeones.py
+│   └── formatos.py
+└── components/
+    ├── filtros.py
+    ├── kpi_cards.py
+    └── navbar.py
+```
+
+**Transición**: puede convivir `analisis/dashboard_zonas_dash.py` mientras se migra a `dashboard/` — al mover código, conservar el contrato de datos (`matches_clean` o columnas equivalentes documentadas en `01-data-schema.mdc`).
+
+`visualizaciones/` (Streamlit) es **LEGACY** — no extender ni importar en código nuevo.
+
+## Contrato de cada página
+
+```python
+def layout() -> html.Div:
+    """Layout completo. Sin lógica de negocio pesada."""
+
+def register_callbacks(app: Dash) -> None:
+    """Callbacks de esta página sobre app."""
+```
+
+## IDs de componentes
+
+Formato: `{pagina}-{bloque}-{elemento}` (ej. `ranking-filter-year`, `compet-heatmap-regional`).
+
+## Callbacks
+
+- Lógica de negocio en `analisis/`; callbacks delgados.
+- `dcc.Store` para datos compartidos; evitar globales mutables.
+- **No** importar `scraper/` ni `parsers/` desde el dashboard.
+- `prevent_initial_call=True` cuando no deba dispararse al cargar.
+
+## Paleta (referencia)
+
+Variables CSS en `dashboard/assets/styles.css`: primario FeBAMBA `#E8631A`, secundario `#1A3A5C`, etc. Gráficos Plotly alineados a esa paleta.
+
+## Stack permitido
+
+- `dash` 3.x, `dash-bootstrap-components` 2.x, `plotly` (express o graph_objects), `pandas` para transforms ligeros.
+- **Prohibido** en código nuevo del dashboard: `matplotlib`, `seaborn`, `streamlit`.
