@@ -1,38 +1,19 @@
+# -*- coding: utf-8 -*-
+"""
+Legacy: normaliza CSV en la raíz de ``Data/`` y escribe ``matches_clean.*``.
+
+Preferir ``python -m pipelines.normalize`` leyendo ``Data/raw/`` tras el scraper.
+"""
+
+from __future__ import annotations
+
 import os
-import pandas as pd
-from utils.open_csv import leer_csv_con_encoding_detectado
-from mapeos.loader import normalizar_equipo, cargar_mapeo_equipos
-# Cargar el mapeo de equipos
+import sys
 
-mapeo_equipos = cargar_mapeo_equipos()
+# Raíz del proyecto en sys.path (ejecución como script desde la raíz)
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
-# Ruta a la carpeta con los CSVs
-carpeta_data = 'Data'
-carpeta_salida = os.path.join(carpeta_data, 'procesada')
-os.makedirs(carpeta_salida, exist_ok=True)
+from pipelines.normalize import main_legacy_flat_csv_in_data  # noqa: E402
 
-# Lista para almacenar los DataFrames corregidos
-dataframes = []
-
-# Recorremos todos los CSV de la carpeta Data
-for archivo in os.listdir(carpeta_data):
-    ruta_archivo = os.path.join(carpeta_data, archivo)
-
-    if archivo.endswith('.csv') and os.path.isfile(ruta_archivo):
-        print(f'Procesando: {archivo}')
-        df = leer_csv_con_encoding_detectado(ruta_archivo)
-
-        # Normalizamos los nombres de los equipos
-        df['local'] = df['local'].apply(lambda x: normalizar_equipo(x, mapeo_equipos))
-        df['visitante'] = df['visitante'].apply(lambda x: normalizar_equipo(x, mapeo_equipos))
-
-        dataframes.append(df)
-
-# Concatenamos todo en un único DataFrame
-df_final = pd.concat(dataframes, ignore_index=True)
-
-# Guardamos el resultado
-ruta_salida = os.path.join(carpeta_salida, '19-24 procesado.csv')
-df_final.to_csv(ruta_salida, sep=';', index=False)
-
-print(f'Archivo guardado en: {ruta_salida}')
+if __name__ == "__main__":
+    main_legacy_flat_csv_in_data()

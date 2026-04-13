@@ -81,5 +81,6 @@ Implementación objetivo: `scraper/scraper.py`. Cada fila/dict de partido incluy
 - `ptsL` y `ptsV` ≥ 0 tras conversión.
 - Empate con puntos iguales: válido pero poco común → INFO.
 - `local == visitante` en el mismo registro → WARNING.
-- `anio` en rango razonable para formativas (p. ej. 2019–2030 según contexto).
+- LIBRE no es un equipo. Si hay un partido jugado contra LIBRE y tiene puntaje → WARNING.
+- `anio` en rango razonable para formativas (p. ej. 2019–2026 según contexto).
 - Salida objetivo: `Data/procesada/matches_clean.parquet` y `matches_clean.csv`.

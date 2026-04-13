@@ -32,7 +32,7 @@ def procesar_fila(anio, fase_text, grupo_text, categorias_raw):
     )
 
     try:
-        fase_res = parsear_fase(int(anio), fase_text)
+        fase_res = parsear_fase(int(anio), fase_text, grupo_text)
         grupo_res = parsear_grupo(int(anio), fase_text, grupo_text)
     except Exception as e:
         error = f"Error ejecutando los parsers: {str(e)}"

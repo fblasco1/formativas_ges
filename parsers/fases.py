@@ -7,17 +7,25 @@ Cada año tiene una estructura de torneo distinta y se parsea respetando reglas 
 import re
 from typing import Dict
 
+from utils.logger import get_logger
 
-def parsear_fase(year: int, fase_text: str) -> Dict[str, str]:
+logger = get_logger(__name__)
+
+
+def parsear_fase(
+    year: int, fase_text: str, grupo_text: str | None = None
+) -> Dict[str, str]:
     """
     Parseo del texto de Fase para obtener fase, ronda, nivel y zona normalizados.
 
     Args:
-        year (int): Año del torneo (2019, 2022, 2023, 2024)
-        fase_text (str): Texto original de la fase (tal como viene del HTML)
+        year: Año del torneo
+        fase_text: Texto original de la fase (tal como viene del HTML)
+        grupo_text: Opcional (p. ej. 2025). Si la fase depende del DDL Grupos
+            (mismo texto de fase en dos contextos), pasar el grupo para desambiguar.
 
     Returns:
-        Dict[str, str]: Diccionario con fase, ronda, nivel y zona
+        Dict con fase, ronda, nivel, zona y grupo base
     """
 
     fase_mapa = "Desconocida"
@@ -368,14 +376,134 @@ def parsear_fase(year: int, fase_text: str) -> Dict[str, str]:
                 nivel_mapa = 1
                 zona_mapa = "SUR"
         elif year == 2025:
+            # 2025 — colapsar espacios (p. ej. "NIVEL 2  OESTE B")
+            fase_norm = re.sub(r"\s+", " ", fase_text_upper)
             # 2025
-            if "1ER ETAPA" in fase_text_upper:
-                fase_mapa =  "Fase Regular"
+            if "1ER ETAPA" in fase_norm:
+                fase_mapa = "Fase Regular"
                 ronda_mapa = "Copa Febamba"
                 nivel_mapa = "NIVELACION"
+            elif "2DO" in fase_norm and "SEMESTRE" in fase_norm:
+                fase_mapa = "Fase Regular"
+                ronda_mapa = "Campeonato"
+            elif fase_norm == "FINAL FOUR 3":
+                fase_mapa = "FINAL FOUR"
+                ronda_mapa = "Desconocida"
+                nivel_mapa = "3"
+                zona_mapa = "INTERCONFERENCIA"
+            elif fase_norm == "FINAL FOUR 2":
+                g_aux = (
+                    re.sub(r"\s+", " ", grupo_text.strip().upper())
+                    if grupo_text
+                    else ""
+                )
+                # Mismo DDL "FINAL FOUR 2": cruce NORTE AB vs OESTE AB → Playoff (zona por equipos)
+                if g_aux in ("NORTE/AB-OESTE AB", "NORTE AB/OESTE AB"):
+                    fase_mapa = "Playoff"
+                    ronda_mapa = "Final"
+                    nivel_mapa = "2"
+                    zona_mapa = "Desconocida"
+                else:
+                    fase_mapa = "FINAL FOUR"
+                    ronda_mapa = "Desconocida"
+                    nivel_mapa = "2"
+                    zona_mapa = "INTERCONFERENCIA"
+            elif fase_norm == "FINAL FOUR 1":
+                fase_mapa = "FINAL FOUR"
+                ronda_mapa = "Desconocida"
+                nivel_mapa = "1"
+                zona_mapa = "INTERCONFERENCIA"
+            elif fase_norm == "INTERCONFERENCIAS":
+                fase_mapa = "Playoff"
+                ronda_mapa = "Final"
+                nivel_mapa = "Desconocido"
+                zona_mapa = "INTERCONFERENCIA"
+            elif fase_norm == "TRIANGULAR FINAL":
+                fase_mapa = "Playoff"
+                ronda_mapa = "Final"
+                nivel_mapa = "2"
+                zona_mapa = "SUR"
+            elif fase_norm in ("NORTE AB/OESTE AB", "NORTE/AB-OESTE AB"):
+                fase_mapa = "Playoff"
+                ronda_mapa = "Final"
+                nivel_mapa = "2"
+                zona_mapa = "Desconocida"
+            elif re.fullmatch(r"NIVEL SUR 2[ABC]", fase_norm):
+                fase_mapa = "Playoff"
+                ronda_mapa = "Desconocida"
+                nivel_mapa = "2"
+                zona_mapa = "SUR"
+            elif re.fullmatch(r"NIVEL OESTE 2[AB]", fase_norm):
+                fase_mapa = "Playoff"
+                ronda_mapa = "Desconocida"
+                nivel_mapa = "2"
+                zona_mapa = "OESTE"
+            elif re.fullmatch(r"NIVEL NORTE 2[AB]", fase_norm):
+                fase_mapa = "Playoff"
+                ronda_mapa = "Desconocida"
+                nivel_mapa = "2"
+                zona_mapa = "NORTE"
+            elif fase_norm == "NIVEL SUR C 2":
+                fase_mapa = "Playoff"
+                ronda_mapa = "Desconocida"
+                nivel_mapa = "2"
+                zona_mapa = "SUR"
+            elif re.fullmatch(r"NIVEL 2 SUR [AB]", fase_norm):
+                fase_mapa = "Playoff"
+                ronda_mapa = "Desconocida"
+                nivel_mapa = "2"
+                zona_mapa = "SUR"
+            elif fase_norm == "NIVEL 2 OESTE B":
+                fase_mapa = "Playoff"
+                ronda_mapa = "Desconocida"
+                nivel_mapa = "2"
+                zona_mapa = "OESTE"
+            elif fase_norm == "NIVEL 2 A OESTE":
+                fase_mapa = "Playoff"
+                ronda_mapa = "Desconocida"
+                nivel_mapa = "2"
+                zona_mapa = "OESTE"
+            elif re.fullmatch(r"NIVEL 2 NORTE [AB]", fase_norm):
+                fase_mapa = "Playoff"
+                ronda_mapa = "Desconocida"
+                nivel_mapa = "2"
+                zona_mapa = "NORTE"
+            elif fase_norm == "NIVEL 1 FINAL FOUR":
+                fase_mapa = "Playoff"
+                ronda_mapa = "Desconocida"
+                nivel_mapa = "1"
+                zona_mapa = "Desconocida"
+            elif fase_norm == "NIVEL 1":
+                fase_mapa = "Playoff"
+                ronda_mapa = "Desconocida"
+                nivel_mapa = "1"
+                zona_mapa = "Desconocida"
+            elif fase_norm == "NIVEL 2":
+                fase_mapa = "Playoff"
+                ronda_mapa = "Desconocida"
+                nivel_mapa = "2"
+                zona_mapa = "Desconocida"
+            elif fase_norm == "NIVEL 3":
+                fase_mapa = "Playoff"
+                ronda_mapa = "Desconocida"
+                nivel_mapa = "3"
+                zona_mapa = "Desconocida"
+            elif fase_norm == "INTERCONFERENCIA B":
+                fase_mapa = "Playoff"
+                ronda_mapa = "Desconocida"
+                nivel_mapa = "INTERCONFERENCIAS B"
+                zona_mapa = "INTERCONFERENCIA"
+            elif fase_norm in (
+                "INTERCONFERENCIA A",
+                "PLAY OFF INTERCONFERENCIA A",
+            ):
+                fase_mapa = "Playoff"
+                ronda_mapa = "Desconocida"
+                nivel_mapa = "INTERCONFERENCIAS A"
+                zona_mapa = "INTERCONFERENCIA"
 
-    except Exception as e:
-        print(f"Error parseando fase '{fase_text}': {e}")
+    except Exception:
+        logger.exception("Error parseando fase %r", fase_text)
     
     return {
         "fase": fase_mapa,

@@ -1,0 +1,7 @@
+{
+  "generado_utc": "2026-04-13T14:32:17.806463+00:00",
+  "csv": "outputs/equipos_sin_mapeo.csv",
+  "filas": 1,
+  "nombres_distintos": 1,
+  "nota": "Clave sugerida en JSON: nombre_normalizado → nombre canónico deseado."
+}

@@ -5,10 +5,12 @@ Cada año tiene estructuras distintas, con reglas específicas de parseo.
 """
 
 import re
-from typing import Dict
+from typing import Any, Dict
+
+from parsers.grupos_2025 import parsear_grupo_2025 as _parsear_grupo_2025
 
 
-def parsear_grupo(year: int, fase_text: str, grupo_text: str) -> Dict[str, str]:
+def parsear_grupo(year: int, fase_text: str, grupo_text: str) -> Dict[str, Any]:
     """
     Parseo del texto de Grupo para obtener nivel, zona y grupo normalizados.
 
@@ -18,11 +20,15 @@ def parsear_grupo(year: int, fase_text: str, grupo_text: str) -> Dict[str, str]:
         grupo_text (str): Texto seleccionado en DDLGrupos
 
     Returns:
-        Dict[str, str]: Diccionario con nivel, zona y grupo
+        Dict con nivel, zona, grupo; en 2025 puede incluir fase, zona_refina, nivel_refina.
     """
 
     if not grupo_text:
-        return {"nivel": "Desconocido", "zona": "Desconocido", "grupo": "Desconocido"}
+        return {
+            "nivel": "Desconocido",
+            "zona": "Desconocida",
+            "grupo": "Desconocido",
+        }
 
     fase_text_upper = fase_text.upper().strip()
     grupo_text_upper = grupo_text.upper().strip()
@@ -40,7 +46,7 @@ def parsear_grupo(year: int, fase_text: str, grupo_text: str) -> Dict[str, str]:
     else:
         return {
             "nivel": "Desconocido",
-            "zona": "Desconocido",
+            "zona": "Desconocida",
             "grupo": grupo_text_upper,
         }
 
@@ -323,18 +329,5 @@ def _parsear_grupo_2024(fase: str, grupo: str) -> Dict[str, str]:
             if match:
                 zona = match.group(1).strip()
                 grupo_final = match.group(2).strip()
-
-    return {"nivel": nivel, "zona": zona, "grupo": grupo_final}
-
-
-def _parsear_grupo_2025(fase: str, grupo: str) -> Dict[str, str]:
-    nivel, zona, grupo_final = "NIVELACION", "Desconocido", "Desconocido"
-
-    if "1ER ETAPA" in fase:
-        # Extraer zona y grupo: ej. "CENTRO OESTE 4", "SUR 6"
-        match = re.search(r"([A-ZÑ\s\-]+?)\s*(\d+)$", grupo)
-        if match:
-            zona = match.group(1).strip().replace("  ", " ")
-            grupo_final = match.group(2)
 
     return {"nivel": nivel, "zona": zona, "grupo": grupo_final}

@@ -4,8 +4,36 @@ Parseador de Rondas para torneos FEBAMBA.
 Deducción de rondas en Playoffs y Final Four.
 """
 
-from typing import Optional, Dict
+import re
+from typing import Any, Dict, Optional
+
 from mapeos.loader import normalizar_equipo
+
+
+def _collapse_grupo_ddl(text: str) -> str:
+    return re.sub(r"\s+", " ", text.strip().upper())
+
+
+_NORTE_AB_OESTE_AB_DDL: frozenset[str] = frozenset(
+    ("NORTE/AB-OESTE AB", "NORTE AB/OESTE AB")
+)
+
+
+def _es_norte_ab_oeste_ab_2025(fase_ddl: str | None, grupo_ddl: str | None) -> bool:
+    """True si la fase o el grupo DDL es el cruce NORTE AB / OESTE AB (2025)."""
+    fd = _collapse_grupo_ddl(fase_ddl) if fase_ddl else ""
+    gd = _collapse_grupo_ddl(grupo_ddl) if grupo_ddl else ""
+    return fd in _NORTE_AB_OESTE_AB_DDL or gd in _NORTE_AB_OESTE_AB_DDL
+
+
+def _zona_final_four_2_playoff_2025(llave_u: str) -> str | None:
+    """Zona por llave en cruce NORTE AB vs OESTE AB (2025)."""
+    u = llave_u.upper()
+    if "COLEGIALES" in u and "LAS HERAS" in u:
+        return "NORTE"
+    if "NOLTING" in u and "CEPA" in u:
+        return "OESTE"
+    return None
 
 
 def inferir_ronda(
@@ -18,13 +46,35 @@ def inferir_ronda(
     local: str,
     visitante: str,
     equipos_map,
-) -> Optional[Dict]:
+    grupo_ddl: str | None = None,
+    fase_ddl: str | None = None,
+) -> Optional[Dict[str, Any]]:
     """
     Deducción de ronda, nivel y llave para partidos de Playoffs y Final Four.
     Devuelve un dict con las claves: 'ronda', 'nivel' y 'llave'.
     """
     llave = f"{normalizar_equipo(local, equipos_map)}-{normalizar_equipo(visitante, equipos_map)}"
     if fase.upper() == "PLAYOFF":
+        if anio == 2025 and _es_norte_ab_oeste_ab_2025(fase_ddl, grupo_ddl):
+            ronda_map = {1: "SEMIFINAL", 2: "FINAL"}
+            ronda_ff = (
+                ronda_map.get(int(jornada))
+                if jornada.isdigit()
+                else None
+            )
+            zona_ff = _zona_final_four_2_playoff_2025(llave)
+            out: Dict[str, Any] = {
+                "ronda": ronda_ff,
+                "nivel": nivel,
+                "llave": llave,
+            }
+            if zona_ff:
+                out["zona"] = zona_ff
+            return out
+        if anio == 2025:
+            # Mismo criterio que 2023/2024: llave local-visitante para rellenar grupo en CSV.
+            ronda = inferir_ronda_generica_playoff(jornada)
+            return {"ronda": ronda, "nivel": nivel, "llave": llave}
         if anio == 2022:
             ronda = inferir_ronda_2022_playoff(categoria, nivel, zona, jornada)
             return {"ronda": ronda, "nivel": nivel, "llave": llave}
@@ -40,7 +90,7 @@ def inferir_ronda(
     elif fase.upper() == "FINAL FOUR":
         if anio == 2022:
             return inferir_ronda_2022_final_four(llave, categoria, equipos_map)
-        if anio in [2019, 2023, 2024]:
+        if anio in [2019, 2023, 2024, 2025]:
             ronda = inferir_ronda_generica_final_four(llave, categoria, jornada, equipos_map)
             return {"ronda": ronda, "nivel": None, "llave": llave}
     return None

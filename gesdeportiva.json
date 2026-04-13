@@ -4575,6 +4575,18 @@
             "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=1469",
             "federacion": "FEDERACION DE BASQUETBOL DE LA PROVINCIA DE CORRIENTES",
             "torneo": "ACB-MASC MAYORES 2024"
+        },
+        {
+            "id": 1623,
+            "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=1623",
+            "federacion": "FEDERACION DE BASQUETBOL DEL AREA METROPOLITANA DE BUENOS AIRES",
+            "torneo": "FORMATIVAS 2025"
+        },
+        {
+            "id": 2015,
+            "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=2015",
+            "federacion": "FEDERACION DE BASQUETBOL DEL AREA METROPOLITANA DE BUENOS AIRES",
+            "torneo": "FORMATIVAS 2026"
         }
     ]
 }
