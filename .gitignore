@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyd
+.pytest_cache/
+
+# Virtual env
+.venv/
+
+# Data artifacts (generated)
+*.csv
+playbyplay.json
+
+# Local config/secrets
+*.env
+
