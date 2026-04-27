@@ -2,7 +2,14 @@ from typing import Dict, List, Optional, Tuple
 
 from bs4.element import Tag
 
-from ingest.extractors import Extractor, ExtractorFactory, GesDeportivaExtractor
+"""
+Compat/wrapper histórico.
+
+Este módulo se mantiene por compatibilidad; la implementación core vive en
+`ingest.ges.extractor` (y el shim `ingest.extractors`).
+"""
+
+from ingest.ges.extractor import Extractor, ExtractorFactory, GesDeportivaExtractor
 
 
 def clean_shot_value(td: Tag) -> str:

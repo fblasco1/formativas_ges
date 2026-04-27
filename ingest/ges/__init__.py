@@ -1,8 +1,4 @@
-"""
-Compat/shim: módulo histórico `ingest.extractors`.
-
-La implementación se movió a `ingest.ges.extractor`.
-"""
+"""Subpaquete: scraping GES (widgetscab.gesdeportiva.es)."""
 
 from ingest.ges.extractor import Extractor, ExtractorFactory, GesDeportivaExtractor
 

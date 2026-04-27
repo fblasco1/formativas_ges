@@ -1,6 +1,13 @@
 from typing import Dict, List, Optional
 
-from ingest.extractors import Extractor, ExtractorFactory
+"""
+Compat/wrapper histórico.
+
+Este módulo se mantiene por compatibilidad; la implementación core vive en
+`ingest.ges.extractor` (y el shim `ingest.extractors`).
+"""
+
+from ingest.ges.extractor import Extractor, ExtractorFactory
 
 
 def get_ids_categorias(
