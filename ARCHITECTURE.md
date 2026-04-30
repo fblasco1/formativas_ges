@@ -8,32 +8,51 @@ Documento técnico de la arquitectura del proyecto de analítica para categoría
 
 ### 1.1 Fuentes de datos
 
-- **Portal público GES:** páginas HTML servidas por `competicionescabb.gesdeportiva.es` y widgets en `widgetscab.gesdeportiva.es`.
-- **API interna (widgets/actas):** mismos dominios; la lógica de partidos y boxscore se consume vía HTTP GET/POST hacia URLs de widgets, no un REST API documentado.
+- **Portal público GES (competencia):** `competicionescabb.gesdeportiva.es` — categorías (`DDLCategorias`), fases y grupos (combos WebForms). Sin JavaScript en cliente: GET + POST simulado.
+- **Temporada ≥ 2026 — calendario y actas:** `argentina.basketball` — `GET /liga-federal/fixture?handler=CargarFixture&compCatId=…&fechaIni=…&fechaFin=…` (HTML `table.tabla-calendarios`), boxscore `GET /liga-federal/partido/estadisticas/{token}==?key=`, play-by-play `…/en-vivo/…`. El flujo nuevo **no** usa `widgetscab.gesdeportiva.es` para listado ni acta.
+- **Temporada ≤ 2025 (histórico):** listado y boxscore siguen pudiendo obtenerse vía widget GES (`widgetscab.gesdeportiva.es`) al ejecutar `main.py` con `ExtractorFactory.create(temporada="2025")` (comportamiento por defecto). Los JSON ya generados con `partido_id` GES se tratan como fuente de verdad; no hace falta re-scrapear el portal argentino para esas temporadas.
+- **Cruce estructura + fixture (2026):** la página de competencia no expone `id_partido` en el calendario; el fixture argentino sí. El módulo `ingest/febamba/natural_key.py` define la clave natural **fecha + local + visitante** (nombres normalizados) para fusionar contexto de torneo cuando se activa el modo opcional de calendario widget solo como *skeleton* (`FEBAMBA_GES_WIDGET_CALENDAR=1`).
 
-### 1.2 Estrategia de scraping (portal GES)
+### 1.2 Estrategia de scraping
 
 | Aspecto | Enfoque |
 |--------|---------|
-| **Página de competencia** | `GET competicion.aspx?competencia={id_competencia}`. Parser con BeautifulSoup del `<select id="DDLCategorias">` para obtener `id_categoria` por nombre (U13, U14, … U21). |
-| **Tablas dinámicas** | Los listados de partidos se obtienen vía **POST** al widget de partidos (ver 1.3). No depender de JavaScript en el cliente: reproducir el POST con los mismos parámetros que usa la página. |
-| **Paginación** | El widget de partidos devuelve HTML con todos los partidos en el rango de fechas; no hay paginación clásica por página. Paginación efectiva: por **rango de fechas** (`FechaInicio`, `FechaFin`) o por **categoría**. Dividir temporada en ventanas si el servidor devuelve muchos resultados. |
-| **Identificación de partidos** | Enlaces con patrón `.../partido/{id_partido}==` en atributo `href`; `id` del enlace contiene `HFEstadisticas`. Regex: `/partido/([\w-]+)==`. |
-| **Estado del partido** | Inferido: si `Fecha < hoy` y hay puntos numéricos en las celdas → estado "COMPLETO"; si no → "PENDIENTE". |
+| **Página de competencia** | `GET competicion.aspx?competencia={id_competencia}`. BeautifulSoup: `DDLCategorias`, fases/grupos (postback categoría si aplica). Clases: `ingest/febamba/competition_parser.py` (envoltorio), implementación en `ingest/ges/extractor.py`. |
+| **Listado de partidos (≤ 2025)** | POST al widget `widgetscab…/widget/informacion/partidos/…` (mismos parámetros que la página). |
+| **Listado de partidos (≥ 2026)** | `ArgentinaFixtureParser` en `ingest/febamba/fixture_parser_arg.py`: ventanas de fechas (`iter_date_windows`, por defecto ~45 días) sobre `CargarFixture`; parseo `parse_tabla_calendarios` (`ingest/argbasket/fixture.py`). |
+| **Orquestación 2026** | `ingest/febamba/argentina_pipeline.py` (`collect_partidos_temporada_2026`): une fixture argentino + opcional cruce con filas del widget GES vía clave natural. `main.py` usa este flujo cuando `ingesta_usa_portal_argentina(temporada)`. |
+| **Paginación** | **Histórico:** rango `FechaInicio`/`FechaFin` en el widget. **2026:** mismos límites en query string del fixture, troceados en ventanas para evitar timeouts. |
+| **Identificación de partidos** | **Widget:** regex en `href` `…/partido/{id}==`. **Argentina:** token en enlace estadísticas bajo `/liga-federal/partido/…/`. **Sin ID:** `ingest/ges/partido_ids.py` (`gesn_…`) solo en flujo widget. |
+| **Estado del partido** | Misma heurística fecha + marcador numérico (GES y pipeline argentina). |
+| **Boxscore** | **≤ 2025:** `widgetscab…/widget/partido/estadisticas/…`. **≥ 2026:** `FebambaDualSourceExtractor.get_boxscore` → `ArgentinaStatsParser` (`ingest/febamba/stats_parser_arg.py`) contra `argentina.basketball`. |
 
 **Recomendación:** Para tablas que en el futuro dependan más de JS (SPA), valorar **Playwright** para ejecutar el navegador y extraer HTML tras render; para el flujo actual (POST → HTML), Requests + BeautifulSoup es suficiente.
 
-### 1.3 Endpoints / URLs internas (sistema de actas y widgets)
+### 1.3 Endpoints relevantes
 
-Base: `https://widgetscab.gesdeportiva.es`.
+**Competencia (todas las temporadas)** — `https://competicionescabb.gesdeportiva.es`
 
-| Recurso | Método | URL / cuerpo | Uso |
-|---------|--------|--------------|-----|
-| **Categorías** | GET | `https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia={id_competencia}` | Obtener opciones del `<select>` DDLCategorias → mapeo nombre categoría ↔ `id_categoria`. |
-| **Listado partidos** | GET (cookie/session) + POST | Widget: `widget/informacion/partidos/{id_categoria}/-3/7?fase=-1&grupo=-1&equipo=-1&key={key}`. POST con `IdCategoria`, `IdFase`, `IdGrupo`, `IdEquipo`, `Key`, `FechaInicio`, `FechaFin`. | Lista de partidos de la categoría en el rango de fechas. Respuesta: HTML con filas y enlaces a partido. |
-| **Boxscore (acta)** | GET | `widget/partido/partido/{id_partido}` (o ruta equivalente que devuelva el HTML del acta con tablas de jugadores). | Estadísticas por jugador y totales de equipo; parser de `<table>` con thead/tbody/tfoot. |
+| Recurso | Método | Uso |
+|---------|--------|-----|
+| **Categorías** | GET `competicion.aspx?competencia={id}` | Opciones `DDLCategorias`. |
+| **Fases / grupos** | GET + POST WebForms (categoría) | Opciones de combos para `merge_contexto_torneo`. |
 
-El valor `key` del widget de partidos se obtiene del mismo GET inicial al widget; se incluye en el POST. Las sesiones (cookies) pueden ser necesarias entre GET y POST del mismo widget.
+**Histórico (widget)** — `https://widgetscab.gesdeportiva.es`
+
+| Recurso | Uso |
+|---------|-----|
+| **Listado** | POST partidos por categoría / fase / grupo / fechas. |
+| **Acta** | GET estadísticas por `id_partido`. |
+
+**Temporada 2026+** — `https://argentina.basketball`
+
+| Recurso | Uso |
+|---------|-----|
+| **Fixture** | GET `liga-federal/fixture?handler=CargarFixture&compCatId={id}&fechaIni=YYYY-MM-DD&fechaFin=YYYY-MM-DD`. |
+| **Estadísticas** | GET `liga-federal/partido/estadisticas/{token}==?key=` |
+| **En vivo / PBP** | GET `liga-federal/partido/en-vivo/{token}==?key=` |
+
+**Config:** opcional `comp_cat_argentina` o `comp_cat_por_categoria` en `config/competencias.json` si `compCatId` del portal ≠ `id_categoria` GES. Variable de entorno `FEBAMBA_GES_WIDGET_CALENDAR=1` habilita cruce opcional con el listado widget para rellenar `fase_ges` / `grupo_ges` por clave natural.
 
 ### 1.4 Rate limiting y robustez
 
@@ -135,8 +154,11 @@ Interpretación: por cada temporada, un jugador puede estar en uno o más clubes
 ├── main.py
 ├── ingest/
 │   ├── __init__.py
-│   ├── extractors.py      # Extractores GES (categorías, partidos, boxscore)
+│   ├── extractors.py      # Shim → ingest/ges/extractor.py
 │   ├── http_client.py     # Cliente HTTP con reintentos y backoff
+│   ├── febamba/           # Contexto torneo, 2026+ argentina.basketball, clave natural
+│   ├── ges/               # GesDeportivaExtractor, ExtractorFactory, partido_ids
+│   ├── argbasket/         # Fixture/stats HTML argentina.basketball
 │   ├── extract_boxscore.py
 │   └── extraer_info_partidos.py
 ├── persist/

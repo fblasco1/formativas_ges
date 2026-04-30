@@ -23,7 +23,9 @@ def get_info_partidos(
     fecha_inicio: str,
     fecha_fin: str,
     key: str = "c93924c3-1e13-4bf5-8f86-6386aeebba20",
+    id_fase: int = -1,
+    id_grupo: int = -1,
     extractor: Optional[Extractor] = None,
 ) -> List[Dict[str, str]]:
     extractor = extractor or ExtractorFactory.create()
-    return extractor.get_info_partidos(id_categoria, fecha_inicio, fecha_fin, key)
+    return extractor.get_info_partidos(id_categoria, fecha_inicio, fecha_fin, key, id_fase=id_fase, id_grupo=id_grupo)

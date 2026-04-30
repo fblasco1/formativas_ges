@@ -17,6 +17,15 @@ CREATE TABLE IF NOT EXISTS partidos (
     temporada TEXT,
     categoria TEXT,
     categoria_id INTEGER,
+    fase TEXT,
+    fase_id INTEGER,
+    grupo TEXT,
+    grupo_id INTEGER,
+    fase_ges TEXT,
+    grupo_ges TEXT,
+    zona TEXT,
+    ronda TEXT,
+    nivel TEXT,
     fecha TEXT,
     local TEXT,
     visitante TEXT,
@@ -28,6 +37,19 @@ CREATE TABLE IF NOT EXISTS partidos (
     estadisticas JSONB
 );
 """
+
+
+def migrate_partidos_torneo_columnas(cur) -> None:
+    """Columnas nuevas en instalaciones previas (IF NOT EXISTS)."""
+    stmts = [
+        "ALTER TABLE partidos ADD COLUMN IF NOT EXISTS fase_ges TEXT",
+        "ALTER TABLE partidos ADD COLUMN IF NOT EXISTS grupo_ges TEXT",
+        "ALTER TABLE partidos ADD COLUMN IF NOT EXISTS zona TEXT",
+        "ALTER TABLE partidos ADD COLUMN IF NOT EXISTS ronda TEXT",
+        "ALTER TABLE partidos ADD COLUMN IF NOT EXISTS nivel TEXT",
+    ]
+    for sql in stmts:
+        cur.execute(sql)
 
 DDL_CLUBES = """
 CREATE TABLE IF NOT EXISTS clubes (
@@ -130,6 +152,15 @@ INSERT INTO partidos (
     temporada,
     categoria,
     categoria_id,
+    fase,
+    fase_id,
+    grupo,
+    grupo_id,
+    fase_ges,
+    grupo_ges,
+    zona,
+    ronda,
+    nivel,
     fecha,
     local,
     visitante,
@@ -147,6 +178,15 @@ VALUES (
     %(temporada)s,
     %(categoria)s,
     %(categoria_id)s,
+    %(fase)s,
+    %(fase_id)s,
+    %(grupo)s,
+    %(grupo_id)s,
+    %(fase_ges)s,
+    %(grupo_ges)s,
+    %(zona)s,
+    %(ronda)s,
+    %(nivel)s,
     %(fecha)s,
     %(local)s,
     %(visitante)s,
@@ -164,6 +204,15 @@ DO UPDATE SET
     temporada = EXCLUDED.temporada,
     categoria = EXCLUDED.categoria,
     categoria_id = EXCLUDED.categoria_id,
+    fase = EXCLUDED.fase,
+    fase_id = EXCLUDED.fase_id,
+    grupo = EXCLUDED.grupo,
+    grupo_id = EXCLUDED.grupo_id,
+    fase_ges = EXCLUDED.fase_ges,
+    grupo_ges = EXCLUDED.grupo_ges,
+    zona = EXCLUDED.zona,
+    ronda = EXCLUDED.ronda,
+    nivel = EXCLUDED.nivel,
     fecha = EXCLUDED.fecha,
     local = EXCLUDED.local,
     visitante = EXCLUDED.visitante,
@@ -408,6 +457,15 @@ class Partido:
     temporada: Optional[str]
     categoria: Optional[str]
     categoria_id: Optional[int]
+    fase: Optional[str]
+    fase_id: Optional[int]
+    grupo: Optional[str]
+    grupo_id: Optional[int]
+    fase_ges: Optional[str]
+    grupo_ges: Optional[str]
+    zona: Optional[str]
+    ronda: Optional[str]
+    nivel: Optional[str]
     fecha: Optional[str]
     local: Optional[str]
     visitante: Optional[str]
@@ -431,6 +489,15 @@ class Partido:
             temporada=row.get("temporada"),
             categoria=row.get("categoria"),
             categoria_id=_to_int(row.get("categoria_id")),
+            fase=_to_str(row.get("fase")),
+            fase_id=_to_int(row.get("fase_id")),
+            grupo=_to_str(row.get("grupo")),
+            grupo_id=_to_int(row.get("grupo_id")),
+            fase_ges=_to_str(row.get("fase_ges")),
+            grupo_ges=_to_str(row.get("grupo_ges")),
+            zona=_to_str(row.get("zona")),
+            ronda=_to_str(row.get("ronda")),
+            nivel=_to_str(row.get("nivel")),
             fecha=row.get("fecha"),
             local=row.get("local"),
             visitante=row.get("visitante"),
@@ -450,6 +517,15 @@ class Partido:
             "temporada": self.temporada,
             "categoria": self.categoria,
             "categoria_id": self.categoria_id,
+            "fase": self.fase,
+            "fase_id": self.fase_id,
+            "grupo": self.grupo,
+            "grupo_id": self.grupo_id,
+            "fase_ges": self.fase_ges,
+            "grupo_ges": self.grupo_ges,
+            "zona": self.zona,
+            "ronda": self.ronda,
+            "nivel": self.nivel,
             "fecha": self.fecha,
             "local": self.local,
             "visitante": self.visitante,
@@ -740,6 +816,7 @@ def main():
     with connect() as conn:
         with conn.cursor() as cur:
             cur.execute(DDL_PARTIDOS)
+            migrate_partidos_torneo_columnas(cur)
             cur.execute(DDL_CLUBES)
             cur.execute(DDL_EQUIPOS)
             cur.execute(DDL_JUGADORES)

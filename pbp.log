@@ -1,0 +1,492 @@
+2026-04-28 11:41:06,972 | INFO | Export BD OK: filas=24216 con_pts=21673 out=fixture_consolidado.desde_bd.csv
+2026-04-28 11:42:06,278 | INFO | PBP progreso: completados=200/24216 ok=200 err=0
+2026-04-28 11:42:15,974 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 11:43:04,580 | INFO | PBP progreso: completados=400/24216 ok=400 err=0
+2026-04-28 11:43:14,639 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 11:44:04,546 | INFO | PBP progreso: completados=600/24216 ok=600 err=0
+2026-04-28 11:44:13,125 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 11:45:02,177 | INFO | PBP progreso: completados=800/24216 ok=800 err=0
+2026-04-28 11:45:12,049 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 11:46:03,668 | INFO | PBP progreso: completados=1000/24216 ok=1000 err=0
+2026-04-28 11:46:14,222 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 11:47:03,497 | INFO | PBP progreso: completados=1200/24216 ok=1199 err=1
+2026-04-28 11:47:13,509 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 11:47:57,538 | INFO | PBP progreso: completados=1400/24216 ok=1399 err=1
+2026-04-28 11:48:07,903 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 11:49:00,535 | INFO | PBP progreso: completados=1600/24216 ok=1599 err=1
+2026-04-28 11:49:09,709 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 11:50:04,034 | INFO | PBP progreso: completados=1800/24216 ok=1799 err=1
+2026-04-28 11:50:14,455 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 11:51:03,772 | INFO | PBP progreso: completados=2000/24216 ok=1999 err=1
+2026-04-28 11:51:12,554 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 11:51:59,624 | INFO | PBP progreso: completados=2200/24216 ok=2199 err=1
+2026-04-28 11:52:09,298 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 11:52:54,060 | INFO | PBP progreso: completados=2400/24216 ok=2399 err=1
+2026-04-28 11:53:03,291 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 11:53:54,309 | INFO | PBP progreso: completados=2600/24216 ok=2599 err=1
+2026-04-28 11:54:02,851 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 11:54:56,075 | INFO | PBP progreso: completados=2800/24216 ok=2799 err=1
+2026-04-28 11:55:05,934 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 11:55:52,805 | INFO | PBP progreso: completados=3000/24216 ok=2999 err=1
+2026-04-28 11:56:02,959 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 11:56:49,189 | INFO | PBP progreso: completados=3200/24216 ok=3199 err=1
+2026-04-28 11:56:57,226 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 11:57:36,225 | INFO | PBP progreso: completados=3400/24216 ok=3399 err=1
+2026-04-28 11:57:41,990 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 11:58:33,891 | INFO | PBP progreso: completados=3600/24216 ok=3599 err=1
+2026-04-28 11:58:40,912 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 11:59:19,616 | INFO | PBP progreso: completados=3800/24216 ok=3799 err=1
+2026-04-28 11:59:29,130 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 12:00:11,650 | INFO | PBP progreso: completados=4000/24216 ok=3999 err=1
+2026-04-28 12:00:12,462 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 12:00:52,321 | INFO | PBP progreso: completados=4200/24216 ok=4199 err=1
+2026-04-28 12:01:01,374 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 12:01:42,926 | INFO | PBP progreso: completados=4400/24216 ok=4399 err=1
+2026-04-28 12:01:52,302 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 12:02:32,513 | INFO | PBP progreso: completados=4600/24216 ok=4599 err=1
+2026-04-28 12:02:42,505 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 12:03:18,039 | INFO | PBP progreso: completados=4800/24216 ok=4799 err=1
+2026-04-28 12:03:27,917 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 12:04:13,869 | INFO | PBP progreso: completados=5000/24216 ok=4999 err=1
+2026-04-28 12:04:23,778 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 12:05:15,283 | INFO | PBP progreso: completados=5200/24216 ok=5199 err=1
+2026-04-28 12:05:25,814 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 12:06:18,417 | INFO | PBP progreso: completados=5400/24216 ok=5399 err=1
+2026-04-28 12:06:28,152 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 12:07:19,573 | INFO | PBP progreso: completados=5600/24216 ok=5599 err=1
+2026-04-28 12:07:30,420 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 12:08:22,347 | INFO | PBP progreso: completados=5800/24216 ok=5799 err=1
+2026-04-28 12:08:32,098 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 12:09:20,254 | INFO | PBP progreso: completados=6000/24216 ok=5999 err=1
+2026-04-28 12:09:31,851 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 12:10:19,807 | INFO | PBP progreso: completados=6200/24216 ok=6199 err=1
+2026-04-28 12:10:29,111 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 12:11:25,432 | INFO | PBP progreso: completados=6400/24216 ok=6399 err=1
+2026-04-28 12:11:34,769 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 12:12:26,586 | INFO | PBP progreso: completados=6600/24216 ok=6599 err=1
+2026-04-28 12:12:34,801 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 12:13:26,462 | INFO | PBP progreso: completados=6800/24216 ok=6799 err=1
+2026-04-28 12:13:35,394 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 12:14:23,162 | INFO | PBP progreso: completados=7000/24216 ok=6999 err=1
+2026-04-28 12:14:32,434 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 12:15:24,538 | INFO | PBP progreso: completados=7200/24216 ok=7199 err=1
+2026-04-28 12:15:35,813 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 12:16:25,731 | INFO | PBP progreso: completados=7400/24216 ok=7399 err=1
+2026-04-28 12:16:36,333 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 12:17:28,939 | INFO | PBP progreso: completados=7600/24216 ok=7599 err=1
+2026-04-28 12:17:38,669 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 12:18:22,440 | INFO | PBP progreso: completados=7800/24216 ok=7799 err=1
+2026-04-28 12:18:31,999 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 12:19:21,627 | INFO | PBP progreso: completados=8000/24216 ok=7999 err=1
+2026-04-28 12:19:30,321 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 12:20:22,944 | INFO | PBP progreso: completados=8200/24216 ok=8199 err=1
+2026-04-28 12:20:33,602 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 12:21:27,441 | INFO | PBP progreso: completados=8400/24216 ok=8399 err=1
+2026-04-28 12:21:38,288 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 12:22:30,061 | INFO | PBP progreso: completados=8600/24216 ok=8599 err=1
+2026-04-28 12:22:41,550 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 12:23:30,871 | INFO | PBP progreso: completados=8800/24216 ok=8799 err=1
+2026-04-28 12:23:41,785 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 12:24:29,634 | INFO | PBP progreso: completados=9000/24216 ok=8999 err=1
+2026-04-28 12:24:41,036 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 12:25:31,054 | INFO | PBP progreso: completados=9200/24216 ok=9199 err=1
+2026-04-28 12:25:41,436 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 12:26:30,330 | INFO | PBP progreso: completados=9400/24216 ok=9399 err=1
+2026-04-28 12:26:39,512 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 12:27:33,090 | INFO | PBP progreso: completados=9600/24216 ok=9599 err=1
+2026-04-28 12:27:40,102 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 12:28:31,204 | INFO | PBP progreso: completados=9800/24216 ok=9799 err=1
+2026-04-28 12:28:40,018 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 12:29:18,030 | INFO | PBP progreso: completados=10000/24216 ok=9999 err=1
+2026-04-28 12:29:26,632 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 12:29:50,269 | INFO | PBP progreso: completados=10200/24216 ok=10199 err=1
+2026-04-28 12:29:54,910 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 12:30:46,485 | INFO | PBP progreso: completados=10400/24216 ok=10399 err=1
+2026-04-28 12:30:54,840 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 12:31:32,518 | INFO | PBP progreso: completados=10600/24216 ok=10599 err=1
+2026-04-28 12:31:42,102 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 12:32:13,786 | INFO | PBP progreso: completados=10800/24216 ok=10799 err=1
+2026-04-28 12:32:13,953 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 12:32:57,990 | INFO | PBP progreso: completados=11000/24216 ok=10999 err=1
+2026-04-28 12:33:06,026 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 12:33:36,154 | INFO | PBP progreso: completados=11200/24216 ok=11199 err=1
+2026-04-28 12:33:46,079 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 12:34:37,583 | INFO | PBP progreso: completados=11400/24216 ok=11399 err=1
+2026-04-28 12:34:45,805 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 12:35:37,719 | INFO | PBP progreso: completados=11600/24216 ok=11599 err=1
+2026-04-28 12:35:49,900 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 12:36:48,115 | INFO | PBP progreso: completados=11800/24216 ok=11799 err=1
+2026-04-28 12:36:58,735 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 12:37:52,422 | INFO | PBP progreso: completados=12000/24216 ok=11999 err=1
+2026-04-28 12:38:03,440 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 12:38:53,853 | INFO | PBP progreso: completados=12200/24216 ok=12199 err=1
+2026-04-28 12:39:04,122 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 12:40:00,011 | INFO | PBP progreso: completados=12400/24216 ok=12399 err=1
+2026-04-28 12:40:09,301 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 12:41:01,372 | INFO | PBP progreso: completados=12600/24216 ok=12599 err=1
+2026-04-28 12:41:12,411 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 12:42:05,752 | INFO | PBP progreso: completados=12800/24216 ok=12799 err=1
+2026-04-28 12:42:16,302 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 12:43:09,642 | INFO | PBP progreso: completados=13000/24216 ok=12999 err=1
+2026-04-28 12:43:18,413 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 12:44:14,607 | INFO | PBP progreso: completados=13200/24216 ok=13199 err=1
+2026-04-28 12:44:23,826 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 12:45:12,438 | INFO | PBP progreso: completados=13400/24216 ok=13399 err=1
+2026-04-28 12:45:22,565 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 12:46:07,166 | INFO | PBP progreso: completados=13600/24216 ok=13599 err=1
+2026-04-28 12:46:16,779 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 12:47:03,535 | INFO | PBP progreso: completados=13800/24216 ok=13799 err=1
+2026-04-28 12:47:13,183 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 12:47:55,279 | INFO | PBP progreso: completados=14000/24216 ok=13999 err=1
+2026-04-28 12:48:05,292 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 12:49:10,076 | INFO | PBP progreso: completados=14200/24216 ok=14199 err=1
+2026-04-28 12:49:22,357 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 12:50:09,462 | INFO | PBP progreso: completados=14400/24216 ok=14399 err=1
+2026-04-28 12:50:20,498 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 12:51:08,711 | INFO | PBP progreso: completados=14600/24216 ok=14599 err=1
+2026-04-28 12:51:19,479 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 12:52:06,505 | INFO | PBP progreso: completados=14800/24216 ok=14799 err=1
+2026-04-28 12:52:17,233 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 12:53:05,274 | INFO | PBP progreso: completados=15000/24216 ok=14999 err=1
+2026-04-28 12:53:17,967 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 12:54:10,504 | INFO | PBP progreso: completados=15200/24216 ok=15199 err=1
+2026-04-28 12:54:21,898 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 12:55:13,855 | INFO | PBP progreso: completados=15400/24216 ok=15399 err=1
+2026-04-28 12:55:24,570 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 12:56:15,943 | INFO | PBP progreso: completados=15600/24216 ok=15599 err=1
+2026-04-28 12:56:26,615 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 12:57:21,441 | INFO | PBP progreso: completados=15800/24216 ok=15799 err=1
+2026-04-28 12:57:33,514 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 12:58:27,865 | INFO | PBP progreso: completados=16000/24216 ok=15999 err=1
+2026-04-28 12:58:39,004 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 12:59:32,940 | INFO | PBP progreso: completados=16200/24216 ok=16199 err=1
+2026-04-28 12:59:44,631 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 13:00:36,414 | INFO | PBP progreso: completados=16400/24216 ok=16399 err=1
+2026-04-28 13:00:47,831 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 13:01:41,026 | INFO | PBP progreso: completados=16600/24216 ok=16599 err=1
+2026-04-28 13:01:51,310 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 13:02:43,961 | INFO | PBP progreso: completados=16800/24216 ok=16799 err=1
+2026-04-28 13:02:55,362 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 13:03:45,682 | INFO | PBP progreso: completados=17000/24216 ok=16999 err=1
+2026-04-28 13:03:54,890 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 13:04:42,359 | INFO | PBP progreso: completados=17200/24216 ok=17199 err=1
+2026-04-28 13:04:51,115 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 13:05:29,485 | INFO | PBP progreso: completados=17400/24216 ok=17399 err=1
+2026-04-28 13:05:38,751 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 13:06:23,583 | INFO | PBP progreso: completados=17600/24216 ok=17599 err=1
+2026-04-28 13:06:34,876 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 13:07:14,077 | INFO | PBP progreso: completados=17800/24216 ok=17799 err=1
+2026-04-28 13:07:18,935 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 13:08:05,317 | INFO | PBP progreso: completados=18000/24216 ok=17999 err=1
+2026-04-28 13:08:13,730 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 13:08:52,098 | INFO | PBP progreso: completados=18200/24216 ok=18199 err=1
+2026-04-28 13:09:00,175 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 13:09:50,117 | INFO | PBP progreso: completados=18400/24216 ok=18399 err=1
+2026-04-28 13:09:59,989 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 13:10:54,281 | INFO | PBP progreso: completados=18600/24216 ok=18599 err=1
+2026-04-28 13:11:03,468 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 13:11:58,373 | INFO | PBP progreso: completados=18800/24216 ok=18799 err=1
+2026-04-28 13:12:08,731 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 13:13:03,268 | INFO | PBP progreso: completados=19000/24216 ok=18999 err=1
+2026-04-28 13:13:14,220 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 13:14:05,647 | INFO | PBP progreso: completados=19200/24216 ok=19199 err=1
+2026-04-28 13:14:16,232 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 13:15:10,263 | INFO | PBP progreso: completados=19400/24216 ok=19399 err=1
+2026-04-28 13:15:21,418 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 13:15:57,190 | INFO | PBP progreso: completados=19600/24216 ok=19599 err=1
+2026-04-28 13:15:59,029 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 13:16:15,421 | INFO | PBP progreso: completados=19800/24216 ok=19799 err=1
+2026-04-28 13:16:25,746 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 13:17:11,563 | INFO | PBP progreso: completados=20000/24216 ok=19999 err=1
+2026-04-28 13:17:21,142 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 13:18:11,922 | INFO | PBP progreso: completados=20200/24216 ok=20199 err=1
+2026-04-28 13:18:23,154 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 13:19:12,582 | INFO | PBP progreso: completados=20400/24216 ok=20399 err=1
+2026-04-28 13:19:23,206 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 13:20:13,071 | INFO | PBP progreso: completados=20600/24216 ok=20599 err=1
+2026-04-28 13:20:22,422 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 13:21:11,024 | INFO | PBP progreso: completados=20800/24216 ok=20799 err=1
+2026-04-28 13:21:21,158 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 13:22:13,141 | INFO | PBP progreso: completados=21000/24216 ok=20999 err=1
+2026-04-28 13:22:22,774 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 13:23:09,782 | INFO | PBP progreso: completados=21200/24216 ok=21199 err=1
+2026-04-28 13:23:19,876 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 13:23:46,898 | INFO | PBP progreso: completados=21400/24216 ok=21399 err=1
+2026-04-28 13:23:48,042 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 13:24:37,778 | INFO | PBP progreso: completados=21600/24216 ok=21599 err=1
+2026-04-28 13:24:48,933 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 13:25:40,223 | INFO | PBP progreso: completados=21800/24216 ok=21799 err=1
+2026-04-28 13:25:49,674 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 13:26:36,691 | INFO | PBP progreso: completados=22000/24216 ok=21999 err=1
+2026-04-28 13:26:45,961 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 13:27:29,822 | INFO | PBP progreso: completados=22200/24216 ok=22199 err=1
+2026-04-28 13:27:38,682 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 13:28:26,082 | INFO | PBP progreso: completados=22400/24216 ok=22399 err=1
+2026-04-28 13:28:35,199 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 13:29:26,331 | INFO | PBP progreso: completados=22600/24216 ok=22599 err=1
+2026-04-28 13:29:36,014 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 13:30:28,861 | INFO | PBP progreso: completados=22800/24216 ok=22799 err=1
+2026-04-28 13:30:39,265 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 13:31:32,509 | INFO | PBP progreso: completados=23000/24216 ok=22999 err=1
+2026-04-28 13:31:42,904 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 13:32:38,651 | INFO | PBP progreso: completados=23200/24216 ok=23199 err=1
+2026-04-28 13:32:49,044 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 13:33:17,328 | INFO | PBP progreso: completados=23400/24216 ok=23399 err=1
+2026-04-28 13:33:17,563 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 14:49:04,928 | INFO | PBP progreso: completados=23600/24216 ok=23588 err=12
+2026-04-28 14:49:05,555 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 14:49:05,846 | INFO | PBP progreso: completados=23800/24216 ok=23588 err=212
+2026-04-28 14:49:06,327 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 14:49:06,684 | INFO | PBP progreso: completados=24000/24216 ok=23588 err=412
+2026-04-28 14:49:07,276 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 14:49:35,374 | INFO | PBP progreso: completados=24200/24216 ok=23751 err=449
+2026-04-28 14:49:35,565 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 14:49:55,789 | INFO | PBP fin: ok=23762 err=454 con_inicio=23301 con_fin=23303
+2026-04-28 14:49:55,789 | WARNING | Primeros errores (muestra): GHC2L1g2cuLUaaid4pR1og: 404 Client Error: Not Found for url: https://argentina.basketball/liga-federal/partido/en-vivo/GHC2L1g2cuLUaaid4pR1og==?key= | BdHI0HBe8RLNZkmH2da_Wg: ('Connection aborted.', ConnectionResetError(10054, 'Se ha forzado la interrupción de una conexión existente por el host remoto', None, 10054, None)) | HoswxCkRZxorkusksfEojA: HTTPSConnectionPool(host='argentina.basketball', port=443): Max retries exceeded with url: /liga-federal/partido/en-vivo/HoswxCkRZxorkusksfEojA==?key= (Caused by NameResolutionError("HTTPSConnection(host='argentina.basketball', port=443): Failed to resolve 'argentina.basketball' ([Errno 11001] getaddrinfo failed)")) | 5zfvPKBaYCJqZkeoEoGPrw: HTTPSConnectionPool(host='argentina.basketball', port=443): Max retries exceeded with url: /liga-federal/partido/en-vivo/5zfvPKBaYCJqZkeoEoGPrw==?key= (Caused by NameResolutionError("HTTPSConnection(host='argentina.basketball', port=443): Failed to resolve 'argentina.basketball' ([Errno 11001] getaddrinfo failed)")) | Wr3jmfR2_EoN35u8bgQA_A: HTTPSConnectionPool(host='argentina.basketball', port=443): Max retries exceeded with url: /liga-federal/partido/en-vivo/Wr3jmfR2_EoN35u8bgQA_A==?key= (Caused by NameResolutionError("HTTPSConnection(host='argentina.basketball', port=443): Failed to resolve 'argentina.basketball' ([Errno 11001] getaddrinfo failed)"))
+2026-04-28 14:49:55,920 | INFO | CSV final escrito: fixture_consolidado.desde_bd.csv
+2026-04-28 15:42:51,560 | INFO | Export BD OK: filas=24216 con_pts=21673 out=fixture_consolidado.desde_bd.csv
+2026-04-28 15:43:49,820 | INFO | PBP progreso: completados=200/24216 ok=200 err=0
+2026-04-28 15:43:58,926 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 15:44:48,431 | INFO | PBP progreso: completados=400/24216 ok=400 err=0
+2026-04-28 15:44:57,303 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 15:45:45,949 | INFO | PBP progreso: completados=600/24216 ok=600 err=0
+2026-04-28 15:45:53,386 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 15:46:43,261 | INFO | PBP progreso: completados=800/24216 ok=800 err=0
+2026-04-28 15:46:51,476 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 15:47:45,461 | INFO | PBP progreso: completados=1000/24216 ok=1000 err=0
+2026-04-28 15:47:55,023 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 15:48:44,879 | INFO | PBP progreso: completados=1200/24216 ok=1199 err=1
+2026-04-28 15:48:52,019 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 15:49:38,813 | INFO | PBP progreso: completados=1400/24216 ok=1399 err=1
+2026-04-28 15:49:46,734 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 15:50:40,186 | INFO | PBP progreso: completados=1600/24216 ok=1599 err=1
+2026-04-28 15:50:49,476 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 15:51:43,456 | INFO | PBP progreso: completados=1800/24216 ok=1799 err=1
+2026-04-28 15:51:52,819 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 15:52:43,143 | INFO | PBP progreso: completados=2000/24216 ok=1999 err=1
+2026-04-28 15:52:51,645 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 15:53:41,084 | INFO | PBP progreso: completados=2200/24216 ok=2199 err=1
+2026-04-28 15:53:51,257 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 15:54:36,772 | INFO | PBP progreso: completados=2400/24216 ok=2399 err=1
+2026-04-28 15:54:44,812 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 15:55:44,047 | INFO | PBP progreso: completados=2600/24216 ok=2599 err=1
+2026-04-28 15:55:55,448 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 15:56:51,248 | INFO | PBP progreso: completados=2800/24216 ok=2799 err=1
+2026-04-28 15:57:01,732 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 15:57:52,671 | INFO | PBP progreso: completados=3000/24216 ok=2999 err=1
+2026-04-28 15:58:02,938 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 15:58:54,874 | INFO | PBP progreso: completados=3200/24216 ok=3199 err=1
+2026-04-28 15:59:03,440 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 15:59:45,120 | INFO | PBP progreso: completados=3400/24216 ok=3399 err=1
+2026-04-28 15:59:53,666 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 16:00:47,029 | INFO | PBP progreso: completados=3600/24216 ok=3599 err=1
+2026-04-28 16:00:52,279 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 16:01:34,574 | INFO | PBP progreso: completados=3800/24216 ok=3799 err=1
+2026-04-28 16:01:43,902 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 16:02:30,681 | INFO | PBP progreso: completados=4000/24216 ok=3999 err=1
+2026-04-28 16:02:30,826 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 16:03:15,241 | INFO | PBP progreso: completados=4200/24216 ok=4199 err=1
+2026-04-28 16:03:25,951 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 16:04:12,218 | INFO | PBP progreso: completados=4400/24216 ok=4399 err=1
+2026-04-28 16:04:22,719 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 16:05:06,922 | INFO | PBP progreso: completados=4600/24216 ok=4599 err=1
+2026-04-28 16:05:16,025 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 16:05:55,958 | INFO | PBP progreso: completados=4800/24216 ok=4799 err=1
+2026-04-28 16:06:08,541 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 16:06:56,096 | INFO | PBP progreso: completados=5000/24216 ok=4999 err=1
+2026-04-28 16:07:07,070 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 16:08:04,576 | INFO | PBP progreso: completados=5200/24216 ok=5199 err=1
+2026-04-28 16:08:14,588 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 16:09:15,407 | INFO | PBP progreso: completados=5400/24216 ok=5399 err=1
+2026-04-28 16:09:25,934 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 16:10:30,326 | INFO | PBP progreso: completados=5600/24216 ok=5599 err=1
+2026-04-28 16:10:43,642 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 16:11:45,771 | INFO | PBP progreso: completados=5800/24216 ok=5799 err=1
+2026-04-28 16:11:56,045 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 16:12:58,837 | INFO | PBP progreso: completados=6000/24216 ok=5999 err=1
+2026-04-28 16:13:08,641 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 16:14:07,397 | INFO | PBP progreso: completados=6200/24216 ok=6199 err=1
+2026-04-28 16:14:18,409 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 16:15:15,246 | INFO | PBP progreso: completados=6400/24216 ok=6399 err=1
+2026-04-28 16:15:26,468 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 16:16:26,555 | INFO | PBP progreso: completados=6600/24216 ok=6599 err=1
+2026-04-28 16:16:36,554 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 16:17:35,362 | INFO | PBP progreso: completados=6800/24216 ok=6799 err=1
+2026-04-28 16:17:46,460 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 16:18:42,363 | INFO | PBP progreso: completados=7000/24216 ok=6999 err=1
+2026-04-28 16:18:51,907 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 16:19:52,938 | INFO | PBP progreso: completados=7200/24216 ok=7199 err=1
+2026-04-28 16:20:03,764 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 16:21:04,287 | INFO | PBP progreso: completados=7400/24216 ok=7399 err=1
+2026-04-28 16:21:17,475 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 16:22:19,527 | INFO | PBP progreso: completados=7600/24216 ok=7599 err=1
+2026-04-28 16:22:30,720 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 16:23:18,876 | INFO | PBP progreso: completados=7800/24216 ok=7799 err=1
+2026-04-28 16:23:27,891 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 16:24:23,042 | INFO | PBP progreso: completados=8000/24216 ok=7999 err=1
+2026-04-28 16:24:32,622 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 16:25:33,067 | INFO | PBP progreso: completados=8200/24216 ok=8199 err=1
+2026-04-28 16:25:43,362 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 16:26:43,570 | INFO | PBP progreso: completados=8400/24216 ok=8399 err=1
+2026-04-28 16:26:54,059 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 16:27:55,760 | INFO | PBP progreso: completados=8600/24216 ok=8599 err=1
+2026-04-28 16:28:07,051 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 16:29:08,177 | INFO | PBP progreso: completados=8800/24216 ok=8799 err=1
+2026-04-28 16:29:18,712 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 16:30:10,995 | INFO | PBP progreso: completados=9000/24216 ok=8999 err=1
+2026-04-28 16:30:20,288 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 16:31:16,569 | INFO | PBP progreso: completados=9200/24216 ok=9199 err=1
+2026-04-28 16:31:27,785 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 16:32:22,519 | INFO | PBP progreso: completados=9400/24216 ok=9399 err=1
+2026-04-28 16:32:32,767 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 16:33:33,483 | INFO | PBP progreso: completados=9600/24216 ok=9599 err=1
+2026-04-28 16:33:42,905 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 16:34:33,586 | INFO | PBP progreso: completados=9800/24216 ok=9799 err=1
+2026-04-28 16:34:44,141 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 16:35:19,861 | INFO | PBP progreso: completados=10000/24216 ok=9999 err=1
+2026-04-28 16:35:27,578 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 16:35:52,981 | INFO | PBP progreso: completados=10200/24216 ok=10199 err=1
+2026-04-28 16:36:01,712 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 16:36:49,199 | INFO | PBP progreso: completados=10400/24216 ok=10399 err=1
+2026-04-28 16:36:58,684 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 16:37:40,212 | INFO | PBP progreso: completados=10600/24216 ok=10599 err=1
+2026-04-28 16:37:50,148 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 16:38:26,980 | INFO | PBP progreso: completados=10800/24216 ok=10799 err=1
+2026-04-28 16:38:31,207 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 16:39:17,297 | INFO | PBP progreso: completados=11000/24216 ok=10999 err=1
+2026-04-28 16:39:25,508 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 16:40:01,359 | INFO | PBP progreso: completados=11200/24216 ok=11199 err=1
+2026-04-28 16:40:12,430 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 16:41:05,109 | INFO | PBP progreso: completados=11400/24216 ok=11399 err=1
+2026-04-28 16:41:14,478 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 16:42:12,774 | INFO | PBP progreso: completados=11600/24216 ok=11599 err=1
+2026-04-28 16:42:23,477 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 16:43:21,809 | INFO | PBP progreso: completados=11800/24216 ok=11799 err=1
+2026-04-28 16:43:32,961 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 16:44:25,732 | INFO | PBP progreso: completados=12000/24216 ok=11999 err=1
+2026-04-28 16:44:35,404 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 16:45:27,603 | INFO | PBP progreso: completados=12200/24216 ok=12199 err=1
+2026-04-28 16:45:37,816 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 16:46:31,659 | INFO | PBP progreso: completados=12400/24216 ok=12399 err=1
+2026-04-28 16:46:40,526 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 16:47:34,976 | INFO | PBP progreso: completados=12600/24216 ok=12599 err=1
+2026-04-28 16:47:44,430 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 16:48:39,927 | INFO | PBP progreso: completados=12800/24216 ok=12799 err=1
+2026-04-28 16:48:50,265 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 16:49:57,809 | INFO | PBP progreso: completados=13000/24216 ok=12999 err=1
+2026-04-28 16:50:09,436 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 16:51:21,925 | INFO | PBP progreso: completados=13200/24216 ok=13199 err=1
+2026-04-28 16:51:33,169 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 16:52:41,657 | INFO | PBP progreso: completados=13400/24216 ok=13399 err=1
+2026-04-28 16:52:57,666 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 16:53:49,430 | INFO | PBP progreso: completados=13600/24216 ok=13599 err=1
+2026-04-28 16:54:01,008 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 16:55:10,859 | INFO | PBP progreso: completados=13800/24216 ok=13799 err=1
+2026-04-28 16:55:25,073 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 16:56:21,421 | INFO | PBP progreso: completados=14000/24216 ok=13999 err=1
+2026-04-28 16:56:31,741 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 16:57:20,565 | INFO | PBP progreso: completados=14200/24216 ok=14199 err=1
+2026-04-28 16:57:32,410 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 16:58:22,611 | INFO | PBP progreso: completados=14400/24216 ok=14399 err=1
+2026-04-28 16:58:35,430 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 16:59:31,070 | INFO | PBP progreso: completados=14600/24216 ok=14599 err=1
+2026-04-28 16:59:41,538 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 17:00:30,953 | INFO | PBP progreso: completados=14800/24216 ok=14799 err=1
+2026-04-28 17:00:42,281 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 17:01:39,536 | INFO | PBP progreso: completados=15000/24216 ok=14999 err=1
+2026-04-28 17:01:53,787 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 17:03:01,539 | INFO | PBP progreso: completados=15200/24216 ok=15199 err=1
+2026-04-28 17:03:14,573 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 17:04:24,448 | INFO | PBP progreso: completados=15400/24216 ok=15399 err=1
+2026-04-28 17:04:39,379 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 17:05:48,629 | INFO | PBP progreso: completados=15600/24216 ok=15599 err=1
+2026-04-28 17:06:02,887 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 17:07:16,287 | INFO | PBP progreso: completados=15800/24216 ok=15799 err=1
+2026-04-28 17:07:28,504 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 17:09:01,899 | INFO | PBP progreso: completados=16000/24216 ok=15999 err=1
+2026-04-28 17:09:18,222 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 17:11:06,810 | INFO | PBP progreso: completados=16200/24216 ok=16199 err=1
+2026-04-28 17:11:26,743 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 17:13:16,353 | INFO | PBP progreso: completados=16400/24216 ok=16399 err=1
+2026-04-28 17:13:33,939 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 17:15:13,312 | INFO | PBP progreso: completados=16600/24216 ok=16599 err=1
+2026-04-28 17:15:26,112 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 17:16:50,331 | INFO | PBP progreso: completados=16800/24216 ok=16799 err=1
+2026-04-28 17:17:10,987 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 17:18:29,122 | INFO | PBP progreso: completados=17000/24216 ok=16999 err=1
+2026-04-28 17:18:42,081 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 17:19:47,540 | INFO | PBP progreso: completados=17200/24216 ok=17199 err=1
+2026-04-28 17:20:00,626 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 17:20:51,197 | INFO | PBP progreso: completados=17400/24216 ok=17399 err=1
+2026-04-28 17:21:01,850 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 17:22:05,207 | INFO | PBP progreso: completados=17600/24216 ok=17599 err=1
+2026-04-28 17:22:19,075 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 17:23:13,297 | INFO | PBP progreso: completados=17800/24216 ok=17799 err=1
+2026-04-28 17:23:23,277 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 17:24:26,937 | INFO | PBP progreso: completados=18000/24216 ok=17999 err=1
+2026-04-28 17:24:43,484 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 17:25:59,389 | INFO | PBP progreso: completados=18200/24216 ok=18199 err=1
+2026-04-28 17:26:14,804 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 17:27:39,999 | INFO | PBP progreso: completados=18400/24216 ok=18399 err=1
+2026-04-28 17:27:51,871 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 17:28:59,616 | INFO | PBP progreso: completados=18600/24216 ok=18599 err=1
+2026-04-28 17:29:10,979 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 17:30:16,112 | INFO | PBP progreso: completados=18800/24216 ok=18799 err=1
+2026-04-28 17:30:26,936 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 17:31:32,311 | INFO | PBP progreso: completados=19000/24216 ok=18999 err=1
+2026-04-28 17:31:45,012 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 17:32:49,998 | INFO | PBP progreso: completados=19200/24216 ok=19199 err=1
+2026-04-28 17:33:03,579 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 17:34:07,991 | INFO | PBP progreso: completados=19400/24216 ok=19399 err=1
+2026-04-28 17:34:19,996 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 17:35:04,783 | INFO | PBP progreso: completados=19600/24216 ok=19599 err=1
+2026-04-28 17:35:08,687 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 17:35:27,478 | INFO | PBP progreso: completados=19800/24216 ok=19799 err=1
+2026-04-28 17:35:38,986 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 17:36:36,605 | INFO | PBP progreso: completados=20000/24216 ok=19999 err=1
+2026-04-28 17:36:47,394 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 17:37:46,898 | INFO | PBP progreso: completados=20200/24216 ok=20199 err=1
+2026-04-28 17:37:58,469 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 17:38:59,486 | INFO | PBP progreso: completados=20400/24216 ok=20399 err=1
+2026-04-28 17:39:13,347 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 17:40:13,108 | INFO | PBP progreso: completados=20600/24216 ok=20599 err=1
+2026-04-28 17:40:25,200 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 17:41:22,389 | INFO | PBP progreso: completados=20800/24216 ok=20799 err=1
+2026-04-28 17:41:34,757 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 17:42:36,494 | INFO | PBP progreso: completados=21000/24216 ok=20999 err=1
+2026-04-28 17:42:48,306 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 17:43:43,570 | INFO | PBP progreso: completados=21200/24216 ok=21199 err=1
+2026-04-28 17:43:55,698 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 17:44:29,791 | INFO | PBP progreso: completados=21400/24216 ok=21399 err=1
+2026-04-28 17:44:31,506 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 17:45:29,238 | INFO | PBP progreso: completados=21600/24216 ok=21599 err=1
+2026-04-28 17:45:41,759 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 17:46:44,461 | INFO | PBP progreso: completados=21800/24216 ok=21799 err=1
+2026-04-28 17:46:56,342 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 17:47:51,399 | INFO | PBP progreso: completados=22000/24216 ok=21999 err=1
+2026-04-28 17:48:03,908 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 17:48:58,223 | INFO | PBP progreso: completados=22200/24216 ok=22199 err=1
+2026-04-28 17:49:10,081 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 17:50:08,066 | INFO | PBP progreso: completados=22400/24216 ok=22399 err=1
+2026-04-28 17:50:19,775 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 17:51:19,699 | INFO | PBP progreso: completados=22600/24216 ok=22599 err=1
+2026-04-28 17:51:31,120 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 17:52:34,963 | INFO | PBP progreso: completados=22800/24216 ok=22799 err=1
+2026-04-28 17:52:48,322 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 17:53:50,771 | INFO | PBP progreso: completados=23000/24216 ok=22999 err=1
+2026-04-28 17:54:01,572 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 17:55:09,611 | INFO | PBP progreso: completados=23200/24216 ok=23199 err=1
+2026-04-28 17:55:22,539 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 17:55:55,160 | INFO | PBP progreso: completados=23400/24216 ok=23399 err=1
+2026-04-28 17:55:58,577 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 17:56:11,358 | INFO | PBP progreso: completados=23600/24216 ok=23599 err=1
+2026-04-28 17:56:14,887 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 17:56:28,788 | INFO | PBP progreso: completados=23800/24216 ok=23799 err=1
+2026-04-28 17:56:33,744 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 17:56:44,682 | INFO | PBP progreso: completados=24000/24216 ok=23999 err=1
+2026-04-28 17:56:47,053 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 17:57:00,915 | INFO | PBP progreso: completados=24200/24216 ok=24199 err=1
+2026-04-28 17:57:02,310 | INFO | Checkpoint escrito: fixture_consolidado.desde_bd.csv.partial.csv
+2026-04-28 17:57:02,330 | INFO | PBP fin: ok=24215 err=1 con_inicio=23742 con_fin=23744
+2026-04-28 17:57:02,331 | WARNING | Primeros errores (muestra): GHC2L1g2cuLUaaid4pR1og: 404 Client Error: Not Found for url: https://argentina.basketball/liga-federal/partido/en-vivo/GHC2L1g2cuLUaaid4pR1og==?key=
+2026-04-28 17:57:02,559 | INFO | CSV final escrito: fixture_consolidado.desde_bd.csv
