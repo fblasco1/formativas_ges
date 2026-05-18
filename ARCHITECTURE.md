@@ -15,16 +15,18 @@ Documento técnico de la arquitectura del proyecto de analítica para categoría
 
 ### 1.2 Estrategia de scraping
 
-| Aspecto | Enfoque |
-|--------|---------|
-| **Página de competencia** | `GET competicion.aspx?competencia={id_competencia}`. BeautifulSoup: `DDLCategorias`, fases/grupos (postback categoría si aplica). Clases: `ingest/febamba/competition_parser.py` (envoltorio), implementación en `ingest/ges/extractor.py`. |
-| **Listado de partidos (≤ 2025)** | POST al widget `widgetscab…/widget/informacion/partidos/…` (mismos parámetros que la página). |
-| **Listado de partidos (≥ 2026)** | `ArgentinaFixtureParser` en `ingest/febamba/fixture_parser_arg.py`: ventanas de fechas (`iter_date_windows`, por defecto ~45 días) sobre `CargarFixture`; parseo `parse_tabla_calendarios` (`ingest/argbasket/fixture.py`). |
-| **Orquestación 2026** | `ingest/febamba/argentina_pipeline.py` (`collect_partidos_temporada_2026`): une fixture argentino + opcional cruce con filas del widget GES vía clave natural. `main.py` usa este flujo cuando `ingesta_usa_portal_argentina(temporada)`. |
-| **Paginación** | **Histórico:** rango `FechaInicio`/`FechaFin` en el widget. **2026:** mismos límites en query string del fixture, troceados en ventanas para evitar timeouts. |
-| **Identificación de partidos** | **Widget:** regex en `href` `…/partido/{id}==`. **Argentina:** token en enlace estadísticas bajo `/liga-federal/partido/…/`. **Sin ID:** `ingest/ges/partido_ids.py` (`gesn_…`) solo en flujo widget. |
-| **Estado del partido** | Misma heurística fecha + marcador numérico (GES y pipeline argentina). |
-| **Boxscore** | **≤ 2025:** `widgetscab…/widget/partido/estadisticas/…`. **≥ 2026:** `FebambaDualSourceExtractor.get_boxscore` → `ArgentinaStatsParser` (`ingest/febamba/stats_parser_arg.py`) contra `argentina.basketball`. |
+
+| Aspecto                          | Enfoque                                                                                                                                                                                                                                     |
+| -------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **Página de competencia**        | `GET competicion.aspx?competencia={id_competencia}`. BeautifulSoup: `DDLCategorias`, fases/grupos (postback categoría si aplica). Clases: `ingest/febamba/competition_parser.py` (envoltorio), implementación en `ingest/ges/extractor.py`. |
+| **Listado de partidos (≤ 2025)** | POST al widget `widgetscab…/widget/informacion/partidos/…` (mismos parámetros que la página).                                                                                                                                               |
+| **Listado de partidos (≥ 2026)** | `ArgentinaFixtureParser` en `ingest/febamba/fixture_parser_arg.py`: ventanas de fechas (`iter_date_windows`, por defecto ~45 días) sobre `CargarFixture`; parseo `parse_tabla_calendarios` (`ingest/argbasket/fixture.py`).                 |
+| **Orquestación 2026**            | `ingest/febamba/argentina_pipeline.py` (`collect_partidos_temporada_2026`): une fixture argentino + opcional cruce con filas del widget GES vía clave natural. `main.py` usa este flujo cuando `ingesta_usa_portal_argentina(temporada)`.   |
+| **Paginación**                   | **Histórico:** rango `FechaInicio`/`FechaFin` en el widget. **2026:** mismos límites en query string del fixture, troceados en ventanas para evitar timeouts.                                                                               |
+| **Identificación de partidos**   | **Widget:** regex en `href` `…/partido/{id}==`. **Argentina:** token en enlace estadísticas bajo `/liga-federal/partido/…/`. **Sin ID:** `ingest/ges/partido_ids.py` (`gesn_…`) solo en flujo widget.                                       |
+| **Estado del partido**           | Misma heurística fecha + marcador numérico (GES y pipeline argentina).                                                                                                                                                                      |
+| **Boxscore**                     | **≤ 2025:** `widgetscab…/widget/partido/estadisticas/…`. **≥ 2026:** `FebambaDualSourceExtractor.get_boxscore` → `ArgentinaStatsParser` (`ingest/febamba/stats_parser_arg.py`) contra `argentina.basketball`.                               |
+
 
 **Recomendación:** Para tablas que en el futuro dependan más de JS (SPA), valorar **Playwright** para ejecutar el navegador y extraer HTML tras render; para el flujo actual (POST → HTML), Requests + BeautifulSoup es suficiente.
 
@@ -32,25 +34,31 @@ Documento técnico de la arquitectura del proyecto de analítica para categoría
 
 **Competencia (todas las temporadas)** — `https://competicionescabb.gesdeportiva.es`
 
-| Recurso | Método | Uso |
-|---------|--------|-----|
-| **Categorías** | GET `competicion.aspx?competencia={id}` | Opciones `DDLCategorias`. |
-| **Fases / grupos** | GET + POST WebForms (categoría) | Opciones de combos para `merge_contexto_torneo`. |
+
+| Recurso            | Método                                  | Uso                                              |
+| ------------------ | --------------------------------------- | ------------------------------------------------ |
+| **Categorías**     | GET `competicion.aspx?competencia={id}` | Opciones `DDLCategorias`.                        |
+| **Fases / grupos** | GET + POST WebForms (categoría)         | Opciones de combos para `merge_contexto_torneo`. |
+
 
 **Histórico (widget)** — `https://widgetscab.gesdeportiva.es`
 
-| Recurso | Uso |
-|---------|-----|
+
+| Recurso     | Uso                                                  |
+| ----------- | ---------------------------------------------------- |
 | **Listado** | POST partidos por categoría / fase / grupo / fechas. |
-| **Acta** | GET estadísticas por `id_partido`. |
+| **Acta**    | GET estadísticas por `id_partido`.                   |
+
 
 **Temporada 2026+** — `https://argentina.basketball`
 
-| Recurso | Uso |
-|---------|-----|
-| **Fixture** | GET `liga-federal/fixture?handler=CargarFixture&compCatId={id}&fechaIni=YYYY-MM-DD&fechaFin=YYYY-MM-DD`. |
-| **Estadísticas** | GET `liga-federal/partido/estadisticas/{token}==?key=` |
-| **En vivo / PBP** | GET `liga-federal/partido/en-vivo/{token}==?key=` |
+
+| Recurso           | Uso                                                                                                      |
+| ----------------- | -------------------------------------------------------------------------------------------------------- |
+| **Fixture**       | GET `liga-federal/fixture?handler=CargarFixture&compCatId={id}&fechaIni=YYYY-MM-DD&fechaFin=YYYY-MM-DD`. |
+| **Estadísticas**  | GET `liga-federal/partido/estadisticas/{token}==?key=`                                                   |
+| **En vivo / PBP** | GET `liga-federal/partido/en-vivo/{token}==?key=`                                                        |
+
 
 **Config:** opcional `comp_cat_argentina` o `comp_cat_por_categoria` en `config/competencias.json` si `compCatId` del portal ≠ `id_categoria` GES. Variable de entorno `FEBAMBA_GES_WIDGET_CALENDAR=1` habilita cruce opcional con el listado widget para rellenar `fase_ges` / `grupo_ges` por clave natural.
 
@@ -69,7 +77,8 @@ Objetivo: vincular **jugador** (`jugador_id`) a través de **temporadas** y **ti
 
 ### 2.1 Entidades principales
 
-- **partidos:** Un partido por fila; `partido_id` (texto) PK; `comp_id`, `competencia`, `temporada`, `categoria`, `categoria_id`, `fecha`, equipos, estado, etc. Incluye `comp_id` para mapear al torneo/competencia en GES.
+- **partidos:** Un partido por fila; `partido_id` (texto) PK; `comp_id`, `competencia`, `temporada`, `categoria`, `categoria_id`, `fecha`, equipos, estado, etc. Incluye `comp_id` para mapear al torneo/competencia en GES. En temporada 2026+ con argentina.basketball, `partido_id` suele ser el token del portal y `estadisticas` (JSONB) guarda el boxscore parseado (`fuente`, `equipos`, …).
+- **play_by_play:** Eventos jugada a jugada por partido. PK (`partido_id`, `event_idx`); FK a `partidos(partido_id)` con `ON DELETE CASCADE`. Columnas útiles para consultas (`cuarto`, `clock`, `tipo`, `equipo`, `jugador`, `dorsal`, marcadores, `hora_real`, `raw`) y `payload JSONB` con el evento completo del parser. Poblada por `ingest/argbasket/pipeline_to_postgres.py` (vía `ges_cli.py argbasket ingest`).
 - **clubes:** `club_id` (PK), `nombre`. Un club puede tener varios equipos por temporada.
 - **equipos:** `equipo_id` (PK), `club_id`, `nombre`. Equipo concreto en una competencia (el mismo club puede tener distinto `equipo_id` por torneo).
 - **jugadores:** `jugador_id` (PK), `club_id` (último conocido o principal), `nombre`, `nombre_completo`. Identidad estable del jugador en GES.
@@ -126,13 +135,15 @@ Interpretación: por cada temporada, un jugador puede estar en uno o más clubes
 
 ## 4. Stack Tecnológico Recomendado
 
-| Componente | Tecnología | Notas |
-|------------|------------|--------|
-| Lenguaje | Python 3.10+ | Coherencia con código existente. |
-| Scraping | Requests + BeautifulSoup | Para flujo actual (POST → HTML). Playwright opcional si más contenido pasa a ser SPA. |
-| Persistencia | PostgreSQL | Recomendado para producción; esquema actual con partidos, JCT, estadísticas. SQLite aceptable para desarrollo local. |
-| Análisis | Pandas | Agregaciones por temporada/jugador, cálculo YoY, export a CSV/Excel. |
-| Configuración | JSON (`config.json`) | DB y, si se desea, rutas y parámetros de scraping. |
+
+| Componente    | Tecnología               | Notas                                                                                                                |
+| ------------- | ------------------------ | -------------------------------------------------------------------------------------------------------------------- |
+| Lenguaje      | Python 3.10+             | Coherencia con código existente.                                                                                     |
+| Scraping      | Requests + BeautifulSoup | Para flujo actual (POST → HTML). Playwright opcional si más contenido pasa a ser SPA.                                |
+| Persistencia  | PostgreSQL               | Recomendado para producción; esquema actual con partidos, JCT, estadísticas. SQLite aceptable para desarrollo local. |
+| Análisis      | Pandas                   | Agregaciones por temporada/jugador, cálculo YoY, export a CSV/Excel.                                                 |
+| Configuración | JSON (`config.json`)     | DB y, si se desea, rutas y parámetros de scraping.                                                                   |
+
 
 ---
 

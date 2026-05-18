@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import csv
 import json
+import sys
 from typing import Any, Dict, Iterable, List, Optional, Sequence, Tuple
 
 
@@ -106,9 +107,19 @@ def main() -> int:
     p.add_argument("--bd", default=BD_CSV_DEFAULT, help="CSV desde BD (fixture_consolidado.desde_bd.csv).")
     p.add_argument("--csv-2026", default=CSV_2026_DEFAULT, help="CSV 2026 (fixture_consolidado.csv).")
     p.add_argument("--out", default=OUT_DEFAULT, help="CSV unificado de salida.")
+    p.add_argument(
+        "--progress",
+        action="store_true",
+        help="Imprime avance por stderr al leer y escribir.",
+    )
     args = p.parse_args()
 
+    def _log(msg: str) -> None:
+        if args.progress:
+            print(msg, file=sys.stderr, flush=True)
+
     # 1) Cargar 2026 como fuente prioritaria y sin URL
+    _log(f"[unificar] Leyendo CSV 2026: {args.csv_2026}")
     base_2026: Dict[Tuple[int, str], Dict[str, str]] = {}
     cnt_2026 = 0
     for row in _read_csv(args.csv_2026):
@@ -119,7 +130,10 @@ def main() -> int:
             continue
         base_2026[key] = _drop_url_column(rr)
 
+    _log(f"[unificar] CSV 2026: {cnt_2026} filas leídas, {len(base_2026)} claves únicas (compCatId+token).")
+
     # 2) Cargar BD filtrada y sumar solo keys que no estén en 2026
+    _log(f"[unificar] Leyendo BD: {args.bd}")
     appended_from_bd = 0
     removed_rare = 0
     removed_missing_hours = 0
@@ -146,6 +160,11 @@ def main() -> int:
         base_2026[key] = _drop_url_column(rr)
         appended_from_bd += 1
 
+    _log(
+        f"[unificar] BD: total {cnt_bd_total}, tras filtro {kept_bd}, "
+        f"añadidas al merge {appended_from_bd} (no estaban en 2026)."
+    )
+
     # 3) Escribir salida
     out_rows = list(base_2026.values())
     # Orden determinista: compCatId, fecha_programada, token
@@ -154,6 +173,7 @@ def main() -> int:
 
     out_rows.sort(key=sort_key)
 
+    _log(f"[unificar] Escribiendo {len(out_rows)} filas -> {args.out}")
     with open(args.out, "w", encoding="utf-8", newline="") as f:
         w = csv.DictWriter(f, fieldnames=list(HEADER_NO_URL))
         w.writeheader()

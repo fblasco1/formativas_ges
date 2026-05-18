@@ -4,9 +4,10 @@ import json
 import os
 from dataclasses import dataclass, replace
 from glob import glob
-from typing import Dict, Iterable, List, Optional
+from typing import Dict, Iterable, List, Optional, Tuple
 
 import psycopg
+from psycopg.types.json import Json
 
 
 DDL_PARTIDOS = """
@@ -140,6 +141,62 @@ CREATE TABLE IF NOT EXISTS totales_equipo (
     uno_a INTEGER,
     uno_i INTEGER,
     PRIMARY KEY (partido_id, equipo_id)
+);
+"""
+
+DDL_PLAY_BY_PLAY = """
+CREATE TABLE IF NOT EXISTS play_by_play (
+    partido_id TEXT NOT NULL,
+    event_idx INTEGER NOT NULL,
+    cuarto INTEGER,
+    clock TEXT,
+    tipo TEXT,
+    equipo TEXT,
+    jugador TEXT,
+    dorsal INTEGER,
+    score_local INTEGER,
+    score_visitante INTEGER,
+    hora_real TEXT,
+    raw TEXT,
+    payload JSONB NOT NULL DEFAULT '{}'::jsonb,
+    PRIMARY KEY (partido_id, event_idx),
+    CONSTRAINT play_by_play_partido_fk FOREIGN KEY (partido_id)
+        REFERENCES partidos (partido_id) ON DELETE CASCADE
+);
+"""
+
+DELETE_PLAY_BY_PLAY_PARTIDO = "DELETE FROM play_by_play WHERE partido_id = %(partido_id)s"
+
+INSERT_PLAY_BY_PLAY = """
+INSERT INTO play_by_play (
+    partido_id,
+    event_idx,
+    cuarto,
+    clock,
+    tipo,
+    equipo,
+    jugador,
+    dorsal,
+    score_local,
+    score_visitante,
+    hora_real,
+    raw,
+    payload
+)
+VALUES (
+    %(partido_id)s,
+    %(event_idx)s,
+    %(cuarto)s,
+    %(clock)s,
+    %(tipo)s,
+    %(equipo)s,
+    %(jugador)s,
+    %(dorsal)s,
+    %(score_local)s,
+    %(score_visitante)s,
+    %(hora_real)s,
+    %(raw)s,
+    %(payload)s
 );
 """
 
@@ -763,6 +820,122 @@ def connect():
     return psycopg.connect(dsn)
 
 
+def ensure_schema_argbasket(cur) -> None:
+    """Crea `partidos` (si no existe) y tabla `play_by_play` para pipeline argentina.basketball."""
+    cur.execute(DDL_PARTIDOS)
+    migrate_partidos_torneo_columnas(cur)
+    cur.execute(DDL_PLAY_BY_PLAY)
+
+
+def _estado_desde_marcador(pts_local: Optional[int], pts_visitante: Optional[int]) -> str:
+    if pts_local is not None and pts_visitante is not None:
+        return "COMPLETO"
+    return "PENDIENTE"
+
+
+def _entrenadores_desde_boxscore(box: Dict[str, object]) -> Tuple[Optional[str], Optional[str]]:
+    equipos = box.get("equipos") if isinstance(box, dict) else None
+    if not isinstance(equipos, list) or not equipos:
+        return (None, None)
+    loc = equipos[0] if len(equipos) > 0 else {}
+    vis = equipos[1] if len(equipos) > 1 else {}
+    el = _to_str(loc.get("entrenador")) if isinstance(loc, dict) else None
+    ev = _to_str(vis.get("entrenador")) if isinstance(vis, dict) else None
+    return (el, ev)
+
+
+def build_argbasket_partido_row(
+    *,
+    partido_id: str,
+    comp_cat_id: int,
+    categoria: str,
+    fecha: str,
+    local: str,
+    visitante: str,
+    pts_local: Optional[str],
+    pts_visitante: Optional[str],
+    estadisticas: object,
+    temporada: str = "2026",
+    competencia: str = "LIGA FEDERAL FORMATIVAS",
+) -> Dict[str, object]:
+    pl = _to_int(pts_local) if pts_local not in (None, "") else None
+    pv = _to_int(pts_visitante) if pts_visitante not in (None, "") else None
+    estado = _estado_desde_marcador(pl, pv)
+    ent_l: Optional[str] = None
+    ent_v: Optional[str] = None
+    if isinstance(estadisticas, dict) and estadisticas.get("equipos"):
+        ent_l, ent_v = _entrenadores_desde_boxscore(estadisticas)
+    if isinstance(estadisticas, str):
+        stats_json = estadisticas
+    else:
+        stats_json = json.dumps(estadisticas or {}, ensure_ascii=False)
+    return {
+        "partido_id": partido_id,
+        "comp_id": comp_cat_id,
+        "competencia": competencia,
+        "temporada": temporada,
+        "categoria": categoria,
+        "categoria_id": comp_cat_id,
+        "fase": None,
+        "fase_id": None,
+        "grupo": None,
+        "grupo_id": None,
+        "fase_ges": None,
+        "grupo_ges": None,
+        "zona": None,
+        "ronda": None,
+        "nivel": None,
+        "fecha": fecha,
+        "local": local,
+        "visitante": visitante,
+        "estado": estado,
+        "equipo_local_id": None,
+        "equipo_visitante_id": None,
+        "entrenador_local": ent_l,
+        "entrenador_visitante": ent_v,
+        "estadisticas": stats_json,
+    }
+
+
+def upsert_partido_argbasket(cur, row: Dict[str, object]) -> None:
+    cur.execute(INSERT_PARTIDOS, row)
+
+
+def _event_to_play_row(partido_id: str, event_idx: int, ev: Dict[str, object]) -> Dict[str, object]:
+    raw = ev.get("raw")
+    raw_s = (str(raw) if raw is not None else "")[:20000]
+    return {
+        "partido_id": partido_id,
+        "event_idx": event_idx,
+        "cuarto": _to_int(ev.get("cuarto")),
+        "clock": _to_str(ev.get("clock")),
+        "tipo": _to_str(ev.get("tipo")),
+        "equipo": _to_str(ev.get("equipo")),
+        "jugador": _to_str(ev.get("jugador")),
+        "dorsal": _to_int(ev.get("dorsal")),
+        "score_local": _to_int(ev.get("score_local")),
+        "score_visitante": _to_int(ev.get("score_visitante")),
+        "hora_real": _to_str(ev.get("hora_real")),
+        "raw": raw_s or None,
+        "payload": Json(ev),
+    }
+
+
+def replace_play_by_play_events(
+    cur, partido_id: str, events: List[Dict[str, object]]
+) -> None:
+    cur.execute(DELETE_PLAY_BY_PLAY_PARTIDO, {"partido_id": partido_id})
+    if not events:
+        return
+    rows = [
+        _event_to_play_row(partido_id, i, ev)
+        for i, ev in enumerate(events)
+        if isinstance(ev, dict)
+    ]
+    if rows:
+        cur.executemany(INSERT_PLAY_BY_PLAY, rows)
+
+
 def get_temporada_id(
     cur, cache: Dict[str, int], temporada: Optional[str]
 ) -> Optional[int]:
@@ -824,6 +997,7 @@ def main():
             cur.execute(DDL_JCT)
             cur.execute(DDL_ESTADISTICAS_JUGADOR)
             cur.execute(DDL_TOTALES_EQUIPO)
+            cur.execute(DDL_PLAY_BY_PLAY)
             conn.commit()
 
         for path in files:

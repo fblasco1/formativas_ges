@@ -77,7 +77,9 @@ def save_categoria_progress(progress_path, lote_idx):
         json.dump(data, f, ensure_ascii=False, indent=2)
 
 
-if __name__ == "__main__":
+def main(argv=None) -> None:
+    """Orquestador FeBAMBA/GES. ``argv`` reservado para compatibilidad con CLI."""
+    del argv
     cfg = load_competencias_config()
     competencias = cfg.get("competencias", [])
     fecha_inicio = cfg.get("fecha_inicio", "2022-1-1")
@@ -265,3 +267,7 @@ if __name__ == "__main__":
                 with open(filename, "w", encoding="utf-8") as f:
                     json.dump(output, f, ensure_ascii=False, indent=2)
                 save_categoria_progress(progress_path, lote_idx)
+
+
+if __name__ == "__main__":
+    main()

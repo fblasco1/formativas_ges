@@ -2,6 +2,7 @@ from __future__ import annotations
 
 import argparse
 import re
+import sys
 import time
 from typing import Dict, List, Optional, Tuple
 from urllib.parse import urljoin
@@ -210,6 +211,8 @@ def get_fixture_partidos_argentina_basketball(
     incluir_horas_reales: bool = True,
     max_horas_requests: int = 0,
     sleep_s_entre_horas: float = 0.0,
+    progress: bool = False,
+    progress_cada: int = 25,
 ) -> List[Dict[str, str]]:
     html = fetch_cargar_fixture_html(
         comp_cat_id=comp_cat_id,
@@ -221,9 +224,24 @@ def get_fixture_partidos_argentina_basketball(
     rows = parse_tabla_calendarios(html, base_url=base_url)
 
     if not incluir_horas_reales:
+        if progress:
+            print(
+                f"[fixture] compCatId={comp_cat_id} calendario: {len(rows)} filas (sin horas reales)",
+                file=sys.stderr,
+                flush=True,
+            )
         return rows
 
+    if progress:
+        print(
+            f"[fixture] compCatId={comp_cat_id} calendario: {len(rows)} partidos, "
+            f"descargando horas reales (cada {progress_cada} aviso)...",
+            file=sys.stderr,
+            flush=True,
+        )
+
     s = session or requests.Session()
+    horas_hechas = 0
     for idx, row in enumerate(rows, start=1):
         if max_horas_requests and idx > max_horas_requests:
             break
@@ -245,8 +263,25 @@ def get_fixture_partidos_argentina_basketball(
             row["hora_inicio_partido"] = ""
             row["hora_fin_partido"] = ""
 
+        horas_hechas += 1
+        if progress and progress_cada > 0 and horas_hechas % progress_cada == 0:
+            print(
+                f"[fixture] compCatId={comp_cat_id} horas: {horas_hechas} "
+                f"peticiones en-vivo (fila ~{idx}/{len(rows)})",
+                file=sys.stderr,
+                flush=True,
+            )
+
         if sleep_s_entre_horas > 0:
             time.sleep(sleep_s_entre_horas)
+
+    if progress:
+        print(
+            f"[fixture] compCatId={comp_cat_id} listo: {horas_hechas} horas reales "
+            f"sobre {len(rows)} filas del calendario",
+            file=sys.stderr,
+            flush=True,
+        )
 
     return rows
 
@@ -267,6 +302,18 @@ if __name__ == "__main__":
     parser.add_argument("--sin-horas-reales", action="store_true")
     parser.add_argument("--max-horas", type=int, default=0)
     parser.add_argument("--sleep-horas", type=float, default=0.0)
+    parser.add_argument(
+        "--progress",
+        action="store_true",
+        help="Imprime avance por stderr (horas reales y calendario).",
+    )
+    parser.add_argument(
+        "--progress-cada",
+        type=int,
+        default=25,
+        metavar="N",
+        help="Cada N peticiones en-vivo imprime una línea (solo con --progress).",
+    )
     args = parser.parse_args()
 
     rows = get_fixture_partidos_argentina_basketball(
@@ -277,6 +324,8 @@ if __name__ == "__main__":
         incluir_horas_reales=not args.sin_horas_reales,
         max_horas_requests=args.max_horas,
         sleep_s_entre_horas=args.sleep_horas,
+        progress=args.progress,
+        progress_cada=args.progress_cada,
     )
     write_csv(args.output, rows)
     print(f"OK: {len(rows)} partidos -> {args.output}")

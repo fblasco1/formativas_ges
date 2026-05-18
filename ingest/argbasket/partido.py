@@ -268,6 +268,93 @@ def _parse_player_row(cells: List[str]) -> Optional[BoxscoreJugador]:
     )
 
 
+def _texto_entrenador_desde_div(ent_el) -> str:
+    span = ent_el.find("span")
+    t = span.get_text(" ", strip=True) if span else ent_el.get_text(" ", strip=True)
+    return (t or "").strip()
+
+
+def _entrenadores_entre_nombre_y_tabla(nombre_el, tbl) -> List[str]:
+    """
+    Recorre el árbol tras ``nombre_el`` hasta encontrar ``tbl`` y acumula cada
+    ``div.entrenador`` intermedio (p. ej. cuerpo técnico con varios nombres).
+    Sin duplicados exactos, preservando orden.
+    """
+    if nombre_el is None or tbl is None:
+        return []
+    raw: List[str] = []
+    for tag in nombre_el.find_all_next():
+        if tag is tbl:
+            break
+        if not getattr(tag, "name", None):
+            continue
+        if tag is not tbl and tbl in tag.parents:
+            continue
+        if tag.name != "div":
+            continue
+        classes = tag.get("class") or []
+        cls = " ".join(classes).lower()
+        if "entrenador" not in cls:
+            continue
+        text = _texto_entrenador_desde_div(tag)
+        if text:
+            raw.append(text)
+    seen: set[str] = set()
+    out: List[str] = []
+    for t in raw:
+        if t not in seen:
+            seen.add(t)
+            out.append(t)
+    return out
+
+
+def parse_equipo_entrenadores_estadisticas_html(html: str) -> List[Dict[str, object]]:
+    """
+    Lista de equipos del acta (mismo HTML que el boxscore), cada uno con
+    ``nombre`` y ``entrenadores`` (0..N). Varios entrenadores en la misma
+    tarjeta → varios strings; no se fusionan en uno solo.
+    """
+    soup = BeautifulSoup(html, "html.parser")
+    out: List[Dict[str, object]] = []
+    for tbl in soup.find_all("table"):
+        ttext = (tbl.get_text(" ", strip=True) or "").upper()
+        if "PTOS" not in ttext or "MIN" not in ttext:
+            continue
+
+        cont = tbl.find_parent("div", class_=re.compile(r"\btarjeta-widget\b", re.I))
+        nombre_el = None
+        cand = tbl.find_previous("div", class_=re.compile(r"\bnombre-equipo\b", re.I))
+        if cand and (not cont or cont in cand.parents):
+            nombre_el = cand
+
+        nombre = ""
+        if nombre_el:
+            strong = nombre_el.find("strong")
+            nombre = (
+                strong.get_text(" ", strip=True)
+                if strong
+                else nombre_el.get_text(" ", strip=True)
+            ).strip()
+        if not nombre:
+            prev_strong = tbl.find_previous("strong")
+            if prev_strong:
+                nombre = prev_strong.get_text(" ", strip=True).strip()
+
+        coaches: List[str] = []
+        if nombre_el:
+            coaches = _entrenadores_entre_nombre_y_tabla(nombre_el, tbl)
+        if not coaches:
+            ent_el = tbl.find_previous("div", class_=re.compile(r"\bentrenador\b", re.I))
+            if ent_el and (not cont or cont in ent_el.parents):
+                t = _texto_entrenador_desde_div(ent_el)
+                if t:
+                    coaches = [t]
+
+        if nombre or coaches:
+            out.append({"nombre": nombre, "entrenadores": coaches})
+    return out
+
+
 def parse_boxscore_html(html: str) -> Dict[str, object]:
     """
     Devuelve un dict con:
@@ -293,22 +380,28 @@ def parse_boxscore_html(html: str) -> Dict[str, object]:
 
         # En el HTML real el nombre/entrenador vienen en divs anteriores.
         nombre = ""
-        entrenador = ""
         # Buscar dentro de la misma "tarjeta-widget" (viene repetida para local/visitante).
         cont = tbl.find_parent("div", class_=re.compile(r"\btarjeta-widget\b", re.I))
-        if cont:
-            nombre_el = tbl.find_previous("div", class_=re.compile(r"\bnombre-equipo\b", re.I))
-            if nombre_el and cont in nombre_el.parents:
-                strong = nombre_el.find("strong")
-                nombre = (
-                    strong.get_text(" ", strip=True)
-                    if strong
-                    else nombre_el.get_text(" ", strip=True)
-                )
+        nombre_el = None
+        cand = tbl.find_previous("div", class_=re.compile(r"\bnombre-equipo\b", re.I))
+        if cand and (not cont or cont in cand.parents):
+            nombre_el = cand
+            strong = nombre_el.find("strong")
+            nombre = (
+                strong.get_text(" ", strip=True)
+                if strong
+                else nombre_el.get_text(" ", strip=True)
+            )
+        coaches: List[str] = []
+        if nombre_el:
+            coaches = _entrenadores_entre_nombre_y_tabla(nombre_el, tbl)
+        if not coaches:
             ent_el = tbl.find_previous("div", class_=re.compile(r"\bentrenador\b", re.I))
-            if ent_el and cont in ent_el.parents:
-                span = ent_el.find("span")
-                entrenador = span.get_text(" ", strip=True) if span else ""
+            if ent_el and (not cont or cont in ent_el.parents):
+                t = _texto_entrenador_desde_div(ent_el)
+                if t:
+                    coaches = [t]
+        entrenador = coaches[0] if coaches else ""
         if not nombre:
             # fallback: buscar un strong anterior
             prev_strong = tbl.find_previous("strong")
@@ -328,6 +421,7 @@ def parse_boxscore_html(html: str) -> Dict[str, object]:
                 {
                     "nombre": nombre,
                     "entrenador": entrenador,
+                    "entrenadores": coaches,
                     "jugadores": jugadores,
                 }
             )
