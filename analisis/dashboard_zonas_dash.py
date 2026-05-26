@@ -1,13 +1,34 @@
+import sys
+from pathlib import Path
+
 import pandas as pd
 from dash import Dash, html, Input, Output, State, dash_table, dcc
 import dash_bootstrap_components as dbc
 import plotly.graph_objs as go
 
-# Cargar y limpiar datos
-df = pd.read_csv(
-    "Data/procesada/19-24.csv",
-    sep=";"
+ROOT = Path(__file__).resolve().parents[1]
+if str(ROOT) not in sys.path:
+    sys.path.insert(0, str(ROOT))
+
+from analisis.Ranking.seasons import (  # noqa: E402
+    FOCUS_YEARS,
+    filtrar_anios,
+    ranking_acumulado_label,
+    ranking_acumulado_path,
+    resolve_partidos_consolidado,
 )
+
+PARTIDOS_PATH = resolve_partidos_consolidado()
+POWER_PATH = ranking_acumulado_path()
+POWER_LABEL = ranking_acumulado_label()
+# Fallback ranking acumulado histórico
+if not POWER_PATH.is_file():
+    POWER_PATH = ROOT / "Data" / "procesada" / "Ranking2019-2024.csv"
+    POWER_LABEL = "Power Ranking 2019-2024 (legacy)"
+
+# Cargar y limpiar datos (solo temporadas en foco)
+df = pd.read_csv(PARTIDOS_PATH, sep=";")
+df = filtrar_anios(df, FOCUS_YEARS)
 
 df['zona'] = df['zona'].str.strip().str.upper()
 df['categoria'] = df['categoria'].str.strip().str.upper()
@@ -18,12 +39,10 @@ for col in ['nivel', 'zona', 'fase', 'ronda', 'categoria', 'local', 'visitante']
     df = df[(df[col] != "DESCONOCIDO") & (df[col] != "DESCONOCIDA")]
 df = df[~df['categoria'].isin(["MINI", "PREMINI"])]
 
-# Cargar Power Ranking
-df_power = pd.read_csv(
-    "Data/procesada/Ranking2019-2024.csv"
-).rename(columns={"Puntos": "Power Ranking 2019-2024"})
+# Cargar Power Ranking acumulado (2023-2026 o legacy)
+df_power = pd.read_csv(POWER_PATH).rename(columns={"Puntos": POWER_LABEL})
 
-ranking_dict = df_power.set_index('Equipo')['Power Ranking 2019-2024'].to_dict()
+ranking_dict = df_power.set_index("Equipo")[POWER_LABEL].to_dict()
 
 def resumen_equipo_general(df, equipo):
     df_eq = df[(df['local'] == equipo) | (df['visitante'] == equipo)]
@@ -375,7 +394,7 @@ tab_power_ranking = dbc.Container([
                     {"name": "Ganados", "id": "ganados"},
                     {"name": "Perdidos", "id": "perdidos"},
                     {"name": "Diferencia de Gol", "id": "diferencia"},
-                    {"name": "Power Ranking 2019-2024", "id": "power_ranking"}
+                    {"name": POWER_LABEL, "id": "power_ranking"}
                 ],
                 data=[],
                 style_data={

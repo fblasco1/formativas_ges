@@ -1,0 +1,10 @@
+[
+  {
+    "id": "pedro_echague_a_2024_3ra_fase_np",
+    "descripcion": "Pedro Echague A 2024: quitar solo 0-20 en 3ra Fase (no presentacion del equipo A)",
+    "anio": 2024,
+    "equipo": "PEDRO ECHAGUE A",
+    "ronda_contiene": "3ra Fase",
+    "marcador_equipo": [0, 20]
+  }
+]

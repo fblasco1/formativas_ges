@@ -109,10 +109,10 @@ def resumen_agregado_regional(df, win_pct, outdir="outputs"):
 
 def main():
     PARTIDOS_FILES = [
-        'Data/partidos_2019.csv',
-        'Data/partidos_2022.csv',
-        'Data/partidos_2023.csv',
-        'Data/partidos_2024.csv',
+        "Data/partidos_2023.csv",
+        "Data/partidos_2024.csv",
+        "Data/partidos_2025.csv",
+        "Data/partidos_2026.csv",
     ]
     df = cargar_partidos(PARTIDOS_FILES)
     df = filtrar_categorias(df)

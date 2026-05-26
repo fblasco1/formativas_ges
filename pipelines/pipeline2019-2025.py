@@ -8,37 +8,31 @@ sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from scraper.main import FebambaScraper
 
-# Lista de torneos a scrapear
+# Temporadas en foco: 2023–2026 (activar id GES de 2026 cuando esté publicado)
 torneos_a_scrapear = [
-    #{
-    #    "id": 16,
-    #    "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=16",
-    #    "Anio": 2019,
-    #    "torneo": "Torneo Formativas 2019",
-    #},
-    #{
-    #    "id": 307,
-    #    "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=307",
-    #    "Anio": 2022,
-    #    "torneo": "TORNEO FORMATIVAS 2022",
-    #},
-    #{
-    #    "id": 682,
-    #    "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=682",
-    #    "Anio": 2023,
-    #    "torneo": "FORMATIVAS 2023",
-    #},
-    #{
-    #    "id": 1178,
-    #    "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=1178",
-    #    "Anio": 2024,
-    #    "torneo": "FORMATIVAS 2024",
-    #},
+    {
+        "id": 682,
+        "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=682",
+        "Anio": 2023,
+        "torneo": "FORMATIVAS 2023",
+    },
+    {
+        "id": 1178,
+        "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=1178",
+        "Anio": 2024,
+        "torneo": "FORMATIVAS 2024",
+    },
     {
         "id": 1623,
         "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=1623",
         "Anio": 2025,
         "torneo": "FORMATIVAS 2025",
+    },
+    {
+        "id": 2015,
+        "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=2015",
+        "Anio": 2026,
+        "torneo": "FORMATIVAS 2026",
     },
 ]
 
@@ -52,15 +46,18 @@ def main():
         try:
             partidos = scraper.scrap_torneo(torneo)
             all_partidos.extend(partidos)
+            if partidos:
+                df = pd.DataFrame(partidos)
+                os.makedirs("Data", exist_ok=True)
+                out = os.path.join("Data", f"partidos_{torneo['Anio']}.csv")
+                df.to_csv(out, index=False, encoding="utf-8-sig")
+                print(f"  -> {out} ({len(df)} partidos)")
         except Exception as e:
             print(f"Error al scrapear {torneo['torneo']}: {e}")
 
     if all_partidos:
-        df = pd.DataFrame(all_partidos)
-        os.makedirs("Data", exist_ok=True)
-        output_path = os.path.join("Data", f"{date.today()}.csv")
-        df.to_csv(output_path, index=False, encoding="utf-8-sig")
-        print(f"Archivo guardado en: {output_path}")
+        print(f"Total partidos scrapeados: {len(all_partidos)}")
+        print("Consolidar con: python pipelines/consolidar_temporadas.py")
     else:
         print("No se encontraron partidos para los torneos seleccionados.")
 
