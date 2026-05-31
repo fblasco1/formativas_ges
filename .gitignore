@@ -1,19 +1,46 @@
+# Entorno
+.venv/
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+
+# Scrape auxiliar / dumps GES (no versionar)
+gesdeportiva.json
 competencia.json
 categorias.json
-FORMATIVAS 2023.json
-FORMATIVAS 2024.json
-Torneo Formativas 2019.json
-Torneo Formativas 2020 -.json
-TORNEO FORMATIVAS 2022.json
-gesdeportiva.json
+FORMATIVAS*.json
+Torneo*.json
+TORNEO*.json
 resultados.txt
-informe_categorias19222324.py
-tabla_posiciones.py
-scrap_combinaciones_febamba.py
-analizar_fases_grupos.py
 *.log
+logs/
+
+# Ranking_V2: no mezclar artefactos de la rama estadisticas / otras ligas
+# (esas features se desarrollan en rama `estadisticas` — ver docs/VISION_PROYECTO.md)
+entrenadores*.csv
+estadisticas_entrenadores*.txt
+fixture*.csv
+*boxscore*
+*playbyplay*
+persist/
+ingest/
+
+# Datos legacy Power Ranking (regenerables con python -m analisis.Ranking)
+Data/procesada/19-24.csv
+Data/procesada/20[0-9][0-9].csv
+Data/procesada/Ranking20*.csv
+Data/partidos_2019.csv
+Data/partidos_2022.csv
+
+# Lock actualización diaria
+Data/.actualizacion_en_curso.lock
+
+# Informes locales voluminosos (regenerables)
+outputs/SUR/
+outputs/OESTE/
+outputs/NORTE/
+outputs/CENTRO/
 errores_fase_grupo_v5.csv
 estructura_por_fase_y_grupo_sin_mosquitos.csv
 febamba_estructura_ges.csv
-
-/venv

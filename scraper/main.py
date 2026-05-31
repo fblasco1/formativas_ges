@@ -32,6 +32,7 @@ class FebambaScraper:
 
     def scrap_torneo(self, torneo_info: Dict) -> List[Dict]:
         """Scrapea todo un torneo: categorías, fases, grupos y partidos."""
+        self.partidos_acumulados = []
         year = torneo_info["Anio"]
         comp_id = torneo_info["id"]
         url_inicial = torneo_info["url"]
@@ -106,6 +107,12 @@ class FebambaScraper:
             fase_text = option.text.strip()
 
             if not fase_id or fase_id == "0" or "Seleccionar" in fase_text:
+                continue
+
+            from parsers.fases_formativas_2025_2026 import debe_omitir_fase
+
+            if debe_omitir_fase(fase_text):
+                logger.info(f"Omitiendo fase: {fase_text}")
                 continue
 
             fase_info = parsear_fase(year, fase_text)

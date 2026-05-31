@@ -1,10 +1,9 @@
 # -*- coding: utf-8 -*-
 """
-Arma ``Data/procesada/23-26.csv`` uniendo partidos de las temporadas en foco.
+Arma el consolidado de partidos formativas uniendo temporadas en foco.
 
-Fuentes (en orden por año):
-  - ``Data/partidos_{año}.csv`` si existe
-  - filas del año en ``Data/procesada/19-24.csv`` (legacy)
+Salida preferida: ``Data/formativas/procesada/23-26.csv``
+Fallback lectura: ``Data/partidos_{año}.csv`` o legacy ``Data/procesada/19-24.csv``
 """
 
 from __future__ import annotations
@@ -21,10 +20,10 @@ if str(ROOT) not in sys.path:
 
 from analisis.Ranking.seasons import (  # noqa: E402
     FOCUS_YEARS,
-    PARTIDOS_CONSOLIDADO,
     PARTIDOS_LEGACY,
     filtrar_anios,
 )
+from competencias.paths import consolidado_write_path, partidos_anio_path  # noqa: E402
 from utils.open_csv import leer_csv_con_encoding_detectado  # noqa: E402
 
 
@@ -38,7 +37,7 @@ def _detect_sep(path: Path) -> str:
 
 
 def _cargar_anio(year: int, legacy: pd.DataFrame | None, sep: str) -> pd.DataFrame:
-    per_year = ROOT / "Data" / f"partidos_{year}.csv"
+    per_year = partidos_anio_path("formativas", year)
     if per_year.is_file():
         file_sep = _detect_sep(per_year) if sep == ";" else sep
         return leer_csv_con_encoding_detectado(str(per_year), file_sep)
@@ -53,7 +52,7 @@ def consolidar(
     years: tuple[int, ...] = FOCUS_YEARS,
     *,
     sep: str = ";",
-    output: Path = PARTIDOS_CONSOLIDADO,
+    output: Path = consolidado_write_path("formativas"),
 ) -> pd.DataFrame:
     legacy = None
     if PARTIDOS_LEGACY.is_file():
@@ -94,7 +93,7 @@ def main() -> int:
         help="Temporadas a incluir.",
     )
     p.add_argument("--sep", default=";")
-    p.add_argument("--output", type=Path, default=PARTIDOS_CONSOLIDADO)
+    p.add_argument("--output", type=Path, default=consolidado_write_path("formativas"))
     args = p.parse_args()
     consolidar(tuple(args.years), sep=args.sep, output=args.output)
     return 0

@@ -18,7 +18,8 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from analisis.Ranking.seasons import FOCUS_YEARS, PARTIDOS_CONSOLIDADO  # noqa: E402
+from analisis.Ranking.seasons import FOCUS_YEARS  # noqa: E402
+from competencias.paths import partidos_anio_path  # noqa: E402
 from mapeos.loader import (  # noqa: E402
     cargar_mapeo_equipos,
     normalizar_columna_equipos,
@@ -65,7 +66,7 @@ def normalizar_data(
     stats = {"archivos": 0, "filas": 0, "celdas_cambiadas": 0}
 
     for year in years:
-        path = DATA_DIR / f"partidos_{year}.csv"
+        path = partidos_anio_path("formativas", year)
         if not path.is_file():
             if verbose:
                 print(f"  [omitido] {path.name}")
@@ -77,15 +78,6 @@ def normalizar_data(
         if verbose:
             print(f"  {path.name}: {filas} filas, {cambios} celdas actualizadas")
 
-    legacy = DATA_DIR / "procesada" / "19-24.csv"
-    if legacy.is_file():
-        filas, cambios = normalizar_archivo(legacy, mapeo, sep=sep)
-        stats["archivos"] += 1
-        stats["filas"] += filas
-        stats["celdas_cambiadas"] += cambios
-        if verbose:
-            print(f"  {legacy.name}: {filas} filas, {cambios} celdas actualizadas")
-
     return stats
 
 
@@ -96,13 +88,13 @@ def main(argv: list[str] | None = None) -> int:
         type=int,
         nargs="+",
         default=list(FOCUS_YEARS),
-        help="Temporadas (partidos_{año}.csv).",
+        help="Temporadas (Data/formativas/partidos_{año}.csv o legacy).",
     )
     p.add_argument("--sep", default=";", help="Separador CSV.")
     p.add_argument(
         "--consolidar",
         action="store_true",
-        help="Regenerar Data/procesada/23-26.csv tras normalizar.",
+        help="Regenerar consolidado formativas (Data/formativas/procesada/23-26.csv).",
     )
     p.add_argument(
         "--ranking",
@@ -127,7 +119,9 @@ def main(argv: list[str] | None = None) -> int:
             print("Consolidando temporadas...")
         from pipelines.consolidar_temporadas import consolidar  # noqa: E402
 
-        consolidar(tuple(args.years), sep=args.sep, output=PARTIDOS_CONSOLIDADO)
+        from competencias.paths import consolidado_write_path
+
+        consolidar(tuple(args.years), sep=args.sep, output=consolidado_write_path("formativas"))
 
     if args.ranking:
         if verbose:

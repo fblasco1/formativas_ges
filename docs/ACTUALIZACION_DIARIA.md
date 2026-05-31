@@ -2,10 +2,12 @@
 
 Cada ejecución:
 
-1. **Scrapea GES** el torneo FORMATIVAS 2026 (reemplaza `Data/partidos_2026.csv`).
+1. **Scrapea GES** el torneo FORMATIVAS 2026 → `Data/formativas/partidos_2026.csv`.
 2. **Normaliza** nombres de equipo en ese CSV (`equipos_map.json`).
-3. **Consolida** `Data/procesada/23-26.csv` (2023–2026).
+3. **Consolida** `Data/formativas/procesada/23-26.csv` (2023–2026).
 4. **Actualiza** `Ranking_Tiras_Actualizado_2026.csv` (renivelación incremental).
+
+Si aún no migraste datos, la lectura sigue funcionando con `Data/partidos_*.csv` legacy.
 
 ## Ejecución manual
 
@@ -18,6 +20,12 @@ Solo reprocesar sin scrapear GES:
 
 ```powershell
 .\.venv\Scripts\python.exe pipelines\actualizar_temporada_activa.py --sin-scrape
+```
+
+Scrape puntual:
+
+```powershell
+python pipelines/scrape_competencia.py formativas 2026
 ```
 
 ## Script para el Programador de tareas
@@ -59,8 +67,8 @@ schtasks /Create /TN "GES-FeBAMBA-Diario" /SC DAILY /ST 06:00 `
 
 | Archivo | Contenido |
 |---------|-----------|
-| `Data/partidos_2026.csv` | Partidos scrapeados |
-| `Data/procesada/23-26.csv` | Consolidado para Streamlit |
+| `Data/formativas/partidos_2026.csv` | Partidos scrapeados (preferido) |
+| `Data/formativas/procesada/23-26.csv` | Consolidado para Streamlit |
 | `Data/procesada/Ranking_Tiras_Actualizado_2026.csv` | Ranking de tiras |
 | `Data/procesada/ultima_actualizacion.json` | Última corrida (ok, delta de partidos) |
 | `logs/actualizacion_YYYYMMDD_HHMMSS.log` | Log detallado |
@@ -77,7 +85,7 @@ Luego la actualización diaria solo usa `--actualizar-2026` (automático dentro 
 
 ## Cambiar temporada activa
 
-Editá `TEMPORADA_ACTIVA` en `analisis/Ranking/seasons.py` y agregá el torneo en `pipelines/scrape_temporadas.py` → `TORNEOS`.
+Editá `TEMPORADA_ACTIVA` en `analisis/Ranking/seasons.py` y agregá el torneo en `competencias/formativas/ges.py` (`TORNEOS_FORMATIVAS`).
 
 ## Bloqueo
 

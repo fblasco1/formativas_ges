@@ -257,10 +257,10 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     if str(root) not in sys.path:
         sys.path.insert(0, str(root))
 
-    from analisis.Ranking.seasons import PARTIDOS_CONSOLIDADO
+    from analisis.Ranking.seasons import resolve_partidos_consolidado
 
     p = argparse.ArgumentParser(description="Exportar casos de mapeo de equipos a CSV.")
-    p.add_argument("--input", type=Path, default=PARTIDOS_CONSOLIDADO)
+    p.add_argument("--input", type=Path, default=resolve_partidos_consolidado())
     p.add_argument(
         "--output",
         type=Path,

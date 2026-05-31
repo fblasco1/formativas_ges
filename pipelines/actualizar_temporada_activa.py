@@ -26,10 +26,10 @@ os.chdir(ROOT)
 
 from analisis.Ranking.seasons import (  # noqa: E402
     FOCUS_YEARS,
-    PARTIDOS_CONSOLIDADO,
     TEMPORADA_ACTIVA,
 )
-from pipelines.scrape_temporadas import TORNEOS  # noqa: E402
+from competencias.paths import consolidado_write_path, partidos_anio_path  # noqa: E402
+from pipelines.scrape_competencia import scrape_anios  # noqa: E402
 from utils.logger import get_logger  # noqa: E402
 
 logger = get_logger("actualizar_temporada_activa")
@@ -70,28 +70,8 @@ def _liberar_lock() -> None:
 
 
 def _scrapear_temporada(anio: int) -> int:
-    from scraper.main import FebambaScraper
-
-    if anio not in TORNEOS:
-        raise ValueError(f"Año {anio} no configurado en TORNEOS")
-
-    t = TORNEOS[anio]
-    info = {"id": t["id"], "url": t["url"], "Anio": anio, "torneo": t["torneo"]}
-    logger.info("Scrapeando %s (competencia=%s)", t["torneo"], t["id"])
-
-    scraper = FebambaScraper(base_url="https://competicionescabb.gesdeportiva.es/")
-    partidos = scraper.scrap_torneo(info)
-    if not partidos:
-        logger.warning("GES no devolvió partidos para %s", anio)
-        return 0
-
-    out = ROOT / "Data" / f"partidos_{anio}.csv"
-    out.parent.mkdir(parents=True, exist_ok=True)
-    import pandas as pd
-
-    pd.DataFrame(partidos).to_csv(out, index=False, encoding="utf-8-sig", sep=";")
-    logger.info("Guardado %s (%s partidos)", out, len(partidos))
-    return len(partidos)
+    resultados = scrape_anios("formativas", [anio], verbose=True)
+    return int(resultados.get(anio, 0))
 
 
 def _normalizar_y_consolidar(anio: int) -> None:
@@ -102,7 +82,7 @@ def _normalizar_y_consolidar(anio: int) -> None:
     normalizar_data(years=(anio,), verbose=True)
 
     logger.info("Consolidando %s–%s", FOCUS_YEARS[0], FOCUS_YEARS[-1])
-    consolidar(tuple(FOCUS_YEARS), output=PARTIDOS_CONSOLIDADO)
+    consolidar(tuple(FOCUS_YEARS), output=consolidado_write_path("formativas"))
 
 
 def _renivelacion_activa() -> None:
@@ -156,7 +136,7 @@ def ejecutar(
     )
     logger.addHandler(fh)
 
-    partidos_path = ROOT / "Data" / f"partidos_{anio}.csv"
+    partidos_path = partidos_anio_path("formativas", anio)
     partidos_antes = _contar_filas_csv(partidos_path)
     partidos_despues = partidos_antes
 

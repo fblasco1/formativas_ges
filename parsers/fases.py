@@ -368,11 +368,21 @@ def parsear_fase(year: int, fase_text: str) -> Dict[str, str]:
                 nivel_mapa = 1
                 zona_mapa = "SUR"
         elif year == 2025:
-            # 2025
-            if "1ER ETAPA" in fase_text_upper:
-                fase_mapa =  "Fase Regular"
-                ronda_mapa = "Copa Febamba"
-                nivel_mapa = "NIVELACION"
+            from parsers.fases_formativas_2025_2026 import parsear_fase_2025
+
+            parsed = parsear_fase_2025(fase_text)
+            fase_mapa = parsed.get("fase", fase_mapa)
+            ronda_mapa = parsed.get("ronda", ronda_mapa)
+            nivel_mapa = parsed.get("nivel", nivel_mapa)
+            zona_mapa = parsed.get("zona", zona_mapa)
+        elif year == 2026:
+            from parsers.fases_formativas_2025_2026 import parsear_fase_2026
+
+            parsed = parsear_fase_2026(fase_text)
+            fase_mapa = parsed.get("fase", fase_mapa)
+            ronda_mapa = parsed.get("ronda", ronda_mapa)
+            nivel_mapa = parsed.get("nivel", nivel_mapa)
+            zona_mapa = parsed.get("zona", zona_mapa)
 
     except Exception as e:
         print(f"Error parseando fase '{fase_text}': {e}")

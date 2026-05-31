@@ -22,7 +22,9 @@ YEAR_WEIGHTS: dict[int, float] = {
 
 DATA_DIR = Path("Data")
 PROCESADA_DIR = DATA_DIR / "procesada"
-PARTIDOS_CONSOLIDADO = PROCESADA_DIR / "23-26.csv"
+# Preferido: namespace formativas; fallback legacy en resolve_partidos_consolidado()
+PARTIDOS_CONSOLIDADO = DATA_DIR / "formativas" / "procesada" / "23-26.csv"
+PARTIDOS_CONSOLIDADO_LEGACY = PROCESADA_DIR / "23-26.csv"
 PARTIDOS_LEGACY = PROCESADA_DIR / "19-24.csv"
 
 
@@ -49,16 +51,16 @@ def ranking_anual_path(year: int, output_dir: Path | str = PROCESADA_DIR) -> Pat
 
 
 def partidos_por_anio_path(year: int) -> Path:
-    return DATA_DIR / f"partidos_{year}.csv"
+    from competencias.paths import partidos_anio_path
+
+    return partidos_anio_path("formativas", year)
 
 
 def resolve_partidos_consolidado() -> Path:
-    """CSV consolidado preferido; si no existe, el histórico 19-24."""
-    if PARTIDOS_CONSOLIDADO.is_file():
-        return PARTIDOS_CONSOLIDADO
-    if PARTIDOS_LEGACY.is_file():
-        return PARTIDOS_LEGACY
-    return PARTIDOS_CONSOLIDADO
+    """CSV consolidado formativas (namespace o legacy)."""
+    from competencias.paths import consolidado_path
+
+    return consolidado_path("formativas")
 
 
 def filtrar_anios(df, years: Iterable[int] = FOCUS_YEARS):

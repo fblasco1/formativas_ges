@@ -36,7 +36,13 @@ def parsear_grupo(year: int, fase_text: str, grupo_text: str) -> Dict[str, str]:
     elif year == 2024:
         return _parsear_grupo_2024(fase_text_upper, grupo_text_upper)
     elif year == 2025:
-        return _parsear_grupo_2025(fase_text_upper, grupo_text_upper)
+        from parsers.grupos_formativas_2025_2026 import parsear_grupo_2025
+
+        return parsear_grupo_2025(fase_text_upper, grupo_text_upper)
+    elif year == 2026:
+        from parsers.grupos_formativas_2025_2026 import parsear_grupo_2026
+
+        return parsear_grupo_2026(fase_text_upper, grupo_text_upper)
     else:
         return {
             "nivel": "Desconocido",

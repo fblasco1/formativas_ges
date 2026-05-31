@@ -16,7 +16,7 @@ ROOT = Path(__file__).resolve().parents[1]
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from analisis.Ranking.seasons import FOCUS_YEARS, PARTIDOS_CONSOLIDADO  # noqa: E402
+from analisis.Ranking.seasons import FOCUS_YEARS, resolve_partidos_consolidado  # noqa: E402
 from analisis.partidos_equipo import (  # noqa: E402
     FILTROS_ESPECIALES,
     TIPOS_MARCADOR,
@@ -37,6 +37,7 @@ from mapeos.equipos_region import (  # noqa: E402
 
 ANIO_REGION = 2026
 TEMPORADAS = list(FOCUS_YEARS)
+PARTIDOS_CONSOLIDADO = resolve_partidos_consolidado()
 
 
 @st.cache_data(ttl=120)
@@ -216,7 +217,10 @@ if _estado_path.is_file():
         pass
 
 if not PARTIDOS_CONSOLIDADO.is_file():
-    st.error("Falta Data/procesada/23-26.csv. Consolidá partidos antes de usar el dashboard.")
+    st.error(
+        f"Falta consolidado formativas ({PARTIDOS_CONSOLIDADO}). "
+        "Ejecutá: python pipelines/consolidar_temporadas.py"
+    )
     st.stop()
 
 _mtime = PARTIDOS_CONSOLIDADO.stat().st_mtime

@@ -1,5 +1,7 @@
 # Deploy en Streamlit Community Cloud
 
+Rama enfocada en **ranking de renivelación** (`streamlit_app.py`). Sin datos de entrenadores ni Liga Federal.
+
 Streamlit Cloud **solo despliega desde GitHub**, no desde archivos locales sueltos.
 
 ## Por qué aparece el error

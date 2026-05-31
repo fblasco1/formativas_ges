@@ -181,7 +181,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
     import argparse
     import sys
 
-    from analisis.Ranking.seasons import PARTIDOS_CONSOLIDADO
+    from analisis.Ranking.seasons import resolve_partidos_consolidado
     from mapeos.equipos_casos import cargar_partidos_consolidado
 
     root = Path(__file__).resolve().parents[1]
@@ -189,7 +189,7 @@ def main(argv: Optional[Sequence[str]] = None) -> int:
         sys.path.insert(0, str(root))
 
     p = argparse.ArgumentParser(description="Exportar cruce de equipos por temporada.")
-    p.add_argument("--input", type=Path, default=PARTIDOS_CONSOLIDADO)
+    p.add_argument("--input", type=Path, default=resolve_partidos_consolidado())
     p.add_argument("--output", type=Path, default=Path("outputs") / "mapeo_cruce_temporadas.csv")
     p.add_argument("--solo-inconsistentes", action="store_true")
     args = p.parse_args(list(argv) if argv is not None else None)

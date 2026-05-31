@@ -9,6 +9,7 @@ from typing import Iterable, Sequence
 import pandas as pd
 
 from analisis.Ranking.seasons import DATA_DIR, FOCUS_YEARS, filtrar_anios
+from competencias.paths import partidos_anio_path
 from analisis.renivelacion_tiras.categorias import (
     bucket_renivelacion,
     es_categoria_competitiva,
@@ -58,7 +59,10 @@ def cargar_partidos_anios(
     partes: list[pd.DataFrame] = []
 
     for year in years:
-        path = data_dir / f"partidos_{year}.csv"
+        if data_dir == DATA_DIR:
+            path = partidos_anio_path("formativas", year)
+        else:
+            path = data_dir / f"partidos_{year}.csv"
         if not path.is_file():
             continue
         sep = _detect_sep(path)

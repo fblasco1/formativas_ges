@@ -19,6 +19,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from analisis.Ranking.seasons import FOCUS_YEARS, PROCESADA_DIR  # noqa: E402
+from competencias.paths import partidos_anio_path, partidos_anio_write_path  # noqa: E402
 from mapeos.exclusiones_partidos import aplicar_exclusiones, cargar_exclusiones  # noqa: E402
 from utils.open_csv import leer_csv_con_encoding_detectado  # noqa: E402
 
@@ -60,10 +61,16 @@ def main(argv: list[str] | None = None) -> int:
 
     total = 0
     for year in args.year:
+        paths: list[Path] = []
         for path in (
+            partidos_anio_path("formativas", year),
+            partidos_anio_write_path("formativas", year),
             ROOT / "Data" / f"partidos_{year}.csv",
             PROCESADA_DIR / f"{year}.csv",
         ):
+            if path not in paths:
+                paths.append(path)
+        for path in paths:
             total += aplicar_archivo(path, dry_run=args.dry_run)
 
     print(f"Total filas afectadas: {total}")

@@ -28,7 +28,7 @@ def inferir_ronda(
         if anio == 2022:
             ronda = inferir_ronda_2022_playoff(categoria, nivel, zona, jornada)
             return {"ronda": ronda, "nivel": nivel, "llave": llave}
-        if anio in [2023, 2024]:
+        if anio in [2023, 2024, 2025, 2026]:
             ronda = inferir_ronda_generica_playoff(jornada)
             return {"ronda": ronda, "nivel": nivel, "llave": llave}
         if anio == 2019:
@@ -40,7 +40,7 @@ def inferir_ronda(
     elif fase.upper() == "FINAL FOUR":
         if anio == 2022:
             return inferir_ronda_2022_final_four(llave, categoria, equipos_map)
-        if anio in [2019, 2023, 2024]:
+        if anio in [2019, 2023, 2024, 2025, 2026]:
             ronda = inferir_ronda_generica_final_four(llave, categoria, jornada, equipos_map)
             return {"ronda": ronda, "nivel": None, "llave": llave}
     return None
