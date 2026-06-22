@@ -5,6 +5,7 @@ on:
     branches: [estadisticas, main, master]
     paths:
       - "docs/**"
+      - "outputs/mini_masc/**"
       - ".github/workflows/pages.yml"
 
 permissions:
