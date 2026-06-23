@@ -2,22 +2,17 @@
 """
 Regla de plantilla MINI: >= 12 jugadores con al menos 10:00 min de juego.
 
-Clasificación (Equipo A = local, Equipo B = visitante):
-
-A:NP / B:NP — el equipo no cumple (menos de 12 jugadores con >=10:00 min).
-
-ESPECIAL (regla de cambios / boxscore contradice fixture):
-  20-0  + B gana boxscore
-  0-20  + A gana boxscore
-  0-0   + hay ganador en boxscore (ej. A gana box y B no cumple -> ESPECIAL + B:NP)
+Árbol de clasificación por resultado de fixture (A=local, B=visitante).
 """
 
 from __future__ import annotations
 
-from typing import Dict, List, Optional
+from typing import Dict, List, Optional, Tuple
 
 MIN_JUGADORES_REGLA = 12
 MIN_SEGUNDOS_REGLA = 10 * 60  # 10:00
+LABEL_CAMBIOS = "Regla de cambios Q3 u otros"
+LABEL_OTRO = "Otro"
 
 
 def parse_minutos_a_segundos(value: object) -> Optional[int]:
@@ -67,34 +62,65 @@ def dif_boxscore_abs(pl_box: Optional[int], pv_box: Optional[int]) -> Optional[i
     return abs(pl_box - pv_box)
 
 
-def clasificar_np(*, ok_local: bool, ok_visit: bool) -> tuple[bool, bool]:
-    """NP si el equipo no alcanza 12 jugadores con >=10:00 min."""
-    return not ok_local, not ok_visit
-
-
-def clasificar_especial(
+def clasificar_arbol(
     *,
     pl_fix: Optional[int],
     pv_fix: Optional[int],
-    ganador: Optional[str],
-) -> bool:
-    if pl_fix == 20 and pv_fix == 0:
-        return ganador == "visitante"
-    if pl_fix == 0 and pv_fix == 20:
-        return ganador == "local"
+    ok_local: bool,
+    ok_visit: bool,
+) -> Tuple[bool, bool, bool, bool]:
+    """
+    Devuelve (NP_A, NP_B, regla_cambios, otro) según árbol por fixture.
+    """
+    np_local = False
+    np_visit = False
+    especial = False
+    otro = False
+
     if pl_fix == 0 and pv_fix == 0:
-        return ganador in ("local", "visitante")
-    return False
+        if not ok_local and not ok_visit:
+            np_local = True
+            np_visit = True
+        elif ok_local and not ok_visit:
+            np_visit = True
+            especial = True
+        elif not ok_local and ok_visit:
+            np_local = True
+            especial = True
+        else:
+            especial = True
+    elif pl_fix == 20 and pv_fix == 0:
+        if ok_local and not ok_visit:
+            np_visit = True
+        elif ok_local and ok_visit:
+            especial = True
+        else:
+            otro = True
+    elif pl_fix == 0 and pv_fix == 20:
+        if ok_visit and not ok_local:
+            np_local = True
+        elif ok_visit and ok_local:
+            especial = True
+        else:
+            otro = True
+    else:
+        otro = True
+
+    return np_local, np_visit, especial, otro
 
 
-def format_flags(np_local: bool, np_visit: bool, especial: bool) -> str:
+def format_flags(
+    np_local: bool, np_visit: bool, especial: bool, otro: bool
+) -> str:
     parts: List[str] = []
     if np_local:
         parts.append("A:NP")
     if np_visit:
         parts.append("B:NP")
     if especial:
-        parts.append("Regla de cambios Q3 u otros")
+        parts.append(LABEL_CAMBIOS)
+    if otro:
+        parts.append(LABEL_OTRO)
     return " | ".join(parts)
 
 
@@ -113,13 +139,13 @@ def analizar_partido(
     ok_visit = j_reg_visit >= MIN_JUGADORES_REGLA
     ganador = ganador_boxscore(pl_box, pv_box)
 
-    np_local, np_visit = clasificar_np(ok_local=ok_local, ok_visit=ok_visit)
-    especial = clasificar_especial(
+    np_local, np_visit, especial, otro = clasificar_arbol(
         pl_fix=pl_fix,
         pv_fix=pv_fix,
-        ganador=ganador,
+        ok_local=ok_local,
+        ok_visit=ok_visit,
     )
-    dif_box = dif_boxscore_abs(pl_box, pv_box)
+    dif_box = dif_boxscore_abs(pl_box, pv_box) if especial else None
 
     return {
         "JUG_REG_LOCAL": j_reg_local,
@@ -132,7 +158,8 @@ def analizar_partido(
         "NP_LOCAL": np_local,
         "NP_VISITANTE": np_visit,
         "ESPECIAL": especial,
-        "FLAGS": format_flags(np_local, np_visit, especial),
+        "OTRO": otro,
+        "FLAGS": format_flags(np_local, np_visit, especial, otro),
         "DIF_BOX": dif_box,
     }
 

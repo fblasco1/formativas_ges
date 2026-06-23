@@ -28,6 +28,8 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from ingest.febamba.mini_masc_regla_plantilla import (
+    LABEL_CAMBIOS,
+    LABEL_OTRO,
     MIN_JUGADORES_REGLA,
     analizar_partido,
     jugador_cumple_regla,
@@ -35,12 +37,12 @@ from ingest.febamba.mini_masc_regla_plantilla import (
 from ingest.argbasket.partido import parse_boxscore_html
 
 CSV_RAROS = ROOT / "outputs" / "mini_masc_clasificacion_marcadores_raros.csv"
+CSV_TODOS = ROOT / "outputs" / "mini_masc_clasificacion_partidos.csv"
 OUT_DIR = ROOT / "outputs" / "mini_masc"
 OUT_HTML = OUT_DIR / "informe_marcadores_raros.html"
 OUT_JSON = OUT_DIR / "datos_marcadores_raros.json"
 DOCS_HTML = ROOT / "docs" / "mini_masc_clasificacion.html"
 PUBLIC_URL = "https://fblasco1.github.io/formativas_ges/mini_masc_clasificacion.html"
-LABEL_CAMBIOS = "Regla de cambios Q3 u otros"
 
 
 def _to_int(value: object) -> Optional[int]:
@@ -190,11 +192,25 @@ def fetch_partido_completo(
             "np_local": analisis["NP_LOCAL"],
             "np_visit": analisis["NP_VISITANTE"],
             "especial": analisis["ESPECIAL"],
+            "otro": analisis["OTRO"],
             "flags": analisis["FLAGS"],
             "dif_box": analisis["DIF_BOX"],
         }
     )
     return base
+
+
+def cargar_total_categoria(path: Path) -> int:
+    if not path.exists():
+        return 0
+    with path.open(encoding="utf-8", newline="") as f:
+        return sum(1 for _ in csv.DictReader(f))
+
+
+def _pct(n: int, total: int) -> float:
+    if total <= 0:
+        return 0.0
+    return round(100.0 * n / total, 1)
 
 
 def cargar_filas_csv(path: Path) -> List[Dict[str, str]]:
@@ -222,15 +238,16 @@ def construir_dataset(
     return [x for x in out if x is not None]
 
 
-def calcular_resumen(partidos: List[Dict[str, object]]) -> Dict[str, object]:
+def calcular_resumen(
+    partidos: List[Dict[str, object]], *, total_categoria: int
+) -> Dict[str, object]:
     total = len(partidos)
     con_box = [p for p in partidos if p.get("boxscore_ok")]
     especiales = [p for p in con_box if p.get("especial")]
+    otros = [p for p in con_box if p.get("otro")]
 
     no_cumple_a = sum(1 for p in con_box if p.get("no_cumple_local"))
     no_cumple_b = sum(1 for p in con_box if p.get("no_cumple_visit"))
-    np_a = sum(1 for p in con_box if p.get("np_local"))
-    np_b = sum(1 for p in con_box if p.get("np_visit"))
 
     difs = [p["dif_box"] for p in especiales if p.get("dif_box") is not None]
     avg_dif = round(sum(difs) / len(difs), 1) if difs else 0
@@ -244,14 +261,22 @@ def calcular_resumen(partidos: List[Dict[str, object]]) -> Dict[str, object]:
         if key in por_marcador:
             por_marcador[key] += 1
 
+    base_total = total_categoria or total
+
     return {
+        "total_categoria": base_total,
         "total": total,
+        "pct_marcadores_raros": _pct(total, base_total),
         "con_boxscore": len(con_box),
+        "pct_con_boxscore": _pct(len(con_box), base_total),
         "no_cumple_equipo_a": no_cumple_a,
+        "pct_no_cumple_equipo_a": _pct(no_cumple_a, base_total),
         "no_cumple_equipo_b": no_cumple_b,
-        "np_equipo_a": np_a,
-        "np_equipo_b": np_b,
+        "pct_no_cumple_equipo_b": _pct(no_cumple_b, base_total),
         "especiales": len(especiales),
+        "pct_especiales": _pct(len(especiales), base_total),
+        "otros": len(otros),
+        "pct_otros": _pct(len(otros), base_total),
         "dif_box_promedio_especial": avg_dif,
         "dif_box_maximo_especial": max_dif,
         "por_marcador_fixture": por_marcador,
@@ -267,31 +292,8 @@ def _render_html(
     data_json = json.dumps(partidos, ensure_ascii=False)
     res_json = json.dumps(resumen, ensure_ascii=False)
 
-    casos_rows = []
-    for p in partidos:
-        if not p.get("especial"):
-            continue
-        plb = p.get("pts_box_local")
-        pvb = p.get("pts_box_visit")
-        plf = p.get("pts_fix_local")
-        pvf = p.get("pts_fix_visit")
-        casos_rows.append(
-            "<tr>"
-            f"<td>{html.escape(str(p.get('fecha', '')))}</td>"
-            f"<td>{html.escape(str(p.get('local', '')))}</td>"
-            f"<td>{html.escape(str(p.get('visitante', '')))}</td>"
-            f"<td>{html.escape(str(p.get('flags', '')))}</td>"
-            f"<td>{html.escape(str(p.get('ganador_nombre', '')))}</td>"
-            f"<td>{plf}-{pvf}</td>"
-            f"<td>{plb}-{pvb}</td>"
-            f"<td><strong>{p.get('dif_box', '')}</strong></td>"
-            "</tr>"
-        )
-
-    casos_table = "\n".join(casos_rows) if casos_rows else (
-        f"<tr><td colspan='8'>No hay partidos con {html.escape(LABEL_CAMBIOS)}.</td></tr>"
-    )
     label_cambios_js = json.dumps(LABEL_CAMBIOS, ensure_ascii=False)
+    label_otro_js = json.dumps(LABEL_OTRO, ensure_ascii=False)
 
     return f"""<!DOCTYPE html>
 <html lang="es">
@@ -320,21 +322,17 @@ def _render_html(
       line-height: 1.45;
     }}
     .layout {{
-      display: grid;
-      grid-template-columns: 1fr 420px;
-      gap: 16px;
-      max-width: 1400px;
+      max-width: 1200px;
       margin: 0 auto;
       padding: 20px;
-      align-items: start;
     }}
-    header, section, .panel {{
+    header, section {{
       background: var(--paper);
       border: 1px solid var(--line);
       border-radius: 12px;
       padding: 20px 22px;
+      margin-bottom: 16px;
     }}
-    header {{ grid-column: 1 / -1; }}
     h1 {{ margin: 0 0 6px; font-size: 24px; }}
     h2 {{ margin: 0 0 8px; font-size: 16px; }}
     .subtitle {{ color: var(--muted); font-size: 13px; margin: 0; }}
@@ -389,9 +387,18 @@ def _render_html(
       vertical-align: top;
     }}
     th {{ color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spacing: 0.04em; }}
-    tbody tr {{ cursor: pointer; }}
-    tbody tr:hover {{ background: #f1f5f9; }}
-    tbody tr.selected {{ background: #eff6ff; }}
+    tbody tr:hover {{ background: #f8fafc; }}
+    .btn-detalle {{
+      border: 1px solid #93c5fd;
+      background: #eff6ff;
+      color: #1d4ed8;
+      border-radius: 6px;
+      padding: 4px 10px;
+      font-size: 11px;
+      font-weight: 600;
+      cursor: pointer;
+    }}
+    .btn-detalle:hover {{ background: #dbeafe; }}
     .badge {{
       display: inline-block;
       border-radius: 999px;
@@ -402,7 +409,6 @@ def _render_html(
     .badge.ok {{ background: #ecfdf5; color: var(--ok); }}
     .badge.no {{ background: #fef2f2; color: var(--bad); }}
     .badge.special {{ background: #fff7ed; color: var(--warn); }}
-    .panel {{ max-height: none; overflow: visible; }}
     .scoreline {{
       display: flex;
       justify-content: space-between;
@@ -431,19 +437,41 @@ def _render_html(
       color: #1e3a8a;
       margin-top: 10px;
     }}
-    .share {{
-      margin-top: 14px;
-      padding: 12px 14px;
-      border: 1px solid #bfdbfe;
-      border-radius: 10px;
-      background: #f0f9ff;
-      font-size: 13px;
+    .modal-backdrop {{
+      position: fixed;
+      inset: 0;
+      background: rgba(15, 23, 42, 0.45);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      z-index: 1000;
     }}
-    .share a {{ color: var(--accent); font-weight: 600; word-break: break-all; }}
+    .modal-backdrop.open {{ display: flex; }}
+    .modal {{
+      background: var(--paper);
+      border-radius: 12px;
+      border: 1px solid var(--line);
+      width: min(720px, 100%);
+      max-height: 90vh;
+      overflow: auto;
+      padding: 20px 22px;
+      position: relative;
+    }}
+    .modal-close {{
+      position: absolute;
+      top: 12px;
+      right: 14px;
+      border: none;
+      background: transparent;
+      font-size: 22px;
+      line-height: 1;
+      cursor: pointer;
+      color: var(--muted);
+    }}
+    .modal-close:hover {{ color: var(--text); }}
     @media (max-width: 1100px) {{
-      .layout {{ grid-template-columns: 1fr; }}
       .stats {{ grid-template-columns: repeat(2, 1fr); }}
-      .panel {{ max-height: none; }}
     }}
   </style>
 </head>
@@ -452,55 +480,21 @@ def _render_html(
     <header>
       <h1>MINI MASCULINO · Torneo de Clasificación</h1>
       <p class="subtitle">Competencia GES 2015 · A=local, B=visitante · Actualizado: {html.escape(fecha_actualizacion)}</p>
-      <p class="subtitle" style="margin-top:6px">A:NP / B:NP = equipo con &lt;12 jugadores con ≥10:00 min · {html.escape(LABEL_CAMBIOS)} = boxscore contradice fixture (0-0 / 20-0 / 0-20)</p>
-      <div class="share">
-        <strong>Link para dirigentes FeBAMBA:</strong>
-        <a href="{html.escape(PUBLIC_URL)}">{html.escape(PUBLIC_URL)}</a>
-      </div>
+      <p class="subtitle" style="margin-top:6px">Clasificación por resultado de fixture y jugadores con ≥10:00 min (A=local, B=visitante).</p>
       <div class="stats" id="stats"></div>
     </header>
 
     <section>
       <h2>Partidos con marcador 0-0, 20-0 o 0-20</h2>
-      <p class="caption">Seleccioná un partido para ver el boxscore y sus indicadores (A:NP, B:NP, {html.escape(LABEL_CAMBIOS)}).</p>
+      <p class="caption">Filtrá por indicador o buscá por equipo/fecha. Usá <strong>Ver detalle</strong> para abrir el boxscore.</p>
       <div class="toolbar">
         <input type="search" id="q" placeholder="Buscar equipo o fecha…"/>
-        <select id="filtro">
-          <option value="todos">Todos</option>
-          <option value="box">Con boxscore</option>
-          <option value="no_cumple_a">Equipo A no llega mínimo</option>
-          <option value="no_cumple_b">Equipo B no llega mínimo</option>
-          <option value="especial">{html.escape(LABEL_CAMBIOS)}</option>
-        </select>
-        <button type="button" class="chip active" data-chip="todos">Todos</button>
-        <button type="button" class="chip" data-chip="especial">{html.escape(LABEL_CAMBIOS)}</button>
+        <button type="button" class="chip active" data-flag="todos">Todos</button>
+        <button type="button" class="chip" data-flag="A:NP">A:NP</button>
+        <button type="button" class="chip" data-flag="B:NP">B:NP</button>
+        <button type="button" class="chip" data-flag="cambios">{html.escape(LABEL_CAMBIOS)}</button>
+        <button type="button" class="chip" data-flag="otro">{html.escape(LABEL_OTRO)}</button>
       </div>
-      <div style="overflow:auto; max-height: 62vh;">
-        <table>
-          <thead>
-            <tr>
-              <th>Fecha</th>
-              <th>Local</th>
-              <th>Vis</th>
-              <th>Fix</th>
-              <th>Box</th>
-              <th>Ganador</th>
-              <th>Flags</th>
-            </tr>
-          </thead>
-          <tbody id="lista"></tbody>
-        </table>
-      </div>
-    </section>
-
-    <aside class="panel" id="detalle">
-      <h2>Boxscore</h2>
-      <p class="caption">Elegí un partido de la tabla.</p>
-    </aside>
-
-    <section style="grid-column: 1 / -1;">
-      <h2>Partidos con {html.escape(LABEL_CAMBIOS)}</h2>
-      <p class="caption">Diferencia de puntos según boxscore (|local − visitante|). 20-0+B gana box · 0-20+A gana box · 0-0+ganador en boxscore.</p>
       <div style="overflow:auto;">
         <table>
           <thead>
@@ -508,17 +502,24 @@ def _render_html(
               <th>Fecha</th>
               <th>Local (A)</th>
               <th>Visitante (B)</th>
-              <th>Flags</th>
-              <th>Ganador (box)</th>
               <th>Fixture</th>
               <th>Boxscore</th>
-              <th>Dif. box</th>
+              <th>Ganador</th>
+              <th>Indicadores</th>
+              <th></th>
             </tr>
           </thead>
-          <tbody>{casos_table}</tbody>
+          <tbody id="lista"></tbody>
         </table>
       </div>
     </section>
+  </div>
+
+  <div class="modal-backdrop" id="modal-backdrop" aria-hidden="true">
+    <div class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button type="button" class="modal-close" id="modal-close" aria-label="Cerrar">×</button>
+      <div id="modal-body"></div>
+    </div>
   </div>
 
   <script>
@@ -526,15 +527,16 @@ def _render_html(
     const RESUMEN = {res_json};
     const MIN_REG = {MIN_JUGADORES_REGLA};
     const LABEL_CAMBIOS = {label_cambios_js};
+    const LABEL_OTRO = {label_otro_js};
 
     function fmtScore(a, b) {{
       if (a == null || b == null) return "—";
       return a + "-" + b;
     }}
 
-    function labelFlag(f) {{
-      if (f === "ESPECIAL") return LABEL_CAMBIOS;
-      return f;
+    function fmtStat(n, pct) {{
+      if (pct === undefined || pct === null) return String(n);
+      return `${{n}} (${{pct}}%)`;
     }}
 
     function badgeFlags(p) {{
@@ -542,45 +544,50 @@ def _render_html(
       const flags = p.flags || "";
       if (!flags) return '<span class="badge no">—</span>';
       return flags.split(" | ").map(f => {{
-        const lbl = labelFlag(f);
-        const cls = (f === "ESPECIAL" || lbl === LABEL_CAMBIOS) ? "special" : (f.includes("NP") ? "no" : "ok");
-        return `<span class="badge ${{cls}}">${{lbl}}</span>`;
+        let cls = "ok";
+        if (f === LABEL_CAMBIOS || f === "ESPECIAL") cls = "special";
+        else if (f === LABEL_OTRO || f === "Otro") cls = "special";
+        else if (f.includes("NP")) cls = "no";
+        return `<span class="badge ${{cls}}">${{f}}</span>`;
       }}).join(" ");
     }}
 
     function renderStats() {{
       const el = document.getElementById("stats");
       const items = [
-        ["Partidos con marcador 0-0/20-0/0-20", RESUMEN.total],
-        ["Con boxscore", RESUMEN.con_boxscore],
-        ["EQUIPO A no llega mínimo de jugadores", RESUMEN.no_cumple_equipo_a],
-        ["EQUIPO B no llega mínimo de jugadores", RESUMEN.no_cumple_equipo_b],
-        [LABEL_CAMBIOS, RESUMEN.especiales],
-        ["Diferencia de Puntos en partidos con Regla de cambios Q3 u otros.", RESUMEN.dif_box_promedio_especial],
+        ["Total partidos categoría", RESUMEN.total_categoria, null],
+        ["Partidos con marcador 0-0/20-0/0-20", RESUMEN.total, RESUMEN.pct_marcadores_raros],
+        ["EQUIPO A no llega mínimo de jugadores", RESUMEN.no_cumple_equipo_a, RESUMEN.pct_no_cumple_equipo_a],
+        ["EQUIPO B no llega mínimo de jugadores", RESUMEN.no_cumple_equipo_b, RESUMEN.pct_no_cumple_equipo_b],
+        [LABEL_CAMBIOS, RESUMEN.especiales, RESUMEN.pct_especiales],
+        [LABEL_OTRO, RESUMEN.otros, RESUMEN.pct_otros],
+        ["Diferencia de Puntos en partidos con Regla de cambios Q3 u otros.", RESUMEN.dif_box_promedio_especial, null],
       ];
-      el.innerHTML = items.map(([l, n]) =>
-        `<div class="stat"><div class="n">${{n}}</div><div class="l">${{l}}</div></div>`
+      el.innerHTML = items.map(([l, n, pct]) =>
+        `<div class="stat"><div class="n">${{fmtStat(n, pct)}}</div><div class="l">${{l}}</div></div>`
       ).join("");
     }}
 
-    function matchFiltro(p, q, filtro) {{
+    let filtroFlag = "todos";
+
+    function matchFiltro(p, q) {{
       const hay = (p.local + " " + p.visitante + " " + p.fecha + " " + (p.flags||"")).toLowerCase().includes(q);
       if (!hay) return false;
-      if (filtro === "box") return p.boxscore_ok;
-      if (filtro === "no_cumple_a") return p.no_cumple_local;
-      if (filtro === "no_cumple_b") return p.no_cumple_visit;
-      if (filtro === "especial") return p.especial;
+      if (filtroFlag === "todos") return true;
+      if (filtroFlag === "A:NP") return p.np_local || (p.flags || "").includes("A:NP");
+      if (filtroFlag === "B:NP") return p.np_visit || (p.flags || "").includes("B:NP");
+      if (filtroFlag === "cambios") return p.especial || (p.flags || "").includes(LABEL_CAMBIOS);
+      if (filtroFlag === "otro") return p.otro || (p.flags || "").includes(LABEL_OTRO);
       return true;
     }}
 
     function renderLista() {{
       const q = document.getElementById("q").value.trim().toLowerCase();
-      const filtro = document.getElementById("filtro").value;
       const tbody = document.getElementById("lista");
-      const rows = PARTIDOS.filter(p => matchFiltro(p, q, filtro));
+      const rows = PARTIDOS.filter(p => matchFiltro(p, q));
       tbody.innerHTML = rows.map(p => {{
         const gan = p.ganador_nombre || "—";
-        return `<tr data-id="${{p.id}}">
+        return `<tr>
           <td>${{p.fecha}}</td>
           <td>${{p.local}}</td>
           <td>${{p.visitante}}</td>
@@ -588,70 +595,78 @@ def _render_html(
           <td>${{fmtScore(p.pts_box_local, p.pts_box_visit)}}</td>
           <td>${{gan}}</td>
           <td>${{badgeFlags(p)}}</td>
+          <td><button type="button" class="btn-detalle" data-id="${{p.id}}">Ver detalle</button></td>
         </tr>`;
       }}).join("");
-      tbody.querySelectorAll("tr").forEach(tr => {{
-        tr.addEventListener("click", () => {{
-          tbody.querySelectorAll("tr").forEach(r => r.classList.remove("selected"));
-          tr.classList.add("selected");
-          renderDetalle(tr.dataset.id);
+      tbody.querySelectorAll(".btn-detalle").forEach(btn => {{
+        btn.addEventListener("click", (e) => {{
+          e.stopPropagation();
+          abrirModal(btn.dataset.id);
         }});
       }});
     }}
 
-    function renderDetalle(id) {{
+    function cerrarModal() {{
+      const backdrop = document.getElementById("modal-backdrop");
+      backdrop.classList.remove("open");
+      backdrop.setAttribute("aria-hidden", "true");
+      document.getElementById("modal-body").innerHTML = "";
+    }}
+
+    function abrirModal(id) {{
       const p = PARTIDOS.find(x => x.id === id);
-      const el = document.getElementById("detalle");
+      const body = document.getElementById("modal-body");
+      const backdrop = document.getElementById("modal-backdrop");
       if (!p) return;
       if (!p.boxscore_ok) {{
-        el.innerHTML = `<h2>${{p.local}} vs ${{p.visitante}}</h2><p class="caption">${{p.fecha}}</p><div class="note">${{p.error || "Sin boxscore"}}</div>`;
-        return;
-      }}
-      const eqHtml = (p.equipos || []).map(eq => {{
-        const rows = (eq.jugadores || []).map(j => {{
-          const cls = j.cumple ? "cumple" : "nocumple";
-          return `<tr><td>${{j.nro}}</td><td>${{j.nombre}}</td><td class="${{cls}}">${{j.min}}</td><td>${{j.pts}}</td></tr>`;
+        body.innerHTML = `<h2 id="modal-title">${{p.local}} vs ${{p.visitante}}</h2><p class="caption">${{p.fecha}}</p><div class="note">${{p.error || "Sin boxscore"}}</div>`;
+      }} else {{
+        const eqHtml = (p.equipos || []).map(eq => {{
+          const rows = (eq.jugadores || []).map(j => {{
+            const cls = j.cumple ? "cumple" : "nocumple";
+            return `<tr><td>${{j.nro}}</td><td>${{j.nombre}}</td><td class="${{cls}}">${{j.min}}</td><td>${{j.pts}}</td></tr>`;
+          }}).join("");
+          const ok = eq.jug_regla >= MIN_REG;
+          return `<h3>${{eq.nombre}} <span class="badge ${{ok ? "ok" : "no"}}">${{eq.jug_regla}}/${{MIN_REG}} ≥10:00</span></h3>
+            <table class="box-table"><thead><tr><th>#</th><th>Jugador</th><th>Min</th><th>Pts</th></tr></thead><tbody>${{rows}}</tbody></table>`;
         }}).join("");
-        const ok = eq.jug_regla >= MIN_REG;
-        return `<h3>${{eq.nombre}} <span class="badge ${{ok ? "ok" : "no"}}">${{eq.jug_regla}}/${{MIN_REG}} ≥10:00</span></h3>
-          <table class="box-table"><thead><tr><th>#</th><th>Jugador</th><th>Min</th><th>Pts</th></tr></thead><tbody>${{rows}}</tbody></table>`;
-      }}).join("");
-
-      const flagsTxt = (p.flags || "").split(" | ").map(labelFlag).join(" | ");
-      const nota = p.flags
-        ? `<div class="note"><strong>Indicadores:</strong> ${{flagsTxt}}${{p.especial ? ` · Dif. box: <strong>${{p.dif_box}}</strong> pts` : ""}}</div>`
-        : "";
-
-      el.innerHTML = `
-        <h2>${{p.local}} vs ${{p.visitante}}</h2>
-        <p class="caption">${{p.fecha}} · A (local) · B (visitante) · Ganador box: <strong>${{p.ganador_nombre || "Empate"}}</strong></p>
-        <div class="scoreline">
-          <div class="scorebox fixture"><div>Fixture</div><div class="pts">${{fmtScore(p.pts_fix_local, p.pts_fix_visit)}}</div></div>
-          <div class="scorebox box"><div>Boxscore</div><div class="pts">${{fmtScore(p.pts_box_local, p.pts_box_visit)}}</div></div>
-        </div>
-        ${{nota}}
-        ${{eqHtml}}`;
+        const flagsTxt = p.flags || "";
+        const nota = flagsTxt
+          ? `<div class="note"><strong>Indicadores:</strong> ${{flagsTxt}}${{p.especial && p.dif_box != null ? ` · Dif. box: <strong>${{p.dif_box}}</strong> pts` : ""}}</div>`
+          : "";
+        body.innerHTML = `
+          <h2 id="modal-title">${{p.local}} vs ${{p.visitante}}</h2>
+          <p class="caption">${{p.fecha}} · A (local) · B (visitante) · Ganador box: <strong>${{p.ganador_nombre || "Empate"}}</strong></p>
+          <div class="scoreline">
+            <div class="scorebox fixture"><div>Fixture</div><div class="pts">${{fmtScore(p.pts_fix_local, p.pts_fix_visit)}}</div></div>
+            <div class="scorebox box"><div>Boxscore</div><div class="pts">${{fmtScore(p.pts_box_local, p.pts_box_visit)}}</div></div>
+          </div>
+          ${{nota}}
+          ${{eqHtml}}`;
+      }}
+      backdrop.classList.add("open");
+      backdrop.setAttribute("aria-hidden", "false");
     }}
 
     document.getElementById("q").addEventListener("input", renderLista);
-    document.getElementById("filtro").addEventListener("change", renderLista);
-    document.querySelectorAll("[data-chip]").forEach(btn => {{
+    document.querySelectorAll("[data-flag]").forEach(btn => {{
       btn.addEventListener("click", () => {{
-        document.querySelectorAll("[data-chip]").forEach(b => b.classList.remove("active"));
+        document.querySelectorAll("[data-flag]").forEach(b => b.classList.remove("active"));
         btn.classList.add("active");
-        document.getElementById("filtro").value = btn.dataset.chip === "especial" ? "especial" : "todos";
+        filtroFlag = btn.dataset.flag;
         renderLista();
       }});
+    }});
+    document.getElementById("modal-close").addEventListener("click", cerrarModal);
+    document.getElementById("modal-backdrop").addEventListener("click", (e) => {{
+      if (e.target.id === "modal-backdrop") cerrarModal();
+    }});
+    document.addEventListener("keydown", (e) => {{
+      if (e.key === "Escape") cerrarModal();
     }});
 
     renderStats();
     renderLista();
-    if (PARTIDOS.length) {{
-      const first = PARTIDOS.find(p => p.boxscore_ok) || PARTIDOS[0];
-      renderDetalle(first.id);
-      const tr = document.querySelector(`tr[data-id="${{first.id}}"]`);
-      if (tr) tr.classList.add("selected");
-    }}
   </script>
 </body>
 </html>"""
@@ -667,6 +682,11 @@ def publicar_docs(out_html: Path) -> Path:
 def main() -> int:
     p = argparse.ArgumentParser(description="Informe HTML marcadores raros MINI MASC")
     p.add_argument("--csv", default=str(CSV_RAROS))
+    p.add_argument(
+        "--csv-todos",
+        default=str(CSV_TODOS),
+        help="CSV con todos los partidos de la categoría (para total y %).",
+    )
     p.add_argument("--out-html", default=str(OUT_HTML))
     p.add_argument("--out-json", default=str(OUT_JSON))
     p.add_argument("--workers", type=int, default=8)
@@ -680,6 +700,7 @@ def main() -> int:
     args = p.parse_args()
 
     fecha_actualizacion = date.today().strftime("%d/%m/%Y")
+    total_categoria = cargar_total_categoria(Path(args.csv_todos))
 
     if args.desde_json:
         partidos = json.loads(Path(args.desde_json).read_text(encoding="utf-8"))
@@ -692,7 +713,7 @@ def main() -> int:
             print(f"Descargando {len(rows)} boxscores…", file=sys.stderr)
         partidos = construir_dataset(rows, workers=args.workers, progress=args.progress)
 
-    resumen = calcular_resumen(partidos)
+    resumen = calcular_resumen(partidos, total_categoria=total_categoria)
     resumen["fecha_actualizacion"] = fecha_actualizacion
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     Path(args.out_json).write_text(
