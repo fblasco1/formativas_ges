@@ -74,6 +74,9 @@ def fusionar_pbp(
     resumen contado sobre el conjunto de partidos mostrado.
     """
     con_pbp = con_subs_q3 = con_consec = 0
+    # Intersección "se aplicó regla": especial=True AND evidencia en PBP.
+    regla_q3_aplicada = consec_aplicada = 0
+    difs_q3_aplicada: List[float] = []
     for p in partidos:
         info = pbp_por_id.get(str(p.get("id") or ""))
         pbp = {
@@ -97,10 +100,25 @@ def fusionar_pbp(
             con_subs_q3 += 1
         if pbp["hubo_consecutivos"]:
             con_consec += 1
+        if p.get("especial"):
+            if pbp["hubo_subs_q3"]:
+                regla_q3_aplicada += 1
+                if p.get("dif_box") is not None:
+                    difs_q3_aplicada.append(p["dif_box"])
+            if pbp["hubo_consecutivos"]:
+                consec_aplicada += 1
+    avg_dif_q3 = (
+        round(sum(difs_q3_aplicada) / len(difs_q3_aplicada), 1)
+        if difs_q3_aplicada
+        else 0
+    )
     return {
         "con_pbp": con_pbp,
         "con_subs_q3": con_subs_q3,
         "con_consecutivos": con_consec,
+        "regla_q3_aplicada": regla_q3_aplicada,
+        "consec_aplicada": consec_aplicada,
+        "dif_box_promedio_q3_aplicada": avg_dif_q3,
     }
 
 
@@ -635,23 +653,21 @@ def _render_html(
 
     function renderStats() {{
       const el = document.getElementById("stats");
+      const base = RESUMEN.total_categoria || 0;
+      const pct = (n) => base > 0 ? Math.round(1000 * n / base) / 10 : 0;
+      const pbp = PBP_RESUMEN || {{}};
       const items = [
-        ["Total partidos categoría", RESUMEN.total_categoria, null],
-        ["Partidos con marcador 0-0/20-0/0-20", RESUMEN.total, RESUMEN.pct_marcadores_raros],
-        ["EQUIPO A no llega mínimo de jugadores", RESUMEN.no_cumple_equipo_a, RESUMEN.pct_no_cumple_equipo_a],
-        ["EQUIPO B no llega mínimo de jugadores", RESUMEN.no_cumple_equipo_b, RESUMEN.pct_no_cumple_equipo_b],
-        [LABEL_CAMBIOS, RESUMEN.especiales, RESUMEN.pct_especiales],
-        [LABEL_OTRO, RESUMEN.otros, RESUMEN.pct_otros],
-        ["Diferencia de Puntos en partidos con Regla de cambios Q3 u otros.", RESUMEN.dif_box_promedio_especial, null],
+        ["Total de partidos", RESUMEN.total_categoria, null],
+        ["Partidos con marcador 0-0 / 20-0 / 0-20", RESUMEN.total, pct(RESUMEN.total)],
+        ["Equipo A no completa plantilla", RESUMEN.no_cumple_equipo_a, pct(RESUMEN.no_cumple_equipo_a)],
+        ["Equipo B no completa plantilla", RESUMEN.no_cumple_equipo_b, pct(RESUMEN.no_cumple_equipo_b)],
+        ["Partidos con cambios durante Q3 (se aplicó regla)", pbp.regla_q3_aplicada || 0, pct(pbp.regla_q3_aplicada || 0)],
+        ["Partidos con jugadores en cuartos consecutivos (se aplicó regla)", pbp.consec_aplicada || 0, pct(pbp.consec_aplicada || 0)],
+        ["Diferencia de puntos promedio (partidos con cambios en Q3)", pbp.dif_box_promedio_q3_aplicada || 0, null],
+        ["Otras actas con 20-0 / 0-20 / 0-0", RESUMEN.otros, pct(RESUMEN.otros)],
       ];
-      if (PBP_RESUMEN && PBP_RESUMEN.con_pbp) {{
-        const base = PBP_RESUMEN.con_pbp;
-        const pctPbp = (n) => base > 0 ? Math.round(1000 * n / base) / 10 : 0;
-        items.push(["Marcadores raros con cambios DURANTE el 3er cuarto", PBP_RESUMEN.con_subs_q3, pctPbp(PBP_RESUMEN.con_subs_q3)]);
-        items.push(["Marcadores raros con jugadores en cuartos consecutivos", PBP_RESUMEN.con_consecutivos, pctPbp(PBP_RESUMEN.con_consecutivos)]);
-      }}
-      el.innerHTML = items.map(([l, n, pct]) =>
-        `<div class="stat"><div class="n">${{fmtStat(n, pct)}}</div><div class="l">${{l}}</div></div>`
+      el.innerHTML = items.map(([l, n, p]) =>
+        `<div class="stat"><div class="n">${{fmtStat(n, p)}}</div><div class="l">${{l}}</div></div>`
       ).join("");
     }}
 
