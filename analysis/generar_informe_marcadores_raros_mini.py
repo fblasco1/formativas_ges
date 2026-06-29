@@ -41,8 +41,32 @@ CSV_TODOS = ROOT / "outputs" / "mini_masc_clasificacion_partidos.csv"
 OUT_DIR = ROOT / "outputs" / "mini_masc"
 OUT_HTML = OUT_DIR / "informe_marcadores_raros.html"
 OUT_JSON = OUT_DIR / "datos_marcadores_raros.json"
+PBP_JSON = OUT_DIR / "pbp_analisis.json"
 DOCS_HTML = ROOT / "docs" / "mini_masc_clasificacion.html"
 PUBLIC_URL = "https://fblasco1.github.io/formativas_ges/mini_masc_clasificacion.html"
+
+
+def cargar_pbp(path: Path) -> Dict[str, object]:
+    """Carga el análisis de play-by-play y devuelve resumen + lista de partidos."""
+    if not path.exists():
+        return {"resumen": {}, "partidos": []}
+    data = json.loads(path.read_text(encoding="utf-8"))
+    resumen = data.get("resumen") or {}
+    por_partido = data.get("partidos") or {}
+    lista: List[Dict[str, object]] = []
+    for token, info in por_partido.items():
+        if not info.get("tiene_pbp"):
+            continue
+        lista.append({"id": token, **info})
+    # Orden: primero los que tienen cambios en Q3, luego por fecha/equipos.
+    lista.sort(
+        key=lambda p: (
+            0 if p.get("hubo_subs_q3") else 1,
+            str(p.get("fecha") or ""),
+            str(p.get("local") or ""),
+        )
+    )
+    return {"resumen": resumen, "partidos": lista}
 
 
 def _to_int(value: object) -> Optional[int]:
@@ -288,9 +312,13 @@ def _render_html(
     resumen: Dict[str, object],
     *,
     fecha_actualizacion: str,
+    pbp_partidos: Optional[List[Dict[str, object]]] = None,
+    pbp_resumen: Optional[Dict[str, object]] = None,
 ) -> str:
     data_json = json.dumps(partidos, ensure_ascii=False)
     res_json = json.dumps(resumen, ensure_ascii=False)
+    pbp_json = json.dumps(pbp_partidos or [], ensure_ascii=False)
+    pbp_res_json = json.dumps(pbp_resumen or {}, ensure_ascii=False)
 
     label_cambios_js = json.dumps(LABEL_CAMBIOS, ensure_ascii=False)
     label_otro_js = json.dumps(LABEL_OTRO, ensure_ascii=False)
@@ -513,6 +541,37 @@ def _render_html(
         </table>
       </div>
     </section>
+
+    <section id="seccion-pbp">
+      <h2>Play-by-play · cambios en el 3er cuarto y cuartos consecutivos</h2>
+      <p class="caption">
+        Análisis del relato en vivo de los partidos jugados de la categoría.
+        <strong>Cambios en Q3</strong>: sustituciones con el reloj corriendo (excluye la formación de arranque del cuarto a 10:00).
+        <strong>Cuartos consecutivos</strong>: jugadores que estuvieron en cancha en dos cuartos seguidos.
+      </p>
+      <div class="toolbar">
+        <input type="search" id="qpbp" placeholder="Buscar equipo o fecha…"/>
+        <button type="button" class="chip active" data-pbpflag="todos">Todos</button>
+        <button type="button" class="chip" data-pbpflag="subs_q3">Con cambios en Q3</button>
+        <button type="button" class="chip" data-pbpflag="consecutivos">Con cuartos consecutivos</button>
+      </div>
+      <div style="overflow:auto;">
+        <table>
+          <thead>
+            <tr>
+              <th>Fecha</th>
+              <th>Local (A)</th>
+              <th>Visitante (B)</th>
+              <th>Resultado</th>
+              <th>Cambios en Q3</th>
+              <th>Cuartos consecutivos</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody id="lista-pbp"></tbody>
+        </table>
+      </div>
+    </section>
   </div>
 
   <div class="modal-backdrop" id="modal-backdrop" aria-hidden="true">
@@ -525,6 +584,8 @@ def _render_html(
   <script>
     const PARTIDOS = {data_json};
     const RESUMEN = {res_json};
+    const PBP = {pbp_json};
+    const PBP_RESUMEN = {pbp_res_json};
     const MIN_REG = {MIN_JUGADORES_REGLA};
     const LABEL_CAMBIOS = {label_cambios_js};
     const LABEL_OTRO = {label_otro_js};
@@ -563,6 +624,13 @@ def _render_html(
         [LABEL_OTRO, RESUMEN.otros, RESUMEN.pct_otros],
         ["Diferencia de Puntos en partidos con Regla de cambios Q3 u otros.", RESUMEN.dif_box_promedio_especial, null],
       ];
+      if (PBP_RESUMEN && PBP_RESUMEN.con_pbp) {{
+        const base = PBP_RESUMEN.con_pbp;
+        const pctPbp = (n) => base > 0 ? Math.round(1000 * n / base) / 10 : 0;
+        items.push(["Partidos jugados con play-by-play", base, null]);
+        items.push(["Con cambios DURANTE el 3er cuarto", PBP_RESUMEN.con_subs_q3, pctPbp(PBP_RESUMEN.con_subs_q3)]);
+        items.push(["Con jugadores en cuartos consecutivos", PBP_RESUMEN.con_consecutivos, pctPbp(PBP_RESUMEN.con_consecutivos)]);
+      }}
       el.innerHTML = items.map(([l, n, pct]) =>
         `<div class="stat"><div class="n">${{fmtStat(n, pct)}}</div><div class="l">${{l}}</div></div>`
       ).join("");
@@ -648,7 +716,105 @@ def _render_html(
       backdrop.setAttribute("aria-hidden", "false");
     }}
 
+    // ---- Play-by-play: cambios en Q3 y cuartos consecutivos ----
+    let filtroPbp = "todos";
+
+    function nombreEquipo(p, lado) {{
+      return lado === "local" ? p.local : (lado === "visitante" ? p.visitante : "?");
+    }}
+
+    function matchFiltroPbp(p, q) {{
+      const hay = (p.local + " " + p.visitante + " " + (p.fecha||"")).toLowerCase().includes(q);
+      if (!hay) return false;
+      if (filtroPbp === "subs_q3") return p.hubo_subs_q3;
+      if (filtroPbp === "consecutivos") return p.hubo_consecutivos;
+      return true;
+    }}
+
+    function badgeSubsQ3(p) {{
+      if (!p.hubo_subs_q3) return '<span class="badge ok">No</span>';
+      const n = (p.subs_q3_entra || 0);
+      return `<span class="badge special">Sí · ${{n}} ingreso(s)</span>`;
+    }}
+
+    function badgeConsec(p) {{
+      if (!p.hubo_consecutivos) return '<span class="badge ok">No</span>';
+      return `<span class="badge no">${{p.n_consecutivos}} jugador(es)</span>`;
+    }}
+
+    function renderListaPbp() {{
+      const q = document.getElementById("qpbp").value.trim().toLowerCase();
+      const tbody = document.getElementById("lista-pbp");
+      const rows = PBP.filter(p => matchFiltroPbp(p, q));
+      tbody.innerHTML = rows.map(p => `<tr>
+          <td>${{p.fecha||""}}</td>
+          <td>${{p.local||""}}</td>
+          <td>${{p.visitante||""}}</td>
+          <td>${{fmtScore(p.pts_local, p.pts_visitante)}}</td>
+          <td>${{badgeSubsQ3(p)}}</td>
+          <td>${{badgeConsec(p)}}</td>
+          <td><button type="button" class="btn-detalle" data-pbpid="${{p.id}}">Ver detalle</button></td>
+        </tr>`).join("");
+      tbody.querySelectorAll(".btn-detalle").forEach(btn => {{
+        btn.addEventListener("click", (e) => {{
+          e.stopPropagation();
+          abrirModalPbp(btn.dataset.pbpid);
+        }});
+      }});
+    }}
+
+    function abrirModalPbp(id) {{
+      const p = PBP.find(x => x.id === id);
+      const body = document.getElementById("modal-body");
+      const backdrop = document.getElementById("modal-backdrop");
+      if (!p) return;
+
+      let subsHtml;
+      if (!p.hubo_subs_q3) {{
+        subsHtml = '<p class="caption">Sin sustituciones durante el 3er cuarto (solo formación de arranque).</p>';
+      }} else {{
+        const items = (p.subs_q3 || []).map(s => {{
+          const eq = nombreEquipo(p, s.equipo);
+          const cls = s.accion === "ENTRA" ? "ok" : "no";
+          return `<li><span class="badge ${{cls}}">${{s.accion}}</span> #${{s.dorsal||""}} ${{s.nombre||""}} <span class="caption">(${{eq}} · ${{s.clock}})</span></li>`;
+        }}).join("");
+        subsHtml = `<ul style="margin:6px 0 0; padding-left:18px;">${{items}}</ul>`;
+      }}
+
+      let consecHtml;
+      if (!p.hubo_consecutivos) {{
+        consecHtml = '<p class="caption">Ningún jugador estuvo en cancha en cuartos consecutivos.</p>';
+      }} else {{
+        const items = (p.jugadores_consecutivos || []).map(c => {{
+          const eq = nombreEquipo(p, c.equipo);
+          const pares = (c.pares || []).map(par => par.join("-")).join(", ");
+          const cuartos = (c.cuartos || []).join(", ");
+          return `<li>#${{c.dorsal||""}} ${{c.nombre||""}} <span class="caption">(${{eq}})</span> — cuartos jugados: ${{cuartos}} · consecutivos: <strong>${{pares}}</strong></li>`;
+        }}).join("");
+        consecHtml = `<ul style="margin:6px 0 0; padding-left:18px;">${{items}}</ul>`;
+      }}
+
+      body.innerHTML = `
+        <h2 id="modal-title">${{p.local}} vs ${{p.visitante}}</h2>
+        <p class="caption">${{p.fecha||""}} · A (local) · B (visitante) · Resultado: <strong>${{fmtScore(p.pts_local, p.pts_visitante)}}</strong></p>
+        <h3>Cambios durante el 3er cuarto <span class="badge ${{p.hubo_subs_q3 ? "special" : "ok"}}">${{p.subs_q3_entra||0}} ingreso(s) · ${{p.subs_q3_sale||0}} salida(s)</span></h3>
+        ${{subsHtml}}
+        <h3 style="margin-top:16px;">Jugadores en cuartos consecutivos <span class="badge ${{p.hubo_consecutivos ? "no" : "ok"}}">${{p.n_consecutivos||0}}</span></h3>
+        ${{consecHtml}}`;
+      backdrop.classList.add("open");
+      backdrop.setAttribute("aria-hidden", "false");
+    }}
+
     document.getElementById("q").addEventListener("input", renderLista);
+    document.getElementById("qpbp").addEventListener("input", renderListaPbp);
+    document.querySelectorAll("[data-pbpflag]").forEach(btn => {{
+      btn.addEventListener("click", () => {{
+        document.querySelectorAll("[data-pbpflag]").forEach(b => b.classList.remove("active"));
+        btn.classList.add("active");
+        filtroPbp = btn.dataset.pbpflag;
+        renderListaPbp();
+      }});
+    }});
     document.querySelectorAll("[data-flag]").forEach(btn => {{
       btn.addEventListener("click", () => {{
         document.querySelectorAll("[data-flag]").forEach(b => b.classList.remove("active"));
@@ -667,6 +833,7 @@ def _render_html(
 
     renderStats();
     renderLista();
+    renderListaPbp();
   </script>
 </body>
 </html>"""
@@ -689,6 +856,11 @@ def main() -> int:
     )
     p.add_argument("--out-html", default=str(OUT_HTML))
     p.add_argument("--out-json", default=str(OUT_JSON))
+    p.add_argument(
+        "--pbp-json",
+        default=str(PBP_JSON),
+        help="Análisis de play-by-play (analysis/analizar_pbp_mini.py).",
+    )
     p.add_argument("--workers", type=int, default=8)
     p.add_argument("--desde-json", default="", help="Saltear descarga y usar JSON cache")
     p.add_argument(
@@ -715,13 +887,29 @@ def main() -> int:
 
     resumen = calcular_resumen(partidos, total_categoria=total_categoria)
     resumen["fecha_actualizacion"] = fecha_actualizacion
+
+    pbp = cargar_pbp(Path(args.pbp_json))
+    if args.progress:
+        pr = pbp.get("resumen") or {}
+        print(
+            f"PBP: {len(pbp.get('partidos') or [])} partidos con relato | "
+            f"subs Q3={pr.get('con_subs_q3')} | consecutivos={pr.get('con_consecutivos')}",
+            file=sys.stderr,
+        )
+
     OUT_DIR.mkdir(parents=True, exist_ok=True)
     Path(args.out_json).write_text(
         json.dumps(partidos, ensure_ascii=False, indent=2), encoding="utf-8"
     )
     out_path = Path(args.out_html)
     out_path.write_text(
-        _render_html(partidos, resumen, fecha_actualizacion=fecha_actualizacion),
+        _render_html(
+            partidos,
+            resumen,
+            fecha_actualizacion=fecha_actualizacion,
+            pbp_partidos=pbp.get("partidos"),
+            pbp_resumen=pbp.get("resumen"),
+        ),
         encoding="utf-8",
     )
 
