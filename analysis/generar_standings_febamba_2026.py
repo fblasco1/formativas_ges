@@ -658,12 +658,14 @@ def construir_payload(
                     "pos": pos,
                     "equipo": f.equipo,
                     "pj": f.pj,
+                    "puntos": f.puntos,
                     "ganados": f.ganados,
                     "perdidos": f.perdidos,
-                    "sin_resultado": f.sin_resultado,
+                    "np": f.np,
                     "presentaciones": f.presentaciones,
-                    "no_presento": f.no_presento,
-                    "sin_acta": f.sin_acta,
+                    "box_ganados": f.box_ganados,
+                    "box_perdidos": f.box_perdidos,
+                    "box_sin_dato": f.box_sin_dato,
                 }
                 for pos, f in enumerate(zonas[zona], start=1)
             ]
@@ -965,10 +967,12 @@ def _render_html(payload: Dict[str, object]) -> str:
       if (tipo === "resultado_mini") return `<tr>
         <th class="pos">#</th><th class="eq">Equipo</th>
         <th>PJ</th>
-        <th title="Ganados según el acta (puntos reales)">Ganados</th>
-        <th title="Perdidos según el acta (puntos reales)">Perdidos</th>
-        <th class="hide-sm" title="Partidos sin acta o sin resultado">S/res.</th>
-        <th class="sep" title="Puntos de presentación: 1 por partido con ≥${{MIN_REG}} jug. ≥10:00">Presentación</th></tr>`;
+        <th class="sep" title="Puntos: 2 ganado · 1 perdido o regla Q3 · 0 NP">Pts</th>
+        <th title="Ganados (2 pts)">G</th>
+        <th title="Perdidos / regla de cambios Q3 (1 pt)">P</th>
+        <th title="No presentó (0 pts)">NP</th>
+        <th class="hide-sm" title="Presentaciones: plantilla completa (≥${{MIN_REG}} jug. ≥10:00)">Pres.</th>
+        <th class="sep hide-sm" title="Resultado informativo según el acta (ganados-perdidos)">Box</th></tr>`;
       return `<tr>
         <th class="pos">#</th><th class="eq">Equipo</th>
         <th>PJ</th>
@@ -991,9 +995,11 @@ def _render_html(payload: Dict[str, object]) -> str:
         <td class="sep tot">${{f.puntos}}</td></tr>`;
       if (tipo === "resultado_mini") return `<tr>
         <td class="pos">${{f.pos}}</td><td class="eq">${{f.equipo}}</td>
-        <td>${{f.pj}}</td><td>${{f.ganados}}</td><td>${{f.perdidos}}</td>
-        <td class="hide-sm">${{f.sin_resultado}}</td>
-        <td class="sep tot">${{f.presentaciones}}</td></tr>`;
+        <td>${{f.pj}}</td>
+        <td class="sep tot">${{f.puntos}}</td>
+        <td>${{f.ganados}}</td><td>${{f.perdidos}}</td><td>${{f.np}}</td>
+        <td class="hide-sm">${{f.presentaciones}}</td>
+        <td class="sep hide-sm">${{f.box_ganados}}-${{f.box_perdidos}}</td></tr>`;
       return `<tr>
         <td class="pos">${{f.pos}}</td><td class="eq">${{f.equipo}}</td>
         <td>${{f.pj}}</td><td>${{f.presentaciones}}</td>
@@ -1172,7 +1178,7 @@ def _render_html(payload: Dict[str, object]) -> str:
       const v = vistaInfo(vistaActual);
       const el = document.getElementById("nota-vista");
       if (v.tipo === "resultado_mini") {{
-        el.innerHTML = `<strong>MINI (U11).</strong> No suma a la tabla general. El resultado (<em>Ganados/Perdidos</em>) sale de los puntos reales del acta, no del marcador de fixture (que en MINI es un código de presentación). <em>Presentación</em> = puntos por cumplir la regla de plantilla (1 por partido con ≥ ${{MIN_REG}} jugadores ≥ 10:00). La tabla se ordena por resultados (ganados ↓, perdidos ↑, presentación ↓).`;
+        el.innerHTML = `<strong>MINI (U11).</strong> Puntos por el marcador oficial del fixture (penalizador): <em>ganar = 2</em>, <em>perder = 1</em>. En marcadores 20-0 / 0-20 / 0-0 el equipo penalizado suma <em>1 pt si presentó plantilla</em> (regla de cambios Q3) o <em>0 si no se presentó</em> (NP). <em>Pres.</em> = puntos de presentación (plantilla completa: ≥ ${{MIN_REG}} jugadores con ≥ 10:00) que alimentan la general. <em>Box</em> es el resultado real del acta, solo informativo. La tabla se ordena por puntos (Pts ↓, Pres. ↓, G ↓).`;
       }} else if (v.tipo === "presentacion") {{
         el.innerHTML = `<strong>Puntos de presentación.</strong> Cada equipo suma 1 punto por partido salvo que no llegue a ${{MIN_REG}} jugadores con ≥ ${{minLabel(v.id)}} de juego (validado con el acta en marcadores 0-0 / 20-0 / 0-20). <em>S/dato</em> = acta no disponible.${{v.id === "U9" ? " En PREMINI el cuarto dura 8 minutos." : ""}}`;
       }} else if (v.tipo === "categoria") {{

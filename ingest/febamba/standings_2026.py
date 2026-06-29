@@ -682,57 +682,108 @@ def construir_tablas_presentacion(
 
 
 # --------------------------------------------------------------------------- #
-# Tabla de RESULTADOS de MINI (U11): ganados/perdidos por el acta (boxscore)
-# más una columna de presentación (puntos por cumplir la regla de plantilla).
+# Tabla de MINI (U11): puntos por MARCADOR DE FIXTURE (penalizador) + presentación
 # --------------------------------------------------------------------------- #
+# En MINI el marcador del fixture es el resultado OFICIAL (penalizador):
+#   * 20-0  -> penalizado el VISITANTE (local gana).
+#   * 0-20  -> penalizado el LOCAL (visitante gana).
+#   * 0-0   -> penalizados AMBOS.
+#   * cualquier otro marcador (ej. 48-46) -> partido normal, sin penalización.
+# Que el equipo penalizado haya PRESENTADO o no (regla de plantilla MINI:
+# >= 12 jugadores con >= 10:00, evaluada sobre el acta) distingue el motivo:
+#   * penalizado y NO presentó -> NP -> 0 puntos.
+#   * penalizado y SÍ presentó -> regla de cambios Q3 u otra -> 1 punto.
+# El ganado/perdido del boxscore NO asigna puntos: queda solo como columna
+# informativa "Box".
+
+
 @dataclass
 class FilaResultadoMini:
     """
     Fila de la tabla de MINI/U11.
 
-    A diferencia de la categoría general, en MINI el marcador de fixture
-    (20-0 / 0-20 / 0-0) es un *código de presentación*, no el resultado: el
-    resultado real está en el acta (boxscore). Por eso:
-      * ``ganados``/``perdidos`` salen de los puntos reales del boxscore;
-      * ``presentaciones`` es la suma de puntos de presentación (1 por partido en
-        el que el equipo llegó a la regla de plantilla MINI: >= 12 jugadores con
-        >= 10:00 de juego, contados desde el acta).
+    Los puntos salen del *marcador de fixture* (penalizador) más la
+    presentación (regla de plantilla), NO del ganador del boxscore:
+      * ``puntos`` = 2 por partido ganado, 1 por perdido / regla Q3, 0 por NP.
+      * ``ganados`` = partidos con 2 pts; ``perdidos`` = con 1 pt; ``np`` = con 0.
+      * ``presentaciones`` = puntos de presentación (1 por partido en que el
+        equipo presentó plantilla completa); alimenta la tabla general.
+      * ``box_ganados``/``box_perdidos`` = resultado real del acta, SOLO
+        informativo (no influye en los puntos).
     """
 
     equipo: str
     clave: str
     nombres_ges: set = field(default_factory=set)
     pj: int = 0
-    ganados: int = 0
-    perdidos: int = 0
-    sin_resultado: int = 0  # partidos sin dato de resultado (acta faltante o empate)
-    presentaciones: int = 0  # puntos de presentación (1 por partido presentado)
-    no_presento: int = 0  # partidos con acta donde NO llegó al mínimo de plantilla
-    sin_acta: int = 0  # partidos sin acta (no se puede evaluar presentación)
+    puntos: int = 0
+    ganados: int = 0  # partidos con 2 pts (ganó por marcador de fixture)
+    perdidos: int = 0  # partidos con 1 pt (perdió o regla de cambios Q3)
+    np: int = 0  # partidos con 0 pts (penalizado y no presentó)
+    presentaciones: int = 0  # puntos de presentación (plantilla completa)
+    # Informativo: resultado según el acta (puntos reales del boxscore).
+    box_ganados: int = 0
+    box_perdidos: int = 0
+    box_sin_dato: int = 0
 
 
-def _presento_en_acta(
-    jugadores: List[Dict[str, object]], min_segundos: int
-) -> bool:
-    """True si el equipo llega a la regla de plantilla MINI en el acta dada."""
-    return cuenta_jugadores_regla(jugadores, min_segundos) >= MIN_JUGADORES_REGLA
+def puntos_partido_mini(
+    pl: Optional[int],
+    pv: Optional[int],
+    presenta_local: Optional[bool],
+    presenta_visit: Optional[bool],
+) -> Optional[Tuple[int, int, bool, bool]]:
+    """
+    Puntos de MINI por equipo a partir del marcador de fixture + presentación.
+
+    Devuelve ``(pts_local, pts_visit, pres_local, pres_visit)`` donde ``pres_*``
+    indica si el equipo suma punto de presentación. ``None`` si no hay marcador.
+
+    Reglas (penalizador):
+      * marcador real (no raro): ganador 2, perdedor 1, empate 1/1; ambos
+        presentaron.
+      * 20-0: local 2 y presenta; visitante 1 si presentó (Q3) o 0 si NP.
+      * 0-20: espejo del anterior.
+      * 0-0: cada equipo 1 si presentó (Q3) o 0 si NP.
+    """
+    if pl is None or pv is None:
+        return None
+    if not es_marcador_raro(pl, pv):
+        if pl > pv:
+            return (PUNTOS_GANADO, PUNTOS_PERDIDO, True, True)
+        if pv > pl:
+            return (PUNTOS_PERDIDO, PUNTOS_GANADO, True, True)
+        return (PUNTOS_PERDIDO, PUNTOS_PERDIDO, True, True)  # empate (rarísimo)
+    pres_l = presenta_local is True
+    pres_v = presenta_visit is True
+    if pl == 20 and pv == 0:
+        return (PUNTOS_GANADO, PUNTOS_PERDIDO if pres_v else 0, True, pres_v)
+    if pl == 0 and pv == 20:
+        return (PUNTOS_PERDIDO if pres_l else 0, PUNTOS_GANADO, pres_l, True)
+    # 0-0: ambos penalizados.
+    return (
+        PUNTOS_PERDIDO if pres_l else 0,
+        PUNTOS_PERDIDO if pres_v else 0,
+        pres_l,
+        pres_v,
+    )
 
 
 def ordenar_tabla_resultado_mini(
     filas: List[FilaResultadoMini],
 ) -> List[FilaResultadoMini]:
     """
-    Ordena la tabla de MINI *por los resultados*.
+    Ordena la tabla de MINI por puntos.
 
     Criterio (de mayor a menor prioridad):
-      1) más ganados,
-      2) menos perdidos,
-      3) más puntos de presentación,
+      1) más puntos (modelo de fixture + presentación),
+      2) más puntos de presentación,
+      3) más ganados,
       4) nombre del equipo (desempate estable/alfabético).
     """
     return sorted(
         filas,
-        key=lambda f: (-f.ganados, f.perdidos, -f.presentaciones, f.equipo),
+        key=lambda f: (-f.puntos, -f.presentaciones, -f.ganados, f.equipo),
     )
 
 
@@ -743,16 +794,15 @@ def construir_tabla_resultado_mini(
     edad: str = "U11",
 ) -> Dict[str, Dict[str, List[FilaResultadoMini]]]:
     """
-    Construye la tabla de MINI (U11) por fase -> zona, ordenada por resultados.
+    Construye la tabla de MINI (U11) por fase -> zona, ordenada por puntos.
 
-    El resultado (ganado/perdido) sale de los puntos del acta (``equipos[0].pts``
-    vs ``equipos[1].pts``); la presentación, de contar jugadores con >= 10:00 en
-    el acta y compararlos con el mínimo (12). Si falta el acta de un partido, no
-    suma ganado/perdido (se cuenta en ``sin_resultado``) ni presentación
-    (``sin_acta``).
+    Los puntos salen del marcador de fixture (penalizador) y de la presentación
+    (ver ``puntos_partido_mini``). Para los marcadores raros la presentación se
+    toma de ``presenta_local``/``presenta_visit`` del partido (recalculados desde
+    el acta con el umbral por edad); en marcadores reales, ambos presentaron. La
+    columna ``Box`` (ganador del acta) es solo informativa.
     """
     boxscores = boxscores or {}
-    min_seg = segundos_minimos(edad)
     acc: Dict[str, Dict[str, Dict[str, FilaResultadoMini]]] = defaultdict(
         lambda: defaultdict(dict)
     )
@@ -766,47 +816,60 @@ def construir_tabla_resultado_mini(
         fila.nombres_ges.add(nombre)
         return fila
 
+    def _aplicar(fila: FilaResultadoMini, pts: int, presento: bool) -> None:
+        fila.puntos += pts
+        if pts == PUNTOS_GANADO:
+            fila.ganados += 1
+        elif pts == PUNTOS_PERDIDO:
+            fila.perdidos += 1
+        else:
+            fila.np += 1
+        if presento:
+            fila.presentaciones += 1
+
     for pp in presentaciones:
         if pp.edad != edad:
             continue
+        # Presentación: en raros se usa el acta (ya recalculada); en marcador
+        # real ambos presentaron.
+        if es_marcador_raro(pp.pts_local, pp.pts_visit):
+            pres_l, pres_v = pp.presenta_local, pp.presenta_visit
+        else:
+            pres_l, pres_v = True, True
+
+        res = puntos_partido_mini(pp.pts_local, pp.pts_visit, pres_l, pres_v)
+        if res is None:
+            continue  # sin marcador: no contabiliza
+
         zona = pp.zona or "(sin zona)"
         fl = _fila(pp.fase, zona, pp.local)
         fv = _fila(pp.fase, zona, pp.visitante)
         fl.pj += 1
         fv.pj += 1
 
+        pts_l, pts_v, p_l, p_v = res
+        _aplicar(fl, pts_l, p_l)
+        _aplicar(fv, pts_v, p_v)
+
+        # Columna informativa Box: ganador según puntos reales del acta.
         box = boxscores.get(pp.id_partido)
         equipos = box.get("equipos") if (box and box.get("ok")) else None
         if equipos and len(equipos) >= 2:
-            jl = equipos[0].get("jugadores") or []
-            jv = equipos[1].get("jugadores") or []
-            # Presentación (regla de plantilla MINI sobre el acta).
-            if _presento_en_acta(jl, min_seg):
-                fl.presentaciones += 1
-            else:
-                fl.no_presento += 1
-            if _presento_en_acta(jv, min_seg):
-                fv.presentaciones += 1
-            else:
-                fv.no_presento += 1
-            # Resultado real: puntos del acta, no el marcador de fixture.
             ganador = ganador_boxscore(
                 equipos[0].get("pts"), equipos[1].get("pts")
             )
             if ganador == "local":
-                fl.ganados += 1
-                fv.perdidos += 1
+                fl.box_ganados += 1
+                fv.box_perdidos += 1
             elif ganador == "visitante":
-                fv.ganados += 1
-                fl.perdidos += 1
+                fv.box_ganados += 1
+                fl.box_perdidos += 1
             else:
-                fl.sin_resultado += 1
-                fv.sin_resultado += 1
+                fl.box_sin_dato += 1
+                fv.box_sin_dato += 1
         else:
-            fl.sin_acta += 1
-            fv.sin_acta += 1
-            fl.sin_resultado += 1
-            fv.sin_resultado += 1
+            fl.box_sin_dato += 1
+            fv.box_sin_dato += 1
 
     out: Dict[str, Dict[str, List[FilaResultadoMini]]] = {}
     for fase, zonas in acc.items():
