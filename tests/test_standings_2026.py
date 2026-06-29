@@ -11,6 +11,7 @@ from ingest.febamba.standings_2026 import (
     PartidoPresentacion,
     clave_equipo,
     construir_standings,
+    construir_tabla_resultado_mini,
     decidir_presentacion_partido,
     es_marcador_raro,
     puntos_partido_general,
@@ -153,6 +154,102 @@ def test_standings_basico_por_zona():
 
     # Orden: A primero
     assert tabla[0].equipo == "CLUB A"
+
+
+# --------------------------------------------------------------------------- #
+# Tabla de resultados MINI (U11): ganado/perdido por acta + presentación
+# --------------------------------------------------------------------------- #
+def _box(pts_local, jl, pts_visit, jv):
+    """Acta sintética: jl/jv = nº de jugadores con >= 10:00 (presentación)."""
+    return {
+        "ok": True,
+        "equipos": [
+            {"nombre": "L", "jugadores": _jugadores(jl), "pts": pts_local},
+            {"nombre": "V", "jugadores": _jugadores(jv), "pts": pts_visit},
+        ],
+    }
+
+
+def _pp_u11(local, visit, idp, pl=0, pv=0, zona="NORTE 1A", raro=True):
+    return PartidoPresentacion(
+        "U11", "CLASIFICACION", local, visit, pl, pv,
+        id_partido=idp, zona=zona, raro=raro,
+    )
+
+
+def test_u11_resultado_por_boxscore_no_por_fixture():
+    # Marcador de fixture 20-0 (código de presentación), pero el acta dice 48-55:
+    # gana el visitante. Ambos presentan (12 jugadores con >= 10:00).
+    presentaciones = [_pp_u11("CLUB A", "CLUB B", "p1", pl=20, pv=0)]
+    boxscores = {"p1": _box(48, 12, 55, 12)}
+    tabla = construir_tabla_resultado_mini(presentaciones, boxscores)
+    por_eq = {f.equipo: f for f in tabla["CLASIFICACION"]["NORTE 1A"]}
+    a, b = por_eq["CLUB A"], por_eq["CLUB B"]
+    assert (a.ganados, a.perdidos) == (0, 1)
+    assert (b.ganados, b.perdidos) == (1, 0)
+    # Ambos presentaron -> 1 punto de presentación cada uno.
+    assert a.presentaciones == 1
+    assert b.presentaciones == 1
+
+
+def test_u11_presentacion_segun_plantilla():
+    # Local presenta (12), visitante no (5). Local gana en cancha.
+    presentaciones = [_pp_u11("CLUB A", "CLUB B", "p1", pl=0, pv=0)]
+    boxscores = {"p1": _box(60, 12, 40, 5)}
+    tabla = construir_tabla_resultado_mini(presentaciones, boxscores)
+    por_eq = {f.equipo: f for f in tabla["CLASIFICACION"]["NORTE 1A"]}
+    a, b = por_eq["CLUB A"], por_eq["CLUB B"]
+    assert a.presentaciones == 1 and a.no_presento == 0
+    assert b.presentaciones == 0 and b.no_presento == 1
+    assert (a.ganados, b.perdidos) == (1, 1)
+
+
+def test_u11_sin_acta_no_suma_resultado():
+    presentaciones = [_pp_u11("CLUB A", "CLUB B", "p1", pl=0, pv=0)]
+    tabla = construir_tabla_resultado_mini(presentaciones, boxscores={})
+    por_eq = {f.equipo: f for f in tabla["CLASIFICACION"]["NORTE 1A"]}
+    a = por_eq["CLUB A"]
+    assert a.pj == 1
+    assert (a.ganados, a.perdidos) == (0, 0)
+    assert a.sin_resultado == 1
+    assert a.sin_acta == 1
+    assert a.presentaciones == 0
+
+
+def test_u11_orden_por_resultados():
+    # A: 2 ganados; B: 1 ganado; C: 0. Orden esperado A, B, C.
+    presentaciones = [
+        _pp_u11("CLUB A", "CLUB B", "p1"),
+        _pp_u11("CLUB A", "CLUB C", "p2"),
+        _pp_u11("CLUB B", "CLUB C", "p3"),
+    ]
+    boxscores = {
+        "p1": _box(60, 12, 40, 12),  # A gana a B
+        "p2": _box(60, 12, 40, 12),  # A gana a C
+        "p3": _box(60, 12, 40, 12),  # B gana a C
+    }
+    tabla = construir_tabla_resultado_mini(presentaciones, boxscores)
+    orden = [f.equipo for f in tabla["CLASIFICACION"]["NORTE 1A"]]
+    assert orden == ["CLUB A", "CLUB B", "CLUB C"]
+
+
+def test_u11_desempate_por_presentaciones():
+    # A y B con 1 ganado y 0 perdido cada uno (rivales distintos), pero B presentó
+    # más veces -> B va arriba por el tercer criterio (presentaciones desc).
+    presentaciones = [
+        _pp_u11("CLUB A", "CLUB X", "p1"),
+        _pp_u11("CLUB B", "CLUB Y", "p2"),
+    ]
+    boxscores = {
+        "p1": _box(60, 5, 40, 5),    # A gana; nadie presenta (5 < 12)
+        "p2": _box(60, 12, 40, 5),   # B gana y presenta
+    }
+    tabla = construir_tabla_resultado_mini(presentaciones, boxscores)
+    filas = {f.equipo: f for f in tabla["CLASIFICACION"]["NORTE 1A"]}
+    assert filas["CLUB A"].presentaciones == 0
+    assert filas["CLUB B"].presentaciones == 1
+    orden = [f.equipo for f in tabla["CLASIFICACION"]["NORTE 1A"]]
+    assert orden.index("CLUB B") < orden.index("CLUB A")
 
 
 def test_presentacion_sin_zona_se_reporta():

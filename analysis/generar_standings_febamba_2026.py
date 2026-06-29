@@ -52,6 +52,7 @@ from ingest.febamba.standings_2026 import (
     construir_standings,
     construir_tablas_categoria,
     construir_tablas_presentacion,
+    construir_tabla_resultado_mini,
     registrar_nombres_globales,
     nombre_display,
     puntos_partido_general,
@@ -574,6 +575,8 @@ def construir_payload(
     resultado = construir_standings(generales, presentaciones)
     tablas_cat = construir_tablas_categoria(generales)
     tablas_pres = construir_tablas_presentacion(presentaciones)
+    # Tabla de MINI/U11: resultados reales (boxscore) + columna de presentación.
+    tabla_u11 = construir_tabla_resultado_mini(presentaciones, boxscores, edad="U11")
     partidos = construir_partidos_detalle(generales, presentaciones)
 
     # --- Tabla general (combinada por zona) ---
@@ -644,14 +647,37 @@ def construir_payload(
                     for pos, f in enumerate(zonas[zona], start=1)
                 ]
 
+    # --- Tabla de resultados MINI/U11 (ganados/perdidos por acta + presentación) ---
+    # fase -> zona -> filas ordenadas por resultados.
+    u11_json: Dict[str, Dict[str, list]] = {}
+    for fase, zonas in tabla_u11.items():
+        u11_json[fase] = {}
+        for zona in sorted(zonas):
+            u11_json[fase][zona] = [
+                {
+                    "pos": pos,
+                    "equipo": f.equipo,
+                    "pj": f.pj,
+                    "ganados": f.ganados,
+                    "perdidos": f.perdidos,
+                    "sin_resultado": f.sin_resultado,
+                    "presentaciones": f.presentaciones,
+                    "no_presento": f.no_presento,
+                    "sin_acta": f.sin_acta,
+                }
+                for pos, f in enumerate(zonas[zona], start=1)
+            ]
+
     # --- Vistas disponibles ---
     vistas = [{"id": "GENERAL", "label": "General", "tipo": "general"}]
     for edad in ["U17", "U15", "U13"]:
         if edad in cat_json:
             vistas.append({"id": edad, "label": _categoria_label(edad), "tipo": "categoria"})
-    for edad in ["U11", "U9"]:
-        if edad in pres_json:
-            vistas.append({"id": edad, "label": _categoria_label(edad), "tipo": "presentacion"})
+    # U11 usa la tabla de resultados (acta) con columna de presentación.
+    if u11_json:
+        vistas.append({"id": "U11", "label": _categoria_label("U11"), "tipo": "resultado_mini"})
+    if "U9" in pres_json:
+        vistas.append({"id": "U9", "label": _categoria_label("U9"), "tipo": "presentacion"})
 
     equipos_unicos = set()
     for fase, zonas in resultado.tablas.items():
@@ -690,6 +716,7 @@ def construir_payload(
         "tablas": tablas_json,
         "tablas_categoria": cat_json,
         "tablas_presentacion": pres_json,
+        "tablas_resultado_mini": {"U11": u11_json},
         "partidos": partidos,
         "boxscores": boxscores or {},
         "min_regla": MIN_JUGADORES_REGLA,
@@ -871,10 +898,14 @@ def _render_html(payload: Dict[str, object]) -> str:
 
     function vistaInfo(id) {{ return (DATA.vistas || []).find(v => v.id === id) || DATA.vistas[0]; }}
 
+    // U11 (MINI) se muestra como tabla de resultados (acta) con columna de presentación.
+    function esPres(tipo) {{ return tipo === "presentacion" || tipo === "resultado_mini"; }}
+
     function tablasDeVista() {{
       const v = vistaInfo(vistaActual);
       if (v.tipo === "general") return DATA.tablas || {{}};
       if (v.tipo === "categoria") return (DATA.tablas_categoria || {{}})[v.id] || {{}};
+      if (v.tipo === "resultado_mini") return (DATA.tablas_resultado_mini || {{}})[v.id] || {{}};
       return (DATA.tablas_presentacion || {{}})[v.id] || {{}};
     }}
 
@@ -931,6 +962,13 @@ def _render_html(payload: Dict[str, object]) -> str:
         <th class="hide-sm" title="Ganados por no presentación rival">W.O.+</th>
         <th class="hide-sm" title="Perdidos por no presentarse">W.O.−</th>
         <th class="sep">Pts</th></tr>`;
+      if (tipo === "resultado_mini") return `<tr>
+        <th class="pos">#</th><th class="eq">Equipo</th>
+        <th>PJ</th>
+        <th title="Ganados según el acta (puntos reales)">Ganados</th>
+        <th title="Perdidos según el acta (puntos reales)">Perdidos</th>
+        <th class="hide-sm" title="Partidos sin acta o sin resultado">S/res.</th>
+        <th class="sep" title="Puntos de presentación: 1 por partido con ≥${{MIN_REG}} jug. ≥10:00">Presentación</th></tr>`;
       return `<tr>
         <th class="pos">#</th><th class="eq">Equipo</th>
         <th>PJ</th>
@@ -951,6 +989,11 @@ def _render_html(payload: Dict[str, object]) -> str:
         <td>${{f.pj}}</td><td>${{f.ganados}}</td><td>${{f.perdidos}}</td>
         <td class="hide-sm">${{f.walkover_favor}}</td><td class="hide-sm">${{f.walkover_contra}}</td>
         <td class="sep tot">${{f.puntos}}</td></tr>`;
+      if (tipo === "resultado_mini") return `<tr>
+        <td class="pos">${{f.pos}}</td><td class="eq">${{f.equipo}}</td>
+        <td>${{f.pj}}</td><td>${{f.ganados}}</td><td>${{f.perdidos}}</td>
+        <td class="hide-sm">${{f.sin_resultado}}</td>
+        <td class="sep tot">${{f.presentaciones}}</td></tr>`;
       return `<tr>
         <td class="pos">${{f.pos}}</td><td class="eq">${{f.equipo}}</td>
         <td>${{f.pj}}</td><td>${{f.presentaciones}}</td>
@@ -1053,8 +1096,9 @@ def _render_html(payload: Dict[str, object]) -> str:
         return;
       }}
       vacio.style.display = "none";
-      head.innerHTML = partidosHead(v.tipo);
-      body.innerHTML = lista.map(m => partidoRow(v.tipo, m)).join("");
+      const tipoP = esPres(v.tipo) ? "presentacion" : v.tipo;
+      head.innerHTML = partidosHead(tipoP);
+      body.innerHTML = lista.map(m => partidoRow(tipoP, m)).join("");
       matchesZona = todos;
       body.querySelectorAll(".btn[data-id]").forEach(b =>
         b.addEventListener("click", () => abrirModal(b.dataset.id)));
@@ -1101,7 +1145,8 @@ def _render_html(payload: Dict[str, object]) -> str:
                <div class="scorebox"><div class="cap">Resultado (fixture)</div><div class="pts">${{score(m)}}</div></div>
                <div class="scorebox"><div class="cap">Suma del acta</div><div class="pts">${{box.equipos[0].pts}} - ${{box.equipos[1].pts}}</div></div>
              </div>` : "";
-        boxHtml = tot + box.equipos.map(eq => boxTeam(eq, v.tipo, v.id)).join("");
+        const tipoBox = esPres(v.tipo) ? "presentacion" : v.tipo;
+        boxHtml = tot + box.equipos.map(eq => boxTeam(eq, tipoBox, v.id)).join("");
       }} else {{
         boxHtml = `<div class="scoreline"><div class="scorebox"><div class="cap">Resultado</div><div class="pts">${{score(m)}}</div></div></div>
           <p class="small">Acta no disponible para este partido.</p>`;
@@ -1126,7 +1171,9 @@ def _render_html(payload: Dict[str, object]) -> str:
     function renderNota() {{
       const v = vistaInfo(vistaActual);
       const el = document.getElementById("nota-vista");
-      if (v.tipo === "presentacion") {{
+      if (v.tipo === "resultado_mini") {{
+        el.innerHTML = `<strong>MINI (U11).</strong> No suma a la tabla general. El resultado (<em>Ganados/Perdidos</em>) sale de los puntos reales del acta, no del marcador de fixture (que en MINI es un código de presentación). <em>Presentación</em> = puntos por cumplir la regla de plantilla (1 por partido con ≥ ${{MIN_REG}} jugadores ≥ 10:00). La tabla se ordena por resultados (ganados ↓, perdidos ↑, presentación ↓).`;
+      }} else if (v.tipo === "presentacion") {{
         el.innerHTML = `<strong>Puntos de presentación.</strong> Cada equipo suma 1 punto por partido salvo que no llegue a ${{MIN_REG}} jugadores con ≥ ${{minLabel(v.id)}} de juego (validado con el acta en marcadores 0-0 / 20-0 / 0-20). <em>S/dato</em> = acta no disponible.${{v.id === "U9" ? " En PREMINI el cuarto dura 8 minutos." : ""}}`;
       }} else if (v.tipo === "categoria") {{
         el.innerHTML = `<strong>Puntos por resultado.</strong> Ganar = 2, perder = 1. Un <em>20-0</em> es no presentación: el ausente suma 0.`;
