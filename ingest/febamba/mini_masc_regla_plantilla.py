@@ -10,7 +10,8 @@ from __future__ import annotations
 from typing import Dict, List, Optional, Tuple
 
 MIN_JUGADORES_REGLA = 12
-MIN_SEGUNDOS_REGLA = 10 * 60  # 10:00
+MIN_SEGUNDOS_REGLA = 10 * 60  # 10:00 (MINI / U11 y categorías mayores)
+MIN_SEGUNDOS_PREMINI = 8 * 60  # 8:00 (PREMINI / U9: el cuarto dura 8 minutos)
 LABEL_CAMBIOS = "Regla de cambios Q3 u otros"
 LABEL_OTRO = "Otro"
 
@@ -33,17 +34,23 @@ def parse_minutos_a_segundos(value: object) -> Optional[int]:
     return None
 
 
-def jugador_cumple_regla(value: object) -> bool:
+def jugador_cumple_regla(
+    value: object, min_segundos: int = MIN_SEGUNDOS_REGLA
+) -> bool:
     sec = parse_minutos_a_segundos(value)
-    return sec is not None and sec >= MIN_SEGUNDOS_REGLA
+    return sec is not None and sec >= min_segundos
 
 
-def cuenta_jugadores_regla(jugadores: List[Dict[str, object]]) -> int:
-    return sum(1 for j in jugadores if jugador_cumple_regla(j.get("min")))
+def cuenta_jugadores_regla(
+    jugadores: List[Dict[str, object]], min_segundos: int = MIN_SEGUNDOS_REGLA
+) -> int:
+    return sum(1 for j in jugadores if jugador_cumple_regla(j.get("min"), min_segundos))
 
 
-def cumple_regla_equipo(jugadores: List[Dict[str, object]]) -> bool:
-    return cuenta_jugadores_regla(jugadores) >= MIN_JUGADORES_REGLA
+def cumple_regla_equipo(
+    jugadores: List[Dict[str, object]], min_segundos: int = MIN_SEGUNDOS_REGLA
+) -> bool:
+    return cuenta_jugadores_regla(jugadores, min_segundos) >= MIN_JUGADORES_REGLA
 
 
 def ganador_boxscore(pl: Optional[int], pv: Optional[int]) -> Optional[str]:

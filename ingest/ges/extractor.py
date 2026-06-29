@@ -161,6 +161,79 @@ class GesDeportivaExtractor(Extractor):
         grupos = {k: v for k, v in grupos.items() if v not in {"", "0"}}
         return fases, grupos
 
+    def get_grupos_de_fase(
+        self, id_competencia: int, id_categoria: int, id_fase: int
+    ) -> Dict[str, str]:
+        """
+        Devuelve los grupos (nombre -> id) de una fase concreta.
+
+        ``get_ids_fases_grupos`` solo expone los grupos de la fase seleccionada por
+        defecto (clasificación). Para otras fases (reclasificación) hay que simular el
+        postback del combo de fases tras seleccionar la categoría.
+        """
+        url = (
+            "https://competicionescabb.gesdeportiva.es/competicion.aspx"
+            f"?competencia={id_competencia}"
+        )
+        headers = {
+            "User-Agent": (
+                "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+                "AppleWebKit/537.36 (KHTML, like Gecko) "
+                "Chrome/137.0.0.0 Safari/537.36"
+            ),
+            "Content-Type": "application/x-www-form-urlencoded",
+            "Origin": "https://competicionescabb.gesdeportiva.es",
+            "Referer": url,
+        }
+
+        def _payload(soup: BeautifulSoup) -> Dict[str, str]:
+            form = soup.find("form")
+            data: Dict[str, str] = {}
+            if not form:
+                return data
+            for inp in form.find_all("input"):
+                name = inp.get("name")
+                if name:
+                    data[name] = inp.get("value") or ""
+            for sel in form.find_all("select"):
+                name = sel.get("name")
+                if not name:
+                    continue
+                opt = sel.find("option", selected=True) or sel.find("option")
+                data[name] = (opt.get("value") or "") if opt else ""
+            return data
+
+        resp = self._client.request("GET", url, headers=headers, timeout=20)
+        soup = BeautifulSoup(resp.text, "html.parser")
+
+        data = _payload(soup)
+        data.update(
+            {
+                "__EVENTTARGET": "DDLCategorias",
+                "__EVENTARGUMENT": "",
+                "DDLCategorias": str(id_categoria),
+            }
+        )
+        resp = self._client.request("POST", url, headers=headers, data=data, timeout=20)
+        soup = BeautifulSoup(resp.text, "html.parser")
+
+        data = _payload(soup)
+        data.update(
+            {
+                "__EVENTTARGET": "DDLFases",
+                "__EVENTARGUMENT": "",
+                "DDLFases": str(id_fase),
+            }
+        )
+        resp = self._client.request("POST", url, headers=headers, data=data, timeout=20)
+        soup = BeautifulSoup(resp.text, "html.parser")
+
+        sel_grupo = self._find_select(
+            soup, "DDLGrupos", "DDLGrupo", "DDLGRUPO", "DDLGrupoCompeticion"
+        )
+        grupos = self._extract_options(sel_grupo) if sel_grupo else {}
+        return {k: v for k, v in grupos.items() if v not in {"", "0"}}
+
     def get_info_partidos(
         self,
         id_categoria: int,
@@ -184,9 +257,11 @@ class GesDeportivaExtractor(Extractor):
             "Referer": url_post,
             "Origin": "https://widgetscab.gesdeportiva.es",
         }
-        self._client.request("GET", url_base, headers=get_headers, timeout=15)
+        get_resp = self._client.request("GET", url_base, headers=get_headers, timeout=15)
+        get_soup = BeautifulSoup(get_resp.text, "html.parser")
+        token_el = get_soup.find("input", {"name": "__RequestVerificationToken"})
         data = {
-            "IdCategoria": id_categoria,
+            "IdCategoria": str(id_categoria),
             "IdFase": str(id_fase),
             "IdGrupo": str(id_grupo),
             "IdEquipo": "-1",
@@ -194,6 +269,8 @@ class GesDeportivaExtractor(Extractor):
             "FechaInicio": fecha_inicio,
             "FechaFin": fecha_fin,
         }
+        if token_el and token_el.get("value"):
+            data["__RequestVerificationToken"] = token_el.get("value")
         headers = {
             "Content-Type": "application/x-www-form-urlencoded",
             "Referer": url_post,
@@ -209,7 +286,7 @@ class GesDeportivaExtractor(Extractor):
         partidos: List[Dict[str, str]] = []
         for link in soup.find_all("a", id=lambda x: x and "HFEstadisticas" in x):
             href = link.get("href") or ""
-            match = re.search(r"/partido/([\\w-]+)==", href)
+            match = re.search(r"/partido/([\w-]+)==", href)
             id_partido = match.group(1) if match else ""
             fila = link.find_parent("tr")
             fecha = local = visitante = puntos_local = puntos_visitante = ""
@@ -227,7 +304,15 @@ class GesDeportivaExtractor(Extractor):
             estado = "PENDIENTE"
             pl_num = pv_num = None
             try:
-                fecha_dt = datetime.strptime(fecha.split()[0], "%d/%m/%Y")
+                partes_fecha = fecha.split()
+                # Incluye la hora cuando está disponible para no marcar como jugado
+                # un partido programado para hoy más tarde (p. ej. hoy 20:00).
+                if len(partes_fecha) > 1 and ":" in partes_fecha[1]:
+                    fecha_dt = datetime.strptime(
+                        partes_fecha[0] + " " + partes_fecha[1], "%d/%m/%Y %H:%M"
+                    )
+                else:
+                    fecha_dt = datetime.strptime(partes_fecha[0], "%d/%m/%Y")
                 hoy = datetime.now()
                 pl = puntos_local.strip().replace("\n", "")
                 pv = puntos_visitante.strip().replace("\n", "")
@@ -298,6 +383,20 @@ class GesDeportivaExtractor(Extractor):
         }
 
     @staticmethod
+    def _parse_tiro_ges(texto: str) -> Dict[str, int]:
+        raw = (texto or "").strip().replace(" ", "")
+        if "/" in raw:
+            a_s, i_s = raw.split("/", 1)
+            try:
+                return {"a": int(a_s), "i": int(i_s)}
+            except ValueError:
+                return {"a": 0, "i": 0}
+        if raw.isdigit():
+            v = int(raw)
+            return {"a": v, "i": v}
+        return {"a": 0, "i": 0}
+
+    @staticmethod
     def parse_table(table: Tag) -> Tuple[List[Dict[str, object]], Dict[str, object]]:
         jugadores: List[Dict[str, object]] = []
         tbody = table.find("tbody")
@@ -306,8 +405,11 @@ class GesDeportivaExtractor(Extractor):
                 celdas = row.find_all("td")
                 if not celdas:
                     continue
-                if len(celdas) <= 21:
-                    raise ParseError(f"Fila incompleta en boxscore (celdas={len(celdas)})")
+                if len(celdas) < 8:
+                    continue
+                nombre = celdas[2].get_text(strip=True) if len(celdas) > 2 else ""
+                if not nombre or nombre.lower().startswith("total"):
+                    continue
                 jugador: Dict[str, object] = {}
                 jugador.update(GesDeportivaExtractor._extract_onclick_player_meta(row))
                 nro_raw = celdas[1].get_text(strip=True)
@@ -317,13 +419,25 @@ class GesDeportivaExtractor(Extractor):
                 else:
                     jugador["nro"] = nro_raw.strip()
                     jugador["inicial"] = False
-                jugador["nombre"] = celdas[2].get_text(strip=True)
+                jugador["nombre"] = nombre
                 jugador["min"] = celdas[3].get_text(strip=True)
                 jugador["pts"] = celdas[4].get_text(strip=True)
+                if len(celdas) > 7:
+                    jugador["t2"] = GesDeportivaExtractor._parse_tiro_ges(
+                        GesDeportivaExtractor.clean_shot_value(celdas[5])
+                    )
+                    jugador["t3"] = GesDeportivaExtractor._parse_tiro_ges(
+                        GesDeportivaExtractor.clean_shot_value(celdas[6])
+                    )
+                    jugador["tl"] = GesDeportivaExtractor._parse_tiro_ges(
+                        GesDeportivaExtractor.clean_shot_value(celdas[7])
+                    )
                 jugadores.append(jugador)
         return jugadores, {}
 
-    def get_boxscore(self, id_partido: str) -> Optional[Dict[str, object]]:
+    def get_boxscore(
+        self, id_partido: str, *, widget_key: Optional[str] = None
+    ) -> Optional[Dict[str, object]]:
         headers = {
             "User-Agent": (
                 "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
@@ -331,9 +445,10 @@ class GesDeportivaExtractor(Extractor):
                 "Chrome/138.0.0.0 Safari/537.36"
             )
         }
+        key = widget_key or "9490f650-ca47-4adc-8a75-bb318dea6ecc"
         url = (
             "https://widgetscab.gesdeportiva.es/widget/partido/estadisticas/"
-            f"{id_partido}==?key=9490f650-ca47-4adc-8a75-bb318dea6ecc"
+            f"{id_partido}==?key={key}"
         )
         resp = self._client.request("GET", url, headers=headers, timeout=15)
         soup = BeautifulSoup(resp.text, "html.parser")
@@ -341,10 +456,16 @@ class GesDeportivaExtractor(Extractor):
         tablas = soup.find_all("table")
         if len(nombre_equipos) < 2 or len(tablas) < 2:
             raise ParseError(f"Boxscore incompleto para partido {id_partido}")
-        return {
-            "equipolocal": nombre_equipos[0].get_text(strip=True),
-            "equipovisitante": nombre_equipos[1].get_text(strip=True),
-        }
+        equipos: List[Dict[str, object]] = []
+        for idx, tabla in enumerate(tablas[:2]):
+            jugadores, _ = self.parse_table(tabla)
+            equipos.append(
+                {
+                    "nombre": nombre_equipos[idx].get_text(strip=True),
+                    "jugadores": jugadores,
+                }
+            )
+        return {"equipos": equipos}
 
 
 class ExtractorFactory:
