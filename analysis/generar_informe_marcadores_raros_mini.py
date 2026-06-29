@@ -40,7 +40,7 @@ CSV_RAROS = ROOT / "outputs" / "mini_masc_clasificacion_marcadores_raros.csv"
 CSV_TODOS = ROOT / "outputs" / "mini_masc_clasificacion_partidos.csv"
 OUT_DIR = ROOT / "outputs" / "mini_masc"
 OUT_HTML = OUT_DIR / "informe_marcadores_raros.html"
-OUT_JSON = OUT_DIR / "datos_marcadores_raros.json"
+OUT_JSON = OUT_DIR / "datos_todos.json"
 PBP_JSON = OUT_DIR / "pbp_analisis.json"
 DOCS_HTML = ROOT / "docs" / "mini_masc_clasificacion.html"
 PUBLIC_URL = "https://fblasco1.github.io/formativas_ges/mini_masc_clasificacion.html"
@@ -66,17 +66,36 @@ def cargar_pbp_por_id(path: Path) -> Dict[str, Dict[str, object]]:
     return data.get("partidos") or {}
 
 
+TIPO_NP = "NP"
+TIPO_Q3 = "Cambios Q3"
+TIPO_CONSEC = "Cuartos consecutivos"
+
+
+def _sancion_por_fixture(pl: object, pv: object) -> tuple[bool, bool]:
+    """
+    Devuelve (sancionado_local, sancionado_visit) según el marcador penalizador
+    del fixture. 20-0 sanciona al visitante; 0-20 al local; 0-0 a ambos.
+    """
+    if pl == 20 and pv == 0:
+        return False, True
+    if pl == 0 and pv == 20:
+        return True, False
+    if pl == 0 and pv == 0:
+        return True, True
+    return False, False
+
+
 def fusionar_pbp(
     partidos: List[Dict[str, object]], pbp_por_id: Dict[str, Dict[str, object]]
 ) -> Dict[str, int]:
     """
-    Enriquecé cada partido con sus campos de play-by-play (por id). Devuelve un
-    resumen contado sobre el conjunto de partidos mostrado.
+    Enriquecé cada partido con sus campos de play-by-play (por id) y calculá, por
+    equipo, los incumplimientos (NP / cambios Q3 / cuartos consecutivos) y si
+    quedaron SIN SANCIÓN según el marcador de fixture. Devuelve un resumen.
     """
     con_pbp = con_subs_q3 = con_consec = 0
-    # Intersección "se aplicó regla": especial=True AND evidencia en PBP.
-    regla_q3_aplicada = consec_aplicada = 0
-    difs_q3_aplicada: List[float] = []
+    incumpl_sin_sancion = 0
+    difs_q3: List[float] = []
     for p in partidos:
         info = pbp_por_id.get(str(p.get("id") or ""))
         pbp = {
@@ -100,25 +119,72 @@ def fusionar_pbp(
             con_subs_q3 += 1
         if pbp["hubo_consecutivos"]:
             con_consec += 1
-        if p.get("especial"):
-            if pbp["hubo_subs_q3"]:
-                regla_q3_aplicada += 1
-                if p.get("dif_box") is not None:
-                    difs_q3_aplicada.append(p["dif_box"])
-            if pbp["hubo_consecutivos"]:
-                consec_aplicada += 1
-    avg_dif_q3 = (
-        round(sum(difs_q3_aplicada) / len(difs_q3_aplicada), 1)
-        if difs_q3_aplicada
-        else 0
-    )
+
+        # Cambios Q3 y cuartos consecutivos, por equipo.
+        subs = pbp["subs_q3"] or []
+        consec = pbp["jugadores_consecutivos"] or []
+        q3_local = any((s.get("equipo") == "local") for s in subs)
+        q3_visit = any((s.get("equipo") == "visitante") for s in subs)
+        consec_local = any((c.get("equipo") == "local") for c in consec)
+        consec_visit = any((c.get("equipo") == "visitante") for c in consec)
+        np_local = bool(p.get("np_local")) if p.get("boxscore_ok") else False
+        np_visit = bool(p.get("np_visit")) if p.get("boxscore_ok") else False
+
+        tipos_local: List[str] = []
+        if np_local:
+            tipos_local.append(TIPO_NP)
+        if q3_local:
+            tipos_local.append(TIPO_Q3)
+        if consec_local:
+            tipos_local.append(TIPO_CONSEC)
+        tipos_visit: List[str] = []
+        if np_visit:
+            tipos_visit.append(TIPO_NP)
+        if q3_visit:
+            tipos_visit.append(TIPO_Q3)
+        if consec_visit:
+            tipos_visit.append(TIPO_CONSEC)
+
+        infringe_local = bool(tipos_local)
+        infringe_visit = bool(tipos_visit)
+        sanc_local, sanc_visit = _sancion_por_fixture(
+            p.get("pts_fix_local"), p.get("pts_fix_visit")
+        )
+        sin_sancion_local = infringe_local and not sanc_local
+        sin_sancion_visit = infringe_visit and not sanc_visit
+        sin_sancion = sin_sancion_local or sin_sancion_visit
+        if sin_sancion:
+            incumpl_sin_sancion += 1
+
+        p["cambios_q3_local"] = q3_local
+        p["cambios_q3_visit"] = q3_visit
+        p["consec_local"] = consec_local
+        p["consec_visit"] = consec_visit
+        p["infringe_local"] = infringe_local
+        p["infringe_visit"] = infringe_visit
+        p["sancionado_local"] = sanc_local
+        p["sancionado_visit"] = sanc_visit
+        p["sin_sancion_local"] = sin_sancion_local
+        p["sin_sancion_visit"] = sin_sancion_visit
+        p["incumplimiento_sin_sancion"] = sin_sancion
+        p["tipos_infraccion_local"] = tipos_local
+        p["tipos_infraccion_visit"] = tipos_visit
+        p["tipos_sin_sancion_local"] = tipos_local if sin_sancion_local else []
+        p["tipos_sin_sancion_visit"] = tipos_visit if sin_sancion_visit else []
+
+        if pbp["hubo_subs_q3"]:
+            pl_box = p.get("pts_box_local")
+            pv_box = p.get("pts_box_visit")
+            if isinstance(pl_box, int) and isinstance(pv_box, int):
+                difs_q3.append(abs(pl_box - pv_box))
+
+    avg_dif_q3 = round(sum(difs_q3) / len(difs_q3), 1) if difs_q3 else 0
     return {
         "con_pbp": con_pbp,
         "con_subs_q3": con_subs_q3,
         "con_consecutivos": con_consec,
-        "regla_q3_aplicada": regla_q3_aplicada,
-        "consec_aplicada": consec_aplicada,
-        "dif_box_promedio_q3_aplicada": avg_dif_q3,
+        "incumplimientos_sin_sancion": incumpl_sin_sancion,
+        "dif_box_promedio_q3": avg_dif_q3,
     }
 
 
@@ -320,15 +386,9 @@ def calcular_resumen(
 ) -> Dict[str, object]:
     total = len(partidos)
     con_box = [p for p in partidos if p.get("boxscore_ok")]
-    especiales = [p for p in con_box if p.get("especial")]
-    otros = [p for p in con_box if p.get("otro")]
 
     no_cumple_a = sum(1 for p in con_box if p.get("no_cumple_local"))
     no_cumple_b = sum(1 for p in con_box if p.get("no_cumple_visit"))
-
-    difs = [p["dif_box"] for p in especiales if p.get("dif_box") is not None]
-    avg_dif = round(sum(difs) / len(difs), 1) if difs else 0
-    max_dif = max(difs) if difs else 0
 
     por_marcador: Dict[str, int] = {"0-0": 0, "20-0": 0, "0-20": 0}
     for p in partidos:
@@ -337,25 +397,21 @@ def calcular_resumen(
         key = f"{pl}-{pv}"
         if key in por_marcador:
             por_marcador[key] += 1
+    raros = sum(por_marcador.values())
 
     base_total = total_categoria or total
 
     return {
         "total_categoria": base_total,
         "total": total,
-        "pct_marcadores_raros": _pct(total, base_total),
+        "raros": raros,
+        "pct_marcadores_raros": _pct(raros, base_total),
         "con_boxscore": len(con_box),
         "pct_con_boxscore": _pct(len(con_box), base_total),
         "no_cumple_equipo_a": no_cumple_a,
         "pct_no_cumple_equipo_a": _pct(no_cumple_a, base_total),
         "no_cumple_equipo_b": no_cumple_b,
         "pct_no_cumple_equipo_b": _pct(no_cumple_b, base_total),
-        "especiales": len(especiales),
-        "pct_especiales": _pct(len(especiales), base_total),
-        "otros": len(otros),
-        "pct_otros": _pct(len(otros), base_total),
-        "dif_box_promedio_especial": avg_dif,
-        "dif_box_maximo_especial": max_dif,
         "por_marcador_fixture": por_marcador,
     }
 
@@ -379,7 +435,7 @@ def _render_html(
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>MINI MASC Clasificación — marcadores 0-0 / 20-0 / 0-20</title>
+  <title>MINI MASC Clasificación — incumplimientos sin sanción</title>
   <style>
     :root {{
       --bg: #f8fafc;
@@ -429,6 +485,9 @@ def _render_html(
     }}
     .stat .n {{ font-size: 22px; font-weight: 700; color: var(--accent); }}
     .stat .l {{ font-size: 11px; color: var(--muted); margin-top: 2px; }}
+    .stat.alerta {{ border-color: var(--bad); background: #fef2f2; }}
+    .stat.alerta .n {{ color: var(--bad); }}
+    .stat.alerta .l {{ color: var(--bad); font-weight: 600; }}
     .caption {{ font-size: 12px; color: var(--muted); margin: 0 0 12px; }}
     .toolbar {{
       display: flex;
@@ -454,6 +513,8 @@ def _render_html(
       cursor: pointer;
     }}
     .chip.active {{ background: #eff6ff; border-color: #93c5fd; color: #1d4ed8; }}
+    .chip-alerta {{ border-color: #fca5a5; color: var(--bad); font-weight: 600; }}
+    .chip-alerta.active {{ background: #fef2f2; border-color: var(--bad); color: var(--bad); }}
     table {{
       width: 100%;
       border-collapse: collapse;
@@ -467,6 +528,8 @@ def _render_html(
     }}
     th {{ color: var(--muted); font-size: 10px; text-transform: uppercase; letter-spacing: 0.04em; }}
     tbody tr:hover {{ background: #f8fafc; }}
+    tbody tr.fila-alerta {{ background: #fef6f6; }}
+    tbody tr.fila-alerta:hover {{ background: #fde8e8; }}
     .btn-detalle {{
       border: 1px solid #93c5fd;
       background: #eff6ff;
@@ -516,6 +579,8 @@ def _render_html(
       color: #1e3a8a;
       margin-top: 10px;
     }}
+    .note > div {{ margin-top: 4px; }}
+    .note-alerta {{ background: #fef2f2; border-color: #fca5a5; color: #7f1d1d; }}
     .modal-backdrop {{
       position: fixed;
       inset: 0;
@@ -559,23 +624,23 @@ def _render_html(
     <header>
       <h1>MINI MASCULINO · Torneo de Clasificación</h1>
       <p class="subtitle">Competencia GES 2015 · A=local, B=visitante · Actualizado: {html.escape(fecha_actualizacion)}</p>
-      <p class="subtitle" style="margin-top:6px">Clasificación por resultado de fixture y jugadores con ≥10:00 min (A=local, B=visitante).</p>
+      <p class="subtitle" style="margin-top:6px">Todos los partidos jugados · detección de incumplimientos (NP / cambios Q3 / cuartos consecutivos) que no fueron sancionados en el fixture (A=local, B=visitante).</p>
       <div class="stats" id="stats"></div>
     </header>
 
     <section>
-      <h2>Partidos con marcador 0-0, 20-0 o 0-20</h2>
+      <h2>Todos los partidos jugados — detección de incumplimientos sin sanción</h2>
       <p class="caption">
-        Filtrá por indicador o buscá por equipo/fecha. Usá <strong>Ver detalle</strong> para abrir el boxscore completo,
-        las reglas incumplidas y el análisis de play-by-play (cambios en el 3er cuarto y cuartos consecutivos).
+        Listado completo de la categoría. Usá el filtro <strong>⚠ Incumplimiento sin sanción</strong> para ver los partidos
+        donde un equipo infringió (NP, cambios en Q3 o cuartos consecutivos) y NO fue penalizado en el fixture.
+        <strong>Ver detalle</strong> abre el boxscore (MIN/PTS, ≥10:00), las reglas incumplidas y el play-by-play.
       </p>
       <div class="toolbar">
         <input type="search" id="q" placeholder="Buscar equipo o fecha…"/>
+        <button type="button" class="chip chip-alerta" data-flag="sin_sancion">⚠ Incumplimiento sin sanción</button>
         <button type="button" class="chip active" data-flag="todos">Todos</button>
         <button type="button" class="chip" data-flag="A:NP">A:NP</button>
         <button type="button" class="chip" data-flag="B:NP">B:NP</button>
-        <button type="button" class="chip" data-flag="cambios">{html.escape(LABEL_CAMBIOS)}</button>
-        <button type="button" class="chip" data-flag="otro">{html.escape(LABEL_OTRO)}</button>
         <button type="button" class="chip" data-flag="subs_q3">Con cambios en Q3</button>
         <button type="button" class="chip" data-flag="consecutivos">Con cuartos consecutivos</button>
       </div>
@@ -591,6 +656,7 @@ def _render_html(
               <th>NP</th>
               <th>Cambios Q3</th>
               <th>Cuartos consecutivos</th>
+              <th>Sin sanción</th>
               <th></th>
             </tr>
           </thead>
@@ -651,23 +717,36 @@ def _render_html(
       return `<span class="badge no">${{pbp.n_consecutivos||0}} jugador(es)</span>`;
     }}
 
+    function _tiposCorto(tipos) {{
+      return (tipos || []).map(t => t === "Cuartos consecutivos" ? "Cuartos consec." : t).join(", ");
+    }}
+
+    function celdaSinSancion(p) {{
+      if (!p.incumplimiento_sin_sancion) return '<span class="caption">—</span>';
+      const out = [];
+      if (p.sin_sancion_local) out.push(`<span class="badge no">A: ${{_tiposCorto(p.tipos_sin_sancion_local)}}</span>`);
+      if (p.sin_sancion_visit) out.push(`<span class="badge no">B: ${{_tiposCorto(p.tipos_sin_sancion_visit)}}</span>`);
+      return out.join("<br>");
+    }}
+
     function renderStats() {{
       const el = document.getElementById("stats");
       const base = RESUMEN.total_categoria || 0;
       const pct = (n) => base > 0 ? Math.round(1000 * n / base) / 10 : 0;
       const pbp = PBP_RESUMEN || {{}};
+      const sinSancion = pbp.incumplimientos_sin_sancion || 0;
       const items = [
-        ["Total de partidos", RESUMEN.total_categoria, null],
-        ["Partidos con marcador 0-0 / 20-0 / 0-20", RESUMEN.total, pct(RESUMEN.total)],
-        ["Equipo A no completa plantilla", RESUMEN.no_cumple_equipo_a, pct(RESUMEN.no_cumple_equipo_a)],
-        ["Equipo B no completa plantilla", RESUMEN.no_cumple_equipo_b, pct(RESUMEN.no_cumple_equipo_b)],
-        ["Partidos con cambios durante Q3 (se aplicó regla)", pbp.regla_q3_aplicada || 0, pct(pbp.regla_q3_aplicada || 0)],
-        ["Partidos con jugadores en cuartos consecutivos (se aplicó regla)", pbp.consec_aplicada || 0, pct(pbp.consec_aplicada || 0)],
-        ["Diferencia de puntos promedio (partidos con cambios en Q3)", pbp.dif_box_promedio_q3_aplicada || 0, null],
-        ["Otras actas con 20-0 / 0-20 / 0-0", RESUMEN.otros, pct(RESUMEN.otros)],
+        ["Total de partidos", RESUMEN.total_categoria, null, ""],
+        ["Partidos con marcador 0-0 / 20-0 / 0-20 (sancionados)", RESUMEN.raros, pct(RESUMEN.raros), ""],
+        ["Equipo A no completa plantilla (NP A)", RESUMEN.no_cumple_equipo_a, pct(RESUMEN.no_cumple_equipo_a), ""],
+        ["Equipo B no completa plantilla (NP B)", RESUMEN.no_cumple_equipo_b, pct(RESUMEN.no_cumple_equipo_b), ""],
+        ["Partidos con cambios durante Q3 (por play-by-play)", pbp.con_subs_q3 || 0, pct(pbp.con_subs_q3 || 0), ""],
+        ["Partidos con jugadores en cuartos consecutivos (por play-by-play)", pbp.con_consecutivos || 0, pct(pbp.con_consecutivos || 0), ""],
+        ["⚠ Incumplimientos SIN sanción", sinSancion, pct(sinSancion), "alerta"],
+        ["Diferencia de puntos promedio (partidos con cambios en Q3)", pbp.dif_box_promedio_q3 || 0, null, ""],
       ];
-      el.innerHTML = items.map(([l, n, p]) =>
-        `<div class="stat"><div class="n">${{fmtStat(n, p)}}</div><div class="l">${{l}}</div></div>`
+      el.innerHTML = items.map(([l, n, p, cls]) =>
+        `<div class="stat ${{cls}}"><div class="n">${{fmtStat(n, p)}}</div><div class="l">${{l}}</div></div>`
       ).join("");
     }}
 
@@ -678,10 +757,9 @@ def _render_html(
       const hay = (p.local + " " + p.visitante + " " + p.fecha + " " + (p.flags||"")).toLowerCase().includes(q);
       if (!hay) return false;
       if (filtroFlag === "todos") return true;
-      if (filtroFlag === "A:NP") return p.np_local || (p.flags || "").includes("A:NP");
-      if (filtroFlag === "B:NP") return p.np_visit || (p.flags || "").includes("B:NP");
-      if (filtroFlag === "cambios") return p.especial || (p.flags || "").includes(LABEL_CAMBIOS);
-      if (filtroFlag === "otro") return p.otro || (p.flags || "").includes(LABEL_OTRO);
+      if (filtroFlag === "sin_sancion") return !!p.incumplimiento_sin_sancion;
+      if (filtroFlag === "A:NP") return !!p.np_local;
+      if (filtroFlag === "B:NP") return !!p.np_visit;
       if (filtroFlag === "subs_q3") return !!pbp.hubo_subs_q3;
       if (filtroFlag === "consecutivos") return !!pbp.hubo_consecutivos;
       return true;
@@ -691,15 +769,16 @@ def _render_html(
       const q = document.getElementById("q").value.trim().toLowerCase();
       const tbody = document.getElementById("lista");
       const rows = PARTIDOS.filter(p => matchFiltro(p, q));
-      tbody.innerHTML = rows.map(p => `<tr>
+      tbody.innerHTML = rows.map(p => `<tr${{p.incumplimiento_sin_sancion ? ' class="fila-alerta"' : ''}}>
           <td>${{p.fecha}}</td>
           <td>${{p.local}}</td>
           <td>${{p.visitante}}</td>
           <td>${{fmtScore(p.pts_fix_local, p.pts_fix_visit)}}</td>
-          <td>${{fmtScore(p.pts_box_local, p.pts_box_visit)}}</td>
+          <td>${{p.boxscore_ok ? fmtScore(p.pts_box_local, p.pts_box_visit) : '<span class="caption">Sin acta</span>'}}</td>
           <td>${{celdaNP(p)}}</td>
           <td>${{celdaCambiosQ3(p)}}</td>
           <td>${{celdaConsecutivos(p)}}</td>
+          <td>${{celdaSinSancion(p)}}</td>
           <td><button type="button" class="btn-detalle" data-id="${{p.id}}">Ver detalle</button></td>
         </tr>`).join("");
       tbody.querySelectorAll(".btn-detalle").forEach(btn => {{
@@ -778,6 +857,29 @@ def _render_html(
         ${{consecHtml}}`;
     }}
 
+    function lineaEquipo(nombre, lado, infringe, tipos, sancionado, sinSancion) {{
+      if (!infringe) {{
+        return `<div><strong>${{lado}} (${{nombre}}):</strong> <span class="badge ok">Sin incumplimientos</span></div>`;
+      }}
+      const t = (tipos || []).join(", ");
+      const estado = sinSancion
+        ? '<span class="badge no">NO sancionado</span>'
+        : '<span class="badge special">Sancionado por fixture</span>';
+      return `<div><strong>${{lado}} (${{nombre}}):</strong> ${{t}} — ${{estado}}</div>`;
+    }}
+
+    function sancionHtml(p) {{
+      const cls = p.incumplimiento_sin_sancion ? "note note-alerta" : "note";
+      const titulo = p.incumplimiento_sin_sancion
+        ? '<strong>⚠ Incumplimiento sin sanción detectado</strong>'
+        : '<strong>Control de sanción por equipo</strong>';
+      return `<div class="${{cls}}">
+        ${{titulo}}
+        ${{lineaEquipo(p.local, "Equipo A", p.infringe_local, p.tipos_infraccion_local, p.sancionado_local, p.sin_sancion_local)}}
+        ${{lineaEquipo(p.visitante, "Equipo B", p.infringe_visit, p.tipos_infraccion_visit, p.sancionado_visit, p.sin_sancion_visit)}}
+      </div>`;
+    }}
+
     function abrirModal(id) {{
       const p = PARTIDOS.find(x => x.id === id);
       const body = document.getElementById("modal-body");
@@ -786,6 +888,7 @@ def _render_html(
       body.innerHTML = `
         <h2 id="modal-title">${{p.local}} vs ${{p.visitante}}</h2>
         <p class="caption">${{p.fecha}} · A (local) · B (visitante)${{p.boxscore_ok ? ` · Ganador box: <strong>${{p.ganador_nombre || "Empate"}}</strong>` : ""}}</p>
+        ${{sancionHtml(p)}}
         ${{boxscoreHtml(p)}}
         ${{pbpHtml(p)}}`;
       backdrop.classList.add("open");
@@ -824,8 +927,8 @@ def publicar_docs(out_html: Path) -> Path:
 
 
 def main() -> int:
-    p = argparse.ArgumentParser(description="Informe HTML marcadores raros MINI MASC")
-    p.add_argument("--csv", default=str(CSV_RAROS))
+    p = argparse.ArgumentParser(description="Informe HTML MINI MASC (todos los partidos)")
+    p.add_argument("--csv", default=str(CSV_TODOS))
     p.add_argument(
         "--csv-todos",
         default=str(CSV_TODOS),
