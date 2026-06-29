@@ -35,6 +35,7 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from ingest.argbasket.partido import parse_boxscore_html
+from ingest.argbasket.pbp_reglas import fetch_y_analizar
 from ingest.febamba.mini_masc_regla_plantilla import (
     jugador_cumple_regla,
     parse_minutos_a_segundos,
@@ -73,6 +74,7 @@ OUT_HTML = OUT_DIR / "tabla_posiciones.html"
 OUT_JSON = OUT_DIR / "datos.json"
 ACTAS_CACHE = OUT_DIR / "actas_cache.json"
 BOXSCORES_CACHE = OUT_DIR / "boxscores.json"
+PBP_U11_CACHE = OUT_DIR / "pbp_u11.json"
 DOCS_HTML = ROOT / "docs" / "formativas_2026_tabla_posiciones.html"
 PUBLIC_URL = "https://fblasco1.github.io/formativas_ges/formativas_2026_tabla_posiciones.html"
 
@@ -294,6 +296,65 @@ def descargar_boxscores(
                     print(f"  {done}/{len(pendientes)}", file=sys.stderr, flush=True)
         _guardar_boxscores_cache(cache)
     return {t: cache[t] for t in unicos if t in cache and cache[t].get("ok")}
+
+
+# --------------------------------------------------------------------------- #
+# Play-by-play (cambios Q3 / cuartos consecutivos) — SOLO U11
+# --------------------------------------------------------------------------- #
+def _cargar_pbp_cache() -> Dict[str, Dict[str, object]]:
+    if PBP_U11_CACHE.exists():
+        try:
+            return json.loads(PBP_U11_CACHE.read_text(encoding="utf-8"))
+        except Exception:
+            return {}
+    return {}
+
+
+def _guardar_pbp_cache(cache: Dict[str, Dict[str, object]]) -> None:
+    PBP_U11_CACHE.parent.mkdir(parents=True, exist_ok=True)
+    PBP_U11_CACHE.write_text(json.dumps(cache, ensure_ascii=False), encoding="utf-8")
+
+
+def _descargar_pbp_uno(
+    token: str, session: requests.Session
+) -> Dict[str, object]:
+    try:
+        return fetch_y_analizar(token, session=session)
+    except Exception:
+        return {"tiene_pbp": False}
+
+
+def descargar_pbp_u11(
+    tokens: List[str],
+    *,
+    workers: int = 12,
+    progress: bool = False,
+    limite: int = 0,
+) -> Dict[str, Dict[str, object]]:
+    """Descarga (con caché) el análisis PBP de los partidos U11 dados."""
+    cache = _cargar_pbp_cache()
+    unicos = [t for t in dict.fromkeys(tokens) if t]
+    pendientes = [t for t in unicos if t not in cache]
+    if limite > 0:
+        pendientes = pendientes[:limite]
+    if progress:
+        print(
+            f"PBP U11: {len(unicos)} partidos, {len(cache)} en caché, "
+            f"{len(pendientes)} a descargar…",
+            file=sys.stderr,
+        )
+    if pendientes:
+        session = requests.Session()
+        with ThreadPoolExecutor(max_workers=max(1, workers)) as pool:
+            fut = {pool.submit(_descargar_pbp_uno, t, session): t for t in pendientes}
+            done = 0
+            for f in as_completed(fut):
+                cache[fut[f]] = f.result()
+                done += 1
+                if progress and (done % 100 == 0 or done == len(pendientes)):
+                    print(f"  {done}/{len(pendientes)}", file=sys.stderr, flush=True)
+        _guardar_pbp_cache(cache)
+    return {t: cache[t] for t in unicos if t in cache}
 
 
 def recomputar_presentaciones_desde_boxscores(
@@ -570,6 +631,7 @@ def construir_payload(
     *,
     fecha_actualizacion: str,
     boxscores: Optional[Dict[str, Dict[str, object]]] = None,
+    pbp: Optional[Dict[str, Dict[str, object]]] = None,
 ) -> Dict[str, object]:
     registrar_nombres_globales(generales, presentaciones)
     resultado = construir_standings(generales, presentaciones)
@@ -721,6 +783,7 @@ def construir_payload(
         "tablas_resultado_mini": {"U11": u11_json},
         "partidos": partidos,
         "boxscores": boxscores or {},
+        "pbp": pbp or {},
         "min_regla": MIN_JUGADORES_REGLA,
         "sin_zona": sin_zona_list,
         "resumen": resumen,
@@ -753,7 +816,7 @@ def _render_html(payload: Dict[str, object]) -> str:
     h1 {{ margin:0 0 4px; font-size:24px; }}
     h2 {{ margin:0 0 12px; font-size:17px; }}
     .subtitle {{ color:var(--muted); font-size:13px; margin:0; }}
-    .stats {{ display:grid; grid-template-columns:repeat(4,1fr); gap:10px; margin-top:16px; }}
+    .stats {{ display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-top:16px; }}
     .stat {{ border:1px solid var(--line); border-radius:10px; padding:12px; background:#fafbfc; }}
     .stat .n {{ font-size:22px; font-weight:700; color:var(--accent); }}
     .stat .l {{ font-size:11px; color:var(--muted); margin-top:2px; }}
@@ -885,6 +948,7 @@ def _render_html(payload: Dict[str, object]) -> str:
 
   <script>
     const DATA = {data_json};
+    const PBP = DATA.pbp || {{}};
     const MIN_REG = {MIN_JUGADORES_REGLA};
     const MIN_SEG_GENERAL = {MIN_SEGUNDOS_REGLA};
     const MIN_SEG_PREMINI = {MIN_SEGUNDOS_PREMINI};
@@ -917,7 +981,6 @@ def _render_html(payload: Dict[str, object]) -> str:
         ["Equipos en tablas", r.filas_tabla],
         ["Partidos U13/U15/U17", r.partidos_general],
         ["Partidos U9/U11", r.partidos_presentacion],
-        ["Equipos sin zona", r.equipos_sin_zona],
       ];
       document.getElementById("stats").innerHTML = items.map(([l,n]) =>
         `<div class="stat"><div class="n">${{n}}</div><div class="l">${{l}}</div></div>`
@@ -1129,6 +1192,47 @@ def _render_html(payload: Dict[str, object]) -> str:
         <tbody>${{rows}}</tbody></table>`;
     }}
 
+    function nombreLado(m, lado) {{
+      return lado === "local" ? m.local : (lado === "visitante" ? m.visit : "?");
+    }}
+
+    // Detalle de play-by-play (solo U11): cambios durante el 3er cuarto y
+    // jugadores que jugaron cuartos consecutivos. Replica el informe Mini.
+    function pbpHtml(pbp, m) {{
+      if (!pbp || !pbp.tiene_pbp) {{
+        return `<h3 style="margin-top:18px;">Play-by-play</h3>
+          <p class="small">Sin relato en vivo disponible para este partido.</p>`;
+      }}
+      let subsHtml;
+      if (!pbp.hubo_subs_q3) {{
+        subsHtml = '<p class="small">Sin sustituciones durante el 3er cuarto (solo formación de arranque).</p>';
+      }} else {{
+        const items = (pbp.subs_q3 || []).map(s => {{
+          const eq = nombreLado(m, s.equipo);
+          const cls = s.accion === "ENTRA" ? "badge-ok" : "badge-inc";
+          return `<li><span class="${{cls}}">${{esc(s.accion)}}</span> #${{esc(s.dorsal||"")}} ${{esc(s.nombre||"")}} <span class="small">(${{esc(eq)}} · ${{esc(s.clock||"")}})</span></li>`;
+        }}).join("");
+        subsHtml = `<ul style="margin:6px 0 0; padding-left:18px;">${{items}}</ul>`;
+      }}
+      let consecHtml;
+      if (!pbp.hubo_consecutivos) {{
+        consecHtml = '<p class="small">Ningún jugador estuvo en cancha en cuartos consecutivos.</p>';
+      }} else {{
+        const items = (pbp.jugadores_consecutivos || []).map(c => {{
+          const eq = nombreLado(m, c.equipo);
+          const pares = (c.pares || []).map(par => par.join("-")).join(", ");
+          const cuartos = (c.cuartos || []).join(", ");
+          return `<li>#${{esc(c.dorsal||"")}} ${{esc(c.nombre||"")}} <span class="small">(${{esc(eq)}})</span> — cuartos jugados: ${{esc(cuartos)}} · consecutivos: <strong>${{esc(pares)}}</strong></li>`;
+        }}).join("");
+        consecHtml = `<ul style="margin:6px 0 0; padding-left:18px;">${{items}}</ul>`;
+      }}
+      return `
+        <h3 style="margin-top:18px;">Cambios durante el 3er cuarto <span class="${{pbp.hubo_subs_q3 ? "badge-sd" : "badge-ok"}}">${{pbp.subs_q3_entra||0}} ingreso(s) · ${{pbp.subs_q3_sale||0}} salida(s)</span></h3>
+        ${{subsHtml}}
+        <h3 style="margin-top:16px;">Jugadores en cuartos consecutivos <span class="${{pbp.hubo_consecutivos ? "badge-inc" : "badge-ok"}}">${{pbp.n_consecutivos||0}}</span></h3>
+        ${{consecHtml}}`;
+    }}
+
     function abrirModal(id) {{
       const m = matchesZona.find(x => x.id === id);
       if (!m) return;
@@ -1158,10 +1262,14 @@ def _render_html(payload: Dict[str, object]) -> str:
           <p class="small">Acta no disponible para este partido.</p>`;
       }}
 
+      // PBP (cambios Q3 / cuartos consecutivos): solo para U11.
+      const pbpSection = v.id === "U11" ? pbpHtml(PBP[id], m) : "";
+
       body.innerHTML = `<h2 id="modal-title" style="margin:0 24px 2px 0;">${{esc(m.local)}} vs ${{esc(m.visit)}}</h2>
         <p class="small">${{v.label}} · ${{DATA.fase_labels[faseActual]||faseActual}} · Zona ${{zonaActual}}${{m.fecha ? " · " + esc(m.fecha) : ""}}</p>
         ${{nota}}
-        ${{boxHtml}}`;
+        ${{boxHtml}}
+        ${{pbpSection}}`;
       const backdrop = document.getElementById("modal-backdrop");
       backdrop.classList.add("open");
       backdrop.setAttribute("aria-hidden", "false");
@@ -1238,6 +1346,8 @@ def main() -> int:
     p.add_argument("--limite-actas", type=int, default=0, help="Tope de actas a descargar (debug)")
     p.add_argument("--sin-boxscores", action="store_true", help="No descarga/embebe boxscores para el modal")
     p.add_argument("--limite-boxscores", type=int, default=0, help="Tope de boxscores a descargar (debug)")
+    p.add_argument("--sin-pbp", action="store_true", help="No descarga el play-by-play U11 (cambios Q3 / consecutivos)")
+    p.add_argument("--limite-pbp", type=int, default=0, help="Tope de partidos PBP U11 a descargar (debug)")
     p.add_argument("--workers", type=int, default=8)
     p.add_argument("--publicar-docs", action="store_true", help=f"Copia a docs/ ({PUBLIC_URL})")
     p.add_argument("--progress", action="store_true")
@@ -1311,11 +1421,37 @@ def main() -> int:
                 file=sys.stderr,
             )
 
+    pbp_u11: Dict[str, Dict[str, object]] = {}
+    if not args.sin_pbp:
+        if args.progress:
+            print("Descargando play-by-play U11 (cambios Q3 / consecutivos)…", file=sys.stderr)
+        tokens_u11 = [
+            p.id_partido
+            for p in presentaciones
+            if p.edad == "U11" and p.id_partido
+        ]
+        pbp_u11 = descargar_pbp_u11(
+            tokens_u11,
+            workers=max(args.workers, 12),
+            progress=args.progress,
+            limite=args.limite_pbp,
+        )
+        if args.progress:
+            con_pbp = sum(1 for v in pbp_u11.values() if v.get("tiene_pbp"))
+            con_subs = sum(1 for v in pbp_u11.values() if v.get("hubo_subs_q3"))
+            con_cons = sum(1 for v in pbp_u11.values() if v.get("hubo_consecutivos"))
+            print(
+                f"PBP U11: {con_pbp} con relato · {con_subs} con cambios Q3 · "
+                f"{con_cons} con cuartos consecutivos",
+                file=sys.stderr,
+            )
+
     payload = construir_payload(
         generales,
         presentaciones,
         fecha_actualizacion=fecha_actualizacion,
         boxscores=boxscores,
+        pbp=pbp_u11,
     )
     out_html = Path(args.out_html)
     out_html.write_text(_render_html(payload), encoding="utf-8")
