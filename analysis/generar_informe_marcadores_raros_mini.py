@@ -565,9 +565,15 @@ def _render_html(
         <table>
           <thead>
             <tr>
-              <th style="width:26%">Partido</th>
-              <th>Indicadores</th>
-              <th style="width:110px"></th>
+              <th>Fecha</th>
+              <th>Local (A)</th>
+              <th>Visitante (B)</th>
+              <th>Fixture</th>
+              <th>Boxscore</th>
+              <th>NP</th>
+              <th>Cambios Q3</th>
+              <th>Cuartos consecutivos</th>
+              <th></th>
             </tr>
           </thead>
           <tbody id="lista"></tbody>
@@ -605,33 +611,26 @@ def _render_html(
       return lado === "local" ? p.local : (lado === "visitante" ? p.visitante : "?");
     }}
 
-    function badgesIndicadores(p) {{
+    function celdaNP(p) {{
+      if (!p.boxscore_ok) return '<span class="badge no">Sin acta</span>';
       const out = [];
-      // Resultado de fixture
-      out.push(`<span class="badge special">Fixture ${{fmtScore(p.pts_fix_local, p.pts_fix_visit)}}</span>`);
-      // Reglas incumplidas / clasificación
-      if (!p.boxscore_ok) {{
-        out.push('<span class="badge no">Sin acta</span>');
-      }} else {{
-        const flags = p.flags || "";
-        if (flags) {{
-          flags.split(" | ").forEach(f => {{
-            let cls = "ok";
-            if (f === LABEL_CAMBIOS || f === LABEL_OTRO || f === "ESPECIAL" || f === "Otro") cls = "special";
-            else if (f.includes("NP")) cls = "no";
-            out.push(`<span class="badge ${{cls}}">${{f}}</span>`);
-          }});
-        }}
-      }}
-      // Marcas de play-by-play
+      if (p.np_local || (p.flags || "").includes("A:NP")) out.push('<span class="badge no">A:NP</span>');
+      if (p.np_visit || (p.flags || "").includes("B:NP")) out.push('<span class="badge no">B:NP</span>');
+      return out.length ? out.join(" ") : '<span class="caption">—</span>';
+    }}
+
+    function celdaCambiosQ3(p) {{
       const pbp = p.pbp || {{}};
-      if (pbp.tiene_pbp) {{
-        if (pbp.hubo_subs_q3) out.push(`<span class="badge special">Cambios en Q3 · ${{pbp.subs_q3_entra||0}}</span>`);
-        if (pbp.hubo_consecutivos) out.push(`<span class="badge no">Cuartos consecutivos: ${{pbp.n_consecutivos||0}}</span>`);
-      }} else {{
-        out.push('<span class="badge no" title="Sin relato en vivo">Sin relato</span>');
-      }}
-      return out.join(" ");
+      if (!pbp.tiene_pbp) return '<span class="caption">Sin relato</span>';
+      if (!pbp.hubo_subs_q3) return '<span class="badge ok">No</span>';
+      return `<span class="badge special">Sí · ${{pbp.subs_q3_entra||0}} ingreso(s)</span>`;
+    }}
+
+    function celdaConsecutivos(p) {{
+      const pbp = p.pbp || {{}};
+      if (!pbp.tiene_pbp) return '<span class="caption">Sin relato</span>';
+      if (!pbp.hubo_consecutivos) return '<span class="badge ok">No</span>';
+      return `<span class="badge no">${{pbp.n_consecutivos||0}} jugador(es)</span>`;
     }}
 
     function renderStats() {{
@@ -677,8 +676,14 @@ def _render_html(
       const tbody = document.getElementById("lista");
       const rows = PARTIDOS.filter(p => matchFiltro(p, q));
       tbody.innerHTML = rows.map(p => `<tr>
-          <td><div><strong>${{p.local}}</strong> <span class="caption">(A)</span> vs <strong>${{p.visitante}}</strong> <span class="caption">(B)</span></div><div class="caption">${{p.fecha}}</div></td>
-          <td>${{badgesIndicadores(p)}}</td>
+          <td>${{p.fecha}}</td>
+          <td>${{p.local}}</td>
+          <td>${{p.visitante}}</td>
+          <td>${{fmtScore(p.pts_fix_local, p.pts_fix_visit)}}</td>
+          <td>${{fmtScore(p.pts_box_local, p.pts_box_visit)}}</td>
+          <td>${{celdaNP(p)}}</td>
+          <td>${{celdaCambiosQ3(p)}}</td>
+          <td>${{celdaConsecutivos(p)}}</td>
           <td><button type="button" class="btn-detalle" data-id="${{p.id}}">Ver detalle</button></td>
         </tr>`).join("");
       tbody.querySelectorAll(".btn-detalle").forEach(btn => {{
