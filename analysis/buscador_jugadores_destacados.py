@@ -522,6 +522,9 @@ def agregar_jugadores(
                 "t2i": a["t2i"],
                 "t3i": a["t3i"],
                 "tli": a["tli"],
+                "t2a": a["t2a"],
+                "t3a": a["t3a"],
+                "tla": a["tla"],
             }
         )
     out.sort(key=lambda d: (-d["pts_p"], -d["pj"], d["nombre"]))
@@ -685,6 +688,13 @@ def _build_html(
       {{key:"t2_pct", label:"2P%"}},
       {{key:"t3_pct", label:"3P%"}},
       {{key:"tl_pct", label:"TL%"}},
+      // Volumen de lanzamientos: intentos por partido y totales de temporada.
+      {{key:"t2i_p", label:"2P int/p"}},
+      {{key:"t3i_p", label:"3P int/p"}},
+      {{key:"tli_p", label:"TL int/p"}},
+      {{key:"t2i", label:"2P int. tot."}},
+      {{key:"t3i", label:"3P int. tot."}},
+      {{key:"tli", label:"TL int. tot."}},
     ];
     let sortKey = "pts_p";
     let sortDir = -1; // -1 desc, 1 asc
