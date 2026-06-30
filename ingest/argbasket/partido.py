@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import json
 import re
 from dataclasses import dataclass
 from typing import Dict, List, Optional, Tuple
@@ -16,6 +17,46 @@ _RE_SCORE = re.compile(r"\|\s*(\d+)\s*-\s*(\d+)\s*$")
 _RE_CUARTO = re.compile(r"\bCuarto\s+(\d+)\s*-\s*(\d{2}:\d{2}:\d{2})\b", flags=re.I)
 _RE_HORA_REAL = re.compile(r"(\d{1,2}:\d{2}:\d{2})\s*h\.", flags=re.I)
 _RE_TIRO_BLOCK = re.compile(r"^\s*(?:(\d{1,3})\s+)?(\d+)\s*/\s*(\d+)\s*$")
+
+
+def _parse_onclick_jugador(tr) -> Dict[str, Optional[str]]:
+    """
+    Extrae, del ``onclick="EstadisticasComponente({...})"`` de la fila, los datos del
+    jugador. El enlace a la ficha NO está en el HTML estático (lo arma el JS), pero el
+    ``onclick`` trae el JSON con ``IdJugador``, ``IdEquipo`` y ``NombreCompleto``.
+
+    Según ``estadisticas.js`` el href de la ficha es
+    ``/liga-federal/jugador/{IdEquipo}/{IdJugador}/{slug}`` y el slug es ignorado por el
+    ruteo, así que reconstruimos un ``purl`` válido con un slug placeholder.
+
+    Devuelve ``{"pid", "id_equipo", "nombre_completo", "purl"}`` (None si no aplica).
+    Aditivo y tolerante: no rompe a otros consumidores.
+    """
+    out: Dict[str, Optional[str]] = {
+        "pid": None,
+        "id_equipo": None,
+        "nombre_completo": None,
+        "purl": None,
+    }
+    oc = tr.get("onclick") or ""
+    i = oc.find("{")
+    if i < 0:
+        return out
+    try:
+        data, _ = json.JSONDecoder().raw_decode(oc[i:])
+    except Exception:
+        return out
+    pid = data.get("IdJugador")
+    if not pid:  # filas TOTALES no tienen IdJugador
+        return out
+    id_eq = data.get("IdEquipo")
+    out["pid"] = str(pid)
+    out["id_equipo"] = str(id_eq) if id_eq else None
+    nc = (data.get("NombreCompleto") or "").strip()
+    out["nombre_completo"] = nc or None
+    if id_eq:
+        out["purl"] = f"/liga-federal/jugador/{id_eq}/{pid}/x"
+    return out
 
 
 def _default_headers(referer: str) -> dict[str, str]:
@@ -414,7 +455,10 @@ def parse_boxscore_html(html: str) -> Dict[str, object]:
             cells = [td.get_text(" ", strip=True) for td in tr.find_all(["td", "th"])]
             jugador = _parse_player_row(cells)
             if jugador:
-                jugadores.append(jugador.to_dict())
+                jd = jugador.to_dict()
+                # Aditivo: pid / id_equipo / nombre completo / purl (desde el onclick).
+                jd.update(_parse_onclick_jugador(tr))
+                jugadores.append(jd)
 
         if jugadores:
             equipos.append(
@@ -427,6 +471,56 @@ def parse_boxscore_html(html: str) -> Dict[str, object]:
             )
 
     return {"equipos": equipos}
+
+
+_RE_FECHA_DMY = re.compile(r"(\d{2}/\d{2}/\d{4})")
+
+
+def parse_ficha_jugador_html(html: str) -> Dict[str, object]:
+    """
+    Parsea la ficha pública de un jugador (argentina.basketball/liga-federal/jugador/...).
+
+    Devuelve ``{"ok", "nombre_completo", "fnac"}`` donde ``fnac`` queda en formato
+    ``dd/mm/aaaa`` (tal cual la web). Selectores robustos con fallbacks:
+      - nombre completo: ``<title>`` ("Nombre Apellido | LIGA FEDERAL") o ``h4>strong``
+        del bloque ``div.datos-jugador`` / ``div.bloque-detalle-jugador``.
+      - fecha de nacimiento: el ``<h5>`` que contiene "nacimiento" → primer dd/mm/aaaa.
+    """
+    soup = BeautifulSoup(html, "html.parser")
+
+    nombre_completo = ""
+    if soup.title:
+        t = soup.title.get_text(strip=True)
+        if t:
+            nombre_completo = t.split("|")[0].strip()
+
+    div = soup.find("div", class_=re.compile(r"\bdatos-jugador\b", re.I)) or soup.find(
+        "div", class_=re.compile(r"\bbloque-detalle-jugador\b", re.I)
+    )
+    if not nombre_completo and div:
+        h4 = div.find(["h4", "h3", "h2"])
+        if h4:
+            nombre_completo = h4.get_text(" ", strip=True)
+
+    fnac = ""
+    scope = div or soup
+    for el in scope.find_all(["h5", "li", "p", "div", "span"]):
+        txt = el.get_text(" ", strip=True)
+        if "nacimiento" in txt.lower():
+            m = _RE_FECHA_DMY.search(txt)
+            if m:
+                fnac = m.group(1)
+                break
+    if not fnac:
+        m = _RE_FECHA_DMY.search(scope.get_text(" ", strip=True))
+        if m:
+            fnac = m.group(1)
+
+    return {
+        "ok": bool(nombre_completo or fnac),
+        "nombre_completo": nombre_completo,
+        "fnac": fnac,
+    }
 
 
 def parse_play_by_play_text(text: str) -> List[Dict[str, object]]:

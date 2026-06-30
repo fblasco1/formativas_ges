@@ -28,7 +28,7 @@ import os
 import sys
 import unicodedata
 from concurrent.futures import ThreadPoolExecutor, as_completed
-from datetime import date
+from datetime import date, datetime
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
@@ -38,7 +38,7 @@ ROOT = Path(__file__).resolve().parent.parent
 if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
-from ingest.argbasket.partido import parse_boxscore_html
+from ingest.argbasket.partido import parse_boxscore_html, parse_ficha_jugador_html
 from ingest.febamba.mini_masc_regla_plantilla import parse_minutos_a_segundos
 from ingest.ges.extractor import GesDeportivaExtractor
 from ingest.http_client import HttpClient, SessionProvider
@@ -57,6 +57,7 @@ OUT_DIR = ROOT / "outputs" / "buscador"
 OUT_HTML = OUT_DIR / "buscador_jugadores.html"
 BOX_FULL_CACHE = OUT_DIR / "boxscores_full.json"
 PARTIDOS_CACHE = OUT_DIR / "partidos.json"
+FICHA_CACHE = OUT_DIR / "jugadores_ficha.json"
 
 # Publicación cifrada (GitHub Pages, branch estadisticas).
 DOCS_HTML = ROOT / "docs" / "buscador_jugadores.html"
@@ -219,10 +220,12 @@ def descargar_boxscores_full(
     progress: bool = False,
     limite: int = 0,
     sin_descarga: bool = False,
+    refetch: bool = False,
 ) -> Dict[str, Dict[str, object]]:
     cache = _cargar_box_cache()
     unicos = [t for t in dict.fromkeys(tokens) if t]
-    pendientes = [t for t in unicos if t not in cache]
+    # refetch: re-descargar y re-parsear TODO (necesario para poblar pid/purl).
+    pendientes = list(unicos) if refetch else [t for t in unicos if t not in cache]
     if limite > 0:
         pendientes = pendientes[:limite]
     if progress:
@@ -245,6 +248,100 @@ def descargar_boxscores_full(
 
 
 # --------------------------------------------------------------------------- #
+# Fichas de jugador (nombre completo + fecha de nacimiento), caché por pid
+# --------------------------------------------------------------------------- #
+def _ficha_url(purl: str) -> str:
+    purl = (purl or "").strip()
+    if purl.startswith("http"):
+        return purl
+    return "https://argentina.basketball" + purl
+
+
+def _descargar_ficha(purl: str) -> Dict[str, object]:
+    try:
+        resp = requests.get(
+            _ficha_url(purl),
+            headers={"User-Agent": UA, "Accept": "text/html,*/*"},
+            timeout=45,
+        )
+        resp.raise_for_status()
+        resp.encoding = resp.apparent_encoding or resp.encoding or "utf-8"
+        html = resp.text
+    except Exception:
+        return {"ok": False}
+    if len(html) < 2000:
+        return {"ok": False}
+    return parse_ficha_jugador_html(html)
+
+
+def _cargar_ficha_cache() -> Dict[str, Dict[str, object]]:
+    if FICHA_CACHE.exists():
+        try:
+            return json.loads(FICHA_CACHE.read_text(encoding="utf-8"))
+        except Exception:
+            return {}
+    return {}
+
+
+def _guardar_ficha_cache(cache: Dict[str, Dict[str, object]]) -> None:
+    FICHA_CACHE.parent.mkdir(parents=True, exist_ok=True)
+    FICHA_CACHE.write_text(json.dumps(cache, ensure_ascii=False), encoding="utf-8")
+
+
+def pids_purls_desde_boxscores(
+    boxscores: Dict[str, Dict[str, object]]
+) -> Dict[str, str]:
+    """Mapa pid -> purl (primer href visto) recorriendo todas las actas."""
+    out: Dict[str, str] = {}
+    for box in boxscores.values():
+        if not box or not box.get("ok"):
+            continue
+        for eq in box.get("equipos") or []:
+            for j in eq.get("jugadores") or []:
+                pid = j.get("pid")
+                purl = j.get("purl")
+                if pid and purl and pid not in out:
+                    out[str(pid)] = purl
+    return out
+
+
+def descargar_fichas(
+    pid_purl: Dict[str, str],
+    *,
+    workers: int = 16,
+    progress: bool = False,
+    limite: int = 0,
+    sin_fichas: bool = False,
+) -> Dict[str, Dict[str, object]]:
+    cache = _cargar_ficha_cache()
+    pendientes = [pid for pid in pid_purl if pid not in cache]
+    if limite > 0:
+        pendientes = pendientes[:limite]
+    if progress:
+        print(
+            f"Fichas: {len(pid_purl)} jugadores únicos, {len(cache)} en caché, "
+            f"{len(pendientes)} a descargar…",
+            file=sys.stderr,
+        )
+    if pendientes and not sin_fichas:
+        with ThreadPoolExecutor(max_workers=max(1, workers)) as pool:
+            fut = {
+                pool.submit(_descargar_ficha, pid_purl[pid]): pid for pid in pendientes
+            }
+            done = 0
+            for f in as_completed(fut):
+                cache[fut[f]] = f.result()
+                done += 1
+                if progress and (done % 200 == 0 or done == len(pendientes)):
+                    print(f"  {done}/{len(pendientes)}", file=sys.stderr, flush=True)
+                # Guardado incremental para no perder progreso en corridas largas.
+                if done % 1000 == 0:
+                    _guardar_ficha_cache(cache)
+        _guardar_ficha_cache(cache)
+    return {pid: cache[pid] for pid in pid_purl if pid in cache and cache[pid].get("ok")}
+
+
+# --------------------------------------------------------------------------- #
 # Agregación por jugador
 # --------------------------------------------------------------------------- #
 _ACUM_CAMPOS = (
@@ -260,13 +357,46 @@ _ACUM_CAMPOS = (
     ("val", "val"),
 )
 
+# Tipos de tiro: campo en el acta -> alias acumulado (anotados/intentados).
+_TIROS = ("t2", "t3", "tl")
+
+
+def _pct(a: int, i: int) -> float:
+    """Porcentaje anotados/intentados; 0.0 si no hubo intentos (display '-' en UI)."""
+    return round(a / i * 100, 1) if i > 0 else 0.0
+
+
+def _edad_de_fnac(fnac: str) -> Optional[int]:
+    """Edad (años) a partir de una fecha de nacimiento en formatos comunes."""
+    fnac = (fnac or "").strip()
+    if not fnac:
+        return None
+    dt = None
+    for fmt in ("%Y-%m-%d", "%d/%m/%Y", "%d-%m-%Y", "%Y/%m/%d"):
+        try:
+            dt = datetime.strptime(fnac[:10], fmt).date()
+            break
+        except ValueError:
+            continue
+    if dt is None:
+        return None
+    hoy = date.today()
+    edad = hoy.year - dt.year - ((hoy.month, hoy.day) < (dt.month, dt.day))
+    return edad if 0 < edad < 120 else None
+
 
 def agregar_jugadores(
     partidos: List[Dict[str, str]],
     boxscores: Dict[str, Dict[str, object]],
+    fichas: Optional[Dict[str, Dict[str, object]]] = None,
 ) -> List[Dict[str, object]]:
-    # clave -> acumulador
-    acc: Dict[Tuple[str, str, str], Dict[str, object]] = {}
+    """
+    Agrega por jugador. Clave: el ``pid`` (id de ficha) cuando existe — robusto ante
+    cambios de equipo dentro de la categoría — combinado con la categoría para no
+    mezclar a un mismo jugador entre categorías. Fallback a (categoría, equipo, nombre).
+    """
+    fichas = fichas or {}
+    acc: Dict[Tuple[str, ...], Dict[str, object]] = {}
 
     for p in partidos:
         box = boxscores.get(p["id_partido"])
@@ -289,23 +419,48 @@ def agregar_jugadores(
                 nombre = (j.get("nombre") or "").strip()
                 if not nombre:
                     continue
-                clave = (p["categoria"], normalizar_nombre(equipo_disp), normalizar_nombre(nombre))
+                pid = (str(j.get("pid")).strip() if j.get("pid") else "") or None
+                if pid:
+                    clave: Tuple[str, ...] = ("pid", p["categoria"], pid)
+                else:
+                    clave = (
+                        "nm",
+                        p["categoria"],
+                        normalizar_nombre(equipo_disp),
+                        normalizar_nombre(nombre),
+                    )
                 a = acc.get(clave)
                 if a is None:
                     a = {
                         "nombre": nombre,
-                        "equipo": equipo_disp,
+                        "nc_oc": (j.get("nombre_completo") or "").strip(),
                         "categoria": p["categoria"],
+                        "pid": pid,
+                        "purl": j.get("purl"),
+                        "equipos": {},  # equipo -> nº de partidos (para elegir el principal)
                         "pj": 0,
                         "seg": 0,
                     }
                     for _, alias in _ACUM_CAMPOS:
                         a[alias] = 0
+                    for st in _TIROS:
+                        a[st + "a"] = 0
+                        a[st + "i"] = 0
                     acc[clave] = a
                 a["pj"] += 1
                 a["seg"] += seg
+                a["equipos"][equipo_disp] = a["equipos"].get(equipo_disp, 0) + 1
+                if pid and not a.get("pid"):
+                    a["pid"] = pid
+                    a["purl"] = j.get("purl")
+                if not a.get("nc_oc") and j.get("nombre_completo"):
+                    a["nc_oc"] = j["nombre_completo"].strip()
                 for campo, alias in _ACUM_CAMPOS:
                     a[alias] += _to_int(j.get(campo))
+                for st in _TIROS:
+                    blk = j.get(st) or {}
+                    a[st + "a"] += _to_int(blk.get("a"))
+                    a[st + "i"] += _to_int(blk.get("i"))
 
     out: List[Dict[str, object]] = []
     for a in acc.values():
@@ -316,11 +471,29 @@ def agregar_jugadores(
         def avg(x: int) -> float:
             return round(x / pj, 1)
 
+        equipo_disp = (
+            max(a["equipos"].items(), key=lambda kv: kv[1])[0]
+            if a["equipos"]
+            else a.get("equipo", "")
+        )
+        ficha = fichas.get(a["pid"]) if a.get("pid") else None
+        nombre_ficha = ""
+        fnac = ""
+        if ficha and ficha.get("ok"):
+            nombre_ficha = (ficha.get("nombre_completo") or "").strip()
+            fnac = (ficha.get("fnac") or "").strip()
+        # Prioridad: ficha ("Nombre Apellido") > onclick ("APELLIDO, NOMBRE") > abreviado.
+        nombre_completo = nombre_ficha or a.get("nc_oc") or a["nombre"]
+        edad = _edad_de_fnac(fnac)
+
         out.append(
             {
                 "nombre": a["nombre"],
-                "equipo": a["equipo"],
+                "nombre_completo": nombre_completo,
+                "equipo": equipo_disp,
                 "cat": a["categoria"],
+                "fnac": fnac,
+                "edad": edad if edad is not None else "",
                 "pj": pj,
                 "min_p": round((a["seg"] / pj) / 60.0, 1),
                 "pts_p": avg(a["pts"]),
@@ -329,13 +502,26 @@ def agregar_jugadores(
                 "rob_p": avg(a["rob"]),
                 "tap_p": avg(a["tap"]),
                 "val_p": avg(a["val"]),
-                # totales (para tooltip / referencia)
+                # Tiros: anotados/intentados por partido + % de temporada.
+                "t2a_p": avg(a["t2a"]),
+                "t2i_p": avg(a["t2i"]),
+                "t2_pct": _pct(a["t2a"], a["t2i"]),
+                "t3a_p": avg(a["t3a"]),
+                "t3i_p": avg(a["t3i"]),
+                "t3_pct": _pct(a["t3a"], a["t3i"]),
+                "tla_p": avg(a["tla"]),
+                "tli_p": avg(a["tli"]),
+                "tl_pct": _pct(a["tla"], a["tli"]),
+                # totales (para referencia / decidir si mostrar % o '-')
                 "pts": a["pts"],
                 "reb": a["reb"],
                 "ast": a["ast"],
                 "rob": a["rob"],
                 "tap": a["tap"],
                 "val": a["val"],
+                "t2i": a["t2i"],
+                "t3i": a["t3i"],
+                "tli": a["tli"],
             }
         )
     out.sort(key=lambda d: (-d["pts_p"], -d["pj"], d["nombre"]))
@@ -449,7 +635,7 @@ def _build_html(
         <summary>Filtros por estadística (rango mín–máx, combinables)</summary>
         <div class="rangos-grid" id="rangos"></div>
       </details>
-      <p class="note">Clic en cualquier encabezado para ordenar (asc/desc). Los rangos se combinan entre sí y con la búsqueda (lógica Y: se muestran los jugadores que cumplen TODOS los filtros activos). Min/p = minutos por partido; el resto son promedios por partido (Rob = robos, Tap = tapones a favor, Val = valoración).</p>
+      <p class="note">Clic en cualquier encabezado para ordenar (asc/desc). Los rangos se combinan entre sí y con la búsqueda (lógica Y: se muestran los jugadores que cumplen TODOS los filtros activos). Min/p = minutos por partido; el resto son promedios por partido (Rob = robos, Tap = tapones a favor, Val = valoración). 2P/3P/TL "A-I" = anotados–intentados por partido (la columna ordena por anotados/p); 2P%/3P%/TL% son porcentajes de la temporada (− si no hubo intentos). Nombre completo y fecha de nacimiento provienen de la ficha del jugador.</p>
       <div class="tablewrap">
         <table>
           <thead><tr id="thead"></tr></thead>
@@ -464,9 +650,11 @@ def _build_html(
     {data_decl}
     const COLS = [
       {{key:"__rank", label:"#", type:"rank"}},
-      {{key:"nombre", label:"Jugador", type:"text", cls:"nm"}},
+      {{key:"nombre_completo", label:"Jugador", type:"text", cls:"nm"}},
       {{key:"equipo", label:"Equipo", type:"text", cls:"eq"}},
       {{key:"cat", label:"Cat.", type:"cat"}},
+      {{key:"edad", label:"Edad", type:"num"}},
+      {{key:"fnac", label:"F. nac.", type:"text"}},
       {{key:"pj", label:"PJ", type:"num"}},
       {{key:"min_p", label:"Min/p", type:"num"}},
       {{key:"pts_p", label:"Pts/p", type:"num", main:true}},
@@ -475,10 +663,18 @@ def _build_html(
       {{key:"rob_p", label:"Rob/p", type:"num"}},
       {{key:"tap_p", label:"Tap/p", type:"num"}},
       {{key:"val_p", label:"Val/p", type:"num"}},
+      // Tiros: "A-I" por partido (ordenable por anotados/p) y % de temporada.
+      {{key:"t2a_p", label:"2P A-I", type:"ai", keyA:"t2a_p", keyI:"t2i_p"}},
+      {{key:"t2_pct", label:"2P%", type:"pct", tot:"t2i"}},
+      {{key:"t3a_p", label:"3P A-I", type:"ai", keyA:"t3a_p", keyI:"t3i_p"}},
+      {{key:"t3_pct", label:"3P%", type:"pct", tot:"t3i"}},
+      {{key:"tla_p", label:"TL A-I", type:"ai", keyA:"tla_p", keyI:"tli_p"}},
+      {{key:"tl_pct", label:"TL%", type:"pct", tot:"tli"}},
     ];
     // Columnas numéricas con filtro de rango (mín–máx). PJ arranca con mín=3.
     const RANGOS = [
       {{key:"pj", label:"PJ", def_min:"3"}},
+      {{key:"edad", label:"Edad"}},
       {{key:"min_p", label:"Min/p"}},
       {{key:"pts_p", label:"Pts/p"}},
       {{key:"reb_p", label:"Reb/p"}},
@@ -486,6 +682,9 @@ def _build_html(
       {{key:"rob_p", label:"Rob/p"}},
       {{key:"tap_p", label:"Tap/p"}},
       {{key:"val_p", label:"Val/p"}},
+      {{key:"t2_pct", label:"2P%"}},
+      {{key:"t3_pct", label:"3P%"}},
+      {{key:"tl_pct", label:"TL%"}},
     ];
     let sortKey = "pts_p";
     let sortDir = -1; // -1 desc, 1 asc
@@ -527,7 +726,7 @@ def _build_html(
       tr.querySelectorAll("th[data-key]").forEach(th => th.addEventListener("click", () => {{
         const k = th.dataset.key;
         if (k === sortKey) {{ sortDir = -sortDir; }}
-        else {{ sortKey = k; sortDir = (k === "nombre" || k === "equipo" || k === "cat") ? 1 : -1; }}
+        else {{ sortKey = k; sortDir = TEXT_KEYS.has(k) ? 1 : -1; }}
         render();
       }}));
     }}
@@ -542,7 +741,11 @@ def _build_html(
       }})).filter(r => r.min !== null || r.max !== null);
       return DATA.filter(d => {{
         if (cat && d.cat !== cat) return false;
-        if (qn && !d.nombre.toLowerCase().includes(qn)) return false;
+        if (qn) {{
+          const hay = (d.nombre_completo || d.nombre || "").toLowerCase();
+          const abr = (d.nombre || "").toLowerCase();
+          if (!hay.includes(qn) && !abr.includes(qn)) return false;
+        }}
         if (qe && !d.equipo.toLowerCase().includes(qe)) return false;
         for (const r of rangos) {{
           const v = d[r.key];
@@ -564,12 +767,17 @@ def _build_html(
       render();
     }}
 
+    const TEXT_KEYS = new Set(["nombre", "nombre_completo", "equipo", "cat", "fnac"]);
     function ordenar(rows) {{
       const k = sortKey, dir = sortDir;
-      const num = !(k === "nombre" || k === "equipo" || k === "cat");
+      const num = !TEXT_KEYS.has(k);
       return rows.sort((a, b) => {{
         let va = a[k], vb = b[k];
-        if (num) {{ return (va - vb) * dir; }}
+        if (num) {{
+          va = (va === null || va === undefined || va === "") ? -Infinity : va;
+          vb = (vb === null || vb === undefined || vb === "") ? -Infinity : vb;
+          return (va - vb) * dir;
+        }}
         va = String(va).toLowerCase(); vb = String(vb).toLowerCase();
         return va < vb ? -dir : (va > vb ? dir : 0);
       }});
@@ -585,8 +793,10 @@ def _build_html(
           if (c.type === "rank") return `<td class="rank">${{i + 1}}</td>`;
           if (c.type === "cat") return `<td><span class="cat-badge">${{esc(d.cat)}}</span></td>`;
           if (c.type === "text") return `<td class="${{c.cls||""}}">${{esc(d[c.key])}}</td>`;
+          if (c.type === "ai") return `<td>${{d[c.keyA]}}-${{d[c.keyI]}}</td>`;
+          if (c.type === "pct") return `<td>${{(d[c.tot] > 0) ? d[c.key] : "-"}}</td>`;
           const cls = c.main ? "main" : "";
-          return `<td class="${{cls}}">${{d[c.key]}}</td>`;
+          return `<td class="${{d[c.key] === "" ? "" : cls}}">${{d[c.key]}}</td>`;
         }}).join("");
         return `<tr>${{tds}}</tr>`;
       }}).join("");
@@ -767,6 +977,16 @@ def main() -> int:
         help="Recolecta partidos de GES pero NO descarga boxscores nuevos (usa caché)",
     )
     p.add_argument(
+        "--refetch-box",
+        action="store_true",
+        help="Re-descarga y re-parsea TODAS las actas (para poblar pid/purl en la caché)",
+    )
+    p.add_argument(
+        "--sin-fichas",
+        action="store_true",
+        help="No descarga fichas de jugador (usa solo lo cacheado en jugadores_ficha.json)",
+    )
+    p.add_argument(
         "--password",
         default="",
         help="Contraseña para la versión cifrada publicada (NO se guarda; pasar por CLI)",
@@ -807,18 +1027,36 @@ def main() -> int:
         _guardar_partidos_cache(partidos)
 
     tokens = [p["id_partido"] for p in partidos]
+    # --refetch-box fuerza red aunque estemos en modo caché (para poblar pid/purl).
+    sin_descarga_box = (args.desde_cache or args.sin_descarga) and not args.refetch_box
     boxscores = descargar_boxscores_full(
         tokens,
         workers=args.workers,
         progress=args.progress,
         limite=args.limite,
-        sin_descarga=args.desde_cache or args.sin_descarga,
+        sin_descarga=sin_descarga_box,
+        refetch=args.refetch_box,
     )
 
     if args.progress:
         print(f"Boxscores con stats: {len(boxscores)}", file=sys.stderr)
 
-    jugadores = agregar_jugadores(partidos, boxscores)
+    # Fichas de jugador (nombre completo + fecha de nacimiento) por pid.
+    pid_purl = pids_purls_desde_boxscores(boxscores)
+    sin_fichas = args.sin_fichas or (args.desde_cache and not args.refetch_box)
+    fichas = descargar_fichas(
+        pid_purl,
+        workers=args.workers,
+        progress=args.progress,
+        sin_fichas=sin_fichas,
+    )
+    if args.progress:
+        print(
+            f"Jugadores con pid: {len(pid_purl)} · con ficha resuelta: {len(fichas)}",
+            file=sys.stderr,
+        )
+
+    jugadores = agregar_jugadores(partidos, boxscores, fichas)
 
     # Versión LOCAL en claro (no se publica).
     out_html = Path(args.out_html)
@@ -862,6 +1100,10 @@ def main() -> int:
                     }
                     for edad in CATEGORIAS
                 },
+                "jugadores_con_fnac": sum(1 for j in jugadores if j.get("fnac")),
+                "jugadores_con_nombre_completo": sum(
+                    1 for j in jugadores if j.get("nombre_completo") and j["nombre_completo"] != j["nombre"]
+                ),
                 "html": str(out_html),
                 "docs_html": docs_html,
                 "public_url": PUBLIC_URL if args.publicar_docs else None,
