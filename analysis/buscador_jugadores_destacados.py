@@ -43,6 +43,8 @@ from ingest.febamba.mini_masc_regla_plantilla import parse_minutos_a_segundos
 from ingest.ges.extractor import GesDeportivaExtractor
 from ingest.http_client import HttpClient, SessionProvider
 
+from analysis.buscador_data import cifrar_bytes, pack_gzip_bytes
+from analysis.buscador_frontend import script_buscador
 from analysis.buscador_metrics import (
     PERFILES,
     PERFIL_DESCRIPCIONES,
@@ -62,13 +64,17 @@ CATEGORIAS: Dict[str, Dict[str, object]] = {
 
 OUT_DIR = ROOT / "outputs" / "buscador"
 OUT_HTML = OUT_DIR / "buscador_jugadores.html"
+OUT_DATA_GZ = OUT_DIR / "jugadores.json.gz"
 BOX_FULL_CACHE = OUT_DIR / "boxscores_full.json"
 PARTIDOS_CACHE = OUT_DIR / "partidos.json"
 FICHA_CACHE = OUT_DIR / "jugadores_ficha.json"
 
 # Publicación cifrada (GitHub Pages, branch estadisticas).
 DOCS_HTML = ROOT / "docs" / "buscador_jugadores.html"
+DOCS_DIR = ROOT / "docs" / "buscador"
+DOCS_DATA_ENC = DOCS_DIR / "data.enc"
 PUBLIC_URL = "https://fblasco1.github.io/formativas_ges/buscador_jugadores.html"
+PUBLIC_DATA_URL = "buscador/data.enc"
 
 # Clave localStorage para lista de fichajes (personalizar por club).
 CLUB_SCOUTING_KEY = "scouting_formativas_2026"
@@ -588,11 +594,17 @@ def _build_html(
     scout_key: str,
     perfil_css_map: str,
     perfil_guia_html: str,
-    data_decl: str,
+    data_boot: str,
     arranque: str,
     login_block: str = "",
     app_style: str = "",
 ) -> str:
+    js = script_buscador(
+        data_boot=data_boot,
+        scout_key=json.dumps(scout_key),
+        perfil_css_map=perfil_css_map,
+        arranque=arranque,
+    )
     return f"""<!DOCTYPE html>
 <html lang="es">
 <head>
@@ -708,9 +720,13 @@ def _build_html(
     .login-row {{ display:flex; gap:8px; }}
     .login-row input {{ flex:1; }}
     .login-err {{ color:#dc2626; font-size:13px; margin-top:10px; min-height:18px; }}
+    #loading {{ display:none; position:fixed; inset:0; background:rgba(241,245,249,.92); z-index:200;
+      align-items:center; justify-content:center; flex-direction:column; gap:8px; }}
+    #loading p {{ margin:0; color:var(--muted); font-size:14px; }}
   </style>
 </head>
 <body>
+  <div id="loading"><p>Cargando datos de jugadores…</p></div>
   <div class="layout">
     <header>
       <h1>Scouting de jugadores</h1>
@@ -774,451 +790,7 @@ def _build_html(
   </div>
 
   <script>
-    {data_decl}
-    const SCOUT_KEY = {json.dumps(scout_key)};
-    const PERFIL_CLASS = {perfil_css_map};
-    const COLS = [
-      {{key:"__star", label:"★", type:"star"}},
-      {{key:"__cmp", label:"⚖", type:"cmp"}},
-      {{key:"__rank", label:"#", type:"rank"}},
-      {{key:"perfil", label:"Perfil", type:"perfil"}},
-      {{key:"nombre_completo", label:"Jugador", type:"player", cls:"nm"}},
-      {{key:"equipo", label:"Equipo", type:"text", cls:"eq"}},
-      {{key:"cat", label:"Cat.", type:"cat"}},
-      {{key:"edad", label:"Edad", type:"num"}},
-      {{key:"pj", label:"PJ", type:"num"}},
-      {{key:"min_p", label:"Min/p", type:"num"}},
-      {{key:"pts_p", label:"Pts/p", type:"num", main:true}},
-      {{key:"pct_pts", label:"Pct Pts", type:"pctile", tip:"Percentil pts/p en categoría"}},
-      {{key:"ts_pct", label:"TS%", type:"pct", tot:"t2i", altTot:"t3i"}},
-      {{key:"pct_ts", label:"Pct TS", type:"pctile"}},
-      {{key:"efg_pct", label:"eFG%", type:"pct", tot:"t2i", altTot:"t3i"}},
-      {{key:"val_min", label:"Val/Min", type:"num"}},
-      {{key:"pct_val", label:"Pct Val", type:"pctile"}},
-      {{key:"reb_p", label:"Reb/p", type:"num"}},
-      {{key:"ast_p", label:"Ast/p", type:"num"}},
-      {{key:"ast_per", label:"Ast/Per", type:"num"}},
-      {{key:"per_p", label:"Per/p", type:"num"}},
-      {{key:"rob_p", label:"Rob/p", type:"num"}},
-      {{key:"tap_p", label:"Tap/p", type:"num"}},
-      {{key:"val_p", label:"Val/p", type:"num"}},
-      {{key:"t2a_p", label:"2P A-I", type:"ai", keyA:"t2a_p", keyI:"t2i_p"}},
-      {{key:"t2_pct", label:"2P%", type:"pct", tot:"t2i"}},
-      {{key:"t3a_p", label:"3P A-I", type:"ai", keyA:"t3a_p", keyI:"t3i_p"}},
-      {{key:"t3_pct", label:"3P%", type:"pct", tot:"t3i"}},
-      {{key:"tla_p", label:"TL A-I", type:"ai", keyA:"tla_p", keyI:"tli_p"}},
-      {{key:"tl_pct", label:"TL%", type:"pct", tot:"tli"}},
-    ];
-    const RANGOS = [
-      {{key:"pj", label:"PJ", def_min:"3"}},
-      {{key:"edad", label:"Edad"}},
-      {{key:"min_p", label:"Min/p"}},
-      {{key:"pts_p", label:"Pts/p"}},
-      {{key:"ts_pct", label:"TS%"}},
-      {{key:"efg_pct", label:"eFG%"}},
-      {{key:"val_min", label:"Val/Min"}},
-      {{key:"pct_pts", label:"Pct Pts"}},
-      {{key:"pct_ts", label:"Pct TS"}},
-      {{key:"pct_val", label:"Pct Val"}},
-      {{key:"reb_p", label:"Reb/p"}},
-      {{key:"ast_p", label:"Ast/p"}},
-      {{key:"ast_per", label:"Ast/Per"}},
-      {{key:"rob_p", label:"Rob/p"}},
-      {{key:"tap_p", label:"Tap/p"}},
-      {{key:"val_p", label:"Val/p"}},
-      {{key:"t2_pct", label:"2P%"}},
-      {{key:"t3_pct", label:"3P%"}},
-      {{key:"tl_pct", label:"TL%"}},
-      {{key:"t2i_p", label:"2P int/p"}},
-      {{key:"t3i_p", label:"3P int/p"}},
-      {{key:"tli_p", label:"TL int/p"}},
-    ];
-    const PRESETS = [
-      {{id:"t3", label:"Tirador 3P", ranges:{{t3i_p:{{min:3}}, t3_pct:{{min:32}}}}}},
-      {{id:"reb", label:"Interior reboteador", ranges:{{reb_p:{{min:6}}, tap_p:{{min:0.5}}}}}},
-      {{id:"base", label:"Base creador", ranges:{{ast_p:{{min:3}}, ast_per:{{min:1.5}}}}}},
-      {{id:"rot", label:"Eficiente rotación", ranges:{{min_p:{{max:18}}, val_min:{{min:0.6}}}}}},
-    ];
-    let sortKey = "pts_p";
-    let sortDir = -1;
-    let soloFichajes = false;
-    let compareIds = [];
-    let activePresetId = null;
-    let renderTimer = null;
-    let headBuilt = false;
-
-    function esc(s) {{ return (s==null?"":String(s)).replace(/[&<>]/g, c => ({{"&":"&amp;","<":"&lt;",">":"&gt;"}}[c])); }}
-    function perfilCls(p) {{ return PERFIL_CLASS[p] || "perfil-Muestra-insuficiente"; }}
-    function playerId(d) {{ return String(d.pid || d.nombre_completo + "|" + d.cat); }}
-    function fichaUrl(purl) {{
-      if (!purl) return "";
-      return purl.startsWith("http") ? purl : "https://argentina.basketball" + purl;
-    }}
-
-    function loadScout() {{
-      try {{ return JSON.parse(localStorage.getItem(SCOUT_KEY) || "{{}}"); }}
-      catch(e) {{ return {{}}; }}
-    }}
-    function saveScout(data) {{ localStorage.setItem(SCOUT_KEY, JSON.stringify(data)); }}
-    function isStarred(d) {{ const s = loadScout(); return !!(s[playerId(d)] && s[playerId(d)].starred); }}
-    function toggleStar(d) {{
-      const id = playerId(d);
-      const s = loadScout();
-      if (!s[id]) s[id] = {{starred:false, note:"", ts:Date.now()}};
-      s[id].starred = !s[id].starred;
-      s[id].ts = Date.now();
-      saveScout(s);
-      scheduleRender();
-    }}
-    function scoutCount() {{ return Object.values(loadScout()).filter(x => x.starred).length; }}
-
-    function buildRangos() {{
-      const cont = document.getElementById("rangos");
-      cont.innerHTML = RANGOS.map(r => `
-        <div class="rango">
-          <span class="lbl">${{esc(r.label)}}</span>
-          <div class="pair">
-            <input type="number" step="any" inputmode="decimal" id="min-${{r.key}}" placeholder="mín" value="${{r.def_min||""}}"/>
-            <span>–</span>
-            <input type="number" step="any" inputmode="decimal" id="max-${{r.key}}" placeholder="máx"/>
-          </div>
-        </div>`).join("");
-      RANGOS.forEach(r => {{
-        document.getElementById("min-" + r.key).addEventListener("input", scheduleRender);
-        document.getElementById("max-" + r.key).addEventListener("input", scheduleRender);
-      }});
-    }}
-
-    function clearPresetRanges(p) {{
-      for (const k of Object.keys(p.ranges)) {{
-        const r = RANGOS.find(x => x.key === k);
-        document.getElementById("min-" + k).value = (r && r.def_min) ? r.def_min : "";
-        document.getElementById("max-" + k).value = "";
-      }}
-    }}
-
-    function buildPresets() {{
-      const cont = document.getElementById("presets");
-      PRESETS.forEach(p => {{
-        const btn = document.createElement("button");
-        btn.type = "button";
-        btn.className = "btn-pill";
-        btn.textContent = p.label;
-        btn.dataset.preset = p.id;
-        btn.addEventListener("click", () => applyPreset(p));
-        cont.appendChild(btn);
-      }});
-    }}
-
-    function applyPreset(p) {{
-      if (activePresetId === p.id) {{
-        clearPresetRanges(p);
-        activePresetId = null;
-        document.querySelectorAll("#presets .btn-pill").forEach(b => b.classList.remove("active"));
-        scheduleRender();
-        return;
-      }}
-      if (activePresetId) {{
-        const prev = PRESETS.find(x => x.id === activePresetId);
-        if (prev) clearPresetRanges(prev);
-      }}
-      RANGOS.forEach(r => {{
-        document.getElementById("min-" + r.key).value = r.def_min || "";
-        document.getElementById("max-" + r.key).value = "";
-      }});
-      for (const [k, rng] of Object.entries(p.ranges)) {{
-        if (rng.min != null) document.getElementById("min-" + k).value = rng.min;
-        if (rng.max != null) document.getElementById("max-" + k).value = rng.max;
-      }}
-      activePresetId = p.id;
-      document.querySelectorAll("#presets .btn-pill").forEach(b => b.classList.toggle("active", b.dataset.preset === p.id));
-      scheduleRender();
-    }}
-
-    function _numVal(id) {{
-      const v = (document.getElementById(id).value || "").trim();
-      if (v === "") return null;
-      const n = parseFloat(v);
-      return isNaN(n) ? null : n;
-    }}
-
-    function renderHead() {{
-      const tr = document.getElementById("thead");
-      tr.innerHTML = COLS.map(c => {{
-        if (c.type === "rank" || c.type === "star" || c.type === "cmp") return `<th class="rank">${{esc(c.label)}}</th>`;
-        let cls = c.cls || "";
-        if (c.key === sortKey) cls += sortDir < 0 ? " sorted-desc" : " sorted-asc";
-        const tip = c.tip ? ` title="${{esc(c.tip)}}"` : "";
-        return `<th class="${{cls}}" data-key="${{c.key}}"${{tip}}>${{esc(c.label)}}</th>`;
-      }}).join("");
-      tr.querySelectorAll("th[data-key]").forEach(th => th.addEventListener("click", () => {{
-        const k = th.dataset.key;
-        if (k === sortKey) sortDir = -sortDir;
-        else {{ sortKey = k; sortDir = TEXT_KEYS.has(k) || k === "perfil" ? 1 : -1; }}
-        headBuilt = false;
-        render();
-      }}));
-      headBuilt = true;
-    }}
-
-    function filtrar() {{
-      const cat = document.getElementById("f-cat").value;
-      const perfil = document.getElementById("f-perfil").value;
-      const qn = document.getElementById("f-nombre").value.trim().toLowerCase();
-      const qe = document.getElementById("f-equipo").value.trim().toLowerCase();
-      const scout = loadScout();
-      const rangos = RANGOS.map(r => ({{
-        key: r.key, min: _numVal("min-" + r.key), max: _numVal("max-" + r.key)
-      }})).filter(r => r.min !== null || r.max !== null);
-      return DATA.filter(d => {{
-        if (cat && d.cat !== cat) return false;
-        if (perfil && d.perfil !== perfil) return false;
-        if (soloFichajes) {{
-          const s = scout[playerId(d)];
-          if (!s || !s.starred) return false;
-        }}
-        if (qn) {{
-          const hay = (d.nombre_completo || d.nombre || "").toLowerCase();
-          const abr = (d.nombre || "").toLowerCase();
-          if (!hay.includes(qn) && !abr.includes(qn)) return false;
-        }}
-        if (qe && !d.equipo.toLowerCase().includes(qe)) return false;
-        for (const r of rangos) {{
-          const v = d[r.key];
-          if (v === "" || v == null) return false;
-          if (r.min !== null && v < r.min) return false;
-          if (r.max !== null && v > r.max) return false;
-        }}
-        return true;
-      }});
-    }}
-
-    function limpiar() {{
-      document.getElementById("f-cat").value = "";
-      document.getElementById("f-perfil").value = "";
-      document.getElementById("f-nombre").value = "";
-      document.getElementById("f-equipo").value = "";
-      soloFichajes = false;
-      activePresetId = null;
-      document.getElementById("f-fichajes").classList.remove("active");
-      document.querySelectorAll("#presets .btn-pill").forEach(b => b.classList.remove("active"));
-      RANGOS.forEach(r => {{
-        document.getElementById("min-" + r.key).value = r.def_min || "";
-        document.getElementById("max-" + r.key).value = "";
-      }});
-      scheduleRender();
-    }}
-
-    const TEXT_KEYS = new Set(["nombre", "nombre_completo", "equipo", "cat", "fnac", "perfil"]);
-    function ordenar(rows) {{
-      const k = sortKey, dir = sortDir;
-      const num = !TEXT_KEYS.has(k);
-      return rows.sort((a, b) => {{
-        let va = a[k], vb = b[k];
-        if (num) {{
-          va = (va === null || va === undefined || va === "") ? -Infinity : va;
-          vb = (vb === null || vb === undefined || vb === "") ? -Infinity : vb;
-          return (va - vb) * dir;
-        }}
-        va = String(va).toLowerCase(); vb = String(vb).toLowerCase();
-        return va < vb ? -dir : (va > vb ? dir : 0);
-      }});
-    }}
-
-    function cellValue(d, c) {{
-      if (c.type === "rank") return String(arguments[2] || "");
-      if (c.type === "star") return "";
-      if (c.type === "cmp") return "";
-      if (c.type === "perfil") return `<span class="perfil-badge ${{perfilCls(d.perfil)}}">${{esc(d.perfil||"-")}}</span>`;
-      if (c.type === "player") {{
-        const url = fichaUrl(d.purl);
-        const nm = esc(d.nombre_completo || d.nombre);
-        return url ? `<a href="${{esc(url)}}" target="_blank" rel="noopener">${{nm}}</a>` : nm;
-      }}
-      if (c.type === "cat") return `<span class="cat-badge">${{esc(d.cat)}}</span>`;
-      if (c.type === "text") return esc(d[c.key]);
-      if (c.type === "ai") return `${{d[c.keyA]}}-${{d[c.keyI]}}`;
-      if (c.type === "pctile") return d[c.key] !== "" ? d[c.key] : "-";
-      if (c.type === "pct") {{
-        const hasShots = (d[c.tot] > 0) || (c.altTot && d[c.altTot] > 0) || (c.key === "ts_pct" && (d.t2i+d.t3i+d.tli) > 0);
-        return hasShots && d[c.key] !== "" ? d[c.key] : "-";
-      }}
-      return d[c.key] === "" ? "-" : String(d[c.key]);
-    }}
-
-    function renderBody(rows) {{
-      const body = document.getElementById("tbody");
-      const fragment = document.createDocumentFragment();
-      rows.forEach((d, i) => {{
-        const tr = document.createElement("tr");
-        const pid = playerId(d);
-        if (compareIds.includes(pid)) tr.classList.add("selected");
-        COLS.forEach(c => {{
-          const td = document.createElement("td");
-          if (c.cls) td.className = c.cls;
-          if (c.type === "rank") {{ td.className = "rank"; td.textContent = i + 1; }}
-          else if (c.type === "star") {{
-            const btn = document.createElement("button");
-            btn.type = "button";
-            btn.className = "star-btn" + (isStarred(d) ? " on" : "");
-            btn.textContent = "★";
-            btn.title = "Seguimiento";
-            btn.addEventListener("click", e => {{ e.stopPropagation(); toggleStar(d); }});
-            td.appendChild(btn);
-          }}
-          else if (c.type === "cmp") {{
-            const chk = document.createElement("input");
-            chk.type = "checkbox";
-            chk.className = "cmp-chk";
-            chk.checked = compareIds.includes(pid);
-            chk.addEventListener("change", e => {{
-              e.stopPropagation();
-              if (chk.checked) {{
-                if (compareIds.length >= 3) {{ chk.checked = false; return; }}
-                compareIds.push(pid);
-              }} else {{
-                compareIds = compareIds.filter(x => x !== pid);
-              }}
-              renderCompare();
-              scheduleRender();
-            }});
-            td.appendChild(chk);
-          }}
-          else if (c.main) {{ td.className = "main"; td.innerHTML = cellValue(d, c); }}
-          else {{ td.innerHTML = cellValue(d, c); }}
-          tr.appendChild(td);
-        }});
-        tr.style.cursor = "pointer";
-        tr.addEventListener("click", () => openDetail(d));
-        fragment.appendChild(tr);
-      }});
-      body.innerHTML = "";
-      body.appendChild(fragment);
-    }}
-
-    function render() {{
-      if (!headBuilt) renderHead();
-      const rows = ordenar(filtrar());
-      document.getElementById("n-filas").textContent = rows.length;
-      document.getElementById("n-scout").textContent = scoutCount();
-      renderBody(rows);
-      window._lastRows = rows;
-    }}
-
-    function scheduleRender() {{
-      clearTimeout(renderTimer);
-      renderTimer = setTimeout(render, 150);
-    }}
-
-    function openDetail(d) {{
-      const panel = document.getElementById("detail-panel");
-      const id = playerId(d);
-      const scout = loadScout();
-      const note = (scout[id] && scout[id].note) || "";
-      const url = fichaUrl(d.purl);
-      const stats = [
-        ["PJ", d.pj], ["Min/p", d.min_p], ["Pts/p", d.pts_p], ["TS%", d.ts_pct],
-        ["eFG%", d.efg_pct], ["Val/Min", d.val_min], ["Reb/p", d.reb_p],
-        ["Ast/p", d.ast_p], ["Ast/Per", d.ast_per], ["Per/p", d.per_p],
-        ["Rob/p", d.rob_p], ["Tap/p", d.tap_p], ["Val/p", d.val_p],
-        ["Perfil", d.perfil], ["Pct Pts", d.pct_pts], ["Pct TS", d.pct_ts],
-      ];
-      document.getElementById("detail-content").innerHTML = `
-        <h3>${{esc(d.nombre_completo || d.nombre)}}</h3>
-        <div class="meta">${{esc(d.equipo)}} · ${{esc(d.cat)}}${{d.edad ? " · " + d.edad + " años" : ""}}</div>
-        <span class="perfil-badge ${{perfilCls(d.perfil)}}">${{esc(d.perfil||"-")}}</span>
-        <div class="stats-grid">${{stats.map(([l,v]) => `<div><span>${{l}}</span><b>${{v!==""?v:"-"}}</b></div>`).join("")}}</div>
-        ${{url ? `<a class="btn" href="${{esc(url)}}" target="_blank" rel="noopener">Abrir ficha</a>` : ""}}
-        <label class="fld" style="margin-top:14px">Notas de scouting
-          <textarea id="detail-note">${{esc(note)}}</textarea>
-        </label>
-        <button type="button" class="btn" id="detail-save" style="margin-top:8px">Guardar nota</button>
-      `;
-      document.getElementById("detail-save").addEventListener("click", () => {{
-        const s = loadScout();
-        if (!s[id]) s[id] = {{starred:false, note:"", ts:Date.now()}};
-        s[id].note = document.getElementById("detail-note").value;
-        s[id].ts = Date.now();
-        saveScout(s);
-      }});
-      panel.classList.add("open");
-    }}
-
-    function renderCompare() {{
-      const panel = document.getElementById("compare-panel");
-      const cont = document.getElementById("compare-content");
-      if (!compareIds.length) {{ panel.classList.remove("open"); cont.innerHTML = ""; return; }}
-      const players = compareIds.map(id => DATA.find(d => playerId(d) === id)).filter(Boolean);
-      if (!players.length) {{ panel.classList.remove("open"); return; }}
-      const metrics = ["cat","pj","min_p","pts_p","ts_pct","efg_pct","val_min","reb_p","ast_p","per_p","perfil"];
-      let html = "<table><thead><tr><th>Métrica</th>";
-      players.forEach(p => {{ html += `<th>${{esc(p.nombre_completo||p.nombre)}}</th>`; }});
-      html += "</tr></thead><tbody>";
-      metrics.forEach(m => {{
-        html += `<tr><td><b>${{m}}</b></td>`;
-        players.forEach(p => {{ html += `<td>${{esc(p[m]!==""?p[m]:"-")}}</td>`; }});
-        html += "</tr>";
-      }});
-      html += "</tbody></table>";
-      cont.innerHTML = html;
-      panel.classList.add("open");
-    }}
-
-    function exportCSV() {{
-      const rows = window._lastRows || ordenar(filtrar());
-      const scout = loadScout();
-      const headers = ["pid","nombre_completo","equipo","cat","perfil","pj","min_p","pts_p","ts_pct","efg_pct","val_min","reb_p","ast_p","per_p","ast_per","pct_pts","pct_ts","nota_scouting","en_seguimiento"];
-      const lines = [headers.join(",")];
-      rows.forEach(d => {{
-        const id = playerId(d);
-        const sc = scout[id] || {{}};
-        const vals = headers.map(h => {{
-          if (h === "nota_scouting") return sc.note || "";
-          if (h === "en_seguimiento") return sc.starred ? "1" : "0";
-          const v = d[h];
-          const s = v == null ? "" : String(v);
-          return s.includes(",") || s.includes('"') ? '"' + s.replace(/"/g, '""') + '"' : s;
-        }});
-        lines.push(vals.join(","));
-      }});
-      const blob = new Blob([lines.join("\\n")], {{type:"text/csv;charset=utf-8"}});
-      const a = document.createElement("a");
-      a.href = URL.createObjectURL(blob);
-      a.download = "scouting_formativas.csv";
-      a.click();
-    }}
-
-    function initTabs() {{
-      document.querySelectorAll(".tab-btn").forEach(btn => {{
-        btn.addEventListener("click", () => {{
-          document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
-          document.querySelectorAll(".tab-panel").forEach(p => {{ p.style.display = "none"; }});
-          btn.classList.add("active");
-          document.getElementById("tab-" + btn.dataset.tab).style.display = "";
-        }});
-      }});
-    }}
-
-    function iniciarApp() {{
-      initTabs();
-      document.getElementById("f-cat").addEventListener("change", scheduleRender);
-      document.getElementById("f-perfil").addEventListener("change", scheduleRender);
-      document.getElementById("f-nombre").addEventListener("input", scheduleRender);
-      document.getElementById("f-equipo").addEventListener("input", scheduleRender);
-      document.getElementById("f-fichajes").addEventListener("click", () => {{
-        soloFichajes = !soloFichajes;
-        document.getElementById("f-fichajes").classList.toggle("active", soloFichajes);
-        scheduleRender();
-      }});
-      document.getElementById("f-export").addEventListener("click", exportCSV);
-      document.getElementById("f-limpiar").addEventListener("click", limpiar);
-      document.getElementById("detail-close").addEventListener("click", () => document.getElementById("detail-panel").classList.remove("open"));
-      document.getElementById("cmp-clear").addEventListener("click", () => {{ compareIds = []; renderCompare(); scheduleRender(); }});
-      buildRangos();
-      buildPresets();
-      render();
-    }}
-{arranque}
+{js}
   </script>
 </body>
 </html>"""
@@ -1248,23 +820,31 @@ _LOGIN_JS = """    const _b64d = s => {
       const err = document.getElementById("login-err");
       err.textContent = "";
       try {
+        document.getElementById("loading").style.display = "flex";
+        const encMeta = DATA_BOOT.crypto;
+        const resp = await fetch(encMeta.url, {cache:"no-cache"});
+        if (!resp.ok) throw new Error("No se pudo cargar datos cifrados");
+        const ct = new Uint8Array(await resp.arrayBuffer());
         const enc = new TextEncoder();
-        const baseKey = await crypto.subtle.importKey(
+        const baseKey = await window.crypto.subtle.importKey(
           "raw", enc.encode(pass), "PBKDF2", false, ["deriveKey"]
         );
-        const key = await crypto.subtle.deriveKey(
-          {name: "PBKDF2", salt: _b64d(CRYPTO.salt), iterations: CRYPTO.iter, hash: "SHA-256"},
+        const key = await window.crypto.subtle.deriveKey(
+          {name: "PBKDF2", salt: _b64d(encMeta.salt), iterations: encMeta.iter, hash: "SHA-256"},
           baseKey, {name: "AES-GCM", length: 256}, false, ["decrypt"]
         );
-        const plain = await crypto.subtle.decrypt(
-          {name: "AES-GCM", iv: _b64d(CRYPTO.iv)}, key, _b64d(CRYPTO.ct)
+        const plain = await window.crypto.subtle.decrypt(
+          {name: "AES-GCM", iv: _b64d(encMeta.iv)}, key, ct
         );
-        DATA = JSON.parse(new TextDecoder().decode(plain));
+        const raw = await gunzipBytes(plain);
+        initData(JSON.parse(new TextDecoder().decode(raw)));
+        document.getElementById("loading").style.display = "none";
         document.getElementById("login").style.display = "none";
         document.getElementById("app").style.display = "";
         iniciarApp();
       } catch (e) {
-        err.textContent = "Contraseña incorrecta. Probá de nuevo.";
+        document.getElementById("loading").style.display = "none";
+        err.textContent = "Contraseña incorrecta o error al cargar datos.";
       }
     }
     document.getElementById("pw-btn").addEventListener("click", _ingresar);
@@ -1274,12 +854,21 @@ _LOGIN_JS = """    const _b64d = s => {
 
 
 def _render_html(jugadores: List[Dict[str, object]], *, fecha: str) -> str:
-    """Versión LOCAL en claro (datos embebidos sin cifrar)."""
-    data_json = json.dumps(jugadores, ensure_ascii=False, separators=(",", ":"))
+    """Versión LOCAL: shell liviano + datos comprimidos en archivo externo."""
+    OUT_DIR.mkdir(parents=True, exist_ok=True)
+    OUT_DATA_GZ.write_bytes(pack_gzip_bytes(jugadores))
     cat_opts = "".join(f'<option value="{c}">{c}</option>' for c in CATEGORIAS)
     perfil_opts = "".join(f'<option value="{p}">{p}</option>' for p in PERFILES)
     perfil_opts += f'<option value="{PERFIL_INSUFICIENTE}">{PERFIL_INSUFICIENTE}</option>'
     guia = _build_perfil_guia_html()
+    data_boot = "const DATA_BOOT = " + json.dumps(
+        {"mode": "plain", "url": "jugadores.json.gz"}, ensure_ascii=False
+    ) + ";"
+    boot = (
+        "loadPlainData().then(iniciarApp).catch(e => {"
+        'document.getElementById("loading").innerHTML = "<p>Error al cargar datos: " + esc(e.message) + "</p>";'
+        "});"
+    )
     return _build_html(
         fecha=fecha,
         cat_opts=cat_opts,
@@ -1287,48 +876,33 @@ def _render_html(jugadores: List[Dict[str, object]], *, fecha: str) -> str:
         scout_key=CLUB_SCOUTING_KEY,
         perfil_css_map=json.dumps(_PERFIL_CSS_MAP, ensure_ascii=False),
         perfil_guia_html=guia,
-        data_decl=f"let DATA = {data_json};",
-        arranque="    iniciarApp();",
+        data_boot=data_boot,
+        arranque=boot,
     )
-
-
-def _cifrar_payload(
-    data_json: str,
-    password: str,
-    *,
-    iteraciones: int = PBKDF2_ITER,
-    dklen: int = PBKDF2_DKLEN,
-) -> Dict[str, object]:
-    """Cifra el JSON con AES-256-GCM y clave derivada por PBKDF2-HMAC-SHA256."""
-    from cryptography.hazmat.primitives.ciphers.aead import AESGCM
-
-    salt = os.urandom(16)
-    iv = os.urandom(12)
-    key = hashlib.pbkdf2_hmac(
-        "sha256", password.encode("utf-8"), salt, iteraciones, dklen=dklen
-    )
-    # AESGCM.encrypt concatena el tag (16 bytes) al final del ciphertext.
-    ct = AESGCM(key).encrypt(iv, data_json.encode("utf-8"), None)
-    return {
-        "salt": base64.b64encode(salt).decode("ascii"),
-        "iv": base64.b64encode(iv).decode("ascii"),
-        "ct": base64.b64encode(ct).decode("ascii"),
-        "iter": iteraciones,
-        "dklen": dklen,
-    }
 
 
 def _render_html_cifrado(
     jugadores: List[Dict[str, object]], *, fecha: str, password: str
 ) -> str:
-    """Versión PÚBLICA: login + datos cifrados (AES-GCM) descifrados en el navegador."""
-    data_json = json.dumps(jugadores, ensure_ascii=False, separators=(",", ":"))
-    cripto = _cifrar_payload(data_json, password)
+    """Versión PÚBLICA: shell liviano + blob cifrado externo (AES-GCM sobre gzip)."""
+    gz = pack_gzip_bytes(jugadores)
+    meta = cifrar_bytes(gz, password, iteraciones=PBKDF2_ITER, dklen=PBKDF2_DKLEN)
+    DOCS_DIR.mkdir(parents=True, exist_ok=True)
+    DOCS_DATA_ENC.write_bytes(meta["ct"])
+    crypto_manifest = {
+        "url": PUBLIC_DATA_URL,
+        "salt": meta["salt"],
+        "iv": meta["iv"],
+        "iter": meta["iter"],
+        "dklen": meta["dklen"],
+    }
     cat_opts = "".join(f'<option value="{c}">{c}</option>' for c in CATEGORIAS)
     perfil_opts = "".join(f'<option value="{p}">{p}</option>' for p in PERFILES)
     perfil_opts += f'<option value="{PERFIL_INSUFICIENTE}">{PERFIL_INSUFICIENTE}</option>'
     guia = _build_perfil_guia_html()
-    data_decl = "let DATA = [];\n    const CRYPTO = " + json.dumps(cripto) + ";"
+    data_boot = "const DATA_BOOT = " + json.dumps(
+        {"mode": "enc", "crypto": crypto_manifest}, ensure_ascii=False
+    ) + ";"
     return _build_html(
         fecha=fecha,
         cat_opts=cat_opts,
@@ -1336,7 +910,7 @@ def _render_html_cifrado(
         scout_key=CLUB_SCOUTING_KEY,
         perfil_css_map=json.dumps(_PERFIL_CSS_MAP, ensure_ascii=False),
         perfil_guia_html=guia,
-        data_decl=data_decl,
+        data_boot=data_boot,
         arranque=_LOGIN_JS,
         login_block=_LOGIN_HTML,
         app_style=' style="display:none"',
@@ -1529,7 +1103,14 @@ def main() -> int:
                     1 for j in jugadores if j.get("nombre_completo") and j["nombre_completo"] != j["nombre"]
                 ),
                 "html": str(out_html),
+                "html_kb": round(out_html.stat().st_size / 1024, 1) if out_html.exists() else 0,
+                "data_gz": str(OUT_DATA_GZ),
+                "data_gz_kb": round(OUT_DATA_GZ.stat().st_size / 1024, 1) if OUT_DATA_GZ.exists() else 0,
                 "docs_html": docs_html,
+                "docs_data_enc": str(DOCS_DATA_ENC) if args.publicar_docs else None,
+                "docs_data_kb": round(DOCS_DATA_ENC.stat().st_size / 1024, 1)
+                if args.publicar_docs and DOCS_DATA_ENC.exists()
+                else 0,
                 "public_url": PUBLIC_URL if args.publicar_docs else None,
             },
             ensure_ascii=False,
