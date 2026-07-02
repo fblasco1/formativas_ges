@@ -43,6 +43,13 @@ from ingest.febamba.mini_masc_regla_plantilla import parse_minutos_a_segundos
 from ingest.ges.extractor import GesDeportivaExtractor
 from ingest.http_client import HttpClient, SessionProvider
 
+from analysis.buscador_metrics import (
+    PERFILES,
+    PERFIL_DESCRIPCIONES,
+    PERFIL_INSUFICIENTE,
+    enriquecer_jugadores,
+)
+
 ID_COMPETENCIA = 2015
 
 # edad -> metadatos GES de la categoría (solo para este buscador).
@@ -62,6 +69,19 @@ FICHA_CACHE = OUT_DIR / "jugadores_ficha.json"
 # Publicación cifrada (GitHub Pages, branch estadisticas).
 DOCS_HTML = ROOT / "docs" / "buscador_jugadores.html"
 PUBLIC_URL = "https://fblasco1.github.io/formativas_ges/buscador_jugadores.html"
+
+# Clave localStorage para lista de fichajes (personalizar por club).
+CLUB_SCOUTING_KEY = "scouting_formativas_2026"
+
+_PERFIL_CSS_MAP = {
+    "Especialista 3&D": "perfil-Especialista-3-D",
+    "Protector de Aro": "perfil-Protector-de-Aro",
+    "Base Conductor": "perfil-Base-Conductor",
+    "Anotador de Volumen": "perfil-Anotador-de-Volumen",
+    "Generador Perimetral": "perfil-Generador-Perimetral",
+    "Interno de Rol": "perfil-Interno-de-Rol",
+    PERFIL_INSUFICIENTE: "perfil-Muestra-insuficiente",
+}
 
 # Parámetros de cifrado (deben coincidir con el JS de Web Crypto).
 PBKDF2_ITER = 200000
@@ -488,6 +508,8 @@ def agregar_jugadores(
 
         out.append(
             {
+                "pid": a.get("pid") or "",
+                "purl": a.get("purl") or "",
                 "nombre": a["nombre"],
                 "nombre_completo": nombre_completo,
                 "equipo": equipo_disp,
@@ -502,6 +524,7 @@ def agregar_jugadores(
                 "rob_p": avg(a["rob"]),
                 "tap_p": avg(a["tap"]),
                 "val_p": avg(a["val"]),
+                "per": a["per"],
                 # Tiros: anotados/intentados por partido + % de temporada.
                 "t2a_p": avg(a["t2a"]),
                 "t2i_p": avg(a["t2i"]),
@@ -534,10 +557,37 @@ def agregar_jugadores(
 # --------------------------------------------------------------------------- #
 # Render HTML autocontenido
 # --------------------------------------------------------------------------- #
+def _build_perfil_guia_html() -> str:
+    orden = list(PERFILES) + [PERFIL_INSUFICIENTE]
+    cards: List[str] = []
+    for nombre in orden:
+        info = PERFIL_DESCRIPCIONES[nombre]
+        css = _PERFIL_CSS_MAP[nombre]
+        cards.append(
+            f"""<article class="perfil-card">
+          <span class="perfil-badge {css}">{nombre}</span>
+          <p class="perfil-resumen"><strong>{info["resumen"]}</strong></p>
+          <p><span class="perfil-lbl">Características</span> {info["caracteristicas"]}</p>
+          <p><span class="perfil-lbl">Uso en scouting</span> {info["scouting"]}</p>
+        </article>"""
+        )
+    return (
+        '<p class="note">Los perfiles se asignan con clustering K-Means (k=6) sobre '
+        "volumen de triples, % de 3P, asistencias, robos, rebotes y puntos por partido. "
+        f"Solo jugadores con PJ ≥ 5 reciben perfil; el resto queda como "
+        f'"{PERFIL_INSUFICIENTE}".</p>'
+        '<div class="perfil-grid">' + "".join(cards) + "</div>"
+    )
+
+
 def _build_html(
     *,
     fecha: str,
     cat_opts: str,
+    perfil_opts: str,
+    scout_key: str,
+    perfil_css_map: str,
+    perfil_guia_html: str,
     data_decl: str,
     arranque: str,
     login_block: str = "",
@@ -548,47 +598,76 @@ def _build_html(
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>FORMATIVAS 2026 · Buscador de jugadores destacados</title>
+  <title>FORMATIVAS 2026 · Scouting de jugadores</title>
   <style>
     :root {{
       --bg:#f1f5f9; --paper:#fff; --text:#0f172a; --muted:#64748b; --line:#e2e8f0;
-      --accent:#1d4ed8; --accent-soft:#eff6ff; --ok:#059669;
+      --accent:#1d4ed8; --accent-soft:#eff6ff; --ok:#059669; --star:#eab308;
     }}
     * {{ box-sizing:border-box; }}
     body {{ margin:0; font-family:"Segoe UI",system-ui,sans-serif; background:var(--bg);
       color:var(--text); line-height:1.45; }}
-    .layout {{ max-width:1180px; margin:0 auto; padding:20px; }}
+    .layout {{ max-width:1400px; margin:0 auto; padding:20px; }}
     header, section {{ background:var(--paper); border:1px solid var(--line);
       border-radius:14px; padding:18px 20px; margin-bottom:16px; }}
     h1 {{ margin:0 0 4px; font-size:23px; }}
     .subtitle {{ color:var(--muted); font-size:13px; margin:0; }}
     .toolbar {{ display:flex; flex-wrap:wrap; gap:12px; align-items:flex-end; }}
     label.fld {{ font-size:12px; color:var(--muted); display:flex; flex-direction:column; gap:4px; }}
-    input, select {{ border:1px solid var(--line); border-radius:8px; padding:8px 10px;
+    input, select, textarea {{ border:1px solid var(--line); border-radius:8px; padding:8px 10px;
       font-size:13px; background:#fff; color:var(--text); }}
-    input[type="search"] {{ min-width:220px; }}
-    input[type="number"] {{ width:120px; }}
+    input[type="search"] {{ min-width:200px; }}
+    input[type="number"] {{ width:110px; }}
     .count {{ margin-left:auto; font-size:13px; color:var(--muted); align-self:center; }}
     .count b {{ color:var(--accent); font-size:16px; }}
-    table {{ width:100%; border-collapse:collapse; font-size:13px; }}
-    th, td {{ border-bottom:1px solid var(--line); padding:8px 8px; text-align:center; white-space:nowrap; }}
+    table {{ width:100%; border-collapse:collapse; font-size:12px; }}
+    th, td {{ border-bottom:1px solid var(--line); padding:7px 6px; text-align:center; white-space:nowrap; }}
     th {{ color:var(--muted); font-size:10px; text-transform:uppercase; letter-spacing:.04em;
-      cursor:pointer; user-select:none; position:sticky; top:0; background:var(--paper); }}
+      cursor:pointer; user-select:none; position:sticky; top:0; background:var(--paper); z-index:1; }}
     th:hover {{ color:var(--accent); }}
     th.sorted-asc::after {{ content:" ▲"; color:var(--accent); }}
     th.sorted-desc::after {{ content:" ▼"; color:var(--accent); }}
     td.eq, th.eq {{ text-align:left; }}
     td.nm {{ text-align:left; font-weight:600; }}
+    td.nm a {{ color:var(--text); text-decoration:none; }}
+    td.nm a:hover {{ color:var(--accent); text-decoration:underline; }}
     td.rank {{ color:var(--muted); }}
     td.main {{ font-weight:800; color:var(--accent); }}
     .cat-badge {{ display:inline-block; border-radius:999px; padding:1px 8px; font-size:11px;
       background:var(--accent-soft); color:var(--accent); font-weight:600; }}
+    .perfil-badge {{ display:inline-block; border-radius:999px; padding:2px 8px; font-size:10px; font-weight:600; }}
+    .perfil-Especialista-3-D {{ background:#EBF8FF; color:#2B6CB0; }}
+    .perfil-Protector-de-Aro {{ background:#F0FFF4; color:#2F855A; }}
+    .perfil-Base-Conductor {{ background:#FAF5FF; color:#6B46C1; }}
+    .perfil-Anotador-de-Volumen {{ background:#FFF5F5; color:#C53030; }}
+    .perfil-Generador-Perimetral {{ background:#FFFAF0; color:#DD6B20; }}
+    .perfil-Interno-de-Rol {{ background:#EDF2F7; color:#4A5568; }}
+    .perfil-Muestra-insuficiente {{ background:#f8fafc; color:#94a3b8; }}
     tbody tr:hover {{ background:#f8fafc; }}
-    .tablewrap {{ overflow:auto; max-height:72vh; border:1px solid var(--line); border-radius:10px; }}
+    tbody tr.selected {{ background:#eff6ff; }}
+    .tablewrap {{ overflow:auto; max-height:62vh; border:1px solid var(--line); border-radius:10px; }}
     .note {{ font-size:12px; color:var(--muted); margin-top:10px; }}
     .btn {{ border:1px solid var(--accent); color:var(--accent); background:#fff; border-radius:8px;
       padding:8px 14px; font-size:13px; font-weight:600; cursor:pointer; }}
     .btn:hover {{ background:var(--accent-soft); }}
+    .btn.active {{ background:var(--accent); color:#fff; }}
+    .btn-pill {{ border-radius:999px; padding:6px 12px; font-size:12px; border:1px solid var(--line);
+      background:#fff; cursor:pointer; color:var(--text); }}
+    .btn-pill:hover {{ border-color:var(--accent); color:var(--accent); }}
+    .btn-pill.active {{ background:var(--accent-soft); border-color:var(--accent); color:var(--accent); font-weight:600; }}
+    .presets {{ display:flex; flex-wrap:wrap; gap:8px; margin-top:12px; }}
+    .tabs {{ display:flex; gap:8px; margin-bottom:16px; }}
+    .tab-btn {{ border:1px solid var(--line); background:#fff; border-radius:999px; padding:8px 18px;
+      font-size:13px; font-weight:600; cursor:pointer; color:var(--muted); }}
+    .tab-btn:hover {{ border-color:var(--accent); color:var(--accent); }}
+    .tab-btn.active {{ background:var(--accent); border-color:var(--accent); color:#fff; }}
+    .perfil-grid {{ display:grid; grid-template-columns:repeat(auto-fill, minmax(300px, 1fr)); gap:14px; margin-top:14px; }}
+    .perfil-card {{ border:1px solid var(--line); border-radius:12px; padding:16px; background:#fafbfc; }}
+    .perfil-card .perfil-badge {{ margin-bottom:10px; font-size:12px; }}
+    .perfil-card p {{ margin:0 0 10px; font-size:13px; line-height:1.5; }}
+    .perfil-card .perfil-resumen {{ margin-bottom:12px; }}
+    .perfil-lbl {{ display:block; font-size:10px; text-transform:uppercase; letter-spacing:.05em;
+      color:var(--muted); margin-bottom:2px; font-weight:600; }}
     details.statfilters {{ margin-top:14px; border:1px solid var(--line); border-radius:10px;
       padding:10px 14px; background:#fafbfc; }}
     details.statfilters > summary {{ cursor:pointer; font-size:13px; font-weight:600; color:var(--text);
@@ -602,6 +681,25 @@ def _build_html(
     .rango .pair {{ display:flex; align-items:center; gap:6px; }}
     .rango .pair input {{ width:100%; min-width:0; padding:6px 8px; }}
     .rango .pair span {{ color:var(--muted); font-size:12px; }}
+    .star-btn {{ background:none; border:none; cursor:pointer; font-size:18px; padding:2px 6px; color:#cbd5e1; }}
+    .star-btn.on {{ color:var(--star); }}
+    .cmp-chk {{ width:16px; height:16px; cursor:pointer; }}
+    #detail-panel {{ display:none; position:fixed; top:0; right:0; width:360px; max-width:95vw; height:100vh;
+      background:var(--paper); border-left:1px solid var(--line); box-shadow:-4px 0 24px rgba(0,0,0,.08);
+      z-index:100; overflow:auto; padding:20px; }}
+    #detail-panel.open {{ display:block; }}
+    #detail-panel h3 {{ margin:0 0 4px; font-size:18px; }}
+    #detail-panel .meta {{ color:var(--muted); font-size:13px; margin-bottom:14px; }}
+    #detail-panel .stats-grid {{ display:grid; grid-template-columns:1fr 1fr; gap:8px; font-size:13px; margin-bottom:14px; }}
+    #detail-panel .stats-grid div {{ background:#f8fafc; padding:8px; border-radius:8px; }}
+    #detail-panel .stats-grid span {{ display:block; font-size:11px; color:var(--muted); }}
+    #detail-panel textarea {{ width:100%; min-height:80px; resize:vertical; margin-top:6px; }}
+    #detail-close {{ position:absolute; top:12px; right:14px; background:none; border:none; font-size:22px; cursor:pointer; color:var(--muted); }}
+    #compare-panel {{ display:none; position:fixed; bottom:0; left:0; right:0; max-height:40vh; overflow:auto;
+      background:var(--paper); border-top:2px solid var(--accent); box-shadow:0 -4px 24px rgba(0,0,0,.1);
+      z-index:99; padding:12px 20px; }}
+    #compare-panel.open {{ display:block; }}
+    #compare-panel h4 {{ margin:0 0 10px; font-size:14px; }}
     @media (max-width:900px) {{ .rangos-grid {{ grid-template-columns:repeat(2,1fr); }} }}
     .login-wrap {{ max-width:420px; margin:6vh auto 0; }}
     .login-card {{ background:var(--paper); border:1px solid var(--line); border-radius:14px; padding:24px; }}
@@ -615,15 +713,23 @@ def _build_html(
 <body>
   <div class="layout">
     <header>
-      <h1>Buscador de jugadores destacados</h1>
-      <p class="subtitle">FORMATIVAS · Competencia GES 2015 · Masculino · Promedios por partido · Actualizado: {fecha}</p>
+      <h1>Scouting de jugadores</h1>
+      <p class="subtitle">FORMATIVAS · GES 2015 · Masculino · Analítica avanzada · Actualizado: {fecha}</p>
     </header>
 {login_block}
     <div id="app"{app_style}>
+    <nav class="tabs">
+      <button type="button" class="tab-btn active" data-tab="buscador">Buscador</button>
+      <button type="button" class="tab-btn" data-tab="perfiles">Guía de perfiles</button>
+    </nav>
+    <div id="tab-buscador" class="tab-panel">
     <section>
       <div class="toolbar">
         <label class="fld">Categoría
           <select id="f-cat"><option value="">Todas</option>{cat_opts}</select>
+        </label>
+        <label class="fld">Perfil
+          <select id="f-perfil"><option value="">Todos</option>{perfil_opts}</select>
         </label>
         <label class="fld">Buscar jugador
           <input type="search" id="f-nombre" placeholder="Nombre…"/>
@@ -631,14 +737,17 @@ def _build_html(
         <label class="fld">Buscar equipo
           <input type="search" id="f-equipo" placeholder="Equipo…"/>
         </label>
+        <button type="button" class="btn-pill" id="f-fichajes">⭐ Mi lista de fichajes</button>
+        <button type="button" class="btn" id="f-export">Exportar CSV</button>
         <button type="button" class="btn" id="f-limpiar">Limpiar filtros</button>
-        <span class="count"><b id="n-filas">0</b> jugadores</span>
+        <span class="count"><b id="n-filas">0</b> jugadores · <b id="n-scout">0</b> en seguimiento</span>
       </div>
+      <div class="presets" id="presets"></div>
       <details class="statfilters" open>
         <summary>Filtros por estadística (rango mín–máx, combinables)</summary>
         <div class="rangos-grid" id="rangos"></div>
       </details>
-      <p class="note">Clic en cualquier encabezado para ordenar (asc/desc). Los rangos se combinan entre sí y con la búsqueda (lógica Y: se muestran los jugadores que cumplen TODOS los filtros activos). Min/p = minutos por partido; el resto son promedios por partido (Rob = robos, Tap = tapones a favor, Val = valoración). 2P/3P/TL "A-I" = anotados–intentados por partido (la columna ordena por anotados/p); 2P%/3P%/TL% son porcentajes de la temporada (− si no hubo intentos). Nombre completo y fecha de nacimiento provienen de la ficha del jugador.</p>
+      <p class="note">Clic en encabezado para ordenar. TS% y eFG% son de temporada. Percentiles (Pct) son relativos a la categoría. Perfiles vía clustering K-Means (PJ≥5). Seguimiento y notas se guardan en tu navegador.</p>
       <div class="tablewrap">
         <table>
           <thead><tr id="thead"></tr></thead>
@@ -647,26 +756,52 @@ def _build_html(
       </div>
     </section>
     </div>
+    <div id="tab-perfiles" class="tab-panel" style="display:none">
+    <section>
+      <h2 style="margin:0 0 8px;font-size:18px">Guía de perfiles de jugador</h2>
+      {perfil_guia_html}
+    </section>
+    </div>
+    </div>
+  </div>
+  <div id="detail-panel">
+    <button type="button" id="detail-close" title="Cerrar">×</button>
+    <div id="detail-content"></div>
+  </div>
+  <div id="compare-panel">
+    <h4>Comparador <button type="button" class="btn-pill" id="cmp-clear" style="margin-left:8px">Limpiar</button></h4>
+    <div id="compare-content"></div>
   </div>
 
   <script>
     {data_decl}
+    const SCOUT_KEY = {json.dumps(scout_key)};
+    const PERFIL_CLASS = {perfil_css_map};
     const COLS = [
+      {{key:"__star", label:"★", type:"star"}},
+      {{key:"__cmp", label:"⚖", type:"cmp"}},
       {{key:"__rank", label:"#", type:"rank"}},
-      {{key:"nombre_completo", label:"Jugador", type:"text", cls:"nm"}},
+      {{key:"perfil", label:"Perfil", type:"perfil"}},
+      {{key:"nombre_completo", label:"Jugador", type:"player", cls:"nm"}},
       {{key:"equipo", label:"Equipo", type:"text", cls:"eq"}},
       {{key:"cat", label:"Cat.", type:"cat"}},
       {{key:"edad", label:"Edad", type:"num"}},
-      {{key:"fnac", label:"F. nac.", type:"text"}},
       {{key:"pj", label:"PJ", type:"num"}},
       {{key:"min_p", label:"Min/p", type:"num"}},
       {{key:"pts_p", label:"Pts/p", type:"num", main:true}},
+      {{key:"pct_pts", label:"Pct Pts", type:"pctile", tip:"Percentil pts/p en categoría"}},
+      {{key:"ts_pct", label:"TS%", type:"pct", tot:"t2i", altTot:"t3i"}},
+      {{key:"pct_ts", label:"Pct TS", type:"pctile"}},
+      {{key:"efg_pct", label:"eFG%", type:"pct", tot:"t2i", altTot:"t3i"}},
+      {{key:"val_min", label:"Val/Min", type:"num"}},
+      {{key:"pct_val", label:"Pct Val", type:"pctile"}},
       {{key:"reb_p", label:"Reb/p", type:"num"}},
       {{key:"ast_p", label:"Ast/p", type:"num"}},
+      {{key:"ast_per", label:"Ast/Per", type:"num"}},
+      {{key:"per_p", label:"Per/p", type:"num"}},
       {{key:"rob_p", label:"Rob/p", type:"num"}},
       {{key:"tap_p", label:"Tap/p", type:"num"}},
       {{key:"val_p", label:"Val/p", type:"num"}},
-      // Tiros: "A-I" por partido (ordenable por anotados/p) y % de temporada.
       {{key:"t2a_p", label:"2P A-I", type:"ai", keyA:"t2a_p", keyI:"t2i_p"}},
       {{key:"t2_pct", label:"2P%", type:"pct", tot:"t2i"}},
       {{key:"t3a_p", label:"3P A-I", type:"ai", keyA:"t3a_p", keyI:"t3i_p"}},
@@ -674,32 +809,68 @@ def _build_html(
       {{key:"tla_p", label:"TL A-I", type:"ai", keyA:"tla_p", keyI:"tli_p"}},
       {{key:"tl_pct", label:"TL%", type:"pct", tot:"tli"}},
     ];
-    // Columnas numéricas con filtro de rango (mín–máx). PJ arranca con mín=3.
     const RANGOS = [
       {{key:"pj", label:"PJ", def_min:"3"}},
       {{key:"edad", label:"Edad"}},
       {{key:"min_p", label:"Min/p"}},
       {{key:"pts_p", label:"Pts/p"}},
+      {{key:"ts_pct", label:"TS%"}},
+      {{key:"efg_pct", label:"eFG%"}},
+      {{key:"val_min", label:"Val/Min"}},
+      {{key:"pct_pts", label:"Pct Pts"}},
+      {{key:"pct_ts", label:"Pct TS"}},
+      {{key:"pct_val", label:"Pct Val"}},
       {{key:"reb_p", label:"Reb/p"}},
       {{key:"ast_p", label:"Ast/p"}},
+      {{key:"ast_per", label:"Ast/Per"}},
       {{key:"rob_p", label:"Rob/p"}},
       {{key:"tap_p", label:"Tap/p"}},
       {{key:"val_p", label:"Val/p"}},
       {{key:"t2_pct", label:"2P%"}},
       {{key:"t3_pct", label:"3P%"}},
       {{key:"tl_pct", label:"TL%"}},
-      // Volumen de lanzamientos: intentos por partido y totales de temporada.
       {{key:"t2i_p", label:"2P int/p"}},
       {{key:"t3i_p", label:"3P int/p"}},
       {{key:"tli_p", label:"TL int/p"}},
-      {{key:"t2i", label:"2P int. tot."}},
-      {{key:"t3i", label:"3P int. tot."}},
-      {{key:"tli", label:"TL int. tot."}},
+    ];
+    const PRESETS = [
+      {{id:"t3", label:"Tirador 3P", ranges:{{t3i_p:{{min:3}}, t3_pct:{{min:32}}}}}},
+      {{id:"reb", label:"Interior reboteador", ranges:{{reb_p:{{min:6}}, tap_p:{{min:0.5}}}}}},
+      {{id:"base", label:"Base creador", ranges:{{ast_p:{{min:3}}, ast_per:{{min:1.5}}}}}},
+      {{id:"rot", label:"Eficiente rotación", ranges:{{min_p:{{max:18}}, val_min:{{min:0.6}}}}}},
     ];
     let sortKey = "pts_p";
-    let sortDir = -1; // -1 desc, 1 asc
+    let sortDir = -1;
+    let soloFichajes = false;
+    let compareIds = [];
+    let activePresetId = null;
+    let renderTimer = null;
+    let headBuilt = false;
 
     function esc(s) {{ return (s==null?"":String(s)).replace(/[&<>]/g, c => ({{"&":"&amp;","<":"&lt;",">":"&gt;"}}[c])); }}
+    function perfilCls(p) {{ return PERFIL_CLASS[p] || "perfil-Muestra-insuficiente"; }}
+    function playerId(d) {{ return String(d.pid || d.nombre_completo + "|" + d.cat); }}
+    function fichaUrl(purl) {{
+      if (!purl) return "";
+      return purl.startsWith("http") ? purl : "https://argentina.basketball" + purl;
+    }}
+
+    function loadScout() {{
+      try {{ return JSON.parse(localStorage.getItem(SCOUT_KEY) || "{{}}"); }}
+      catch(e) {{ return {{}}; }}
+    }}
+    function saveScout(data) {{ localStorage.setItem(SCOUT_KEY, JSON.stringify(data)); }}
+    function isStarred(d) {{ const s = loadScout(); return !!(s[playerId(d)] && s[playerId(d)].starred); }}
+    function toggleStar(d) {{
+      const id = playerId(d);
+      const s = loadScout();
+      if (!s[id]) s[id] = {{starred:false, note:"", ts:Date.now()}};
+      s[id].starred = !s[id].starred;
+      s[id].ts = Date.now();
+      saveScout(s);
+      scheduleRender();
+    }}
+    function scoutCount() {{ return Object.values(loadScout()).filter(x => x.starred).length; }}
 
     function buildRangos() {{
       const cont = document.getElementById("rangos");
@@ -713,9 +884,55 @@ def _build_html(
           </div>
         </div>`).join("");
       RANGOS.forEach(r => {{
-        document.getElementById("min-" + r.key).addEventListener("input", render);
-        document.getElementById("max-" + r.key).addEventListener("input", render);
+        document.getElementById("min-" + r.key).addEventListener("input", scheduleRender);
+        document.getElementById("max-" + r.key).addEventListener("input", scheduleRender);
       }});
+    }}
+
+    function clearPresetRanges(p) {{
+      for (const k of Object.keys(p.ranges)) {{
+        const r = RANGOS.find(x => x.key === k);
+        document.getElementById("min-" + k).value = (r && r.def_min) ? r.def_min : "";
+        document.getElementById("max-" + k).value = "";
+      }}
+    }}
+
+    function buildPresets() {{
+      const cont = document.getElementById("presets");
+      PRESETS.forEach(p => {{
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "btn-pill";
+        btn.textContent = p.label;
+        btn.dataset.preset = p.id;
+        btn.addEventListener("click", () => applyPreset(p));
+        cont.appendChild(btn);
+      }});
+    }}
+
+    function applyPreset(p) {{
+      if (activePresetId === p.id) {{
+        clearPresetRanges(p);
+        activePresetId = null;
+        document.querySelectorAll("#presets .btn-pill").forEach(b => b.classList.remove("active"));
+        scheduleRender();
+        return;
+      }}
+      if (activePresetId) {{
+        const prev = PRESETS.find(x => x.id === activePresetId);
+        if (prev) clearPresetRanges(prev);
+      }}
+      RANGOS.forEach(r => {{
+        document.getElementById("min-" + r.key).value = r.def_min || "";
+        document.getElementById("max-" + r.key).value = "";
+      }});
+      for (const [k, rng] of Object.entries(p.ranges)) {{
+        if (rng.min != null) document.getElementById("min-" + k).value = rng.min;
+        if (rng.max != null) document.getElementById("max-" + k).value = rng.max;
+      }}
+      activePresetId = p.id;
+      document.querySelectorAll("#presets .btn-pill").forEach(b => b.classList.toggle("active", b.dataset.preset === p.id));
+      scheduleRender();
     }}
 
     function _numVal(id) {{
@@ -728,29 +945,38 @@ def _build_html(
     function renderHead() {{
       const tr = document.getElementById("thead");
       tr.innerHTML = COLS.map(c => {{
-        if (c.type === "rank") return `<th class="rank"></th>`;
+        if (c.type === "rank" || c.type === "star" || c.type === "cmp") return `<th class="rank">${{esc(c.label)}}</th>`;
         let cls = c.cls || "";
         if (c.key === sortKey) cls += sortDir < 0 ? " sorted-desc" : " sorted-asc";
-        return `<th class="${{cls}}" data-key="${{c.key}}">${{esc(c.label)}}</th>`;
+        const tip = c.tip ? ` title="${{esc(c.tip)}}"` : "";
+        return `<th class="${{cls}}" data-key="${{c.key}}"${{tip}}>${{esc(c.label)}}</th>`;
       }}).join("");
       tr.querySelectorAll("th[data-key]").forEach(th => th.addEventListener("click", () => {{
         const k = th.dataset.key;
-        if (k === sortKey) {{ sortDir = -sortDir; }}
-        else {{ sortKey = k; sortDir = TEXT_KEYS.has(k) ? 1 : -1; }}
+        if (k === sortKey) sortDir = -sortDir;
+        else {{ sortKey = k; sortDir = TEXT_KEYS.has(k) || k === "perfil" ? 1 : -1; }}
+        headBuilt = false;
         render();
       }}));
+      headBuilt = true;
     }}
 
     function filtrar() {{
       const cat = document.getElementById("f-cat").value;
+      const perfil = document.getElementById("f-perfil").value;
       const qn = document.getElementById("f-nombre").value.trim().toLowerCase();
       const qe = document.getElementById("f-equipo").value.trim().toLowerCase();
-      // Rangos activos: solo los extremos con valor restringen (lógica AND).
+      const scout = loadScout();
       const rangos = RANGOS.map(r => ({{
         key: r.key, min: _numVal("min-" + r.key), max: _numVal("max-" + r.key)
       }})).filter(r => r.min !== null || r.max !== null);
       return DATA.filter(d => {{
         if (cat && d.cat !== cat) return false;
+        if (perfil && d.perfil !== perfil) return false;
+        if (soloFichajes) {{
+          const s = scout[playerId(d)];
+          if (!s || !s.starred) return false;
+        }}
         if (qn) {{
           const hay = (d.nombre_completo || d.nombre || "").toLowerCase();
           const abr = (d.nombre || "").toLowerCase();
@@ -759,6 +985,7 @@ def _build_html(
         if (qe && !d.equipo.toLowerCase().includes(qe)) return false;
         for (const r of rangos) {{
           const v = d[r.key];
+          if (v === "" || v == null) return false;
           if (r.min !== null && v < r.min) return false;
           if (r.max !== null && v > r.max) return false;
         }}
@@ -768,16 +995,21 @@ def _build_html(
 
     function limpiar() {{
       document.getElementById("f-cat").value = "";
+      document.getElementById("f-perfil").value = "";
       document.getElementById("f-nombre").value = "";
       document.getElementById("f-equipo").value = "";
+      soloFichajes = false;
+      activePresetId = null;
+      document.getElementById("f-fichajes").classList.remove("active");
+      document.querySelectorAll("#presets .btn-pill").forEach(b => b.classList.remove("active"));
       RANGOS.forEach(r => {{
         document.getElementById("min-" + r.key).value = r.def_min || "";
         document.getElementById("max-" + r.key).value = "";
       }});
-      render();
+      scheduleRender();
     }}
 
-    const TEXT_KEYS = new Set(["nombre", "nombre_completo", "equipo", "cat", "fnac"]);
+    const TEXT_KEYS = new Set(["nombre", "nombre_completo", "equipo", "cat", "fnac", "perfil"]);
     function ordenar(rows) {{
       const k = sortKey, dir = sortDir;
       const num = !TEXT_KEYS.has(k);
@@ -793,32 +1025,197 @@ def _build_html(
       }});
     }}
 
+    function cellValue(d, c) {{
+      if (c.type === "rank") return String(arguments[2] || "");
+      if (c.type === "star") return "";
+      if (c.type === "cmp") return "";
+      if (c.type === "perfil") return `<span class="perfil-badge ${{perfilCls(d.perfil)}}">${{esc(d.perfil||"-")}}</span>`;
+      if (c.type === "player") {{
+        const url = fichaUrl(d.purl);
+        const nm = esc(d.nombre_completo || d.nombre);
+        return url ? `<a href="${{esc(url)}}" target="_blank" rel="noopener">${{nm}}</a>` : nm;
+      }}
+      if (c.type === "cat") return `<span class="cat-badge">${{esc(d.cat)}}</span>`;
+      if (c.type === "text") return esc(d[c.key]);
+      if (c.type === "ai") return `${{d[c.keyA]}}-${{d[c.keyI]}}`;
+      if (c.type === "pctile") return d[c.key] !== "" ? d[c.key] : "-";
+      if (c.type === "pct") {{
+        const hasShots = (d[c.tot] > 0) || (c.altTot && d[c.altTot] > 0) || (c.key === "ts_pct" && (d.t2i+d.t3i+d.tli) > 0);
+        return hasShots && d[c.key] !== "" ? d[c.key] : "-";
+      }}
+      return d[c.key] === "" ? "-" : String(d[c.key]);
+    }}
+
+    function renderBody(rows) {{
+      const body = document.getElementById("tbody");
+      const fragment = document.createDocumentFragment();
+      rows.forEach((d, i) => {{
+        const tr = document.createElement("tr");
+        const pid = playerId(d);
+        if (compareIds.includes(pid)) tr.classList.add("selected");
+        COLS.forEach(c => {{
+          const td = document.createElement("td");
+          if (c.cls) td.className = c.cls;
+          if (c.type === "rank") {{ td.className = "rank"; td.textContent = i + 1; }}
+          else if (c.type === "star") {{
+            const btn = document.createElement("button");
+            btn.type = "button";
+            btn.className = "star-btn" + (isStarred(d) ? " on" : "");
+            btn.textContent = "★";
+            btn.title = "Seguimiento";
+            btn.addEventListener("click", e => {{ e.stopPropagation(); toggleStar(d); }});
+            td.appendChild(btn);
+          }}
+          else if (c.type === "cmp") {{
+            const chk = document.createElement("input");
+            chk.type = "checkbox";
+            chk.className = "cmp-chk";
+            chk.checked = compareIds.includes(pid);
+            chk.addEventListener("change", e => {{
+              e.stopPropagation();
+              if (chk.checked) {{
+                if (compareIds.length >= 3) {{ chk.checked = false; return; }}
+                compareIds.push(pid);
+              }} else {{
+                compareIds = compareIds.filter(x => x !== pid);
+              }}
+              renderCompare();
+              scheduleRender();
+            }});
+            td.appendChild(chk);
+          }}
+          else if (c.main) {{ td.className = "main"; td.innerHTML = cellValue(d, c); }}
+          else {{ td.innerHTML = cellValue(d, c); }}
+          tr.appendChild(td);
+        }});
+        tr.style.cursor = "pointer";
+        tr.addEventListener("click", () => openDetail(d));
+        fragment.appendChild(tr);
+      }});
+      body.innerHTML = "";
+      body.appendChild(fragment);
+    }}
+
     function render() {{
-      renderHead();
+      if (!headBuilt) renderHead();
       const rows = ordenar(filtrar());
       document.getElementById("n-filas").textContent = rows.length;
-      const body = document.getElementById("tbody");
-      const frag = rows.map((d, i) => {{
-        const tds = COLS.map(c => {{
-          if (c.type === "rank") return `<td class="rank">${{i + 1}}</td>`;
-          if (c.type === "cat") return `<td><span class="cat-badge">${{esc(d.cat)}}</span></td>`;
-          if (c.type === "text") return `<td class="${{c.cls||""}}">${{esc(d[c.key])}}</td>`;
-          if (c.type === "ai") return `<td>${{d[c.keyA]}}-${{d[c.keyI]}}</td>`;
-          if (c.type === "pct") return `<td>${{(d[c.tot] > 0) ? d[c.key] : "-"}}</td>`;
-          const cls = c.main ? "main" : "";
-          return `<td class="${{d[c.key] === "" ? "" : cls}}">${{d[c.key]}}</td>`;
-        }}).join("");
-        return `<tr>${{tds}}</tr>`;
-      }}).join("");
-      body.innerHTML = frag;
+      document.getElementById("n-scout").textContent = scoutCount();
+      renderBody(rows);
+      window._lastRows = rows;
+    }}
+
+    function scheduleRender() {{
+      clearTimeout(renderTimer);
+      renderTimer = setTimeout(render, 150);
+    }}
+
+    function openDetail(d) {{
+      const panel = document.getElementById("detail-panel");
+      const id = playerId(d);
+      const scout = loadScout();
+      const note = (scout[id] && scout[id].note) || "";
+      const url = fichaUrl(d.purl);
+      const stats = [
+        ["PJ", d.pj], ["Min/p", d.min_p], ["Pts/p", d.pts_p], ["TS%", d.ts_pct],
+        ["eFG%", d.efg_pct], ["Val/Min", d.val_min], ["Reb/p", d.reb_p],
+        ["Ast/p", d.ast_p], ["Ast/Per", d.ast_per], ["Per/p", d.per_p],
+        ["Rob/p", d.rob_p], ["Tap/p", d.tap_p], ["Val/p", d.val_p],
+        ["Perfil", d.perfil], ["Pct Pts", d.pct_pts], ["Pct TS", d.pct_ts],
+      ];
+      document.getElementById("detail-content").innerHTML = `
+        <h3>${{esc(d.nombre_completo || d.nombre)}}</h3>
+        <div class="meta">${{esc(d.equipo)}} · ${{esc(d.cat)}}${{d.edad ? " · " + d.edad + " años" : ""}}</div>
+        <span class="perfil-badge ${{perfilCls(d.perfil)}}">${{esc(d.perfil||"-")}}</span>
+        <div class="stats-grid">${{stats.map(([l,v]) => `<div><span>${{l}}</span><b>${{v!==""?v:"-"}}</b></div>`).join("")}}</div>
+        ${{url ? `<a class="btn" href="${{esc(url)}}" target="_blank" rel="noopener">Abrir ficha</a>` : ""}}
+        <label class="fld" style="margin-top:14px">Notas de scouting
+          <textarea id="detail-note">${{esc(note)}}</textarea>
+        </label>
+        <button type="button" class="btn" id="detail-save" style="margin-top:8px">Guardar nota</button>
+      `;
+      document.getElementById("detail-save").addEventListener("click", () => {{
+        const s = loadScout();
+        if (!s[id]) s[id] = {{starred:false, note:"", ts:Date.now()}};
+        s[id].note = document.getElementById("detail-note").value;
+        s[id].ts = Date.now();
+        saveScout(s);
+      }});
+      panel.classList.add("open");
+    }}
+
+    function renderCompare() {{
+      const panel = document.getElementById("compare-panel");
+      const cont = document.getElementById("compare-content");
+      if (!compareIds.length) {{ panel.classList.remove("open"); cont.innerHTML = ""; return; }}
+      const players = compareIds.map(id => DATA.find(d => playerId(d) === id)).filter(Boolean);
+      if (!players.length) {{ panel.classList.remove("open"); return; }}
+      const metrics = ["cat","pj","min_p","pts_p","ts_pct","efg_pct","val_min","reb_p","ast_p","per_p","perfil"];
+      let html = "<table><thead><tr><th>Métrica</th>";
+      players.forEach(p => {{ html += `<th>${{esc(p.nombre_completo||p.nombre)}}</th>`; }});
+      html += "</tr></thead><tbody>";
+      metrics.forEach(m => {{
+        html += `<tr><td><b>${{m}}</b></td>`;
+        players.forEach(p => {{ html += `<td>${{esc(p[m]!==""?p[m]:"-")}}</td>`; }});
+        html += "</tr>";
+      }});
+      html += "</tbody></table>";
+      cont.innerHTML = html;
+      panel.classList.add("open");
+    }}
+
+    function exportCSV() {{
+      const rows = window._lastRows || ordenar(filtrar());
+      const scout = loadScout();
+      const headers = ["pid","nombre_completo","equipo","cat","perfil","pj","min_p","pts_p","ts_pct","efg_pct","val_min","reb_p","ast_p","per_p","ast_per","pct_pts","pct_ts","nota_scouting","en_seguimiento"];
+      const lines = [headers.join(",")];
+      rows.forEach(d => {{
+        const id = playerId(d);
+        const sc = scout[id] || {{}};
+        const vals = headers.map(h => {{
+          if (h === "nota_scouting") return sc.note || "";
+          if (h === "en_seguimiento") return sc.starred ? "1" : "0";
+          const v = d[h];
+          const s = v == null ? "" : String(v);
+          return s.includes(",") || s.includes('"') ? '"' + s.replace(/"/g, '""') + '"' : s;
+        }});
+        lines.push(vals.join(","));
+      }});
+      const blob = new Blob([lines.join("\\n")], {{type:"text/csv;charset=utf-8"}});
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(blob);
+      a.download = "scouting_formativas.csv";
+      a.click();
+    }}
+
+    function initTabs() {{
+      document.querySelectorAll(".tab-btn").forEach(btn => {{
+        btn.addEventListener("click", () => {{
+          document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+          document.querySelectorAll(".tab-panel").forEach(p => {{ p.style.display = "none"; }});
+          btn.classList.add("active");
+          document.getElementById("tab-" + btn.dataset.tab).style.display = "";
+        }});
+      }});
     }}
 
     function iniciarApp() {{
-      document.getElementById("f-cat").addEventListener("change", render);
-      document.getElementById("f-nombre").addEventListener("input", render);
-      document.getElementById("f-equipo").addEventListener("input", render);
+      initTabs();
+      document.getElementById("f-cat").addEventListener("change", scheduleRender);
+      document.getElementById("f-perfil").addEventListener("change", scheduleRender);
+      document.getElementById("f-nombre").addEventListener("input", scheduleRender);
+      document.getElementById("f-equipo").addEventListener("input", scheduleRender);
+      document.getElementById("f-fichajes").addEventListener("click", () => {{
+        soloFichajes = !soloFichajes;
+        document.getElementById("f-fichajes").classList.toggle("active", soloFichajes);
+        scheduleRender();
+      }});
+      document.getElementById("f-export").addEventListener("click", exportCSV);
       document.getElementById("f-limpiar").addEventListener("click", limpiar);
+      document.getElementById("detail-close").addEventListener("click", () => document.getElementById("detail-panel").classList.remove("open"));
+      document.getElementById("cmp-clear").addEventListener("click", () => {{ compareIds = []; renderCompare(); scheduleRender(); }});
       buildRangos();
+      buildPresets();
       render();
     }}
 {arranque}
@@ -880,9 +1277,16 @@ def _render_html(jugadores: List[Dict[str, object]], *, fecha: str) -> str:
     """Versión LOCAL en claro (datos embebidos sin cifrar)."""
     data_json = json.dumps(jugadores, ensure_ascii=False, separators=(",", ":"))
     cat_opts = "".join(f'<option value="{c}">{c}</option>' for c in CATEGORIAS)
+    perfil_opts = "".join(f'<option value="{p}">{p}</option>' for p in PERFILES)
+    perfil_opts += f'<option value="{PERFIL_INSUFICIENTE}">{PERFIL_INSUFICIENTE}</option>'
+    guia = _build_perfil_guia_html()
     return _build_html(
         fecha=fecha,
         cat_opts=cat_opts,
+        perfil_opts=perfil_opts,
+        scout_key=CLUB_SCOUTING_KEY,
+        perfil_css_map=json.dumps(_PERFIL_CSS_MAP, ensure_ascii=False),
+        perfil_guia_html=guia,
         data_decl=f"let DATA = {data_json};",
         arranque="    iniciarApp();",
     )
@@ -921,10 +1325,17 @@ def _render_html_cifrado(
     data_json = json.dumps(jugadores, ensure_ascii=False, separators=(",", ":"))
     cripto = _cifrar_payload(data_json, password)
     cat_opts = "".join(f'<option value="{c}">{c}</option>' for c in CATEGORIAS)
+    perfil_opts = "".join(f'<option value="{p}">{p}</option>' for p in PERFILES)
+    perfil_opts += f'<option value="{PERFIL_INSUFICIENTE}">{PERFIL_INSUFICIENTE}</option>'
+    guia = _build_perfil_guia_html()
     data_decl = "let DATA = [];\n    const CRYPTO = " + json.dumps(cripto) + ";"
     return _build_html(
         fecha=fecha,
         cat_opts=cat_opts,
+        perfil_opts=perfil_opts,
+        scout_key=CLUB_SCOUTING_KEY,
+        perfil_css_map=json.dumps(_PERFIL_CSS_MAP, ensure_ascii=False),
+        perfil_guia_html=guia,
         data_decl=data_decl,
         arranque=_LOGIN_JS,
         login_block=_LOGIN_HTML,
@@ -1008,6 +1419,7 @@ def main() -> int:
     )
     p.add_argument("--out-docs", default=str(DOCS_HTML))
     args = p.parse_args()
+    password = args.password or os.environ.get("BUSCADOR_PASSWORD", "")
 
     fecha = date.today().strftime("%d/%m/%Y")
     OUT_DIR.mkdir(parents=True, exist_ok=True)
@@ -1067,6 +1479,7 @@ def main() -> int:
         )
 
     jugadores = agregar_jugadores(partidos, boxscores, fichas)
+    jugadores = enriquecer_jugadores(jugadores)
 
     # Versión LOCAL en claro (no se publica).
     out_html = Path(args.out_html)
@@ -1075,15 +1488,16 @@ def main() -> int:
     # Versión PÚBLICA cifrada (login + AES-GCM) para GitHub Pages.
     docs_html: Optional[str] = None
     if args.publicar_docs:
-        if not args.password:
+        if not password:
             print(
-                "Falta --password para publicar la versión cifrada en docs/.",
+                "Falta --password (o variable de entorno BUSCADOR_PASSWORD) "
+                "para publicar la versión cifrada en docs/.",
                 file=sys.stderr,
             )
             return 1
         Path(args.out_docs).parent.mkdir(parents=True, exist_ok=True)
         Path(args.out_docs).write_text(
-            _render_html_cifrado(jugadores, fecha=fecha, password=args.password),
+            _render_html_cifrado(jugadores, fecha=fecha, password=password),
             encoding="utf-8",
         )
         docs_html = args.out_docs
