@@ -1,14 +1,15 @@
 # -*- coding: utf-8 -*-
 """
-Buscador LOCAL de jugadores destacados por estadísticas (FORMATIVAS GES 2015).
+Buscador LOCAL de jugadores destacados por estadísticas (Formativas + Mayores).
 
-Genera una página HTML autocontenida con una tabla de jugadores buscable,
-filtrable y ordenable, basada en PROMEDIOS por partido, para las categorías:
+Genera una página HTML con tabla de jugadores buscable, filtrable y ordenable,
+basada en PROMEDIOS por partido, para las categorías:
 
-  U13 = INFANTILES MASCULINO   (id_categoria 5078)
-  U15 = CADETES MASCULINO      (id_categoria 5077)
-  U17 = JUVENILES MASCULINO    (id_categoria 5076)
-  U21 = LIGA PROXIMO MASCULINO (id_categoria 5075)
+  U13 = INFANTILES MASCULINO   (comp. 2015, id_categoria 5078)
+  U15 = CADETES MASCULINO      (comp. 2015, id_categoria 5077)
+  U17 = JUVENILES MASCULINO    (comp. 2015, id_categoria 5076)
+  U21 = LIGA PROXIMO MASCULINO (comp. 2015, id_categoria 5075)
+  SUP = MAYORES MASCULINO      (comp. 2013, id_categoria 5074)
 
 ESTO ES LOCAL: el HTML se guarda en ``outputs/buscador/`` y NO se publica en
 docs/ ni se comitea.
@@ -52,14 +53,33 @@ from analysis.buscador_metrics import (
     enriquecer_jugadores,
 )
 
-ID_COMPETENCIA = 2015
-
-# edad -> metadatos GES de la categoría (solo para este buscador).
+# Código corto -> metadatos GES (cada categoría puede vivir en distinta competencia).
 CATEGORIAS: Dict[str, Dict[str, object]] = {
-    "U13": {"nombre_ges": "INFANTILES MASCULINO", "id_categoria": 5078},
-    "U15": {"nombre_ges": "CADETES MASCULINO", "id_categoria": 5077},
-    "U17": {"nombre_ges": "JUVENILES MASCULINO", "id_categoria": 5076},
-    "U21": {"nombre_ges": "LIGA PROXIMO MASCULINO", "id_categoria": 5075},
+    "U13": {
+        "nombre_ges": "INFANTILES MASCULINO",
+        "id_categoria": 5078,
+        "id_competencia": 2015,
+    },
+    "U15": {
+        "nombre_ges": "CADETES MASCULINO",
+        "id_categoria": 5077,
+        "id_competencia": 2015,
+    },
+    "U17": {
+        "nombre_ges": "JUVENILES MASCULINO",
+        "id_categoria": 5076,
+        "id_competencia": 2015,
+    },
+    "U21": {
+        "nombre_ges": "LIGA PROXIMO MASCULINO",
+        "id_categoria": 5075,
+        "id_competencia": 2015,
+    },
+    "SUP": {
+        "nombre_ges": "MAYORES MASCULINO",
+        "id_categoria": 5074,
+        "id_competencia": 2013,
+    },
 }
 
 OUT_DIR = ROOT / "outputs" / "buscador"
@@ -130,7 +150,7 @@ def normalizar_nombre(nombre: str) -> str:
 
 
 # --------------------------------------------------------------------------- #
-# Recolección de partidos COMPLETOS de las 4 categorías (todas las fases/grupos)
+# Recolección de partidos COMPLETOS (todas las categorías / competencias)
 # --------------------------------------------------------------------------- #
 def recolectar_partidos(
     ges: GesDeportivaExtractor,
@@ -139,15 +159,20 @@ def recolectar_partidos(
     fecha_ini: str,
     fecha_fin: str,
     progress: bool = False,
+    solo_categorias: Optional[List[str]] = None,
 ) -> List[Dict[str, str]]:
     out: List[Dict[str, str]] = []
     vistos: set = set()
-    for edad, meta in CATEGORIAS.items():
+    cats = CATEGORIAS
+    if solo_categorias:
+        cats = {k: v for k, v in CATEGORIAS.items() if k in solo_categorias}
+    for edad, meta in cats.items():
         cat = int(meta["id_categoria"])
-        fases, _ = ges.get_ids_fases_grupos(ID_COMPETENCIA, id_categoria=cat)
+        id_comp = int(meta["id_competencia"])
+        fases, _ = ges.get_ids_fases_grupos(id_comp, id_categoria=cat)
         if progress:
             print(
-                f"{edad} ({meta['nombre_ges']}): {len(fases)} fases",
+                f"{edad} ({meta['nombre_ges']}, comp {id_comp}): {len(fases)} fases",
                 file=sys.stderr,
                 flush=True,
             )
@@ -156,7 +181,7 @@ def recolectar_partidos(
                 print(f"  ⚠ {edad}: sin fases (¿categoría inexistente?)", file=sys.stderr)
             continue
         for nombre_fase, id_fase in fases.items():
-            grupos = ges.get_grupos_de_fase(ID_COMPETENCIA, cat, int(id_fase))
+            grupos = ges.get_grupos_de_fase(id_comp, cat, int(id_fase))
             n_cat = 0
             for nombre_grupo, id_grupo in grupos.items():
                 partidos = ges.get_info_partidos(
@@ -730,7 +755,7 @@ def _build_html(
   <div class="layout">
     <header>
       <h1>Scouting de jugadores</h1>
-      <p class="subtitle">FORMATIVAS · GES 2015 · Masculino · Analítica avanzada · Actualizado: {fecha}</p>
+      <p class="subtitle">Formativas + Mayores · Masculino · Analítica avanzada · Actualizado: {fecha}</p>
     </header>
 {login_block}
     <div id="app"{app_style}>
@@ -992,11 +1017,28 @@ def main() -> int:
         help=f"Genera la versión cifrada en docs/ ({PUBLIC_URL}). Requiere --password",
     )
     p.add_argument("--out-docs", default=str(DOCS_HTML))
+    p.add_argument(
+        "--solo-categorias",
+        default="",
+        help="Solo recolectar estas categorías (coma-separadas: SUP,U21). "
+        "Con --merge-cache se conserva el resto de partidos.json.",
+    )
+    p.add_argument(
+        "--merge-cache",
+        action="store_true",
+        help="Al recolectar, mezcla con partidos.json existente (no lo reemplaza entero).",
+    )
     args = p.parse_args()
     password = args.password or os.environ.get("BUSCADOR_PASSWORD", "")
 
     fecha = date.today().strftime("%d/%m/%Y")
     OUT_DIR.mkdir(parents=True, exist_ok=True)
+    solo_cats = [c.strip() for c in args.solo_categorias.split(",") if c.strip()]
+    if solo_cats:
+        unknown = [c for c in solo_cats if c not in CATEGORIAS]
+        if unknown:
+            print(f"Categorías desconocidas: {unknown}. Válidas: {list(CATEGORIAS)}", file=sys.stderr)
+            return 1
 
     if args.desde_cache:
         partidos = _cargar_partidos_cache()
@@ -1012,14 +1054,34 @@ def main() -> int:
             return 1
         ges = GesDeportivaExtractor(HttpClient(SessionProvider.get_session()))
         if args.progress:
-            print("Recolectando partidos COMPLETOS de las 4 categorías…", file=sys.stderr)
-        partidos = recolectar_partidos(
+            destino = ",".join(solo_cats) if solo_cats else "todas"
+            print(f"Recolectando partidos COMPLETOS ({destino})…", file=sys.stderr)
+        nuevos = recolectar_partidos(
             ges,
             key=widget_key,
             fecha_ini=args.fecha_ini,
             fecha_fin=args.fecha_fin,
             progress=args.progress,
+            solo_categorias=solo_cats or None,
         )
+        if args.merge_cache or solo_cats:
+            previos = _cargar_partidos_cache()
+            reemplazar = set(solo_cats) if solo_cats else set(CATEGORIAS)
+            conservados = [p for p in previos if p.get("categoria") not in reemplazar]
+            vistos = {p["id_partido"] for p in conservados}
+            for p in nuevos:
+                if p["id_partido"] not in vistos:
+                    conservados.append(p)
+                    vistos.add(p["id_partido"])
+            partidos = conservados
+            if args.progress:
+                print(
+                    f"Merge caché: {len(previos)} previos → {len(partidos)} "
+                    f"(+{len(nuevos)} recolectados en {reemplazar})",
+                    file=sys.stderr,
+                )
+        else:
+            partidos = nuevos
         _guardar_partidos_cache(partidos)
 
     tokens = [p["id_partido"] for p in partidos]
