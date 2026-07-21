@@ -7,6 +7,9 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from ingest.febamba.standings_2026 import (
+    ETAPA_POR_FASE,
+    FASES_CANONICAS,
+    FASE_LABEL,
     PartidoGeneral,
     PartidoPresentacion,
     clave_equipo,
@@ -14,6 +17,7 @@ from ingest.febamba.standings_2026 import (
     construir_tabla_resultado_mini,
     decidir_presentacion_partido,
     es_marcador_raro,
+    norm_zona,
     puntos_partido_general,
 )
 
@@ -287,3 +291,72 @@ def test_presentacion_sin_zona_se_reporta():
     # CLUB B sí está en zona -> recibe su punto
     b = {f.equipo: f for f in res.tablas["CLASIFICACION"]["NORTE 1A"]}["CLUB B"]
     assert b.pts_presentacion == 1
+
+
+# --------------------------------------------------------------------------- #
+# Segunda fase: Interconferencia / Nivel 1 + normalización de zona
+# --------------------------------------------------------------------------- #
+def test_fases_canonicas_incluye_segunda_fase():
+    assert "INTERCONFERENCIA_A" in FASES_CANONICAS
+    assert "INTERCONFERENCIA_B" in FASES_CANONICAS
+    assert "NIVEL_1" in FASES_CANONICAS
+    assert ETAPA_POR_FASE["INTERCONFERENCIA_A"] == "SEGUNDA"
+    assert ETAPA_POR_FASE["NIVEL_1"] == "SEGUNDA"
+    assert ETAPA_POR_FASE["CLASIFICACION"] == "PRIMERA"
+    assert "Interconferencia A" in FASE_LABEL["INTERCONFERENCIA_A"]
+
+
+def test_norm_zona_tipografias_segunda_fase():
+    assert norm_zona("CENTTRO") == "CENTRO"
+    assert norm_zona("ZONA  A3") == "ZONA A3"
+    assert norm_zona("0ESTE 1A") == "OESTE 1A"
+    assert norm_zona("CENTRO 2 B") == "CENTRO 2B"
+
+
+def test_standings_interconferencia_a_por_zona():
+    generales = [
+        PartidoGeneral(
+            "U15", "INTERCONFERENCIA_A", "ZONA A1", "CLUB A", "CLUB B", 70, 60
+        ),
+        PartidoGeneral(
+            "U13", "INTERCONFERENCIA_A", "ZONA A1", "CLUB B", "CLUB A", 50, 40
+        ),
+    ]
+    res = construir_standings(generales, [])
+    assert "INTERCONFERENCIA_A" in res.tablas
+    assert "ZONA A1" in res.tablas["INTERCONFERENCIA_A"]
+    assert "CLASIFICACION" not in res.tablas
+    tabla = res.tablas["INTERCONFERENCIA_A"]["ZONA A1"]
+    por_eq = {f.equipo: f for f in tabla}
+    assert por_eq["CLUB A"].pts_general == 3  # gana 2 + pierde 1
+    assert por_eq["CLUB B"].pts_general == 3
+
+
+def test_standings_nivel_1_por_zona():
+    generales = [
+        PartidoGeneral("U17", "NIVEL_1", "NORTE", "CLUB A", "CLUB B", 80, 70),
+        PartidoGeneral("U15", "NIVEL_1", "CENTRO", "CLUB C", "CLUB D", 20, 0),
+    ]
+    res = construir_standings(generales, [])
+    assert set(res.tablas["NIVEL_1"]) == {"NORTE", "CENTRO"}
+    norte = {f.equipo: f for f in res.tablas["NIVEL_1"]["NORTE"]}
+    assert norte["CLUB A"].pts_general == 2
+    assert norte["CLUB B"].pts_general == 1
+    centro = {f.equipo: f for f in res.tablas["NIVEL_1"]["CENTRO"]}
+    assert centro["CLUB C"].pts_general == 2
+    assert centro["CLUB D"].pts_general == 0
+    assert centro["CLUB D"].walkover_contra == 1
+
+
+def test_standings_separa_primera_y_segunda_fase():
+    generales = [
+        PartidoGeneral("U15", "CLASIFICACION", "NORTE 1A", "CLUB A", "CLUB B", 70, 60),
+        PartidoGeneral(
+            "U15", "INTERCONFERENCIA_A", "ZONA A2", "CLUB A", "CLUB C", 65, 50
+        ),
+    ]
+    res = construir_standings(generales, [])
+    assert "CLASIFICACION" in res.tablas
+    assert "INTERCONFERENCIA_A" in res.tablas
+    assert res.tablas["CLASIFICACION"]["NORTE 1A"][0].equipo in {"CLUB A", "CLUB B"}
+    assert "ZONA A2" in res.tablas["INTERCONFERENCIA_A"]

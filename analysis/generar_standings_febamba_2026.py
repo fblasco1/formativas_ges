@@ -2,11 +2,11 @@
 """
 Genera la tabla de posiciones general de FORMATIVAS 2026 (competencia GES 2015).
 
-Suma, por zona y por fase (Torneo Clasificatorio / Torneo Reclasificación), los puntos
-de las categorías U13/U15/U17 (ganado=2, perdido=1, walkover 20-0 = 2 y 0 para el
-ausente) más los puntos de presentación de U9/U11 (1 por equipo que llega al mínimo de
-12 jugadores con >= 10:00 de juego; en marcadores raros se valida con el acta de
-argentina.basketball).
+Suma, por zona y por nivel (Clasificatorio / Reclasificación / Interconferencia A-B /
+Nivel 1), los puntos de las categorías U13/U15/U17 (ganado=2, perdido=1, walkover
+20-0 = 2 y 0 para el ausente) más los puntos de presentación de U9/U11 (1 por equipo
+que llega al mínimo de 12 jugadores con >= 10:00 de juego; en marcadores raros se
+valida con el acta de argentina.basketball). La UI navega Etapa → Nivel → Zona.
 
 Ejemplos:
   python analysis/generar_standings_febamba_2026.py --progress
@@ -19,7 +19,6 @@ from __future__ import annotations
 
 import argparse
 import json
-import re
 import sys
 from concurrent.futures import ThreadPoolExecutor, as_completed
 from dataclasses import asdict
@@ -44,10 +43,14 @@ from ingest.febamba.standings_2026 import (
     CATEGORIAS,
     EDADES_GENERAL,
     EDADES_PRESENTACION,
+    ETAPA_LABEL,
+    ETAPA_POR_FASE,
     FASES_CANONICAS,
     FASE_LABEL,
+    FASE_ORDER,
     ID_COMPETENCIA,
     MIN_JUGADORES_REGLA,
+    NIVELES_POR_ETAPA,
     PartidoGeneral,
     PartidoPresentacion,
     construir_standings,
@@ -56,6 +59,7 @@ from ingest.febamba.standings_2026 import (
     construir_tabla_resultado_mini,
     registrar_nombres_globales,
     nombre_display,
+    norm_zona,
     puntos_partido_general,
     decidir_presentacion_partido,
     presentacion_desde_acta,
@@ -98,13 +102,10 @@ def _to_int(value: object) -> Optional[int]:
     return None
 
 
-def norm_zona(nombre: str) -> str:
-    """Normaliza nombre de zona: '0ESTE 1A'->'OESTE 1A', 'CENTRO 2 B'->'CENTRO 2B'."""
-    t = (nombre or "").upper().strip()
-    t = t.replace("0ESTE", "OESTE")
-    t = " ".join(t.split())
-    t = re.sub(r"(\d)\s+([A-Z])", r"\1\2", t)
-    return t
+def _es_fase_excluida(nombre_ges: str) -> bool:
+    """True si la fase GES queda fuera del informe (p.ej. CLASIFICACION LFF)."""
+    u = (nombre_ges or "").strip().upper()
+    return "LFF" in u
 
 
 def _boxscore_url(token: str) -> str:
@@ -114,13 +115,10 @@ def _boxscore_url(token: str) -> str:
     )
 
 
-# --------------------------------------------------------------------------- #
-# Resolución de fases
-# --------------------------------------------------------------------------- #
 def resolver_fases(
     ges: GesDeportivaExtractor,
 ) -> Dict[str, Dict[str, str]]:
-    """edad -> {fase_canonica: id_fase}. Empareja por nombre GES."""
+    """edad -> {fase_canonica: id_fase}. Empareja por nombre GES; excluye LFF."""
     out: Dict[str, Dict[str, str]] = {}
     for edad, meta in CATEGORIAS.items():
         fases, _ = ges.get_ids_fases_grupos(
@@ -128,8 +126,11 @@ def resolver_fases(
         )
         canon_map: Dict[str, str] = {}
         for canon, nombres in FASES_CANONICAS.items():
+            wanted = {n.upper() for n in nombres}
             for nombre_ges, fid in fases.items():
-                if nombre_ges.strip().upper() in {n.upper() for n in nombres}:
+                if _es_fase_excluida(nombre_ges):
+                    continue
+                if nombre_ges.strip().upper() in wanted:
                     canon_map[canon] = fid
                     break
         out[edad] = canon_map
@@ -772,9 +773,31 @@ def construir_payload(
         "equipos_sin_zona": len(sin_zona_list),
     }
 
+    # Niveles (claves canónicas) presentes en alguna vista de tablas.
+    niveles_presentes = set(tablas_json.keys())
+    for cat in cat_json.values():
+        niveles_presentes.update(cat.keys())
+    for cat in pres_json.values():
+        niveles_presentes.update(cat.keys())
+    niveles_presentes.update(u11_json.keys())
+
+    fases = [f for f in FASE_ORDER if f in niveles_presentes]
+
+    niveles_por_etapa: Dict[str, List[str]] = {}
+    for etapa, orden in NIVELES_POR_ETAPA.items():
+        presentes = [n for n in orden if n in niveles_presentes]
+        if presentes:
+            niveles_por_etapa[etapa] = presentes
+
+    etapas = [e for e in ("PRIMERA", "SEGUNDA") if e in niveles_por_etapa]
+
     return {
         "fecha": fecha_actualizacion,
-        "fases": [f for f in ["CLASIFICACION", "RECLASIFICACION"] if f in tablas_json],
+        "etapas": etapas,
+        "etapa_labels": ETAPA_LABEL,
+        "niveles_por_etapa": niveles_por_etapa,
+        "etapa_por_fase": ETAPA_POR_FASE,
+        "fases": fases,
         "fase_labels": FASE_LABEL,
         "vistas": vistas,
         "tablas": tablas_json,
@@ -894,6 +917,7 @@ def _render_html(payload: Dict[str, object]) -> str:
         <label class="fld">Vista
           <select id="sel-vista"></select>
         </label>
+        <div class="seg" id="seg-etapa"></div>
         <div class="seg" id="seg-fase"></div>
         <label class="fld">Zona
           <select id="sel-zona"></select>
@@ -955,7 +979,8 @@ def _render_html(payload: Dict[str, object]) -> str:
     function minSegFor(viewId) {{ return viewId === "U9" ? MIN_SEG_PREMINI : MIN_SEG_GENERAL; }}
     function minLabel(viewId) {{ return viewId === "U9" ? "8:00" : "10:00"; }}
     let vistaActual = "GENERAL";
-    let faseActual = (DATA.fases[0] || "");
+    let etapaActual = "";
+    let faseActual = "";
     let zonaActual = "";
     let jornadaActual = 1;
     let matchesZona = [];
@@ -975,6 +1000,35 @@ def _render_html(payload: Dict[str, object]) -> str:
       return (DATA.tablas_presentacion || {{}})[v.id] || {{}};
     }}
 
+    function nivelesDeEtapa(etapa) {{
+      const mapa = DATA.niveles_por_etapa || {{}};
+      const orden = mapa[etapa] || [];
+      const tablas = tablasDeVista();
+      return orden.filter(n => tablas[n]);
+    }}
+
+    function etapaDeNivel(nivel) {{
+      return (DATA.etapa_por_fase || {{}})[nivel] || "";
+    }}
+
+    function labelEtapaNivel() {{
+      const et = (DATA.etapa_labels || {{}})[etapaActual] || etapaActual;
+      const nv = (DATA.fase_labels || {{}})[faseActual] || faseActual;
+      return `${{et}} · ${{nv}}`;
+    }}
+
+    function initNav() {{
+      const etapas = DATA.etapas || [];
+      // Preferir Segunda fase si tiene datos; si no, primera disponible.
+      if (etapas.includes("SEGUNDA") && nivelesDeEtapa("SEGUNDA").length) {{
+        etapaActual = "SEGUNDA";
+      }} else {{
+        etapaActual = etapas[0] || "";
+      }}
+      const niveles = nivelesDeEtapa(etapaActual);
+      faseActual = niveles[0] || (DATA.fases || [])[0] || "";
+    }}
+
     function renderStats() {{
       const r = DATA.resumen;
       const items = [
@@ -992,17 +1046,42 @@ def _render_html(payload: Dict[str, object]) -> str:
       sel.innerHTML = (DATA.vistas||[]).map(v =>
         `<option value="${{v.id}}" ${{v.id===vistaActual?'selected':''}}>${{v.label}}</option>`
       ).join("");
-      sel.onchange = () => {{ vistaActual = sel.value; zonaActual=""; renderZonas(); renderTabla(); renderNota(); }};
+      sel.onchange = () => {{
+        vistaActual = sel.value; zonaActual = "";
+        // Si el nivel actual no existe en la nueva vista, reelegir dentro de la etapa.
+        const niveles = nivelesDeEtapa(etapaActual);
+        if (!niveles.includes(faseActual)) faseActual = niveles[0] || "";
+        renderSegEtapa(); renderSegFase(); renderZonas(); renderTabla(); renderNota();
+      }};
+    }}
+
+    function renderSegEtapa() {{
+      const seg = document.getElementById("seg-etapa");
+      const etapas = (DATA.etapas || []).filter(e => nivelesDeEtapa(e).length);
+      seg.innerHTML = etapas.map(e =>
+        `<button data-etapa="${{e}}" class="${{e===etapaActual?'active':''}}">${{(DATA.etapa_labels||{{}})[e]||e}}</button>`
+      ).join("");
+      seg.querySelectorAll("button").forEach(b => b.addEventListener("click", () => {{
+        etapaActual = b.dataset.etapa;
+        const niveles = nivelesDeEtapa(etapaActual);
+        faseActual = niveles[0] || "";
+        zonaActual = "";
+        renderSegEtapa(); renderSegFase(); renderZonas(); renderTabla();
+      }}));
     }}
 
     function renderSegFase() {{
       const seg = document.getElementById("seg-fase");
-      seg.innerHTML = DATA.fases.map(f =>
+      const niveles = nivelesDeEtapa(etapaActual);
+      if (!niveles.includes(faseActual)) faseActual = niveles[0] || "";
+      seg.innerHTML = niveles.map(f =>
         `<button data-fase="${{f}}" class="${{f===faseActual?'active':''}}">${{DATA.fase_labels[f]||f}}</button>`
       ).join("");
       seg.querySelectorAll("button").forEach(b => b.addEventListener("click", () => {{
-        faseActual = b.dataset.fase; zonaActual = "";
-        renderSegFase(); renderZonas(); renderTabla();
+        faseActual = b.dataset.fase;
+        etapaActual = etapaDeNivel(faseActual) || etapaActual;
+        zonaActual = "";
+        renderSegEtapa(); renderSegFase(); renderZonas(); renderTabla();
       }}));
     }}
 
@@ -1074,7 +1153,7 @@ def _render_html(payload: Dict[str, object]) -> str:
       const v = vistaInfo(vistaActual);
       const filas = ((tablasDeVista())[faseActual]||{{}})[zonaActual] || [];
       document.getElementById("titulo-tabla").textContent =
-        `${{v.label}} · ${{DATA.fase_labels[faseActual]||faseActual}} — Zona ${{zonaActual}}`;
+        `${{v.label}} · ${{labelEtapaNivel()}} — Zona ${{zonaActual}}`;
       document.getElementById("thead").innerHTML = headFor(v.tipo, v.id);
       document.getElementById("tbody").innerHTML = filas.map(f => rowFor(v.tipo, f)).join("");
       jornadaActual = 1;
@@ -1266,7 +1345,7 @@ def _render_html(payload: Dict[str, object]) -> str:
       const pbpSection = v.id === "U11" ? pbpHtml(PBP[id], m) : "";
 
       body.innerHTML = `<h2 id="modal-title" style="margin:0 24px 2px 0;">${{esc(m.local)}} vs ${{esc(m.visit)}}</h2>
-        <p class="small">${{v.label}} · ${{DATA.fase_labels[faseActual]||faseActual}} · Zona ${{zonaActual}}${{m.fecha ? " · " + esc(m.fecha) : ""}}</p>
+        <p class="small">${{v.label}} · ${{labelEtapaNivel()}} · Zona ${{zonaActual}}${{m.fecha ? " · " + esc(m.fecha) : ""}}</p>
         ${{nota}}
         ${{boxHtml}}
         ${{pbpSection}}`;
@@ -1317,7 +1396,9 @@ def _render_html(payload: Dict[str, object]) -> str:
     document.addEventListener("keydown", (e) => {{ if (e.key === "Escape") cerrarModal(); }});
 
     renderStats();
+    initNav();
     renderVistas();
+    renderSegEtapa();
     renderSegFase();
     renderZonas();
     renderTabla();

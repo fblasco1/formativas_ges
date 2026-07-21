@@ -4,8 +4,10 @@ Motor de la tabla de posiciones general de FORMATIVAS 2026 (competencia GES 2015
 
 Reglas (confirmadas con la organización):
 
-* La primera fase se juega en dos niveles ("fases" GES):
-  ``TORNEO DE CLASIFICACION`` y ``TORNEO RECLASIFICATORIO``.
+* Navegación por etapa → nivel → zona. Los "niveles" son fases GES:
+  Primera: ``TORNEO DE CLASIFICACION`` / ``TORNEO RECLASIFICATORIO``.
+  Segunda: ``INTERCONFERENCIA A`` / ``INTERCONFERENCIA B`` / ``NIVEL 1``.
+  (``CLASIFICACION LFF`` es nacional y queda fuera de este informe.)
 * Categorías que suman a la tabla general (puntos por resultado):
   U13 (Infantiles), U15 (Cadetes), U17 (Juveniles).
     - Partido ganado: 2 puntos. Partido perdido: 1 punto.
@@ -27,6 +29,7 @@ Este módulo es lógica pura (sin red); la descarga/orquestación vive en
 
 from __future__ import annotations
 
+import re
 import unicodedata
 from collections import defaultdict
 from dataclasses import dataclass, field
@@ -61,16 +64,51 @@ CATEGORIAS: Dict[str, Dict[str, object]] = {
 EDADES_GENERAL = [e for e, c in CATEGORIAS.items() if c["rol"] == ROL_GENERAL]
 EDADES_PRESENTACION = [e for e, c in CATEGORIAS.items() if c["rol"] == ROL_PRESENTACION]
 
-# Nombre canónico de fase -> nombres GES posibles (varía la grafía entre categorías).
+# Nombre canónico de nivel (campo `fase` en partidos) -> nombres GES posibles.
+# La grafía varía entre categorías; "fase" en el dataclass es en realidad el nivel.
 FASES_CANONICAS: Dict[str, Tuple[str, ...]] = {
     "CLASIFICACION": ("TORNEO DE CLASIFICACION", "TORNEO CLASIFICATORIO"),
     "RECLASIFICACION": ("TORNEO RECLASIFICATORIO", "TORNEO RECLASIFICACION"),
+    "INTERCONFERENCIA_A": ("INTERCONFERENCIA A",),
+    "INTERCONFERENCIA_B": ("INTERCONFERENCIA B",),
+    "NIVEL_1": ("NIVEL 1",),
 }
 
 FASE_LABEL: Dict[str, str] = {
     "CLASIFICACION": "Torneo Clasificatorio",
     "RECLASIFICACION": "Torneo Reclasificación",
+    "INTERCONFERENCIA_A": "Interconferencia A",
+    "INTERCONFERENCIA_B": "Interconferencia B",
+    "NIVEL_1": "Nivel 1",
 }
+
+# Nivel canónico -> etapa de navegación (Primera / Segunda fase).
+ETAPA_POR_FASE: Dict[str, str] = {
+    "CLASIFICACION": "PRIMERA",
+    "RECLASIFICACION": "PRIMERA",
+    "INTERCONFERENCIA_A": "SEGUNDA",
+    "INTERCONFERENCIA_B": "SEGUNDA",
+    "NIVEL_1": "SEGUNDA",
+}
+
+ETAPA_LABEL: Dict[str, str] = {
+    "PRIMERA": "Primera fase",
+    "SEGUNDA": "Segunda fase",
+}
+
+# Orden de niveles dentro de cada etapa (para UI y payload).
+NIVELES_POR_ETAPA: Dict[str, Tuple[str, ...]] = {
+    "PRIMERA": ("CLASIFICACION", "RECLASIFICACION"),
+    "SEGUNDA": ("INTERCONFERENCIA_A", "INTERCONFERENCIA_B", "NIVEL_1"),
+}
+
+FASE_ORDER: Tuple[str, ...] = (
+    "CLASIFICACION",
+    "RECLASIFICACION",
+    "INTERCONFERENCIA_A",
+    "INTERCONFERENCIA_B",
+    "NIVEL_1",
+)
 
 # Palabras de categoría a remover de la clave de emparejamiento de equipos.
 _TOKENS_CATEGORIA = {
@@ -85,6 +123,8 @@ _TOKENS_CATEGORIA = {
     "MOSQUITOS",
     "MOSQUITO",
     "PROXIMO",
+    "SUPERIOR",
+    "MAYORES",
 }
 
 # Colores femeninos -> masculino (canónico) para unificar "BLANCA"/"BLANCO".
@@ -164,6 +204,21 @@ def normalizar_nombre(nombre: str) -> str:
     return " ".join(t.split())
 
 
+def norm_zona(nombre: str) -> str:
+    """
+    Normaliza nombre de zona GES.
+
+    Corrige tipografías frecuentes: ``0ESTE``→``OESTE``, ``CENTTRO``→``CENTRO``,
+    ``CENTRO 2 B``→``CENTRO 2B``, ``ZONA  A3``→``ZONA A3``.
+    """
+    t = (nombre or "").upper().strip()
+    t = t.replace("0ESTE", "OESTE")
+    t = t.replace("CENTTRO", "CENTRO")
+    t = " ".join(t.split())
+    t = re.sub(r"(\d)\s+([A-Z])", r"\1\2", t)
+    return t
+
+
 def clave_equipo(nombre: str) -> str:
     """
     Clave para emparejar el mismo equipo entre categorías.
@@ -207,8 +262,8 @@ class PartidoGeneral:
     """Partido de categoría que suma a la tabla (U13/U15/U17)."""
 
     edad: str
-    fase: str  # clave canónica (CLASIFICACION / RECLASIFICACION)
-    zona: str  # nombre de zona normalizado (ej. "NORTE 1A")
+    fase: str  # clave canónica de nivel (CLASIFICACION, INTERCONFERENCIA_A, …)
+    zona: str  # nombre de zona normalizado (ej. "NORTE 1A", "ZONA A3")
     local: str
     visitante: str
     pts_local: Optional[int]
@@ -364,7 +419,9 @@ def _elegir_nombre(nombres_ges, clave: str) -> str:
         con_cat = 1 if (set(nombre.split()) & _TOKENS_CATEGORIA) else 0
         return (-cov, con_cat, len(nombre), nombre)
 
-    return min(limpios, key=score)
+    elegido = min(limpios, key=score)
+    sin_cat = " ".join(t for t in elegido.split() if t not in _TOKENS_CATEGORIA)
+    return sin_cat or elegido
 
 
 def registrar_nombres_globales(
