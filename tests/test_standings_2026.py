@@ -70,6 +70,14 @@ def test_clave_equipo_no_sobreunifica():
     assert clave_equipo("BOCA JUNIORS AZUL A") != clave_equipo("BOCA JUNIORS AMARILLO B")
 
 
+def test_clave_equipo_alias_porteno_blanco_b():
+    # OESTE 3C: mismo equipo entre categorías (con/sin color BLANCO).
+    assert clave_equipo("PORTEÑO ATLETICO CLUB B") == clave_equipo(
+        "PORTEÑO ATLETICO CLUB BLANCO B"
+    )
+    assert clave_equipo("PORTEÑO ATLETICO CLUB B") == "PORTENO ATLETICO CLUB B BLANCO"
+
+
 # --------------------------------------------------------------------------- #
 # Puntaje general
 # --------------------------------------------------------------------------- #
