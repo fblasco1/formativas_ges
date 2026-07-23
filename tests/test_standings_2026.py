@@ -78,6 +78,20 @@ def test_clave_equipo_alias_porteno_blanco_b():
     assert clave_equipo("PORTEÑO ATLETICO CLUB B") == "PORTENO ATLETICO CLUB B BLANCO"
 
 
+def test_clave_equipo_alias_nautico_buchardo_norte_a():
+    # NORTE 3C: mismo equipo (con sufijo NORTE (A) vs solo A).
+    assert clave_equipo("NAUTICO BUCHARDO NORTE (A)") == clave_equipo(
+        "NAUTICO BUCHARDO A"
+    )
+    assert clave_equipo("NAUTICO BUCHARDO") == clave_equipo("NAUTICO BUCHARDO A")
+
+
+def test_clave_equipo_alias_monte_grande_b_negro():
+    # SUR 2B: mismo equipo (con/sin color NEGRO).
+    assert clave_equipo("MONTE GRANDE B") == clave_equipo("MONTE GRANDE B NEGRO")
+    assert clave_equipo("MONTE GRANDE B") == "MONTE GRANDE B NEGRO"
+
+
 # --------------------------------------------------------------------------- #
 # Puntaje general
 # --------------------------------------------------------------------------- #
