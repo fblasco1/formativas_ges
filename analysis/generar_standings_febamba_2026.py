@@ -748,7 +748,7 @@ def construir_payload(
     for fase, zonas in resultado.tablas.items():
         for zona, filas in zonas.items():
             for f in filas:
-                equipos_unicos.add((fase, zona, f.clave))
+                equipos_unicos.add(f.clave)
 
     # Agregar "sin zona" por (fase, edad, equipo) con conteo (evita repetir por partido).
     sin_zona_agg: Dict[Tuple[str, str, str], Dict[str, object]] = {}
