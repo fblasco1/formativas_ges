@@ -854,15 +854,6 @@
     "lon": -58.53761,
     "precision": "house"
   },
-  "BANCO PROVINCIA": {
-    "clave": "BANCO PROVINCIA",
-    "equipo": "BANCO PROVINCIA",
-    "afiliada": "CLUB ATLETICO BANCO PROVINCIA de BS. AS",
-    "query": "Hipolito Yrigoyen 803, Ciudad Autónoma de Buenos Aires, Argentina",
-    "lat": -34.6093483,
-    "lon": -58.3778392,
-    "precision": "house"
-  },
   "HARRODS GATH Y CHAVES": {
     "clave": "HARRODS GATH Y CHAVES",
     "equipo": "HARRODS GATH Y CHAVES",
@@ -1069,15 +1060,6 @@
     "lat": -34.6795835,
     "lon": -58.5089144,
     "precision": "house"
-  },
-  "VICTORIA NEGRO": {
-    "clave": "VICTORIA NEGRO",
-    "equipo": "VICTORIA NEGRO",
-    "afiliada": "CLUB SOCIAL y FOMENTO VICTORIA",
-    "query": "Ing. White 1153, Argentina",
-    "lat": -34.6827788,
-    "lon": -58.543229,
-    "precision": "bus_stop"
   },
   "CIUDADELA NORTE": {
     "clave": "CIUDADELA NORTE",
@@ -1403,15 +1385,6 @@
     "lon": -58.6383947,
     "precision": "house"
   },
-  "SOCIEDAD HEBRAICA ARGENTINA": {
-    "clave": "SOCIEDAD HEBRAICA ARGENTINA",
-    "equipo": "SOCIEDAD HEBRAICA ARGENTINA",
-    "afiliada": "SOCIEDAD HEBRAICA ARGENTINA",
-    "query": "Sarmiento 2233, 1044, Argentina",
-    "lat": -34.605766,
-    "lon": -58.3986457,
-    "precision": "community_centre"
-  },
   "SAN MIGUEL BLANCO": {
     "clave": "SAN MIGUEL BLANCO",
     "equipo": "SAN MIGUEL BLANCO",
@@ -1734,6 +1707,33 @@
     "query": "Islas Malvinas 2681, Villa San Andrés, Provincia de Buenos Aires, Argentina",
     "lat": -34.5671494,
     "lon": -58.5389395,
+    "precision": "house"
+  },
+  "BANCO PROVINCIA": {
+    "clave": "BANCO PROVINCIA",
+    "equipo": "BANCO PROVINCIA",
+    "afiliada": "Banco Provincia",
+    "query": "",
+    "lat": null,
+    "lon": null,
+    "precision": "fallo"
+  },
+  "SOCIEDAD HEBRAICA ARGENTINA": {
+    "clave": "SOCIEDAD HEBRAICA ARGENTINA",
+    "equipo": "SOCIEDAD HEBRAICA ARGENTINA",
+    "afiliada": "Sociedad Hebraica Argentina",
+    "query": "Pilar, 1629, Argentina",
+    "lat": -34.7935871,
+    "lon": -58.2601768,
+    "precision": "house"
+  },
+  "VICTORIA NEGRO": {
+    "clave": "VICTORIA NEGRO",
+    "equipo": "VICTORIA NEGRO",
+    "afiliada": "Victoria",
+    "query": "Ingeniero White 1153, Victoria, 1644, Argentina",
+    "lat": -34.4523459,
+    "lon": -58.5409894,
     "precision": "house"
   }
 }

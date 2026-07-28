@@ -74,6 +74,23 @@ _ALIAS_FEDERACION: Dict[str, str] = {
 
 # Sedes confirmadas manualmente (clave_equipo -> afiliada, dirección, CP).
 _SEDE_CONFIRMADA: Dict[str, Tuple[str, str, str]] = {
+    "VICTORIA NEGRO": (
+        "Victoria",
+        "Ingeniero White 1153, Victoria",
+        "1644",
+    ),
+
+    "BANCO PROVINCIA": (
+        "Banco Provincia",
+        "Pres. Hipólito Yrigoyen 803, Vicente López",
+        "1638",
+    ),
+    "SOCIEDAD HEBRAICA ARGENTINA": (
+        "Sociedad Hebraica Argentina",
+        "Av. Sgto Cayetano Beliera 1199, Pilar",
+        "1629",
+    ),
+
     "BANCO NACION A AZUL": (
         "Banco Nación",
         "Zufriategui 1251, Vicente López",
