@@ -38,10 +38,10 @@ REGION_COLOR = {
 }
 
 NIVELES = [
-    {"id": 1, "nombre": "Nivel 1", "rango": "1–32", "desde": 1, "hasta": 32},
-    {"id": 2, "nombre": "Nivel 2", "rango": "33–64", "desde": 33, "hasta": 64},
-    {"id": 3, "nombre": "Nivel 3", "rango": "65–96", "desde": 65, "hasta": 96},
-    {"id": 4, "nombre": "Nivel 4", "rango": "97+", "desde": 97, "hasta": 10_000},
+    {"id": 1, "nombre": "Nivel 1", "rango": "Interconferencia A"},
+    {"id": 2, "nombre": "Nivel 2", "rango": "Interconferencia B"},
+    {"id": 3, "nombre": "Nivel 3", "rango": "Nivel 1"},
+    {"id": 4, "nombre": "Nivel 4", "rango": "Resto de equipos"},
 ]
 
 
@@ -64,11 +64,26 @@ def _cargar_mapeo() -> List[dict]:
     return rows
 
 
-def _nivel_de(pos: int) -> int:
-    for n in NIVELES:
-        if n["desde"] <= pos <= n["hasta"]:
-            return n["id"]
-    return 4
+def _obtener_fases_segunda() -> Dict[str, str]:
+    import sys
+    if str(ROOT) not in sys.path:
+        sys.path.insert(0, str(ROOT))
+    from ingest.febamba.standings_2026 import clave_equipo
+
+    html_path = ROOT / "outputs" / "formativas_2026" / "tabla_posiciones.html"
+    if not html_path.exists():
+        return {}
+    text = html_path.read_text(encoding="utf-8")
+    start = text.index("const DATA = ") + len("const DATA = ")
+    end = text.index(";\n", start)
+    data = json.loads(text[start:end])
+    
+    mapa = {}
+    for fase in ["INTERCONFERENCIA_A", "INTERCONFERENCIA_B", "NIVEL_1"]:
+        for zona, filas in data["tablas"].get(fase, {}).items():
+            for f in filas:
+                mapa[clave_equipo(f["equipo"])] = fase
+    return mapa
 
 
 def _dist(
@@ -164,9 +179,19 @@ def calcular_payload() -> dict:
     with MATRIZ_JSON.open(encoding="utf-8") as f:
         mat = json.load(f)["km"]
 
+    fase_segunda_map = _obtener_fases_segunda()
     por_nivel: Dict[int, List[dict]] = {n["id"]: [] for n in NIVELES}
     for row in mapeo:
-        por_nivel[_nivel_de(row["pos"])].append(row)
+        fase2 = fase_segunda_map.get(row["clave"])
+        if fase2 == "INTERCONFERENCIA_A":
+            nid = 1
+        elif fase2 == "INTERCONFERENCIA_B":
+            nid = 2
+        elif fase2 == "NIVEL_1":
+            nid = 3
+        else:
+            nid = 4
+        por_nivel[nid].append(row)
 
     niveles_out = []
     for meta in NIVELES:
@@ -256,8 +281,8 @@ def generar(out: Path = OUT_HTML) -> Path:
 <header>
   <h1>Tabla general metropolitana · Niveles y distancias</h1>
     <p>
-    Primera fase FeBAMBA (Clasificación + Reclasificación). Ranking: primero Clasificatorio
-    por puntos, luego Reclasificación. Mapa filtrable por nivel.
+    Equipos de Primera fase FeBAMBA asignados según su clasificación a la <strong>Segunda Fase</strong>.
+    Mapa filtrable por nivel.
     Colores: <strong>Centro rojo</strong>, <strong>Norte azul</strong>,
     <strong>Sur amarillo</strong>, <strong>Oeste verde</strong>.
     Medias = distancia ida promedio a rivales del nivel
