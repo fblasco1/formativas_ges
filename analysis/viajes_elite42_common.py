@@ -302,6 +302,9 @@ _SEDE_CONFIRMADA: Dict[str, Tuple[str, str, str]] = {
 
 # Consulta Nominatim preferida (clave_equipo -> query).
 _GEOCODE_QUERY: Dict[str, str] = {
+    "BANCO PROVINCIA": "Pres. Hipólito Yrigoyen 803, Vicente López, Provincia de Buenos Aires, Argentina",
+    "SOCIEDAD HEBRAICA ARGENTINA": "Av. Sgto Cayetano Beliera 1199, Pilar, Provincia de Buenos Aires, Argentina",
+
     "BANCO NACION A AZUL": "Zufriategui 1251, Vicente López, Provincia de Buenos Aires, Argentina",
     "3 DE FEBRERO C CELESTE": "Islas Malvinas 2681, Villa San Andrés, Provincia de Buenos Aires, Argentina",
     "VICTORIA BLANCO": "Ingeniero White 1153, Victoria, Buenos Aires",
@@ -891,6 +894,9 @@ def _guardar_geocache(cache: Dict[str, dict]) -> None:
 
 # Coordenadas manuales (clave_equipo -> lat, lon, nota).
 _GEOCODE_MANUAL: Dict[str, Tuple[float, float, str]] = {
+    "BANCO PROVINCIA": (-34.5172706, -58.4789798, "manual_banco_provincia_vl"),
+    "SOCIEDAD HEBRAICA ARGENTINA": (-34.4508163, -58.8626211, "manual_hebraica_pilar"),
+
     "VELEZ SARSFIELD A BLANCO": (-34.6315, -58.5089, "manual_velez"),
     "GIMNASIA Y ESGRIMA LA A PLATA": (-34.9214, -57.9544, "manual_gelp"),
     "TRISTAN SUAREZ": (-34.8593, -58.5625, "manual_tristan"),

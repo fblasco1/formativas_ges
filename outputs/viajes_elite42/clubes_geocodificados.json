@@ -1709,24 +1709,6 @@
     "lon": -58.5389395,
     "precision": "house"
   },
-  "BANCO PROVINCIA": {
-    "clave": "BANCO PROVINCIA",
-    "equipo": "BANCO PROVINCIA",
-    "afiliada": "Banco Provincia",
-    "query": "",
-    "lat": null,
-    "lon": null,
-    "precision": "fallo"
-  },
-  "SOCIEDAD HEBRAICA ARGENTINA": {
-    "clave": "SOCIEDAD HEBRAICA ARGENTINA",
-    "equipo": "SOCIEDAD HEBRAICA ARGENTINA",
-    "afiliada": "Sociedad Hebraica Argentina",
-    "query": "Pilar, 1629, Argentina",
-    "lat": -34.7935871,
-    "lon": -58.2601768,
-    "precision": "house"
-  },
   "VICTORIA NEGRO": {
     "clave": "VICTORIA NEGRO",
     "equipo": "VICTORIA NEGRO",
@@ -1735,5 +1717,23 @@
     "lat": -34.4523459,
     "lon": -58.5409894,
     "precision": "house"
+  },
+  "BANCO PROVINCIA": {
+    "clave": "BANCO PROVINCIA",
+    "equipo": "BANCO PROVINCIA",
+    "afiliada": "Banco Provincia",
+    "query": "manual",
+    "lat": -34.5172706,
+    "lon": -58.4789798,
+    "precision": "manual_banco_provincia_vl"
+  },
+  "SOCIEDAD HEBRAICA ARGENTINA": {
+    "clave": "SOCIEDAD HEBRAICA ARGENTINA",
+    "equipo": "SOCIEDAD HEBRAICA ARGENTINA",
+    "afiliada": "Sociedad Hebraica Argentina",
+    "query": "manual",
+    "lat": -34.4508163,
+    "lon": -58.8626211,
+    "precision": "manual_hebraica_pilar"
   }
 }
