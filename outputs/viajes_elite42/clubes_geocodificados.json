@@ -1,0 +1,1739 @@
+{
+  "FERROCARRIL OESTE VERDE": {
+    "clave": "FERROCARRIL OESTE VERDE",
+    "equipo": "FERROCARRIL OESTE VERDE",
+    "afiliada": "CLUB ATLETICO FERROCARRIL OESTE",
+    "query": "FEDERICO GARCIA LORCA 350, 1409, Argentina",
+    "lat": -34.6179168,
+    "lon": -58.4455827,
+    "precision": "house"
+  },
+  "OBRAS BASKET": {
+    "clave": "OBRAS BASKET",
+    "equipo": "OBRAS BASKET",
+    "afiliada": "CLUB ATLETICO OBRAS SANITARIAS DE LA NACION",
+    "query": "Avda Libertador 7395, 1429, Argentina",
+    "lat": -34.5447504,
+    "lon": -58.459266,
+    "precision": "college"
+  },
+  "BOCA JUNIORS A AZUL": {
+    "clave": "BOCA JUNIORS A AZUL",
+    "equipo": "BOCA JUNIORS AZUL A",
+    "afiliada": "CLUB ATLETICO BOCA JUNIORS",
+    "query": "Arzobispo Espinosa 602, 1157, Argentina",
+    "lat": -34.631961,
+    "lon": -58.36589,
+    "precision": "house"
+  },
+  "PINOCHO": {
+    "clave": "PINOCHO",
+    "equipo": "PINOCHO",
+    "afiliada": "CLUB SOCIAL y DEPORTIVO PINOCHO",
+    "query": "Manuela Pedraza 5139, 1431, Argentina",
+    "lat": -34.5646079,
+    "lon": -58.4917304,
+    "precision": "sports_centre"
+  },
+  "VELEZ SARSFIELD A BLANCO": {
+    "clave": "VELEZ SARSFIELD A BLANCO",
+    "equipo": "VELEZ SARSFIELD BLANCO - A",
+    "afiliada": "CLUB ATLETICO VELEZ SARSFIELD",
+    "query": "manual",
+    "lat": -34.6315,
+    "lon": -58.5089,
+    "precision": "manual_velez"
+  },
+  "3 DE FEBRERO A BLANCO": {
+    "clave": "3 DE FEBRERO A BLANCO",
+    "equipo": "3 DE FEBRERO BLANCO A",
+    "afiliada": "Club Tres de Febrero",
+    "query": "Islas Malvinas 2681, Villa San Andrés, Provincia de Buenos Aires, Argentina",
+    "lat": -34.5671494,
+    "lon": -58.5389395,
+    "precision": "house"
+  },
+  "LANUS A": {
+    "clave": "LANUS A",
+    "equipo": "LANUS A",
+    "afiliada": "CLUB ATLETICO LANUS",
+    "query": "9 De Julio 1680, Lanús, Provincia de Buenos Aires, Argentina",
+    "lat": -34.7113068,
+    "lon": -58.3850071,
+    "precision": "association"
+  },
+  "PEDRO ECHAGUE AZUL": {
+    "clave": "PEDRO ECHAGUE AZUL",
+    "equipo": "PEDRO ECHAGUE AZUL",
+    "afiliada": "INSTITUCION CULTURAL y DEPORTIVA PEDRO ECHAGUE",
+    "query": "Portela 836, 1406, Argentina",
+    "lat": -34.6418063,
+    "lon": -58.4686969,
+    "precision": "sports"
+  },
+  "COMUNICACIONES A AMARILLO": {
+    "clave": "COMUNICACIONES A AMARILLO",
+    "equipo": "COMUNICACIONES AMARILLO A",
+    "afiliada": "CLUB COMUNICACIONES",
+    "query": "Av San Martin 5125, 1407, Argentina",
+    "lat": -34.5957008,
+    "lon": -58.4887189,
+    "precision": "trinquet"
+  },
+  "ITALIANO": {
+    "clave": "ITALIANO",
+    "equipo": "ITALIANO",
+    "afiliada": "CLUB ITALIANO",
+    "query": "Av Rivadavia 4731, 1424, Argentina",
+    "lat": -34.6162234,
+    "lon": -58.4320962,
+    "precision": "house"
+  },
+  "GIMNASIA Y ESGRIMA LA A PLATA": {
+    "clave": "GIMNASIA Y ESGRIMA LA A PLATA",
+    "equipo": "GIMNASIA Y ESGRIMA LA PLATA A",
+    "afiliada": "CLUB GIMNASIA Y ESGRIMA LA PLATA",
+    "query": "manual",
+    "lat": -34.9214,
+    "lon": -57.9544,
+    "precision": "manual_gelp"
+  },
+  "SAN LORENZO AZUL": {
+    "clave": "SAN LORENZO AZUL",
+    "equipo": "SAN LORENZO AZUL",
+    "afiliada": "San Lorenzo",
+    "query": "Av. Varela 2706, Flores, Ciudad Autónoma de Buenos Aires, Argentina",
+    "lat": -34.6537166,
+    "lon": -58.4406456,
+    "precision": "secondary"
+  },
+  "TRISTAN SUAREZ": {
+    "clave": "TRISTAN SUAREZ",
+    "equipo": "TRISTAN SUAREZ",
+    "afiliada": "CLUB TRISTAN SUAREZ",
+    "query": "manual",
+    "lat": -34.8593,
+    "lon": -58.5625,
+    "precision": "manual_tristan"
+  },
+  "IMPERIO A BLANCO": {
+    "clave": "IMPERIO A BLANCO",
+    "equipo": "IMPERIO BLANCO A",
+    "afiliada": "C. S.D. y B, P. IMPERIO JUNIORS",
+    "query": "manual",
+    "lat": -34.6058,
+    "lon": -58.4562,
+    "precision": "manual_imperio"
+  },
+  "RIVER PLATE": {
+    "clave": "RIVER PLATE",
+    "equipo": "RIVER PLATE",
+    "afiliada": "CLUB ATLETICO RIVER PLATE",
+    "query": "Figueroa Alcorta 7597, 1428, Argentina",
+    "lat": -34.5449775,
+    "lon": -58.4483258,
+    "precision": "sports_centre"
+  },
+  "ALEJANDRO KORN": {
+    "clave": "ALEJANDRO KORN",
+    "equipo": "ALEJANDRO KORN",
+    "afiliada": "Club Social Alejandro Korn",
+    "query": "Lombardi 150, Alejandro Korn, Provincia de Buenos Aires, Argentina",
+    "lat": -34.9831706,
+    "lon": -58.3745559,
+    "precision": "residential"
+  },
+  "SPORTIVO PILAR": {
+    "clave": "SPORTIVO PILAR",
+    "equipo": "SPORTIVO PILAR MINI",
+    "afiliada": "CLUB SPORTIVO PILAR",
+    "query": "Av. Tomás Marquez 1125, Pilar, Provincia de Buenos Aires, Argentina",
+    "lat": -34.4636876,
+    "lon": -58.9105714,
+    "precision": "secondary"
+  },
+  "CAZA Y PESCA A AZUL": {
+    "clave": "CAZA Y PESCA A AZUL",
+    "equipo": "CAZA Y PESCA AZUL A",
+    "afiliada": "CLUB ATLETICO CAZA y PESCA",
+    "query": "manual",
+    "lat": -34.4585,
+    "lon": -58.8102,
+    "precision": "manual_caza_pesca"
+  },
+  "PRESIDENTE DERQUI": {
+    "clave": "PRESIDENTE DERQUI",
+    "equipo": "PRESIDENTE DERQUI",
+    "afiliada": "CLUB SOCIAL y DEPORTIVO PRESIDENTE DERQUI",
+    "query": "Dorrego 866, Presidente Derqui, Provincia de Buenos Aires, Argentina",
+    "lat": -34.4947049,
+    "lon": -58.8310381,
+    "precision": "residential"
+  },
+  "ARQUITECTURA A NEGRO": {
+    "clave": "ARQUITECTURA A NEGRO",
+    "equipo": "ARQUITECTURA NEGRO A",
+    "afiliada": "CLUB ARQUITECTURA",
+    "query": "Av Francisco Beiro 2116, 1419, Argentina",
+    "lat": -34.5898972,
+    "lon": -58.4849773,
+    "precision": "sports_centre"
+  },
+  "PLATENSE A": {
+    "clave": "PLATENSE A",
+    "equipo": "PLATENSE A",
+    "afiliada": "Club Platense",
+    "query": "Zufriategui 2021, Vicente Lopez, Provincia de Buenos Aires, Argentina",
+    "lat": -34.5351142,
+    "lon": -58.4679867,
+    "precision": "residential"
+  },
+  "MORON A ROJO": {
+    "clave": "MORON A ROJO",
+    "equipo": "MORON ROJO A",
+    "afiliada": "CLUB MORON",
+    "query": "Bernardo de Irigoyen 138, Castelar, Provincia de Buenos Aires, Argentina",
+    "lat": -34.6506567,
+    "lon": -58.6301001,
+    "precision": "house"
+  },
+  "BURZACO FC": {
+    "clave": "BURZACO FC",
+    "equipo": "BURZACO FC",
+    "afiliada": "BURZACO FUTBOL CLUB",
+    "query": "25 De Mayo 955, Burzaco, Provincia de Buenos Aires, Argentina",
+    "lat": -34.8245905,
+    "lon": -58.394674,
+    "precision": "sports_centre"
+  },
+  "CASA PADUA A": {
+    "clave": "CASA PADUA A",
+    "equipo": "C.A.S.A PADUA A",
+    "afiliada": "CASA Padua",
+    "query": "Independencia 725, San Antonio de Padua, Provincia de Buenos Aires, Argentina",
+    "lat": -34.664219,
+    "lon": -58.7042333,
+    "precision": "school"
+  },
+  "ATENEO POPULAR VERSAILLES": {
+    "clave": "ATENEO POPULAR VERSAILLES",
+    "equipo": "ATENEO POPULAR VERSAILLES",
+    "afiliada": "CLUB ATENEO POPULAR VERSAILLES",
+    "query": "Roma 950, 1408, Argentina",
+    "lat": -34.6259448,
+    "lon": -58.522813,
+    "precision": "sports_centre"
+  },
+  "CANUELAS FC": {
+    "clave": "CANUELAS FC",
+    "equipo": "CANUELAS FC",
+    "afiliada": "CAÑUELAS FUTBOL CLUB",
+    "query": "Lara 874, Cañuelas, Provincia de Buenos Aires, Argentina",
+    "lat": -35.0540165,
+    "lon": -58.7625776,
+    "precision": "house"
+  },
+  "ARGENTINO DE CASTELAR NORTE A": {
+    "clave": "ARGENTINO DE CASTELAR NORTE A",
+    "equipo": "ARGENTINO DE CASTELAR NORTE A",
+    "afiliada": "CLUB SOCIAL DEPORTIVO Y CULTURAL ARGENTINO DE CASTELAR",
+    "query": "manual",
+    "lat": -34.6547,
+    "lon": -58.6408,
+    "precision": "manual_castelar"
+  },
+  "CIUDAD DE BUENOS AIRES A AZUL": {
+    "clave": "CIUDAD DE BUENOS AIRES A AZUL",
+    "equipo": "CIUDAD DE BUENOS AIRES A AZUL",
+    "afiliada": "CLUB CIUDAD DE BUENOS AIRES",
+    "query": "Av Libertador 7501, Ciudad Autónoma de Buenos Aires, Argentina",
+    "lat": -34.5419998,
+    "lon": -58.4578416,
+    "precision": "sports_centre"
+  },
+  "VILLA MITRE": {
+    "clave": "VILLA MITRE",
+    "equipo": "VILLA MITRE",
+    "afiliada": "ASOCIACION CIVIL LIGA DE FOMENTO VILLA GENERAL MITRE",
+    "query": "gavilan 1540, 1416, Argentina",
+    "lat": -34.6125786,
+    "lon": -58.4685894,
+    "precision": "house"
+  },
+  "TEMPERLEY": {
+    "clave": "TEMPERLEY",
+    "equipo": "TEMPERLEY",
+    "afiliada": "Temperley",
+    "query": "Av. 9 de Julio, Lomas de Zamora, Provincia de Buenos Aires, Argentina",
+    "lat": -34.783189,
+    "lon": -58.4026172,
+    "precision": "primary"
+  },
+  "SPORTIVO ESCOBAR": {
+    "clave": "SPORTIVO ESCOBAR",
+    "equipo": "SPORTIVO ESCOBAR",
+    "afiliada": "CLUB SPORTIVO ESCOBAR",
+    "query": "COLON 533, Escobar, Provincia de Buenos Aires, Argentina",
+    "lat": -34.3486152,
+    "lon": -58.7948477,
+    "precision": "house"
+  },
+  "INSTITUCION SARMIENTO A VERDE": {
+    "clave": "INSTITUCION SARMIENTO A VERDE",
+    "equipo": "INSTITUCION SARMIENTO VERDE A",
+    "afiliada": "INSTITUCION SARMIENTO",
+    "query": "Av. La Plata 3434, Santos Lugares, Provincia de Buenos Aires, Argentina",
+    "lat": -34.6023974,
+    "lon": -58.5429939,
+    "precision": "sports_centre"
+  },
+  "FERROCARRIL OESTE BLANCO": {
+    "clave": "FERROCARRIL OESTE BLANCO",
+    "equipo": "FERROCARRIL OESTE BLANCA",
+    "afiliada": "CLUB ATLETICO FERROCARRIL OESTE",
+    "query": "FEDERICO GARCIA LORCA 350, 1409, Argentina",
+    "lat": -34.6179168,
+    "lon": -58.4455827,
+    "precision": "house"
+  },
+  "GIMNASIA Y ESGRIMA DE LOMAS DE ZAMORA": {
+    "clave": "GIMNASIA Y ESGRIMA DE LOMAS DE ZAMORA",
+    "equipo": "GIMNASIA Y ESGRIMA DE LOMAS DE ZAMORA",
+    "afiliada": "CLUB GIMNASIA y ESGRIMA DE LOMAS DE ZAMORA",
+    "query": "Salguero 63, Lomas de Zamora, Provincia de Buenos Aires, Argentina",
+    "lat": -34.7625397,
+    "lon": -58.3912149,
+    "precision": "sports_centre"
+  },
+  "INDEPENDIENTE DE BURZACO": {
+    "clave": "INDEPENDIENTE DE BURZACO",
+    "equipo": "INDEPENDIENTE DE BURZACO",
+    "afiliada": "Independiente de Burzaco",
+    "query": "Carlos Pellegrini 557, Burzaco, Provincia de Buenos Aires, Argentina",
+    "lat": -34.8287772,
+    "lon": -58.3902047,
+    "precision": "house"
+  },
+  "UNION FLORIDA": {
+    "clave": "UNION FLORIDA",
+    "equipo": "UNION FLORIDA",
+    "afiliada": "CLUB UNION FLORIDA",
+    "query": "Bernardo De Irigoyen 1540, Florida, Provincia de Buenos Aires, Argentina",
+    "lat": -34.5348182,
+    "lon": -58.5069436,
+    "precision": "house"
+  },
+  "CLUB GEI (A) AZUL": {
+    "clave": "CLUB GEI (A) AZUL",
+    "equipo": "CLUB GEI AZUL (A)",
+    "afiliada": "CLUB GIMNASIA y ESGRIMA DE ITUZAINGO",
+    "query": "Lavalle 1151, Ituzaingó, Provincia de Buenos Aires, Argentina",
+    "lat": -34.6573816,
+    "lon": -58.6725225,
+    "precision": "house"
+  },
+  "ESTUDIANTIL PORTENO A": {
+    "clave": "ESTUDIANTIL PORTENO A",
+    "equipo": "ESTUDIANTIL PORTENO A",
+    "afiliada": "CLUB ATLETICO ESTUDIANTIL PORTEÑO",
+    "query": "Coronel Barcala 716, 1704, Argentina",
+    "lat": -34.6376547,
+    "lon": -58.5546365,
+    "precision": "sports_centre"
+  },
+  "MONTE GRANDE A ROJO": {
+    "clave": "MONTE GRANDE A ROJO",
+    "equipo": "MONTE GRANDE ROJO A",
+    "afiliada": "CLUB ATLETICO MONTE GRANDE",
+    "query": "Hipolito Yrigoyen 77, Monte Grande, Provincia de Buenos Aires, Argentina",
+    "lat": -34.8158598,
+    "lon": -58.4673185,
+    "precision": "house"
+  },
+  "GEVP A BLANCO": {
+    "clave": "GEVP A BLANCO",
+    "equipo": "GEVP BLANCO A",
+    "afiliada": "Gimnasia y Esgrima de Villa del Parque",
+    "query": "Tinogasta 3455, Villa del Parque, CABA, Argentina",
+    "lat": -34.6020874,
+    "lon": -58.4991994,
+    "precision": "sports_centre"
+  },
+  "JOSE HERNANDEZ A": {
+    "clave": "JOSE HERNANDEZ A",
+    "equipo": "JOSE HERNANDEZ A",
+    "afiliada": "CLUB JOSE HERNANDEZ",
+    "query": "Bragado 5950, 1440, Argentina",
+    "lat": -34.65339,
+    "lon": -58.5026518,
+    "precision": "house"
+  },
+  "QUILMES ATLETICO CLUB": {
+    "clave": "QUILMES ATLETICO CLUB",
+    "equipo": "QUILMES ATLETICO CLUB",
+    "afiliada": "CLUB LOS COOPERARIOS DE QUILMES",
+    "query": "Andrade 3052, 1878, Argentina",
+    "lat": -34.7563122,
+    "lon": -58.2802086,
+    "precision": "sport"
+  },
+  "DEPORTIVO CROVARA A": {
+    "clave": "DEPORTIVO CROVARA A",
+    "equipo": "DEPORTIVO CROVARA A",
+    "afiliada": "CLUB CROVARA",
+    "query": "Montevideo 1550, 1768, Argentina",
+    "lat": -34.6795835,
+    "lon": -58.5089144,
+    "precision": "house"
+  },
+  "COLEGIALES BLANCO": {
+    "clave": "COLEGIALES BLANCO",
+    "equipo": "COLEGIALES BLANCO",
+    "afiliada": "CLUB DEPORTIVO y SOCIAL COLEGIALES",
+    "query": "Teodoro Garcia 2860, 1426, Argentina",
+    "lat": -34.573797,
+    "lon": -58.4485624,
+    "precision": "house"
+  },
+  "DEFENSORES DE HURLINGHAM VERDE": {
+    "clave": "DEFENSORES DE HURLINGHAM VERDE",
+    "equipo": "DEFENSORES DE HURLINGHAM VERDE",
+    "afiliada": "CLUB DEPORTIVO DEFENSORES DE HURLINGHAM",
+    "query": "Dr Delfor Diaz 1846, 1686, Argentina",
+    "lat": -34.5824353,
+    "lon": -58.6383947,
+    "precision": "house"
+  },
+  "EL TALAR": {
+    "clave": "EL TALAR",
+    "equipo": "EL TALAR",
+    "afiliada": "CLUB EL TALAR",
+    "query": "Nueva York 2944, 1419, Argentina",
+    "lat": -34.5918023,
+    "lon": -58.4980776,
+    "precision": "house"
+  },
+  "ARMENIA": {
+    "clave": "ARMENIA",
+    "equipo": "ARMENIA",
+    "afiliada": "CENTRO ARMENIO DE LA REPUBLICA ARGENTINA",
+    "query": "Armenia 1353, Ciudad Autónoma de Buenos Aires, Argentina",
+    "lat": -34.5918456,
+    "lon": -58.4307277,
+    "precision": "house"
+  },
+  "BANADE ROJO": {
+    "clave": "BANADE ROJO",
+    "equipo": "BANADE ROJO",
+    "afiliada": "CLUB BANCO NACIONAL DE DESARROLLO",
+    "query": "Hipolito Yrigoyen 1290, 1640, Argentina",
+    "lat": -34.4965823,
+    "lon": -58.5153734,
+    "precision": "house"
+  },
+  "LOS ANDES": {
+    "clave": "LOS ANDES",
+    "equipo": "LOS ANDES",
+    "afiliada": "CLUB ATLETICO LOS ANDES",
+    "query": "AV HIPOLITO YRIGOYEN 9549, 1832, Argentina",
+    "lat": -34.7668947,
+    "lon": -58.4040904,
+    "precision": "house"
+  },
+  "COPELLO": {
+    "clave": "COPELLO",
+    "equipo": "COPELLO",
+    "afiliada": "ASOCIACION AMIGOS DEL COLEGIO COPELLO",
+    "query": "manual",
+    "lat": -34.6012,
+    "lon": -58.5138,
+    "precision": "manual_copello_devoto"
+  },
+  "WILDE SPORTING": {
+    "clave": "WILDE SPORTING",
+    "equipo": "WILDE SPORTING",
+    "afiliada": "WILDE SPORTING CLUB",
+    "query": "Mariano Moreno 6052, 1875, Argentina",
+    "lat": -34.7015227,
+    "lon": -58.3179879,
+    "precision": "sport"
+  },
+  "PORTENO ATLETICO CLUB AZUL": {
+    "clave": "PORTENO ATLETICO CLUB AZUL",
+    "equipo": "PORTENO ATLETICO CLUB AZUL",
+    "afiliada": "PORTEÑO ATLETICO CLUB",
+    "query": "Guillermo Costalonga 725, 1748, Argentina",
+    "lat": -34.6019428,
+    "lon": -58.9395199,
+    "precision": "residential"
+  },
+  "UVVA UNION VECINAL VILLA ADELINA": {
+    "clave": "UVVA UNION VECINAL VILLA ADELINA",
+    "equipo": "U.V.V.A UNION VECINAL VILLA ADELINA",
+    "afiliada": "UNION VECINAL DE VILLA ADELINA U.V.V.A",
+    "query": "BERNARDO ADER 4048, 1606, Argentina",
+    "lat": -34.5279087,
+    "lon": -58.5501578,
+    "precision": "library"
+  },
+  "COUNTRY BANFIELD A": {
+    "clave": "COUNTRY BANFIELD A",
+    "equipo": "COUNTRY BANFIELD A",
+    "afiliada": "COUNTRY CLUB INFANTIL DE BANFIELD",
+    "query": "BELGRANO 1783, 1828, Argentina",
+    "lat": -34.7401531,
+    "lon": -58.3902834,
+    "precision": "sports_centre"
+  },
+  "SOCBECCAR": {
+    "clave": "SOCBECCAR",
+    "equipo": "SOC.BECCAR",
+    "afiliada": "CLUB SOCIAL BECCAR",
+    "query": "Av Centenario 1947, 1643, Argentina",
+    "lat": -34.4606103,
+    "lon": -58.527537,
+    "precision": "house"
+  },
+  "LOS INDIOS B": {
+    "clave": "LOS INDIOS B",
+    "equipo": "LOS INDIOS MINI B",
+    "afiliada": "CLUB RECREATIVO LOS INDIOS DE MORENO",
+    "query": "manual",
+    "lat": -34.6518,
+    "lon": -58.7895,
+    "precision": "manual_indios_moreno"
+  },
+  "LOS INDIOS A": {
+    "clave": "LOS INDIOS A",
+    "equipo": "LOS INDIOS MINI A",
+    "afiliada": "CLUB RECREATIVO LOS INDIOS DE MORENO",
+    "query": "manual",
+    "lat": -34.6518,
+    "lon": -58.7895,
+    "precision": "manual_indios_moreno"
+  },
+  "ALL BOYS BLANCO": {
+    "clave": "ALL BOYS BLANCO",
+    "equipo": "ALL BOYS BLANCO",
+    "afiliada": "CLUB ATLETICO ALL BOYS",
+    "query": "Alvarez Jonte 4180, 1407, Argentina",
+    "lat": -34.616686,
+    "lon": -58.4997597,
+    "precision": "house"
+  },
+  "BOCA JUNIORS AMARILLO B": {
+    "clave": "BOCA JUNIORS AMARILLO B",
+    "equipo": "BOCA JUNIORS AMARILLO B",
+    "afiliada": "CLUB ATLETICO BOCA JUNIORS",
+    "query": "Arzobispo Espinosa 602, 1157, Argentina",
+    "lat": -34.631961,
+    "lon": -58.36589,
+    "precision": "house"
+  },
+  "SAN MIGUEL VERDE": {
+    "clave": "SAN MIGUEL VERDE",
+    "equipo": "SAN MIGUEL VERDE",
+    "afiliada": "CLUB ATLETICO SAN MIGUEL",
+    "query": "manual",
+    "lat": -34.5432,
+    "lon": -58.7118,
+    "precision": "manual_san_miguel"
+  },
+  "CENTRO GALICIA": {
+    "clave": "CENTRO GALICIA",
+    "equipo": "CENTRO GALICIA",
+    "afiliada": "CLUB CENTRO GALICIA DE BUENOS AIRES",
+    "query": "manual",
+    "lat": -34.5031,
+    "lon": -58.4813,
+    "precision": "manual_centro_galicia"
+  },
+  "GEVP B CELESTE": {
+    "clave": "GEVP B CELESTE",
+    "equipo": "GEVP CELESTE B",
+    "afiliada": "Gimnasia y Esgrima de Villa del Parque",
+    "query": "Tinogasta 3455, Villa del Parque, CABA, Argentina",
+    "lat": -34.6020874,
+    "lon": -58.4991994,
+    "precision": "sports_centre"
+  },
+  "CLARIDAD": {
+    "clave": "CLARIDAD",
+    "equipo": "CLARIDAD",
+    "afiliada": "CLUB SOCIAL CLARIDAD DE FOMENTO y CULTURAL",
+    "query": "Alianza 250, 1702, Argentina",
+    "lat": -34.643005,
+    "lon": -58.5378574,
+    "precision": "house"
+  },
+  "3 DE FEBRERO AZUL B": {
+    "clave": "3 DE FEBRERO AZUL B",
+    "equipo": "3 DE FEBRERO AZUL B",
+    "afiliada": "Club Tres de Febrero",
+    "query": "Islas Malvinas 2681, Villa San Andrés, Provincia de Buenos Aires, Argentina",
+    "lat": -34.5671494,
+    "lon": -58.5389395,
+    "precision": "house"
+  },
+  "BELLA VISTA": {
+    "clave": "BELLA VISTA",
+    "equipo": "BELLA VISTA",
+    "afiliada": "CLUB ATLETICO y SOCIAL BELLA VISTA",
+    "query": "Entre Rios 851, 1661, Argentina",
+    "lat": -34.4567662,
+    "lon": -58.6365229,
+    "precision": "house"
+  },
+  "VARELA JRS": {
+    "clave": "VARELA JRS",
+    "equipo": "VARELA JRS",
+    "afiliada": "CLUB VARELA JUNIOR",
+    "query": "manual",
+    "lat": -34.7745,
+    "lon": -58.2813,
+    "precision": "manual_varela_jrs"
+  },
+  "HURACAN DE SAN JUSTO A": {
+    "clave": "HURACAN DE SAN JUSTO A",
+    "equipo": "HURACAN DE SAN JUSTO A",
+    "afiliada": "CLUB HURACAN DE SAN JUSTO",
+    "query": "Dr Ignacio Arieta 2967, 1754, Argentina",
+    "lat": -34.6773032,
+    "lon": -58.5623954,
+    "precision": "house"
+  },
+  "RACING CLUB": {
+    "clave": "RACING CLUB",
+    "equipo": "RACING CLUB",
+    "afiliada": "RACING CLUB de AVELLANEDA",
+    "query": "Av Mitre 934, 1870, Argentina",
+    "lat": -34.7258153,
+    "lon": -58.250554,
+    "precision": "house"
+  },
+  "ARQUITECTURA B BLANCO": {
+    "clave": "ARQUITECTURA B BLANCO",
+    "equipo": "ARQUITECTURA BLANCO B",
+    "afiliada": "CLUB ARQUITECTURA",
+    "query": "Av Francisco Beiro 2116, 1419, Argentina",
+    "lat": -34.5898972,
+    "lon": -58.4849773,
+    "precision": "sports_centre"
+  },
+  "PINOCHO BLANCO": {
+    "clave": "PINOCHO BLANCO",
+    "equipo": "PINOCHO BLANCO",
+    "afiliada": "CLUB SOCIAL y DEPORTIVO PINOCHO",
+    "query": "Manuela Pedraza 5139, 1431, Argentina",
+    "lat": -34.5646079,
+    "lon": -58.4917304,
+    "precision": "sports_centre"
+  },
+  "UNIVERSIDAD DE LA MATANZA": {
+    "clave": "UNIVERSIDAD DE LA MATANZA",
+    "equipo": "UNIVERSIDAD DE LA MATANZA",
+    "afiliada": "UNIVERSIDAD DE LA MATANZA",
+    "query": "Florencio Varela 1903, 1754, Argentina",
+    "lat": -34.6697932,
+    "lon": -58.5626672,
+    "precision": "university"
+  },
+  "AFALP A": {
+    "clave": "AFALP A",
+    "equipo": "A.F.A.L.P. A",
+    "afiliada": "AMIGOS DE LA CIUDAD JARDIN LOMAS DEL PALOMAR AFALP",
+    "query": "manual",
+    "lat": -34.603,
+    "lon": -58.5895,
+    "precision": "manual_afalp"
+  },
+  "SAN FERNANDO AZUL": {
+    "clave": "SAN FERNANDO AZUL",
+    "equipo": "SAN FERNANDO AZUL",
+    "afiliada": "CLUB SAN FERNANDO",
+    "query": "manual",
+    "lat": -34.4472,
+    "lon": -58.5702,
+    "precision": "manual_san_fernando"
+  },
+  "DEPORTIVO MORON A": {
+    "clave": "DEPORTIVO MORON A",
+    "equipo": "DEPORTIVO MORON A",
+    "afiliada": "CLUB DEPORTIVO MORON",
+    "query": "HIPOLITO YRIGOYEN 1770, Morón, Provincia de Buenos Aires, Argentina",
+    "lat": -34.6614579,
+    "lon": -58.6318331,
+    "precision": "sports_centre"
+  },
+  "CAZA Y PESCA B VERDE": {
+    "clave": "CAZA Y PESCA B VERDE",
+    "equipo": "CAZA Y PESCA VERDE B",
+    "afiliada": "Club Atlético Caza y Pesca",
+    "query": "manual",
+    "lat": -34.4585,
+    "lon": -58.8102,
+    "precision": "manual_caza_pesca"
+  },
+  "EZEIZA": {
+    "clave": "EZEIZA",
+    "equipo": "EZEIZA",
+    "afiliada": "CLUB S. y A.EZEIZA",
+    "query": "FRENCH 161, 1804, Argentina",
+    "lat": -34.8520245,
+    "lon": -58.5219901,
+    "precision": "house"
+  },
+  "YUPANQUI": {
+    "clave": "YUPANQUI",
+    "equipo": "YUPANQUI",
+    "afiliada": "CLUB SOCIAL y DEPORTIVO YUPANQUI",
+    "query": "manual",
+    "lat": -34.6839,
+    "lon": -58.4816,
+    "precision": "manual_yupanqui"
+  },
+  "INSTITUCION SARMIENTO B BLANCO": {
+    "clave": "INSTITUCION SARMIENTO B BLANCO",
+    "equipo": "INSTITUCION SARMIENTO BLANCO B",
+    "afiliada": "INSTITUCION SARMIENTO",
+    "query": "Av. La Plata 3434, Santos Lugares, Provincia de Buenos Aires, Argentina",
+    "lat": -34.6023974,
+    "lon": -58.5429939,
+    "precision": "sports_centre"
+  },
+  "ESTRELLA DE BOEDO": {
+    "clave": "ESTRELLA DE BOEDO",
+    "equipo": "ESTRELLA DE BOEDO",
+    "afiliada": "CLUB ESTRELLA DE BOEDO",
+    "query": "Constitución 4151, 1254, Argentina",
+    "lat": -34.6288614,
+    "lon": -58.4229431,
+    "precision": "house"
+  },
+  "ALEM": {
+    "clave": "ALEM",
+    "equipo": "ALEM",
+    "afiliada": "CLUB DEPORTIVO MUTUAL y BIBLIOTECA POPULAR LEANDRO N. ALEM",
+    "query": "Av Espana 146, 1748, Argentina",
+    "lat": -34.6071458,
+    "lon": -58.9540886,
+    "precision": "house"
+  },
+  "CSDY MORENO C": {
+    "clave": "CSDY MORENO C",
+    "equipo": "C.S.D.Y C. MORENO",
+    "afiliada": "CLUB SOCIAL DEPORTIVO y CULTURAL MORENO DE QUILMES",
+    "query": "Moreno 72, 1878, Argentina",
+    "lat": -34.713896,
+    "lon": -58.2644754,
+    "precision": "house"
+  },
+  "COOPERARIOS DE QUILMES": {
+    "clave": "COOPERARIOS DE QUILMES",
+    "equipo": "COOPERARIOS DE QUILMES",
+    "afiliada": "CLUB LOS COOPERARIOS DE QUILMES",
+    "query": "Andrade 3052, 1878, Argentina",
+    "lat": -34.7563122,
+    "lon": -58.2802086,
+    "precision": "sport"
+  },
+  "GEBA": {
+    "clave": "GEBA",
+    "equipo": "GEBA",
+    "afiliada": "CLUB GIMNASIA y ESGRIMA de BUENOS AIRES",
+    "query": "Bartolome Mitre 1149, Ciudad Autónoma de Buenos Aires, Argentina",
+    "lat": -34.6073438,
+    "lon": -58.3828052,
+    "precision": "house"
+  },
+  "BERAZATEGUI": {
+    "clave": "BERAZATEGUI",
+    "equipo": "BERAZATEGUI",
+    "afiliada": "CLUB DEPORTIVO BERAZATEGUI",
+    "query": "manual",
+    "lat": -34.7635,
+    "lon": -58.2125,
+    "precision": "manual_berazategui"
+  },
+  "SAN ANDRES": {
+    "clave": "SAN ANDRES",
+    "equipo": "SAN ANDRES",
+    "afiliada": "CLUB DEPORTIVO SAN ANDRES",
+    "query": "Intendente Casares 2845, 1651, Argentina",
+    "lat": -34.5586835,
+    "lon": -58.5447271,
+    "precision": "sports_centre"
+  },
+  "VELEZ SARSFIELD AZUL B": {
+    "clave": "VELEZ SARSFIELD AZUL B",
+    "equipo": "VELEZ SARSFIELD AZUL - B",
+    "afiliada": "CLUB ATLETICO VELEZ SARSFIELD",
+    "query": "Juan B Justo 9200, Ciudad Autónoma de Buenos Aires, Argentina",
+    "lat": -34.6033271,
+    "lon": -58.4566629,
+    "precision": "primary"
+  },
+  "CLUB CEPA": {
+    "clave": "CLUB CEPA",
+    "equipo": "CLUB CEPA",
+    "afiliada": "CLUB SOCIAL CULTURAL y DEPORTIVO CEPA",
+    "query": "Giachino 2440, 1761, Argentina",
+    "lat": -34.7452748,
+    "lon": -58.6944699,
+    "precision": "residential"
+  },
+  "DEFENSORES DE BANFIELD": {
+    "clave": "DEFENSORES DE BANFIELD",
+    "equipo": "DEFENSORES DE BANFIELD",
+    "afiliada": "CLUB S. y D. DEFENSORES DE BANFIELD",
+    "query": "manual",
+    "lat": -34.744,
+    "lon": -58.3945,
+    "precision": "manual_def_banfield"
+  },
+  "SITAS ROJO": {
+    "clave": "SITAS ROJO",
+    "equipo": "SITAS ROJO",
+    "afiliada": "SOCIEDAD ITALIANA DE TIRO AL SEGNO SITAS",
+    "query": "Avda Marconi 1225, 1684, Argentina",
+    "lat": -34.6166951,
+    "lon": -58.5864259,
+    "precision": "house"
+  },
+  "VILLA ESPANA": {
+    "clave": "VILLA ESPANA",
+    "equipo": "VILLA ESPANA",
+    "afiliada": "C.S. D. y C. VILLA ESPAÑA",
+    "query": "manual",
+    "lat": -34.7605,
+    "lon": -58.265,
+    "precision": "manual_villa_espana"
+  },
+  "DEFENSORES DE GLEW": {
+    "clave": "DEFENSORES DE GLEW",
+    "equipo": "DEFENSORES DE GLEW",
+    "afiliada": "CLUB ATLETICO DEFENSORES DE GLEW",
+    "query": "Avenida Sarmiento 45, 1856, Argentina",
+    "lat": -35.0243955,
+    "lon": -58.4233312,
+    "precision": "house"
+  },
+  "ITALIANO B": {
+    "clave": "ITALIANO B",
+    "equipo": "ITALIANO B",
+    "afiliada": "CLUB ITALIANO",
+    "query": "Av Rivadavia 4731, 1424, Argentina",
+    "lat": -34.6162234,
+    "lon": -58.4320962,
+    "precision": "house"
+  },
+  "DEFENSORES DE SANTOS LUGARES": {
+    "clave": "DEFENSORES DE SANTOS LUGARES",
+    "equipo": "DEFENSORES DE SANTOS LUGARES",
+    "afiliada": "CLUB ATLETICO DEFENSORES DE SANTOS LUGARES",
+    "query": "Ernesto Sábato 3162, 1676, Argentina",
+    "lat": -34.6028902,
+    "lon": -58.5385238,
+    "precision": "sports_centre"
+  },
+  "EL PALOMAR": {
+    "clave": "EL PALOMAR",
+    "equipo": "EL PALOMAR",
+    "afiliada": "CLUB ATLETICO EL PALOMAR",
+    "query": "manual",
+    "lat": -34.618,
+    "lon": -58.5955,
+    "precision": "manual_el_palomar"
+  },
+  "NOLTING": {
+    "clave": "NOLTING",
+    "equipo": "NOLTING",
+    "afiliada": "CLUB SOCIAL DEPORTIVO NOLTING",
+    "query": "Alianza 350, 1702, Argentina",
+    "lat": -34.6441648,
+    "lon": -58.53761,
+    "precision": "house"
+  },
+  "BANCO PROVINCIA": {
+    "clave": "BANCO PROVINCIA",
+    "equipo": "BANCO PROVINCIA",
+    "afiliada": "CLUB ATLETICO BANCO PROVINCIA de BS. AS",
+    "query": "Hipolito Yrigoyen 803, Ciudad Autónoma de Buenos Aires, Argentina",
+    "lat": -34.6093483,
+    "lon": -58.3778392,
+    "precision": "house"
+  },
+  "HARRODS GATH Y CHAVES": {
+    "clave": "HARRODS GATH Y CHAVES",
+    "equipo": "HARRODS GATH Y CHAVES",
+    "afiliada": "CLUB HARRODS GATH y CHAVES",
+    "query": "Virrey Del Pino 1480, 1426, Argentina",
+    "lat": -34.560832,
+    "lon": -58.4424603,
+    "precision": "house"
+  },
+  "JOSE HERNANDEZ B": {
+    "clave": "JOSE HERNANDEZ B",
+    "equipo": "JOSE HERNANDEZ B",
+    "afiliada": "CLUB JOSE HERNANDEZ",
+    "query": "Bragado 5950, 1440, Argentina",
+    "lat": -34.65339,
+    "lon": -58.5026518,
+    "precision": "house"
+  },
+  "SPORTIVO ALSINA": {
+    "clave": "SPORTIVO ALSINA",
+    "equipo": "SPORTIVO ALSINA",
+    "afiliada": "CLUB SPORTIVO ALSINA",
+    "query": "Choele Choele 739, 1822, Argentina",
+    "lat": -34.6709629,
+    "lon": -58.4102732,
+    "precision": "house"
+  },
+  "RACING ANEXO": {
+    "clave": "RACING ANEXO",
+    "equipo": "RACING ANEXO",
+    "afiliada": "CLUB GIMNASIA y ESGRIMA DE VILLA DEL PARQUE",
+    "query": "Tinogasta 3455, 1417, Argentina",
+    "lat": -34.6020874,
+    "lon": -58.4991994,
+    "precision": "sports_centre"
+  },
+  "EL FOGON": {
+    "clave": "EL FOGON",
+    "equipo": "EL FOGON",
+    "afiliada": "CLUB EL FOGON",
+    "query": "BARTOLOME MITRE 2250, B1845CGE, Argentina",
+    "lat": -34.7907711,
+    "lon": -58.37947,
+    "precision": "house"
+  },
+  "JUVENCIA": {
+    "clave": "JUVENCIA",
+    "equipo": "JUVENCIA",
+    "afiliada": "SUVA BASQUET - FLEX",
+    "query": "",
+    "lat": null,
+    "lon": null,
+    "precision": "fallo"
+  },
+  "PEDRO ECHAGUE AMARILLO": {
+    "clave": "PEDRO ECHAGUE AMARILLO",
+    "equipo": "PEDRO ECHAGUE AMARILLO",
+    "afiliada": "INSTITUCION CULTURAL y DEPORTIVA PEDRO ECHAGUE",
+    "query": "Portela 836, 1406, Argentina",
+    "lat": -34.6418063,
+    "lon": -58.4686969,
+    "precision": "sports"
+  },
+  "CIRCULO URQUIZA": {
+    "clave": "CIRCULO URQUIZA",
+    "equipo": "CIRCULO URQUIZA",
+    "afiliada": "CIRCULO GENERAL URQUIZA",
+    "query": "manual",
+    "lat": -34.5735,
+    "lon": -58.487,
+    "precision": "manual_circulo_urquiza"
+  },
+  "CLUB SOCIAL Y DEPORTIVO ARENAL": {
+    "clave": "CLUB SOCIAL Y DEPORTIVO ARENAL",
+    "equipo": "CLUB SOCIAL Y DEPORTIVO ARENAL",
+    "afiliada": "CLUB SOCIAL DEPORTIVO ARENAL",
+    "query": "CHACABUCO 1199, 1623, Argentina",
+    "lat": -34.4428829,
+    "lon": -58.5541932,
+    "precision": "house"
+  },
+  "MORON B BLANCO": {
+    "clave": "MORON B BLANCO",
+    "equipo": "MORON BLANCO B",
+    "afiliada": "CLUB MORON",
+    "query": "manual",
+    "lat": -34.6507,
+    "lon": -58.6301,
+    "precision": "manual_moron_castelar"
+  },
+  "LUZ Y ARTE": {
+    "clave": "LUZ Y ARTE",
+    "equipo": "LUZ Y ARTE",
+    "afiliada": "SOCIEDAD CULTURAL y RECREATIVA LUZ y ARTE",
+    "query": "General Deheza 3166, 1826, Argentina",
+    "lat": -34.7278443,
+    "lon": -58.384976,
+    "precision": "house"
+  },
+  "MONTE GRANDE B NEGRO": {
+    "clave": "MONTE GRANDE B NEGRO",
+    "equipo": "MONTE GRANDE B NEGRO",
+    "afiliada": "CLUB ATLETICO MONTE GRANDE",
+    "query": "Hipolito Yrigoyen 77, Monte Grande, Provincia de Buenos Aires, Argentina",
+    "lat": -34.8158598,
+    "lon": -58.4673185,
+    "precision": "house"
+  },
+  "ESTUDIANTIL PORTENO B": {
+    "clave": "ESTUDIANTIL PORTENO B",
+    "equipo": "ESTUDIANTIL PORTENO B",
+    "afiliada": "CLUB ATLETICO ESTUDIANTIL PORTEÑO",
+    "query": "Coronel Barcala 716, 1704, Argentina",
+    "lat": -34.6376547,
+    "lon": -58.5546365,
+    "precision": "sports_centre"
+  },
+  "CLUB ATENEO INGENIERO RAVER": {
+    "clave": "CLUB ATENEO INGENIERO RAVER",
+    "equipo": "CLUB ATENEO INGENIERO RAVER",
+    "afiliada": "CLUB ATENEO INGENIERO RAVER",
+    "query": "av. belgrano 101, 2814, Argentina",
+    "lat": -34.3350118,
+    "lon": -58.9891443,
+    "precision": "secondary"
+  },
+  "ARGENTINOS JUNIORS": {
+    "clave": "ARGENTINOS JUNIORS",
+    "equipo": "ARGENTINOS JUNIORS",
+    "afiliada": "ASOCIACION ATLETICA ARGENTINOS JUNIORS",
+    "query": "Tronador 41, Ciudad Autónoma de Buenos Aires, Argentina",
+    "lat": -34.5915064,
+    "lon": -58.4715162,
+    "precision": "sports_centre"
+  },
+  "CLUB ATLETICO HURACAN DE PARQUE PATRICIOS": {
+    "clave": "CLUB ATLETICO HURACAN DE PARQUE PATRICIOS",
+    "equipo": "CLUB ATLETICO HURACAN DE PARQUE PATRICIOS",
+    "afiliada": "CLUB ATLETICO HURACAN DE PARQUE PATRICIOS",
+    "query": "Avda.caseros 3159, Ciudad Autónoma de Buenos Aires, Argentina",
+    "lat": -34.6369279,
+    "lon": -58.4080871,
+    "precision": "sports_centre"
+  },
+  "CENTRO ESPANOL": {
+    "clave": "CENTRO ESPANOL",
+    "equipo": "CENTRO ESPANOL",
+    "afiliada": "CENTRO SOCIAL y RECRATIVO ESPAÑOL",
+    "query": "Estanislao Del Campo 989, 1706, Argentina",
+    "lat": -34.6347843,
+    "lon": -58.5784338,
+    "precision": "sport"
+  },
+  "PORTUGUES DEL GRAN BUENOS AIRES": {
+    "clave": "PORTUGUES DEL GRAN BUENOS AIRES",
+    "equipo": "PORTUGUES DEL GRAN BUENOS AIRES",
+    "afiliada": "CLUB PORTUGUES DEL GRAN BUENOS AIRES",
+    "query": "manual",
+    "lat": -34.665,
+    "lon": -58.56,
+    "precision": "manual_portugues"
+  },
+  "COMUNICACIONES B NEGRO": {
+    "clave": "COMUNICACIONES B NEGRO",
+    "equipo": "COMUNICACIONES NEGRO B",
+    "afiliada": "CLUB COMUNICACIONES",
+    "query": "Av San Martin 5125, 1407, Argentina",
+    "lat": -34.5957008,
+    "lon": -58.4887189,
+    "precision": "trinquet"
+  },
+  "FERROCARRIL OESTE NARANJA": {
+    "clave": "FERROCARRIL OESTE NARANJA",
+    "equipo": "FERROCARRIL OESTE NARANJA",
+    "afiliada": "CLUB ATLETICO FERROCARRIL OESTE",
+    "query": "FEDERICO GARCIA LORCA 350, 1409, Argentina",
+    "lat": -34.6179168,
+    "lon": -58.4455827,
+    "precision": "house"
+  },
+  "COLON FC": {
+    "clave": "COLON FC",
+    "equipo": "COLON FC",
+    "afiliada": "COLON FUTBOL CLUB",
+    "query": "Lomas de Zamora, 1834, Argentina",
+    "lat": -34.685643,
+    "lon": -58.3058136,
+    "precision": "house"
+  },
+  "UNITARIOS DE MARCOS PAZ": {
+    "clave": "UNITARIOS DE MARCOS PAZ",
+    "equipo": "UNITARIOS DE MARCOS PAZ",
+    "afiliada": "CLUB SOCIAL y DEPORTIVO UNITARIOS DE MARCOS PAZ",
+    "query": "Libertad 1626, 1727, Argentina",
+    "lat": -34.7759076,
+    "lon": -58.839551,
+    "precision": "house"
+  },
+  "DEPORTIVO CROVARA B": {
+    "clave": "DEPORTIVO CROVARA B",
+    "equipo": "DEPORTIVO CROVARA B",
+    "afiliada": "CLUB CROVARA",
+    "query": "Montevideo 1550, 1768, Argentina",
+    "lat": -34.6795835,
+    "lon": -58.5089144,
+    "precision": "house"
+  },
+  "VICTORIA NEGRO": {
+    "clave": "VICTORIA NEGRO",
+    "equipo": "VICTORIA NEGRO",
+    "afiliada": "CLUB SOCIAL y FOMENTO VICTORIA",
+    "query": "Ing. White 1153, Argentina",
+    "lat": -34.6827788,
+    "lon": -58.543229,
+    "precision": "bus_stop"
+  },
+  "CIUDADELA NORTE": {
+    "clave": "CIUDADELA NORTE",
+    "equipo": "CIUDADELA NORTE",
+    "afiliada": "CLUB ATLETICO Y SOCIAL CIUDADELA NORTE",
+    "query": "25 De Mayo 434, Villa Sarmiento, Provincia de Buenos Aires, Argentina",
+    "lat": -34.6299915,
+    "lon": -58.5656747,
+    "precision": "sport"
+  },
+  "DEFENSORES DE MORENO": {
+    "clave": "DEFENSORES DE MORENO",
+    "equipo": "DEFENSORES DE MORENO",
+    "afiliada": "CLUB ATLETICO DEFENSORES DE MORENO",
+    "query": "manual",
+    "lat": -34.65,
+    "lon": -58.79,
+    "precision": "manual_def_moreno"
+  },
+  "PASO DEL REY": {
+    "clave": "PASO DEL REY",
+    "equipo": "PASO DEL REY",
+    "afiliada": "PASO DEL REY SOCIAL CLUB",
+    "query": "Eugenia Ottone de Asconape 257, B1742IYE Paso del Rey, Provincia de Buenos Aires, Argentina",
+    "lat": -34.6562166,
+    "lon": -58.7584008,
+    "precision": "sports_centre"
+  },
+  "NAUTICO BUCHARDO A": {
+    "clave": "NAUTICO BUCHARDO A",
+    "equipo": "NAUTICO BUCHARDO A",
+    "afiliada": "CLUB NAUTICO BUCHARDO",
+    "query": "Comodoro Rivadavia 1250, Ciudad Autónoma de Buenos Aires, Argentina",
+    "lat": -34.5471853,
+    "lon": -58.4660221,
+    "precision": "residential"
+  },
+  "LAS HERAS": {
+    "clave": "LAS HERAS",
+    "equipo": "LAS HERAS",
+    "afiliada": "CLUB S. y D. LAS HERAS",
+    "query": "Libertad N° 5052, 1653, Argentina",
+    "lat": -34.5430353,
+    "lon": -58.5275433,
+    "precision": "house"
+  },
+  "CLUB ATLETICO Y PROGRESO DE BRANDSEN": {
+    "clave": "CLUB ATLETICO Y PROGRESO DE BRANDSEN",
+    "equipo": "CLUB ATLETICO Y PROGRESO DE BRANDSEN",
+    "afiliada": "ATLETICO y PROGRESO DE BRANDSEN",
+    "query": "manual",
+    "lat": -35.1685,
+    "lon": -58.24,
+    "precision": "manual_brandsen"
+  },
+  "CLUB GEI (B) BLANCO": {
+    "clave": "CLUB GEI (B) BLANCO",
+    "equipo": "CLUB GEI BLANCO (B)",
+    "afiliada": "CLUB GIMNASIA y ESGRIMA DE ITUZAINGO",
+    "query": "Lavalle 1151, Ituzaingó, Provincia de Buenos Aires, Argentina",
+    "lat": -34.6573816,
+    "lon": -58.6725225,
+    "precision": "house"
+  },
+  "GIMNASIA Y ESGRIMA DE LOMAS DE ZAMORA B": {
+    "clave": "GIMNASIA Y ESGRIMA DE LOMAS DE ZAMORA B",
+    "equipo": "GIMNASIA Y ESGRIMA DE LOMAS DE ZAMORA B",
+    "afiliada": "CLUB GIMNASIA y ESGRIMA DE LOMAS DE ZAMORA",
+    "query": "Salguero 63, Lomas de Zamora, Provincia de Buenos Aires, Argentina",
+    "lat": -34.7625397,
+    "lon": -58.3912149,
+    "precision": "sports_centre"
+  },
+  "CIUDAD DE BUENOS AIRES B BLANCO": {
+    "clave": "CIUDAD DE BUENOS AIRES B BLANCO",
+    "equipo": "CIUDAD DE BUENOS AIRES B BLANCO",
+    "afiliada": "CLUB CIUDAD DE BUENOS AIRES",
+    "query": "Av Libertador 7501, Ciudad Autónoma de Buenos Aires, Argentina",
+    "lat": -34.5420009,
+    "lon": -58.4578454,
+    "precision": "sports_centre"
+  },
+  "BERNAL": {
+    "clave": "BERNAL",
+    "equipo": "BERNAL",
+    "afiliada": "CLUB ATLETICO BERNAL",
+    "query": "manual",
+    "lat": -34.71,
+    "lon": -58.28,
+    "precision": "manual_bernal"
+  },
+  "MACABI": {
+    "clave": "MACABI",
+    "equipo": "MACABI",
+    "afiliada": "ORGANIZACION HEBREA ARGENTINA MACABI",
+    "query": "Tucuman 3135, 1189, Argentina",
+    "lat": -34.6003875,
+    "lon": -58.4095775,
+    "precision": "community_centre"
+  },
+  "GIMNASIA Y ESGRIMA LA B PLATA": {
+    "clave": "GIMNASIA Y ESGRIMA LA B PLATA",
+    "equipo": "GIMNASIA Y ESGRIMA LA PLATA B",
+    "afiliada": "CLUB GIMNASIA Y ESGRIMA LA PLATA",
+    "query": "Calle 4 Nº 979, La Plata, Provincia de Buenos Aires, Argentina",
+    "lat": -34.9132321,
+    "lon": -57.9456591,
+    "precision": "sports_centre"
+  },
+  "NAUTICO BUCHARDO CENTRO (B)": {
+    "clave": "NAUTICO BUCHARDO CENTRO (B)",
+    "equipo": "NAUTICO BUCHARDO CENTRO (B)",
+    "afiliada": "CLUB NAUTICO BUCHARDO",
+    "query": "Comodoro Rivadavia 1250, Ciudad Autónoma de Buenos Aires, Argentina",
+    "lat": -34.5471853,
+    "lon": -58.4660221,
+    "precision": "residential"
+  },
+  "MUNICIPALIDAD DE HURLINGHAM": {
+    "clave": "MUNICIPALIDAD DE HURLINGHAM",
+    "equipo": "MUNICIPALIDAD DE HURLINGHAM",
+    "afiliada": "MUNICIPALIDAD DE HURLINGHAM",
+    "query": "PEDRO DIAZ 1550, 1686, Argentina",
+    "lat": -34.6036639,
+    "lon": -58.6497251,
+    "precision": "house"
+  },
+  "TALLERES": {
+    "clave": "TALLERES",
+    "equipo": "TALLERES",
+    "afiliada": "CLUB ATLETICO TALLERES DE R. ESCALADA",
+    "query": "manual",
+    "lat": -34.735,
+    "lon": -58.39,
+    "precision": "manual_talleres_re"
+  },
+  "17 DE AGOSTO": {
+    "clave": "17 DE AGOSTO",
+    "equipo": "17 DE AGOSTO",
+    "afiliada": "CLUB CULTURAL Y DEPORTIVO 17 DE AGOSTO",
+    "query": "Av. Albarellos 2935, 1419, Argentina",
+    "lat": -34.5778441,
+    "lon": -58.510564,
+    "precision": "house"
+  },
+  "PORTENO ATLETICO CLUB B BLANCO": {
+    "clave": "PORTENO ATLETICO CLUB B BLANCO",
+    "equipo": "PORTENO ATLETICO CLUB BLANCO B",
+    "afiliada": "PORTEÑO ATLETICO CLUB",
+    "query": "Guillermo Costalonga 725, 1748, Argentina",
+    "lat": -34.6019428,
+    "lon": -58.9395199,
+    "precision": "residential"
+  },
+  "ALDO BONZI": {
+    "clave": "ALDO BONZI",
+    "equipo": "ALDO BONZI",
+    "afiliada": "SOCIEDAD DE FOMENTO ALDO BONZI",
+    "query": "manual",
+    "lat": -34.71,
+    "lon": -58.515,
+    "precision": "manual_aldo_bonzi"
+  },
+  "JUVENTUD UNIDA": {
+    "clave": "JUVENTUD UNIDA",
+    "equipo": "JUVENTUD UNIDA",
+    "afiliada": "CLUB JUVENTUD UNIDA DE CAÑUELAS",
+    "query": "Cañuelas, 1814, Argentina",
+    "lat": -35.0450985,
+    "lon": -58.7584497,
+    "precision": "residential"
+  },
+  "NAUTICO HACOAJ AZUL B": {
+    "clave": "NAUTICO HACOAJ AZUL B",
+    "equipo": "NAUTICO HACOAJ AZUL B",
+    "afiliada": "Náutico Hacoaj",
+    "query": "manual",
+    "lat": -34.425,
+    "lon": -58.58,
+    "precision": "manual_hacoaj_tigre"
+  },
+  "ALL BOYS SAAVEDRA": {
+    "clave": "ALL BOYS SAAVEDRA",
+    "equipo": "ALL BOYS SAAVEDRA",
+    "afiliada": "CLUB ATLETICO ALL BOYS DE SAAVEDRA",
+    "query": "Besares 3142, 1429, Argentina",
+    "lat": -34.5481429,
+    "lon": -58.4778399,
+    "precision": "sports_centre"
+  },
+  "GUILLON BASQUET": {
+    "clave": "GUILLON BASQUET",
+    "equipo": "GUILLON BASQUET",
+    "afiliada": "UNION VECINAL DE LUIS GUILLON",
+    "query": "INDEPENDENCIA 1650, 1838, Argentina",
+    "lat": -34.8020285,
+    "lon": -58.4504505,
+    "precision": "sports_centre"
+  },
+  "LANUS B": {
+    "clave": "LANUS B",
+    "equipo": "LANUS B",
+    "afiliada": "CLUB ATLETICO LANUS",
+    "query": "9 De Julio 1680, Lanús, Provincia de Buenos Aires, Argentina",
+    "lat": -34.7113068,
+    "lon": -58.3850071,
+    "precision": "association"
+  },
+  "PAMPERO": {
+    "clave": "PAMPERO",
+    "equipo": "PAMPERO",
+    "afiliada": "CLUB ATLETICO PAMPERO",
+    "query": "2 DE MAYO 2737, Lanús, Provincia de Buenos Aires, Argentina",
+    "lat": -34.7029547,
+    "lon": -58.3973426,
+    "precision": "sport"
+  },
+  "CLUB ATLETICO 9 DE JULIO DE LANUS": {
+    "clave": "CLUB ATLETICO 9 DE JULIO DE LANUS",
+    "equipo": "CLUB ATLETICO 9 DE JULIO DE LANUS",
+    "afiliada": "CLUB ATLETICO 9 DE JULIO DE LANUS",
+    "query": "JUJUY 1769, Lanús, Provincia de Buenos Aires, Argentina",
+    "lat": -34.6934723,
+    "lon": -58.4010583,
+    "precision": "house"
+  },
+  "COUNTRY BANFIELD B": {
+    "clave": "COUNTRY BANFIELD B",
+    "equipo": "COUNTRY BANFIELD B",
+    "afiliada": "COUNTRY CLUB INFANTIL DE BANFIELD",
+    "query": "BELGRANO 1783, 1828, Argentina",
+    "lat": -34.7401531,
+    "lon": -58.3902834,
+    "precision": "sports_centre"
+  },
+  "INDEPENDIENTE DE ESCOBAR": {
+    "clave": "INDEPENDIENTE DE ESCOBAR",
+    "equipo": "INDEPENDIENTE DE ESCOBAR",
+    "afiliada": "INDEPENDIENTE DE ESCOBAR",
+    "query": "Colon 617 Escobar, Escobar, Provincia de Buenos Aires, Argentina",
+    "lat": -34.3479733,
+    "lon": -58.7958693,
+    "precision": "house"
+  },
+  "ITALIANO DE JOSE PAZ C": {
+    "clave": "ITALIANO DE JOSE PAZ C",
+    "equipo": "ITALIANO DE JOSE C PAZ",
+    "afiliada": "CLUB ITALIANO DE JOSE C PAZ",
+    "query": "manual",
+    "lat": -34.515,
+    "lon": -58.76,
+    "precision": "manual_italiano_jcp"
+  },
+  "COLEGIALES NEGRO": {
+    "clave": "COLEGIALES NEGRO",
+    "equipo": "COLEGIALES NEGRO",
+    "afiliada": "CLUB DEPORTIVO y SOCIAL COLEGIALES",
+    "query": "Teodoro Garcia 2860, 1426, Argentina",
+    "lat": -34.573797,
+    "lon": -58.4485624,
+    "precision": "house"
+  },
+  "PLATENSE B": {
+    "clave": "PLATENSE B",
+    "equipo": "PLATENSE B",
+    "afiliada": "CLUB ATLETICO PLATENSE",
+    "query": "Zufriategui 2021, Ciudad Autónoma de Buenos Aires, Argentina",
+    "lat": -34.5413888,
+    "lon": -58.482706,
+    "precision": "bookmaker"
+  },
+  "TAPONAZO FUTBOL CLUB": {
+    "clave": "TAPONAZO FUTBOL CLUB",
+    "equipo": "TAPONAZO FUTBOL CLUB",
+    "afiliada": "TAPONAZO  FUTBOL CLUB",
+    "query": "JOSE HERNANDEZ N° 4357, 1849, Argentina",
+    "lat": -34.8024903,
+    "lon": -58.3402422,
+    "precision": "house"
+  },
+  "DEPORTIVO MORON B": {
+    "clave": "DEPORTIVO MORON B",
+    "equipo": "DEPORTIVO MORON B",
+    "afiliada": "CLUB DEPORTIVO MORON",
+    "query": "HIPOLITO YRIGOYEN 1770, Morón, Provincia de Buenos Aires, Argentina",
+    "lat": -34.6614579,
+    "lon": -58.6318331,
+    "precision": "sports_centre"
+  },
+  "SAN FERNANDO BLANCO": {
+    "clave": "SAN FERNANDO BLANCO",
+    "equipo": "SAN FERNANDO BLANCO",
+    "afiliada": "CLUB SAN FERNANDO",
+    "query": "manual",
+    "lat": -34.4472,
+    "lon": -58.5702,
+    "precision": "manual_san_fernando"
+  },
+  "ATLETICO BOULOGNE": {
+    "clave": "ATLETICO BOULOGNE",
+    "equipo": "ATLETICO BOULOGNE",
+    "afiliada": "ATLETICO BOULOGNE",
+    "query": "Av Avelino Rolón 2248, 1609, Argentina",
+    "lat": -34.5027181,
+    "lon": -58.5609426,
+    "precision": "primary"
+  },
+  "TAMBEROS UNIDOS": {
+    "clave": "TAMBEROS UNIDOS",
+    "equipo": "TAMBEROS UNIDOS",
+    "afiliada": "CLUB TAMBEROS UNIDOS",
+    "query": "GADDINI  N° 151, 1806, Argentina",
+    "lat": -34.9025457,
+    "lon": -58.5543857,
+    "precision": "tertiary"
+  },
+  "DEFENSORES DE HURLINGHAM BLANCO": {
+    "clave": "DEFENSORES DE HURLINGHAM BLANCO",
+    "equipo": "DEFENSORES DE HURLINGHAM BLANCO",
+    "afiliada": "CLUB DEPORTIVO DEFENSORES DE HURLINGHAM",
+    "query": "Dr Delfor Diaz 1846, 1686, Argentina",
+    "lat": -34.5824353,
+    "lon": -58.6383947,
+    "precision": "house"
+  },
+  "SOCIEDAD HEBRAICA ARGENTINA": {
+    "clave": "SOCIEDAD HEBRAICA ARGENTINA",
+    "equipo": "SOCIEDAD HEBRAICA ARGENTINA",
+    "afiliada": "SOCIEDAD HEBRAICA ARGENTINA",
+    "query": "Sarmiento 2233, 1044, Argentina",
+    "lat": -34.605766,
+    "lon": -58.3986457,
+    "precision": "community_centre"
+  },
+  "SAN MIGUEL BLANCO": {
+    "clave": "SAN MIGUEL BLANCO",
+    "equipo": "SAN MIGUEL BLANCO",
+    "afiliada": "CLUB ATLETICO SAN MIGUEL",
+    "query": "manual",
+    "lat": -34.5432,
+    "lon": -58.7118,
+    "precision": "manual_san_miguel"
+  },
+  "SPORTIVO PILAR B BLANCO": {
+    "clave": "SPORTIVO PILAR B BLANCO",
+    "equipo": "SPORTIVO PILAR BLANCO B",
+    "afiliada": "CLUB SPORTIVO PILAR",
+    "query": "Av. Tomás Marquez 1125, Pilar, Provincia de Buenos Aires, Argentina",
+    "lat": -34.4636876,
+    "lon": -58.9105714,
+    "precision": "secondary"
+  },
+  "ALL BOYS NEGRO": {
+    "clave": "ALL BOYS NEGRO",
+    "equipo": "ALL BOYS NEGRO",
+    "afiliada": "CLUB ATLETICO ALL BOYS",
+    "query": "Alvarez Jonte 4180, 1407, Argentina",
+    "lat": -34.616686,
+    "lon": -58.4997597,
+    "precision": "house"
+  },
+  "PINOCHO VERDE": {
+    "clave": "PINOCHO VERDE",
+    "equipo": "PINOCHO VERDE",
+    "afiliada": "CLUB SOCIAL y DEPORTIVO PINOCHO",
+    "query": "Manuela Pedraza 5139, 1431, Argentina",
+    "lat": -34.5646079,
+    "lon": -58.4917304,
+    "precision": "sports_centre"
+  },
+  "CLUB GEI GRIS(C)": {
+    "clave": "CLUB GEI GRIS(C)",
+    "equipo": "CLUB GEI GRIS(C)",
+    "afiliada": "CLUB GIMNASIA y ESGRIMA DE ITUZAINGO",
+    "query": "Lavalle 1151, Ituzaingó, Provincia de Buenos Aires, Argentina",
+    "lat": -34.6573816,
+    "lon": -58.6725225,
+    "precision": "house"
+  },
+  "HURACAN DE SAN JUSTO B": {
+    "clave": "HURACAN DE SAN JUSTO B",
+    "equipo": "HURACAN DE SAN JUSTO B",
+    "afiliada": "CLUB HURACAN DE SAN JUSTO",
+    "query": "Dr Ignacio Arieta 2967, 1754, Argentina",
+    "lat": -34.6773032,
+    "lon": -58.5623954,
+    "precision": "house"
+  },
+  "SITAS VERDE": {
+    "clave": "SITAS VERDE",
+    "equipo": "SITAS VERDE",
+    "afiliada": "SOCIEDAD ITALIANA DE TIRO AL SEGNO SITAS",
+    "query": "Avda Marconi 1225, 1684, Argentina",
+    "lat": -34.6166951,
+    "lon": -58.5864259,
+    "precision": "house"
+  },
+  "BECCAR AZUL": {
+    "clave": "BECCAR AZUL",
+    "equipo": "BECCAR AZUL",
+    "afiliada": "CLUB SOCIAL BECCAR",
+    "query": "Av Centenario 1947, 1643, Argentina",
+    "lat": -34.4606103,
+    "lon": -58.527537,
+    "precision": "house"
+  },
+  "UNIVERSIDAD DE BUENOS AIRES": {
+    "clave": "UNIVERSIDAD DE BUENOS AIRES",
+    "equipo": "UNIVERSIDAD DE BUENOS AIRES",
+    "afiliada": "UNIVERSIDAD DE BUENOS AIRES",
+    "query": "manual",
+    "lat": -34.5425,
+    "lon": -58.4395,
+    "precision": "manual_uba_ciudad_univ"
+  },
+  "LA UNION": {
+    "clave": "LA UNION",
+    "equipo": "LA UNION",
+    "afiliada": "VECINAL LA UNION BERAZATEGUI",
+    "query": "CALLE 254 Nº 1155, 1886, Argentina",
+    "lat": -34.7990823,
+    "lon": -58.2330307,
+    "precision": "residential"
+  },
+  "NUEVA CHICAGO": {
+    "clave": "NUEVA CHICAGO",
+    "equipo": "NUEVA CHICAGO",
+    "afiliada": "CLUB ATLETICO NUEVA CHICAGO",
+    "query": "Villa Luro, 1440, Argentina",
+    "lat": -34.6386297,
+    "lon": -58.5080522,
+    "precision": "bank"
+  },
+  "NAUTICO HACOAJ A BLANCO": {
+    "clave": "NAUTICO HACOAJ A BLANCO",
+    "equipo": "NAUTICO HACOAJ BLANCO A",
+    "afiliada": "Náutico Hacoaj",
+    "query": "Luis Garcia 943, Tigre, Provincia de Buenos Aires, Argentina",
+    "lat": -34.4279786,
+    "lon": -58.5841595,
+    "precision": "secondary"
+  },
+  "SPORTIVO VILLA BALLESTER": {
+    "clave": "SPORTIVO VILLA BALLESTER",
+    "equipo": "SPORTIVO VILLA BALLESTER",
+    "afiliada": "Sportivo Villa Ballester",
+    "query": "manual",
+    "lat": -34.5465,
+    "lon": -58.5565,
+    "precision": "manual_villa_ballester"
+  },
+  "INDEPENDIENTE": {
+    "clave": "INDEPENDIENTE",
+    "equipo": "INDEPENDIENTE",
+    "afiliada": "Independiente de Avellaneda",
+    "query": "Av. Bartolomé Mitre 470, Avellaneda, Provincia de Buenos Aires, Argentina",
+    "lat": -34.6600006,
+    "lon": -58.3679172,
+    "precision": "house"
+  },
+  "UNION VILLEGAS": {
+    "clave": "UNION VILLEGAS",
+    "equipo": "UNION VILLEGAS",
+    "afiliada": "Unión Escalada Villegas",
+    "query": "manual",
+    "lat": -34.7255,
+    "lon": -58.4005,
+    "precision": "manual_union_villegas"
+  },
+  "LOBOS": {
+    "clave": "LOBOS",
+    "equipo": "LOBOS",
+    "afiliada": "Lobos Athletic Club",
+    "query": "manual",
+    "lat": -35.186,
+    "lon": -59.0965,
+    "precision": "manual_lobos"
+  },
+  "OLIMPO": {
+    "clave": "OLIMPO",
+    "equipo": "OLIMPO",
+    "afiliada": "Olimpo",
+    "query": "manual",
+    "lat": -34.7085,
+    "lon": -58.3905,
+    "precision": "manual_olimpo_lanus"
+  },
+  "UNION VECINAL DE MUNRO": {
+    "clave": "UNION VECINAL DE MUNRO",
+    "equipo": "UNION VECINAL DE MUNRO",
+    "afiliada": "Unión Vecinal de Munro",
+    "query": "manual",
+    "lat": -34.5305,
+    "lon": -58.5255,
+    "precision": "manual_munro"
+  },
+  "ATLETICO PILAR": {
+    "clave": "ATLETICO PILAR",
+    "equipo": "ATLETICO PILAR",
+    "afiliada": "Atlético Pilar",
+    "query": "manual",
+    "lat": -34.4585,
+    "lon": -58.9145,
+    "precision": "manual_atletico_pilar"
+  },
+  "MIDLAND": {
+    "clave": "MIDLAND",
+    "equipo": "MIDLAND",
+    "afiliada": "Ferrocarril Midland",
+    "query": "manual",
+    "lat": -34.6855,
+    "lon": -58.7305,
+    "precision": "manual_midland_merlo"
+  },
+  "ARGENTINO DE CASTELAR CENTRO B": {
+    "clave": "ARGENTINO DE CASTELAR CENTRO B",
+    "equipo": "ARGENTINO DE CASTELAR CENTRO B",
+    "afiliada": "Argentino de Castelar",
+    "query": "Montes de Oca 2242, Castelar, Provincia de Buenos Aires, Argentina",
+    "lat": -34.6500835,
+    "lon": -58.639737,
+    "precision": "house"
+  },
+  "EL PORVENIR JOSE PAZ C": {
+    "clave": "EL PORVENIR JOSE PAZ C",
+    "equipo": "EL PORVENIR JOSE C. PAZ",
+    "afiliada": "El Porvenir José C. Paz",
+    "query": "manual",
+    "lat": -34.5155,
+    "lon": -58.7655,
+    "precision": "manual_porvenir_jcp"
+  },
+  "CEDEM": {
+    "clave": "CEDEM",
+    "equipo": "CEDEM",
+    "afiliada": "CEDEM 3 de Febrero",
+    "query": "manual",
+    "lat": -34.6065,
+    "lon": -58.5635,
+    "precision": "manual_cedem_caseros"
+  },
+  "SOCIAL LANUS": {
+    "clave": "SOCIAL LANUS",
+    "equipo": "SOCIAL LANUS",
+    "afiliada": "Club Social Lanús",
+    "query": "manual",
+    "lat": -34.708,
+    "lon": -58.392,
+    "precision": "manual_social_lanus"
+  },
+  "CASA PADUA B": {
+    "clave": "CASA PADUA B",
+    "equipo": "C.A.S.A PADUA B",
+    "afiliada": "CASA Padua",
+    "query": "Independencia 725, San Antonio de Padua, Provincia de Buenos Aires, Argentina",
+    "lat": -34.664219,
+    "lon": -58.7042333,
+    "precision": "school"
+  },
+  "IMPERIO B NEGRO": {
+    "clave": "IMPERIO B NEGRO",
+    "equipo": "IMPERIO NEGRO B",
+    "afiliada": "Imperio Juniors",
+    "query": "manual",
+    "lat": -34.6058,
+    "lon": -58.4562,
+    "precision": "manual_imperio"
+  },
+  "SPORTIVO HAEDO": {
+    "clave": "SPORTIVO HAEDO",
+    "equipo": "SPORTIVO HAEDO",
+    "afiliada": "Sportivo Haedo",
+    "query": "manual",
+    "lat": -34.645,
+    "lon": -58.595,
+    "precision": "manual_sportivo_haedo"
+  },
+  "MUNICAVELLANEDA": {
+    "clave": "MUNICAVELLANEDA",
+    "equipo": "MUNIC.AVELLANEDA",
+    "afiliada": "Municipalidad de Avellaneda",
+    "query": "manual",
+    "lat": -34.7005,
+    "lon": -58.3205,
+    "precision": "manual_wilde_avellaneda"
+  },
+  "SAN LORENZO B ROJO": {
+    "clave": "SAN LORENZO B ROJO",
+    "equipo": "SAN LORENZO ROJO B",
+    "afiliada": "San Lorenzo",
+    "query": "Av. Varela 2706, Flores, Ciudad Autónoma de Buenos Aires, Argentina",
+    "lat": -34.6537166,
+    "lon": -58.4406456,
+    "precision": "secondary"
+  },
+  "COOP DE TORTUGUITAS": {
+    "clave": "COOP DE TORTUGUITAS",
+    "equipo": "COOP DE TORTUGUITAS",
+    "afiliada": "Cooperativa de Tortuguitas",
+    "query": "manual",
+    "lat": -34.4705,
+    "lon": -58.755,
+    "precision": "manual_tortuguitas"
+  },
+  "RAMOS MEJIA LTC": {
+    "clave": "RAMOS MEJIA LTC",
+    "equipo": "RAMOS MEJIA LTC",
+    "afiliada": "Ramos Mejía Lawn Tennis Club",
+    "query": "manual",
+    "lat": -34.6455,
+    "lon": -58.5655,
+    "precision": "manual_ramos_mejia_ltc"
+  },
+  "ARGENTINO DE CASTELAR SUR C": {
+    "clave": "ARGENTINO DE CASTELAR SUR C",
+    "equipo": "ARGENTINO DE CASTELAR SUR C",
+    "afiliada": "Argentino de Castelar",
+    "query": "Montes de Oca 2242, Castelar, Provincia de Buenos Aires, Argentina",
+    "lat": -34.6500835,
+    "lon": -58.639737,
+    "precision": "house"
+  },
+  "BANCO NACION B BLANCO": {
+    "clave": "BANCO NACION B BLANCO",
+    "equipo": "BANCO NACION BLANCO B",
+    "afiliada": "Banco Nación",
+    "query": "manual",
+    "lat": -34.5265,
+    "lon": -58.4755,
+    "precision": "manual_banco_nacion_vl"
+  },
+  "BANCO NACION A AZUL": {
+    "clave": "BANCO NACION A AZUL",
+    "equipo": "BANCO NACION AZUL A",
+    "afiliada": "Banco Nación",
+    "query": "Zufriategui 1251, Vicente López, Provincia de Buenos Aires, Argentina",
+    "lat": -34.5358907,
+    "lon": -58.4717675,
+    "precision": "sports_centre"
+  },
+  "VICTORIA BLANCO": {
+    "clave": "VICTORIA BLANCO",
+    "equipo": "VICTORIA BLANCO",
+    "afiliada": "Victoria",
+    "query": "Ingeniero White 1153, Victoria, Buenos Aires",
+    "lat": -34.4523459,
+    "lon": -58.5409894,
+    "precision": "house"
+  },
+  "3 DE FEBRERO C CELESTE": {
+    "clave": "3 DE FEBRERO C CELESTE",
+    "equipo": "3 DE FEBRERO CELESTE C",
+    "afiliada": "Club Tres de Febrero",
+    "query": "Islas Malvinas 2681, Villa San Andrés, Provincia de Buenos Aires, Argentina",
+    "lat": -34.5671494,
+    "lon": -58.5389395,
+    "precision": "house"
+  }
+}
