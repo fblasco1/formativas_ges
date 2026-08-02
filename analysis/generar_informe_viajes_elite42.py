@@ -265,7 +265,11 @@ def calcular_payload() -> dict:
     por_nivel = _asignar_niveles(mapeo)
     niveles_out = []
     for meta in NIVELES:
-        clubs = sorted(por_nivel[meta["id"]], key=lambda x: x["pos"])
+        _orden_reg = {"CENTRO": 0, "NORTE": 1, "OESTE": 2, "SUR": 3}
+        clubs = sorted(
+            por_nivel[meta["id"]],
+            key=lambda x: (_orden_reg.get(x["region"], 9), x["pos"], x["equipo"]),
+        )
         con_mixta = meta["id"] == 1
         filas = _metricas_nivel(clubs, mat, con_mixta=con_mixta)
 
@@ -369,6 +373,13 @@ def generar(out: Path = OUT_HTML) -> Path:
     .num {{ white-space:nowrap; }}
     .mixta-only {{ display:none; }}
     body.show-mixta .mixta-only {{ display:table-cell; }}
+    .filters {{ display:flex; flex-wrap:wrap; gap:8px; align-items:center; margin:0 0 14px; }}
+    .chip {{
+      border:1px solid #cbd5e1; background:#fff; border-radius:999px;
+      padding:6px 12px; cursor:pointer; font-size:.8rem; color:var(--ink);
+    }}
+    .chip.active {{ background:var(--accent); color:#fff; border-color:var(--accent); }}
+    tfoot td {{ background:#eef2ff; font-weight:600; border-top:2px solid #c7d2fe; position:sticky; bottom:0; }}
     @media (max-width:900px) {{
       #map {{ height:400px; }}
     }}
@@ -400,10 +411,8 @@ def generar(out: Path = OUT_HTML) -> Path:
 
   <div class="card">
     <h2 id="tabla-titulo" style="margin:0 0 10px;font-size:1.1rem;">Equipos del nivel</h2>
-    <p class="muted" style="margin-top:0" id="tabla-nota">
-      Para cada equipo: rival más lejano y más cercano <em>dentro del nivel</em>,
-      media de km regionalizado (misma región), mixta (si aplica) y sin regionalización.
-    </p>
+    <p class="muted" style="margin-top:0" id="tabla-nota"></p>
+    <div class="filters" id="filters"></div>
     <div style="overflow-x:auto;max-height:560px;">
       <table>
         <thead>
@@ -423,6 +432,7 @@ def generar(out: Path = OUT_HTML) -> Path:
           </tr>
         </thead>
         <tbody id="tbody"></tbody>
+        <tfoot id="tfoot"></tfoot>
       </table>
     </div>
   </div>
@@ -432,12 +442,17 @@ def generar(out: Path = OUT_HTML) -> Path:
 <script>
 const DATA = {json.dumps(payload, ensure_ascii=False)};
 const COLORS = DATA.colores_region;
+const REGION_ORDER = ['CENTRO', 'NORTE', 'OESTE', 'SUR'];
 
 const map = L.map('map').setView([-34.62, -58.45], 10);
 L.tileLayer('https://{{s}}.tile.openstreetmap.org/{{z}}/{{x}}/{{y}}.png', {{
   maxZoom: 18, attribution: '&copy; OpenStreetMap'
 }}).addTo(map);
 const layer = L.layerGroup().addTo(map);
+
+let nivelIdx = 0;
+let filtroRegion = 'TODAS';
+let filtroMixto = 'TODOS';
 
 const tabs = document.getElementById('tabs');
 DATA.niveles.forEach((n, i) => {{
@@ -448,6 +463,8 @@ DATA.niveles.forEach((n, i) => {{
     document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
     b.classList.add('active');
     history.replaceState(null, null, `#nivel-${{n.id}}`);
+    filtroRegion = 'TODAS';
+    filtroMixto = 'TODOS';
     renderNivel(i);
   }});
   tabs.appendChild(b);
@@ -457,32 +474,65 @@ function fmt(v) {{
   return (v === null || v === undefined) ? '—' : Number(v).toFixed(1);
 }}
 
-function renderNivel(idx) {{
-  const n = DATA.niveles[idx];
-  document.body.classList.toggle('show-mixta', !!n.con_mixta);
+function avg(vals) {{
+  const xs = vals.filter(v => v !== null && v !== undefined && !Number.isNaN(Number(v)));
+  if (!xs.length) return null;
+  return xs.reduce((a, b) => a + Number(b), 0) / xs.length;
+}}
 
-  let statsHtml = `
-    <div class="stat"><b>${{n.n_equipos}}</b><span>equipos en el nivel</span></div>
-    <div class="stat"><b>${{n.n_geocodificados}}</b><span>con sede en mapa</span></div>
-    <div class="stat"><b>${{fmt(n.stats.media_regionalizado_nivel)}} km</b><span>media regionalizado (4 regiones)</span></div>
-    <div class="stat"><b>${{fmt(n.stats.media_sin_region_nivel)}} km</b><span>media sin regionalización</span></div>`;
-  if (n.con_mixta) {{
-    statsHtml += `
-    <div class="stat"><b>${{fmt(n.stats.media_norte_oeste_nivel)}} km</b><span>media mixta Norte–Oeste (${{n.stats.n_norte_oeste}} eq.)</span></div>
-    <div class="stat"><b>${{fmt(n.stats.media_centro_sur_nivel)}} km</b><span>media mixta Centro–Sur (${{n.stats.n_centro_sur}} eq.)</span></div>
-    <div class="stat"><b>${{fmt(n.stats.media_mixta_nivel)}} km</b><span>media mixta global del nivel</span></div>`;
+function equiposFiltrados(n) {{
+  return n.equipos.filter(e => {{
+    if (filtroRegion !== 'TODAS' && e.region !== filtroRegion) return false;
+    if (n.con_mixta && filtroMixto !== 'TODOS' && e.grupo_mixto !== filtroMixto) return false;
+    return true;
+  }});
+}}
+
+function renderFilters(n) {{
+  const box = document.getElementById('filters');
+  const regiones = REGION_ORDER.filter(r => n.equipos.some(e => e.region === r));
+  let html = `<span class="muted" style="margin-right:4px">Región:</span>`;
+  const regionOpts = [['TODAS', 'Todas']].concat(regiones.map(r => [r, r]));
+  for (const [val, label] of regionOpts) {{
+    const nEq = val === 'TODAS' ? n.equipos.length : n.equipos.filter(e => e.region === val).length;
+    html += `<button type="button" class="chip ${{filtroRegion === val ? 'active' : ''}}" data-kind="region" data-val="${{val}}">${{label}} (${{nEq}})</button>`;
   }}
-  document.getElementById('stats').innerHTML = statsHtml;
+  if (n.con_mixta) {{
+    html += `<span class="muted" style="margin:0 4px 0 12px">Mixto:</span>`;
+    const mixOpts = [
+      ['TODOS', 'Todos'],
+      ['NORTE-OESTE', 'Norte–Oeste'],
+      ['CENTRO-SUR', 'Centro–Sur'],
+    ];
+    for (const [val, label] of mixOpts) {{
+      const nEq = val === 'TODOS'
+        ? n.equipos.length
+        : n.equipos.filter(e => e.grupo_mixto === val).length;
+      html += `<button type="button" class="chip ${{filtroMixto === val ? 'active' : ''}}" data-kind="mixto" data-val="${{val}}">${{label}} (${{nEq}})</button>`;
+    }}
+  }}
+  box.innerHTML = html;
+  box.querySelectorAll('.chip').forEach(btn => {{
+    btn.addEventListener('click', () => {{
+      if (btn.dataset.kind === 'region') {{
+        filtroRegion = btn.dataset.val;
+        // Si filtro región, limpiar mixto incompatible
+        if (filtroRegion === 'NORTE' || filtroRegion === 'OESTE') filtroMixto = 'TODOS';
+        if (filtroRegion === 'CENTRO' || filtroRegion === 'SUR') filtroMixto = 'TODOS';
+      }} else {{
+        filtroMixto = btn.dataset.val;
+        if (filtroMixto !== 'TODOS') filtroRegion = 'TODAS';
+      }}
+      renderTablaYMapa(DATA.niveles[nivelIdx]);
+      renderFilters(DATA.niveles[nivelIdx]);
+    }});
+  }});
+}}
 
-  document.getElementById('tabla-titulo').textContent =
-    `${{n.nombre}} (${{n.rango}}) · ${{n.n_equipos}} equipos`;
-  document.getElementById('tabla-nota').innerHTML = n.con_mixta
-    ? `Nivel 1: además de regionalizado (4 regiones) y sin regionalización, se calcula media dentro de cada par de 16 equipos: <strong>Norte–Oeste</strong> y <strong>Centro–Sur</strong>. Cada fila muestra la media del grupo mixto al que pertenece el equipo.`
-    : `Para cada equipo: rival más lejano y más cercano <em>dentro del nivel</em>, media de km si juega solo contra su región (regionalizado) y media si juega contra todo el nivel (sin regionalización).`;
-
+function renderMapa(equipos) {{
   layer.clearLayers();
   const bounds = [];
-  for (const e of n.equipos) {{
+  for (const e of equipos) {{
     if (e.lat == null || e.lon == null) continue;
     const color = COLORS[e.region] || '#64748b';
     const mk = L.circleMarker([e.lat, e.lon], {{
@@ -498,9 +548,21 @@ function renderNivel(idx) {{
   }}
   if (bounds.length) map.fitBounds(bounds, {{ padding: [30, 30] }});
   setTimeout(() => map.invalidateSize(), 50);
+}}
+
+function renderTablaYMapa(n) {{
+  const equipos = equiposFiltrados(n);
+  renderMapa(equipos);
+
+  const filtroTxt = [];
+  if (filtroRegion !== 'TODAS') filtroTxt.push(filtroRegion);
+  if (n.con_mixta && filtroMixto !== 'TODOS') filtroTxt.push(filtroMixto.replace('-', '–'));
+  const filtroLabel = filtroTxt.length ? ` · filtro: ${{filtroTxt.join(' / ')}}` : '';
+  document.getElementById('tabla-titulo').textContent =
+    `${{n.nombre}} (${{n.rango}}) · ${{equipos.length}}/${{n.n_equipos}} equipos${{filtroLabel}}`;
 
   const tbody = document.getElementById('tbody');
-  tbody.innerHTML = n.equipos.map(e => {{
+  tbody.innerHTML = equipos.map(e => {{
     const color = COLORS[e.region] || '#64748b';
     const lejana = e.dist_lejana == null
       ? '—'
@@ -525,6 +587,47 @@ function renderNivel(idx) {{
       <td class="num">${{fmt(e.media_sin_region)}}</td>
     </tr>`;
   }}).join('');
+
+  const mReg = avg(equipos.map(e => e.media_regionalizado));
+  const mSin = avg(equipos.map(e => e.media_sin_region));
+  const mNO = avg(equipos.filter(e => e.region === 'NORTE' || e.region === 'OESTE').map(e => e.media_norte_oeste));
+  const mCS = avg(equipos.filter(e => e.region === 'CENTRO' || e.region === 'SUR').map(e => e.media_centro_sur));
+  const colspanDir = n.con_mixta ? 6 : 5;
+  document.getElementById('tfoot').innerHTML = `<tr>
+    <td colspan="${{colspanDir}}"><strong>Promedio (${{equipos.length}} equipos)</strong></td>
+    <td class="num">—</td>
+    <td class="num">—</td>
+    <td class="num"><strong>${{fmt(mReg)}}</strong></td>
+    <td class="mixta-only num"><strong>${{fmt(mNO)}}</strong></td>
+    <td class="mixta-only num"><strong>${{fmt(mCS)}}</strong></td>
+    <td class="num"><strong>${{fmt(mSin)}}</strong></td>
+  </tr>`;
+}}
+
+function renderNivel(idx) {{
+  nivelIdx = idx;
+  const n = DATA.niveles[idx];
+  document.body.classList.toggle('show-mixta', !!n.con_mixta);
+
+  let statsHtml = `
+    <div class="stat"><b>${{n.n_equipos}}</b><span>equipos en el nivel</span></div>
+    <div class="stat"><b>${{n.n_geocodificados}}</b><span>con sede en mapa</span></div>
+    <div class="stat"><b>${{fmt(n.stats.media_regionalizado_nivel)}} km</b><span>media regionalizado (4 regiones)</span></div>
+    <div class="stat"><b>${{fmt(n.stats.media_sin_region_nivel)}} km</b><span>media sin regionalización</span></div>`;
+  if (n.con_mixta) {{
+    statsHtml += `
+    <div class="stat"><b>${{fmt(n.stats.media_norte_oeste_nivel)}} km</b><span>media mixta Norte–Oeste (${{n.stats.n_norte_oeste}} eq.)</span></div>
+    <div class="stat"><b>${{fmt(n.stats.media_centro_sur_nivel)}} km</b><span>media mixta Centro–Sur (${{n.stats.n_centro_sur}} eq.)</span></div>
+    <div class="stat"><b>${{fmt(n.stats.media_mixta_nivel)}} km</b><span>media mixta global del nivel</span></div>`;
+  }}
+  document.getElementById('stats').innerHTML = statsHtml;
+
+  document.getElementById('tabla-nota').innerHTML = n.con_mixta
+    ? `Tabla ordenada por región. Filtrá por región o por subgrupo mixto (Norte–Oeste / Centro–Sur). El pie muestra el promedio de las medias del filtro activo.`
+    : `Tabla ordenada por región. Filtrá por región; el pie muestra el promedio de las medias del filtro activo.`;
+
+  renderFilters(n);
+  renderTablaYMapa(n);
 }}
 
 let startIdx = 0;
