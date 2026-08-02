@@ -44,7 +44,7 @@ NIVELES = [
     {"id": 1, "nombre": "Nivel 1", "rango": "Interconferencia A"},
     {"id": 2, "nombre": "Nivel 2", "rango": "Interconferencia B"},
     {"id": 3, "nombre": "Nivel 3", "rango": "Nivel 1"},
-    {"id": 4, "nombre": "Nivel 4", "rango": "32 mejores del resto"},
+    {"id": 4, "nombre": "Nivel 4", "rango": "32 mejores (8 por región)"},
     {"id": 5, "nombre": "Nivel 5", "rango": "Restantes"},
 ]
 
@@ -233,10 +233,27 @@ def _asignar_niveles(mapeo: List[dict]) -> Dict[int, List[dict]]:
         else:
             resto.append(row)
 
-    # Nivel 4 = 32 mejores del resto (menor pos = mejor ranking Primera Fase).
-    resto_sorted = sorted(resto, key=lambda x: (x["pos"], -x["puntos"], x["equipo"]))
-    por_nivel[4] = resto_sorted[:32]
-    por_nivel[5] = resto_sorted[32:]
+    # Nivel 4 = 8 mejores por región del resto (32 total).
+    por_region: Dict[str, List[dict]] = {r: [] for r in REGION_COLOR}
+    for row in resto:
+        por_region.setdefault(row["region"], []).append(row)
+
+    nivel4: List[dict] = []
+    usados: set = set()
+    for region in ("CENTRO", "NORTE", "SUR", "OESTE"):
+        candidatos = sorted(
+            por_region.get(region, []),
+            key=lambda x: (x["pos"], -x["puntos"], x["equipo"]),
+        )
+        elegidos = candidatos[:8]
+        nivel4.extend(elegidos)
+        usados.update(id(c) for c in elegidos)
+
+    por_nivel[4] = sorted(nivel4, key=lambda x: (x["pos"], -x["puntos"], x["equipo"]))
+    por_nivel[5] = sorted(
+        [r for r in resto if id(r) not in usados],
+        key=lambda x: (x["pos"], -x["puntos"], x["equipo"]),
+    )
     return por_nivel
 
 
@@ -362,7 +379,8 @@ def generar(out: Path = OUT_HTML) -> Path:
   <h1>Tabla general metropolitana · Niveles y distancias</h1>
     <p>
     Asignación por <strong>Segunda Fase</strong>: Nivel 1 = Interconferencia A,
-    Nivel 2 = Interconferencia B, Nivel 3 = Nivel 1, Nivel 4 = 32 mejores del resto,
+    Nivel 2 = Interconferencia B, Nivel 3 = Nivel 1,
+    Nivel 4 = 32 mejores del resto con <strong>8 por región</strong>,
     Nivel 5 = restantes. En Nivel 1 se comparan 4 escenarios: regionalizado (4 regiones),
     mixta <strong>Norte–Oeste</strong> (16), mixta <strong>Centro–Sur</strong> (16)
     y sin regionalización. Colores: Centro rojo, Norte azul, Sur amarillo, Oeste verde.
