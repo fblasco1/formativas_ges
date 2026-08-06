@@ -1,7 +1,7 @@
 name: Sync fixture Echagüe → Sheets
 
 # Actualiza el Google Sheet de CMs con partidos Pedro Echagüe.
-# El código vive en la rama `estadisticas`; este workflow en `main` solo orquesta el cron.
+# Corre sobre el árbol de `main` (producto 2026 unificado).
 # Secret: GOOGLE_SERVICE_ACCOUNT_JSON (JSON completo de la service account).
 #
 # Modo default: incremental (solo zonas cacheadas + fases nuevas).
@@ -22,10 +22,8 @@ jobs:
   sync:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout estadisticas (código del sync)
+      - name: Checkout
         uses: actions/checkout@v4
-        with:
-          ref: estadisticas
 
       - uses: actions/setup-python@v5
         with:
