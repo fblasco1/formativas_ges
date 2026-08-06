@@ -102,6 +102,7 @@ HEADERS = [
 
 OUT_DIR = ROOT / "outputs" / "echague"
 OUT_CSV = OUT_DIR / "fixture_echague.csv"
+SCOPES_CACHE = OUT_DIR / "scopes_cache.json"
 CONFIG_SHEETS = ROOT / "config" / "echague_sheets.json"
 SERVICE_ACCOUNT = ROOT / "config" / "google_service_account.json"
 MAPEO_CSV = ROOT / "outputs" / "viajes_elite42" / "mapeo_clubes.csv"
@@ -110,6 +111,9 @@ AFILIADAS_XLSX = ROOT / "data" / "referencia" / "AFILIADAS y DIRECCIONES.xlsx"
 
 DEFAULT_SPREADSHEET_ID = "1FFMSZhnfrYVvpjiXLBtgNseVLxiuG8NfH00uCXUXl9k"
 DEFAULT_WORKSHEET = "Fixture"
+
+# En filas ya existentes, no pisar estas columnas si el Sheet ya tiene valor (edición CM).
+HEADERS_PRESERVAR_SI_LLENO = frozenset({"DIRECCION"})
 
 _TOKENS_DESCARTAR_TIRA = {
     "INFANTILES",
@@ -344,6 +348,130 @@ def resolver_direccion(
 
 
 # --------------------------------------------------------------------------- #
+# Cache de scopes (comp/cat/fase/grupo donde juega Echagüe)
+# --------------------------------------------------------------------------- #
+def _scope_key(
+    id_comp: int, id_cat: int, id_fase: str | int, id_grupo: str | int
+) -> str:
+    return f"{id_comp}|{id_cat}|{id_fase}|{id_grupo}"
+
+
+def cargar_scopes_cache(path: Path = SCOPES_CACHE) -> Dict[str, dict]:
+    """clave scope -> metadata."""
+    if not path.exists():
+        return {}
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except Exception:
+        return {}
+    out: Dict[str, dict] = {}
+    for s in data.get("scopes") or []:
+        try:
+            k = _scope_key(
+                int(s["id_competencia"]),
+                int(s["id_categoria"]),
+                s["id_fase"],
+                s["id_grupo"],
+            )
+        except (KeyError, TypeError, ValueError):
+            continue
+        out[k] = s
+    return out
+
+
+def guardar_scopes_cache(
+    partidos: List[Dict[str, object]],
+    path: Path = SCOPES_CACHE,
+) -> Path:
+    scopes: Dict[str, dict] = {}
+    for p in partidos:
+        try:
+            id_comp = int(p["id_competencia"])  # type: ignore[arg-type]
+            id_cat = int(p["id_categoria"])  # type: ignore[arg-type]
+            id_fase = str(p["id_fase"])
+            id_grupo = str(p["id_grupo"])
+        except (KeyError, TypeError, ValueError):
+            continue
+        k = _scope_key(id_comp, id_cat, id_fase, id_grupo)
+        scopes[k] = {
+            "id_competencia": id_comp,
+            "id_categoria": id_cat,
+            "cat_label": p.get("edad") or "",
+            "id_fase": id_fase,
+            "fase": p.get("fase") or "",
+            "id_grupo": id_grupo,
+            "zona": p.get("zona") or "",
+        }
+    path.parent.mkdir(parents=True, exist_ok=True)
+    payload = {
+        "updated": datetime.now().strftime("%d/%m/%Y %H:%M"),
+        "n_scopes": len(scopes),
+        "scopes": sorted(
+            scopes.values(),
+            key=lambda s: (
+                s["id_competencia"],
+                s["id_categoria"],
+                str(s["id_fase"]),
+                str(s["id_grupo"]),
+            ),
+        ),
+    }
+    path.write_text(json.dumps(payload, ensure_ascii=False, indent=2), encoding="utf-8")
+    return path
+
+
+def scopes_a_consultar(
+    *,
+    id_comp: int,
+    id_cat: int,
+    fases: Dict[str, str],
+    grupos_por_fase: Dict[str, Dict[str, str]],
+    cache: Dict[str, dict],
+    full: bool,
+) -> List[Tuple[str, str, str, str]]:
+    """
+    Devuelve lista (nombre_fase, id_fase, nombre_grupo, id_grupo) a scrapear.
+
+    Incremental: fases nuevas → todos sus grupos; fases ya vistas → solo grupos
+    cacheados donde ya apareció Echagüe.
+    """
+    out: List[Tuple[str, str, str, str]] = []
+    cached_fases = {
+        str(s["id_fase"])
+        for s in cache.values()
+        if int(s["id_competencia"]) == id_comp and int(s["id_categoria"]) == id_cat
+    }
+    cached_grupos = {
+        (str(s["id_fase"]), str(s["id_grupo"]))
+        for s in cache.values()
+        if int(s["id_competencia"]) == id_comp and int(s["id_categoria"]) == id_cat
+    }
+
+    for nombre_fase, id_fase in fases.items():
+        fid = str(id_fase)
+        grupos = grupos_por_fase.get(nombre_fase) or {}
+        if full or fid not in cached_fases:
+            for nombre_grupo, id_grupo in grupos.items():
+                out.append((nombre_fase, fid, nombre_grupo, str(id_grupo)))
+        else:
+            for nombre_grupo, id_grupo in grupos.items():
+                if (fid, str(id_grupo)) in cached_grupos:
+                    out.append((nombre_fase, fid, nombre_grupo, str(id_grupo)))
+    return out
+
+
+def debe_actualizar_celda(header: str, old_val: object, new_val: object) -> bool:
+    """False si no cambió, o si hay que preservar valor manual en el Sheet."""
+    old_s = "" if old_val is None else str(old_val)
+    new_s = "" if new_val is None else str(new_val)
+    if old_s == new_s:
+        return False
+    if header in HEADERS_PRESERVAR_SI_LLENO and old_s.strip():
+        return False
+    return True
+
+
+# --------------------------------------------------------------------------- #
 # Recolección GES (incluye pendientes) — multi-competencia
 # --------------------------------------------------------------------------- #
 def recolectar_partidos_echague(
@@ -354,68 +482,107 @@ def recolectar_partidos_echague(
     fecha_fin: str,
     progress: bool = False,
     fuentes: Sequence[Tuple[int, str, int]] = FUENTES,
+    full: bool = False,
+    scopes_cache: Optional[Dict[str, dict]] = None,
 ) -> List[Dict[str, object]]:
-    """Todos los partidos (COMPLETO y PENDIENTE) donde juega Echagüe."""
+    """
+    Partidos COMPLETO/PENDIENTE de Echagüe.
+
+    Con ``full=False`` (default) solo consulta grupos del cache de scopes, más
+    fases nuevas que aún no estaban cacheadas. Con ``full=True`` recorre todo.
+    """
+    cache = scopes_cache if scopes_cache is not None else cargar_scopes_cache()
+    if not full and not cache:
+        # Primera corrida sin cache: descubrimiento completo.
+        full = True
+        if progress:
+            print(
+                "Sin scopes_cache: corrida full de descubrimiento…",
+                file=sys.stderr,
+                flush=True,
+            )
+
     out: List[Dict[str, object]] = []
     vistos: set = set()
+    n_consultas = 0
 
     for id_comp, cat_label, id_cat in fuentes:
         comp_label = COMPETENCIA_LABEL.get(id_comp, str(id_comp))
         fases = listar_fases_categoria(ges, id_comp, id_cat)
+        grupos_por_fase: Dict[str, Dict[str, str]] = {}
+        for nombre_fase, id_fase in fases.items():
+            grupos_por_fase[nombre_fase] = ges.get_grupos_de_fase(
+                id_comp, id_cat, int(id_fase)
+            )
+
+        a_consultar = scopes_a_consultar(
+            id_comp=id_comp,
+            id_cat=id_cat,
+            fases=fases,
+            grupos_por_fase=grupos_por_fase,
+            cache=cache,
+            full=full,
+        )
         if progress:
+            tot_grupos = sum(len(g) for g in grupos_por_fase.values())
             print(
                 f"=== {comp_label} · {cat_label} (comp {id_comp} / cat {id_cat}): "
-                f"{len(fases)} fases ===",
+                f"{len(fases)} fases · {len(a_consultar)}/{tot_grupos} zonas ===",
                 file=sys.stderr,
                 flush=True,
             )
-        for nombre_fase, id_fase in fases.items():
-            grupos = ges.get_grupos_de_fase(id_comp, id_cat, int(id_fase))
-            if progress:
-                print(
-                    f"  {nombre_fase}: {len(grupos)} zonas",
-                    file=sys.stderr,
-                    flush=True,
+
+        for nombre_fase, id_fase, nombre_grupo, id_grupo in a_consultar:
+            zona = norm_zona(nombre_grupo)
+            n_consultas += 1
+            partidos = ges.get_info_partidos(
+                id_cat,
+                fecha_ini,
+                fecha_fin,
+                key=key,
+                id_fase=int(id_fase),
+                id_grupo=int(id_grupo),
+            )
+            for p in partidos:
+                local = p.get("Local") or ""
+                visit = p.get("Visitante") or ""
+                if not (es_equipo_echague(local) or es_equipo_echague(visit)):
+                    continue
+                idp = (p.get("ID_PARTIDO") or "").strip()
+                clave_dedup = (
+                    idp
+                    or f"{id_comp}|{cat_label}|{nombre_fase}|{zona}|{local}|{visit}|{p.get('Fecha')}"
                 )
-            for nombre_grupo, id_grupo in grupos.items():
-                zona = norm_zona(nombre_grupo)
-                partidos = ges.get_info_partidos(
-                    id_cat,
-                    fecha_ini,
-                    fecha_fin,
-                    key=key,
-                    id_fase=int(id_fase),
-                    id_grupo=int(id_grupo),
+                if clave_dedup in vistos:
+                    continue
+                vistos.add(clave_dedup)
+                out.append(
+                    {
+                        "edad": cat_label,
+                        "competencia": comp_label,
+                        "id_competencia": id_comp,
+                        "id_categoria": id_cat,
+                        "fase": nombre_fase,
+                        "id_fase": str(id_fase),
+                        "zona": zona,
+                        "id_grupo": str(id_grupo),
+                        "local": local,
+                        "visitante": visit,
+                        "pts_local": _to_int(p.get("PTS_LOCAL")),
+                        "pts_visit": _to_int(p.get("PTS_VISITANTE")),
+                        "id_partido": idp,
+                        "fecha": p.get("Fecha") or "",
+                        "estado": p.get("Estado") or "",
+                    }
                 )
-                for p in partidos:
-                    local = p.get("Local") or ""
-                    visit = p.get("Visitante") or ""
-                    if not (es_equipo_echague(local) or es_equipo_echague(visit)):
-                        continue
-                    idp = (p.get("ID_PARTIDO") or "").strip()
-                    clave_dedup = (
-                        idp
-                        or f"{id_comp}|{cat_label}|{nombre_fase}|{zona}|{local}|{visit}|{p.get('Fecha')}"
-                    )
-                    if clave_dedup in vistos:
-                        continue
-                    vistos.add(clave_dedup)
-                    out.append(
-                        {
-                            "edad": cat_label,
-                            "competencia": comp_label,
-                            "id_competencia": id_comp,
-                            "fase": nombre_fase,
-                            "zona": zona,
-                            "local": local,
-                            "visitante": visit,
-                            "pts_local": _to_int(p.get("PTS_LOCAL")),
-                            "pts_visit": _to_int(p.get("PTS_VISITANTE")),
-                            "id_partido": idp,
-                            "fecha": p.get("Fecha") or "",
-                            "estado": p.get("Estado") or "",
-                        }
-                    )
+
+    if progress:
+        print(
+            f"Consultas GES get_info_partidos: {n_consultas} · "
+            f"partidos Echagüe: {len(out)}",
+            file=sys.stderr,
+            flush=True,
+        )
     return out
 
 
@@ -625,16 +792,16 @@ def upsert_google_sheet(
                 ci = col_idx[h]
                 new_val = fila.get(h, "")
                 old_val = old[ci] if ci < len(old) else ""
-                if str(old_val) != str(new_val):
-                    changed = True
-                    # Celda A1-notation
-                    col_letter = _col_letter(ci + 1)
-                    updates.append(
-                        {
-                            "range": f"{col_letter}{rnum}",
-                            "values": [[new_val]],
-                        }
-                    )
+                if not debe_actualizar_celda(h, old_val, new_val):
+                    continue
+                changed = True
+                col_letter = _col_letter(ci + 1)
+                updates.append(
+                    {
+                        "range": f"{col_letter}{rnum}",
+                        "values": [[new_val]],
+                    }
+                )
             if changed:
                 actualizadas += 1
             else:
@@ -698,6 +865,11 @@ def main() -> int:
     )
     p.add_argument("--progress", action="store_true")
     p.add_argument(
+        "--full",
+        action="store_true",
+        help="Recorre todas las zonas GES (descubrimiento). Default: solo scopes cacheados + fases nuevas",
+    )
+    p.add_argument(
         "--solo-categorias",
         default="",
         help="Filtra labels CM (coma-separadas), ej: U21,SUP,U17 Flex",
@@ -721,10 +893,11 @@ def main() -> int:
         if not widget_key:
             print("Falta widget_key (config/competencias.json)", file=sys.stderr)
             return 1
+        modo = "full" if args.full else "incremental"
         if args.progress:
             print(
                 f"Descargando partidos Echagüe desde GES "
-                f"({len(fuentes)} categorías)…",
+                f"({len(fuentes)} categorías, modo {modo})…",
                 file=sys.stderr,
             )
         ges = GesDeportivaExtractor(HttpClient(SessionProvider.get_session()))
@@ -735,7 +908,11 @@ def main() -> int:
             fecha_fin=args.fecha_fin,
             progress=args.progress,
             fuentes=fuentes,
+            full=args.full,
         )
+        cache_path = guardar_scopes_cache(partidos)
+        if args.progress:
+            print(f"Scopes cache: {cache_path}", file=sys.stderr)
 
     filas = construir_filas(partidos)
     sin_dir = sum(1 for r in filas if r["LOCALIA"] == "Visitante" and not r["DIRECCION"])
@@ -754,6 +931,7 @@ def main() -> int:
         "por_categoria": dict(sorted(por_cat.items())),
         "visitantes_sin_direccion": sin_dir,
         "csv": str(csv_path),
+        "scopes_cache": str(SCOPES_CACHE) if SCOPES_CACHE.exists() else None,
         "fecha_sync": datetime.now().strftime("%d/%m/%Y %H:%M"),
     }
 

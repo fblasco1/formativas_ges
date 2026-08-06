@@ -1,0 +1,339 @@
+{
+  "updated": "06/08/2026 11:59",
+  "n_scopes": 37,
+  "scopes": [
+    {
+      "id_competencia": 2013,
+      "id_categoria": 5074,
+      "cat_label": "SUP",
+      "id_fase": "18482",
+      "fase": "PRE LIGAMETROPOLITANA",
+      "id_grupo": "35308",
+      "zona": "CENTRO2/OESTE 2"
+    },
+    {
+      "id_competencia": 2013,
+      "id_categoria": 5074,
+      "cat_label": "SUP",
+      "id_fase": "18483",
+      "fase": "RECLASIFICACION SUPERIOR",
+      "id_grupo": "35314",
+      "zona": "CENTRO 2"
+    },
+    {
+      "id_competencia": 2015,
+      "id_categoria": 5075,
+      "cat_label": "U21",
+      "id_fase": "18583",
+      "fase": "TORNEO DE CLASIFICACION",
+      "id_grupo": "35539",
+      "zona": "CENTRO 3C"
+    },
+    {
+      "id_competencia": 2015,
+      "id_categoria": 5075,
+      "cat_label": "U21",
+      "id_fase": "18584",
+      "fase": "TORNEO RECLASIFICACION",
+      "id_grupo": "35551",
+      "zona": "CENTRO 2A"
+    },
+    {
+      "id_competencia": 2015,
+      "id_categoria": 5075,
+      "cat_label": "U21",
+      "id_fase": "20575",
+      "fase": "INTERCONFERENCIA A",
+      "id_grupo": "38907",
+      "zona": "ZONA A2"
+    },
+    {
+      "id_competencia": 2015,
+      "id_categoria": 5075,
+      "cat_label": "U21",
+      "id_fase": "21130",
+      "fase": "NIVEL 2",
+      "id_grupo": "39897",
+      "zona": "CENTRO"
+    },
+    {
+      "id_competencia": 2015,
+      "id_categoria": 5076,
+      "cat_label": "U17",
+      "id_fase": "18580",
+      "fase": "TORNEO RECLASIFICATORIO",
+      "id_grupo": "35504",
+      "zona": "CENTRO 2A"
+    },
+    {
+      "id_competencia": 2015,
+      "id_categoria": 5076,
+      "cat_label": "U17",
+      "id_fase": "18581",
+      "fase": "TORNEO DE CLASIFICACION",
+      "id_grupo": "35524",
+      "zona": "CENTRO 3C"
+    },
+    {
+      "id_competencia": 2015,
+      "id_categoria": 5076,
+      "cat_label": "U17",
+      "id_fase": "20549",
+      "fase": "INTERCONFERENCIA A",
+      "id_grupo": "38840",
+      "zona": "ZONA A2"
+    },
+    {
+      "id_competencia": 2015,
+      "id_categoria": 5076,
+      "cat_label": "U17",
+      "id_fase": "21116",
+      "fase": "NIVEL 2",
+      "id_grupo": "39830",
+      "zona": "CENTRO"
+    },
+    {
+      "id_competencia": 2015,
+      "id_categoria": 5077,
+      "cat_label": "U15",
+      "id_fase": "18605",
+      "fase": "TORNEO DE CLASIFICACION",
+      "id_grupo": "35626",
+      "zona": "CENTRO 3C"
+    },
+    {
+      "id_competencia": 2015,
+      "id_categoria": 5077,
+      "cat_label": "U15",
+      "id_fase": "18616",
+      "fase": "TORNEO RECLASIFICATORIO",
+      "id_grupo": "35638",
+      "zona": "CENTRO 2A"
+    },
+    {
+      "id_competencia": 2015,
+      "id_categoria": 5077,
+      "cat_label": "U15",
+      "id_fase": "20553",
+      "fase": "INTERCONFERENCIA A",
+      "id_grupo": "38853",
+      "zona": "ZONA A2"
+    },
+    {
+      "id_competencia": 2015,
+      "id_categoria": 5077,
+      "cat_label": "U15",
+      "id_fase": "21119",
+      "fase": "NIVEL 2",
+      "id_grupo": "39843",
+      "zona": "CENTRO"
+    },
+    {
+      "id_competencia": 2015,
+      "id_categoria": 5078,
+      "cat_label": "U13",
+      "id_fase": "18606",
+      "fase": "TORNEO DE CLASIFICACION",
+      "id_grupo": "35627",
+      "zona": "CENTRO 3C"
+    },
+    {
+      "id_competencia": 2015,
+      "id_categoria": 5078,
+      "cat_label": "U13",
+      "id_fase": "18617",
+      "fase": "TORNEO RECLASIFICATORIO",
+      "id_grupo": "35639",
+      "zona": "CENTRO 2A"
+    },
+    {
+      "id_competencia": 2015,
+      "id_categoria": 5078,
+      "cat_label": "U13",
+      "id_fase": "20554",
+      "fase": "INTERCONFERENCIA A",
+      "id_grupo": "38854",
+      "zona": "ZONA A2"
+    },
+    {
+      "id_competencia": 2015,
+      "id_categoria": 5078,
+      "cat_label": "U13",
+      "id_fase": "21120",
+      "fase": "NIVEL 2",
+      "id_grupo": "39844",
+      "zona": "CENTRO"
+    },
+    {
+      "id_competencia": 2015,
+      "id_categoria": 5079,
+      "cat_label": "U11",
+      "id_fase": "18607",
+      "fase": "TORNEO DE CLASIFICACION",
+      "id_grupo": "35628",
+      "zona": "CENTRO 3C"
+    },
+    {
+      "id_competencia": 2015,
+      "id_categoria": 5079,
+      "cat_label": "U11",
+      "id_fase": "18618",
+      "fase": "TORNEO RECLASIFICATORIO",
+      "id_grupo": "35640",
+      "zona": "CENTRO 2A"
+    },
+    {
+      "id_competencia": 2015,
+      "id_categoria": 5079,
+      "cat_label": "U11",
+      "id_fase": "20555",
+      "fase": "INTERCONFERENCIA A",
+      "id_grupo": "38855",
+      "zona": "ZONA A2"
+    },
+    {
+      "id_competencia": 2015,
+      "id_categoria": 5079,
+      "cat_label": "U11",
+      "id_fase": "21121",
+      "fase": "NIVEL 2",
+      "id_grupo": "39845",
+      "zona": "CENTRO"
+    },
+    {
+      "id_competencia": 2015,
+      "id_categoria": 5080,
+      "cat_label": "U9",
+      "id_fase": "18608",
+      "fase": "TORNEO DE CLASIFICACION",
+      "id_grupo": "35629",
+      "zona": "CENTRO 3C"
+    },
+    {
+      "id_competencia": 2015,
+      "id_categoria": 5080,
+      "cat_label": "U9",
+      "id_fase": "18619",
+      "fase": "TORNEO RECLASIFICATORIO",
+      "id_grupo": "35641",
+      "zona": "CENTRO 2A"
+    },
+    {
+      "id_competencia": 2015,
+      "id_categoria": 5080,
+      "cat_label": "U9",
+      "id_fase": "20556",
+      "fase": "INTERCONFERENCIA A",
+      "id_grupo": "38856",
+      "zona": "ZONA A2"
+    },
+    {
+      "id_competencia": 2015,
+      "id_categoria": 5080,
+      "cat_label": "U9",
+      "id_fase": "21122",
+      "fase": "NIVEL 2",
+      "id_grupo": "39846",
+      "zona": "CENTRO"
+    },
+    {
+      "id_competencia": 2018,
+      "id_categoria": 5091,
+      "cat_label": "U13 Flex",
+      "id_fase": "19134",
+      "fase": "SUPER FLEX",
+      "id_grupo": "36694",
+      "zona": "OESTE/CENTRO FLEX"
+    },
+    {
+      "id_competencia": 2018,
+      "id_categoria": 5557,
+      "cat_label": "U15 Flex",
+      "id_fase": "19128",
+      "fase": "SUPER FLEX",
+      "id_grupo": "36674",
+      "zona": "OESTE/CENTRO FLEX"
+    },
+    {
+      "id_competencia": 2018,
+      "id_categoria": 5558,
+      "cat_label": "U17 Flex",
+      "id_fase": "19124",
+      "fase": "SUPER FLEX",
+      "id_grupo": "36645",
+      "zona": "OESTE/CENTRO FLEX"
+    },
+    {
+      "id_competencia": 2019,
+      "id_categoria": 5088,
+      "cat_label": "SUP Flex",
+      "id_fase": "19151",
+      "fase": "PRIMERA FASE",
+      "id_grupo": "36769",
+      "zona": "CENTRO 4"
+    },
+    {
+      "id_competencia": 2028,
+      "id_categoria": 5105,
+      "cat_label": "U9 Fem",
+      "id_fase": "20694",
+      "fase": "SEGUNDA ETAPA",
+      "id_grupo": "39070",
+      "zona": "ZONA 3B NO/OE/CE"
+    },
+    {
+      "id_competencia": 2028,
+      "id_categoria": 5106,
+      "cat_label": "U11 Fem",
+      "id_fase": "18154",
+      "fase": "PRIMERA ETAPA",
+      "id_grupo": "34659",
+      "zona": "INICIACION NIVEL 3B"
+    },
+    {
+      "id_competencia": 2028,
+      "id_categoria": 5106,
+      "cat_label": "U11 Fem",
+      "id_fase": "20701",
+      "fase": "SEGUNDA ETAPA",
+      "id_grupo": "39094",
+      "zona": "ZONA 3B NO/OE/CE"
+    },
+    {
+      "id_competencia": 2028,
+      "id_categoria": 5107,
+      "cat_label": "U13 Fem",
+      "id_fase": "18155",
+      "fase": "PRIMERA ETAPA",
+      "id_grupo": "34672",
+      "zona": "INICIACION NIVEL 3B"
+    },
+    {
+      "id_competencia": 2028,
+      "id_categoria": 5107,
+      "cat_label": "U13 Fem",
+      "id_fase": "20703",
+      "fase": "SEGUNDA ETAPA",
+      "id_grupo": "39112",
+      "zona": "ZONA 3B NO/OE/CE"
+    },
+    {
+      "id_competencia": 2028,
+      "id_categoria": 5108,
+      "cat_label": "U15 Fem",
+      "id_fase": "18156",
+      "fase": "PRIMERA ETAPA",
+      "id_grupo": "34683",
+      "zona": "INICIACION NIVEL 3B"
+    },
+    {
+      "id_competencia": 2028,
+      "id_categoria": 5108,
+      "cat_label": "U15 Fem",
+      "id_fase": "20750",
+      "fase": "SEGUNDA ETAPA",
+      "id_grupo": "39175",
+      "zona": "ZONA 3B NO/OE/CE"
+    }
+  ]
+}

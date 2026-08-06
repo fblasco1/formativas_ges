@@ -48,13 +48,57 @@ def test_fuentes_incluye_competencias_pedidas():
     assert COMPETENCIA_LABEL[2018] == "Flex formativas"
 
 
-def test_fase_lff_excluida():
-    from analysis.sync_fixture_echague_sheets import _es_fase_excluida
+def test_debe_actualizar_celda_preserva_direccion_manual():
+    from analysis.sync_fixture_echague_sheets import debe_actualizar_celda
 
-    assert _es_fase_excluida("CLASIFICACION LFF")
-    assert _es_fase_excluida("TRIANGULAR FINAL LFF")
-    assert not _es_fase_excluida("INTERCONFERENCIA A")
-    assert not _es_fase_excluida("PRE LIGAMETROPOLITANA")
+    assert debe_actualizar_celda("RESULTADO", "1-2", "3-4") is True
+    assert debe_actualizar_celda("DIRECCION", "", "Calle Nueva 1") is True
+    assert (
+        debe_actualizar_celda("DIRECCION", "Calle Manual 10", "Calle Auto 99")
+        is False
+    )
+    assert debe_actualizar_celda("DIRECCION", "Calle Manual 10", "Calle Manual 10") is False
+
+
+def test_scopes_a_consultar_incremental():
+    from analysis.sync_fixture_echague_sheets import scopes_a_consultar
+
+    fases = {"FASE A": "10", "FASE B": "20"}
+    grupos = {
+        "FASE A": {"ZONA 1": "100", "ZONA 2": "101"},
+        "FASE B": {"ZONA X": "200"},
+    }
+    cache = {
+        "2015|5077|10|100": {
+            "id_competencia": 2015,
+            "id_categoria": 5077,
+            "id_fase": "10",
+            "id_grupo": "100",
+        }
+    }
+    # Incremental: FASE A solo grupo 100; FASE B (nueva) todos
+    got = scopes_a_consultar(
+        id_comp=2015,
+        id_cat=5077,
+        fases=fases,
+        grupos_por_fase=grupos,
+        cache=cache,
+        full=False,
+    )
+    assert ("FASE A", "10", "ZONA 1", "100") in got
+    assert ("FASE A", "10", "ZONA 2", "101") not in got
+    assert ("FASE B", "20", "ZONA X", "200") in got
+
+    # Full: todo
+    got_full = scopes_a_consultar(
+        id_comp=2015,
+        id_cat=5077,
+        fases=fases,
+        grupos_por_fase=grupos,
+        cache=cache,
+        full=True,
+    )
+    assert len(got_full) == 3
 
 
 def test_mapear_fila_local_con_resultado():

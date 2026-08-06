@@ -76,8 +76,10 @@ Workflow: [`.github/workflows/sync_echague_sheets.yml`](../.github/workflows/syn
 3. Iniciar en: la carpeta del repo.
 4. Desencadenadores: diario 08:00 y 20:00.
 
-## Notas
+## Optimización y direcciones manuales
 
-- GES no empuja eventos: “en tiempo real” = cada pocas horas alcanza para CMs.
-- Si un visitante queda sin `DIRECCION`, completar el club en `data/referencia/AFILIADAS y DIRECCIONES.xlsx` o en el mapeo de viajes y volver a correr.
-- La corrida completa (todas las competencias) tarda varios minutos por la cantidad de zonas GES.
+- El cron corre en modo **incremental**: solo vuelve a consultar zonas donde ya jugó Echagüe, más **fases nuevas** que aparezcan en GES.
+- Descubrimiento completo (todas las zonas):  
+  `python analysis/sync_fixture_echague_sheets.py --full --progress`
+- Cache de zonas: `outputs/echague/scopes_cache.json` (se regenera en cada corrida GES).
+- **DIRECCION**: si en el Sheet ya hay un valor (cargado a mano), el sync **no lo pisa**. Solo completa celdas vacías o filas nuevas.
