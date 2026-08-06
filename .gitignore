@@ -13,4 +13,6 @@ playbyplay.json
 
 # Local config/secrets
 *.env
+config/google_service_account.json
+**/google_service_account.json
 
