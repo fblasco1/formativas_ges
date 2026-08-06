@@ -1,102 +1,81 @@
-# FeBAMBA Stats Tracker
+# FeBAMBA — Formativas GES
 
-Proyecto de **analítica de datos** para categorías formativas de FeBAMBA (U13 a U21). Extrae datos del sistema GES (web scraping y API interna) para documentar y analizar la evolución de jugadores año tras año.
+Monorepo unificado (`main`): **GitHub Pages** como portal público + **CLI/ops** (standings, Echagüe, ingest) + **Ranking** Streamlit en `apps/ranking/`.
 
-## Objetivos
+## Portal (GitHub Pages)
 
-1. **Búsqueda de jugadores** por parámetros estadísticos en múltiples temporadas.
-2. **Comparativa interanual (YoY)** de métricas clave: PTS, REB, AST, % tiros, etc.
+Índice: [docs/index.html](docs/index.html) (publicado en Pages).
 
-## Stack tecnológico
+| Producto | Entrada |
+|----------|---------|
+| Standings Formativas 2026 | `docs/formativas_2026_tabla_posiciones.html` |
+| Standings Superior 2026 | `docs/superior_2026_tabla_posiciones.html` |
+| Buscador jugadores | `docs/buscador_jugadores.html` |
+| Mini Masc | `docs/mini_masc_clasificacion.html` |
+| Viajes / escenarios | `docs/informe_viajes_niveles.html` |
+| Comparativa ligas | `docs/comparativa_ligas_formativas.html` |
+| Ranking / renivelación | `docs/ranking.md` → `streamlit run apps/ranking/streamlit_app.py` |
+| Sync Echagüe → Sheets | `docs/sync_fixture_echague.md` + workflow Actions |
 
-| Capa | Tecnología |
-|------|------------|
-| Ingesta | Python, Requests, BeautifulSoup |
-| Persistencia | PostgreSQL |
-| Análisis | Pandas |
-| Config | `config.json` (DB), variables de entorno |
+## Regenerar informes (desde la raíz del repo)
+
+```powershell
+python analysis/generar_standings_febamba_2026.py
+python analysis/generar_standings_superior_2026.py
+python analysis/buscador_jugadores_destacados.py
+python analysis/sync_fixture_echague_sheets.py --progress
+```
+
+Copiá/publicá los HTML resultantes bajo `docs/` según el script (varios ya escriben ahí o a `outputs/`).
+
+## Ranking
+
+```powershell
+pip install -r apps/ranking/requirements.txt
+streamlit run apps/ranking/streamlit_app.py
+```
+
+Detalle: [docs/ranking.md](docs/ranking.md).
+
+## Stack / estructura
+
+```text
+main/
+  analysis/          # standings, sync, viajes, buscador, informes
+  ingest/            # GES / argentina.basketball
+  apps/ranking/      # Power Ranking + Streamlit (ex Ranking_V2)
+  docs/              # GitHub Pages = app pública
+  .github/workflows/ # pages.yml + sync_echague_sheets.yml
+  config/
+  tests/
+```
 
 ## Requisitos
 
 - Python 3.10+
-- PostgreSQL (o SQLite para desarrollo)
-- Dependencias: `requests`, `beautifulsoup4`, `psycopg`, `pandas`
+- Dependencias según el flujo: `requests`, `beautifulsoup4`, `pandas`; Echagüe: `gspread`, `google-auth`; Ranking: ver `apps/ranking/requirements.txt`
+- PostgreSQL opcional para pipelines de persistencia legacy (`config.json`)
 
-## Instalación
+## Instalación rápida
 
 ```powershell
 python -m venv .venv
 .venv\Scripts\Activate
-pip install requests beautifulsoup4 psycopg pandas
+pip install requests beautifulsoup4 pandas gspread google-auth
 ```
 
-Configurar:
+Configurar competencias en `config/competencias.json`. Service account Echagüe: `config/google_service_account.json` (gitignored) o secret `GOOGLE_SERVICE_ACCOUNT_JSON` en Actions.
 
-- **Base de datos:** `config.json` en la raíz (clave `db`: host, port, user, password, name).
-- **Competencias:** `config/competencias.json` (mapeo temporada → id_competencia, widget_key, fecha_inicio/fin). Actualizar cada campaña.
+## Ramas
 
-Ejecutar siempre desde la **raíz del proyecto**.
+- **`main`**: árbol canónico (producto 2026 + ranking).
+- **`estadisticas`**: espejo temporal; se puede retirar cuando Pages/Echagüe estén estables solo en `main`.
+- Tags de archivo: `archive/main-pre-unificacion`, `archive/Ranking_V2-2026-05`, etc.
 
-## Uso rápido
+## CLI legacy
 
-- **CLI unificado:** `python ges_cli.py --help` — subcomandos para temporada 2026 (argentina.basketball), FeBAMBA y utilidades de base de datos.
-- **Ingesta FeBAMBA/GES:** `python main.py` o `python ges_cli.py ingest febamba` — partidos y boxscores según `config/competencias.json`.
-- **Persistencia lotes JSON:** `python persist/persistir_postgres.py` o `python ges_cli.py db persist-lotes` — crea esquema y carga `partidos_*_lote_*.json`.
-- **Pipeline 2026 → PostgreSQL:** descarga fixture (5075–5080), boxscore y play-by-play desde [argentina.basketball](https://argentina.basketball) y persiste en `partidos` + tabla `play_by_play`:
-
-  ```powershell
-  python ges_cli.py argbasket ingest -- --fecha-ini 2025-04-26 --fecha-fin 2026-05-10 --progress --limite 5
-  ```
-
-  Requiere `psycopg` instalado y `config.json` con credenciales PostgreSQL. Opcional: exportar CSV de fixture al mismo tiempo: `--export-csv data/argbasket/fixture_consolidado.csv`. Paralelismo HTTP: `--workers 4`. Configuración DB: `config.json` en el cwd del proceso (por defecto la raíz del repo) o `--config ruta\config.json`.
-
-- **Solo fixture CSV (sin DB):** `python ges_cli.py argbasket fixture -- --fecha-ini ... --fecha-fin ... --output fixture_consolidado.csv`
-- **Un partido (JSON):** `python ges_cli.py argbasket partido -- --id-partido-token TOKEN --output partido.json`
-- **Dashboard:** `streamlit run dashboard_app.py` — consulta jugadores y estadísticas.
-- **Análisis:** módulos en `analysis/` (ver `ARCHITECTURE.md`) para normalización y YoY.
-
-### Tabla `play_by_play`
-
-Creada por `persist/persistir_postgres.py` (y al ejecutar la ingesta 2026). Clave primaria `(partido_id, event_idx)`, FK a `partidos(partido_id)` con `ON DELETE CASCADE`. Columnas derivadas del parser (`cuarto`, `clock`, `tipo`, `equipo`, `jugador`, `dorsal`, marcador, `hora_real`, `raw`) más `payload JSONB` con el evento completo.
-
-### `ges_cli` y `--out-dir`
-
-`--out-dir DIR` cambia el directorio de trabajo antes de lanzar el subcomando (útil para escribir CSV o lotes bajo `data/`).
-
-## Estructura del repositorio
-
-```
-├── README.md
-├── ARCHITECTURE.md
-├── config.json             # Conexión DB (db.host, db.port, db.user, db.password, db.name)
-├── ges_cli.py              # CLI: argbasket 2026, db, fixture, ingest febamba
-├── main.py                 # Orquestador de ingesta (lee config/competencias.json)
-├── ingest/                 # Módulo de ingesta
-│   ├── __init__.py
-│   ├── errors.py
-│   ├── http_client.py
-│   ├── extractors.py
-│   ├── extract_boxscore.py
-│   └── extraer_info_partidos.py
-├── persist/                # Persistencia
-│   ├── __init__.py
-│   └── persistir_postgres.py
-├── analysis/               # Lógica de análisis (normalizer, yoy, queries — pendiente)
-│   └── __init__.py
-├── config/
-│   └── competencias.json   # id_competencia por temporada, widget_key, fechas
-└── dashboard_app.py        # Streamlit: búsqueda de jugadores y estadísticas
-```
-
-## Restricciones técnicas
-
-- **IDs de torneos:** GES cambia `id_competencia` por temporada; usar mapeo externo (ej. `competencias.json`) y actualizarlo cada campaña.
-- **Rate limiting:** el cliente HTTP aplica reintentos con backoff ante 429/5xx; respetar pausas entre lotes en scraping masivo.
-
-## Documentación
-
-- **ARCHITECTURE.md:** diseño del módulo de ingesta, modelo de datos SQL, lógica de análisis (normalización, YoY), endpoints de la API interna y estrategia de scraping.
+`python ges_cli.py --help` — argbasket, ingest FeBAMBA y utilidades de DB. Ver `ARCHITECTURE.md` para el modelo de datos histórico.
 
 ## Licencia
 
-MIT
+Uso interno FeBAMBA / análisis formativas.

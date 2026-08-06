@@ -9,6 +9,7 @@ __pycache__/
 
 # Data artifacts (generated)
 *.csv
+!apps/ranking/Data/procesada/*.csv
 playbyplay.json
 
 # Local config/secrets

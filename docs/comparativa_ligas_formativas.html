@@ -1,0 +1,771 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Comparativa ligas formativas — Brasil · España · Alemania · Serbia</title>
+  <style>
+    :root {
+      --bg: #eef2f7; --paper: #ffffff; --text: #0f172a; --muted: #64748b;
+      --line: #e2e8f0; --brand: #1d4ed8; --brand-2: #0ea5e9;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0; font-family: "Segoe UI", system-ui, -apple-system, sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.5;
+      -webkit-font-smoothing: antialiased;
+    }
+    .page { max-width: 1140px; margin: 0 auto; padding: 36px 24px 56px; }
+    header.hero {
+      background: linear-gradient(135deg, #0f172a 0%, #1e3a8a 55%, #1d4ed8 100%);
+      color: #f8fafc; border-radius: 18px; padding: 38px 40px;
+      margin-bottom: 26px; box-shadow: 0 18px 40px -22px rgba(30,58,138,.7);
+    }
+    header.hero .eyebrow {
+      text-transform: uppercase; letter-spacing: .16em; font-size: 11px;
+      font-weight: 700; color: #93c5fd; margin: 0 0 10px;
+    }
+    h1 { margin: 0 0 12px; font-size: 30px; font-weight: 800; letter-spacing: -0.025em; line-height: 1.15; }
+    .subtitle { color: #cbd5e1; font-size: 15px; margin: 0; max-width: 760px; }
+    .badges { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 22px; }
+    .badge {
+      font-size: 11px; font-weight: 600; padding: 5px 12px; border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.28); color: #e2e8f0;
+      background: rgba(255,255,255,.08); backdrop-filter: blur(4px);
+    }
+    .stats { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; margin: 0 0 26px; }
+    .stat {
+      background: var(--paper); border: 1px solid var(--line); border-radius: 14px;
+      padding: 18px; border-top: 4px solid var(--accent, #2563eb);
+      box-shadow: 0 8px 22px -18px rgba(15,23,42,.4); transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .stat:hover { transform: translateY(-2px); box-shadow: 0 14px 28px -18px rgba(15,23,42,.5); }
+    .stat .n { font-size: 30px; font-weight: 800; letter-spacing: -0.02em; }
+    .stat .l { font-size: 12px; color: var(--text); font-weight: 600; margin-top: 6px; }
+    .stat .s { font-size: 11px; color: var(--muted); margin-top: 2px; }
+    section {
+      background: var(--paper); border: 1px solid var(--line); border-radius: 16px;
+      padding: 26px 28px; margin-bottom: 22px; box-shadow: 0 10px 26px -22px rgba(15,23,42,.35);
+    }
+    h2 {
+      margin: 0 0 8px; font-size: 19px; font-weight: 700; letter-spacing: -0.01em;
+      display: flex; align-items: center; gap: 10px;
+    }
+    h2::before {
+      content: ""; width: 6px; height: 20px; border-radius: 3px;
+      background: linear-gradient(180deg, var(--brand), var(--brand-2));
+    }
+    h3 { font-size: 15px; font-weight: 700; }
+    .caption { margin: 0 0 18px; font-size: 13px; color: var(--muted); max-width: 880px; }
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+    .scatter-wrap { overflow-x: auto; }
+    .scatter-chart { position: relative; }
+    .scatter-dot { cursor: pointer; transition: fill-opacity .1s ease; }
+    .scatter-dot:hover { fill-opacity: 1; stroke-width: 1.5; }
+    .scatter-tooltip {
+      position: fixed; pointer-events: none; z-index: 100;
+      background: #0f172a; color: #f8fafc; font-size: 12px; line-height: 1.5;
+      padding: 9px 12px; border-radius: 10px; box-shadow: 0 8px 22px rgba(15,23,42,.35);
+      opacity: 0; transition: opacity .12s ease; max-width: 250px;
+    }
+    .scatter-tooltip .muted { color: #94a3b8; font-size: 11px; }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
+    th, td { border-bottom: 1px solid var(--line); padding: 11px 9px; text-align: left; vertical-align: top; }
+    th { color: var(--muted); font-weight: 700; font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; }
+    th .sub, td .unit { font-weight: 400; text-transform: none; letter-spacing: 0; color: var(--muted); font-size: 11px; }
+    tr:last-child td { border-bottom: none; }
+    table.compare tbody tr:hover td { background: #f8fafc; }
+    table.compare td:not(:first-child) { text-align: center; font-variant-numeric: tabular-nums; }
+    td.best { background: #ecfdf5; font-weight: 700; color: #047857; }
+    td.na { color: #cbd5e1; }
+    .note { background: #eff6ff; border: 1px solid #bfdbfe; border-radius: 10px; padding: 13px 15px; font-size: 12px; color: #1e3a8a; margin-top: 14px; }
+    .note.warn { background: #fff7ed; border-color: #fdba74; color: #9a3412; }
+    .note ul { margin: 8px 0 0 18px; padding: 0; }
+    .insight {
+      border-left: 4px solid var(--brand); background: #f8faff; border-radius: 0 8px 8px 0;
+      padding: 12px 16px; margin: 18px 0 0; font-size: 13px; color: #1e293b;
+    }
+    /* Reglamentos */
+    .rules-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 16px; }
+    .rule-card {
+      border: 1px solid var(--line); border-radius: 14px; padding: 18px 18px 16px;
+      border-top: 4px solid var(--accent); background: #fdfdff;
+      display: flex; flex-direction: column; gap: 8px;
+    }
+    .rule-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 10px; }
+    .rule-country { font-size: 15px; font-weight: 800; }
+    .rule-comp { font-size: 12px; color: var(--muted); margin-left: 6px; font-weight: 600; }
+    .chip { font-size: 10px; font-weight: 700; padding: 4px 9px; border-radius: 999px; white-space: nowrap; }
+    .rule-summary { margin: 0; font-size: 13px; font-weight: 600; color: #0f172a; }
+    .rule-detail { margin: 0; font-size: 12.5px; color: var(--muted); flex: 1; }
+    .rule-scale { display: flex; align-items: center; gap: 10px; margin-top: 6px; }
+    .pips { display: flex; gap: 4px; }
+    .pip { width: 22px; height: 6px; border-radius: 3px; }
+    .rule-scale-label { font-size: 11px; color: var(--muted); font-weight: 600; }
+    /* Entrenamientos */
+    .train-list { display: flex; flex-direction: column; gap: 14px; }
+    .train-row {
+      display: grid; grid-template-columns: 160px 1fr; gap: 8px 18px; align-items: center;
+      padding-bottom: 14px; border-bottom: 1px solid var(--line);
+    }
+    .train-row:last-child { border-bottom: none; padding-bottom: 0; }
+    .train-label { display: flex; flex-direction: column; }
+    .train-country { font-size: 14px; font-weight: 800; }
+    .train-comp { font-size: 11px; color: var(--muted); font-weight: 600; }
+    .train-bar-wrap { display: flex; align-items: center; gap: 10px; }
+    .train-bar { height: 12px; border-radius: 6px; min-width: 6px; transition: width .3s ease; }
+    .train-tag { font-size: 12px; font-weight: 700; white-space: nowrap; }
+    .train-detail { grid-column: 2; margin: 0; font-size: 12.5px; color: var(--muted); }
+    footer { text-align: center; color: var(--muted); font-size: 11px; margin-top: 28px; line-height: 1.6; }
+    @media (max-width: 900px) {
+      .stats, .grid-2 { grid-template-columns: 1fr !important; }
+      .train-row { grid-template-columns: 1fr; }
+      .train-detail { grid-column: 1; }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <header class="hero">
+      <p class="eyebrow">Scouting formativo · Tiro exterior</p>
+      <h1>El triple en la formación: seis competiciones bajo la misma lupa</h1>
+      <p class="subtitle">
+        Volumen (intentos de triple por partido) y eficiencia (3P%) en categorías U15 y U16 masculinas,
+        cruzados con el marco reglamentario y la carga de entrenamiento de cada país. Temporadas 2024 a 2025/26.
+      </p>
+      <div class="badges"><span class="badge" style="border-color:#059669;color:#059669">Brasil · CBI U15</span><span class="badge" style="border-color:#dc2626;color:#dc2626">España · FEB U16</span><span class="badge" style="border-color:#2563eb;color:#2563eb">Alemania · JBBL U16</span><span class="badge" style="border-color:#7c3aed;color:#7c3aed">Serbia · KSS U15</span><span class="badge" style="border-color:#ca8a04;color:#ca8a04">Argentina · FeBAMBA U15</span><span class="badge" style="border-color:#ea580c;color:#ea580c">Argentina · LFF interior U15</span></div>
+    </header>
+
+    <div class="stats">
+      <div class="stat" style="--accent:#059669">
+        <div class="n">23.5</div>
+        <div class="l">Brasil · 3PA/partido (media equipos)</div>
+        <div class="s">24.8% 3P · 16 equipos · ventana 16–24 nov 2025</div>
+      </div>
+
+      <div class="stat" style="--accent:#dc2626">
+        <div class="n">27.8</div>
+        <div class="l">España · 3PA/partido (media equipos)</div>
+        <div class="s">25.0% 3P · 16 equipos · final PLAY-OFF</div>
+      </div>
+
+      <div class="stat" style="--accent:#2563eb">
+        <div class="n">25.0</div>
+        <div class="l">Alemania · 3PA/partido (media equipos)</div>
+        <div class="s">24.4% 3P · 16 equipos · Viertelfinal (PO)</div>
+      </div>
+
+      <div class="stat" style="--accent:#7c3aed">
+        <div class="n">20.3</div>
+        <div class="l">Serbia · 3PA/partido (media equipos)</div>
+        <div class="s">27.8% 3P · 16 equipos · 36 partidos</div>
+      </div>
+
+      <div class="stat" style="--accent:#ca8a04">
+        <div class="n">16.2</div>
+        <div class="l">Argentina · 3PA/partido (media equipos)</div>
+        <div class="s">22.0% 3P · 9 equipos · doble competencia (aprox.)</div>
+      </div>
+
+      <div class="stat" style="--accent:#ea580c">
+        <div class="n">23.5</div>
+        <div class="l">Argentina · 3PA/partido (media equipos)</div>
+        <div class="s">25.2% 3P · 11 equipos · doble competencia</div>
+      </div></div>
+
+    <section>
+      <h2>Mapa de dispersión — volumen vs eficiencia de triple</h2>
+      <p class="caption">
+        Cada punto es un equipo (los 16 finalistas de cada liga internacional). El eje horizontal mide
+        cuántos triples intenta por partido y el vertical su acierto. Los rombos punteados corresponden a la
+        referencia argentina 2024 (trabajo ENEBA). Las líneas punteadas marcan la media global de los
+        84 equipos representados generando cuadrantes: arriba-derecha, alta eficiencia y alto volumen;
+        abajo-derecha, baja eficiencia y alto volumen; arriba-izquierda, alta eficiencia y bajo volumen; y
+        abajo-izquierda, baja eficiencia y bajo volumen. Pasá el cursor sobre un punto para ver el detalle.
+      </p>
+      <div class="scatter-wrap"><div class="scatter-chart" id="scatter-3p">
+  <svg viewBox="0 0 920 500" width="100%" role="img" aria-label="Dispersión 3PA vs 3P%">
+<rect x="58" y="28" width="694" height="420" fill="#f8fafc" stroke="#e2e8f0"/>
+<line x1="58.0" y1="28" x2="58.0" y2="448" stroke="#e2e8f0"/>
+<line x1="58" y1="28.0" x2="752" y2="28.0" stroke="#e2e8f0"/>
+<line x1="231.5" y1="28" x2="231.5" y2="448" stroke="#e2e8f0"/>
+<line x1="58" y1="133.0" x2="752" y2="133.0" stroke="#e2e8f0"/>
+<line x1="405.0" y1="28" x2="405.0" y2="448" stroke="#e2e8f0"/>
+<line x1="58" y1="238.0" x2="752" y2="238.0" stroke="#e2e8f0"/>
+<line x1="578.5" y1="28" x2="578.5" y2="448" stroke="#e2e8f0"/>
+<line x1="58" y1="343.0" x2="752" y2="343.0" stroke="#e2e8f0"/>
+<line x1="752.0" y1="28" x2="752.0" y2="448" stroke="#e2e8f0"/>
+<line x1="58" y1="448.0" x2="752" y2="448.0" stroke="#e2e8f0"/>
+<line x1="319.8" y1="28" x2="319.8" y2="448" stroke="#64748b" stroke-width="1.5" stroke-dasharray="7,5" opacity="0.9"/>
+<line x1="58" y1="209.8" x2="752" y2="209.8" stroke="#64748b" stroke-width="1.5" stroke-dasharray="7,5" opacity="0.9"/>
+<circle class="scatter-dot" cx="286.3" cy="119.4" r="5.5" fill="#059669" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="Botafogo de F.R. -15" data-liga="Brasil · CBI" data-t3pp="21.17" data-t3pct="33.9" data-ptspp="61.8" data-t2pp="41.5" data-tlpp="18.5" data-efg="41.1" data-ts="43.7" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="392.4" cy="180.0" r="5.5" fill="#059669" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="C.A. Paulistano -15" data-liga="Brasil · CBI" data-t3pp="26.83" data-t3pct="28.0" data-ptspp="85.3" data-t2pp="51.8" data-tlpp="24.0" data-efg="46.1" data-ts="47.8" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="317.4" cy="249.8" r="5.5" fill="#059669" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="CC Rio Claro -15" data-liga="Brasil · CBI" data-t3pp="22.83" data-t3pct="21.2" data-ptspp="67.5" data-t2pp="50.8" data-tlpp="18.7" data-efg="38.1" data-ts="41.2" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="370.7" cy="213.9" r="5.5" fill="#059669" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="Campineiro de Regatas -15" data-liga="Brasil · CBI" data-t3pp="25.67" data-t3pct="24.7" data-ptspp="76.0" data-t2pp="44.0" data-tlpp="20.5" data-efg="44.7" data-ts="48.3" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="367.5" cy="245.7" r="5.5" fill="#059669" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="EC Ginástico -15" data-liga="Brasil · CBI" data-t3pp="25.50" data-t3pct="21.6" data-ptspp="59.2" data-t2pp="36.3" data-tlpp="24.0" data-efg="36.0" data-ts="40.9" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="330.0" cy="212.8" r="5.5" fill="#059669" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="Esporte Clube Pinheiros -15" data-liga="Brasil · CBI" data-t3pp="23.50" data-t3pct="24.8" data-ptspp="76.8" data-t2pp="47.3" data-tlpp="23.2" data-efg="45.1" data-ts="47.4" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="279.9" cy="138.9" r="5.5" fill="#059669" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="Flamengo -15" data-liga="Brasil · CBI" data-t3pp="20.83" data-t3pct="32.0" data-ptspp="67.8" data-t2pp="45.3" data-tlpp="22.2" data-efg="41.1" data-ts="44.7" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="245.6" cy="206.7" r="5.5" fill="#059669" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="Foz Basquete -15" data-liga="Brasil · CBI" data-t3pp="19.00" data-t3pct="25.4" data-ptspp="58.5" data-t2pp="44.2" data-tlpp="21.5" data-efg="37.3" data-ts="40.3" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="323.8" cy="282.7" r="5.5" fill="#059669" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="Internacional de Regatas -15" data-liga="Brasil · CBI" data-t3pp="23.17" data-t3pct="18.0" data-ptspp="46.5" data-t2pp="39.8" data-tlpp="14.0" data-efg="32.1" data-ts="33.6" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="361.3" cy="270.3" r="5.5" fill="#059669" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="LDPG Ponta Grossa -15" data-liga="Brasil · CBI" data-t3pp="25.17" data-t3pct="19.2" data-ptspp="48.2" data-t2pp="36.7" data-tlpp="12.5" data-efg="34.6" data-ts="35.8" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="367.5" cy="205.7" r="5.5" fill="#059669" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="Minas Tênis Clube -15" data-liga="Brasil · CBI" data-t3pp="25.50" data-t3pct="25.5" data-ptspp="69.7" data-t2pp="39.3" data-tlpp="23.7" data-efg="41.0" data-ts="46.3" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="305.0" cy="197.4" r="5.5" fill="#059669" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="Olympico Club -15" data-liga="Brasil · CBI" data-t3pp="22.17" data-t3pct="26.3" data-ptspp="69.2" data-t2pp="41.7" data-tlpp="17.2" data-efg="46.1" data-ts="48.4" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="254.9" cy="186.1" r="5.5" fill="#059669" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="S.E. Palmeiras -15" data-liga="Brasil · CBI" data-t3pp="19.50" data-t3pct="27.4" data-ptspp="76.7" data-t2pp="51.0" data-tlpp="20.2" data-efg="44.9" data-ts="48.3" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="333.2" cy="250.8" r="5.5" fill="#059669" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="SESI Franca -15" data-liga="Brasil · CBI" data-t3pp="23.67" data-t3pct="21.1" data-ptspp="60.0" data-t2pp="37.7" data-tlpp="22.2" data-efg="38.3" data-ts="42.2" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="533.1" cy="198.5" r="5.5" fill="#059669" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="São José Desportivo -15" data-liga="Brasil · CBI" data-t3pp="34.33" data-t3pct="26.2" data-ptspp="70.7" data-t2pp="37.2" data-tlpp="14.8" data-efg="44.3" data-ts="45.3" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="214.2" cy="249.8" r="5.5" fill="#059669" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="São Paulo Futebol Clube -15" data-liga="Brasil · CBI" data-t3pp="17.33" data-t3pct="21.2" data-ptspp="68.7" data-t2pp="52.5" data-tlpp="22.3" data-efg="40.8" data-ts="43.1" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="409.7" cy="199.5" r="5.5" fill="#dc2626" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="BARÇA" data-liga="España · FEB" data-t3pp="27.75" data-t3pct="26.1" data-ptspp="81.0" data-t2pp="43.2" data-tlpp="25.2" data-efg="46.3" data-ts="49.3" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="489.4" cy="147.1" r="5.5" fill="#dc2626" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="JOVENTUT BADALONA A" data-liga="España · FEB" data-t3pp="32.00" data-t3pct="31.2" data-ptspp="84.5" data-t2pp="44.0" data-tlpp="26.5" data-efg="46.7" data-ts="48.2" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="414.4" cy="247.8" r="5.5" fill="#dc2626" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="BALIDEA OBRADOIRO" data-liga="España · FEB" data-t3pp="28.00" data-t3pct="21.4" data-ptspp="72.0" data-t2pp="47.0" data-tlpp="21.0" data-efg="38.7" data-ts="42.7" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="639.5" cy="185.1" r="5.5" fill="#dc2626" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="TIFÓN MUEBLES NOVOBASKET" data-liga="España · FEB" data-t3pp="40.00" data-t3pct="27.5" data-ptspp="67.0" data-t2pp="36.0" data-tlpp="9.0" data-efg="41.4" data-ts="41.9" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="419.1" cy="76.3" r="5.5" fill="#dc2626" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="REAL MADRID ´A´" data-liga="España · FEB" data-t3pp="28.25" data-t3pct="38.1" data-ptspp="102.5" data-t2pp="51.2" data-tlpp="16.5" data-efg="57.1" data-ts="59.1" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="320.6" cy="155.3" r="5.5" fill="#dc2626" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="MOVISTAR ESTUDIANTES &quot;A&quot;" data-liga="España · FEB" data-t3pp="23.00" data-t3pct="30.4" data-ptspp="70.0" data-t2pp="41.0" data-tlpp="18.0" data-efg="46.9" data-ts="48.7" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="189.3" cy="147.1" r="5.5" fill="#dc2626" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="CYD-LEONESA - COL. LEONÉS A" data-liga="España · FEB" data-t3pp="16.00" data-t3pct="31.2" data-ptspp="63.0" data-t2pp="56.0" data-tlpp="15.0" data-efg="36.8" data-ts="40.1" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="330.0" cy="292.9" r="5.5" fill="#dc2626" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="ZENTRO BASKET MADRID" data-liga="España · FEB" data-t3pp="23.50" data-t3pct="17.0" data-ptspp="76.0" data-t2pp="54.0" data-tlpp="16.5" data-efg="42.6" data-ts="44.8" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="170.5" cy="170.7" r="5.5" fill="#dc2626" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="GRAN CANARIA" data-liga="España · FEB" data-t3pp="15.00" data-t3pct="28.9" data-ptspp="74.7" data-t2pp="56.0" data-tlpp="21.3" data-efg="44.4" data-ts="46.4" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="301.8" cy="280.6" r="5.5" fill="#dc2626" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="BÀSQUET GIRONA U16" data-liga="España · FEB" data-t3pp="22.00" data-t3pct="18.2" data-ptspp="56.0" data-t2pp="44.0" data-tlpp="10.0" data-efg="37.9" data-ts="39.8" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="714.5" cy="210.8" r="5.5" fill="#dc2626" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="UNICAJA" data-liga="España · FEB" data-t3pp="44.00" data-t3pct="25.0" data-ptspp="68.0" data-t2pp="39.0" data-tlpp="13.0" data-efg="36.7" data-ts="38.3" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="386.2" cy="253.9" r="5.5" fill="#dc2626" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="CASADEMONT ZARAGOZA A" data-liga="España · FEB" data-t3pp="26.50" data-t3pct="20.8" data-ptspp="91.5" data-t2pp="51.5" data-tlpp="25.5" data-efg="47.8" data-ts="51.3" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="451.9" cy="125.6" r="5.5" fill="#dc2626" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="MEFIEX SAGRADO CÁCERES" data-liga="España · FEB" data-t3pp="30.00" data-t3pct="33.3" data-ptspp="93.0" data-t2pp="47.0" data-tlpp="15.0" data-efg="54.5" data-ts="55.6" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="208.1" cy="406.9" r="5.5" fill="#dc2626" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="UCAM MURCIA CB &quot;A&quot;" data-liga="España · FEB" data-t3pp="17.00" data-t3pct="5.9" data-ptspp="82.0" data-t2pp="55.0" data-tlpp="29.0" data-efg="45.1" data-ts="48.4" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="433.1" cy="243.6" r="5.5" fill="#dc2626" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="VALENCIA BASKET" data-liga="España · FEB" data-t3pp="29.00" data-t3pct="21.8" data-ptspp="85.0" data-t2pp="44.0" data-tlpp="25.7" data-efg="46.3" data-ts="50.4" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="695.7" cy="228.2" r="5.5" fill="#dc2626" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="INSOLAC CB ALCALÁ CAJA87 2010" data-liga="España · FEB" data-t3pp="43.00" data-t3pct="23.3" data-ptspp="58.0" data-t2pp="28.0" data-tlpp="6.0" data-efg="38.0" data-ts="39.4" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="176.7" cy="222.1" r="5.5" fill="#2563eb" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="ALBA BERLIN" data-liga="Alemania · JBBL" data-t3pp="15.33" data-t3pct="23.9" data-ptspp="79.0" data-t2pp="51.3" data-tlpp="26.3" data-efg="47.2" data-ts="50.5" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="301.8" cy="304.2" r="5.5" fill="#2563eb" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="BG Zehlendorf" data-liga="Alemania · JBBL" data-t3pp="22.00" data-t3pct="15.9" data-ptspp="68.0" data-t2pp="41.0" data-tlpp="17.5" data-efg="48.0" data-ts="48.1" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="311.2" cy="262.1" r="5.5" fill="#2563eb" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="Baskets Juniors Oldenburg" data-liga="Alemania · JBBL" data-t3pp="22.50" data-t3pct="20.0" data-ptspp="80.5" data-t2pp="51.5" data-tlpp="24.0" data-efg="43.6" data-ts="47.6" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="339.4" cy="296.0" r="5.5" fill="#2563eb" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="Bramfelder SV" data-liga="Alemania · JBBL" data-t3pp="24.00" data-t3pct="16.7" data-ptspp="43.5" data-t2pp="38.0" data-tlpp="16.0" data-efg="30.6" data-ts="31.5" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="295.6" cy="151.2" r="5.5" fill="#2563eb" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="Eintracht Frankfurt / SKYLINERS" data-liga="Alemania · JBBL" data-t3pp="21.67" data-t3pct="30.8" data-ptspp="78.3" data-t2pp="47.3" data-tlpp="24.7" data-efg="46.4" data-ts="49.0" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="383.1" cy="207.7" r="5.5" fill="#2563eb" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="HAKRO Merlins Crailsheim" data-liga="Alemania · JBBL" data-t3pp="26.33" data-t3pct="25.3" data-ptspp="85.0" data-t2pp="47.3" data-tlpp="15.7" data-efg="50.7" data-ts="52.8" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="198.7" cy="249.8" r="5.5" fill="#2563eb" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="Hamburg Towers" data-liga="Alemania · JBBL" data-t3pp="16.50" data-t3pct="21.2" data-ptspp="108.0" data-t2pp="60.0" data-tlpp="30.5" data-efg="58.5" data-ts="60.1" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="308.0" cy="222.1" r="5.5" fill="#2563eb" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="KICKZ IBAM" data-liga="Alemania · JBBL" data-t3pp="22.33" data-t3pct="23.9" data-ptspp="77.3" data-t2pp="53.0" data-tlpp="21.7" data-efg="45.1" data-ts="45.6" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="583.2" cy="107.1" r="5.5" fill="#2563eb" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="Metropol YoungStars" data-liga="Alemania · JBBL" data-t3pp="37.00" data-t3pct="35.1" data-ptspp="86.0" data-t2pp="31.5" data-tlpp="21.5" data-efg="52.6" data-ts="55.2" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="358.1" cy="282.7" r="5.5" fill="#2563eb" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="Porsche BBA Ludwigsburg" data-liga="Alemania · JBBL" data-t3pp="25.00" data-t3pct="18.0" data-ptspp="69.5" data-t2pp="43.5" data-tlpp="21.5" data-efg="41.2" data-ts="44.6" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="351.9" cy="259.1" r="5.5" fill="#2563eb" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="RASTA Academy" data-liga="Alemania · JBBL" data-t3pp="24.67" data-t3pct="20.3" data-ptspp="78.0" data-t2pp="46.3" data-tlpp="26.3" data-efg="43.4" data-ts="47.2" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="358.1" cy="221.1" r="5.5" fill="#2563eb" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="SCIENCE CITY JENA" data-liga="Alemania · JBBL" data-t3pp="25.00" data-t3pct="24.0" data-ptspp="75.0" data-t2pp="45.0" data-tlpp="10.5" data-efg="49.3" data-ts="50.3" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="564.4" cy="182.0" r="5.5" fill="#2563eb" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="TS Jahn München" data-liga="Alemania · JBBL" data-t3pp="36.00" data-t3pct="27.8" data-ptspp="76.5" data-t2pp="29.0" data-tlpp="25.5" data-efg="46.9" data-ts="50.2" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="386.2" cy="176.9" r="5.5" fill="#2563eb" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="Team Baskets Bonn/Köln RAG" data-liga="Alemania · JBBL" data-t3pp="26.50" data-t3pct="28.3" data-ptspp="99.0" data-t2pp="51.0" data-tlpp="22.5" data-efg="53.9" data-ts="56.6" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="520.7" cy="111.2" r="5.5" fill="#2563eb" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="VR-Bank Würzburg Baskets Akademie" data-liga="Alemania · JBBL" data-t3pp="33.67" data-t3pct="34.7" data-ptspp="74.0" data-t2pp="27.0" data-tlpp="19.3" data-efg="49.7" data-ts="53.5" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="301.8" cy="210.8" r="5.5" fill="#2563eb" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="ratiopharm akademie Ulm" data-liga="Alemania · JBBL" data-t3pp="22.00" data-t3pct="25.0" data-ptspp="94.5" data-t2pp="57.5" data-tlpp="30.5" data-efg="48.1" data-ts="50.9" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="336.2" cy="180.0" r="5.5" fill="#7c3aed" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="KK As Basket" data-liga="Serbia · KSS" data-t3pp="23.83" data-t3pct="28.0" data-ptspp="75.5" data-t2pp="44.7" data-tlpp="28.7" data-efg="48.9" data-ts="46.5" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="305.0" cy="74.2" r="5.5" fill="#7c3aed" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="KK Banjica Mega" data-liga="Serbia · KSS" data-t3pp="22.17" data-t3pct="38.3" data-ptspp="105.7" data-t2pp="46.0" data-tlpp="40.5" data-efg="65.2" data-ts="61.4" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="405.0" cy="174.8" r="5.5" fill="#7c3aed" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="KK Crvena zvezda" data-liga="Serbia · KSS" data-t3pp="27.50" data-t3pct="28.5" data-ptspp="104.8" data-t2pp="55.7" data-tlpp="43.3" data-efg="56.0" data-ts="51.3" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="258.1" cy="294.0" r="5.5" fill="#7c3aed" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="KK Danubius" data-liga="Serbia · KSS" data-t3pp="19.67" data-t3pct="16.9" data-ptspp="75.3" data-t2pp="53.0" data-tlpp="30.3" data-efg="46.3" data-ts="43.8" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="276.9" cy="243.6" r="5.5" fill="#7c3aed" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="KK FMP" data-liga="Serbia · KSS" data-t3pp="20.67" data-t3pct="21.8" data-ptspp="75.7" data-t2pp="45.0" data-tlpp="30.2" data-efg="50.9" data-ts="47.9" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="211.2" cy="188.2" r="5.5" fill="#7c3aed" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="KK Feniks" data-liga="Serbia · KSS" data-t3pp="17.17" data-t3pct="27.2" data-ptspp="73.5" data-t2pp="51.0" data-tlpp="29.7" data-efg="46.9" data-ts="45.2" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="276.9" cy="268.3" r="5.5" fill="#7c3aed" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="KK Mladost" data-liga="Serbia · KSS" data-t3pp="20.67" data-t3pct="19.4" data-ptspp="61.7" data-t2pp="41.7" data-tlpp="32.0" data-efg="39.6" data-ts="40.4" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="164.4" cy="141.0" r="5.5" fill="#7c3aed" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="KK NS Basket 07" data-liga="Serbia · KSS" data-t3pp="14.67" data-t3pct="31.8" data-ptspp="69.0" data-t2pp="38.3" data-tlpp="26.0" data-efg="54.1" data-ts="53.5" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="314.4" cy="188.2" r="5.5" fill="#7c3aed" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="KK Partizan" data-liga="Serbia · KSS" data-t3pp="22.67" data-t3pct="27.2" data-ptspp="81.0" data-t2pp="43.7" data-tlpp="35.3" data-efg="51.9" data-ts="49.5" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="233.0" cy="150.2" r="5.5" fill="#7c3aed" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="KK Play off" data-liga="Serbia · KSS" data-t3pp="18.33" data-t3pct="30.9" data-ptspp="76.0" data-t2pp="43.7" data-tlpp="30.2" data-efg="52.2" data-ts="50.5" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="214.2" cy="131.7" r="5.5" fill="#7c3aed" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="KK Proleter-Naftagas" data-liga="Serbia · KSS" data-t3pp="17.33" data-t3pct="32.7" data-ptspp="77.0" data-t2pp="48.7" data-tlpp="31.0" data-efg="48.7" data-ts="48.3" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="192.5" cy="160.5" r="5.5" fill="#7c3aed" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="KK SPD Radnički d.o.o." data-liga="Serbia · KSS" data-t3pp="16.17" data-t3pct="29.9" data-ptspp="77.7" data-t2pp="45.0" data-tlpp="30.0" data-efg="53.5" data-ts="52.2" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="308.0" cy="69.1" r="5.5" fill="#7c3aed" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="KK Sloboda" data-liga="Serbia · KSS" data-t3pp="22.33" data-t3pct="38.8" data-ptspp="81.0" data-t2pp="39.3" data-tlpp="30.7" data-efg="57.3" data-ts="53.9" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="289.3" cy="227.2" r="5.5" fill="#7c3aed" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="KK Trijumf" data-liga="Serbia · KSS" data-t3pp="21.33" data-t3pct="23.4" data-ptspp="63.0" data-t2pp="48.0" data-tlpp="30.0" data-efg="40.1" data-ts="38.2" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="345.5" cy="186.1" r="5.5" fill="#7c3aed" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="KK Valjevski" data-liga="Serbia · KSS" data-t3pp="24.33" data-t3pct="27.4" data-ptspp="77.3" data-t2pp="34.0" data-tlpp="43.0" data-efg="45.7" data-ts="50.1" data-aprox="0" data-ctx=""/>
+<circle class="scatter-dot" cx="201.9" cy="241.6" r="5.5" fill="#7c3aed" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="OKK Junior" data-liga="Serbia · KSS" data-t3pp="16.67" data-t3pct="22.0" data-ptspp="62.0" data-t2pp="43.0" data-tlpp="27.3" data-efg="45.5" data-ts="43.2" data-aprox="0" data-ctx=""/>
+<polygon class="scatter-dot" points="226.8,235.4 232.4,241.9 226.8,248.4 221.2,241.9" fill="none" stroke="#ca8a04" stroke-width="2" stroke-dasharray="4,3" data-team="3 DE FEBRERO" data-liga="Argentina · FeBAMBA (ref.)" data-t3pp="18.00" data-t3pct="22.0" data-ptspp="0.0" data-t2pp="0.0" data-tlpp="0.0" data-efg="0.0" data-ts="0.0" data-aprox="1" data-ctx="3PA aprox. · 3P% = media agregada FeBAMBA"/>
+<polygon class="scatter-dot" points="170.5,235.4 176.1,241.9 170.5,248.4 164.9,241.9" fill="none" stroke="#ca8a04" stroke-width="2" stroke-dasharray="4,3" data-team="BOCA" data-liga="Argentina · FeBAMBA (ref.)" data-t3pp="15.00" data-t3pct="22.0" data-ptspp="0.0" data-t2pp="0.0" data-tlpp="0.0" data-efg="0.0" data-ts="0.0" data-aprox="1" data-ctx="3PA aprox. · 3P% = media agregada FeBAMBA"/>
+<polygon class="scatter-dot" points="151.8,235.4 157.4,241.9 151.8,248.4 146.2,241.9" fill="none" stroke="#ca8a04" stroke-width="2" stroke-dasharray="4,3" data-team="DERQUI" data-liga="Argentina · FeBAMBA (ref.)" data-t3pp="14.00" data-t3pct="22.0" data-ptspp="0.0" data-t2pp="0.0" data-tlpp="0.0" data-efg="0.0" data-ts="0.0" data-aprox="1" data-ctx="3PA aprox. · 3P% = media agregada FeBAMBA"/>
+<polygon class="scatter-dot" points="95.5,235.4 101.1,241.9 95.5,248.4 89.9,241.9" fill="none" stroke="#ca8a04" stroke-width="2" stroke-dasharray="4,3" data-team="FERRO" data-liga="Argentina · FeBAMBA (ref.)" data-t3pp="11.00" data-t3pct="22.0" data-ptspp="0.0" data-t2pp="0.0" data-tlpp="0.0" data-efg="0.0" data-ts="0.0" data-aprox="1" data-ctx="3PA aprox. · 3P% = media agregada FeBAMBA"/>
+<polygon class="scatter-dot" points="151.8,235.4 157.4,241.9 151.8,248.4 146.2,241.9" fill="none" stroke="#ca8a04" stroke-width="2" stroke-dasharray="4,3" data-team="GEVP" data-liga="Argentina · FeBAMBA (ref.)" data-t3pp="14.00" data-t3pct="22.0" data-ptspp="0.0" data-t2pp="0.0" data-tlpp="0.0" data-efg="0.0" data-ts="0.0" data-aprox="1" data-ctx="3PA aprox. · 3P% = media agregada FeBAMBA"/>
+<polygon class="scatter-dot" points="189.3,235.4 194.9,241.9 189.3,248.4 183.7,241.9" fill="none" stroke="#ca8a04" stroke-width="2" stroke-dasharray="4,3" data-team="MORON" data-liga="Argentina · FeBAMBA (ref.)" data-t3pp="16.00" data-t3pct="22.0" data-ptspp="0.0" data-t2pp="0.0" data-tlpp="0.0" data-efg="0.0" data-ts="0.0" data-aprox="1" data-ctx="3PA aprox. · 3P% = media agregada FeBAMBA"/>
+<polygon class="scatter-dot" points="170.5,235.4 176.1,241.9 170.5,248.4 164.9,241.9" fill="none" stroke="#ca8a04" stroke-width="2" stroke-dasharray="4,3" data-team="PORTENO" data-liga="Argentina · FeBAMBA (ref.)" data-t3pp="15.00" data-t3pct="22.0" data-ptspp="0.0" data-t2pp="0.0" data-tlpp="0.0" data-efg="0.0" data-ts="0.0" data-aprox="1" data-ctx="3PA aprox. · 3P% = media agregada FeBAMBA"/>
+<polygon class="scatter-dot" points="114.3,235.4 119.9,241.9 114.3,248.4 108.7,241.9" fill="none" stroke="#ca8a04" stroke-width="2" stroke-dasharray="4,3" data-team="SARMIENTO" data-liga="Argentina · FeBAMBA (ref.)" data-t3pp="12.00" data-t3pct="22.0" data-ptspp="0.0" data-t2pp="0.0" data-tlpp="0.0" data-efg="0.0" data-ts="0.0" data-aprox="1" data-ctx="3PA aprox. · 3P% = media agregada FeBAMBA"/>
+<polygon class="scatter-dot" points="133.0,235.4 138.6,241.9 133.0,248.4 127.4,241.9" fill="none" stroke="#ca8a04" stroke-width="2" stroke-dasharray="4,3" data-team="WILDE" data-liga="Argentina · FeBAMBA (ref.)" data-t3pp="13.00" data-t3pct="22.0" data-ptspp="0.0" data-t2pp="0.0" data-tlpp="0.0" data-efg="0.0" data-ts="0.0" data-aprox="1" data-ctx="3PA aprox. · 3P% = media agregada FeBAMBA"/>
+<polygon class="scatter-dot" points="395.6,202.2 401.2,208.7 395.6,215.2 390.0,208.7" fill="none" stroke="#ea580c" stroke-width="2" stroke-dasharray="4,3" data-team="3 DE FEBRERO" data-liga="Argentina · LFF interior (ref.)" data-t3pp="27.00" data-t3pct="25.2" data-ptspp="0.0" data-t2pp="0.0" data-tlpp="0.0" data-efg="0.0" data-ts="0.0" data-aprox="1" data-ctx="3PA aprox. · 3P% = media agregada LFF interior"/>
+<polygon class="scatter-dot" points="470.6,179.4 476.2,185.9 470.6,192.4 465.0,185.9" fill="none" stroke="#ea580c" stroke-width="2" stroke-dasharray="4,3" data-team="BAHIENSE" data-liga="Argentina · LFF interior (ref.)" data-t3pp="31.00" data-t3pct="27.4" data-ptspp="0.0" data-t2pp="0.0" data-tlpp="0.0" data-efg="0.0" data-ts="0.0" data-aprox="1" data-ctx="3PA/3PM aprox. — lectura visual del gráfico"/>
+<polygon class="scatter-dot" points="301.8,202.2 307.4,208.7 301.8,215.2 296.2,208.7" fill="none" stroke="#ea580c" stroke-width="2" stroke-dasharray="4,3" data-team="BOCA" data-liga="Argentina · LFF interior (ref.)" data-t3pp="22.00" data-t3pct="25.2" data-ptspp="0.0" data-t2pp="0.0" data-tlpp="0.0" data-efg="0.0" data-ts="0.0" data-aprox="1" data-ctx="3PA aprox. · 3P% = media agregada LFF interior"/>
+<circle class="scatter-dot" cx="355.7" cy="221.1" r="5.5" fill="#ea580c" fill-opacity="0.78" stroke="#fff" stroke-width="1" data-team="COMUNICACIONES" data-liga="Argentina · LFF interior (ref.)" data-t3pp="24.87" data-t3pct="24.0" data-ptspp="0.0" data-t2pp="0.0" data-tlpp="0.0" data-efg="0.0" data-ts="0.0" data-aprox="0" data-ctx="Comunicaciones — dato textual del documento"/>
+<polygon class="scatter-dot" points="470.6,202.2 476.2,208.7 470.6,215.2 465.0,208.7" fill="none" stroke="#ea580c" stroke-width="2" stroke-dasharray="4,3" data-team="DERQUI" data-liga="Argentina · LFF interior (ref.)" data-t3pp="31.00" data-t3pct="25.2" data-ptspp="0.0" data-t2pp="0.0" data-tlpp="0.0" data-efg="0.0" data-ts="0.0" data-aprox="1" data-ctx="3PA aprox. · 3P% = media agregada LFF interior"/>
+<polygon class="scatter-dot" points="114.3,202.2 119.9,208.7 114.3,215.2 108.7,208.7" fill="none" stroke="#ea580c" stroke-width="2" stroke-dasharray="4,3" data-team="FERRO" data-liga="Argentina · LFF interior (ref.)" data-t3pp="12.00" data-t3pct="25.2" data-ptspp="0.0" data-t2pp="0.0" data-tlpp="0.0" data-efg="0.0" data-ts="0.0" data-aprox="1" data-ctx="3PA aprox. · 3P% = media agregada LFF interior"/>
+<polygon class="scatter-dot" points="264.3,202.2 269.9,208.7 264.3,215.2 258.7,208.7" fill="none" stroke="#ea580c" stroke-width="2" stroke-dasharray="4,3" data-team="GEVP" data-liga="Argentina · LFF interior (ref.)" data-t3pp="20.00" data-t3pct="25.2" data-ptspp="0.0" data-t2pp="0.0" data-tlpp="0.0" data-efg="0.0" data-ts="0.0" data-aprox="1" data-ctx="3PA aprox. · 3P% = media agregada LFF interior"/>
+<polygon class="scatter-dot" points="339.4,202.2 345.0,208.7 339.4,215.2 333.8,208.7" fill="none" stroke="#ea580c" stroke-width="2" stroke-dasharray="4,3" data-team="MORON" data-liga="Argentina · LFF interior (ref.)" data-t3pp="24.00" data-t3pct="25.2" data-ptspp="0.0" data-t2pp="0.0" data-tlpp="0.0" data-efg="0.0" data-ts="0.0" data-aprox="1" data-ctx="3PA aprox. · 3P% = media agregada LFF interior"/>
+<polygon class="scatter-dot" points="301.8,202.2 307.4,208.7 301.8,215.2 296.2,208.7" fill="none" stroke="#ea580c" stroke-width="2" stroke-dasharray="4,3" data-team="PORTENO" data-liga="Argentina · LFF interior (ref.)" data-t3pp="22.00" data-t3pct="25.2" data-ptspp="0.0" data-t2pp="0.0" data-tlpp="0.0" data-efg="0.0" data-ts="0.0" data-aprox="1" data-ctx="3PA aprox. · 3P% = media agregada LFF interior"/>
+<polygon class="scatter-dot" points="395.6,194.8 401.2,201.3 395.6,207.8 390.0,201.3" fill="none" stroke="#ea580c" stroke-width="2" stroke-dasharray="4,3" data-team="SARMIENTO" data-liga="Argentina · LFF interior (ref.)" data-t3pp="27.00" data-t3pct="25.9" data-ptspp="0.0" data-t2pp="0.0" data-tlpp="0.0" data-efg="0.0" data-ts="0.0" data-aprox="1" data-ctx="3PA/3PM aprox. — lectura visual del gráfico"/>
+<polygon class="scatter-dot" points="123.6,202.2 129.2,208.7 123.6,215.2 118.0,208.7" fill="none" stroke="#ea580c" stroke-width="2" stroke-dasharray="4,3" data-team="WILDE" data-liga="Argentina · LFF interior (ref.)" data-t3pp="12.50" data-t3pct="25.2" data-ptspp="0.0" data-t2pp="0.0" data-tlpp="0.0" data-efg="0.0" data-ts="0.0" data-aprox="1" data-ctx="3PA aprox. · 3P% = media agregada LFF interior"/>
+<text x="405.0" y="486" text-anchor="middle" fill="#334155" font-size="13" font-weight="600" font-family="Segoe UI, sans-serif">3PA / partido</text>
+<text x="16" y="238.0" text-anchor="middle" fill="#334155" font-size="13" font-weight="600" font-family="Segoe UI, sans-serif" transform="rotate(-90 16 238.0)">3P%</text>
+<text x="58.0" y="466" text-anchor="middle" fill="#64748b" font-size="11" font-family="Segoe UI, sans-serif">9</text>
+<text x="231.5" y="466" text-anchor="middle" fill="#64748b" font-size="11" font-family="Segoe UI, sans-serif">18</text>
+<text x="405.0" y="466" text-anchor="middle" fill="#64748b" font-size="11" font-family="Segoe UI, sans-serif">28</text>
+<text x="578.5" y="466" text-anchor="middle" fill="#64748b" font-size="11" font-family="Segoe UI, sans-serif">37</text>
+<text x="752.0" y="466" text-anchor="middle" fill="#64748b" font-size="11" font-family="Segoe UI, sans-serif">46</text>
+<text x="50" y="452.0" text-anchor="end" fill="#64748b" font-size="11" font-family="Segoe UI, sans-serif">2%</text>
+<text x="50" y="347.0" text-anchor="end" fill="#64748b" font-size="11" font-family="Segoe UI, sans-serif">12%</text>
+<text x="50" y="242.0" text-anchor="end" fill="#64748b" font-size="11" font-family="Segoe UI, sans-serif">22%</text>
+<text x="50" y="137.0" text-anchor="end" fill="#64748b" font-size="11" font-family="Segoe UI, sans-serif">33%</text>
+<text x="50" y="32.0" text-anchor="end" fill="#64748b" font-size="11" font-family="Segoe UI, sans-serif">43%</text>
+<text x="760" y="36" fill="#334155" font-size="12" font-weight="700" font-family="Segoe UI, sans-serif">Referencia global</text>
+<line x1="760" y1="48" x2="788" y2="48" stroke="#64748b" stroke-width="1.5" stroke-dasharray="7,5"/>
+<text x="794" y="52" fill="#64748b" font-size="10" font-family="Segoe UI, sans-serif">23.0 3PA · 25.1%</text>
+<text x="760" y="74" fill="#334155" font-size="12" font-weight="700" font-family="Segoe UI, sans-serif">Ligas</text>
+<circle cx="766" cy="88" r="5" fill="#059669"/>
+<text x="778" y="92" fill="#334155" font-size="11" font-family="Segoe UI, sans-serif">CBI</text>
+<circle cx="766" cy="110" r="5" fill="#dc2626"/>
+<text x="778" y="114" fill="#334155" font-size="11" font-family="Segoe UI, sans-serif">FEB</text>
+<circle cx="766" cy="132" r="5" fill="#2563eb"/>
+<text x="778" y="136" fill="#334155" font-size="11" font-family="Segoe UI, sans-serif">JBBL</text>
+<circle cx="766" cy="154" r="5" fill="#7c3aed"/>
+<text x="778" y="158" fill="#334155" font-size="11" font-family="Segoe UI, sans-serif">KSS</text>
+<circle cx="766" cy="176" r="5" fill="#ca8a04"/>
+<text x="778" y="180" fill="#334155" font-size="11" font-family="Segoe UI, sans-serif">FeBAMBA</text>
+<circle cx="766" cy="198" r="5" fill="#ea580c"/>
+<text x="778" y="202" fill="#334155" font-size="11" font-family="Segoe UI, sans-serif">LFF interior</text>
+<polygon points="766,223.0 771.0,228.0 766,233.0 761.0,228.0" fill="none" stroke="#64748b" stroke-width="1.5" stroke-dasharray="4,3"/>
+<text x="778" y="232" fill="#64748b" font-size="10" font-family="Segoe UI, sans-serif">Aprox. ENEBA 2024</text>
+</svg>
+  <div class="scatter-tooltip" aria-hidden="true"></div>
+</div>
+<script>
+(function () {
+  const chart = document.getElementById("scatter-3p");
+  if (!chart) return;
+  const tip = chart.querySelector(".scatter-tooltip");
+  function showTip(dot, e) {
+    const liga = dot.dataset.liga.split(" · ").pop();
+    let extra = "";
+    if (dot.dataset.aprox === "1") extra = "<br><em>Aprox.</em>";
+    if (dot.dataset.ctx) extra += "<br><span class=\"muted\">" + dot.dataset.ctx + "</span>";
+    tip.innerHTML =
+      "<strong>" + dot.dataset.team + "</strong><br>" +
+      "<span class=\"muted\">" + liga + "</span><br>" +
+      dot.dataset.t3pp + " 3PA · " + dot.dataset.t3pct + "% 3P" + extra + "<br>" +
+      dot.dataset.ptspp + " pts · " + dot.dataset.t2pp + " 2PA · " + dot.dataset.tlpp + " TLA<br>" +
+      "eFG " + dot.dataset.efg + "% · TS " + dot.dataset.ts + "%";
+    tip.style.opacity = "1";
+    moveTip(e);
+  }
+  function moveTip(e) {
+    tip.style.left = (e.clientX + 14) + "px";
+    tip.style.top = (e.clientY - 10) + "px";
+  }
+  function hideTip() { tip.style.opacity = "0"; }
+  chart.querySelectorAll(".scatter-dot").forEach(function (dot) {
+    dot.addEventListener("mouseenter", function (e) { showTip(dot, e); });
+    dot.addEventListener("mousemove", moveTip);
+    dot.addEventListener("mouseleave", hideTip);
+  });
+})();
+</script></div>
+    </section>
+
+    <section>
+      <h2>Tabla comparativa de métricas</h2>
+      <p class="caption">
+        Promedio simple entre los equipos de cada liga. La celda resaltada señala el mejor valor de cada fila.
+        Las referencias argentinas de 2024 solo aportan datos de triple, por lo que el resto de métricas figura como «—».
+      </p>
+      
+    <table class="compare">
+      <thead><tr><th>Métrica</th><th>Brasil · CBI<br><span class="sub">U15 Masculino · 2025</span></th><th>España · FEB<br><span class="sub">U16 Cadete Masculino · 2025/26</span></th><th>Alemania · JBBL<br><span class="sub">U16 Masculino · 2025/26</span></th><th>Serbia · KSS<br><span class="sub">U15 Pioniri Masculino · 2025/26</span></th><th>Argentina · FeBAMBA<br><span class="sub">U15 (referencia 2024) · 2024</span></th><th>Argentina · LFF interior<br><span class="sub">U15 (referencia 2024) · 2024</span></th></tr></thead>
+      <tbody><tr><td><strong>Puntos</strong><br><span class="unit">pts/partido</span></td><td>66.4</td><td>76.5</td><td class="best">79.5</td><td>77.3</td><td class="na">—</td><td class="na">—</td></tr><tr><td><strong>Tiros de 2</strong><br><span class="unit">2PA/partido</span></td><td>43.6</td><td class="best">46.1</td><td>45.0</td><td>45.0</td><td class="na">—</td><td class="na">—</td></tr><tr><td><strong>Triples</strong><br><span class="unit">3PA/partido</span></td><td>23.5</td><td class="best">27.8</td><td>25.0</td><td>20.3</td><td>16.2</td><td>23.5</td></tr><tr><td><strong>Tiros libres</strong><br><span class="unit">TLA/partido</span></td><td>20.0</td><td>18.3</td><td>22.1</td><td class="best">32.4</td><td class="na">—</td><td class="na">—</td></tr><tr><td><strong>2P%</strong><br><span class="unit">%</span></td><td>42.8</td><td>47.6</td><td>52.2</td><td class="best">54.0</td><td class="na">—</td><td class="na">—</td></tr><tr><td><strong>3P%</strong><br><span class="unit">%</span></td><td>24.8</td><td>25.0</td><td>24.4</td><td class="best">27.8</td><td>22.0</td><td>25.2</td></tr><tr><td><strong>TL%</strong><br><span class="unit">%</span></td><td>56.8</td><td class="best">60.3</td><td>58.5</td><td>35.3</td><td class="na">—</td><td class="na">—</td></tr><tr><td><strong>FG%</strong><br><span class="unit">%</span></td><td>36.4</td><td>39.4</td><td>42.6</td><td class="best">45.8</td><td class="na">—</td><td class="na">—</td></tr><tr><td><strong>eFG%</strong><br><span class="unit">%</span></td><td>40.7</td><td>44.2</td><td>47.2</td><td class="best">50.2</td><td class="na">—</td><td class="na">—</td></tr><tr><td><strong>TS%</strong><br><span class="unit">%</span></td><td>43.6</td><td>46.5</td><td class="best">49.6</td><td>48.5</td><td class="na">—</td><td class="na">—</td></tr></tbody>
+    </table>
+    
+      <div class="note">
+        <strong>Nota metodológica.</strong> Brasil, Serbia y Argentina compiten en U15; España y Alemania en U16.
+        En todas las ligas comparamos los <strong>16 equipos finalistas</strong> de su torneo. Debido a la pérdida
+        de acceso a la base de datos de GES Argentina, se tomaron datos de 2024 de un trabajo tesis ENEBA que
+        buscaba comparar cómo variaba la reglamentación entre FeBAMBA y la LFF del interior, realizado por Tomás Curi.
+      </div>
+      
+    </section>
+
+    
+    <section>
+      <h2>Argentina — referencia 2024 (ENEBA)</h2>
+      <p class="caption">
+        Datos de 2024 tomados del trabajo tesis ENEBA de Tomás Curi, que comparaba la reglamentación
+        de FeBAMBA y la LFF del interior. Los rombos punteados en el gráfico de dispersión son estos equipos.
+      </p>
+      <div class="stats" style="grid-template-columns: repeat(2, 1fr);">
+        <div class="stat" style="--accent:#ca8a04">
+          <div class="n">16.2</div>
+          <div class="l">FeBAMBA · 3PA/partido (media agregada)</div>
+          <div class="s">3.55 3PM/pp · 22.0% 3P</div>
+        </div>
+        <div class="stat" style="--accent:#ea580c">
+          <div class="n">23.5</div>
+          <div class="l">LFF interior · 3PA/partido (media agregada)</div>
+          <div class="s">5.92 3PM/pp · 25.2% 3P</div>
+        </div>
+      </div>
+      <h3 style="font-size:15px;margin:20px 0 8px;">Doble competencia — 3PA por partido</h3>
+      <p class="caption">Barras por equipo: LFF interior (naranja) vs FeBAMBA (dorado).</p>
+      <svg viewBox="0 0 920 596" width="100%" role="img" aria-label="Doble competencia 3PA">
+<text x="0" y="25.5" fill="#334155" font-size="11" font-weight="600" font-family="Segoe UI, sans-serif">3 DE FEBRERO</text>
+<rect x="140" y="12" width="635" height="18" rx="2" fill="#ea580c"/>
+<text x="779" y="25.5" fill="#9a3412" font-size="10" font-family="Segoe UI, sans-serif">27.0</text>
+<rect x="140" y="32" width="423" height="18" rx="2" fill="#ca8a04"/>
+<text x="567" y="45.5" fill="#854d0e" font-size="10" font-family="Segoe UI, sans-serif">18.0</text>
+<text x="0" y="73.5" fill="#334155" font-size="11" font-weight="600" font-family="Segoe UI, sans-serif">BAHIENSE</text>
+<rect x="140" y="60" width="730" height="18" rx="2" fill="#ea580c"/>
+<text x="874" y="73.5" fill="#9a3412" font-size="10" font-family="Segoe UI, sans-serif">31.0</text>
+<text x="0" y="121.5" fill="#334155" font-size="11" font-weight="600" font-family="Segoe UI, sans-serif">BOCA</text>
+<rect x="140" y="108" width="518" height="18" rx="2" fill="#ea580c"/>
+<text x="662" y="121.5" fill="#9a3412" font-size="10" font-family="Segoe UI, sans-serif">22.0</text>
+<rect x="140" y="128" width="353" height="18" rx="2" fill="#ca8a04"/>
+<text x="497" y="141.5" fill="#854d0e" font-size="10" font-family="Segoe UI, sans-serif">15.0</text>
+<text x="0" y="169.5" fill="#334155" font-size="11" font-weight="600" font-family="Segoe UI, sans-serif">COMUNICACIONES</text>
+<rect x="140" y="156" width="585" height="18" rx="2" fill="#ea580c"/>
+<text x="729" y="169.5" fill="#9a3412" font-size="10" font-family="Segoe UI, sans-serif">24.9</text>
+<text x="0" y="217.5" fill="#334155" font-size="11" font-weight="600" font-family="Segoe UI, sans-serif">DERQUI</text>
+<rect x="140" y="204" width="730" height="18" rx="2" fill="#ea580c"/>
+<text x="874" y="217.5" fill="#9a3412" font-size="10" font-family="Segoe UI, sans-serif">31.0</text>
+<rect x="140" y="224" width="329" height="18" rx="2" fill="#ca8a04"/>
+<text x="473" y="237.5" fill="#854d0e" font-size="10" font-family="Segoe UI, sans-serif">14.0</text>
+<text x="0" y="265.5" fill="#334155" font-size="11" font-weight="600" font-family="Segoe UI, sans-serif">FERRO</text>
+<rect x="140" y="252" width="282" height="18" rx="2" fill="#ea580c"/>
+<text x="426" y="265.5" fill="#9a3412" font-size="10" font-family="Segoe UI, sans-serif">12.0</text>
+<rect x="140" y="272" width="259" height="18" rx="2" fill="#ca8a04"/>
+<text x="403" y="285.5" fill="#854d0e" font-size="10" font-family="Segoe UI, sans-serif">11.0</text>
+<text x="0" y="313.5" fill="#334155" font-size="11" font-weight="600" font-family="Segoe UI, sans-serif">GEVP</text>
+<rect x="140" y="300" width="470" height="18" rx="2" fill="#ea580c"/>
+<text x="614" y="313.5" fill="#9a3412" font-size="10" font-family="Segoe UI, sans-serif">20.0</text>
+<rect x="140" y="320" width="329" height="18" rx="2" fill="#ca8a04"/>
+<text x="473" y="333.5" fill="#854d0e" font-size="10" font-family="Segoe UI, sans-serif">14.0</text>
+<text x="0" y="361.5" fill="#334155" font-size="11" font-weight="600" font-family="Segoe UI, sans-serif">MORON</text>
+<rect x="140" y="348" width="565" height="18" rx="2" fill="#ea580c"/>
+<text x="709" y="361.5" fill="#9a3412" font-size="10" font-family="Segoe UI, sans-serif">24.0</text>
+<rect x="140" y="368" width="376" height="18" rx="2" fill="#ca8a04"/>
+<text x="520" y="381.5" fill="#854d0e" font-size="10" font-family="Segoe UI, sans-serif">16.0</text>
+<text x="0" y="409.5" fill="#334155" font-size="11" font-weight="600" font-family="Segoe UI, sans-serif">PORTENO</text>
+<rect x="140" y="396" width="518" height="18" rx="2" fill="#ea580c"/>
+<text x="662" y="409.5" fill="#9a3412" font-size="10" font-family="Segoe UI, sans-serif">22.0</text>
+<rect x="140" y="416" width="353" height="18" rx="2" fill="#ca8a04"/>
+<text x="497" y="429.5" fill="#854d0e" font-size="10" font-family="Segoe UI, sans-serif">15.0</text>
+<text x="0" y="457.5" fill="#334155" font-size="11" font-weight="600" font-family="Segoe UI, sans-serif">SARMIENTO</text>
+<rect x="140" y="444" width="635" height="18" rx="2" fill="#ea580c"/>
+<text x="779" y="457.5" fill="#9a3412" font-size="10" font-family="Segoe UI, sans-serif">27.0</text>
+<rect x="140" y="464" width="282" height="18" rx="2" fill="#ca8a04"/>
+<text x="426" y="477.5" fill="#854d0e" font-size="10" font-family="Segoe UI, sans-serif">12.0</text>
+<text x="0" y="505.5" fill="#334155" font-size="11" font-weight="600" font-family="Segoe UI, sans-serif">WILDE</text>
+<rect x="140" y="492" width="294" height="18" rx="2" fill="#ea580c"/>
+<text x="438" y="505.5" fill="#9a3412" font-size="10" font-family="Segoe UI, sans-serif">12.5</text>
+<rect x="140" y="512" width="306" height="18" rx="2" fill="#ca8a04"/>
+<text x="450" y="525.5" fill="#854d0e" font-size="10" font-family="Segoe UI, sans-serif">13.0</text>
+<rect x="140" y="578" width="12" height="8" fill="#ea580c"/>
+<text x="156" y="585" font-size="10" fill="#64748b">LFF interior (aprox.)</text>
+<rect x="290" y="578" width="12" height="8" fill="#ca8a04"/>
+<text x="306" y="585" font-size="10" fill="#64748b">FeBAMBA (aprox.)</text>
+</svg>
+    </section>
+    
+
+    
+    <section>
+      <h2>Reglamento defensivo por competición</h2>
+      <p class="caption">
+        El marco normativo condiciona cuánto espacio encuentra el lanzador exterior. Las competiciones
+        que prohíben la zona y limitan las ayudas tienden a generar más tiros abiertos de media distancia
+        y menos colapsos de la pintura; las que permiten zona y trampas premian el triple como respuesta
+        al cierre interior. La barra inferior de cada tarjeta indica cuán colectiva es la defensa permitida.
+      </p>
+      <div class="rules-grid">
+        <article class="rule-card" style="--accent:#dc2626">
+          <header class="rule-head">
+            <div>
+              <span class="rule-country">España</span>
+              <span class="rule-comp">FEB</span>
+            </div>
+            <span class="chip" style="background:#fee2e2;color:#b91c1c">Zonal permitida</span>
+          </header>
+          <p class="rule-summary">Defensa zonal totalmente permitida en torneos nacionales.</p>
+          <p class="rule-detail">Libre albedrío táctico: se admiten ayudas complejas, trampas 2 contra 1 y flotaciones profundas con colapso de la pintura.</p>
+          <div class="rule-scale" title="Defensa libre / zonal">
+            <div class="pips"><span class="pip" style="background:#dc2626"></span><span class="pip" style="background:#dc2626"></span><span class="pip" style="background:#dc2626"></span><span class="pip" style="background:#dc2626"></span></div>
+            <span class="rule-scale-label">Defensa libre / zonal</span>
+          </div>
+        </article>
+        <article class="rule-card" style="--accent:#2563eb">
+          <header class="rule-head">
+            <div>
+              <span class="rule-country">Alemania</span>
+              <span class="rule-comp">JBBL</span>
+            </div>
+            <span class="chip" style="background:#dcfce7;color:#15803d">Zonal prohibida</span>
+          </header>
+          <p class="rule-summary">Defensa zonal totalmente prohibida.</p>
+          <p class="rule-detail">Se permite la ayuda del lado débil y flotar, con una regla de permanencia en la pintura similar a los tres segundos defensivos de la NBA. Se puede doblar la marca.</p>
+          <div class="rule-scale" title="Ayuda colectiva acotada">
+            <div class="pips"><span class="pip" style="background:#d97706"></span><span class="pip" style="background:#d97706"></span><span class="pip" style="background:#d97706"></span><span class="pip" style="background:#e2e8f0"></span></div>
+            <span class="rule-scale-label">Ayuda colectiva acotada</span>
+          </div>
+        </article>
+        <article class="rule-card" style="--accent:#7c3aed">
+          <header class="rule-head">
+            <div>
+              <span class="rule-country">Serbia</span>
+              <span class="rule-comp">KSS</span>
+            </div>
+            <span class="chip" style="background:#dcfce7;color:#15803d">Zonal prohibida</span>
+          </header>
+          <p class="rule-summary">Defensa zonal totalmente prohibida.</p>
+          <p class="rule-detail">Se permite la ayuda del lado débil, pero obligando al intercambio de marcas tras la rotación.</p>
+          <div class="rule-scale" title="Ayuda con intercambio">
+            <div class="pips"><span class="pip" style="background:#65a30d"></span><span class="pip" style="background:#65a30d"></span><span class="pip" style="background:#e2e8f0"></span><span class="pip" style="background:#e2e8f0"></span></div>
+            <span class="rule-scale-label">Ayuda con intercambio</span>
+          </div>
+        </article>
+        <article class="rule-card" style="--accent:#059669">
+          <header class="rule-head">
+            <div>
+              <span class="rule-country">Brasil</span>
+              <span class="rule-comp">CBI</span>
+            </div>
+            <span class="chip" style="background:#fee2e2;color:#b91c1c">Zonal permitida</span>
+          </header>
+          <p class="rule-summary">Defensa libre.</p>
+          <p class="rule-detail">Se admite la defensa zonal y las ayudas sin restricciones reglamentarias.</p>
+          <div class="rule-scale" title="Defensa libre / zonal">
+            <div class="pips"><span class="pip" style="background:#dc2626"></span><span class="pip" style="background:#dc2626"></span><span class="pip" style="background:#dc2626"></span><span class="pip" style="background:#dc2626"></span></div>
+            <span class="rule-scale-label">Defensa libre / zonal</span>
+          </div>
+        </article>
+        <article class="rule-card" style="--accent:#0284c7">
+          <header class="rule-head">
+            <div>
+              <span class="rule-country">Argentina</span>
+              <span class="rule-comp">CAB</span>
+            </div>
+            <span class="chip" style="background:#fee2e2;color:#b91c1c">Zonal permitida</span>
+          </header>
+          <p class="rule-summary">Reglas FIBA sin modificaciones.</p>
+          <p class="rule-detail">Se aplica la normativa FIBA estándar, sin restricciones defensivas adicionales.</p>
+          <div class="rule-scale" title="Defensa libre / zonal">
+            <div class="pips"><span class="pip" style="background:#dc2626"></span><span class="pip" style="background:#dc2626"></span><span class="pip" style="background:#dc2626"></span><span class="pip" style="background:#dc2626"></span></div>
+            <span class="rule-scale-label">Defensa libre / zonal</span>
+          </div>
+        </article>
+        <article class="rule-card" style="--accent:#ca8a04">
+          <header class="rule-head">
+            <div>
+              <span class="rule-country">Argentina</span>
+              <span class="rule-comp">FeBAMBA</span>
+            </div>
+            <span class="chip" style="background:#dcfce7;color:#15803d">Zonal prohibida</span>
+          </header>
+          <p class="rule-summary">Zonal prohibida; defensa a un brazo de distancia del defendido.</p>
+          <p class="rule-detail">El defensor debe ubicarse siempre a un brazo de distancia de su marca y solo puede ayudar cuando el defensor de la pelota la pierde de forma definitiva.</p>
+          <div class="rule-scale" title="Individual estricta">
+            <div class="pips"><span class="pip" style="background:#15803d"></span><span class="pip" style="background:#e2e8f0"></span><span class="pip" style="background:#e2e8f0"></span><span class="pip" style="background:#e2e8f0"></span></div>
+            <span class="rule-scale-label">Individual estricta</span>
+          </div>
+        </article></div>
+    </section>
+    
+
+    
+    <section>
+      <h2>Volumen de entrenamiento del club tipo</h2>
+      <p class="caption">
+        La carga semanal de práctica ayuda a interpretar las diferencias de volumen y eficiencia: más
+        repeticiones técnicas y minutos de cancha se traducen en mayor capacidad para sostener un perfil
+        de tiro exigente. La barra estima la intensidad relativa del club tipo de cada competición.
+      </p>
+      <div class="train-list">
+        <div class="train-row">
+          <div class="train-label">
+            <span class="train-country">Serbia</span>
+            <span class="train-comp">KSS</span>
+          </div>
+          <div class="train-bar-wrap">
+            <div class="train-bar" style="width:100%;background:#15803d"></div>
+            <span class="train-tag" style="color:#15803d">Alta</span>
+          </div>
+          <p class="train-detail">Los clubes de mayor jerarquía sostienen doble turno de equipo los cinco días, con algún turno libre. Los equipos de menor grado mantienen el doble turno pero recortan uno o dos estímulos: conservan el entrenamiento de equipo y suman técnica individual opcional por la mañana o la tarde según el horario escolar.</p>
+        </div>
+        <div class="train-row">
+          <div class="train-label">
+            <span class="train-country">España</span>
+            <span class="train-comp">FEB</span>
+          </div>
+          <div class="train-bar-wrap">
+            <div class="train-bar" style="width:100%;background:#15803d"></div>
+            <span class="train-tag" style="color:#15803d">Alta</span>
+          </div>
+          <p class="train-detail">Los clubes de élite integran lo escolar con el entrenamiento, lo que habilita doble turno diario cuatro o cinco veces por semana.</p>
+        </div>
+        <div class="train-row">
+          <div class="train-label">
+            <span class="train-country">Alemania</span>
+            <span class="train-comp">JBBL</span>
+          </div>
+          <div class="train-bar-wrap">
+            <div class="train-bar" style="width:100%;background:#15803d"></div>
+            <span class="train-tag" style="color:#15803d">Alta</span>
+          </div>
+          <p class="train-detail">Al igual que España y Serbia, los planes de los equipos TOP integran escuela y entrenamiento, generando doble turno diario cuatro o cinco veces por semana.</p>
+        </div>
+        <div class="train-row">
+          <div class="train-label">
+            <span class="train-country">Argentina</span>
+            <span class="train-comp">CAB / FeBAMBA</span>
+          </div>
+          <div class="train-bar-wrap">
+            <div class="train-bar" style="width:33%;background:#ea580c"></div>
+            <span class="train-tag" style="color:#ea580c">Media-baja</span>
+          </div>
+          <p class="train-detail">Habitualmente se entrena tres veces por semana: 1.5 a 2 horas de cancha más una hora de físico. Los chicos suman trabajo extra en cancha por cuenta propia.</p>
+        </div>
+        <div class="train-row">
+          <div class="train-label">
+            <span class="train-country">Brasil</span>
+            <span class="train-comp">CBI</span>
+          </div>
+          <div class="train-bar-wrap">
+            <div class="train-bar" style="width:6%;background:#94a3b8"></div>
+            <span class="train-tag" style="color:#94a3b8">Sin dato</span>
+          </div>
+          <p class="train-detail">No se encontró información confiable sobre la carga de entrenamiento del club tipo.</p>
+        </div></div>
+    </section>
+    
+
+    <section>
+      <h2>Volumen de juego</h2>
+      <p class="caption">Intentos por partido, promediados entre los equipos de cada liga.</p>
+      <div class="grid-2">
+        <div><p class="caption">Puntos anotados</p><svg viewBox="0 0 640 136" width="100%" role="img">
+<text x="0" y="23.84" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">CBI</text>
+<rect x="108" y="8" width="397" height="22" rx="2" fill="#059669"/>
+<text x="511" y="23.84" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">66.4</text>
+<text x="0" y="53.84" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">FEB</text>
+<rect x="108" y="38" width="458" height="22" rx="2" fill="#dc2626"/>
+<text x="572" y="53.84" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">76.5</text>
+<text x="0" y="83.84" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">JBBL</text>
+<rect x="108" y="68" width="476" height="22" rx="2" fill="#2563eb"/>
+<text x="590" y="83.84" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">79.5</text>
+<text x="0" y="113.84" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">KSS</text>
+<rect x="108" y="98" width="462" height="22" rx="2" fill="#7c3aed"/>
+<text x="576" y="113.84" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">77.3</text>
+</svg></div>
+        <div><p class="caption">Tiros de 2 intentados</p><svg viewBox="0 0 640 136" width="100%" role="img">
+<text x="0" y="23.84" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">CBI</text>
+<rect x="108" y="8" width="450" height="22" rx="2" fill="#059669"/>
+<text x="564" y="23.84" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">43.6</text>
+<text x="0" y="53.84" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">FEB</text>
+<rect x="108" y="38" width="476" height="22" rx="2" fill="#dc2626"/>
+<text x="590" y="53.84" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">46.1</text>
+<text x="0" y="83.84" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">JBBL</text>
+<rect x="108" y="68" width="465" height="22" rx="2" fill="#2563eb"/>
+<text x="579" y="83.84" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">45.0</text>
+<text x="0" y="113.84" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">KSS</text>
+<rect x="108" y="98" width="465" height="22" rx="2" fill="#7c3aed"/>
+<text x="579" y="113.84" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">45.0</text>
+</svg></div>
+        <div><p class="caption">Triples intentados</p><svg viewBox="0 0 640 196" width="100%" role="img">
+<text x="0" y="23.84" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">CBI</text>
+<rect x="108" y="8" width="402" height="22" rx="2" fill="#059669"/>
+<text x="516" y="23.84" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">23.5</text>
+<text x="0" y="53.84" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">FEB</text>
+<rect x="108" y="38" width="476" height="22" rx="2" fill="#dc2626"/>
+<text x="590" y="53.84" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">27.8</text>
+<text x="0" y="83.84" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">JBBL</text>
+<rect x="108" y="68" width="428" height="22" rx="2" fill="#2563eb"/>
+<text x="542" y="83.84" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">25.0</text>
+<text x="0" y="113.84" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">KSS</text>
+<rect x="108" y="98" width="348" height="22" rx="2" fill="#7c3aed"/>
+<text x="462" y="113.84" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">20.3</text>
+<text x="0" y="143.84" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">FeBAMBA</text>
+<rect x="108" y="128" width="276" height="22" rx="2" fill="#ca8a04"/>
+<text x="390" y="143.84" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">16.2</text>
+<text x="0" y="173.84" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">LFF interior</text>
+<rect x="108" y="158" width="402" height="22" rx="2" fill="#ea580c"/>
+<text x="516" y="173.84" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">23.5</text>
+</svg></div>
+        <div><p class="caption">Tiros libres intentados</p><svg viewBox="0 0 640 136" width="100%" role="img">
+<text x="0" y="23.84" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">CBI</text>
+<rect x="108" y="8" width="293" height="22" rx="2" fill="#059669"/>
+<text x="407" y="23.84" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">20.0</text>
+<text x="0" y="53.84" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">FEB</text>
+<rect x="108" y="38" width="269" height="22" rx="2" fill="#dc2626"/>
+<text x="383" y="53.84" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">18.3</text>
+<text x="0" y="83.84" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">JBBL</text>
+<rect x="108" y="68" width="325" height="22" rx="2" fill="#2563eb"/>
+<text x="439" y="83.84" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">22.1</text>
+<text x="0" y="113.84" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">KSS</text>
+<rect x="108" y="98" width="476" height="22" rx="2" fill="#7c3aed"/>
+<text x="590" y="113.84" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">32.4</text>
+</svg></div>
+      </div>
+      <div class="insight">
+        España encabeza el volumen de triples (~28 3PA) por delante de Alemania (~25)
+        , Serbia (~20) y Brasil (~24) en la ventana analizada.
+      </div>
+    </section>
+
+    <section>
+      <h2>Eficiencia de tiro</h2>
+      <p class="caption">Porcentajes medios entre los equipos de cada liga.</p>
+      <div class="grid-2">
+        <div><p class="caption">3P%</p><svg viewBox="0 0 640 196" width="100%" role="img">
+<text x="0" y="23.84" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">CBI</text>
+<rect x="108" y="8" width="424" height="22" rx="2" fill="#059669"/>
+<text x="538" y="23.84" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">24.8</text>
+<text x="0" y="53.84" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">FEB</text>
+<rect x="108" y="38" width="428" height="22" rx="2" fill="#dc2626"/>
+<text x="542" y="53.84" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">25.0</text>
+<text x="0" y="83.84" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">JBBL</text>
+<rect x="108" y="68" width="418" height="22" rx="2" fill="#2563eb"/>
+<text x="532" y="83.84" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">24.4</text>
+<text x="0" y="113.84" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">KSS</text>
+<rect x="108" y="98" width="476" height="22" rx="2" fill="#7c3aed"/>
+<text x="590" y="113.84" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">27.8</text>
+<text x="0" y="143.84" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">FeBAMBA</text>
+<rect x="108" y="128" width="376" height="22" rx="2" fill="#ca8a04"/>
+<text x="490" y="143.84" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">22.0</text>
+<text x="0" y="173.84" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">LFF interior</text>
+<rect x="108" y="158" width="432" height="22" rx="2" fill="#ea580c"/>
+<text x="546" y="173.84" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">25.2</text>
+</svg></div>
+        <div><p class="caption">eFG%</p><svg viewBox="0 0 640 136" width="100%" role="img">
+<text x="0" y="23.84" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">CBI</text>
+<rect x="108" y="8" width="386" height="22" rx="2" fill="#059669"/>
+<text x="500" y="23.84" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">40.7</text>
+<text x="0" y="53.84" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">FEB</text>
+<rect x="108" y="38" width="419" height="22" rx="2" fill="#dc2626"/>
+<text x="533" y="53.84" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">44.2</text>
+<text x="0" y="83.84" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">JBBL</text>
+<rect x="108" y="68" width="447" height="22" rx="2" fill="#2563eb"/>
+<text x="561" y="83.84" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">47.2</text>
+<text x="0" y="113.84" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">KSS</text>
+<rect x="108" y="98" width="476" height="22" rx="2" fill="#7c3aed"/>
+<text x="590" y="113.84" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">50.2</text>
+</svg></div>
+        <div><p class="caption">TS%</p><svg viewBox="0 0 640 136" width="100%" role="img">
+<text x="0" y="23.84" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">CBI</text>
+<rect x="108" y="8" width="418" height="22" rx="2" fill="#059669"/>
+<text x="532" y="23.84" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">43.6</text>
+<text x="0" y="53.84" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">FEB</text>
+<rect x="108" y="38" width="446" height="22" rx="2" fill="#dc2626"/>
+<text x="560" y="53.84" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">46.5</text>
+<text x="0" y="83.84" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">JBBL</text>
+<rect x="108" y="68" width="476" height="22" rx="2" fill="#2563eb"/>
+<text x="590" y="83.84" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">49.6</text>
+<text x="0" y="113.84" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">KSS</text>
+<rect x="108" y="98" width="465" height="22" rx="2" fill="#7c3aed"/>
+<text x="579" y="113.84" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">48.5</text>
+</svg></div>
+        <div><p class="caption">TL%</p><svg viewBox="0 0 640 136" width="100%" role="img">
+<text x="0" y="23.84" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">CBI</text>
+<rect x="108" y="8" width="448" height="22" rx="2" fill="#059669"/>
+<text x="562" y="23.84" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">56.8</text>
+<text x="0" y="53.84" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">FEB</text>
+<rect x="108" y="38" width="476" height="22" rx="2" fill="#dc2626"/>
+<text x="590" y="53.84" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">60.3</text>
+<text x="0" y="83.84" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">JBBL</text>
+<rect x="108" y="68" width="462" height="22" rx="2" fill="#2563eb"/>
+<text x="576" y="83.84" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">58.5</text>
+<text x="0" y="113.84" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">KSS</text>
+<rect x="108" y="98" width="278" height="22" rx="2" fill="#7c3aed"/>
+<text x="392" y="113.84" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">35.3</text>
+</svg></div>
+      </div>
+      <div class="insight">Serbia encabeza la eficiencia de campo efectiva (~50.2% eFG) y el acierto de triple (~27.8% 3P), por delante de España (~25.0% 3P), Brasil (~24.8% 3P) y Alemania (~24.4% 3P). En porcentaje de tiro real (TS%), Alemania marca el tope con ~49.6%.</div>
+    </section>
+
+    <footer>
+      Fuentes: cbb.web.geniussports.com (comp 41761) · feb.es (Campeonato de Clubes Cadete) · nbbl-basketball.de / api.bbl.scb.world · new-api.dscore.live + kss-live.com · DOC-20260524-WA0098.docx — Trabajo Final ENEBA (Tomás Curi, 6/12/2024)
+    </footer>
+  </div>
+</body>
+</html>
