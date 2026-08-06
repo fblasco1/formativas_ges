@@ -42,7 +42,11 @@ from ingest.febamba.standings_2026 import (
 from ingest.ges.extractor import GesDeportivaExtractor
 from ingest.http_client import HttpClient, SessionProvider
 
-from analysis.generar_standings_febamba_2026 import _load_widget_key  # noqa: E402
+
+def _load_widget_key() -> str:
+    with (ROOT / "config" / "competencias.json").open(encoding="utf-8") as f:
+        return json.load(f).get("widget_key", "")
+
 
 CLUB_NEEDLE = "PEDRO ECHAGUE"
 SEDE_PROPIA = "Portela 836, CABA (CP 1406)"
