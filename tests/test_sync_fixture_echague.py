@@ -3,7 +3,10 @@
 
 from __future__ import annotations
 
+import json
 import sys
+import tempfile
+from datetime import datetime
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -11,9 +14,15 @@ if str(ROOT) not in sys.path:
     sys.path.insert(0, str(ROOT))
 
 from analysis.sync_fixture_echague_sheets import (
+    TZ_ART,
     es_equipo_echague,
+    construir_payload_json,
+    escribir_json,
+    fecha_a_iso,
+    fila_a_partido_json,
     mapear_fila,
     split_fecha_hora,
+    timestamp_art,
     tira_desde_nombre,
 )
 
@@ -21,7 +30,9 @@ from analysis.sync_fixture_echague_sheets import (
 def test_es_equipo_echague():
     assert es_equipo_echague("PEDRO ECHAGUE AZUL")
     assert es_equipo_echague("Pedro Echagüe Amarillo")
+    assert es_equipo_echague("INSTITUCION CULTURAL y DEPORTIVA PEDRO ECHAGUE")
     assert not es_equipo_echague("FERROCARRIL OESTE VERDE")
+    assert not es_equipo_echague("CLUB SOCIAL DEPORTIVO Y CULTURAL ARGENTINO DE CASTELAR")
 
 
 def test_tira_y_fecha():
@@ -30,6 +41,15 @@ def test_tira_y_fecha():
     assert tira_desde_nombre("PEDRO ECHAGUE FLEX") == "FLEX"
     assert tira_desde_nombre("PEDRO ECHAGUE B") == "B"
     assert tira_desde_nombre("PEDRO ECHAGUE") == "—"
+    assert tira_desde_nombre("PEDRO ECHAGUE", "SUP") == "A"
+    assert tira_desde_nombre("PEDRO ECHAGUE B", "SUP") == "B"
+    assert tira_desde_nombre("PEDRO ECHAGUE", "SUP Flex") == "C"
+    assert (
+        tira_desde_nombre(
+            "INSTITUCION CULTURAL y DEPORTIVA PEDRO ECHAGUE", "Liga Metro"
+        )
+        == "A"
+    )
     assert split_fecha_hora("15/03/2026 12:30") == ("15/03/2026", "12:30")
     assert split_fecha_hora("15/03/2026") == ("15/03/2026", "")
 
@@ -38,14 +58,17 @@ def test_fuentes_incluye_competencias_pedidas():
     from analysis.sync_fixture_echague_sheets import FUENTES, COMPETENCIA_LABEL
 
     comps = {f[0] for f in FUENTES}
-    assert comps >= {2015, 2013, 2018, 2019, 2028}
+    assert comps >= {2015, 2013, 2310, 2018, 2019, 2028}
     labels = {f[1] for f in FUENTES}
     assert "U21" in labels
     assert "SUP" in labels
+    assert "Liga Metro" in labels
     assert "U17 Flex" in labels
     assert "SUP Flex" in labels
     assert "U15 Fem" in labels
     assert COMPETENCIA_LABEL[2018] == "Flex formativas"
+    assert COMPETENCIA_LABEL[2310] == "Liga Metropolitana"
+    assert any(f == (2310, "Liga Metro", 6290) for f in FUENTES)
 
 
 def test_debe_actualizar_celda_preserva_direccion_manual():
@@ -144,3 +167,126 @@ def test_mapear_fila_visitante_usa_dir_rival():
     assert fila["LOCALIA"] == "Visitante"
     assert fila["DIRECCION"] == "Av Siempre Viva 742"
     assert fila["RESULTADO"] == ""
+
+
+def test_fecha_a_iso():
+    assert fecha_a_iso("06/09/2026") == "2026-09-06"
+    assert fecha_a_iso("6/9/2026") == "2026-09-06"
+    assert fecha_a_iso("2026-09-06") == "2026-09-06"
+    assert fecha_a_iso("") == ""
+    assert fecha_a_iso("20 A 22") == "20 A 22"
+
+
+def test_timestamp_art_offset():
+    ts = timestamp_art(datetime(2026, 8, 26, 20, 0, 0, tzinfo=TZ_ART))
+    assert ts == "2026-08-26T20:00:00-03:00"
+    naive = timestamp_art(datetime(2026, 8, 26, 20, 0, 0))
+    assert naive.endswith("-03:00")
+
+
+def test_fila_a_partido_json_contrato_siclub():
+    partido = fila_a_partido_json(
+        {
+            "FECHA": "06/09/2026",
+            "HORA": "20:00",
+            "TIRA": "AZUL",
+            "CATEGORIA": "U17",
+            "RIVAL": "Club Visitante",
+            "LOCALIA": "Local",
+            "DIRECCION": "Portela 836, CABA (CP 1406)",
+            "RESULTADO": "",
+            "ID_PARTIDO": "abc-123",
+        }
+    )
+    assert partido == {
+        "source": "febamba_ges",
+        "external_id": "abc-123",
+        "fecha": "2026-09-06",
+        "hora": "20:00",
+        "tira": "AZUL",
+        "categoria": "U17",
+        "rival": "Club Visitante",
+        "localia": "Local",
+        "direccion": "Portela 836, CABA (CP 1406)",
+        "resultado": "",
+        "espacio": None,
+    }
+
+
+def test_construir_payload_json_incluye_local_y_visitante():
+    filas = [
+        {
+            "FECHA": "06/09/2026",
+            "HORA": "20:00",
+            "TIRA": "AZUL",
+            "CATEGORIA": "U17",
+            "RIVAL": "Rival Local",
+            "LOCALIA": "Local",
+            "DIRECCION": "Portela 836, CABA (CP 1406)",
+            "RESULTADO": "72-65",
+            "ID_PARTIDO": "loc-1",
+        },
+        {
+            "FECHA": "07/09/2026",
+            "HORA": "20 A 22",
+            "TIRA": "AMARILLO",
+            "CATEGORIA": "U15",
+            "RIVAL": "Ñuñorco",
+            "LOCALIA": "Visitante",
+            "DIRECCION": "Calle Falsa 123",
+            "RESULTADO": "",
+            "ID_PARTIDO": "vis-2",
+        },
+        {
+            "FECHA": "08/09/2026",
+            "HORA": "18:00",
+            "TIRA": "AZUL",
+            "CATEGORIA": "U13",
+            "RIVAL": "Sin ID",
+            "LOCALIA": "Local",
+            "DIRECCION": "",
+            "RESULTADO": "",
+            "ID_PARTIDO": "",
+        },
+    ]
+    payload = construir_payload_json(
+        filas, generated_at="2026-08-26T20:00:00-03:00"
+    )
+    assert payload["version"] == 1
+    assert payload["source"] == "febamba_ges"
+    assert payload["generated_at"] == "2026-08-26T20:00:00-03:00"
+    assert payload["club"] == "PEDRO ECHAGUE"
+    assert [p["external_id"] for p in payload["partidos"]] == ["loc-1", "vis-2"]
+    assert payload["partidos"][0]["localia"] == "Local"
+    assert payload["partidos"][1]["localia"] == "Visitante"
+    assert payload["partidos"][1]["hora"] == "20 A 22"
+    assert payload["partidos"][1]["rival"] == "Ñuñorco"
+    assert payload["partidos"][0]["espacio"] is None
+    assert payload["partidos"][1]["espacio"] is None
+
+
+def test_escribir_json_utf8_indent():
+    filas = [
+        {
+            "FECHA": "06/09/2026",
+            "HORA": "20:00",
+            "TIRA": "AZUL",
+            "CATEGORIA": "U17",
+            "RIVAL": "Ñuñorco",
+            "LOCALIA": "Visitante",
+            "DIRECCION": "Portela 836",
+            "RESULTADO": "",
+            "ID_PARTIDO": "id-ñ",
+        }
+    ]
+    with tempfile.TemporaryDirectory() as tmp:
+        path = Path(tmp) / "fixture_echague.json"
+        out = escribir_json(
+            filas, path, generated_at="2026-08-26T20:00:00-03:00"
+        )
+        raw = out.read_text(encoding="utf-8")
+        assert "Ñuñorco" in raw
+        assert "\\u00d1" not in raw
+        data = json.loads(raw)
+        assert data["partidos"][0]["espacio"] is None
+        assert data["partidos"][0]["fecha"] == "2026-09-06"

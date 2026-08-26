@@ -1,11 +1,15 @@
 name: Sync fixture Echagüe → Sheets
 
-# Actualiza el Google Sheet de CMs con partidos Pedro Echagüe.
+# Actualiza el Google Sheet de CMs con partidos Pedro Echagüe y publica
+# outputs/echague/fixture_echague.json (contrato SICLUB) en el repo + docs/.
 # Corre sobre el árbol de `main` (producto 2026 unificado).
 # Secret: GOOGLE_SERVICE_ACCOUNT_JSON (JSON completo de la service account).
 #
 # Modo default: incremental (solo zonas cacheadas + fases nuevas).
 # Descubrimiento completo: workflow_dispatch con input full=true (o corrida sin cache).
+
+permissions:
+  contents: write
 
 on:
   schedule:
@@ -52,13 +56,27 @@ jobs:
           fi
           printf '%s' "$GOOGLE_SA" > config/google_service_account.json
 
-      - name: Sync GES → Sheets
+      - name: Sync GES → Sheets + JSON
         run: |
           EXTRA=""
           if [ "${{ github.event.inputs.full }}" = "true" ]; then
             EXTRA="--full"
           fi
           python analysis/sync_fixture_echague_sheets.py --progress $EXTRA
+
+      - name: Publicar JSON SICLUB
+        run: |
+          test -f outputs/echague/fixture_echague.json
+          cp outputs/echague/fixture_echague.json docs/fixture_echague.json
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add outputs/echague/fixture_echague.json docs/fixture_echague.json
+          if git diff --cached --quiet; then
+            echo "JSON sin cambios"
+            exit 0
+          fi
+          git commit -m "chore(echague): actualizar fixture JSON para SICLUB"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
 
       - name: Guardar scopes cache
         if: always()

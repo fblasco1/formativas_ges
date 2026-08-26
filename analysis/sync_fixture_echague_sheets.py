@@ -4,13 +4,24 @@ Sincroniza el fixture de PEDRO ECHAGUE a Google Sheets (CMs).
 
 Competencias GES incluidas:
   - 2015 Formativas (U9–U17 + U21 / Liga Próximo)
-  - 2013 Superior / Mayores
+  - 2013 Superior / Mayores (Pre Liga, Reclasificación, Copas)
+  - 2310 Liga Metropolitana / Pre Federal (continuación plantel A)
   - 2018 Flex formativas
-  - 2019 Flex superior
+  - 2019 Flex superior (plantel C)
   - 2028 Tira femenina
+
+Planteles Superior:
+  - A: PRE LIGA (2013, nombre GES ``PEDRO ECHAGUE``) + Liga Metro (2310,
+    ``INSTITUCION CULTURAL y DEPORTIVA PEDRO ECHAGUE``)
+  - B: ``PEDRO ECHAGUE B`` (2013 Reclasificación / Copas)
+  - C: SUP Flex (2019)
 
 Columnas CM: FECHA | HORA | TIRA | CATEGORIA | RIVAL | LOCALIA | DIRECCION | RESULTADO
 (+ ID_PARTIDO para upsert; no lo editan los CM).
+
+Además del CSV y del Sheet, escribe un JSON con contrato máquina para SICLUB
+(``outputs/echague/fixture_echague.json``): envelope version/source/generated_at
++ lista ``partidos`` con ``external_id`` = ID_PARTIDO.
 
 Ejemplos:
   python analysis/sync_fixture_echague_sheets.py --solo-csv --progress
@@ -26,7 +37,7 @@ import json
 import re
 import sys
 import unicodedata
-from datetime import datetime
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
 from typing import Dict, List, Optional, Sequence, Tuple
 
@@ -61,15 +72,17 @@ FUENTES: Tuple[Tuple[int, str, int], ...] = (
     (2015, "U13", 5078),
     (2015, "U11", 5079),
     (2015, "U9", 5080),
-    # Superior / Mayores
+    # Superior / Mayores (planteles A y B)
     (2013, "SUP", 5074),
+    # Liga Metropolitana / Pre Federal — 2ª mitad plantel A
+    (2310, "Liga Metro", 6290),  # PRE FEDERAL MASCULINO
     # Flex formativas
     (2018, "U17 Flex", 5558),  # JUVENILES FLEX
     (2018, "U15 Flex", 5557),  # CADETES MIXTO
     (2018, "U13 Flex", 5091),  # INFANTILES MIXTO
     (2018, "U11 Flex", 5090),  # MINI MIXTO
     (2018, "U9 Flex", 5089),  # PRE MINI MIXTO
-    # Flex superior
+    # Flex superior — plantel C
     (2019, "SUP Flex", 5088),
     # Femenina
     (2028, "U21 Fem", 5111),  # LIGA PROXIMO FEMENINO
@@ -83,6 +96,7 @@ FUENTES: Tuple[Tuple[int, str, int], ...] = (
 COMPETENCIA_LABEL: Dict[int, str] = {
     2015: "Formativas",
     2013: "Superior",
+    2310: "Liga Metropolitana",
     2018: "Flex formativas",
     2019: "Flex superior",
     2028: "Femenina",
@@ -102,6 +116,15 @@ HEADERS = [
 
 OUT_DIR = ROOT / "outputs" / "echague"
 OUT_CSV = OUT_DIR / "fixture_echague.csv"
+OUT_JSON = OUT_DIR / "fixture_echague.json"
+
+# Contrato máquina para SICLUB (club_management / Reserva Espacio).
+JSON_VERSION = 1
+JSON_SOURCE = "febamba_ges"
+JSON_CLUB = "PEDRO ECHAGUE"
+TZ_ART = timezone(timedelta(hours=-3))
+_FECHA_ISO_RE = re.compile(r"^\d{4}-\d{2}-\d{2}$")
+_FECHA_DMY_RE = re.compile(r"^(\d{1,2})/(\d{1,2})/(\d{4})$")
 SCOPES_CACHE = OUT_DIR / "scopes_cache.json"
 CONFIG_SHEETS = ROOT / "config" / "echague_sheets.json"
 SERVICE_ACCOUNT = ROOT / "config" / "google_service_account.json"
@@ -152,15 +175,48 @@ def _norm(texto: str) -> str:
 
 
 def es_equipo_echague(nombre: str) -> bool:
-    return CLUB_NEEDLE in _norm(nombre)
-
-
-def tira_desde_nombre(nombre: str) -> str:
-    """'PEDRO ECHAGUE AZUL' -> 'AZUL'; 'PEDRO ECHAGUE FLEX' -> 'FLEX'."""
     n = _norm(nombre)
+    if CLUB_NEEDLE in n:
+        return True
+    # Nombre institucional en Liga Metropolitana (comp. 2310).
+    return "INSTITUCION CULTURAL" in n and "PEDRO ECHAGUE" in n
+
+
+def tira_desde_nombre(nombre: str, categoria: str = "") -> str:
+    """
+    Resuelve la tira/plantel para la columna TIRA del Sheet.
+
+    Superior:
+      - A: ``PEDRO ECHAGUE`` (Pre Liga) / nombre institucional (Liga Metro)
+      - B: ``PEDRO ECHAGUE B``
+      - C: SUP Flex
+    Formativas: AZUL / AMARILLO / FLEX / etc. según sufijo GES.
+    """
+    n = _norm(nombre)
+    cat = _norm(categoria)
+
+    if cat == "SUP FLEX":
+        return "C"
+    if cat == "LIGA METRO":
+        return "A"
+
+    if "INSTITUCION CULTURAL" in n and CLUB_NEEDLE in n:
+        if n.endswith(" B") or n.endswith("PEDRO ECHAGUE B"):
+            return "B"
+        return "A"
+
     resto = n.replace(CLUB_NEEDLE, "", 1).strip()
     tokens = [t for t in resto.split() if t not in _TOKENS_DESCARTAR_TIRA]
-    return " ".join(tokens) if tokens else "—"
+    if not tokens:
+        # ``PEDRO ECHAGUE`` sin sufijo en Superior = plantel A
+        if cat == "SUP":
+            return "A"
+        return "—"
+    if tokens == ["B"]:
+        return "B"
+    if tokens == ["C"]:
+        return "C"
+    return " ".join(tokens)
 
 
 def _es_fase_excluida(nombre_fase: str) -> bool:
@@ -635,22 +691,24 @@ def mapear_fila(
 
     fecha, hora = split_fecha_hora(str(p.get("fecha") or ""))
     resultado = ""
-    estado = str(p.get("estado") or "")
-    if estado == "COMPLETO" and pts_prop is not None and pts_riv is not None:
-        resultado = f"{pts_prop}-{pts_riv}"
-    elif (
-        pts_prop is not None
-        and pts_riv is not None
-        and str(pts_prop).strip() != ""
-        and str(pts_riv).strip() != ""
-    ):
-        # datos.json sin campo estado
-        resultado = f"{pts_prop}-{pts_riv}"
+    estado = str(p.get("estado") or "").strip().upper()
+    if pts_prop is not None and pts_riv is not None:
+        # 0-0 en GES suele ser partido aún no jugado (aunque a veces venga como COMPLETO).
+        es_cero = int(pts_prop) == 0 and int(pts_riv) == 0
+        if estado == "PENDIENTE" or (es_cero and estado != "COMPLETO"):
+            resultado = ""
+        elif estado == "COMPLETO" and not es_cero:
+            resultado = f"{pts_prop}-{pts_riv}"
+        elif estado == "COMPLETO" and es_cero:
+            resultado = ""
+        elif estado == "" and not es_cero:
+            # datos.json / fuentes sin campo estado
+            resultado = f"{pts_prop}-{pts_riv}"
 
     return {
         "FECHA": fecha,
         "HORA": hora,
-        "TIRA": tira_desde_nombre(propio),
+        "TIRA": tira_desde_nombre(propio, str(p.get("edad") or "")),
         "CATEGORIA": str(p.get("edad") or ""),
         "RIVAL": rival,
         "LOCALIA": localia,
@@ -669,8 +727,69 @@ def construir_filas(partidos: List[Dict[str, object]]) -> List[Dict[str, str]]:
     return filas
 
 
+def fecha_a_iso(fecha: str) -> str:
+    """DD/MM/YYYY (Sheet/CSV) → YYYY-MM-DD. Si ya es ISO o no parsea, se deja."""
+    t = (fecha or "").strip()
+    if not t:
+        return ""
+    if _FECHA_ISO_RE.match(t):
+        return t
+    m = _FECHA_DMY_RE.match(t)
+    if not m:
+        return t
+    d, mo, y = m.groups()
+    return f"{int(y):04d}-{int(mo):02d}-{int(d):02d}"
+
+
+def fila_a_partido_json(fila: Dict[str, str]) -> Dict[str, object]:
+    """Mapea una fila CM al ítem ``partidos[]`` del contrato SICLUB."""
+    return {
+        "source": JSON_SOURCE,
+        "external_id": str(fila.get("ID_PARTIDO") or ""),
+        "fecha": fecha_a_iso(str(fila.get("FECHA") or "")),
+        "hora": str(fila.get("HORA") or ""),
+        "tira": str(fila.get("TIRA") or ""),
+        "categoria": str(fila.get("CATEGORIA") or ""),
+        "rival": str(fila.get("RIVAL") or ""),
+        "localia": str(fila.get("LOCALIA") or ""),
+        "direccion": str(fila.get("DIRECCION") or ""),
+        "resultado": str(fila.get("RESULTADO") or ""),
+        "espacio": None,
+    }
+
+
+def timestamp_art(now: Optional[datetime] = None) -> str:
+    """ISO-8601 con offset ART fijo (-03:00)."""
+    dt = now if now is not None else datetime.now(TZ_ART)
+    if dt.tzinfo is None:
+        dt = dt.replace(tzinfo=TZ_ART)
+    else:
+        dt = dt.astimezone(TZ_ART)
+    return dt.isoformat(timespec="seconds")
+
+
+def construir_payload_json(
+    filas: List[Dict[str, str]],
+    *,
+    generated_at: Optional[str] = None,
+) -> Dict[str, object]:
+    """Envelope SICLUB. Incluye Local y Visitante; omite filas sin ID_PARTIDO."""
+    partidos = [
+        fila_a_partido_json(f)
+        for f in filas
+        if (f.get("ID_PARTIDO") or "").strip()
+    ]
+    return {
+        "version": JSON_VERSION,
+        "source": JSON_SOURCE,
+        "generated_at": generated_at or timestamp_art(),
+        "club": JSON_CLUB,
+        "partidos": partidos,
+    }
+
+
 # --------------------------------------------------------------------------- #
-# CSV / Sheets
+# CSV / JSON / Sheets
 # --------------------------------------------------------------------------- #
 def escribir_csv(filas: List[Dict[str, str]], path: Path = OUT_CSV) -> Path:
     path.parent.mkdir(parents=True, exist_ok=True)
@@ -679,6 +798,22 @@ def escribir_csv(filas: List[Dict[str, str]], path: Path = OUT_CSV) -> Path:
         w.writeheader()
         for row in filas:
             w.writerow({h: row.get(h, "") for h in HEADERS})
+    return path
+
+
+def escribir_json(
+    filas: List[Dict[str, str]],
+    path: Path = OUT_JSON,
+    *,
+    generated_at: Optional[str] = None,
+) -> Path:
+    """Publica el contrato SICLUB (UTF-8, indent 2, sin escapar unicode)."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    payload = construir_payload_json(filas, generated_at=generated_at)
+    path.write_text(
+        json.dumps(payload, ensure_ascii=False, indent=2) + "\n",
+        encoding="utf-8",
+    )
     return path
 
 
@@ -840,7 +975,7 @@ def _col_letter(n: int) -> str:
 # --------------------------------------------------------------------------- #
 def main() -> int:
     p = argparse.ArgumentParser(
-        description="Sync fixture Pedro Echagüe Formativas 2026 → Google Sheets"
+        description="Sync fixture Pedro Echagüe → Google Sheets + JSON SICLUB"
     )
     p.add_argument("--widget-key", default="", help="Default: config/competencias.json")
     p.add_argument("--fecha-ini", default="2025-1-1")
@@ -853,9 +988,10 @@ def main() -> int:
     p.add_argument(
         "--solo-csv",
         action="store_true",
-        help="No sube a Google; escribe outputs/echague/fixture_echague.csv",
+        help="No sube a Google; escribe CSV y JSON en outputs/echague/",
     )
     p.add_argument("--out-csv", default=str(OUT_CSV))
+    p.add_argument("--out-json", default=str(OUT_JSON))
     p.add_argument("--spreadsheet-id", default="")
     p.add_argument("--worksheet", default="")
     p.add_argument(
@@ -926,11 +1062,13 @@ def main() -> int:
         )
 
     csv_path = escribir_csv(filas, Path(args.out_csv))
+    json_path = escribir_json(filas, Path(args.out_json))
     result: Dict[str, object] = {
         "partidos": len(filas),
         "por_categoria": dict(sorted(por_cat.items())),
         "visitantes_sin_direccion": sin_dir,
         "csv": str(csv_path),
+        "json": str(json_path),
         "scopes_cache": str(SCOPES_CACHE) if SCOPES_CACHE.exists() else None,
         "fecha_sync": datetime.now().strftime("%d/%m/%Y %H:%M"),
     }

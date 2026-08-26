@@ -15,7 +15,7 @@ Monorepo unificado (`main`): **GitHub Pages** como portal público + **CLI/ops**
 | Viajes / escenarios | `docs/informe_viajes_niveles.html` |
 | Comparativa ligas | `docs/comparativa_ligas_formativas.html` |
 | Ranking / renivelación | `docs/ranking.md` → `streamlit run apps/ranking/streamlit_app.py` |
-| Sync Echagüe → Sheets | `docs/sync_fixture_echague.md` + workflow Actions |
+| Sync Echagüe → Sheets + JSON SICLUB | `docs/sync_fixture_echague.md` + workflow Actions |
 
 ## Regenerar informes (desde la raíz del repo)
 
