@@ -7,6 +7,11 @@ on:
       - "docs/**"
       - "outputs/mini_masc/**"
       - ".github/workflows/pages.yml"
+  # El sync Echagüe commitea con GITHUB_TOKEN (no dispara push).
+  # Tras el cron, redeploy para servir docs/fixture_echague.json.
+  workflow_run:
+    workflows: ["Sync fixture Echagüe → Sheets"]
+    types: [completed]
 
 permissions:
   contents: read
@@ -19,6 +24,7 @@ concurrency:
 
 jobs:
   deploy:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
     runs-on: ubuntu-latest
     environment:
       name: github-pages
