@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-08-26T20:18:32-03:00",
+  "generated_at": "2026-08-27T01:22:07-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -4759,7 +4759,7 @@
       "rival": "CIRCULO URQUIZA",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "81-68",
       "espacio": null
     },
     {
