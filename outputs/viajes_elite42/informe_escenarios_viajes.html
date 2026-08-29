@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es"><head><meta charset="utf-8"/>
+<title>Escenarios de viaje · Élite 42</title>
+<style>
+  body { font-family: Segoe UI, sans-serif; margin:0; background:#f8fafc; color:#0f172a; }
+  header { background:#0f172a; color:#fff; padding:24px 28px; }
+  main { max-width:1100px; margin:0 auto; padding:24px 28px 40px; }
+  table { width:100%; border-collapse:collapse; background:#fff; margin:16px 0; font-size:.9rem; }
+  th, td { border-bottom:1px solid #e2e8f0; padding:8px 10px; text-align:left; }
+  th { background:#f1f5f9; }
+  .card { background:#fff; border-radius:10px; padding:16px 18px; margin:16px 0;
+    box-shadow:0 1px 4px rgba(15,23,42,.08); }
+  .hl { color:#1d4ed8; font-weight:600; }
+</style></head><body>
+<header><h1>Simulación de viajes · Élite 42</h1>
+<p>Fase 1 en zonas de 8 · Fase 2: 16 equipos (4 por región) en 2 zonas metropolitanas.
+Distancias ida y vuelta (Haversine). Sorteo determinístico (seed=42).</p></header>
+<main>
+  <div class="card">
+    <p>Mejor mediana de km/temporada: <span class="hl">Escenario A</span>
+    (292.6 km).</p>
+    <p>Equipos por región FeBAMBA: {&#x27;NORTE&#x27;: 11, &#x27;CENTRO&#x27;: 14, &#x27;SUR&#x27;: 11, &#x27;OESTE&#x27;: 6}</p>
+  </div>
+  <h2>Comparativa de escenarios</h2>
+  <table>
+    <thead><tr><th>ID</th><th>Escenario</th><th>Media km</th><th>Mediana</th>
+    <th>P90</th><th>Máx</th><th>Dist. intra-zona F1</th></tr></thead>
+    <tbody><tr><td><strong>A</strong></td><td>4 regiones (fase 1) + 16 sin región (fase 2)</td><td>339.8</td><td>292.6</td><td>566.4</td><td>1505.2</td><td>18.2</td></tr>
+<tr><td><strong>B</strong></td><td>Mixta CENTRO-SUR / NORTE-OESTE + fase 2 metro</td><td>428.2</td><td>331.2</td><td>670.8</td><td>1730.8</td><td>22.2</td></tr>
+<tr><td><strong>C</strong></td><td>Sin regionalización (sorteo puro)</td><td>439.9</td><td>395.3</td><td>735.4</td><td>1653.6</td><td>24.6</td></tr></tbody>
+  </table>
+  <h2>Posibles mal regionalizados</h2>
+  <p>Clubes cuya sede está más cerca del centroide de otra región que de la asignada en FeBAMBA.</p>
+  <table><thead><tr><th>Equipo</th><th>Región FeBAMBA</th><th>Región geo.</th><th>Zona</th></tr></thead><tbody><tr><td>OBRAS BASKET</td><td>NORTE</td><td>CENTRO</td><td>NORTE 2B</td></tr>
+<tr><td>BOCA JUNIORS AZUL A</td><td>SUR</td><td>CENTRO</td><td>SUR 2B</td></tr>
+<tr><td>VELEZ SARSFIELD BLANCO - A</td><td>CENTRO</td><td>OESTE</td><td>CENTRO 2B</td></tr>
+<tr><td>3 DE FEBRERO BLANCO A</td><td>NORTE</td><td>OESTE</td><td>NORTE 2B</td></tr>
+<tr><td>SAN LORENZO AZUL</td><td>CENTRO</td><td>SUR</td><td>CENTRO 1A</td></tr>
+<tr><td>RIVER PLATE</td><td>NORTE</td><td>CENTRO</td><td>NORTE 2B</td></tr>
+<tr><td>PLATENSE A</td><td>NORTE</td><td>CENTRO</td><td>NORTE 1A</td></tr>
+<tr><td>NAUTICO HACOAJ BLANCO A</td><td>NORTE</td><td>CENTRO</td><td>NORTE 2B</td></tr>
+<tr><td>C.A.S.A PADUA A</td><td>OESTE</td><td>CENTRO</td><td>OESTE 1A</td></tr>
+<tr><td>ATENEO POPULAR VERSAILLES</td><td>CENTRO</td><td>OESTE</td><td>CENTRO 2B</td></tr>
+<tr><td>TEMPERLEY</td><td>SUR</td><td>CENTRO</td><td>SUR 3C</td></tr>
+<tr><td>INSTITUCION SARMIENTO VERDE A</td><td>OESTE</td><td>CENTRO</td><td>OESTE 3C</td></tr>
+<tr><td>UNION FLORIDA</td><td>NORTE</td><td>CENTRO</td><td>NORTE 2B</td></tr>
+<tr><td>GEVP BLANCO A</td><td>NORTE</td><td>CENTRO</td><td>NORTE 3C</td></tr>
+<tr><td>JOSE HERNANDEZ A</td><td>CENTRO</td><td>OESTE</td><td>CENTRO 2B</td></tr></tbody></table>
+  <h2>Detalle por escenario</h2>
+  <div class="card"><h3>A — 4 regiones (fase 1) + 16 sin región (fase 2)</h3><p>Fase 1: zonas de 8 por sorteo dentro de CENTRO, SUR, NORTE y OESTE. Fase 2: los 4 mejores de cada región (16) juegan 2 zonas metropolitanas de 8.</p></div><div class="card"><h3>B — Mixta CENTRO-SUR / NORTE-OESTE + fase 2 metro</h3><p>Fase 1: dos macro-regiones (CENTRO+SUR y NORTE+OESTE), zonas de 8 por sorteo. Fase 2: mismos 16 clasificados (4/region) en formato metropolitano.</p></div><div class="card"><h3>C — Sin regionalización (sorteo puro)</h3><p>Fase 1: los 42 en zonas de 8 por sorteo sin criterio geográfico. Fase 2: los 16 mejores globales en 2 zonas de 8.</p></div>
+</main></body></html>

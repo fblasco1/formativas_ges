@@ -551,6 +551,8 @@ def agregar_jugadores(
                 "min_p": round((a["seg"] / pj) / 60.0, 1),
                 "pts_p": avg(a["pts"]),
                 "reb_p": avg(a["reb"]),
+                "rebof_p": avg(a["rebof"]),
+                "rebdef_p": avg(a["rebdef"]),
                 "ast_p": avg(a["ast"]),
                 "rob_p": avg(a["rob"]),
                 "tap_p": avg(a["tap"]),
