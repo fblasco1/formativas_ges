@@ -17,3 +17,7 @@ playbyplay.json
 config/google_service_account.json
 **/google_service_account.json
 
+# Scratch / local runs
+tmp_*
+logs/
+
