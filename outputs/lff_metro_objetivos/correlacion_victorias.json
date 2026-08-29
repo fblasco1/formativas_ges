@@ -1,0 +1,644 @@
+{
+  "n_actuaciones": 336,
+  "n_victorias": 168,
+  "n_derrotas": 168,
+  "nota": "r = correlación punto-biserial con victoria (1/0). |r| alto = más asociada a ganar. PTS anotados/recibidos son casi circulares con el resultado. % tiro propio/rival y RO propio/rival son espejos del mismo partido (mismo |r|); la prioridad colapsa esos pares.",
+  "metricas": [
+    {
+      "clave": "pts",
+      "etiqueta": "PTS anotados",
+      "mayor_mejor": true,
+      "circular": true,
+      "n": 336,
+      "r": 0.555,
+      "abs_r": 0.555,
+      "nivel": "fuerte",
+      "media_g": 78.44,
+      "media_p": 65.07,
+      "diff_g_p": 13.38,
+      "cohens_d": 1.33,
+      "sentido_ok": true
+    },
+    {
+      "clave": "ro",
+      "etiqueta": "RO propio",
+      "mayor_mejor": true,
+      "circular": false,
+      "n": 336,
+      "r": 0.065,
+      "abs_r": 0.065,
+      "nivel": "muy débil",
+      "media_g": 9.39,
+      "media_p": 8.94,
+      "diff_g_p": 0.45,
+      "cohens_d": 0.13,
+      "sentido_ok": true
+    },
+    {
+      "clave": "ast_per",
+      "etiqueta": "AST/PER",
+      "mayor_mejor": true,
+      "circular": false,
+      "n": 336,
+      "r": 0.355,
+      "abs_r": 0.355,
+      "nivel": "moderada",
+      "media_g": 1.44,
+      "media_p": 0.98,
+      "diff_g_p": 0.45,
+      "cohens_d": 0.76,
+      "sentido_ok": true
+    },
+    {
+      "clave": "rec",
+      "etiqueta": "Recuperos",
+      "mayor_mejor": true,
+      "circular": false,
+      "n": 336,
+      "r": 0.156,
+      "abs_r": 0.156,
+      "nivel": "débil",
+      "media_g": 8.6,
+      "media_p": 7.67,
+      "diff_g_p": 0.93,
+      "cohens_d": 0.31,
+      "sentido_ok": true
+    },
+    {
+      "clave": "pct_2p",
+      "etiqueta": "% 2P propio",
+      "mayor_mejor": true,
+      "circular": false,
+      "n": 336,
+      "r": 0.369,
+      "abs_r": 0.369,
+      "nivel": "moderada",
+      "media_g": 51.71,
+      "media_p": 45.11,
+      "diff_g_p": 6.59,
+      "cohens_d": 0.79,
+      "sentido_ok": true
+    },
+    {
+      "clave": "pct_3p",
+      "etiqueta": "% 3P propio",
+      "mayor_mejor": true,
+      "circular": false,
+      "n": 336,
+      "r": 0.388,
+      "abs_r": 0.388,
+      "nivel": "moderada",
+      "media_g": 32.21,
+      "media_p": 25.01,
+      "diff_g_p": 7.21,
+      "cohens_d": 0.84,
+      "sentido_ok": true
+    },
+    {
+      "clave": "pct_tl",
+      "etiqueta": "% TL propio",
+      "mayor_mejor": true,
+      "circular": false,
+      "n": 336,
+      "r": 0.174,
+      "abs_r": 0.174,
+      "nivel": "débil",
+      "media_g": 67.16,
+      "media_p": 62.95,
+      "diff_g_p": 4.21,
+      "cohens_d": 0.35,
+      "sentido_ok": true
+    },
+    {
+      "clave": "pts_recibidos",
+      "etiqueta": "PTS recibidos",
+      "mayor_mejor": false,
+      "circular": true,
+      "n": 336,
+      "r": -0.555,
+      "abs_r": 0.555,
+      "nivel": "fuerte",
+      "media_g": 65.07,
+      "media_p": 78.44,
+      "diff_g_p": -13.38,
+      "cohens_d": -1.33,
+      "sentido_ok": true
+    },
+    {
+      "clave": "ro_rival",
+      "etiqueta": "RO rival",
+      "mayor_mejor": false,
+      "circular": false,
+      "n": 336,
+      "r": -0.065,
+      "abs_r": 0.065,
+      "nivel": "muy débil",
+      "media_g": 8.94,
+      "media_p": 9.39,
+      "diff_g_p": -0.45,
+      "cohens_d": -0.13,
+      "sentido_ok": true
+    },
+    {
+      "clave": "per_rival",
+      "etiqueta": "Pérdidas rival",
+      "mayor_mejor": true,
+      "circular": false,
+      "n": 336,
+      "r": 0.144,
+      "abs_r": 0.144,
+      "nivel": "débil",
+      "media_g": 13.79,
+      "media_p": 12.62,
+      "diff_g_p": 1.16,
+      "cohens_d": 0.29,
+      "sentido_ok": true
+    },
+    {
+      "clave": "pct_2p_rival",
+      "etiqueta": "% 2P rival",
+      "mayor_mejor": false,
+      "circular": false,
+      "n": 336,
+      "r": -0.369,
+      "abs_r": 0.369,
+      "nivel": "moderada",
+      "media_g": 45.11,
+      "media_p": 51.71,
+      "diff_g_p": -6.59,
+      "cohens_d": -0.79,
+      "sentido_ok": true
+    },
+    {
+      "clave": "pct_3p_rival",
+      "etiqueta": "% 3P rival",
+      "mayor_mejor": false,
+      "circular": false,
+      "n": 336,
+      "r": -0.388,
+      "abs_r": 0.388,
+      "nivel": "moderada",
+      "media_g": 25.01,
+      "media_p": 32.21,
+      "diff_g_p": -7.21,
+      "cohens_d": -0.84,
+      "sentido_ok": true
+    },
+    {
+      "clave": "pct_tl_rival",
+      "etiqueta": "% TL rival",
+      "mayor_mejor": false,
+      "circular": false,
+      "n": 336,
+      "r": -0.174,
+      "abs_r": 0.174,
+      "nivel": "débil",
+      "media_g": 62.95,
+      "media_p": 67.16,
+      "diff_g_p": -4.21,
+      "cohens_d": -0.35,
+      "sentido_ok": true
+    },
+    {
+      "clave": "poss",
+      "etiqueta": "Posesiones",
+      "mayor_mejor": true,
+      "circular": false,
+      "n": 336,
+      "r": -0.016,
+      "abs_r": 0.016,
+      "nivel": "muy débil",
+      "media_g": 76.49,
+      "media_p": 76.68,
+      "diff_g_p": -0.19,
+      "cohens_d": -0.03,
+      "sentido_ok": false
+    },
+    {
+      "clave": "fga",
+      "etiqueta": "Tiros de cancha (intentos)",
+      "mayor_mejor": true,
+      "circular": false,
+      "n": 336,
+      "r": 0.056,
+      "abs_r": 0.056,
+      "nivel": "muy débil",
+      "media_g": 64.41,
+      "media_p": 63.62,
+      "diff_g_p": 0.79,
+      "cohens_d": 0.11,
+      "sentido_ok": true
+    },
+    {
+      "clave": "fgm",
+      "etiqueta": "Tiros de cancha (anotados)",
+      "mayor_mejor": true,
+      "circular": false,
+      "n": 336,
+      "r": 0.493,
+      "abs_r": 0.493,
+      "nivel": "moderada",
+      "media_g": 28.1,
+      "media_p": 23.46,
+      "diff_g_p": 4.64,
+      "cohens_d": 1.13,
+      "sentido_ok": true
+    },
+    {
+      "clave": "t2i",
+      "etiqueta": "Intentos 2P",
+      "mayor_mejor": true,
+      "circular": false,
+      "n": 336,
+      "r": -0.041,
+      "abs_r": 0.041,
+      "nivel": "muy débil",
+      "media_g": 37.56,
+      "media_p": 38.15,
+      "diff_g_p": -0.59,
+      "cohens_d": -0.08,
+      "sentido_ok": false
+    },
+    {
+      "clave": "t2a",
+      "etiqueta": "Aciertos 2P",
+      "mayor_mejor": true,
+      "circular": false,
+      "n": 336,
+      "r": 0.259,
+      "abs_r": 0.259,
+      "nivel": "débil",
+      "media_g": 19.35,
+      "media_p": 17.07,
+      "diff_g_p": 2.28,
+      "cohens_d": 0.54,
+      "sentido_ok": true
+    },
+    {
+      "clave": "t3i",
+      "etiqueta": "Intentos 3P",
+      "mayor_mejor": true,
+      "circular": false,
+      "n": 336,
+      "r": 0.116,
+      "abs_r": 0.116,
+      "nivel": "débil",
+      "media_g": 26.85,
+      "media_p": 25.48,
+      "diff_g_p": 1.38,
+      "cohens_d": 0.23,
+      "sentido_ok": true
+    },
+    {
+      "clave": "t3a",
+      "etiqueta": "Aciertos 3P",
+      "mayor_mejor": true,
+      "circular": false,
+      "n": 336,
+      "r": 0.362,
+      "abs_r": 0.362,
+      "nivel": "moderada",
+      "media_g": 8.75,
+      "media_p": 6.39,
+      "diff_g_p": 2.36,
+      "cohens_d": 0.77,
+      "sentido_ok": true
+    },
+    {
+      "clave": "tli",
+      "etiqueta": "Intentos TL",
+      "mayor_mejor": true,
+      "circular": false,
+      "n": 336,
+      "r": 0.102,
+      "abs_r": 0.102,
+      "nivel": "débil",
+      "media_g": 20.1,
+      "media_p": 18.65,
+      "diff_g_p": 1.44,
+      "cohens_d": 0.2,
+      "sentido_ok": true
+    },
+    {
+      "clave": "tla",
+      "etiqueta": "Aciertos TL",
+      "mayor_mejor": true,
+      "circular": false,
+      "n": 336,
+      "r": 0.171,
+      "abs_r": 0.171,
+      "nivel": "débil",
+      "media_g": 13.49,
+      "media_p": 11.74,
+      "diff_g_p": 1.74,
+      "cohens_d": 0.35,
+      "sentido_ok": true
+    }
+  ],
+  "ranking_todas": [
+    {
+      "etiqueta": "PTS anotados",
+      "r": 0.555,
+      "nivel": "fuerte"
+    },
+    {
+      "etiqueta": "PTS recibidos",
+      "r": -0.555,
+      "nivel": "fuerte"
+    },
+    {
+      "etiqueta": "Tiros de cancha (anotados)",
+      "r": 0.493,
+      "nivel": "moderada"
+    },
+    {
+      "etiqueta": "% 3P propio",
+      "r": 0.388,
+      "nivel": "moderada"
+    },
+    {
+      "etiqueta": "% 3P rival",
+      "r": -0.388,
+      "nivel": "moderada"
+    },
+    {
+      "etiqueta": "% 2P propio",
+      "r": 0.369,
+      "nivel": "moderada"
+    },
+    {
+      "etiqueta": "% 2P rival",
+      "r": -0.369,
+      "nivel": "moderada"
+    },
+    {
+      "etiqueta": "Aciertos 3P",
+      "r": 0.362,
+      "nivel": "moderada"
+    },
+    {
+      "etiqueta": "AST/PER",
+      "r": 0.355,
+      "nivel": "moderada"
+    },
+    {
+      "etiqueta": "Aciertos 2P",
+      "r": 0.259,
+      "nivel": "débil"
+    },
+    {
+      "etiqueta": "% TL propio",
+      "r": 0.174,
+      "nivel": "débil"
+    },
+    {
+      "etiqueta": "% TL rival",
+      "r": -0.174,
+      "nivel": "débil"
+    },
+    {
+      "etiqueta": "Aciertos TL",
+      "r": 0.171,
+      "nivel": "débil"
+    },
+    {
+      "etiqueta": "Recuperos",
+      "r": 0.156,
+      "nivel": "débil"
+    },
+    {
+      "etiqueta": "Pérdidas rival",
+      "r": 0.144,
+      "nivel": "débil"
+    },
+    {
+      "etiqueta": "Intentos 3P",
+      "r": 0.116,
+      "nivel": "débil"
+    },
+    {
+      "etiqueta": "Intentos TL",
+      "r": 0.102,
+      "nivel": "débil"
+    },
+    {
+      "etiqueta": "RO propio",
+      "r": 0.065,
+      "nivel": "muy débil"
+    },
+    {
+      "etiqueta": "RO rival",
+      "r": -0.065,
+      "nivel": "muy débil"
+    },
+    {
+      "etiqueta": "Tiros de cancha (intentos)",
+      "r": 0.056,
+      "nivel": "muy débil"
+    },
+    {
+      "etiqueta": "Intentos 2P",
+      "r": -0.041,
+      "nivel": "muy débil"
+    },
+    {
+      "etiqueta": "Posesiones",
+      "r": -0.016,
+      "nivel": "muy débil"
+    }
+  ],
+  "prioridad_proceso": [
+    {
+      "orden": 1,
+      "etiqueta": "Tiros de cancha (anotados)",
+      "clave": "fgm",
+      "r": 0.493,
+      "nivel": "moderada",
+      "diff_g_p": 4.64,
+      "cohens_d": 1.13,
+      "media_g": 28.1,
+      "media_p": 23.46,
+      "mensaje": "Priorizar subir Tiros de cancha (anotados)"
+    },
+    {
+      "orden": 2,
+      "etiqueta": "% 3P propio",
+      "clave": "pct_3p",
+      "r": 0.388,
+      "nivel": "moderada",
+      "diff_g_p": 7.21,
+      "cohens_d": 0.84,
+      "media_g": 32.21,
+      "media_p": 25.01,
+      "mensaje": "Mejorar % 3P propio"
+    },
+    {
+      "orden": 3,
+      "etiqueta": "% 2P propio",
+      "clave": "pct_2p",
+      "r": 0.369,
+      "nivel": "moderada",
+      "diff_g_p": 6.59,
+      "cohens_d": 0.79,
+      "media_g": 51.71,
+      "media_p": 45.11,
+      "mensaje": "Mejorar % 2P propio"
+    },
+    {
+      "orden": 4,
+      "etiqueta": "Aciertos 3P",
+      "clave": "t3a",
+      "r": 0.362,
+      "nivel": "moderada",
+      "diff_g_p": 2.36,
+      "cohens_d": 0.77,
+      "media_g": 8.75,
+      "media_p": 6.39,
+      "mensaje": "Priorizar subir Aciertos 3P"
+    },
+    {
+      "orden": 5,
+      "etiqueta": "AST/PER",
+      "clave": "ast_per",
+      "r": 0.355,
+      "nivel": "moderada",
+      "diff_g_p": 0.45,
+      "cohens_d": 0.76,
+      "media_g": 1.44,
+      "media_p": 0.98,
+      "mensaje": "Priorizar subir AST/PER"
+    },
+    {
+      "orden": 6,
+      "etiqueta": "Aciertos 2P",
+      "clave": "t2a",
+      "r": 0.259,
+      "nivel": "débil",
+      "diff_g_p": 2.28,
+      "cohens_d": 0.54,
+      "media_g": 19.35,
+      "media_p": 17.07,
+      "mensaje": "Priorizar subir Aciertos 2P"
+    },
+    {
+      "orden": 7,
+      "etiqueta": "% TL propio",
+      "clave": "pct_tl",
+      "r": 0.174,
+      "nivel": "débil",
+      "diff_g_p": 4.21,
+      "cohens_d": 0.35,
+      "media_g": 67.16,
+      "media_p": 62.95,
+      "mensaje": "Mejorar % TL propio"
+    },
+    {
+      "orden": 8,
+      "etiqueta": "Aciertos TL",
+      "clave": "tla",
+      "r": 0.171,
+      "nivel": "débil",
+      "diff_g_p": 1.74,
+      "cohens_d": 0.35,
+      "media_g": 13.49,
+      "media_p": 11.74,
+      "mensaje": "Priorizar subir Aciertos TL"
+    },
+    {
+      "orden": 9,
+      "etiqueta": "Recuperos",
+      "clave": "rec",
+      "r": 0.156,
+      "nivel": "débil",
+      "diff_g_p": 0.93,
+      "cohens_d": 0.31,
+      "media_g": 8.6,
+      "media_p": 7.67,
+      "mensaje": "Priorizar subir Recuperos"
+    },
+    {
+      "orden": 10,
+      "etiqueta": "Pérdidas rival",
+      "clave": "per_rival",
+      "r": 0.144,
+      "nivel": "débil",
+      "diff_g_p": 1.16,
+      "cohens_d": 0.29,
+      "media_g": 13.79,
+      "media_p": 12.62,
+      "mensaje": "Priorizar subir Pérdidas rival"
+    },
+    {
+      "orden": 11,
+      "etiqueta": "Intentos 3P",
+      "clave": "t3i",
+      "r": 0.116,
+      "nivel": "débil",
+      "diff_g_p": 1.38,
+      "cohens_d": 0.23,
+      "media_g": 26.85,
+      "media_p": 25.48,
+      "mensaje": "Priorizar subir Intentos 3P"
+    },
+    {
+      "orden": 12,
+      "etiqueta": "Intentos TL",
+      "clave": "tli",
+      "r": 0.102,
+      "nivel": "débil",
+      "diff_g_p": 1.44,
+      "cohens_d": 0.2,
+      "media_g": 20.1,
+      "media_p": 18.65,
+      "mensaje": "Priorizar subir Intentos TL"
+    },
+    {
+      "orden": 13,
+      "etiqueta": "RO propio",
+      "clave": "ro",
+      "r": 0.065,
+      "nivel": "muy débil",
+      "diff_g_p": 0.45,
+      "cohens_d": 0.13,
+      "media_g": 9.39,
+      "media_p": 8.94,
+      "mensaje": "Mejorar RO propio"
+    },
+    {
+      "orden": 14,
+      "etiqueta": "Tiros de cancha (intentos)",
+      "clave": "fga",
+      "r": 0.056,
+      "nivel": "muy débil",
+      "diff_g_p": 0.79,
+      "cohens_d": 0.11,
+      "media_g": 64.41,
+      "media_p": 63.62,
+      "mensaje": "Priorizar subir Tiros de cancha (intentos)"
+    },
+    {
+      "orden": 15,
+      "etiqueta": "Intentos 2P",
+      "clave": "t2i",
+      "r": -0.041,
+      "nivel": "muy débil",
+      "diff_g_p": -0.59,
+      "cohens_d": -0.08,
+      "media_g": 37.56,
+      "media_p": 38.15,
+      "mensaje": "Priorizar subir Intentos 2P"
+    },
+    {
+      "orden": 16,
+      "etiqueta": "Posesiones",
+      "clave": "poss",
+      "r": -0.016,
+      "nivel": "muy débil",
+      "diff_g_p": -0.19,
+      "cohens_d": -0.03,
+      "media_g": 76.49,
+      "media_p": 76.68,
+      "mensaje": "Priorizar subir Posesiones"
+    }
+  ]
+}

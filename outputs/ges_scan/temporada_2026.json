@@ -1,0 +1,153 @@
+{
+  "n": 11,
+  "competencias": [
+    {
+      "id": 2013,
+      "temporada": "2026",
+      "titulo": "SUPERIOR 2026",
+      "delegacion": "FEDERACION DE BASQUETBOL DEL AREA METROPOLITANA DE BUENOS AIRES",
+      "n_categorias": 1,
+      "categorias": {
+        "MAYORES MASCULINO": "5074"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=2013"
+    },
+    {
+      "id": 2014,
+      "temporada": "2026",
+      "titulo": "MASTER 2026",
+      "delegacion": "FEDERACION DE BASQUETBOL DEL AREA METROPOLITANA DE BUENOS AIRES",
+      "n_categorias": 5,
+      "categorias": {
+        "MASTER +36 MASCULINO": "5212",
+        "MASTER +41 MASCULINO": "5213",
+        "MASTER +46 MASCULINO": "5085",
+        "MASTER +52 MASCULINO": "5214",
+        "MASTER +59 MASCULINO": "5215"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=2014"
+    },
+    {
+      "id": 2015,
+      "temporada": "2026",
+      "titulo": "FORMATIVAS 2026",
+      "delegacion": "FEDERACION DE BASQUETBOL DEL AREA METROPOLITANA DE BUENOS AIRES",
+      "n_categorias": 7,
+      "categorias": {
+        "LIGA PROXIMO MASCULINO": "5075",
+        "JUVENILES MASCULINO": "5076",
+        "CADETES MASCULINO": "5077",
+        "INFANTILES MASCULINO": "5078",
+        "MINI MASCULINO": "5079",
+        "PRE MINI MASCULINO": "5080",
+        "MOSQUITOS MASCULINO": "5081"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=2015"
+    },
+    {
+      "id": 2018,
+      "temporada": "2026",
+      "titulo": "FLEX FORMATIVAS",
+      "delegacion": "FEDERACION DE BASQUETBOL DEL AREA METROPOLITANA DE BUENOS AIRES",
+      "n_categorias": 5,
+      "categorias": {
+        "JUVENILES FLEX MASCULINO": "5558",
+        "CADETES MIXTO": "5557",
+        "INFANTILES MIXTO": "5091",
+        "MINI MIXTO": "5090",
+        "PRE MINI MIXTO": "5089"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=2018"
+    },
+    {
+      "id": 2019,
+      "temporada": "2026",
+      "titulo": "FLEX SUPERIOR",
+      "delegacion": "FEDERACION DE BASQUETBOL DEL AREA METROPOLITANA DE BUENOS AIRES",
+      "n_categorias": 1,
+      "categorias": {
+        "MAYORES MASCULINO": "5088"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=2019"
+    },
+    {
+      "id": 2027,
+      "temporada": "2026",
+      "titulo": "MOSQUITAS 2026",
+      "delegacion": "ASOCIACIÓN FEMENINA METROPOLITANA DE BÁSQUETBOL",
+      "n_categorias": 1,
+      "categorias": {
+        "MOSQUITAS FEMENINO": "5104"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=2027"
+    },
+    {
+      "id": 2028,
+      "temporada": "2026",
+      "titulo": "FORMATIVAS 2026",
+      "delegacion": "ASOCIACIÓN FEMENINA METROPOLITANA DE BÁSQUETBOL",
+      "n_categorias": 6,
+      "categorias": {
+        "LIGA PROXIMO FEMENINO": "5111",
+        "JUVENILES FEMENINO": "5110",
+        "CADETES FEMENINO": "5108",
+        "INFANTILES FEMENINO": "5107",
+        "MINI FEMENINO": "5106",
+        "PRE MINI MIXTO": "5105"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=2028"
+    },
+    {
+      "id": 2029,
+      "temporada": "2026",
+      "titulo": "SUPERIOR 2026",
+      "delegacion": "ASOCIACIÓN FEMENINA METROPOLITANA DE BÁSQUETBOL",
+      "n_categorias": 1,
+      "categorias": {
+        "MAYORES FEMENINO": "5112"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=2029"
+    },
+    {
+      "id": 2032,
+      "temporada": "2026",
+      "titulo": "MAYORES",
+      "delegacion": "CONFEDERACIÓN ARGENTINA DE BASQUETBOL",
+      "n_categorias": 2,
+      "categorias": {
+        "LA LIGA FEDERAL": "5117",
+        "LA LIGA FEDERAL 3x3": "5118"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=2032"
+    },
+    {
+      "id": 2121,
+      "temporada": "2026",
+      "titulo": "FORMATIVAS",
+      "delegacion": "CONFEDERACIÓN ARGENTINA DE BASQUETBOL",
+      "n_categorias": 8,
+      "categorias": {
+        "LA LIGA FEDERAL PROXIMO MASCULINA": "5590",
+        "LA LIGA FEDERAL PROXIMO FEMENINA": "5591",
+        "LA LIGA FEDERAL JUVENILES MASCULINA": "5592",
+        "LA LIGA FEDERAL JUVENILES FEMENINA": "5593",
+        "LA LIGA FEDERAL CADETES MASCULINA": "5594",
+        "LA LIGA FEDERAL CADETES FEMENINA": "5595",
+        "LA LIGA FEDERAL MINI MASCULINA": "5598",
+        "LA LIGA FEDERAL MINI FEMENINA": "5599"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=2121"
+    },
+    {
+      "id": 2288,
+      "temporada": "2026",
+      "titulo": "ARGENTINO DE FEDERACIONES U11F",
+      "delegacion": "FEDERACION DE BASQUETBOL DEL AREA METROPOLITANA DE BUENOS AIRES",
+      "n_categorias": 1,
+      "categorias": {
+        "MINI FEMENINO": "6224"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=2288"
+    }
+  ]
+}

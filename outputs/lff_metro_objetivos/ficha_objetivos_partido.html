@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ficha de objetivos de partido — Metro LFF</title>
+  <style>
+    @page { size: A4; margin: 12mm; }
+    :root {
+      --ink: #1a1a1a;
+      --muted: #5a5a5a;
+      --line: #c8c8c8;
+      --accent: #c45c26;
+      --ok: #1f6b3a;
+      --bg: #f7f4ef;
+      --card: #fff;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--bg);
+      font-family: "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+      font-size: 11.5px;
+      line-height: 1.35;
+    }
+    .sheet {
+      max-width: 210mm;
+      margin: 16px auto;
+      background: var(--card);
+      padding: 14mm 12mm;
+      box-shadow: 0 2px 16px rgba(0,0,0,.08);
+    }
+    header {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 8px;
+      border-bottom: 3px solid var(--ink);
+      padding-bottom: 10px;
+      margin-bottom: 12px;
+    }
+    h1 {
+      margin: 0;
+      font-size: 20px;
+      letter-spacing: -.02em;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+    .sub {
+      margin: 4px 0 0;
+      color: var(--muted);
+      font-size: 11px;
+    }
+    .meta {
+      display: grid;
+      gap: 6px;
+      min-width: 210px;
+      font-size: 12px;
+    }
+    .meta label {
+      display: grid;
+      grid-template-columns: 58px 1fr;
+      align-items: end;
+      gap: 6px;
+    }
+    .meta .line {
+      border-bottom: 1px solid var(--ink);
+      min-height: 16px;
+    }
+    .leyenda {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin: 0 0 14px;
+    }
+    .leyenda div {
+      border: 1px solid var(--line);
+      padding: 8px 10px;
+      background: #fafafa;
+    }
+    .leyenda strong {
+      display: block;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      margin-bottom: 2px;
+    }
+    .leyenda .piso strong { color: var(--muted); }
+    .leyenda .obj strong { color: var(--accent); }
+    .leyenda .techo strong { color: var(--ok); }
+    h2 {
+      margin: 14px 0 6px;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      border-left: 4px solid var(--accent);
+      padding-left: 8px;
+    }
+    h2.def { border-left-color: var(--ink); }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-bottom: 4px;
+    }
+    th, td {
+      border: 1px solid var(--line);
+      padding: 6px 7px;
+      text-align: center;
+      vertical-align: middle;
+    }
+    th {
+      background: #222;
+      color: #fff;
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .04em;
+      font-weight: 700;
+    }
+    th.rubro, td.rubro {
+      text-align: left;
+      font-weight: 600;
+      width: 28%;
+    }
+    th.prio { width: 9%; }
+    td.prio { font-weight: 800; color: var(--accent); }
+    td.obj {
+      background: #fff4ec;
+      font-weight: 800;
+      font-size: 13px;
+      color: var(--accent);
+    }
+    td.check {
+      width: 11%;
+      background: #fafafa;
+    }
+    .hint {
+      color: var(--muted);
+      font-size: 10.5px;
+      margin: 0 0 10px;
+    }
+    .msg {
+      margin-top: 12px;
+      padding: 10px 12px;
+      border: 2px solid var(--ink);
+      background: #fff;
+      font-size: 12.5px;
+    }
+    .msg strong { color: var(--accent); }
+    footer {
+      margin-top: 12px;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+      font-size: 11px;
+      color: var(--muted);
+    }
+    footer .box {
+      border: 1px dashed var(--line);
+      min-height: 62px;
+      padding: 6px 8px;
+    }
+    footer .box span {
+      display: block;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      font-size: 10px;
+      letter-spacing: .04em;
+    }
+    .print-bar {
+      max-width: 210mm;
+      margin: 12px auto 0;
+      text-align: center;
+    }
+    .print-bar button {
+      appearance: none;
+      border: 0;
+      background: var(--ink);
+      color: #fff;
+      padding: 10px 18px;
+      font-size: 13px;
+      font-weight: 700;
+      cursor: pointer;
+      border-radius: 4px;
+    }
+    @media print {
+      body { background: #fff; }
+      .sheet { margin: 0; box-shadow: none; padding: 0; max-width: none; }
+      .print-bar { display: none; }
+    }
+  </style>
+</head>
+<body>
+  <div class="print-bar">
+    <button type="button" onclick="window.print()">Imprimir / Guardar PDF</button>
+  </div>
+
+  <article class="sheet">
+    <header>
+      <div>
+        <h1>Ficha de objetivos de partido</h1>
+        <p class="sub">
+          Referencia: Liga Federal Mayores · Fase regular Metro A/B/C ·
+          promedios de equipos que ganan (168 partidos)
+        </p>
+      </div>
+      <div class="meta">
+        <label><span>Rival</span><span class="line" contenteditable="true">&nbsp;</span></label>
+        <label><span>Fecha</span><span class="line" contenteditable="true">&nbsp;</span></label>
+        <label><span>Condición</span><span class="line" contenteditable="true">Local / Visitante</span></label>
+      </div>
+    </header>
+
+    <div class="leyenda">
+      <div class="piso">
+        <strong>Piso</strong>
+        Mínimo aceptable. Si quedamos abajo, el partido se nos complica.
+      </div>
+      <div class="obj">
+        <strong>Objetivo</strong>
+        Nivel de los equipos que ganan en Metro. Meta de partido.
+      </div>
+      <div class="techo">
+        <strong>Techo</strong>
+        Partido grande. Si lo tocamos, vamos muy bien.
+      </div>
+    </div>
+
+    <h2>Nosotros (ataque y control)</h2>
+    <p class="hint">
+      Ritmo de referencia: ~76 posesiones. No hace falta acelerar: hay que aprovechar mejor cada posesión.
+      Prioridad = qué más separa ganar de perder en Metro.
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th class="prio">Prio</th>
+          <th class="rubro">Rubro</th>
+          <th>Piso</th>
+          <th>Objetivo</th>
+          <th>Techo</th>
+          <th>¿Cumplió?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="prio">1</td>
+          <td class="rubro">Triples (aciertos / intentos · %)</td>
+          <td>7/26 · 27%</td>
+          <td class="obj">9/27 · 33%</td>
+          <td>11/28 · 36%+</td>
+          <td class="check"></td>
+        </tr>
+        <tr>
+          <td class="prio">1</td>
+          <td class="rubro">Dobles (aciertos / intentos · %)</td>
+          <td>17/38 · 45%</td>
+          <td class="obj">19/38 · 52%</td>
+          <td>21/38 · 55%+</td>
+          <td class="check"></td>
+        </tr>
+        <tr>
+          <td class="prio">2</td>
+          <td class="rubro">AST / Pérdidas</td>
+          <td>1.0</td>
+          <td class="obj">1.3</td>
+          <td>1.5+</td>
+          <td class="check"></td>
+        </tr>
+        <tr>
+          <td class="prio">3</td>
+          <td class="rubro">Puntos anotados</td>
+          <td>72</td>
+          <td class="obj">78</td>
+          <td>85+</td>
+          <td class="check"></td>
+        </tr>
+        <tr>
+          <td class="prio">3</td>
+          <td class="rubro">Libres (aciertos / intentos · %)</td>
+          <td>12/19 · 63%</td>
+          <td class="obj">13/20 · 67%</td>
+          <td>15/20 · 70%+</td>
+          <td class="check"></td>
+        </tr>
+        <tr>
+          <td class="prio">4</td>
+          <td class="rubro">Recuperos</td>
+          <td>7</td>
+          <td class="obj">9</td>
+          <td>11+</td>
+          <td class="check"></td>
+        </tr>
+        <tr>
+          <td class="prio">5</td>
+          <td class="rubro">Rebotes ofensivos</td>
+          <td>8</td>
+          <td class="obj">9</td>
+          <td>11+</td>
+          <td class="check"></td>
+        </tr>
+        <tr>
+          <td class="prio">—</td>
+          <td class="rubro">Posesiones (ritmo)</td>
+          <td colspan="3" style="text-align:left;padding-left:12px">
+            Referencia ~76. No es meta de ganar/perder: controlar el ritmo del plan de juego.
+          </td>
+          <td class="check"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <h2 class="def">Rival (límites defensivos)</h2>
+    <p class="hint">
+      Acá el “objetivo” es el techo que le dejamos al rival (o el piso de pérdidas que le forzamos).
+      En tiro: no se trata de que no tire, sino de que tire mal / frío.
+    </p>
+    <table>
+      <thead>
+        <tr>
+          <th class="prio">Prio</th>
+          <th class="rubro">Rubro</th>
+          <th>Piso (excelente)</th>
+          <th>Objetivo</th>
+          <th>Techo (no pasar)</th>
+          <th>¿Cumplió?</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="prio">1</td>
+          <td class="rubro">% 3P rival</td>
+          <td>≤ 22%</td>
+          <td class="obj">≤ 25%</td>
+          <td>32%+</td>
+          <td class="check"></td>
+        </tr>
+        <tr>
+          <td class="prio">1</td>
+          <td class="rubro">% 2P rival</td>
+          <td>≤ 42%</td>
+          <td class="obj">≤ 45%</td>
+          <td>52%+</td>
+          <td class="check"></td>
+        </tr>
+        <tr>
+          <td class="prio">2</td>
+          <td class="rubro">Puntos recibidos</td>
+          <td>≤ 60</td>
+          <td class="obj">≤ 65</td>
+          <td>72+</td>
+          <td class="check"></td>
+        </tr>
+        <tr>
+          <td class="prio">3</td>
+          <td class="rubro">Pérdidas del rival (forzadas)</td>
+          <td>16+</td>
+          <td class="obj">≥ 14</td>
+          <td>&lt; 12</td>
+          <td class="check"></td>
+        </tr>
+        <tr>
+          <td class="prio">4</td>
+          <td class="rubro">RO del rival</td>
+          <td>≤ 7</td>
+          <td class="obj">≤ 9</td>
+          <td>11+</td>
+          <td class="check"></td>
+        </tr>
+        <tr>
+          <td class="prio">—</td>
+          <td class="rubro">Volumen rival (referencia)</td>
+          <td colspan="3" style="text-align:left;padding-left:12px">
+            Suele tirar ~38 de 2 y ~25 de 3. El foco es el %: dejarlo en ~17/38 (2) y ~6/25 (3).
+          </td>
+          <td class="check"></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="msg">
+      <strong>Mensaje del partido:</strong>
+      En Metro casi todos juegan al mismo ritmo y tiran casi lo mismo.
+      La diferencia está en <strong>convertir mejor</strong> (sobre todo de 3 y de 2)
+      y en <strong>cuidar el balón con juego</strong> (AST/pérdidas ≥ 1.3).
+      Buenas posesiones, no más posesiones. Buenos tiros, no tirar por tirar.
+    </div>
+
+    <footer>
+      <div class="box">
+        <span>Claves ofensivas (prepartido)</span>
+      </div>
+      <div class="box">
+        <span>Claves defensivas (prepartido)</span>
+      </div>
+    </footer>
+  </article>
+</body>
+</html>

@@ -1,0 +1,82 @@
+{
+  "competencia": 2032,
+  "fase": "FASE REGULAR",
+  "grupos": [
+    "METRO A",
+    "METRO B",
+    "METRO C"
+  ],
+  "n_partidos_fixture": 168,
+  "n_victorias": 168,
+  "por_grupo": {
+    "METRO A": 56,
+    "METRO B": 56,
+    "METRO C": 56
+  },
+  "omitidos": {
+    "sin_box": 0,
+    "walkover": 0,
+    "empate": 0,
+    "sin_pts": 0
+  },
+  "propio": {
+    "pts": 78.4,
+    "ro": 9.4,
+    "ast": 15.9,
+    "per": 12.6,
+    "ast_per": 1.26,
+    "rec": 8.6,
+    "pct_2p": 51.5,
+    "pct_3p": 32.6,
+    "pct_tl": 67.1,
+    "t2": "19/38",
+    "t3": "9/27",
+    "tl": "13/20",
+    "t2a": 19.4,
+    "t2i": 37.6,
+    "t3a": 8.8,
+    "t3i": 26.9,
+    "tla": 13.5,
+    "tli": 20.1,
+    "fga": 64.4,
+    "poss": 76.5
+  },
+  "rival": {
+    "pts_recibidos": 65.1,
+    "ro": 8.9,
+    "per": 13.8,
+    "pct_2p": 44.7,
+    "pct_3p": 25.1,
+    "pct_tl": 63.0,
+    "t2": "17/38",
+    "t3": "6/25",
+    "tl": "12/19",
+    "t2a": 17.1,
+    "t2i": 38.1,
+    "t3a": 6.4,
+    "t3i": 25.5,
+    "tla": 11.7,
+    "tli": 18.7,
+    "fga": 63.6,
+    "poss": 76.7
+  },
+  "objetivos_sugeridos": {
+    "propio": {
+      "pts": 78,
+      "ro": 9,
+      "ast_per": 1.3,
+      "rec": 9,
+      "pct_2p": 52,
+      "pct_3p": 33,
+      "pct_tl": 67
+    },
+    "rival": {
+      "pts_recibidos_max": 65,
+      "ro_max": 9,
+      "per_forzadas_min": 14,
+      "pct_2p_max": 45,
+      "pct_3p_max": 25,
+      "pct_tl_max": 63
+    }
+  }
+}

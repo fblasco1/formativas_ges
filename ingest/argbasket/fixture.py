@@ -4,13 +4,21 @@ import argparse
 import re
 import sys
 import time
-from typing import Dict, List, Optional, Tuple
+from typing import Any, Dict, List, Literal, Optional, Tuple
 from urllib.parse import urljoin
 
 import requests
 from bs4 import BeautifulSoup
 
 from ingest.argbasket.io import write_csv_rows
+from ingest.argbasket.lff_constants import (
+    LFF_DETALLE_TORNEO_PATH,
+    LFF_FIXTURE_TO_TORNEO_COMP_CAT_ID,
+    LFF_TORNEO_TO_FIXTURE_COMP_CAT_ID,
+    LFF_U15_DETALLE_URL,
+    LFF_U15_FIXTURE_COMP_CAT_ID,
+    LFF_U15_TORNEO_COMP_CAT_ID,
+)
 
 BASE_URL_DEFAULT = "https://argentina.basketball"
 
@@ -42,6 +50,210 @@ def _default_headers(referer: str) -> dict[str, str]:
         "Referer": referer,
         "X-Requested-With": "XMLHttpRequest",
     }
+
+
+def _json_headers() -> dict[str, str]:
+    return {
+        "User-Agent": _default_headers(BASE_URL_DEFAULT)["User-Agent"],
+        "Accept": "application/json, text/plain, */*",
+    }
+
+
+def is_lff_u15_comp_cat_id(comp_cat_id: int) -> bool:
+    known = set(LFF_U15_TORNEO_COMP_CAT_ID.values()) | set(LFF_U15_FIXTURE_COMP_CAT_ID.values())
+    return int(comp_cat_id) in known
+
+
+def resolve_lff_fixture_comp_cat_id(comp_cat_id: int) -> int:
+    """ID torneo/detalle (4643) -> ID handler CargarFixture (5117)."""
+    return LFF_TORNEO_TO_FIXTURE_COMP_CAT_ID.get(int(comp_cat_id), int(comp_cat_id))
+
+
+def resolve_lff_torneo_comp_cat_id(comp_cat_id: int) -> int:
+    """ID handler CargarFixture (5117) -> ID torneo/detalle (4643)."""
+    return LFF_FIXTURE_TO_TORNEO_COMP_CAT_ID.get(int(comp_cat_id), int(comp_cat_id))
+
+
+def genero_lff_from_comp_cat_id(comp_cat_id: int) -> Literal["masc", "fem"]:
+    cid = int(comp_cat_id)
+    if cid in (LFF_U15_TORNEO_COMP_CAT_ID["fem"], LFF_U15_FIXTURE_COMP_CAT_ID["fem"]):
+        return "fem"
+    return "masc"
+
+
+def fetch_cargar_subpagina_fixture_html(
+    *,
+    comp_cat_id: int,
+    fecha_ini: str,
+    fecha_fin: str,
+    genero: Literal["masc", "fem"] | None = None,
+    base_url: str = BASE_URL_DEFAULT,
+    session: Optional[requests.Session] = None,
+    timeout_s: int = 60,
+) -> str:
+    s = session or requests.Session()
+    gen = genero or genero_lff_from_comp_cat_id(comp_cat_id)
+    torneo_id = resolve_lff_torneo_comp_cat_id(comp_cat_id)
+    referer = LFF_U15_DETALLE_URL[gen]
+    s.get(referer, headers={"User-Agent": _default_headers(referer)["User-Agent"]}, timeout=timeout_s)
+
+    path = LFF_DETALLE_TORNEO_PATH[gen]
+    url = urljoin(base_url.rstrip("/") + "/", path)
+    params = {
+        "handler": "CargarSubPagina",
+        "compCatId": str(torneo_id),
+        "fechaIni": fecha_ini,
+        "fechaFin": fecha_fin,
+        "aux": "fixture",
+    }
+    resp = s.get(url, params=params, headers=_default_headers(referer), timeout=timeout_s)
+    resp.raise_for_status()
+    resp.encoding = resp.apparent_encoding or resp.encoding or "utf-8"
+    return resp.text
+
+
+def fetch_fixture_liga_federal_json(
+    *,
+    comp_cat_id: int,
+    fecha_ini: str,
+    fecha_fin: str,
+    base_url: str = BASE_URL_DEFAULT,
+    session: Optional[requests.Session] = None,
+    timeout_s: int = 60,
+) -> dict[str, Any]:
+    s = session or requests.Session()
+    torneo_id = resolve_lff_torneo_comp_cat_id(comp_cat_id)
+    url = urljoin(base_url.rstrip("/") + "/", "api/fixture/liga-federal")
+    params = {
+        "compCatId": str(torneo_id),
+        "fechaInicio": fecha_ini,
+        "fechaFin": fecha_fin,
+    }
+    resp = s.get(url, params=params, headers=_json_headers(), timeout=timeout_s)
+    resp.raise_for_status()
+    return resp.json()
+
+
+def _pts_str(value: Any) -> str:
+    if value is None or value == "":
+        return ""
+    return str(value).strip()
+
+
+def _dif_pts(pts_local: str, pts_visit: str) -> str:
+    try:
+        if pts_local != "" and pts_visit != "":
+            return str(int(float(pts_local)) - int(float(pts_visit)))
+    except (TypeError, ValueError):
+        pass
+    return ""
+
+
+def parse_fixture_json(
+    data: dict[str, Any], *, base_url: str = BASE_URL_DEFAULT
+) -> List[Dict[str, str]]:
+    partidos = data.get("partidos") or []
+    out: List[Dict[str, str]] = []
+    for p in partidos:
+        token = _pts_str(p.get("idPartido"))
+        local = _pts_str(p.get("equipoLocal"))
+        visitante = _pts_str(p.get("equipoVisitante"))
+        loc_ruta = _pts_str(p.get("localRuta"))
+        vis_ruta = _pts_str(p.get("visitanteRuta"))
+        pts_local = _pts_str(p.get("resultadoLocal"))
+        pts_visit = _pts_str(p.get("resultadoVisitante"))
+        fecha_hora = _pts_str(p.get("fecha"))
+
+        slug = f"{loc_ruta}-vs-{vis_ruta}" if loc_ruta and vis_ruta else ""
+        stats_url = ""
+        if token and slug:
+            stats_path = f"liga-federal/partido/{token}/{slug}"
+            stats_url = urljoin(base_url.rstrip("/") + "/", stats_path)
+
+        out.append(
+            {
+                "id_partido_token": token,
+                "Local": local,
+                "Visitante": visitante,
+                "PTS_LOCAL": pts_local,
+                "PTS_VISITANTE": pts_visit,
+                "DIF_PTS": _dif_pts(pts_local, pts_visit),
+                "Fecha_Programada": fecha_hora,
+                "URL_Estadisticas": stats_url,
+                "hora_inicio_partido": "",
+                "hora_fin_partido": "",
+            }
+        )
+    return out
+
+
+def fetch_fixture_rows_lff(
+    *,
+    comp_cat_id: int,
+    fecha_ini: str,
+    fecha_fin: str,
+    base_url: str = BASE_URL_DEFAULT,
+    session: Optional[requests.Session] = None,
+    timeout_s: int = 60,
+    progress: bool = False,
+) -> List[Dict[str, str]]:
+    """CargarFixture (ID mapeado) -> JSON API -> CargarSubPagina."""
+    s = session or requests.Session()
+    fixture_id = resolve_lff_fixture_comp_cat_id(comp_cat_id)
+    torneo_id = resolve_lff_torneo_comp_cat_id(comp_cat_id)
+
+    html = fetch_cargar_fixture_html(
+        comp_cat_id=fixture_id,
+        fecha_ini=fecha_ini,
+        fecha_fin=fecha_fin,
+        base_url=base_url,
+        session=s,
+        timeout_s=timeout_s,
+    )
+    rows = parse_tabla_calendarios(html, base_url=base_url)
+    if rows:
+        if progress:
+            print(
+                f"[fixture-lff] compCatId={torneo_id} CargarFixture({fixture_id}): {len(rows)} filas",
+                file=sys.stderr,
+                flush=True,
+            )
+        return rows
+
+    data = fetch_fixture_liga_federal_json(
+        comp_cat_id=torneo_id,
+        fecha_ini=fecha_ini,
+        fecha_fin=fecha_fin,
+        base_url=base_url,
+        session=s,
+        timeout_s=timeout_s,
+    )
+    rows = parse_fixture_json(data, base_url=base_url)
+    if rows:
+        if progress:
+            print(
+                f"[fixture-lff] compCatId={torneo_id} JSON API: {len(rows)} filas",
+                file=sys.stderr,
+                flush=True,
+            )
+        return rows
+
+    html = fetch_cargar_subpagina_fixture_html(
+        comp_cat_id=torneo_id,
+        fecha_ini=fecha_ini,
+        fecha_fin=fecha_fin,
+        base_url=base_url,
+        session=s,
+        timeout_s=timeout_s,
+    )
+    rows = parse_tabla_calendarios(html, base_url=base_url)
+    if progress:
+        print(
+            f"[fixture-lff] compCatId={torneo_id} CargarSubPagina: {len(rows)} filas",
+            file=sys.stderr,
+            flush=True,
+        )
+    return rows
 
 
 def fetch_cargar_fixture_html(
@@ -201,37 +413,17 @@ def parse_tabla_calendarios(
     return out
 
 
-def get_fixture_partidos_argentina_basketball(
+def _attach_horas_reales(
+    rows: List[Dict[str, str]],
     *,
     comp_cat_id: int,
-    fecha_ini: str,
-    fecha_fin: str,
     base_url: str = BASE_URL_DEFAULT,
     session: Optional[requests.Session] = None,
-    incluir_horas_reales: bool = True,
     max_horas_requests: int = 0,
     sleep_s_entre_horas: float = 0.0,
     progress: bool = False,
     progress_cada: int = 25,
 ) -> List[Dict[str, str]]:
-    html = fetch_cargar_fixture_html(
-        comp_cat_id=comp_cat_id,
-        fecha_ini=fecha_ini,
-        fecha_fin=fecha_fin,
-        base_url=base_url,
-        session=session,
-    )
-    rows = parse_tabla_calendarios(html, base_url=base_url)
-
-    if not incluir_horas_reales:
-        if progress:
-            print(
-                f"[fixture] compCatId={comp_cat_id} calendario: {len(rows)} filas (sin horas reales)",
-                file=sys.stderr,
-                flush=True,
-            )
-        return rows
-
     if progress:
         print(
             f"[fixture] compCatId={comp_cat_id} calendario: {len(rows)} partidos, "
@@ -284,6 +476,109 @@ def get_fixture_partidos_argentina_basketball(
         )
 
     return rows
+
+
+def get_fixture_partidos_lff(
+    *,
+    comp_cat_id: int,
+    fecha_ini: str,
+    fecha_fin: str,
+    base_url: str = BASE_URL_DEFAULT,
+    session: Optional[requests.Session] = None,
+    incluir_horas_reales: bool = True,
+    max_horas_requests: int = 0,
+    sleep_s_entre_horas: float = 0.0,
+    progress: bool = False,
+    progress_cada: int = 25,
+    timeout_s: int = 60,
+) -> List[Dict[str, str]]:
+    torneo_id = resolve_lff_torneo_comp_cat_id(comp_cat_id)
+    rows = fetch_fixture_rows_lff(
+        comp_cat_id=torneo_id,
+        fecha_ini=fecha_ini,
+        fecha_fin=fecha_fin,
+        base_url=base_url,
+        session=session,
+        timeout_s=timeout_s,
+        progress=progress,
+    )
+
+    if not incluir_horas_reales:
+        if progress:
+            print(
+                f"[fixture-lff] compCatId={torneo_id} calendario: {len(rows)} filas (sin horas reales)",
+                file=sys.stderr,
+                flush=True,
+            )
+        return rows
+
+    return _attach_horas_reales(
+        rows,
+        comp_cat_id=torneo_id,
+        base_url=base_url,
+        session=session,
+        max_horas_requests=max_horas_requests,
+        sleep_s_entre_horas=sleep_s_entre_horas,
+        progress=progress,
+        progress_cada=progress_cada,
+    )
+
+
+def get_fixture_partidos_argentina_basketball(
+    *,
+    comp_cat_id: int,
+    fecha_ini: str,
+    fecha_fin: str,
+    base_url: str = BASE_URL_DEFAULT,
+    session: Optional[requests.Session] = None,
+    incluir_horas_reales: bool = True,
+    max_horas_requests: int = 0,
+    sleep_s_entre_horas: float = 0.0,
+    progress: bool = False,
+    progress_cada: int = 25,
+) -> List[Dict[str, str]]:
+    if is_lff_u15_comp_cat_id(comp_cat_id):
+        return get_fixture_partidos_lff(
+            comp_cat_id=comp_cat_id,
+            fecha_ini=fecha_ini,
+            fecha_fin=fecha_fin,
+            base_url=base_url,
+            session=session,
+            incluir_horas_reales=incluir_horas_reales,
+            max_horas_requests=max_horas_requests,
+            sleep_s_entre_horas=sleep_s_entre_horas,
+            progress=progress,
+            progress_cada=progress_cada,
+        )
+
+    html = fetch_cargar_fixture_html(
+        comp_cat_id=comp_cat_id,
+        fecha_ini=fecha_ini,
+        fecha_fin=fecha_fin,
+        base_url=base_url,
+        session=session,
+    )
+    rows = parse_tabla_calendarios(html, base_url=base_url)
+
+    if not incluir_horas_reales:
+        if progress:
+            print(
+                f"[fixture] compCatId={comp_cat_id} calendario: {len(rows)} filas (sin horas reales)",
+                file=sys.stderr,
+                flush=True,
+            )
+        return rows
+
+    return _attach_horas_reales(
+        rows,
+        comp_cat_id=comp_cat_id,
+        base_url=base_url,
+        session=session,
+        max_horas_requests=max_horas_requests,
+        sleep_s_entre_horas=sleep_s_entre_horas,
+        progress=progress,
+        progress_cada=progress_cada,
+    )
 
 
 def write_csv(path: str, rows: List[Dict[str, str]]) -> None:
