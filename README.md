@@ -68,8 +68,9 @@ Configurar competencias en `config/competencias.json`. Service account Echagüe:
 
 ## Ramas
 
-- **`main`**: árbol canónico (producto 2026 + ranking).
-- **`estadisticas`**: espejo temporal; se puede retirar cuando Pages/Echagüe estén estables solo en `main`.
+- **`main`**: producción (GitHub Pages, Actions Echagüe/SICLUB, portal público).
+- **`develop`**: integración de trabajo en curso; base para nuevas `feat/*`.
+- **`feat/<tema>`**: features cortas (`feat/portal-scouting`, `feat/lff`, etc.) → PR a `develop` → PR a `main`.
 - Tags de archivo: `archive/main-pre-unificacion`, `archive/Ranking_V2-2026-05`, etc.
 
 ## CLI legacy

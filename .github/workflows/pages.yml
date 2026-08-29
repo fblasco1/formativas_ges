@@ -2,7 +2,7 @@ name: Publicar informe comparativo
 
 on:
   push:
-    branches: [main, estadisticas]
+    branches: [main]
     paths:
       - "docs/**"
       - "outputs/mini_masc/**"
