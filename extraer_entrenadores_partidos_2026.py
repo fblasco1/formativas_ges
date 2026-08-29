@@ -19,6 +19,7 @@ import csv
 import sys
 import time
 from concurrent.futures import ThreadPoolExecutor, as_completed
+from datetime import date
 from typing import Dict, Iterable, List, Optional, Tuple
 
 import requests
@@ -101,14 +102,67 @@ def _postprocesar_filas_entrenadores(
 
 
 def _year_from_fecha_programada(s: str) -> Optional[int]:
+    d = _date_from_fecha_programada(s)
+    return d.year if d else None
+
+
+def _date_from_fecha_programada(s: str) -> Optional[date]:
     s = (s or "").strip()
     if not s:
         return None
     part = s.split()[0]
     bits = part.split("/")
-    if len(bits) >= 3 and bits[2].isdigit():
-        return int(bits[2])
+    if len(bits) >= 3 and bits[0].isdigit() and bits[1].isdigit() and bits[2].isdigit():
+        return date(int(bits[2]), int(bits[1]), int(bits[0]))
     return None
+
+
+def _parse_iso_date(s: str) -> Optional[date]:
+    s = (s or "").strip()
+    if not s:
+        return None
+    try:
+        return date.fromisoformat(s)
+    except ValueError:
+        return None
+
+
+def _fecha_en_rango(
+    fecha_programada: str,
+    *,
+    fecha_ini: Optional[date],
+    fecha_fin: Optional[date],
+) -> bool:
+    d = _date_from_fecha_programada(fecha_programada)
+    if d is None:
+        return False
+    if fecha_ini and d < fecha_ini:
+        return False
+    if fecha_fin and d > fecha_fin:
+        return False
+    return True
+
+
+def _filtrar_fixture_por_fecha(
+    rows: List[Dict[str, str]],
+    *,
+    year: Optional[int],
+    fecha_ini: Optional[date],
+    fecha_fin: Optional[date],
+) -> List[Dict[str, str]]:
+    out: List[Dict[str, str]] = []
+    for r in rows:
+        fp = r.get("Fecha_Programada") or ""
+        if fecha_ini or fecha_fin:
+            if not _fecha_en_rango(fp, fecha_ini=fecha_ini, fecha_fin=fecha_fin):
+                continue
+        elif year is not None and _year_from_fecha_programada(fp) != year:
+            continue
+        tok = (r.get("id_partido_token") or "").strip()
+        if not tok:
+            continue
+        out.append(r)
+    return out
 
 
 def _load_fixture_rows(path: str) -> List[Dict[str, str]]:
@@ -173,7 +227,9 @@ def main(argv: Optional[Iterable[str]] = None) -> int:
         help="CSV con columnas id_partido_token, Categoria, Fecha_Programada, URL_Estadisticas, ...",
     )
     p.add_argument("--out", default="entrenadores_partidos_2026.csv", help="Ruta del CSV de salida.")
-    p.add_argument("--year", type=int, default=2026, help="Filtrar por año en Fecha_Programada (DD/MM/AAAA).")
+    p.add_argument("--year", type=int, default=0, help="Filtrar por año en Fecha_Programada (DD/MM/AAAA). 0=sin filtro por año.")
+    p.add_argument("--fecha-ini", default="", help="Filtro inclusive YYYY-MM-DD en Fecha_Programada.")
+    p.add_argument("--fecha-fin", default="", help="Filtro inclusive YYYY-MM-DD en Fecha_Programada.")
     p.add_argument("--base-url", default="https://argentina.basketball", help="Origen del portal.")
     p.add_argument("--timeout", type=int, default=60)
     p.add_argument("--workers", type=int, default=4, help="Descargas concurrentes por token distinto.")
@@ -233,14 +289,17 @@ def main(argv: Optional[Iterable[str]] = None) -> int:
         print(f"No se pudo leer {args.fixture}: {e}", file=sys.stderr)
         return 1
 
-    work: List[Dict[str, str]] = []
-    for r in all_rows:
-        if _year_from_fecha_programada(r.get("Fecha_Programada") or "") != args.year:
-            continue
-        tok = (r.get("id_partido_token") or "").strip()
-        if not tok:
-            continue
-        work.append(r)
+    fecha_ini = _parse_iso_date(args.fecha_ini)
+    fecha_fin = _parse_iso_date(args.fecha_fin)
+    year = args.year if args.year > 0 else None
+    if not fecha_ini and not fecha_fin and year is None:
+        year = 2026
+    work = _filtrar_fixture_por_fecha(
+        all_rows,
+        year=year,
+        fecha_ini=fecha_ini,
+        fecha_fin=fecha_fin,
+    )
 
     tokens_order: List[str] = []
     seen_tok: set[str] = set()
@@ -299,9 +358,14 @@ def main(argv: Optional[Iterable[str]] = None) -> int:
             w.writerow({k: row.get(k, "") for k in fn})
 
     sufijo = " (con duplicados)" if args.mantener_duplicados else " (unificado)"
+    rango = ""
+    if fecha_ini or fecha_fin:
+        rango = f"{args.fecha_ini or '…'} .. {args.fecha_fin or '…'}"
+    elif year is not None:
+        rango = str(year)
     print(
         f"Filas escritas{sufijo}: {len(out_rows)} -> {args.out} "
-        f"(partidos {args.year} en fixture: {len(work)}, tokens unicos: {len(tokens_order)})"
+        f"(partidos en rango {rango}: {len(work)}, tokens unicos: {len(tokens_order)})"
     )
     return 0
 
