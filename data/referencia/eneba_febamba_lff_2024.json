@@ -1,0 +1,112 @@
+{
+  "fuente": "DOC-20260524-WA0098.docx — Trabajo Final ENEBA (Tomás Curi, 6/12/2024)",
+  "tema": "Desarrollo de lanzadores U15 — comparación FeBAMBA vs Liga Federal Formativa (doble competencia, temporada ~2024)",
+  "notas": [
+    "Datos históricos extraídos del documento por falta de acceso automatizado a LFF U15 2024.",
+    "Los valores por equipo del gráfico de doble competencia son aproximados (lectura visual del gráfico).",
+    "Comunicaciones tiene cifras textuales exactas en el documento."
+  ],
+  "ges_busqueda_2024": {
+    "fecha": "2026-06-13",
+    "resultado": "No se encontró categoría LIGA FEDERAL + CADETES en competencias GES 1100-1250.",
+    "competencias_relevantes": {
+      "1178": {"CADETES MASCULINO": "2622", "LIGA PROXIMO MASCULINO": "2624"},
+      "307": {"CADETES MASCULINO": "650"},
+      "682": {"CADETES MASCULINO": "1473"}
+    },
+    "lff_cadetes_2025": {"competencia_ges": 1619, "id_categoria_masc": 4643}
+  },
+  "promedios_agregados": {
+    "febamba": {
+      "t3_pp_intentados": 16.16,
+      "t3_pp_intentados_alt": 16.68,
+      "t3_pp_anotados": 3.55,
+      "fuente_metrica": "Promedio T16 FeBAMBA / gráfico barras agrupadas"
+    },
+    "liga_federal_interior": {
+      "t3_pp_intentados": 23.49,
+      "t3_pp_intentados_alt": 21.74,
+      "t3_pp_anotados": 5.92,
+      "fuente_metrica": "Equipos seleccionados interior / gráfico barras agrupadas"
+    }
+  },
+  "equipos_liga_federal_u15_2024": [
+    "MORON",
+    "DERQUI",
+    "SARMIENTO",
+    "BOCA",
+    "PORTENO",
+    "COMUNICACIONES",
+    "3 DE FEBRERO",
+    "LANUS",
+    "GEVP",
+    "CASTELAR",
+    "CAZA Y PESCA",
+    "FERRO",
+    "WILDE",
+    "ECHAGUE",
+    "RIVER",
+    "PINOCHO",
+    "LOMAS"
+  ],
+  "equipos_febamba_2024": [
+    "VILLA SAN MARTIN",
+    "HINDU",
+    "BAHIENSE",
+    "PROGRESO",
+    "BOCHAS",
+    "UNION DE SANTA FE",
+    "BOCA",
+    "MORON",
+    "DERQUI",
+    "3 DE FEBRERO",
+    "PORTENO",
+    "SARMIENTO",
+    "GEVP",
+    "FERRO",
+    "WILDE",
+    "COMUNICACIONES"
+  ],
+  "equipos_doble_competencia_grafico": [
+    "3 DE FEBRERO",
+    "BAHIENSE",
+    "BOCA",
+    "COMUNICACIONES",
+    "DERQUI",
+    "FERRO",
+    "GEVP",
+    "MORON",
+    "PORTENO",
+    "SARMIENTO",
+    "WILDE"
+  ],
+  "comunicaciones_detalle": {
+    "liga_federal": {
+      "partidos": 15,
+      "t3_total": 373,
+      "t3_aciertos": 91,
+      "t3_pct": 24.0,
+      "t3_pp": 24.87,
+      "t3_aciertos_pp": 6.07
+    },
+    "febamba": {
+      "t3_total": 565,
+      "t3_aciertos": 117,
+      "t3_pct": 20.7,
+      "nota": "Partidos no indicados en el documento; totales de temporada FeBAMBA"
+    }
+  },
+  "doble_competencia_aprox_pp": {
+    "3 DE FEBRERO": {"lff_t3_pp": 27.0, "feb_t3_pp": 18.0},
+    "BAHIENSE": {"lff_t3_pp": 31.0, "lff_t3_aciertos_pp": 8.5, "feb_t3_pp": null},
+    "BOCA": {"lff_t3_pp": 22.0, "feb_t3_pp": 15.0},
+    "COMUNICACIONES": {"lff_t3_pp": 24.87, "lff_t3_aciertos_pp": 6.07, "feb_t3_pp": null},
+    "DERQUI": {"lff_t3_pp": 31.0, "feb_t3_pp": 14.0},
+    "FERRO": {"lff_t3_pp": 12.0, "feb_t3_pp": 11.0},
+    "GEVP": {"lff_t3_pp": 20.0, "feb_t3_pp": 14.0},
+    "MORON": {"lff_t3_pp": 24.0, "feb_t3_pp": 16.0},
+    "PORTENO": {"lff_t3_pp": 22.0, "feb_t3_pp": 15.0},
+    "SARMIENTO": {"lff_t3_pp": 27.0, "lff_t3_aciertos_pp": 7.0, "feb_t3_pp": 12.0},
+    "WILDE": {"lff_t3_pp": 12.5, "feb_t3_pp": 13.0}
+  }
+}

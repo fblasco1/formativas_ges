@@ -1,0 +1,88 @@
+{
+  "generado": "2026-08-24T01:19:33",
+  "filtro_delegacion": "FEDERACION DE BASQUETBOL DEL AREA METROPOLITANA DE BUENOS AIRES",
+  "filtro_temporada": "2026",
+  "n": 6,
+  "competencias": [
+    {
+      "id": 2013,
+      "temporada": "2026",
+      "titulo": "SUPERIOR 2026",
+      "delegacion": "FEDERACION DE BASQUETBOL DEL AREA METROPOLITANA DE BUENOS AIRES",
+      "n_categorias": 1,
+      "categorias": {
+        "MAYORES MASCULINO": "5074"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=2013"
+    },
+    {
+      "id": 2014,
+      "temporada": "2026",
+      "titulo": "MASTER 2026",
+      "delegacion": "FEDERACION DE BASQUETBOL DEL AREA METROPOLITANA DE BUENOS AIRES",
+      "n_categorias": 5,
+      "categorias": {
+        "MASTER +36 MASCULINO": "5212",
+        "MASTER +41 MASCULINO": "5213",
+        "MASTER +46 MASCULINO": "5085",
+        "MASTER +52 MASCULINO": "5214",
+        "MASTER +59 MASCULINO": "5215"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=2014"
+    },
+    {
+      "id": 2015,
+      "temporada": "2026",
+      "titulo": "FORMATIVAS 2026",
+      "delegacion": "FEDERACION DE BASQUETBOL DEL AREA METROPOLITANA DE BUENOS AIRES",
+      "n_categorias": 7,
+      "categorias": {
+        "LIGA PROXIMO MASCULINO": "5075",
+        "JUVENILES MASCULINO": "5076",
+        "CADETES MASCULINO": "5077",
+        "INFANTILES MASCULINO": "5078",
+        "MINI MASCULINO": "5079",
+        "PRE MINI MASCULINO": "5080",
+        "MOSQUITOS MASCULINO": "5081"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=2015"
+    },
+    {
+      "id": 2018,
+      "temporada": "2026",
+      "titulo": "FLEX FORMATIVAS",
+      "delegacion": "FEDERACION DE BASQUETBOL DEL AREA METROPOLITANA DE BUENOS AIRES",
+      "n_categorias": 5,
+      "categorias": {
+        "JUVENILES FLEX MASCULINO": "5558",
+        "CADETES MIXTO": "5557",
+        "INFANTILES MIXTO": "5091",
+        "MINI MIXTO": "5090",
+        "PRE MINI MIXTO": "5089"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=2018"
+    },
+    {
+      "id": 2019,
+      "temporada": "2026",
+      "titulo": "FLEX SUPERIOR",
+      "delegacion": "FEDERACION DE BASQUETBOL DEL AREA METROPOLITANA DE BUENOS AIRES",
+      "n_categorias": 1,
+      "categorias": {
+        "MAYORES MASCULINO": "5088"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=2019"
+    },
+    {
+      "id": 2288,
+      "temporada": "2026",
+      "titulo": "ARGENTINO DE FEDERACIONES U11F",
+      "delegacion": "FEDERACION DE BASQUETBOL DEL AREA METROPOLITANA DE BUENOS AIRES",
+      "n_categorias": 1,
+      "categorias": {
+        "MINI FEMENINO": "6224"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=2288"
+    }
+  ]
+}
