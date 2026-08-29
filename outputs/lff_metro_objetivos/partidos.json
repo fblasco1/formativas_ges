@@ -1,0 +1,1682 @@
+[
+  {
+    "grupo": "METRO A",
+    "local": "PINOCHO",
+    "visitante": "ESTUDIANTIL PORTEÑO",
+    "pts_local": 96,
+    "pts_visit": 75,
+    "id_partido": "e0wS_Jz9WqHZbqecgHL4SQ",
+    "fecha": "05/03/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO A",
+    "local": "LOS INDIOS (MORENO)",
+    "visitante": "JOSE HERNANDEZ",
+    "pts_local": 73,
+    "pts_visit": 64,
+    "id_partido": "RQs0CQlH0f20JludxwVeCA",
+    "fecha": "05/03/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO A",
+    "local": "CAZA Y PESCA",
+    "visitante": "SAN MIGUEL",
+    "pts_local": 92,
+    "pts_visit": 85,
+    "id_partido": "ZbDSZ2RdK2uATZWraNSzZw",
+    "fecha": "06/03/2026 21:00",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO A",
+    "local": "SAN ANDRES",
+    "visitante": "SP. ESCOBAR",
+    "pts_local": 62,
+    "pts_visit": 77,
+    "id_partido": "VdDQb_drcbimTb9iU9rkrQ",
+    "fecha": "06/03/2026 21:00",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO A",
+    "local": "SAN ANDRES",
+    "visitante": "ESTUDIANTIL PORTEÑO",
+    "pts_local": 59,
+    "pts_visit": 71,
+    "id_partido": "6e-IDbdBU_5cxOb7gqtMbQ",
+    "fecha": "09/03/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO A",
+    "local": "JOSE HERNANDEZ",
+    "visitante": "PINOCHO",
+    "pts_local": 76,
+    "pts_visit": 60,
+    "id_partido": "GTusjZoPi3IyOeRl5PeACA",
+    "fecha": "10/03/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO A",
+    "local": "LOS INDIOS (MORENO)",
+    "visitante": "SAN ANDRES",
+    "pts_local": 83,
+    "pts_visit": 72,
+    "id_partido": "mhZuzjVHgYZqMsnLUZ4SfQ",
+    "fecha": "13/03/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO A",
+    "local": "JOSE HERNANDEZ",
+    "visitante": "CAZA Y PESCA",
+    "pts_local": 69,
+    "pts_visit": 76,
+    "id_partido": "Wj7mOLNsL-f0Qg3nhKdNKg",
+    "fecha": "13/03/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO A",
+    "local": "SAN MIGUEL",
+    "visitante": "ESTUDIANTIL PORTEÑO",
+    "pts_local": 75,
+    "pts_visit": 74,
+    "id_partido": "-PnqM2jh8-WI5N72t35giw",
+    "fecha": "16/03/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO A",
+    "local": "SAN ANDRES",
+    "visitante": "JOSE HERNANDEZ",
+    "pts_local": 64,
+    "pts_visit": 76,
+    "id_partido": "PESxIZ_mQRBiWp2wm5HOAQ",
+    "fecha": "20/03/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO A",
+    "local": "SAN MIGUEL",
+    "visitante": "LOS INDIOS (MORENO)",
+    "pts_local": 70,
+    "pts_visit": 77,
+    "id_partido": "SW_FixId1qbld_LiJO81gw",
+    "fecha": "23/03/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO A",
+    "local": "ESTUDIANTIL PORTEÑO",
+    "visitante": "CAZA Y PESCA",
+    "pts_local": 93,
+    "pts_visit": 85,
+    "id_partido": "t7bD32Qy42dzZLPj3OdqeA",
+    "fecha": "23/03/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO A",
+    "local": "PINOCHO",
+    "visitante": "SAN MIGUEL",
+    "pts_local": 87,
+    "pts_visit": 52,
+    "id_partido": "EEyvDETgvAxQTuUg6nAtQQ",
+    "fecha": "26/03/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO A",
+    "local": "JOSE HERNANDEZ",
+    "visitante": "ESTUDIANTIL PORTEÑO",
+    "pts_local": 72,
+    "pts_visit": 58,
+    "id_partido": "t-Jbm3AR8as2hEDu9Y0zhw",
+    "fecha": "26/03/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO A",
+    "local": "CAZA Y PESCA",
+    "visitante": "SP. ESCOBAR",
+    "pts_local": 97,
+    "pts_visit": 83,
+    "id_partido": "LS16NJAA7w78EPVoZE4tbA",
+    "fecha": "27/03/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO A",
+    "local": "LOS INDIOS (MORENO)",
+    "visitante": "PINOCHO",
+    "pts_local": 69,
+    "pts_visit": 76,
+    "id_partido": "eKxhMQ-VXBkdb2k3wTDq2A",
+    "fecha": "30/03/2026 21:00",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO A",
+    "local": "SAN ANDRES",
+    "visitante": "CAZA Y PESCA",
+    "pts_local": 57,
+    "pts_visit": 89,
+    "id_partido": "w1E7u928pEOsyd_sFKtzJw",
+    "fecha": "31/03/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO A",
+    "local": "JOSE HERNANDEZ",
+    "visitante": "SAN MIGUEL",
+    "pts_local": 71,
+    "pts_visit": 78,
+    "id_partido": "ZDuIgAmzTG4vDSfSPcl6kw",
+    "fecha": "01/04/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO A",
+    "local": "CAZA Y PESCA",
+    "visitante": "LOS INDIOS (MORENO)",
+    "pts_local": 96,
+    "pts_visit": 85,
+    "id_partido": "rV5uQUegwY2POEFVz6td1w",
+    "fecha": "03/04/2026 21:00",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO A",
+    "local": "SP. ESCOBAR",
+    "visitante": "ESTUDIANTIL PORTEÑO",
+    "pts_local": 82,
+    "pts_visit": 78,
+    "id_partido": "UPYATaOJLKrgoy8BizjsTA",
+    "fecha": "06/04/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO A",
+    "local": "ESTUDIANTIL PORTEÑO",
+    "visitante": "LOS INDIOS (MORENO)",
+    "pts_local": 67,
+    "pts_visit": 65,
+    "id_partido": "syjoTMvzwpYKKTCgRGDd4Q",
+    "fecha": "08/04/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO A",
+    "local": "SP. ESCOBAR",
+    "visitante": "JOSE HERNANDEZ",
+    "pts_local": 86,
+    "pts_visit": 70,
+    "id_partido": "7Bt8Mrwh6DsuCmaJvbDkTg",
+    "fecha": "09/04/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO A",
+    "local": "PINOCHO",
+    "visitante": "CAZA Y PESCA",
+    "pts_local": 84,
+    "pts_visit": 75,
+    "id_partido": "UTTnR_wTMZ6jFxEdxOSEAw",
+    "fecha": "10/04/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO A",
+    "local": "SAN MIGUEL",
+    "visitante": "SAN ANDRES",
+    "pts_local": 0,
+    "pts_visit": 0,
+    "id_partido": "ro2z7_TXt4REYKh7qOhkrQ",
+    "fecha": "10/04/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO A",
+    "local": "SP. ESCOBAR",
+    "visitante": "SAN MIGUEL",
+    "pts_local": 101,
+    "pts_visit": 66,
+    "id_partido": "oSGPQzfkbO2PBj2u8xY_Zw",
+    "fecha": "13/04/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO A",
+    "local": "SAN ANDRES",
+    "visitante": "PINOCHO",
+    "pts_local": 67,
+    "pts_visit": 84,
+    "id_partido": "5XK8FNRyvx28fbSiy20uoQ",
+    "fecha": "16/04/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO A",
+    "local": "LOS INDIOS (MORENO)",
+    "visitante": "SP. ESCOBAR",
+    "pts_local": 68,
+    "pts_visit": 71,
+    "id_partido": "32dO8Oyx0ukzDp-rd7fkxA",
+    "fecha": "17/04/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO A",
+    "local": "LOS INDIOS (MORENO)",
+    "visitante": "ESTUDIANTIL PORTEÑO",
+    "pts_local": 80,
+    "pts_visit": 62,
+    "id_partido": "eZievmorlrLvJM7ktwWJfw",
+    "fecha": "20/04/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO A",
+    "local": "SAN MIGUEL",
+    "visitante": "PINOCHO",
+    "pts_local": 45,
+    "pts_visit": 88,
+    "id_partido": "nzzSZ1ECX2WnmFxpwVA6iw",
+    "fecha": "21/04/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO A",
+    "local": "CAZA Y PESCA",
+    "visitante": "SAN ANDRES",
+    "pts_local": 77,
+    "pts_visit": 65,
+    "id_partido": "Tl9H31o1VZjsJgQuU_ce5A",
+    "fecha": "22/04/2026 20:00",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO A",
+    "local": "JOSE HERNANDEZ",
+    "visitante": "LOS INDIOS (MORENO)",
+    "pts_local": 73,
+    "pts_visit": 62,
+    "id_partido": "ws-AJ7XLeO331YryDshzZw",
+    "fecha": "22/04/2026 20:00",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO A",
+    "local": "ESTUDIANTIL PORTEÑO",
+    "visitante": "SAN MIGUEL",
+    "pts_local": 76,
+    "pts_visit": 55,
+    "id_partido": "j_VBSONoeFXkWRadzh87GA",
+    "fecha": "24/04/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO A",
+    "local": "SP. ESCOBAR",
+    "visitante": "CAZA Y PESCA",
+    "pts_local": 79,
+    "pts_visit": 93,
+    "id_partido": "ke1GqxxBx5G3ou4SAH5R_g",
+    "fecha": "24/04/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO A",
+    "local": "SAN ANDRES",
+    "visitante": "LOS INDIOS (MORENO)",
+    "pts_local": 51,
+    "pts_visit": 92,
+    "id_partido": "GQcW5yCns_EwsGg0c487Kg",
+    "fecha": "27/04/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO A",
+    "local": "PINOCHO",
+    "visitante": "JOSE HERNANDEZ",
+    "pts_local": 88,
+    "pts_visit": 57,
+    "id_partido": "JIY3d8NKcfQTVFo7HGjK7g",
+    "fecha": "27/04/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO A",
+    "local": "SAN MIGUEL",
+    "visitante": "SP. ESCOBAR",
+    "pts_local": 73,
+    "pts_visit": 91,
+    "id_partido": "inPTOA_stoMkInZVOo2Aaw",
+    "fecha": "28/04/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO A",
+    "local": "ESTUDIANTIL PORTEÑO",
+    "visitante": "PINOCHO",
+    "pts_local": 76,
+    "pts_visit": 71,
+    "id_partido": "mnLarEAnPQKuOPrTP55kvw",
+    "fecha": "30/04/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO A",
+    "local": "CAZA Y PESCA",
+    "visitante": "JOSE HERNANDEZ",
+    "pts_local": 84,
+    "pts_visit": 70,
+    "id_partido": "xmTDfaNHb0W5mE7bK-nmCw",
+    "fecha": "04/05/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO A",
+    "local": "LOS INDIOS (MORENO)",
+    "visitante": "SAN MIGUEL",
+    "pts_local": 62,
+    "pts_visit": 49,
+    "id_partido": "ovY6lf0sMPtlztMt-hHkLQ",
+    "fecha": "04/05/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO A",
+    "local": "PINOCHO",
+    "visitante": "SP. ESCOBAR",
+    "pts_local": 75,
+    "pts_visit": 69,
+    "id_partido": "5AeOV7bFoQDk__OtHQx-xw",
+    "fecha": "05/05/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO A",
+    "local": "ESTUDIANTIL PORTEÑO",
+    "visitante": "SAN ANDRES",
+    "pts_local": 67,
+    "pts_visit": 48,
+    "id_partido": "RTcXh84r7YUi8xp8BMEiIQ",
+    "fecha": "06/05/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO A",
+    "local": "SP. ESCOBAR",
+    "visitante": "LOS INDIOS (MORENO)",
+    "pts_local": 77,
+    "pts_visit": 84,
+    "id_partido": "Q7uSyzdSr5XjSxJXSU5vRg",
+    "fecha": "08/05/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO A",
+    "local": "PINOCHO",
+    "visitante": "SAN ANDRES",
+    "pts_local": 83,
+    "pts_visit": 59,
+    "id_partido": "l5K5juH5ChtOxeC26ZLZLA",
+    "fecha": "08/05/2026 21:00",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO A",
+    "local": "LOS INDIOS (MORENO)",
+    "visitante": "CAZA Y PESCA",
+    "pts_local": 57,
+    "pts_visit": 80,
+    "id_partido": "-UCERTAUof0Beg5yPk7VKA",
+    "fecha": "12/05/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO A",
+    "local": "JOSE HERNANDEZ",
+    "visitante": "SP. ESCOBAR",
+    "pts_local": 58,
+    "pts_visit": 66,
+    "id_partido": "AflohSAYXlTqoELs2h-gmg",
+    "fecha": "12/05/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO A",
+    "local": "ESTUDIANTIL PORTEÑO",
+    "visitante": "JOSE HERNANDEZ",
+    "pts_local": 66,
+    "pts_visit": 59,
+    "id_partido": "exENyiySLqXw49rSfHVZEA",
+    "fecha": "15/05/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO A",
+    "local": "SP. ESCOBAR",
+    "visitante": "SAN ANDRES",
+    "pts_local": 99,
+    "pts_visit": 80,
+    "id_partido": "OihBg2SJxq83cQwq06LUFQ",
+    "fecha": "17/05/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO A",
+    "local": "SAN MIGUEL",
+    "visitante": "CAZA Y PESCA",
+    "pts_local": 68,
+    "pts_visit": 104,
+    "id_partido": "yuiscWJHwPV2vxB5s0mFHg",
+    "fecha": "18/05/2026 21:00",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO A",
+    "local": "CAZA Y PESCA",
+    "visitante": "PINOCHO",
+    "pts_local": 90,
+    "pts_visit": 62,
+    "id_partido": "PvoJKkwPlT-H2UJjQPwVkg",
+    "fecha": "21/05/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO A",
+    "local": "SAN ANDRES",
+    "visitante": "SAN MIGUEL",
+    "pts_local": 79,
+    "pts_visit": 65,
+    "id_partido": "SP_9ZJgn_CYCgHq99-Dk1A",
+    "fecha": "22/05/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO A",
+    "local": "ESTUDIANTIL PORTEÑO",
+    "visitante": "SP. ESCOBAR",
+    "pts_local": 64,
+    "pts_visit": 58,
+    "id_partido": "hkp1NR6Rp7tSMHi6GxQjeQ",
+    "fecha": "22/05/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO A",
+    "local": "PINOCHO",
+    "visitante": "LOS INDIOS (MORENO)",
+    "pts_local": 88,
+    "pts_visit": 87,
+    "id_partido": "ypqmqL7txlBspVPHyjvH8w",
+    "fecha": "25/05/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO A",
+    "local": "SAN MIGUEL",
+    "visitante": "JOSE HERNANDEZ",
+    "pts_local": 61,
+    "pts_visit": 66,
+    "id_partido": "r-NUCuZaXQYBSI1HI4CB7A",
+    "fecha": "26/05/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO A",
+    "local": "CAZA Y PESCA",
+    "visitante": "ESTUDIANTIL PORTEÑO",
+    "pts_local": 85,
+    "pts_visit": 75,
+    "id_partido": "eCoQnpGUcnpfgEASoCHuxA",
+    "fecha": "27/05/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO A",
+    "local": "SP. ESCOBAR",
+    "visitante": "PINOCHO",
+    "pts_local": 72,
+    "pts_visit": 64,
+    "id_partido": "YJLb95LaNZXR1DJANwOwCQ",
+    "fecha": "29/05/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO A",
+    "local": "JOSE HERNANDEZ",
+    "visitante": "SAN ANDRES",
+    "pts_local": 77,
+    "pts_visit": 68,
+    "id_partido": "PCCVd6rsquTKUlnYSxsTxA",
+    "fecha": "29/05/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO B",
+    "local": "INDEPENDIENTE (AVELLANEDA)",
+    "visitante": "GEVP",
+    "pts_local": 61,
+    "pts_visit": 52,
+    "id_partido": "BKxHqNMiqH8GJjAcLTf0GQ",
+    "fecha": "03/03/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO B",
+    "local": "MIDLAND",
+    "visitante": "CEPA",
+    "pts_local": 80,
+    "pts_visit": 65,
+    "id_partido": "LeNbtOLr9bNd8-f1ZoFI_w",
+    "fecha": "04/03/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO B",
+    "local": "APV",
+    "visitante": "ALEJANDRO KORN",
+    "pts_local": 74,
+    "pts_visit": 53,
+    "id_partido": "ZNGIpMznVL2yBurFbScP9w",
+    "fecha": "04/03/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO B",
+    "local": "NAUTICO HACOAJ",
+    "visitante": "GEVP",
+    "pts_local": 78,
+    "pts_visit": 85,
+    "id_partido": "MVvj9ZXYQMVcHy_ZsMoDXw",
+    "fecha": "06/03/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO B",
+    "local": "ALEJANDRO KORN",
+    "visitante": "MIDLAND",
+    "pts_local": 60,
+    "pts_visit": 70,
+    "id_partido": "kXdpR3dP4YxAQmKy5lHDog",
+    "fecha": "09/03/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO B",
+    "local": "CEPA",
+    "visitante": "APV",
+    "pts_local": 75,
+    "pts_visit": 82,
+    "id_partido": "jaCMAytI0yqTr1uom1NO9Q",
+    "fecha": "09/03/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO B",
+    "local": "INDEPENDIENTE (AVELLANEDA)",
+    "visitante": "TRES DE FEBRERO",
+    "pts_local": 72,
+    "pts_visit": 93,
+    "id_partido": "u7jXYnemTltJisXcAOmkXQ",
+    "fecha": "11/03/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO B",
+    "local": "TRES DE FEBRERO",
+    "visitante": "GEVP",
+    "pts_local": 55,
+    "pts_visit": 53,
+    "id_partido": "tD1pDSJ9eJivcRq_TWU0KA",
+    "fecha": "13/03/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO B",
+    "local": "MIDLAND",
+    "visitante": "INDEPENDIENTE (AVELLANEDA)",
+    "pts_local": 71,
+    "pts_visit": 72,
+    "id_partido": "YclFB5Q6EzKfWgfl-2qLrg",
+    "fecha": "16/03/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO B",
+    "local": "ALEJANDRO KORN",
+    "visitante": "CEPA",
+    "pts_local": 82,
+    "pts_visit": 58,
+    "id_partido": "uPHsIlRxuqiH9YqdsztY3g",
+    "fecha": "17/03/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO B",
+    "local": "TRES DE FEBRERO",
+    "visitante": "NAUTICO HACOAJ",
+    "pts_local": 70,
+    "pts_visit": 64,
+    "id_partido": "pOrW1ZgUnIj2IgHTQR7f4g",
+    "fecha": "18/03/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO B",
+    "local": "APV",
+    "visitante": "INDEPENDIENTE (AVELLANEDA)",
+    "pts_local": 43,
+    "pts_visit": 61,
+    "id_partido": "HzmP-THX49G96TkzM7T8Tg",
+    "fecha": "20/03/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO B",
+    "local": "NAUTICO HACOAJ",
+    "visitante": "ALEJANDRO KORN",
+    "pts_local": 83,
+    "pts_visit": 84,
+    "id_partido": "b_TrzIA1smbZSMDOk-YxLA",
+    "fecha": "20/03/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO B",
+    "local": "GEVP",
+    "visitante": "MIDLAND",
+    "pts_local": 79,
+    "pts_visit": 78,
+    "id_partido": "0Be255R_x6DS2oDKrx4Tjg",
+    "fecha": "23/03/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO B",
+    "local": "APV",
+    "visitante": "TRES DE FEBRERO",
+    "pts_local": 69,
+    "pts_visit": 65,
+    "id_partido": "SFQnoKx2qWgydutHHJDYrQ",
+    "fecha": "25/03/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO B",
+    "local": "INDEPENDIENTE (AVELLANEDA)",
+    "visitante": "NAUTICO HACOAJ",
+    "pts_local": 65,
+    "pts_visit": 84,
+    "id_partido": "a8FkVnADafFA2Yd8uEG9Bw",
+    "fecha": "27/03/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO B",
+    "local": "MIDLAND",
+    "visitante": "APV",
+    "pts_local": 71,
+    "pts_visit": 55,
+    "id_partido": "aeviAHoMBa1bsbes73dmCw",
+    "fecha": "30/03/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO B",
+    "local": "CEPA",
+    "visitante": "GEVP",
+    "pts_local": 59,
+    "pts_visit": 77,
+    "id_partido": "DOg-kmseRdtc2yyiZGhwDg",
+    "fecha": "30/03/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO B",
+    "local": "ALEJANDRO KORN",
+    "visitante": "INDEPENDIENTE (AVELLANEDA)",
+    "pts_local": 68,
+    "pts_visit": 81,
+    "id_partido": "kP5acKhqbUgwLIw0IjtxaA",
+    "fecha": "02/04/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO B",
+    "local": "TRES DE FEBRERO",
+    "visitante": "CEPA",
+    "pts_local": 85,
+    "pts_visit": 43,
+    "id_partido": "8lBJH3W-ym5rl_t_FQVWUw",
+    "fecha": "03/04/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO B",
+    "local": "NAUTICO HACOAJ",
+    "visitante": "MIDLAND",
+    "pts_local": 81,
+    "pts_visit": 68,
+    "id_partido": "gzRHyjqq8zmFtcDQ9dbRKg",
+    "fecha": "08/04/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO B",
+    "local": "GEVP",
+    "visitante": "ALEJANDRO KORN",
+    "pts_local": 81,
+    "pts_visit": 66,
+    "id_partido": "W-KYxeT063xA6ed7fG_Nvw",
+    "fecha": "09/04/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO B",
+    "local": "INDEPENDIENTE (AVELLANEDA)",
+    "visitante": "CEPA",
+    "pts_local": 72,
+    "pts_visit": 60,
+    "id_partido": "dDL62Es8hNkplxqQIVWfSA",
+    "fecha": "10/04/2026 20:00",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO B",
+    "local": "TRES DE FEBRERO",
+    "visitante": "MIDLAND",
+    "pts_local": 94,
+    "pts_visit": 62,
+    "id_partido": "m2Yoq3ntxfxzDNTYgn7Hkg",
+    "fecha": "13/04/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO B",
+    "local": "GEVP",
+    "visitante": "APV",
+    "pts_local": 62,
+    "pts_visit": 64,
+    "id_partido": "Eldqtb5R2pnLnht4E6eKjA",
+    "fecha": "14/04/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO B",
+    "local": "ALEJANDRO KORN",
+    "visitante": "TRES DE FEBRERO",
+    "pts_local": 66,
+    "pts_visit": 59,
+    "id_partido": "h0f6EEGtgwylX8kThlA76g",
+    "fecha": "17/04/2026 20:00",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO B",
+    "local": "CEPA",
+    "visitante": "NAUTICO HACOAJ",
+    "pts_local": 68,
+    "pts_visit": 80,
+    "id_partido": "XFWaQ_15YbxFr7dS88d5kw",
+    "fecha": "17/04/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO B",
+    "local": "GEVP",
+    "visitante": "INDEPENDIENTE (AVELLANEDA)",
+    "pts_local": 52,
+    "pts_visit": 66,
+    "id_partido": "DRsWFOqC9E3lMDVlkTpQQw",
+    "fecha": "17/04/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO B",
+    "local": "CEPA",
+    "visitante": "TRES DE FEBRERO",
+    "pts_local": 62,
+    "pts_visit": 85,
+    "id_partido": "ZtaxAHrc35b5DCL8_v74cQ",
+    "fecha": "20/04/2026 20:00",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO B",
+    "local": "MIDLAND",
+    "visitante": "ALEJANDRO KORN",
+    "pts_local": 87,
+    "pts_visit": 79,
+    "id_partido": "1xLLc5ElfQI0NlZbsLPZAA",
+    "fecha": "20/04/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO B",
+    "local": "APV",
+    "visitante": "GEVP",
+    "pts_local": 82,
+    "pts_visit": 73,
+    "id_partido": "47KPAEcFTjEEYtJ_D3mT5g",
+    "fecha": "22/04/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO B",
+    "local": "NAUTICO HACOAJ",
+    "visitante": "TRES DE FEBRERO",
+    "pts_local": 72,
+    "pts_visit": 87,
+    "id_partido": "WnYMwN0OyPdKWckIwKa4Pg",
+    "fecha": "24/04/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO B",
+    "local": "INDEPENDIENTE (AVELLANEDA)",
+    "visitante": "APV",
+    "pts_local": 76,
+    "pts_visit": 63,
+    "id_partido": "y8MA_0gG7Pdf0cfgYrvIiA",
+    "fecha": "27/04/2026 20:00",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO B",
+    "local": "MIDLAND",
+    "visitante": "NAUTICO HACOAJ",
+    "pts_local": 94,
+    "pts_visit": 87,
+    "id_partido": "PmSZwe-2_TZl_-ZF-0imDQ",
+    "fecha": "27/04/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO B",
+    "local": "TRES DE FEBRERO",
+    "visitante": "ALEJANDRO KORN",
+    "pts_local": 68,
+    "pts_visit": 74,
+    "id_partido": "wwI9xuFq2Mmj5NJAOTw7Sg",
+    "fecha": "28/04/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO B",
+    "local": "GEVP",
+    "visitante": "CEPA",
+    "pts_local": 61,
+    "pts_visit": 48,
+    "id_partido": "OXy8BlRtEZjBmAD7MOAiYQ",
+    "fecha": "29/04/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO B",
+    "local": "APV",
+    "visitante": "NAUTICO HACOAJ",
+    "pts_local": 82,
+    "pts_visit": 58,
+    "id_partido": "S62yAUQeKHhnaDrmBPJSog",
+    "fecha": "30/04/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO B",
+    "local": "INDEPENDIENTE (AVELLANEDA)",
+    "visitante": "ALEJANDRO KORN",
+    "pts_local": 59,
+    "pts_visit": 79,
+    "id_partido": "L4_PgzkdA0RM38hkn089Ow",
+    "fecha": "04/05/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO B",
+    "local": "CEPA",
+    "visitante": "MIDLAND",
+    "pts_local": 68,
+    "pts_visit": 78,
+    "id_partido": "B_5PdEhv_ejS0f-jT-dm4Q",
+    "fecha": "04/05/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO B",
+    "local": "NAUTICO HACOAJ",
+    "visitante": "APV",
+    "pts_local": 85,
+    "pts_visit": 61,
+    "id_partido": "NiDDxbikr5fZmKoJW2cwOw",
+    "fecha": "08/05/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO B",
+    "local": "ALEJANDRO KORN",
+    "visitante": "GEVP",
+    "pts_local": 76,
+    "pts_visit": 49,
+    "id_partido": "I_uFVaFwgZYH9AnPLcSI1g",
+    "fecha": "08/05/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO B",
+    "local": "MIDLAND",
+    "visitante": "TRES DE FEBRERO",
+    "pts_local": 74,
+    "pts_visit": 77,
+    "id_partido": "CO1uT_lY9as4hkGwK9NIPA",
+    "fecha": "08/05/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO B",
+    "local": "CEPA",
+    "visitante": "INDEPENDIENTE (AVELLANEDA)",
+    "pts_local": 55,
+    "pts_visit": 68,
+    "id_partido": "gm2VPkLm1a0OcQAogoMUzg",
+    "fecha": "08/05/2026 21:00",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO B",
+    "local": "APV",
+    "visitante": "CEPA",
+    "pts_local": 84,
+    "pts_visit": 70,
+    "id_partido": "GV_Zqw8_zKledtHESWj2GQ",
+    "fecha": "11/05/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO B",
+    "local": "INDEPENDIENTE (AVELLANEDA)",
+    "visitante": "MIDLAND",
+    "pts_local": 77,
+    "pts_visit": 63,
+    "id_partido": "cy6HjphluaPSRXEi4r6dYw",
+    "fecha": "13/05/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO B",
+    "local": "TRES DE FEBRERO",
+    "visitante": "APV",
+    "pts_local": 72,
+    "pts_visit": 75,
+    "id_partido": "CXhDd-MdlVLxOpDQ8BQF1Q",
+    "fecha": "15/05/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO B",
+    "local": "GEVP",
+    "visitante": "NAUTICO HACOAJ",
+    "pts_local": 82,
+    "pts_visit": 80,
+    "id_partido": "goRZBXBd7XlSlGsQpZowXA",
+    "fecha": "15/05/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO B",
+    "local": "ALEJANDRO KORN",
+    "visitante": "NAUTICO HACOAJ",
+    "pts_local": 68,
+    "pts_visit": 69,
+    "id_partido": "Mr3QMT1S3juBn_9hoaxakw",
+    "fecha": "18/05/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO B",
+    "local": "TRES DE FEBRERO",
+    "visitante": "INDEPENDIENTE (AVELLANEDA)",
+    "pts_local": 91,
+    "pts_visit": 83,
+    "id_partido": "l2fW0WZaMQutMKm1s-nsqA",
+    "fecha": "19/05/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO B",
+    "local": "MIDLAND",
+    "visitante": "GEVP",
+    "pts_local": 90,
+    "pts_visit": 85,
+    "id_partido": "uMwjNzMHAovRp16iY5F6kQ",
+    "fecha": "21/05/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO B",
+    "local": "CEPA",
+    "visitante": "ALEJANDRO KORN",
+    "pts_local": 70,
+    "pts_visit": 63,
+    "id_partido": "3_PKH-Z3L3Vp0byi8Alifg",
+    "fecha": "22/05/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO B",
+    "local": "NAUTICO HACOAJ",
+    "visitante": "INDEPENDIENTE (AVELLANEDA)",
+    "pts_local": 76,
+    "pts_visit": 82,
+    "id_partido": "VI-GbnI_qNoFSz7vDCwcvA",
+    "fecha": "25/05/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO B",
+    "local": "APV",
+    "visitante": "MIDLAND",
+    "pts_local": 77,
+    "pts_visit": 49,
+    "id_partido": "5Vcw0a9JPM7fFS__ncJ13g",
+    "fecha": "26/05/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO B",
+    "local": "NAUTICO HACOAJ",
+    "visitante": "CEPA",
+    "pts_local": 79,
+    "pts_visit": 58,
+    "id_partido": "gIDXtfuAOS0Q8R2ZRcz8yg",
+    "fecha": "27/05/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO B",
+    "local": "ALEJANDRO KORN",
+    "visitante": "APV",
+    "pts_local": 78,
+    "pts_visit": 73,
+    "id_partido": "NpelpWd2mkCeuYxRyondCg",
+    "fecha": "29/05/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO B",
+    "local": "GEVP",
+    "visitante": "TRES DE FEBRERO",
+    "pts_local": 48,
+    "pts_visit": 57,
+    "id_partido": "GzbKcP9j4tVyOfPCgsNTYg",
+    "fecha": "29/05/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO C",
+    "local": "PTE. DERQUI",
+    "visitante": "GIMNASIA (ITUZAINGO)",
+    "pts_local": 78,
+    "pts_visit": 64,
+    "id_partido": "hHbzDfjTxxy6WfdgH8nTdA",
+    "fecha": "04/03/2026 21:00",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO C",
+    "local": "CLARIDAD",
+    "visitante": "CASA (PADUA)",
+    "pts_local": 74,
+    "pts_visit": 62,
+    "id_partido": "z6U8qtZrQiAK-i2JZqYDng",
+    "fecha": "04/03/2026 21:00",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO C",
+    "local": "SP. PILAR",
+    "visitante": "UNIÓN VECINAL (MUNRO)",
+    "pts_local": 83,
+    "pts_visit": 63,
+    "id_partido": "Y0V5cgM1ZjPCP0EL_l-bBQ",
+    "fecha": "04/03/2026 21:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO C",
+    "local": "PTE. DERQUI",
+    "visitante": "RIVER",
+    "pts_local": 65,
+    "pts_visit": 81,
+    "id_partido": "D9BcikjBtNOJFd6QwxIxzQ",
+    "fecha": "06/03/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO C",
+    "local": "MORON",
+    "visitante": "SP. PILAR",
+    "pts_local": 73,
+    "pts_visit": 68,
+    "id_partido": "6xfQ7Y9SE1dr8RxT9f8dTA",
+    "fecha": "06/03/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO C",
+    "local": "UNIÓN VECINAL (MUNRO)",
+    "visitante": "RIVER",
+    "pts_local": 59,
+    "pts_visit": 82,
+    "id_partido": "_fgXSDkZMy5BE1bk4M0yzQ",
+    "fecha": "09/03/2026 21:00",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO C",
+    "local": "MORON",
+    "visitante": "PTE. DERQUI",
+    "pts_local": 57,
+    "pts_visit": 74,
+    "id_partido": "owHyisLW8AlyB9KqXIWzDA",
+    "fecha": "11/03/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO C",
+    "local": "GIMNASIA (ITUZAINGO)",
+    "visitante": "CLARIDAD",
+    "pts_local": 77,
+    "pts_visit": 73,
+    "id_partido": "OPjzCi6eLcdSHzdZi_6h9g",
+    "fecha": "11/03/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO C",
+    "local": "MORON",
+    "visitante": "UNIÓN VECINAL (MUNRO)",
+    "pts_local": 70,
+    "pts_visit": 48,
+    "id_partido": "ybgwdbbDGZV02u_5GGRHgA",
+    "fecha": "13/03/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO C",
+    "local": "RIVER",
+    "visitante": "SP. PILAR",
+    "pts_local": 57,
+    "pts_visit": 61,
+    "id_partido": "SIsXw9sGhuxsSqlSr4FgEg",
+    "fecha": "16/03/2026 20:00",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO C",
+    "local": "CASA (PADUA)",
+    "visitante": "GIMNASIA (ITUZAINGO)",
+    "pts_local": 88,
+    "pts_visit": 59,
+    "id_partido": "3P1epE3D5-sg1JLEsBiA8g",
+    "fecha": "17/03/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO C",
+    "local": "UNIÓN VECINAL (MUNRO)",
+    "visitante": "PTE. DERQUI",
+    "pts_local": 73,
+    "pts_visit": 72,
+    "id_partido": "MgQ6M5E-NdBfIwv5HiGiQw",
+    "fecha": "18/03/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO C",
+    "local": "CASA (PADUA)",
+    "visitante": "MORON",
+    "pts_local": 82,
+    "pts_visit": 53,
+    "id_partido": "_n78CKWl1f-s46puc3cxpQ",
+    "fecha": "20/03/2026 20:00",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO C",
+    "local": "CLARIDAD",
+    "visitante": "UNIÓN VECINAL (MUNRO)",
+    "pts_local": 67,
+    "pts_visit": 64,
+    "id_partido": "rt9hh6sJUqs4yV_WosswnQ",
+    "fecha": "20/03/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO C",
+    "local": "GIMNASIA (ITUZAINGO)",
+    "visitante": "RIVER",
+    "pts_local": 56,
+    "pts_visit": 70,
+    "id_partido": "pKjTy26P_5hlBRVeIn-sKQ",
+    "fecha": "23/03/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO C",
+    "local": "SP. PILAR",
+    "visitante": "CLARIDAD",
+    "pts_local": 71,
+    "pts_visit": 66,
+    "id_partido": "4nukM85RnYWbVHgkPJgc0g",
+    "fecha": "25/03/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO C",
+    "local": "PTE. DERQUI",
+    "visitante": "CASA (PADUA)",
+    "pts_local": 63,
+    "pts_visit": 72,
+    "id_partido": "eBtYRkj6b4VA0EW2qWdxDA",
+    "fecha": "25/03/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO C",
+    "local": "MORON",
+    "visitante": "RIVER",
+    "pts_local": 68,
+    "pts_visit": 82,
+    "id_partido": "7rWNzoxXBGP0pP7JCDOVlA",
+    "fecha": "26/03/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO C",
+    "local": "CASA (PADUA)",
+    "visitante": "SP. PILAR",
+    "pts_local": 61,
+    "pts_visit": 64,
+    "id_partido": "gaAbKboAnCtfFIhE26XhVQ",
+    "fecha": "30/03/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO C",
+    "local": "CLARIDAD",
+    "visitante": "RIVER",
+    "pts_local": 84,
+    "pts_visit": 89,
+    "id_partido": "XSWHmb6FR654MYHf_bxIeA",
+    "fecha": "31/03/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO C",
+    "local": "MORON",
+    "visitante": "GIMNASIA (ITUZAINGO)",
+    "pts_local": 65,
+    "pts_visit": 57,
+    "id_partido": "cYEynnni42piLiaR1iybhg",
+    "fecha": "01/04/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO C",
+    "local": "UNIÓN VECINAL (MUNRO)",
+    "visitante": "CASA (PADUA)",
+    "pts_local": 55,
+    "pts_visit": 71,
+    "id_partido": "XjOEeUdPoJWNJPstBdnO7w",
+    "fecha": "03/04/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO C",
+    "local": "CLARIDAD",
+    "visitante": "MORON",
+    "pts_local": 80,
+    "pts_visit": 61,
+    "id_partido": "iY8MGcpsdN55oXZZs3fXyw",
+    "fecha": "06/04/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO C",
+    "local": "SP. PILAR",
+    "visitante": "PTE. DERQUI",
+    "pts_local": 59,
+    "pts_visit": 70,
+    "id_partido": "LiiaUAfo9xj6FBhHw_gT2A",
+    "fecha": "07/04/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO C",
+    "local": "PTE. DERQUI",
+    "visitante": "CLARIDAD",
+    "pts_local": 93,
+    "pts_visit": 57,
+    "id_partido": "TzkRfu1FWvXA2aSRJ2R1Xw",
+    "fecha": "09/04/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO C",
+    "local": "RIVER",
+    "visitante": "CASA (PADUA)",
+    "pts_local": 73,
+    "pts_visit": 62,
+    "id_partido": "WxC7K4S3aQcS98_OqaWlKQ",
+    "fecha": "10/04/2026 20:00",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO C",
+    "local": "GIMNASIA (ITUZAINGO)",
+    "visitante": "UNIÓN VECINAL (MUNRO)",
+    "pts_local": 83,
+    "pts_visit": 76,
+    "id_partido": "-a3TfxTQ1vCle1BDIWqKUQ",
+    "fecha": "10/04/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO C",
+    "local": "GIMNASIA (ITUZAINGO)",
+    "visitante": "SP. PILAR",
+    "pts_local": 71,
+    "pts_visit": 83,
+    "id_partido": "eBraDmUZVjy9nqXnhVAGHg",
+    "fecha": "13/04/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO C",
+    "local": "CLARIDAD",
+    "visitante": "GIMNASIA (ITUZAINGO)",
+    "pts_local": 58,
+    "pts_visit": 69,
+    "id_partido": "VcfxAJOovhpS3DN1C6mLvg",
+    "fecha": "20/04/2026 20:00",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO C",
+    "local": "CASA (PADUA)",
+    "visitante": "PTE. DERQUI",
+    "pts_local": 66,
+    "pts_visit": 78,
+    "id_partido": "xaK7pLQEt3V8juJt1-LArg",
+    "fecha": "20/04/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO C",
+    "local": "RIVER",
+    "visitante": "MORON",
+    "pts_local": 83,
+    "pts_visit": 57,
+    "id_partido": "zLaPNB3OlJRsHA-ysB-YVA",
+    "fecha": "20/04/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO C",
+    "local": "UNIÓN VECINAL (MUNRO)",
+    "visitante": "GIMNASIA (ITUZAINGO)",
+    "pts_local": 59,
+    "pts_visit": 87,
+    "id_partido": "drOE4LZHPZKfq6NBeMOZIg",
+    "fecha": "22/04/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO C",
+    "local": "SP. PILAR",
+    "visitante": "CASA (PADUA)",
+    "pts_local": 65,
+    "pts_visit": 55,
+    "id_partido": "k9bkabBrQ-MKJ-p_wuAZHg",
+    "fecha": "22/04/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO C",
+    "local": "PTE. DERQUI",
+    "visitante": "MORON",
+    "pts_local": 77,
+    "pts_visit": 62,
+    "id_partido": "8DS7Ws8T3Jx9V-8nzG_kzA",
+    "fecha": "23/04/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO C",
+    "local": "RIVER",
+    "visitante": "CLARIDAD",
+    "pts_local": 85,
+    "pts_visit": 77,
+    "id_partido": "TyNlc66Rd5S-Fbpnpli7SA",
+    "fecha": "24/04/2026 20:00",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO C",
+    "local": "SP. PILAR",
+    "visitante": "GIMNASIA (ITUZAINGO)",
+    "pts_local": 80,
+    "pts_visit": 90,
+    "id_partido": "-twhVzYbD99QLMwkEvYbGg",
+    "fecha": "27/04/2026 20:00",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO C",
+    "local": "RIVER",
+    "visitante": "UNIÓN VECINAL (MUNRO)",
+    "pts_local": 74,
+    "pts_visit": 79,
+    "id_partido": "AcrDRyU9cyZFlH2qVOoU5w",
+    "fecha": "27/04/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO C",
+    "local": "MORON",
+    "visitante": "CASA (PADUA)",
+    "pts_local": 65,
+    "pts_visit": 71,
+    "id_partido": "GtDp8v3HAgSQcQ45v-RCFw",
+    "fecha": "28/04/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO C",
+    "local": "PTE. DERQUI",
+    "visitante": "UNIÓN VECINAL (MUNRO)",
+    "pts_local": 99,
+    "pts_visit": 65,
+    "id_partido": "RY5Dmxp1CkIGoKyBNgEv6w",
+    "fecha": "29/04/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO C",
+    "local": "CLARIDAD",
+    "visitante": "SP. PILAR",
+    "pts_local": 83,
+    "pts_visit": 71,
+    "id_partido": "Ap2OYby-vqFzVqK6pBNDSg",
+    "fecha": "29/04/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO C",
+    "local": "UNIÓN VECINAL (MUNRO)",
+    "visitante": "SP. PILAR",
+    "pts_local": 76,
+    "pts_visit": 67,
+    "id_partido": "PAe88dlaw-a2UpeNe2HTog",
+    "fecha": "04/05/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO C",
+    "local": "RIVER",
+    "visitante": "PTE. DERQUI",
+    "pts_local": 90,
+    "pts_visit": 76,
+    "id_partido": "9VGJwZ9UyijemJKkQIKMeg",
+    "fecha": "05/05/2026 20:00",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO C",
+    "local": "GIMNASIA (ITUZAINGO)",
+    "visitante": "MORON",
+    "pts_local": 66,
+    "pts_visit": 58,
+    "id_partido": "Dt3Lmyjl8c_Sd3fpd8k8gg",
+    "fecha": "06/05/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO C",
+    "local": "UNIÓN VECINAL (MUNRO)",
+    "visitante": "CLARIDAD",
+    "pts_local": 65,
+    "pts_visit": 79,
+    "id_partido": "H34gwcjJ0dSTnlTIllSDYA",
+    "fecha": "07/05/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO C",
+    "local": "CASA (PADUA)",
+    "visitante": "RIVER",
+    "pts_local": 73,
+    "pts_visit": 68,
+    "id_partido": "Y0LoxSUroQ2rgb6tIJ-fLA",
+    "fecha": "08/05/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO C",
+    "local": "CASA (PADUA)",
+    "visitante": "UNIÓN VECINAL (MUNRO)",
+    "pts_local": 60,
+    "pts_visit": 56,
+    "id_partido": "XEzk4Fcb5RoXlNqjbWu_ag",
+    "fecha": "11/05/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO C",
+    "local": "CLARIDAD",
+    "visitante": "PTE. DERQUI",
+    "pts_local": 66,
+    "pts_visit": 68,
+    "id_partido": "03HKS-SfXIdwCR3LIsi21A",
+    "fecha": "13/05/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO C",
+    "local": "RIVER",
+    "visitante": "GIMNASIA (ITUZAINGO)",
+    "pts_local": 77,
+    "pts_visit": 63,
+    "id_partido": "h2qW40fyzaBW3jDoqB3sKg",
+    "fecha": "14/05/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO C",
+    "local": "SP. PILAR",
+    "visitante": "MORON",
+    "pts_local": 103,
+    "pts_visit": 45,
+    "id_partido": "LEeFSBsXH8NaWPSnN_bk-g",
+    "fecha": "15/05/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO C",
+    "local": "MORON",
+    "visitante": "CLARIDAD",
+    "pts_local": 92,
+    "pts_visit": 67,
+    "id_partido": "XBFXuPYp090O9G0bNEgeBg",
+    "fecha": "18/05/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO C",
+    "local": "GIMNASIA (ITUZAINGO)",
+    "visitante": "CASA (PADUA)",
+    "pts_local": 64,
+    "pts_visit": 69,
+    "id_partido": "xMchNuuu6FWP2n1vBhOnRg",
+    "fecha": "19/05/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO C",
+    "local": "PTE. DERQUI",
+    "visitante": "SP. PILAR",
+    "pts_local": 79,
+    "pts_visit": 73,
+    "id_partido": "WynrJefNGT4c4ntG4x_PwA",
+    "fecha": "22/05/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO C",
+    "local": "UNIÓN VECINAL (MUNRO)",
+    "visitante": "MORON",
+    "pts_local": 84,
+    "pts_visit": 83,
+    "id_partido": "ZXhC5GFFkNK0QuSQFExXbw",
+    "fecha": "25/05/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO C",
+    "local": "CASA (PADUA)",
+    "visitante": "CLARIDAD",
+    "pts_local": 65,
+    "pts_visit": 72,
+    "id_partido": "7RLdjtBcf4ud3nt_-Snsbg",
+    "fecha": "26/05/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO C",
+    "local": "SP. PILAR",
+    "visitante": "RIVER",
+    "pts_local": 73,
+    "pts_visit": 64,
+    "id_partido": "6oqlyoPHcskhIsTWoCX0jA",
+    "fecha": "27/05/2026 20:30",
+    "walkover": false
+  },
+  {
+    "grupo": "METRO C",
+    "local": "GIMNASIA (ITUZAINGO)",
+    "visitante": "PTE. DERQUI",
+    "pts_local": 79,
+    "pts_visit": 94,
+    "id_partido": "zu7BV5k0_RYZzk0ZtP2D4w",
+    "fecha": "28/05/2026 20:30",
+    "walkover": false
+  }
+]

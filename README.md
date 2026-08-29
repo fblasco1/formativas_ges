@@ -11,6 +11,7 @@ Monorepo unificado (`main`): **GitHub Pages** como portal público + **CLI/ops**
 | Standings Formativas 2026 | `docs/formativas_2026_tabla_posiciones.html` |
 | Standings Superior 2026 | `docs/superior_2026_tabla_posiciones.html` |
 | Buscador jugadores | `docs/buscador_jugadores.html` |
+| Scouting rival | `docs/scouting_rival.html` |
 | Mini Masc | `docs/mini_masc_clasificacion.html` |
 | Viajes / escenarios | `docs/informe_viajes_niveles.html` |
 | Comparativa ligas | `docs/comparativa_ligas_formativas.html` |
@@ -23,6 +24,7 @@ Monorepo unificado (`main`): **GitHub Pages** como portal público + **CLI/ops**
 python analysis/generar_standings_febamba_2026.py
 python analysis/generar_standings_superior_2026.py
 python analysis/buscador_jugadores_destacados.py
+python analysis/generar_scouting_rival.py --desde-cache
 python analysis/sync_fixture_echague_sheets.py --progress
 ```
 

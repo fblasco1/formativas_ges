@@ -7,13 +7,15 @@ Ventanas por rango de fechas para reducir timeouts / respuestas enormes.
 from __future__ import annotations
 
 from datetime import date, timedelta
-from typing import Iterator, List, Optional, Tuple
+from typing import Dict, Iterator, List, Optional, Tuple
 
 import requests
 
 from ingest.argbasket.fixture import (
     BASE_URL_DEFAULT,
     fetch_cargar_fixture_html,
+    fetch_fixture_rows_lff,
+    is_lff_u15_comp_cat_id,
     parse_tabla_calendarios,
 )
 
@@ -64,6 +66,15 @@ class ArgentinaFixtureParser:
     def fetch_rows_window(
         self, comp_cat_id: int, fecha_ini: str, fecha_fin: str
     ) -> List[Dict[str, str]]:
+        if is_lff_u15_comp_cat_id(comp_cat_id):
+            return fetch_fixture_rows_lff(
+                comp_cat_id=comp_cat_id,
+                fecha_ini=fecha_ini,
+                fecha_fin=fecha_fin,
+                base_url=self._base_url,
+                session=self._session,
+                timeout_s=self._timeout_s,
+            )
         html = fetch_cargar_fixture_html(
             comp_cat_id=comp_cat_id,
             fecha_ini=fecha_ini,
