@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-08-29T01:04:21-03:00",
+  "generated_at": "2026-08-30T12:13:19-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -13,7 +13,7 @@
       "categoria": "SUP",
       "rival": "UNIVERSIDAD DE BUENOS AIRES B",
       "localia": "Visitante",
-      "direccion": "Av Libertador 7501, Ciudad Autónoma de Buenos Aires",
+      "direccion": "manual",
       "resultado": "62-48",
       "espacio": null
     },
@@ -481,7 +481,7 @@
       "categoria": "U15 Fem",
       "rival": "MUNICIPALIDAD TRES DE FEBRERO",
       "localia": "Visitante",
-      "direccion": "Islas Malvinas 2681, Villa San Andrés, Provincia de Buenos Aires",
+      "direccion": "Juan B Alberdi 5470",
       "resultado": "33-57",
       "espacio": null
     },
@@ -494,7 +494,7 @@
       "categoria": "U13 Fem",
       "rival": "MUNICIPALIDAD TRES DE FEBRERO",
       "localia": "Visitante",
-      "direccion": "Islas Malvinas 2681, Villa San Andrés, Provincia de Buenos Aires",
+      "direccion": "Juan B Alberdi 5470",
       "resultado": "16-73",
       "espacio": null
     },
@@ -507,7 +507,7 @@
       "categoria": "U11 Fem",
       "rival": "MUNICIPALIDAD TRES DE FEBRERO",
       "localia": "Visitante",
-      "direccion": "Islas Malvinas 2681, Villa San Andrés, Provincia de Buenos Aires",
+      "direccion": "Juan B Alberdi 5470",
       "resultado": "30-31",
       "espacio": null
     },
@@ -572,7 +572,7 @@
       "categoria": "SUP",
       "rival": "VELEZ SARSFIELD",
       "localia": "Visitante",
-      "direccion": "manual",
+      "direccion": "Juan B Justo 9200",
       "resultado": "79-82",
       "espacio": null
     },
@@ -1664,7 +1664,7 @@
       "categoria": "SUP",
       "rival": "HURACAN DE SAN JUSTO",
       "localia": "Visitante",
-      "direccion": "Dr Ignacio Arieta 2967, 1754",
+      "direccion": "Dr Ignacio Arieta 2967, CP 1754",
       "resultado": "61-76",
       "espacio": null
     },
@@ -1768,7 +1768,7 @@
       "categoria": "U17 Flex",
       "rival": "ATENEO POPULAR VERSAILLES A",
       "localia": "Visitante",
-      "direccion": "Roma 950, 1408",
+      "direccion": "Roma 950, CP 1408",
       "resultado": "17-71",
       "espacio": null
     },
@@ -2015,7 +2015,7 @@
       "categoria": "U15 Fem",
       "rival": "GIMNASIA Y ESGRIMA DE VILLA DEL PARQUE",
       "localia": "Visitante",
-      "direccion": "Salguero 63, Lomas de Zamora, Provincia de Buenos Aires",
+      "direccion": "Tinogasta 3455, CP 1417",
       "resultado": "25-46",
       "espacio": null
     },
@@ -2054,7 +2054,7 @@
       "categoria": "U11 Fem",
       "rival": "GIMNASIA Y ESGRIMA DE VILLA DEL PARQUE",
       "localia": "Visitante",
-      "direccion": "Salguero 63, Lomas de Zamora, Provincia de Buenos Aires",
+      "direccion": "Tinogasta 3455, CP 1417",
       "resultado": "38-32",
       "espacio": null
     },
@@ -2847,7 +2847,7 @@
       "categoria": "U17 Flex",
       "rival": "CLUB ATLETICO PALERMO - FLEX",
       "localia": "Visitante",
-      "direccion": "Andrade 3052, 1878",
+      "direccion": "SIN CANCHA, CP C1425FVD",
       "resultado": "30-92",
       "espacio": null
     },
@@ -2873,7 +2873,7 @@
       "categoria": "U15 Flex",
       "rival": "CLUB ATLETICO PALERMO - FLEX",
       "localia": "Visitante",
-      "direccion": "Andrade 3052, 1878",
+      "direccion": "SIN CANCHA, CP C1425FVD",
       "resultado": "38-37",
       "espacio": null
     },
@@ -2951,7 +2951,7 @@
       "categoria": "SUP Flex",
       "rival": "CLUB ALMAGRO - FLEX",
       "localia": "Visitante",
-      "direccion": "",
+      "direccion": "NO CUENTA CON CANCHA",
       "resultado": "68-63",
       "espacio": null
     },
@@ -3406,7 +3406,7 @@
       "categoria": "SUP",
       "rival": "SAN LORENZO A",
       "localia": "Visitante",
-      "direccion": "Av. Varela 2706, Flores, Ciudad Autónoma de Buenos Aires",
+      "direccion": "Varela 2706, CP 1437",
       "resultado": "48-61",
       "espacio": null
     },
@@ -3874,7 +3874,7 @@
       "categoria": "SUP Flex",
       "rival": "ALL BOYS B",
       "localia": "Visitante",
-      "direccion": "Alvarez Jonte 4180, 1407",
+      "direccion": "Alvarez Jonte 4180, CP 1407",
       "resultado": "70-50",
       "espacio": null
     },
@@ -4290,7 +4290,7 @@
       "categoria": "SUP Flex",
       "rival": "JOSE HERNANDEZ",
       "localia": "Visitante",
-      "direccion": "Bragado 5950, 1440",
+      "direccion": "Bragado 5950, CP 1440",
       "resultado": "44-62",
       "espacio": null
     },
@@ -4732,7 +4732,7 @@
       "categoria": "Liga Metro",
       "rival": "JOSE HERNANDEZ",
       "localia": "Visitante",
-      "direccion": "Bragado 5950, 1440",
+      "direccion": "Bragado 5950, CP 1440",
       "resultado": "77-78",
       "espacio": null
     },
@@ -4745,7 +4745,7 @@
       "categoria": "U11 Fem",
       "rival": "HURACAN DE SAN JUSTO",
       "localia": "Visitante",
-      "direccion": "Dr Ignacio Arieta 2967, 1754",
+      "direccion": "Dr Ignacio Arieta 2967, CP 1754",
       "resultado": "45-25",
       "espacio": null
     },
@@ -4785,7 +4785,7 @@
       "rival": "IMPERIO NEGRO B",
       "localia": "Visitante",
       "direccion": "manual",
-      "resultado": "",
+      "resultado": "33-61",
       "espacio": null
     },
     {
@@ -4798,7 +4798,7 @@
       "rival": "SAN MIGUEL Verde",
       "localia": "Visitante",
       "direccion": "manual",
-      "resultado": "",
+      "resultado": "77-54",
       "espacio": null
     },
     {
@@ -4811,7 +4811,7 @@
       "rival": "IMPERIO NEGRO B",
       "localia": "Visitante",
       "direccion": "manual",
-      "resultado": "",
+      "resultado": "44-62",
       "espacio": null
     },
     {
@@ -4824,7 +4824,7 @@
       "rival": "SAN MIGUEL Verde",
       "localia": "Visitante",
       "direccion": "manual",
-      "resultado": "",
+      "resultado": "59-45",
       "espacio": null
     },
     {
@@ -4837,7 +4837,7 @@
       "rival": "IMPERIO NEGRO B",
       "localia": "Visitante",
       "direccion": "manual",
-      "resultado": "",
+      "resultado": "39-31",
       "espacio": null
     },
     {
@@ -4850,7 +4850,7 @@
       "rival": "SAN MIGUEL Verde",
       "localia": "Visitante",
       "direccion": "manual",
-      "resultado": "",
+      "resultado": "60-53",
       "espacio": null
     },
     {
@@ -4863,7 +4863,7 @@
       "rival": "IMPERIO NEGRO B",
       "localia": "Visitante",
       "direccion": "manual",
-      "resultado": "",
+      "resultado": "55-28",
       "espacio": null
     },
     {
@@ -4876,7 +4876,7 @@
       "rival": "SAN MIGUEL Verde",
       "localia": "Visitante",
       "direccion": "manual",
-      "resultado": "",
+      "resultado": "74-46",
       "espacio": null
     },
     {
@@ -4889,7 +4889,7 @@
       "rival": "IMPERIO NEGRO B",
       "localia": "Visitante",
       "direccion": "manual",
-      "resultado": "",
+      "resultado": "16-34",
       "espacio": null
     },
     {
@@ -4902,7 +4902,7 @@
       "rival": "SAN MIGUEL Verde",
       "localia": "Visitante",
       "direccion": "manual",
-      "resultado": "",
+      "resultado": "52-16",
       "espacio": null
     },
     {
@@ -4915,7 +4915,7 @@
       "rival": "IMPERIO NEGRO B",
       "localia": "Visitante",
       "direccion": "manual",
-      "resultado": "",
+      "resultado": "68-43",
       "espacio": null
     },
     {
@@ -4928,7 +4928,7 @@
       "rival": "SAN MIGUEL Verde",
       "localia": "Visitante",
       "direccion": "manual",
-      "resultado": "",
+      "resultado": "62-61",
       "espacio": null
     },
     {
@@ -4941,7 +4941,7 @@
       "rival": "ARGENTINO DE CASTELAR NORTE A",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "58-80",
       "espacio": null
     },
     {
@@ -4953,8 +4953,8 @@
       "categoria": "U17 Flex",
       "rival": "ESTUDIANTIL PORTEÑO",
       "localia": "Visitante",
-      "direccion": "Coronel Barcala 716, 1704",
-      "resultado": "",
+      "direccion": "Coronel Barcala 716, CP 1704",
+      "resultado": "45-66",
       "espacio": null
     },
     {
@@ -4967,7 +4967,7 @@
       "rival": "ARGENTINO DE CASTELAR NORTE A",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "62-3",
       "espacio": null
     },
     {
@@ -4979,8 +4979,8 @@
       "categoria": "U15 Flex",
       "rival": "ESTUDIANTIL PORTEÑO",
       "localia": "Visitante",
-      "direccion": "Coronel Barcala 716, 1704",
-      "resultado": "",
+      "direccion": "Coronel Barcala 716, CP 1704",
+      "resultado": "19-25",
       "espacio": null
     },
     {
@@ -5005,7 +5005,7 @@
       "categoria": "U13 Flex",
       "rival": "ESTUDIANTIL PORTEÑO",
       "localia": "Visitante",
-      "direccion": "Coronel Barcala 716, 1704",
+      "direccion": "Coronel Barcala 716, CP 1704",
       "resultado": "",
       "espacio": null
     },
@@ -5044,7 +5044,7 @@
       "categoria": "Liga Metro",
       "rival": "CLUB ATLETICO PILAR",
       "localia": "Visitante",
-      "direccion": "Andrade 3052, 1878",
+      "direccion": "ITUZAINGO 759, CP 2800",
       "resultado": "",
       "espacio": null
     },
@@ -5278,7 +5278,7 @@
       "categoria": "Liga Metro",
       "rival": "CLUB ITALIANO",
       "localia": "Visitante",
-      "direccion": "",
+      "direccion": "Av Rivadavia 4731, CP 1424",
       "resultado": "",
       "espacio": null
     },
@@ -5772,7 +5772,7 @@
       "categoria": "Liga Metro",
       "rival": "CLUB SOCIAL y DEPORTIVO PINOCHO",
       "localia": "Visitante",
-      "direccion": "CHACABUCO 1199, 1623",
+      "direccion": "Manuela Pedraza 5139, CP 1431",
       "resultado": "",
       "espacio": null
     },
@@ -6604,7 +6604,7 @@
       "categoria": "U17 Flex",
       "rival": "VELEZ SARSFIELD FLEX",
       "localia": "Visitante",
-      "direccion": "manual",
+      "direccion": "Juan B Justo 9200",
       "resultado": "",
       "espacio": null
     },
@@ -6630,7 +6630,7 @@
       "categoria": "U15 Flex",
       "rival": "VELEZ SARSFIELD FLEX",
       "localia": "Visitante",
-      "direccion": "manual",
+      "direccion": "Juan B Justo 9200",
       "resultado": "",
       "espacio": null
     },
@@ -6656,7 +6656,7 @@
       "categoria": "U13 Flex",
       "rival": "VELEZ SARSFIELD",
       "localia": "Visitante",
-      "direccion": "manual",
+      "direccion": "Juan B Justo 9200",
       "resultado": "",
       "espacio": null
     },
@@ -7358,7 +7358,7 @@
       "categoria": "SUP",
       "rival": "UNIVERSIDAD DE BUENOS AIRES B",
       "localia": "Visitante",
-      "direccion": "Av Libertador 7501, Ciudad Autónoma de Buenos Aires",
+      "direccion": "manual",
       "resultado": "",
       "espacio": null
     },
