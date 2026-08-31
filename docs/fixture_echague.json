@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-08-30T12:13:19-03:00",
+  "generated_at": "2026-08-30T22:10:44-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -4980,7 +4980,7 @@
       "rival": "ESTUDIANTIL PORTEÑO",
       "localia": "Visitante",
       "direccion": "Coronel Barcala 716, CP 1704",
-      "resultado": "19-25",
+      "resultado": "44-46",
       "espacio": null
     },
     {
@@ -4993,7 +4993,7 @@
       "rival": "LAS HERAS",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "25-31",
       "espacio": null
     },
     {
@@ -5006,7 +5006,7 @@
       "rival": "ESTUDIANTIL PORTEÑO",
       "localia": "Visitante",
       "direccion": "Coronel Barcala 716, CP 1704",
-      "resultado": "",
+      "resultado": "39-36",
       "espacio": null
     },
     {
@@ -5019,7 +5019,7 @@
       "rival": "LAS HERAS",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "80-6",
       "espacio": null
     },
     {
@@ -5032,7 +5032,7 @@
       "rival": "ATENEO POPULAR VERSAILLES",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "45-51",
       "espacio": null
     },
     {
@@ -5045,7 +5045,7 @@
       "rival": "CLUB ATLETICO PILAR",
       "localia": "Visitante",
       "direccion": "ITUZAINGO 759, CP 2800",
-      "resultado": "",
+      "resultado": "45-54",
       "espacio": null
     },
     {
