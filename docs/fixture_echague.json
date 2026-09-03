@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-09-02T12:02:13-03:00",
+  "generated_at": "2026-09-02T22:00:48-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -5071,7 +5071,7 @@
       "rival": "COMUNICACIONES NEGRO B",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "8-10",
       "espacio": null
     },
     {
@@ -5097,7 +5097,7 @@
       "rival": "CLUB EL TALAR",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "70-98",
       "espacio": null
     },
     {
