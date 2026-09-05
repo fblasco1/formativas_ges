@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-09-04T11:52:15-03:00",
+  "generated_at": "2026-09-04T21:40:47-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -5692,19 +5692,6 @@
       "hora": "14:00",
       "tira": "—",
       "categoria": "U11 Fem",
-      "rival": "ATENEO POPULAR VERSAILLES",
-      "localia": "Local",
-      "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
-      "external_id": "TlY2LGC-eoZVj_XwkkmWbg",
-      "fecha": "2026-09-20",
-      "hora": "15:30",
-      "tira": "—",
-      "categoria": "U9 Fem",
       "rival": "ATENEO POPULAR VERSAILLES",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
