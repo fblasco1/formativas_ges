@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-09-04T21:40:47-03:00",
+  "generated_at": "2026-09-05T10:43:28-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -5110,7 +5110,7 @@
       "rival": "DEFENSORES DE HURLINGHAM VERDE",
       "localia": "Visitante",
       "direccion": "Dr Delfor Diaz 1846, 1686",
-      "resultado": "",
+      "resultado": "53-44",
       "espacio": null
     },
     {
