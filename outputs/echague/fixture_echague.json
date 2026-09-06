@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-09-05T21:39:08-03:00",
+  "generated_at": "2026-09-06T11:01:09-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -5188,7 +5188,7 @@
       "rival": "ATENEO POPULAR VERSAILLES A",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "18-66",
       "espacio": null
     },
     {
@@ -5201,7 +5201,7 @@
       "rival": "ATENEO POPULAR VERSAILLES",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "6-20",
       "espacio": null
     },
     {
