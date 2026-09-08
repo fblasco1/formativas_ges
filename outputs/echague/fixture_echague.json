@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-09-07T13:20:30-03:00",
+  "generated_at": "2026-09-07T21:58:28-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -5240,7 +5240,7 @@
       "rival": "LANUS A",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "64-66",
       "espacio": null
     },
     {
@@ -5908,19 +5908,6 @@
     },
     {
       "source": "febamba_ges",
-      "external_id": "q_eu3FaKxLKqHJBdqrwB7w",
-      "fecha": "2026-09-27",
-      "hora": "10:00",
-      "tira": "FLEX",
-      "categoria": "U17 Flex",
-      "rival": "NOLTING",
-      "localia": "Visitante",
-      "direccion": "Alianza 350, 1702",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
       "external_id": "gBHusAFi9jxg52yPEi_k0A",
       "fecha": "2026-09-27",
       "hora": "11:00",
@@ -5929,19 +5916,6 @@
       "rival": "U.V.V.A UNION VECINAL VILLA ADELINA",
       "localia": "Visitante",
       "direccion": "BERNARDO ADER 4048, 1606",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
-      "external_id": "AVDni8CSfvjN37ot5x843g",
-      "fecha": "2026-09-27",
-      "hora": "11:30",
-      "tira": "FLEX",
-      "categoria": "U15 Flex",
-      "rival": "NOLTING",
-      "localia": "Visitante",
-      "direccion": "Alianza 350, 1702",
       "resultado": "",
       "espacio": null
     },
@@ -5981,6 +5955,32 @@
       "rival": "U.V.V.A UNION VECINAL VILLA ADELINA",
       "localia": "Visitante",
       "direccion": "BERNARDO ADER 4048, 1606",
+      "resultado": "",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "AVDni8CSfvjN37ot5x843g",
+      "fecha": "2026-09-27",
+      "hora": "17:00",
+      "tira": "FLEX",
+      "categoria": "U15 Flex",
+      "rival": "NOLTING",
+      "localia": "Visitante",
+      "direccion": "Alianza 350, 1702",
+      "resultado": "",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "q_eu3FaKxLKqHJBdqrwB7w",
+      "fecha": "2026-09-27",
+      "hora": "18:30",
+      "tira": "FLEX",
+      "categoria": "U17 Flex",
+      "rival": "NOLTING",
+      "localia": "Visitante",
+      "direccion": "Alianza 350, 1702",
       "resultado": "",
       "espacio": null
     },
