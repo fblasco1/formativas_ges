@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-09-07T21:58:28-03:00",
+  "generated_at": "2026-09-08T11:59:20-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -5349,6 +5349,19 @@
     },
     {
       "source": "febamba_ges",
+      "external_id": "tqEvX56iOnJGZQZUDA5y0Q",
+      "fecha": "2026-09-12",
+      "hora": "21:30",
+      "tira": "C",
+      "categoria": "SUP Flex",
+      "rival": "CHENQUE CROVARA",
+      "localia": "Visitante",
+      "direccion": "",
+      "resultado": "",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
       "external_id": "WpGbqNyOqACEUTQ159gWPA",
       "fecha": "2026-09-13",
       "hora": "9:30",
@@ -5700,6 +5713,19 @@
     },
     {
       "source": "febamba_ges",
+      "external_id": "AwfJxzSe4mfGsQ9ZUNSP2Q",
+      "fecha": "2026-09-20",
+      "hora": "18:30",
+      "tira": "C",
+      "categoria": "SUP Flex",
+      "rival": "PRIME BASKETBALL",
+      "localia": "Visitante",
+      "direccion": "SIN CANCHA, CP 1417",
+      "resultado": "",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
       "external_id": "Y70-zO_g8IDDnn98fANRGQ",
       "fecha": "2026-09-20",
       "hora": "21:00",
@@ -5973,6 +5999,19 @@
     },
     {
       "source": "febamba_ges",
+      "external_id": "H2H9JZslmrqZTTUC4rAjmw",
+      "fecha": "2026-09-27",
+      "hora": "18:00",
+      "tira": "C",
+      "categoria": "SUP Flex",
+      "rival": "PARQUE VIOLETA",
+      "localia": "Local",
+      "direccion": "Portela 836, CABA (CP 1406)",
+      "resultado": "",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
       "external_id": "q_eu3FaKxLKqHJBdqrwB7w",
       "fecha": "2026-09-27",
       "hora": "18:30",
@@ -5986,6 +6025,19 @@
     },
     {
       "source": "febamba_ges",
+      "external_id": "64s90o8h0FZc6IxXEaPgUQ",
+      "fecha": "2026-09-27",
+      "hora": "21:00",
+      "tira": "A",
+      "categoria": "Liga Metro",
+      "rival": "JOSE HERNANDEZ",
+      "localia": "Local",
+      "direccion": "Portela 836, CABA (CP 1406)",
+      "resultado": "",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
       "external_id": "1MC1jdXBLr6PWT_2eiVhZQ",
       "fecha": "2026-09-28",
       "hora": "21:45",
@@ -5994,6 +6046,19 @@
       "rival": "YUPANQUI",
       "localia": "Visitante",
       "direccion": "manual",
+      "resultado": "",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "a0ybvdKWmu363Ws7MX-pdg",
+      "fecha": "2026-09-30",
+      "hora": "21:00",
+      "tira": "A",
+      "categoria": "Liga Metro",
+      "rival": "CLUB DEPORTIVO y SOCIAL COLEGIALES",
+      "localia": "Visitante",
+      "direccion": "Teodoro Garcia 2860, CP 1426",
       "resultado": "",
       "espacio": null
     },
@@ -6259,6 +6324,32 @@
     },
     {
       "source": "febamba_ges",
+      "external_id": "uPKeJ3K3Gsfvg18NY0t-GA",
+      "fecha": "2026-10-04",
+      "hora": "20:00",
+      "tira": "C",
+      "categoria": "SUP Flex",
+      "rival": "SAN MIGUEL",
+      "localia": "Visitante",
+      "direccion": "Angel Delia 1360, CP 1663",
+      "resultado": "",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "iG6-ABM0H4V0uHx0PxFFQw",
+      "fecha": "2026-10-11",
+      "hora": "18:00",
+      "tira": "C",
+      "categoria": "SUP Flex",
+      "rival": "BECCAR AZUL",
+      "localia": "Local",
+      "direccion": "Portela 836, CABA (CP 1406)",
+      "resultado": "",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
       "external_id": "R9a0z1V-334-8EKxhre02Q",
       "fecha": "2026-10-11",
       "hora": "20:00",
@@ -6345,6 +6436,19 @@
       "rival": "COMUNICACIONES NEGRO",
       "localia": "Visitante",
       "direccion": "Av San Martin 5125, 1407",
+      "resultado": "",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "lvkva05avr-nstojM4qgrg",
+      "fecha": "2026-10-18",
+      "hora": "21:00",
+      "tira": "C",
+      "categoria": "SUP Flex",
+      "rival": "BANCO NACION",
+      "localia": "Visitante",
+      "direccion": "Zufriategui 1251, CP 1638",
       "resultado": "",
       "espacio": null
     },
@@ -6623,6 +6727,19 @@
     },
     {
       "source": "febamba_ges",
+      "external_id": "QBO-9_AkTa8Ipb1R4kr_-w",
+      "fecha": "2026-10-25",
+      "hora": "18:00",
+      "tira": "C",
+      "categoria": "SUP Flex",
+      "rival": "VICTORIA \"C\"",
+      "localia": "Local",
+      "direccion": "Portela 836, CABA (CP 1406)",
+      "resultado": "",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
       "external_id": "5uzp62LdNSesnSj_7fBdVQ",
       "fecha": "2026-10-30",
       "hora": "21:30",
@@ -6883,6 +7000,19 @@
     },
     {
       "source": "febamba_ges",
+      "external_id": "v-KAUJyozBBha7CRF5lVqQ",
+      "fecha": "2026-11-01",
+      "hora": "18:00",
+      "tira": "C",
+      "categoria": "SUP Flex",
+      "rival": "CHENQUE CROVARA",
+      "localia": "Local",
+      "direccion": "Portela 836, CABA (CP 1406)",
+      "resultado": "",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
       "external_id": "CNnn9tVa5o_61y1YV9Z-IQ",
       "fecha": "2026-11-04",
       "hora": "21:30",
@@ -7039,6 +7169,19 @@
     },
     {
       "source": "febamba_ges",
+      "external_id": "kbZxjUaOwUJOXrU3NQoIfA",
+      "fecha": "2026-11-08",
+      "hora": "18:00",
+      "tira": "C",
+      "categoria": "SUP Flex",
+      "rival": "PRIME BASKETBALL",
+      "localia": "Local",
+      "direccion": "Portela 836, CABA (CP 1406)",
+      "resultado": "",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
       "external_id": "qWOru-hq8uAHWbGX54bA0g",
       "fecha": "2026-11-11",
       "hora": "21:00",
@@ -7125,6 +7268,19 @@
       "rival": "ARGENTINOS JUNIORS",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
+      "resultado": "",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "evEL6wSfIBwixao9OIbn2g",
+      "fecha": "2026-11-14",
+      "hora": "19:00",
+      "tira": "C",
+      "categoria": "SUP Flex",
+      "rival": "PARQUE VIOLETA",
+      "localia": "Visitante",
+      "direccion": "",
       "resultado": "",
       "espacio": null
     },
@@ -7286,6 +7442,19 @@
     },
     {
       "source": "febamba_ges",
+      "external_id": "qII-syyBbi2eTGQYlzjLRg",
+      "fecha": "2026-11-22",
+      "hora": "18:00",
+      "tira": "C",
+      "categoria": "SUP Flex",
+      "rival": "SAN MIGUEL",
+      "localia": "Local",
+      "direccion": "Portela 836, CABA (CP 1406)",
+      "resultado": "",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
       "external_id": "llotWhrGrcWdrLxV592FPg",
       "fecha": "2026-11-23",
       "hora": "21:30",
@@ -7320,6 +7489,19 @@
       "rival": "ARGENTINOS JUNIORS",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
+      "resultado": "",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "eZkDyfrP_MnXKns9lISJKg",
+      "fecha": "2026-11-29",
+      "hora": "21:30",
+      "tira": "C",
+      "categoria": "SUP Flex",
+      "rival": "BECCAR AZUL",
+      "localia": "Visitante",
+      "direccion": "Av Centenario 1947, 1643",
       "resultado": "",
       "espacio": null
     },
@@ -7372,6 +7554,32 @@
       "rival": "BANADE",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
+      "resultado": "",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "cgnJqw0MO8BlpTYP7lkltA",
+      "fecha": "2026-12-06",
+      "hora": "18:00",
+      "tira": "C",
+      "categoria": "SUP Flex",
+      "rival": "BANCO NACION",
+      "localia": "Local",
+      "direccion": "Portela 836, CABA (CP 1406)",
+      "resultado": "",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "WaR35bc-4JWx77GMGHYslg",
+      "fecha": "2026-12-12",
+      "hora": "20:30",
+      "tira": "C",
+      "categoria": "SUP Flex",
+      "rival": "VICTORIA \"C\"",
+      "localia": "Visitante",
+      "direccion": "",
       "resultado": "",
       "espacio": null
     },
