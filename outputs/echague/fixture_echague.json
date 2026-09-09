@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-09-08T22:07:12-03:00",
+  "generated_at": "2026-09-09T12:03:55-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -6493,6 +6493,19 @@
     },
     {
       "source": "febamba_ges",
+      "external_id": "GfMo8UPyXWB97MVaATSnfw",
+      "fecha": "2026-10-18",
+      "hora": "21:00",
+      "tira": "A",
+      "categoria": "Liga Metro",
+      "rival": "CLUB ITALIANO",
+      "localia": "Local",
+      "direccion": "Portela 836, CABA (CP 1406)",
+      "resultado": "",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
       "external_id": "4gQ_UL-xpNgA2sP7_evp1g",
       "fecha": "2026-10-21",
       "hora": "22:00",
@@ -6514,6 +6527,19 @@
       "rival": "ATENEO POPULAR VERSAILLES",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
+      "resultado": "",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "O0CfgMYU6BCiIajZLM-4Gw",
+      "fecha": "2026-10-23",
+      "hora": "21:15",
+      "tira": "A",
+      "categoria": "Liga Metro",
+      "rival": "CLUB NAUTICO BUCHARDO",
+      "localia": "Visitante",
+      "direccion": "Comodoro Rivadavia 1250",
       "resultado": "",
       "espacio": null
     },
@@ -6774,6 +6800,32 @@
       "rival": "VICTORIA \"C\"",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
+      "resultado": "",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "ggBWaK-zeaai9oXObgBWLg",
+      "fecha": "2026-10-25",
+      "hora": "21:00",
+      "tira": "A",
+      "categoria": "Liga Metro",
+      "rival": "IMPERIO JRS",
+      "localia": "Local",
+      "direccion": "Portela 836, CABA (CP 1406)",
+      "resultado": "",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "A5t-VJsWKMR7igWYH_hgig",
+      "fecha": "2026-10-28",
+      "hora": "21:00",
+      "tira": "A",
+      "categoria": "Liga Metro",
+      "rival": "CLUB SOCIAL y DEPORTIVO PRESIDENTE DERQUI",
+      "localia": "Visitante",
+      "direccion": "Dorrego 866, CP 1635",
       "resultado": "",
       "espacio": null
     },
@@ -7047,6 +7099,32 @@
       "rival": "CHENQUE CROVARA",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
+      "resultado": "",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "KCOAm1ktleD7PWkWKGgS2Q",
+      "fecha": "2026-11-01",
+      "hora": "21:00",
+      "tira": "A",
+      "categoria": "Liga Metro",
+      "rival": "CLUB SOCIAL y DEPORTIVO PINOCHO",
+      "localia": "Local",
+      "direccion": "Portela 836, CABA (CP 1406)",
+      "resultado": "",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "eC9fNQSCWHDCP4IjgBQ6LQ",
+      "fecha": "2026-11-04",
+      "hora": "21:00",
+      "tira": "A",
+      "categoria": "Liga Metro",
+      "rival": "CLUB ATLETICO 3 DE FEBRERO",
+      "localia": "Visitante",
+      "direccion": "Islas Malvinas 2681, CP 1702",
       "resultado": "",
       "espacio": null
     },
