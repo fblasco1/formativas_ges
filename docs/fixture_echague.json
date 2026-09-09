@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-09-08T11:59:20-03:00",
+  "generated_at": "2026-09-08T22:07:12-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -6337,6 +6337,19 @@
     },
     {
       "source": "febamba_ges",
+      "external_id": "gWY_ozO9XUxw6_h0W1ZbLw",
+      "fecha": "2026-10-09",
+      "hora": "21:00",
+      "tira": "A",
+      "categoria": "Liga Metro",
+      "rival": "CLUB SPORTIVO ESCOBAR LM",
+      "localia": "Visitante",
+      "direccion": "COLON 533, CP 1625",
+      "resultado": "",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
       "external_id": "iG6-ABM0H4V0uHx0PxFFQw",
       "fecha": "2026-10-11",
       "hora": "18:00",
@@ -6358,6 +6371,32 @@
       "rival": "JUVENCIA",
       "localia": "Visitante",
       "direccion": "",
+      "resultado": "",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "HqSd9uR7DgReo15Oevo04w",
+      "fecha": "2026-10-11",
+      "hora": "21:00",
+      "tira": "A",
+      "categoria": "Liga Metro",
+      "rival": "CLUB ATLETICO PILAR",
+      "localia": "Local",
+      "direccion": "Portela 836, CABA (CP 1406)",
+      "resultado": "",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "fwt6JxfSu5_0pLqUtdywlA",
+      "fecha": "2026-10-14",
+      "hora": "21:00",
+      "tira": "A",
+      "categoria": "Liga Metro",
+      "rival": "CLUB EL TALAR",
+      "localia": "Visitante",
+      "direccion": "Nueva York 2944, CP 1419",
       "resultado": "",
       "espacio": null
     },
@@ -6442,8 +6481,8 @@
     {
       "source": "febamba_ges",
       "external_id": "lvkva05avr-nstojM4qgrg",
-      "fecha": "2026-10-18",
-      "hora": "21:00",
+      "fecha": "2026-10-17",
+      "hora": "20:30",
       "tira": "C",
       "categoria": "SUP Flex",
       "rival": "BANCO NACION",
@@ -7156,19 +7195,6 @@
     },
     {
       "source": "febamba_ges",
-      "external_id": "J8SlB3rK9y0JW0qHe11dVQ",
-      "fecha": "2026-11-08",
-      "hora": "15:30",
-      "tira": "—",
-      "categoria": "U9 Fem",
-      "rival": "HURACAN DE SAN JUSTO",
-      "localia": "Local",
-      "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
       "external_id": "kbZxjUaOwUJOXrU3NQoIfA",
       "fecha": "2026-11-08",
       "hora": "18:00",
@@ -7421,19 +7447,6 @@
       "hora": "14:00",
       "tira": "—",
       "categoria": "U11 Fem",
-      "rival": "BECCAR",
-      "localia": "Visitante",
-      "direccion": "",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
-      "external_id": "nk6iltL43hVSo04b_zqh0g",
-      "fecha": "2026-11-22",
-      "hora": "15:30",
-      "tira": "—",
-      "categoria": "U9 Fem",
       "rival": "BECCAR",
       "localia": "Visitante",
       "direccion": "",
