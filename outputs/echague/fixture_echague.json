@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-09-09T12:03:55-03:00",
+  "generated_at": "2026-09-09T21:55:38-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -5253,7 +5253,7 @@
       "rival": "ITALIANO B",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "22-24",
       "espacio": null
     },
     {
@@ -5715,7 +5715,7 @@
       "source": "febamba_ges",
       "external_id": "AwfJxzSe4mfGsQ9ZUNSP2Q",
       "fecha": "2026-09-20",
-      "hora": "18:30",
+      "hora": "18:00",
       "tira": "C",
       "categoria": "SUP Flex",
       "rival": "PRIME BASKETBALL",
@@ -7572,6 +7572,19 @@
     },
     {
       "source": "febamba_ges",
+      "external_id": "eZkDyfrP_MnXKns9lISJKg",
+      "fecha": "2026-11-28",
+      "hora": "21:30",
+      "tira": "C",
+      "categoria": "SUP Flex",
+      "rival": "BECCAR AZUL",
+      "localia": "Visitante",
+      "direccion": "Av Centenario 1947, 1643",
+      "resultado": "",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
       "external_id": "yHK1auI_8BH4drAMwB2BdA",
       "fecha": "2026-11-29",
       "hora": "11:00",
@@ -7580,19 +7593,6 @@
       "rival": "ARGENTINOS JUNIORS",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
-      "external_id": "eZkDyfrP_MnXKns9lISJKg",
-      "fecha": "2026-11-29",
-      "hora": "21:30",
-      "tira": "C",
-      "categoria": "SUP Flex",
-      "rival": "BECCAR AZUL",
-      "localia": "Visitante",
-      "direccion": "Av Centenario 1947, 1643",
       "resultado": "",
       "espacio": null
     },
