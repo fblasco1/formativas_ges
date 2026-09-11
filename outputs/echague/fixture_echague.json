@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-09-10T11:54:40-03:00",
+  "generated_at": "2026-09-10T21:52:57-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -5344,19 +5344,6 @@
       "rival": "ITALIANO",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
-      "external_id": "tqEvX56iOnJGZQZUDA5y0Q",
-      "fecha": "2026-09-12",
-      "hora": "21:30",
-      "tira": "C",
-      "categoria": "SUP Flex",
-      "rival": "CHENQUE CROVARA",
-      "localia": "Visitante",
-      "direccion": "",
       "resultado": "",
       "espacio": null
     },
