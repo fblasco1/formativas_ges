@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-09-12T10:57:01-03:00",
+  "generated_at": "2026-09-12T21:41:59-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -5279,7 +5279,7 @@
       "rival": "ITALIANO",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "59-99",
+      "resultado": "59-103",
       "espacio": null
     },
     {
@@ -5292,7 +5292,7 @@
       "rival": "ITALIANO",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "63-74",
       "espacio": null
     },
     {
@@ -5305,7 +5305,7 @@
       "rival": "ITALIANO",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "67-48",
       "espacio": null
     },
     {
@@ -5318,7 +5318,7 @@
       "rival": "ITALIANO",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "63-35",
       "espacio": null
     },
     {
@@ -5331,7 +5331,7 @@
       "rival": "ITALIANO",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "44-10",
       "espacio": null
     },
     {
@@ -5344,7 +5344,7 @@
       "rival": "ITALIANO",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "79-65",
       "espacio": null
     },
     {
