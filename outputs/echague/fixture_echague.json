@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-09-12T21:41:59-03:00",
+  "generated_at": "2026-09-13T11:52:05-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -5357,7 +5357,7 @@
       "rival": "JOSE HERNANDEZ \"B\"",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "31-60",
       "espacio": null
     },
     {
@@ -5370,7 +5370,7 @@
       "rival": "JOSE HERNANDEZ \"B\"",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "26-16",
       "espacio": null
     },
     {
@@ -5383,7 +5383,7 @@
       "rival": "ARGENTINOS JUNIORS",
       "localia": "Visitante",
       "direccion": "Tronador 41, Ciudad Autónoma de Buenos Aires",
-      "resultado": "",
+      "resultado": "16-24",
       "espacio": null
     },
     {
