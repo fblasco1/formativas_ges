@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-09-13T11:52:05-03:00",
+  "generated_at": "2026-09-13T21:49:29-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -5370,7 +5370,7 @@
       "rival": "JOSE HERNANDEZ \"B\"",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "26-16",
+      "resultado": "55-37",
       "espacio": null
     },
     {
@@ -5383,7 +5383,7 @@
       "rival": "ARGENTINOS JUNIORS",
       "localia": "Visitante",
       "direccion": "Tronador 41, Ciudad Autónoma de Buenos Aires",
-      "resultado": "16-24",
+      "resultado": "23-47",
       "espacio": null
     },
     {
@@ -5396,7 +5396,7 @@
       "rival": "JOSE HERNANDEZ \"B\"",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "32-64",
       "espacio": null
     },
     {
@@ -5409,7 +5409,7 @@
       "rival": "JOSE HERNANDEZ \"B\"",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "40-54",
       "espacio": null
     },
     {
@@ -5422,7 +5422,7 @@
       "rival": "JOSE HERNANDEZ \"B\"",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "15-4",
       "espacio": null
     },
     {
@@ -5435,7 +5435,7 @@
       "rival": "JOSE HERNANDEZ \"B\"",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "41-65",
       "espacio": null
     },
     {
@@ -5448,7 +5448,7 @@
       "rival": "IMPERIO JRS",
       "localia": "Visitante",
       "direccion": "",
-      "resultado": "",
+      "resultado": "44-24",
       "espacio": null
     },
     {
