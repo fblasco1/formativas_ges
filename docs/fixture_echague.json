@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-09-16T22:09:13-03:00",
+  "generated_at": "2026-09-17T12:29:41-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -5474,7 +5474,7 @@
       "rival": "CLUB SOCIAL y DEPORTIVO PRESIDENTE DERQUI",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "52-43",
+      "resultado": "69-75",
       "espacio": null
     },
     {
@@ -5687,11 +5687,11 @@
     },
     {
       "source": "febamba_ges",
-      "external_id": "yDe8Nsmknw8x42_EhZV73w",
+      "external_id": "lUgVNb0zaQ6_djF6IBEXdQ",
       "fecha": "2026-09-20",
-      "hora": "12:30",
+      "hora": "13:30",
       "tira": "—",
-      "categoria": "U13 Fem",
+      "categoria": "U11 Fem",
       "rival": "ATENEO POPULAR VERSAILLES",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
@@ -5700,11 +5700,11 @@
     },
     {
       "source": "febamba_ges",
-      "external_id": "lUgVNb0zaQ6_djF6IBEXdQ",
+      "external_id": "yDe8Nsmknw8x42_EhZV73w",
       "fecha": "2026-09-20",
-      "hora": "14:00",
+      "hora": "15:00",
       "tira": "—",
-      "categoria": "U11 Fem",
+      "categoria": "U13 Fem",
       "rival": "ATENEO POPULAR VERSAILLES",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
