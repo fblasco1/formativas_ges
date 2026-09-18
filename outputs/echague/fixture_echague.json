@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-09-17T12:29:41-03:00",
+  "generated_at": "2026-09-17T22:07:23-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -5650,7 +5650,7 @@
       "source": "febamba_ges",
       "external_id": "FxSDNfWIloxpz2xarGW0zw",
       "fecha": "2026-09-20",
-      "hora": "10:00",
+      "hora": "9:00",
       "tira": "FLEX",
       "categoria": "U17 Flex",
       "rival": "A.F.A.L.P.  B",
@@ -5663,7 +5663,7 @@
       "source": "febamba_ges",
       "external_id": "l2QhVA4kqD5eTR7F1IpvdQ",
       "fecha": "2026-09-20",
-      "hora": "11:30",
+      "hora": "10:30",
       "tira": "FLEX",
       "categoria": "U15 Flex",
       "rival": "A.F.A.L.P. B",
