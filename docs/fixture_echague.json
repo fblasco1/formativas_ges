@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-09-18T11:50:49-03:00",
+  "generated_at": "2026-09-18T22:03:12-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -5487,7 +5487,7 @@
       "rival": "CLUB DEPORTIVO y SOCIAL COLEGIALES",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "52-49",
       "espacio": null
     },
     {
@@ -5500,7 +5500,7 @@
       "rival": "SOCIEDAD HEBRAICA ARGENTINA",
       "localia": "Visitante",
       "direccion": "manual",
-      "resultado": "",
+      "resultado": "50-37",
       "espacio": null
     },
     {
