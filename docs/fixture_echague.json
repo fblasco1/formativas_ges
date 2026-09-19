@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-09-18T22:03:12-03:00",
+  "generated_at": "2026-09-19T11:14:16-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -5487,7 +5487,7 @@
       "rival": "CLUB DEPORTIVO y SOCIAL COLEGIALES",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "52-49",
+      "resultado": "73-71",
       "espacio": null
     },
     {
@@ -5500,7 +5500,7 @@
       "rival": "SOCIEDAD HEBRAICA ARGENTINA",
       "localia": "Visitante",
       "direccion": "manual",
-      "resultado": "50-37",
+      "resultado": "64-54",
       "espacio": null
     },
     {
@@ -5513,7 +5513,7 @@
       "rival": "ARGENTINOS JUNIORS",
       "localia": "Visitante",
       "direccion": "Tronador 41, Ciudad Autónoma de Buenos Aires",
-      "resultado": "",
+      "resultado": "42-48",
       "espacio": null
     },
     {
@@ -5526,7 +5526,7 @@
       "rival": "OBRAS BASKET",
       "localia": "Visitante",
       "direccion": "Avda Libertador 7395, 1429",
-      "resultado": "",
+      "resultado": "55-71",
       "espacio": null
     },
     {
@@ -5539,7 +5539,7 @@
       "rival": "ARGENTINOS JUNIORS",
       "localia": "Visitante",
       "direccion": "Tronador 41, Ciudad Autónoma de Buenos Aires",
-      "resultado": "",
+      "resultado": "10-4",
       "espacio": null
     },
     {
@@ -5552,7 +5552,7 @@
       "rival": "OBRAS BASKET",
       "localia": "Visitante",
       "direccion": "Avda Libertador 7395, 1429",
-      "resultado": "",
+      "resultado": "9-18",
       "espacio": null
     },
     {
