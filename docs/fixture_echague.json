@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-09-19T21:45:54-03:00",
+  "generated_at": "2026-09-20T11:35:24-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -5656,7 +5656,7 @@
       "rival": "A.F.A.L.P.  B",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "39-46",
       "espacio": null
     },
     {
@@ -5669,7 +5669,7 @@
       "rival": "A.F.A.L.P. B",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "20-31",
       "espacio": null
     },
     {
