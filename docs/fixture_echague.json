@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-09-20T11:35:24-03:00",
+  "generated_at": "2026-09-20T21:55:20-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -5669,7 +5669,7 @@
       "rival": "A.F.A.L.P. B",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "20-31",
+      "resultado": "35-48",
       "espacio": null
     },
     {
@@ -5682,7 +5682,7 @@
       "rival": "A.F.A.L.P. B",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "20-19",
       "espacio": null
     },
     {
@@ -5695,7 +5695,7 @@
       "rival": "ATENEO POPULAR VERSAILLES",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "22-63",
       "espacio": null
     },
     {
@@ -5708,7 +5708,7 @@
       "rival": "ATENEO POPULAR VERSAILLES",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "59-56",
       "espacio": null
     },
     {
@@ -5721,7 +5721,7 @@
       "rival": "PRIME BASKETBALL",
       "localia": "Visitante",
       "direccion": "SIN CANCHA, CP 1417",
-      "resultado": "",
+      "resultado": "60-64",
       "espacio": null
     },
     {
@@ -5734,7 +5734,7 @@
       "rival": "CLUB SOCIAL y DEPORTIVO PINOCHO",
       "localia": "Visitante",
       "direccion": "Manuela Pedraza 5139, CP 1431",
-      "resultado": "",
+      "resultado": "49-39",
       "espacio": null
     },
     {
