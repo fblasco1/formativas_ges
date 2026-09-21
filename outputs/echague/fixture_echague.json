@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-09-20T21:55:20-03:00",
+  "generated_at": "2026-09-21T13:51:26-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -5734,7 +5734,7 @@
       "rival": "CLUB SOCIAL y DEPORTIVO PINOCHO",
       "localia": "Visitante",
       "direccion": "Manuela Pedraza 5139, CP 1431",
-      "resultado": "49-39",
+      "resultado": "75-71",
       "espacio": null
     },
     {
@@ -7392,7 +7392,7 @@
       "source": "febamba_ges",
       "external_id": "evEL6wSfIBwixao9OIbn2g",
       "fecha": "2026-11-14",
-      "hora": "19:00",
+      "hora": "20:00",
       "tira": "C",
       "categoria": "SUP Flex",
       "rival": "PARQUE VIOLETA",
