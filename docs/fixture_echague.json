@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-09-21T13:51:26-03:00",
+  "generated_at": "2026-09-21T22:29:49-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -5747,7 +5747,7 @@
       "rival": "OBRAS BASKET",
       "localia": "Visitante",
       "direccion": "Avda Libertador 7395, 1429",
-      "resultado": "",
+      "resultado": "65-72",
       "espacio": null
     },
     {
