@@ -36,6 +36,7 @@ exportar_elite_csv = _mod.exportar_elite_csv
 exportar_mapeo_csv = _mod.exportar_mapeo_csv
 geocodificar_mapeos = _mod.geocodificar_mapeos
 matriz_distancias = _mod.matriz_distancias
+matriz_distancias_osrm = _mod.matriz_distancias_osrm
 ELITE42_CSV = _mod.ELITE42_CSV
 GEOJSON = _mod.GEOJSON
 MAPEO_CSV = _mod.MAPEO_CSV
@@ -57,6 +58,11 @@ def main() -> int:
     )
     ap.add_argument("--geocodificar", action="store_true")
     ap.add_argument("--regeocodificar", action="store_true", help="Ignora caché de geocodificación")
+    ap.add_argument(
+        "--osrm",
+        action="store_true",
+        help="Tras geocodificar, calcula matriz con OSRM (ruta vial). También: analysis/calcular_matriz_osrm.py",
+    )
     ap.add_argument("--xlsx", type=Path, default=None)
     args = ap.parse_args()
 
@@ -102,17 +108,29 @@ def main() -> int:
         ok = sum(1 for m in mapeos if m.lat is not None)
         print(f"Geocodificados: {ok}/{len(mapeos)} -> {GEOJSON}")
 
-        nombres, mat = matriz_distancias(mapeos)
+        if args.osrm:
+            print("Calculando matriz OSRM (ruta vial)...")
+            nombres, mat, meta = matriz_distancias_osrm(mapeos)
+            modo = "osrm"
+        else:
+            nombres, mat = matriz_distancias(mapeos)
+            meta = {"modo": "haversine"}
+            modo = "haversine"
         dist_path = OUT_DIR / "matriz_distancias_km.json"
         with dist_path.open("w", encoding="utf-8") as f:
-            json.dump({"equipos": nombres, "km": mat}, f, ensure_ascii=False, indent=2)
-        print(f"Matriz distancias: {dist_path}")
+            json.dump(
+                {"equipos": nombres, "km": mat, "modo": modo, "meta": meta},
+                f,
+                ensure_ascii=False,
+                indent=2,
+            )
+        print(f"Matriz distancias ({modo}): {dist_path}")
 
         vals = [v for row in mat for v in row if v and v > 0]
         if vals:
             vals_sorted = sorted(vals)
             print(
-                f"Distancia km (haversine): min={vals_sorted[0]:.1f} "
+                f"Distancia km ({modo}): min={vals_sorted[0]:.1f} "
                 f"mediana={vals_sorted[len(vals_sorted)//2]:.1f} "
                 f"max={vals_sorted[-1]:.1f}"
             )

@@ -1,0 +1,11 @@
+{
+  "modo": "osrm",
+  "base_url": "https://router.project-osrm.org",
+  "chunk_size": 40,
+  "n_total": 193,
+  "n_geocodificados": 193,
+  "n_osrm": 37056,
+  "n_fallback_haversine": 0,
+  "n_fallidos": 0,
+  "errores": []
+}

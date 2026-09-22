@@ -36,24 +36,36 @@ REGION_COLOR = {
     "OESTE": "#16a34a",
 }
 
-# Zonificación mixta Nivel 1: 16 + 16.
+# Zonificación mixta: dos esquemas de macro-regiones (16+16).
 GRUPO_NORTE_OESTE: Set[str] = {"NORTE", "OESTE"}
 GRUPO_CENTRO_SUR: Set[str] = {"CENTRO", "SUR"}
+GRUPO_NORTE_CENTRO: Set[str] = {"NORTE", "CENTRO"}
+GRUPO_OESTE_SUR: Set[str] = {"OESTE", "SUR"}
 
 NIVELES = [
-    {"id": 1, "nombre": "Nivel 1", "rango": "Interconferencia A"},
-    {"id": 2, "nombre": "Nivel 2", "rango": "Interconferencia B"},
-    {"id": 3, "nombre": "Nivel 3", "rango": "Nivel 1"},
-    {"id": 4, "nombre": "Nivel 4", "rango": "32 mejores (8 por región)"},
-    {"id": 5, "nombre": "Nivel 5", "rango": "Restantes"},
+    {"id": 1, "nombre": "Nivel 1", "rango": "Interconferencia A · 32"},
+    {"id": 2, "nombre": "Nivel 2", "rango": "Interconferencia B · 32"},
+    {"id": 3, "nombre": "Nivel 3", "rango": "Regional · 32"},
+    {"id": 4, "nombre": "Nivel 4", "rango": "Regional · 32"},
+    {"id": 5, "nombre": "Nivel 5", "rango": "Regional · 32"},
+    {"id": 6, "nombre": "Nivel 6", "rango": "Regional · remanente"},
 ]
+
+NIVELES_2027_JSON = ROOT / "data" / "niveles_2027.json"
+DOCS_HTML = ROOT / "docs" / "informe_viajes_niveles.html"
 
 
 def _region(zona: str) -> str:
     return (zona or "").split()[0].upper()
 
 
-def _grupo_mixto(region: str) -> str:
+def _grupo_mixto(region: str, esquema: str = "NO_CS") -> str:
+    if esquema == "NC_OS":
+        if region in GRUPO_NORTE_CENTRO:
+            return "NORTE-CENTRO"
+        if region in GRUPO_OESTE_SUR:
+            return "OESTE-SUR"
+        return ""
     if region in GRUPO_NORTE_OESTE:
         return "NORTE-OESTE"
     if region in GRUPO_CENTRO_SUR:
@@ -92,7 +104,7 @@ def _obtener_fases_segunda() -> Dict[str, str]:
     data = json.loads(text[start:end])
 
     mapa: Dict[str, str] = {}
-    for fase in ["INTERCONFERENCIA_A", "INTERCONFERENCIA_B", "NIVEL_1"]:
+    for fase in ["INTERCONFERENCIA_A", "INTERCONFERENCIA_B", "NIVEL_1", "NIVEL_2", "NIVEL_3"]:
         for _zona, filas in data["tablas"].get(fase, {}).items():
             for f in filas:
                 mapa[clave_equipo(f["equipo"])] = fase
@@ -114,9 +126,9 @@ def _metricas_nivel(
     clubs: List[dict],
     mat: List[List[Optional[float]]],
     *,
-    con_mixta: bool = False,
+    con_mixta: bool = True,
 ) -> List[dict]:
-    """Por club: rival +lejos/+cerca, medias regionalizado / sin región / mixta."""
+    """Por club: rival +lejos/+cerca y medias (preferir matriz OSRM / ruta vial)."""
     out: List[dict] = []
     geo = [c for c in clubs if c["lat"] is not None and c["lon"] is not None]
     for c in clubs:
@@ -130,7 +142,11 @@ def _metricas_nivel(
             "afiliada": c.get("afiliada") or "",
             "fase": c.get("fase") or "",
             "clave": c.get("clave") or "",
-            "grupo_mixto": _grupo_mixto(c["region"]) if con_mixta else "",
+            "status_2027": c.get("status_2027") or "",
+            "detalle_2027": c.get("detalle_2027") or "",
+            "nivel_2026_origen": c.get("nivel_2026_origen") or "",
+            "grupo_mixto": _grupo_mixto(c["region"], "NO_CS") if con_mixta else "",
+            "grupo_mixto_alt": _grupo_mixto(c["region"], "NC_OS") if con_mixta else "",
             "lat": c["lat"],
             "lon": c["lon"],
             "mas_lejana": "—",
@@ -142,6 +158,8 @@ def _metricas_nivel(
             "media_mixta": None,
             "media_norte_oeste": None,
             "media_centro_sur": None,
+            "media_norte_centro": None,
+            "media_oeste_sur": None,
         }
         if c["lat"] is None or c["lon"] is None:
             base["lat"] = None
@@ -157,7 +175,9 @@ def _metricas_nivel(
         dists_mixta: List[float] = []
         dists_no: List[float] = []
         dists_cs: List[float] = []
-        grupo = _grupo_mixto(c["region"])
+        dists_nc: List[float] = []
+        dists_os: List[float] = []
+        grupo = _grupo_mixto(c["region"], "NO_CS")
 
         for o in geo:
             if o["_idx"] == i:
@@ -173,13 +193,17 @@ def _metricas_nivel(
             if o["region"] == c["region"]:
                 dists_region.append(d)
             if con_mixta:
-                o_grupo = _grupo_mixto(o["region"])
+                o_grupo = _grupo_mixto(o["region"], "NO_CS")
                 if o_grupo == grupo and grupo:
                     dists_mixta.append(d)
                 if o["region"] in GRUPO_NORTE_OESTE:
                     dists_no.append(d)
                 if o["region"] in GRUPO_CENTRO_SUR:
                     dists_cs.append(d)
+                if o["region"] in GRUPO_NORTE_CENTRO:
+                    dists_nc.append(d)
+                if o["region"] in GRUPO_OESTE_SUR:
+                    dists_os.append(d)
 
         base.update(
             {
@@ -206,6 +230,16 @@ def _metricas_nivel(
                     if con_mixta and c["region"] in GRUPO_CENTRO_SUR and dists_cs
                     else None
                 ),
+                "media_norte_centro": (
+                    round(statistics.mean(dists_nc), 1)
+                    if con_mixta and c["region"] in GRUPO_NORTE_CENTRO and dists_nc
+                    else None
+                ),
+                "media_oeste_sur": (
+                    round(statistics.mean(dists_os), 1)
+                    if con_mixta and c["region"] in GRUPO_OESTE_SUR and dists_os
+                    else None
+                ),
             }
         )
         out.append(base)
@@ -217,11 +251,74 @@ def _stats_medias(filas: List[dict], key: str) -> Optional[float]:
     return round(statistics.mean(vals), 1) if vals else None
 
 
-def _asignar_niveles(mapeo: List[dict]) -> Dict[int, List[dict]]:
-    fase_segunda_map = _obtener_fases_segunda()
-    por_nivel: Dict[int, List[dict]] = {n["id"]: [] for n in NIVELES}
-    resto: List[dict] = []
+def _stats_por_region(filas: List[dict]) -> Dict[str, Optional[float]]:
+    return {
+        reg: _stats_medias(
+            [f for f in filas if f.get("region") == reg], "media_regionalizado"
+        )
+        for reg in ("CENTRO", "NORTE", "OESTE", "SUR")
+    }
 
+
+def _asignar_niveles(mapeo: List[dict]) -> Dict[int, List[dict]]:
+    """Asigna equipos a niveles 2027 si existe data/niveles_2027.json; si no, fallback 2026."""
+    import sys
+
+    if str(ROOT) not in sys.path:
+        sys.path.insert(0, str(ROOT))
+    from ingest.febamba.standings_2026 import clave_equipo
+
+    por_clave: Dict[str, dict] = {}
+    por_equipo: Dict[str, dict] = {}
+    for r in mapeo:
+        por_equipo[r["equipo"]] = r
+        raw = (r.get("clave") or "").strip()
+        if raw:
+            por_clave[raw] = r
+            por_clave[clave_equipo(raw)] = r
+        por_clave[clave_equipo(r["equipo"])] = r
+    por_nivel: Dict[int, List[dict]] = {n["id"]: [] for n in NIVELES}
+
+    if NIVELES_2027_JSON.exists():
+        with NIVELES_2027_JSON.open(encoding="utf-8") as f:
+            proy = json.load(f)
+        for n_str, bloque in proy.get("niveles", {}).items():
+            nid = int(n_str)
+            if nid not in por_nivel:
+                continue
+            for e in bloque.get("equipos", []):
+                c = e.get("clave") or ""
+                row = (
+                    por_clave.get(c)
+                    or por_clave.get(clave_equipo(c or e.get("equipo") or ""))
+                    or por_equipo.get(e.get("equipo") or "")
+                )
+                if not row:
+                    # Incluir fila mínima sin geocode para no perder el cupo 32.
+                    row = {
+                        "pos": e.get("pos_2026") or 0,
+                        "equipo": e.get("equipo") or "",
+                        "region": e.get("region") or "",
+                        "zona": e.get("zona_2026") or "",
+                        "puntos": int(e.get("puntos") or 0),
+                        "direccion": "",
+                        "afiliada": "",
+                        "fase": e.get("nivel_2026") or "",
+                        "clave": c or clave_equipo(e.get("equipo") or ""),
+                        "lat": None,
+                        "lon": None,
+                        "_idx": -1,
+                    }
+                enriched = dict(row)
+                enriched["status_2027"] = e.get("status") or ""
+                enriched["detalle_2027"] = e.get("detalle") or ""
+                enriched["nivel_2026_origen"] = e.get("nivel_2026") or ""
+                por_nivel[nid].append(enriched)
+        return por_nivel
+
+    # Fallback histórico: Fase 2 2026 + resto top-8/región.
+    fase_segunda_map = _obtener_fases_segunda()
+    resto: List[dict] = []
     for row in mapeo:
         fase2 = fase_segunda_map.get(row["clave"])
         if fase2 == "INTERCONFERENCIA_A":
@@ -233,7 +330,6 @@ def _asignar_niveles(mapeo: List[dict]) -> Dict[int, List[dict]]:
         else:
             resto.append(row)
 
-    # Nivel 4 = 8 mejores por región del resto (32 total).
     por_region: Dict[str, List[dict]] = {r: [] for r in REGION_COLOR}
     for row in resto:
         por_region.setdefault(row["region"], []).append(row)
@@ -250,17 +346,30 @@ def _asignar_niveles(mapeo: List[dict]) -> Dict[int, List[dict]]:
         usados.update(id(c) for c in elegidos)
 
     por_nivel[4] = sorted(nivel4, key=lambda x: (x["pos"], -x["puntos"], x["equipo"]))
-    por_nivel[5] = sorted(
+    restantes = sorted(
         [r for r in resto if id(r) not in usados],
         key=lambda x: (x["pos"], -x["puntos"], x["equipo"]),
     )
+    por_nivel[5] = restantes[:32]
+    por_nivel[6] = restantes[32:]
     return por_nivel
 
 
 def calcular_payload() -> dict:
     mapeo = _cargar_mapeo()
     with MATRIZ_JSON.open(encoding="utf-8") as f:
-        mat = json.load(f)["km"]
+        mat_payload = json.load(f)
+    mat = mat_payload["km"]
+    dist_modo = mat_payload.get("modo") or "haversine"
+    dist_nota = {
+        "osrm": (
+            "Kilómetros por ruta vial óptima (OSRM / driving) entre sedes geocodificadas. "
+            "Si OSRM no resuelve un par, se usa haversine (línea recta) como respaldo."
+        ),
+        "haversine": (
+            "Kilómetros en línea recta (haversine) entre sedes geocodificadas."
+        ),
+    }.get(dist_modo, mat_payload.get("meta", {}).get("nota") or "")
 
     por_nivel = _asignar_niveles(mapeo)
     niveles_out = []
@@ -270,39 +379,34 @@ def calcular_payload() -> dict:
             por_nivel[meta["id"]],
             key=lambda x: (_orden_reg.get(x["region"], 9), x["pos"], x["equipo"]),
         )
-        con_mixta = meta["id"] == 1
+        con_mixta = True
         filas = _metricas_nivel(clubs, mat, con_mixta=con_mixta)
 
         stats = {
             "media_regionalizado_nivel": _stats_medias(filas, "media_regionalizado"),
             "media_sin_region_nivel": _stats_medias(filas, "media_sin_region"),
-            "media_mixta_nivel": _stats_medias(filas, "media_mixta") if con_mixta else None,
-            "media_norte_oeste_nivel": (
-                _stats_medias(
-                    [f for f in filas if f["region"] in GRUPO_NORTE_OESTE],
-                    "media_norte_oeste",
-                )
-                if con_mixta
-                else None
+            "media_por_region": _stats_por_region(filas),
+            "media_mixta_nivel": _stats_medias(filas, "media_mixta"),
+            "media_norte_oeste_nivel": _stats_medias(
+                [f for f in filas if f["region"] in GRUPO_NORTE_OESTE],
+                "media_norte_oeste",
             ),
-            "media_centro_sur_nivel": (
-                _stats_medias(
-                    [f for f in filas if f["region"] in GRUPO_CENTRO_SUR],
-                    "media_centro_sur",
-                )
-                if con_mixta
-                else None
+            "media_centro_sur_nivel": _stats_medias(
+                [f for f in filas if f["region"] in GRUPO_CENTRO_SUR],
+                "media_centro_sur",
             ),
-            "n_norte_oeste": (
-                sum(1 for f in filas if f["region"] in GRUPO_NORTE_OESTE)
-                if con_mixta
-                else None
+            "media_norte_centro_nivel": _stats_medias(
+                [f for f in filas if f["region"] in GRUPO_NORTE_CENTRO],
+                "media_norte_centro",
             ),
-            "n_centro_sur": (
-                sum(1 for f in filas if f["region"] in GRUPO_CENTRO_SUR)
-                if con_mixta
-                else None
+            "media_oeste_sur_nivel": _stats_medias(
+                [f for f in filas if f["region"] in GRUPO_OESTE_SUR],
+                "media_oeste_sur",
             ),
+            "n_norte_oeste": sum(1 for f in filas if f["region"] in GRUPO_NORTE_OESTE),
+            "n_centro_sur": sum(1 for f in filas if f["region"] in GRUPO_CENTRO_SUR),
+            "n_norte_centro": sum(1 for f in filas if f["region"] in GRUPO_NORTE_CENTRO),
+            "n_oeste_sur": sum(1 for f in filas if f["region"] in GRUPO_OESTE_SUR),
         }
 
         niveles_out.append(
@@ -318,6 +422,10 @@ def calcular_payload() -> dict:
 
     payload = {
         "colores_region": REGION_COLOR,
+        "distancia_modo": dist_modo,
+        "distancia_nota": dist_nota or (
+            "Kilómetros por ruta vial óptima (OSRM / driving) entre sedes geocodificadas."
+        ),
         "niveles": niveles_out,
         "total_equipos": len(mapeo),
     }
@@ -380,6 +488,11 @@ def generar(out: Path = OUT_HTML) -> Path:
     }}
     .chip.active {{ background:var(--accent); color:#fff; border-color:var(--accent); }}
     tfoot td {{ background:#eef2ff; font-weight:600; border-top:2px solid #c7d2fe; position:sticky; bottom:0; }}
+    .badge-mov {{ display:inline-block; margin-left:6px; padding:1px 7px; border-radius:999px;
+      font-size:10px; font-weight:700; vertical-align:middle; }}
+    .badge-mov.ASC {{ background:#dcfce7; color:#166534; }}
+    .badge-mov.DESC {{ background:#fee2e2; color:#991b1b; }}
+    .badge-mov.KEEP {{ background:#e2e8f0; color:#334155; }}
     @media (max-width:900px) {{
       #map {{ height:400px; }}
     }}
@@ -387,14 +500,14 @@ def generar(out: Path = OUT_HTML) -> Path:
 </head>
 <body>
 <header>
-  <h1>Tabla general metropolitana · Niveles y distancias</h1>
+  <h1>Tabla general metropolitana · Niveles 2027 y distancias</h1>
     <p>
-    Asignación por <strong>Segunda Fase</strong>: Nivel 1 = Interconferencia A,
-    Nivel 2 = Interconferencia B, Nivel 3 = Nivel 1,
-    Nivel 4 = 32 mejores del resto con <strong>8 por región</strong>,
-    Nivel 5 = restantes. En Nivel 1 se comparan 4 escenarios: regionalizado (4 regiones),
+    Proyección <strong>6 niveles 2027</strong> según movilidad de la Segunda Fase 2026
+    (<code>data/niveles_2027.json</code>): N1/N2 interregionales (32), N3–N5 regionales (32),
+    N6 (33). En Nivel 1 se comparan 4 escenarios de zonificación: regionalizado (4 regiones),
     mixta <strong>Norte–Oeste</strong> (16), mixta <strong>Centro–Sur</strong> (16)
-    y sin regionalización. Colores: Centro rojo, Norte azul, Sur amarillo, Oeste verde.
+    y sin regionalización. Badges: Ascendido / Descendido / Mantiene.
+    Colores: Centro rojo, Norte azul, Sur amarillo, Oeste verde.
   </p>
 </header>
 <main>
@@ -419,6 +532,7 @@ def generar(out: Path = OUT_HTML) -> Path:
           <tr>
             <th>#</th>
             <th>Equipo</th>
+            <th>2027</th>
             <th>Fase</th>
             <th>Región</th>
             <th class="mixta-only">Grupo mixto</th>
@@ -445,8 +559,9 @@ const COLORS = DATA.colores_region;
 const REGION_ORDER = ['CENTRO', 'NORTE', 'OESTE', 'SUR'];
 
 const map = L.map('map').setView([-34.62, -58.45], 10);
-L.tileLayer('https://{{s}}.tile.openstreetmap.org/{{z}}/{{x}}/{{y}}.png', {{
-  maxZoom: 18, attribution: '&copy; OpenStreetMap'
+L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{{z}}/{{y}}/{{x}}', {{
+  maxZoom: 18,
+  attribution: 'Tiles &copy; Esri'
 }}).addTo(map);
 const layer = L.layerGroup().addTo(map);
 
@@ -550,6 +665,17 @@ function renderMapa(equipos) {{
   setTimeout(() => map.invalidateSize(), 50);
 }}
 
+function badgeMov(e) {{
+  const st = e.status_2027 || '';
+  if (!st) return '—';
+  let cls = 'KEEP', lab = st;
+  if (st === 'ASCIENDE') {{ cls = 'ASC'; lab = 'ASC'; }}
+  else if (st === 'DESCIENDE') {{ cls = 'DESC'; lab = 'DESC'; }}
+  else if (st === 'MANTIENE') {{ lab = '='; }}
+  const title = (e.detalle_2027 || st).replace(/"/g, '&quot;');
+  return `<span class="badge-mov ${{cls}}" title="${{title}}">${{lab}}</span>`;
+}}
+
 function renderTablaYMapa(n) {{
   const equipos = equiposFiltrados(n);
   renderMapa(equipos);
@@ -575,7 +701,8 @@ function renderTablaYMapa(n) {{
     return `<tr>
       <td>${{e.pos}}</td>
       <td><strong>${{e.equipo}}</strong></td>
-      <td>${{e.fase === 'RECLASIFICACION' ? 'Reclasif.' : 'Clasif.'}}</td>
+      <td>${{badgeMov(e)}}</td>
+      <td>${{e.fase === 'RECLASIFICACION' ? 'Reclasif.' : (e.nivel_2026_origen || e.fase || '—')}}</td>
       <td class="region" style="color:${{color}}">${{e.region}}</td>
       <td class="mixta-only">${{e.grupo_mixto || '—'}}</td>
       <td>${{e.direccion || '—'}}</td>
@@ -592,7 +719,7 @@ function renderTablaYMapa(n) {{
   const mSin = avg(equipos.map(e => e.media_sin_region));
   const mNO = avg(equipos.filter(e => e.region === 'NORTE' || e.region === 'OESTE').map(e => e.media_norte_oeste));
   const mCS = avg(equipos.filter(e => e.region === 'CENTRO' || e.region === 'SUR').map(e => e.media_centro_sur));
-  const colspanDir = n.con_mixta ? 6 : 5;
+  const colspanDir = n.con_mixta ? 7 : 6;
   document.getElementById('tfoot').innerHTML = `<tr>
     <td colspan="${{colspanDir}}"><strong>Promedio (${{equipos.length}} equipos)</strong></td>
     <td class="num">—</td>
@@ -650,6 +777,11 @@ renderNivel(startIdx);
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--output", type=Path, default=OUT_HTML)
+    ap.add_argument(
+        "--publicar-docs",
+        action="store_true",
+        help=f"Copia el HTML a {DOCS_HTML}",
+    )
     args = ap.parse_args()
     if not MAPEO_CSV.exists() or not MATRIZ_JSON.exists():
         print(
@@ -658,10 +790,16 @@ def main() -> int:
         )
         return 1
     path = generar(args.output)
+    if args.publicar_docs:
+        DOCS_HTML.parent.mkdir(parents=True, exist_ok=True)
+        DOCS_HTML.write_text(path.read_text(encoding="utf-8"), encoding="utf-8")
+        print(f"Docs: {DOCS_HTML}")
     with NIVELES_JSON.open(encoding="utf-8") as f:
         payload = json.load(f)
     print(f"Informe: {path}")
     print(f"Datos: {NIVELES_JSON}")
+    if NIVELES_2027_JSON.exists():
+        print(f"Proyección 2027: {NIVELES_2027_JSON}")
     for n in payload["niveles"]:
         s = n["stats"]
         extra = ""

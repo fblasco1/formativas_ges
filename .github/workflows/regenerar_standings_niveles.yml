@@ -1,0 +1,76 @@
+name: Regenerar standings y niveles 2027
+
+# Lunes 23:00 ART = martes 02:00 UTC
+on:
+  schedule:
+    - cron: "0 2 * * 2"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: regenerar-standings-niveles
+  cancel-in-progress: true
+
+jobs:
+  regenerar:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: pip
+
+      - name: Instalar dependencias
+        run: |
+          python -m pip install --upgrade pip
+          pip install requests beautifulsoup4 pandas
+
+      - name: Standings Formativas 2026
+        run: |
+          set +e
+          python analysis/generar_standings_febamba_2026.py \
+            --sin-actas --sin-boxscores --sin-pbp \
+            --publicar-docs --progress
+          status=$?
+          if [ $status -ne 0 ] && [ -f outputs/formativas_2026/datos.json ]; then
+            echo "Live fetch falló; regenerando desde caché JSON…"
+            python analysis/generar_standings_febamba_2026.py \
+              --desde-json outputs/formativas_2026/datos.json \
+              --sin-actas --sin-boxscores --sin-pbp \
+              --publicar-docs --progress
+          else
+            exit $status
+          fi
+        shell: bash
+      - name: Calcular movilidad 6 niveles 2027 + badges
+        run: python analysis/calcular_niveles_2027.py --inyectar-badges
+
+      - name: Regenerar informe de viajes / distancias
+        run: python analysis/generar_informe_viajes_elite42.py --publicar-docs
+
+      - name: Regenerar landing propuesta 2027
+        run: python analysis/generar_landing_formativas_2027.py
+
+      - name: Commit si hay cambios
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add \
+            docs/formativas_2026_tabla_posiciones.html \
+            docs/informe_viajes_niveles.html \
+            docs/propuesta_formativas_2027.html \
+            data/niveles_2027.json \
+            outputs/formativas_2026/tabla_posiciones.html \
+            outputs/viajes_elite42/informe_viajes_elite42.html \
+            outputs/viajes_elite42/niveles_viajes.json \
+            outputs/viajes_elite42/niveles_2027_movilidad.json || true
+          if git diff --staged --quiet; then
+            echo "Sin cambios para commitear"
+          else
+            git commit -m "chore: regenerar standings y proyección niveles 2027"
+            git push
+          fi

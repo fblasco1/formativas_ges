@@ -1137,3 +1137,119 @@ def matriz_distancias(mapeos: List[MapeoClub]) -> Tuple[List[str], List[List[Opt
             else:
                 mat[i][j] = round(haversine_km(a.lat, a.lon, b.lat, b.lon), 1)
     return nombres, mat
+
+
+def matriz_distancias_osrm(
+    mapeos: List[MapeoClub],
+    *,
+    base_url: str = "https://router.project-osrm.org",
+    chunk_size: int = 40,
+    pause_s: float = 0.35,
+    user_agent: str = "FeBAMBA-formativas/1.0 (github.com/fblasco1/formativas_ges)",
+) -> Tuple[List[str], List[List[Optional[float]]], dict]:
+    """
+    Matriz de distancias viales (km) vía OSRM Table API.
+
+    Parte en bloques para respetar el límite de coordenadas del servidor público.
+    Si OSRM no resuelve un par, cae a haversine.
+    """
+    import time
+    import urllib.error
+    import urllib.parse
+    import urllib.request
+
+    nombres = [m.equipo for m in mapeos]
+    n = len(mapeos)
+    mat: List[List[Optional[float]]] = [[None] * n for _ in range(n)]
+
+    geo_idx = [
+        i
+        for i, m in enumerate(mapeos)
+        if m.lat is not None and m.lon is not None
+    ]
+    for i in range(n):
+        mat[i][i] = 0.0
+
+    meta = {
+        "modo": "osrm",
+        "base_url": base_url.rstrip("/"),
+        "chunk_size": chunk_size,
+        "n_total": n,
+        "n_geocodificados": len(geo_idx),
+        "n_osrm": 0,
+        "n_fallback_haversine": 0,
+        "n_fallidos": 0,
+        "errores": [],
+    }
+
+    def _coords_param(indices: List[int]) -> str:
+        parts = []
+        for i in indices:
+            m = mapeos[i]
+            parts.append(f"{m.lon:.6f},{m.lat:.6f}")
+        return ";".join(parts)
+
+    def _fetch_table(src: List[int], dst: List[int]) -> Optional[List[List[Optional[float]]]]:
+        coords = _coords_param(src + dst)
+        sources = ";".join(str(k) for k in range(len(src)))
+        destinations = ";".join(str(k) for k in range(len(src), len(src) + len(dst)))
+        url = (
+            f"{base_url.rstrip('/')}/table/v1/driving/{coords}"
+            f"?annotations=distance&sources={sources}&destinations={destinations}"
+        )
+        req = urllib.request.Request(url, headers={"User-Agent": user_agent})
+        try:
+            with urllib.request.urlopen(req, timeout=90) as resp:
+                data = json.loads(resp.read().decode("utf-8"))
+        except (urllib.error.URLError, urllib.error.HTTPError, TimeoutError, json.JSONDecodeError) as exc:
+            meta["errores"].append(str(exc)[:200])
+            return None
+        if data.get("code") != "Ok":
+            meta["errores"].append(f"OSRM code={data.get('code')}")
+            return None
+        return data.get("distances")
+
+    # Bloques sobre índices geocodificados.
+    chunks: List[List[int]] = [
+        geo_idx[i : i + chunk_size] for i in range(0, len(geo_idx), chunk_size)
+    ]
+    total_blocks = len(chunks) * len(chunks)
+    done = 0
+    for ci, src_chunk in enumerate(chunks):
+        for cj, dst_chunk in enumerate(chunks):
+            done += 1
+            print(f"  OSRM bloque {done}/{total_blocks} (src={ci} dst={cj}, {len(src_chunk)}x{len(dst_chunk)})...")
+            distances = _fetch_table(src_chunk, dst_chunk)
+            time.sleep(pause_s)
+            if distances is None:
+                # Fallback haversine para todo el bloque.
+                for a, ia in enumerate(src_chunk):
+                    for b, ib in enumerate(dst_chunk):
+                        if ia == ib:
+                            mat[ia][ib] = 0.0
+                            continue
+                        ma, mb = mapeos[ia], mapeos[ib]
+                        mat[ia][ib] = round(
+                            haversine_km(ma.lat, ma.lon, mb.lat, mb.lon), 1  # type: ignore[arg-type]
+                        )
+                        meta["n_fallback_haversine"] += 1
+                continue
+            for a, ia in enumerate(src_chunk):
+                row = distances[a] if a < len(distances) else []
+                for b, ib in enumerate(dst_chunk):
+                    if ia == ib:
+                        mat[ia][ib] = 0.0
+                        continue
+                    meters = row[b] if b < len(row) else None
+                    if meters is None:
+                        ma, mb = mapeos[ia], mapeos[ib]
+                        mat[ia][ib] = round(
+                            haversine_km(ma.lat, ma.lon, mb.lat, mb.lon), 1  # type: ignore[arg-type]
+                        )
+                        meta["n_fallback_haversine"] += 1
+                        meta["n_fallidos"] += 1
+                    else:
+                        mat[ia][ib] = round(float(meters) / 1000.0, 1)
+                        meta["n_osrm"] += 1
+
+    return nombres, mat, meta
