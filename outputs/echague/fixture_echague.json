@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-09-22T12:28:21-03:00",
+  "generated_at": "2026-09-22T22:19:59-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -5986,19 +5986,6 @@
     },
     {
       "source": "febamba_ges",
-      "external_id": "AVDni8CSfvjN37ot5x843g",
-      "fecha": "2026-09-27",
-      "hora": "17:00",
-      "tira": "FLEX",
-      "categoria": "U15 Flex",
-      "rival": "NOLTING",
-      "localia": "Visitante",
-      "direccion": "Alianza 350, 1702",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
       "external_id": "H2H9JZslmrqZTTUC4rAjmw",
       "fecha": "2026-09-27",
       "hora": "18:00",
@@ -6012,9 +5999,22 @@
     },
     {
       "source": "febamba_ges",
-      "external_id": "q_eu3FaKxLKqHJBdqrwB7w",
+      "external_id": "AVDni8CSfvjN37ot5x843g",
       "fecha": "2026-09-27",
       "hora": "18:30",
+      "tira": "FLEX",
+      "categoria": "U15 Flex",
+      "rival": "NOLTING",
+      "localia": "Visitante",
+      "direccion": "Alianza 350, 1702",
+      "resultado": "",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "q_eu3FaKxLKqHJBdqrwB7w",
+      "fecha": "2026-09-27",
+      "hora": "20:00",
       "tira": "FLEX",
       "categoria": "U17 Flex",
       "rival": "NOLTING",
