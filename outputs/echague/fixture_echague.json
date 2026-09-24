@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-09-23T12:22:10-03:00",
+  "generated_at": "2026-09-23T22:16:28-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -5760,7 +5760,7 @@
       "rival": "GEBA",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "22-21",
       "espacio": null
     },
     {
@@ -5960,19 +5960,6 @@
     },
     {
       "source": "febamba_ges",
-      "external_id": "nYbmCJZcKZpbnP0_YvEiAg",
-      "fecha": "2026-09-27",
-      "hora": "13:00",
-      "tira": "FLEX",
-      "categoria": "U13 Flex",
-      "rival": "CLARIDAD",
-      "localia": "Visitante",
-      "direccion": "Alianza 250, 1702",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
       "external_id": "Qd0BfVw_yEJbyKXUQxx8iw",
       "fecha": "2026-09-27",
       "hora": "14:00",
@@ -5981,6 +5968,19 @@
       "rival": "U.V.V.A UNION VECINAL VILLA ADELINA",
       "localia": "Visitante",
       "direccion": "BERNARDO ADER 4048, 1606",
+      "resultado": "",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "nYbmCJZcKZpbnP0_YvEiAg",
+      "fecha": "2026-09-27",
+      "hora": "16:30",
+      "tira": "FLEX",
+      "categoria": "U13 Flex",
+      "rival": "CLARIDAD",
+      "localia": "Visitante",
+      "direccion": "Alianza 250, 1702",
       "resultado": "",
       "espacio": null
     },
