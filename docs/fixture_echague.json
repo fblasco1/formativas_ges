@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-09-25T12:46:48-03:00",
+  "generated_at": "2026-09-25T22:16:29-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -5773,7 +5773,7 @@
       "rival": "CLUB ATLETICO 3 DE FEBRERO",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "53-68",
       "espacio": null
     },
     {
