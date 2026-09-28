@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-09-27T12:34:32-03:00",
+  "generated_at": "2026-09-27T22:28:15-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -5942,7 +5942,7 @@
       "rival": "U.V.V.A UNION VECINAL VILLA ADELINA",
       "localia": "Visitante",
       "direccion": "BERNARDO ADER 4048, 1606",
-      "resultado": "27-28",
+      "resultado": "39-41",
       "espacio": null
     },
     {
@@ -5955,7 +5955,7 @@
       "rival": "U.V.V.A UNION VECINAL VILLA ADELINA",
       "localia": "Visitante",
       "direccion": "BERNARDO ADER 4048, 1606",
-      "resultado": "",
+      "resultado": "40-46",
       "espacio": null
     },
     {
@@ -5968,7 +5968,7 @@
       "rival": "U.V.V.A UNION VECINAL VILLA ADELINA",
       "localia": "Visitante",
       "direccion": "BERNARDO ADER 4048, 1606",
-      "resultado": "",
+      "resultado": "20-50",
       "espacio": null
     },
     {
@@ -5981,7 +5981,7 @@
       "rival": "CLARIDAD",
       "localia": "Visitante",
       "direccion": "Alianza 250, 1702",
-      "resultado": "",
+      "resultado": "14-48",
       "espacio": null
     },
     {
@@ -5994,7 +5994,7 @@
       "rival": "PARQUE VIOLETA",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "49-69",
       "espacio": null
     },
     {
@@ -6033,7 +6033,7 @@
       "rival": "JOSE HERNANDEZ",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "61-58",
       "espacio": null
     },
     {
