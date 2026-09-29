@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-09-28T15:33:15-03:00",
+  "generated_at": "2026-09-28T23:31:57-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -6046,7 +6046,7 @@
       "rival": "YUPANQUI",
       "localia": "Visitante",
       "direccion": "manual",
-      "resultado": "",
+      "resultado": "67-61",
       "espacio": null
     },
     {
@@ -6246,19 +6246,6 @@
     },
     {
       "source": "febamba_ges",
-      "external_id": "-L8P_QncPgQRtJvoZtf5vg",
-      "fecha": "2026-10-04",
-      "hora": "11:00",
-      "tira": "—",
-      "categoria": "U15 Fem",
-      "rival": "BANADE",
-      "localia": "Visitante",
-      "direccion": "",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
       "external_id": "JlgRyJ5UTvoeXV-mJXe4Sg",
       "fecha": "2026-10-04",
       "hora": "11:30",
@@ -6267,19 +6254,6 @@
       "rival": "CLUB ATLETICO PALERMO - FLEX",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
-      "external_id": "bCq-QLZ4BqSyiKHn2pehSQ",
-      "fecha": "2026-10-04",
-      "hora": "12:30",
-      "tira": "—",
-      "categoria": "U13 Fem",
-      "rival": "BANADE",
-      "localia": "Visitante",
-      "direccion": "",
       "resultado": "",
       "espacio": null
     },
@@ -6298,11 +6272,11 @@
     },
     {
       "source": "febamba_ges",
-      "external_id": "JYJ7LePMbg1iarNKPYDJmA",
+      "external_id": "-L8P_QncPgQRtJvoZtf5vg",
       "fecha": "2026-10-04",
-      "hora": "14:00",
+      "hora": "13:30",
       "tira": "—",
-      "categoria": "U11 Fem",
+      "categoria": "U15 Fem",
       "rival": "BANADE",
       "localia": "Visitante",
       "direccion": "",
@@ -6311,11 +6285,24 @@
     },
     {
       "source": "febamba_ges",
-      "external_id": "gGsxhjg5FeYDNunCN_y29A",
+      "external_id": "bCq-QLZ4BqSyiKHn2pehSQ",
       "fecha": "2026-10-04",
-      "hora": "15:30",
+      "hora": "15:00",
       "tira": "—",
-      "categoria": "U9 Fem",
+      "categoria": "U13 Fem",
+      "rival": "BANADE",
+      "localia": "Visitante",
+      "direccion": "",
+      "resultado": "",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "JYJ7LePMbg1iarNKPYDJmA",
+      "fecha": "2026-10-04",
+      "hora": "16:30",
+      "tira": "—",
+      "categoria": "U11 Fem",
       "rival": "BANADE",
       "localia": "Visitante",
       "direccion": "",
