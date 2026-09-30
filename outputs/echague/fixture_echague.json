@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-09-29T22:54:08-03:00",
+  "generated_at": "2026-09-30T13:43:53-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -6007,7 +6007,7 @@
       "rival": "NOLTING",
       "localia": "Visitante",
       "direccion": "Alianza 350, 1702",
-      "resultado": "",
+      "resultado": "0-20",
       "espacio": null
     },
     {
@@ -6020,7 +6020,7 @@
       "rival": "NOLTING",
       "localia": "Visitante",
       "direccion": "Alianza 350, 1702",
-      "resultado": "",
+      "resultado": "0-20",
       "espacio": null
     },
     {
@@ -6371,6 +6371,19 @@
       "rival": "CLUB ATLETICO PILAR",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
+      "resultado": "",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "WaR35bc-4JWx77GMGHYslg",
+      "fecha": "2026-10-12",
+      "hora": "20:30",
+      "tira": "C",
+      "categoria": "SUP Flex",
+      "rival": "VICTORIA \"C\"",
+      "localia": "Visitante",
+      "direccion": "",
       "resultado": "",
       "espacio": null
     },
@@ -7658,19 +7671,6 @@
       "rival": "BANCO NACION",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
-      "external_id": "WaR35bc-4JWx77GMGHYslg",
-      "fecha": "2026-12-12",
-      "hora": "20:30",
-      "tira": "C",
-      "categoria": "SUP Flex",
-      "rival": "VICTORIA \"C\"",
-      "localia": "Visitante",
-      "direccion": "",
       "resultado": "",
       "espacio": null
     },
