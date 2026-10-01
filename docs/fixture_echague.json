@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-09-30T13:43:53-03:00",
+  "generated_at": "2026-09-30T22:52:18-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -6059,7 +6059,7 @@
       "rival": "CLUB DEPORTIVO y SOCIAL COLEGIALES",
       "localia": "Visitante",
       "direccion": "Teodoro Garcia 2860, CP 1426",
-      "resultado": "",
+      "resultado": "70-61",
       "espacio": null
     },
     {
@@ -6072,7 +6072,7 @@
       "rival": "UNIVERSIDAD DE BUENOS AIRES B",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "54-50",
       "espacio": null
     },
     {
