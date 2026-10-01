@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-09-30T22:52:18-03:00",
+  "generated_at": "2026-10-01T14:20:10-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -6072,7 +6072,7 @@
       "rival": "UNIVERSIDAD DE BUENOS AIRES B",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "54-50",
+      "resultado": "58-50",
       "espacio": null
     },
     {
