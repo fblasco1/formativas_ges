@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-10-02T22:51:07-03:00",
+  "generated_at": "2026-10-03T12:05:51-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -5786,7 +5786,7 @@
       "rival": "SAN ANDRES",
       "localia": "Visitante",
       "direccion": "Intendente Casares 2845, 1651",
-      "resultado": "49-74",
+      "resultado": "20-0",
       "espacio": null
     },
     {
@@ -6085,7 +6085,7 @@
       "rival": "ITALIANO B",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "42-87",
       "espacio": null
     },
     {
@@ -6098,7 +6098,7 @@
       "rival": "LANUS A",
       "localia": "Visitante",
       "direccion": "9 De Julio 1680, Lanús, Provincia de Buenos Aires",
-      "resultado": "",
+      "resultado": "34-73",
       "espacio": null
     },
     {
@@ -6111,7 +6111,7 @@
       "rival": "ITALIANO B",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "31-39",
       "espacio": null
     },
     {
@@ -6124,7 +6124,7 @@
       "rival": "LANUS A",
       "localia": "Visitante",
       "direccion": "9 De Julio 1680, Lanús, Provincia de Buenos Aires",
-      "resultado": "",
+      "resultado": "33-32",
       "espacio": null
     },
     {
