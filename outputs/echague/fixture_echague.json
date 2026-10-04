@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-10-03T12:05:51-03:00",
+  "generated_at": "2026-10-03T23:29:02-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -6111,7 +6111,7 @@
       "rival": "ITALIANO B",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "31-39",
+      "resultado": "43-60",
       "espacio": null
     },
     {
@@ -6124,7 +6124,7 @@
       "rival": "LANUS A",
       "localia": "Visitante",
       "direccion": "9 De Julio 1680, Lanús, Provincia de Buenos Aires",
-      "resultado": "33-32",
+      "resultado": "64-76",
       "espacio": null
     },
     {
@@ -6137,7 +6137,7 @@
       "rival": "ITALIANO B",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "92-19",
       "espacio": null
     },
     {
@@ -6150,7 +6150,7 @@
       "rival": "LANUS A",
       "localia": "Visitante",
       "direccion": "9 De Julio 1680, Lanús, Provincia de Buenos Aires",
-      "resultado": "",
+      "resultado": "49-62",
       "espacio": null
     },
     {
@@ -6163,7 +6163,7 @@
       "rival": "ITALIANO B",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "62-47",
       "espacio": null
     },
     {
@@ -6176,7 +6176,7 @@
       "rival": "LANUS A",
       "localia": "Visitante",
       "direccion": "9 De Julio 1680, Lanús, Provincia de Buenos Aires",
-      "resultado": "",
+      "resultado": "64-61",
       "espacio": null
     },
     {
@@ -6189,7 +6189,7 @@
       "rival": "ITALIANO B",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "8-10",
       "espacio": null
     },
     {
@@ -6202,7 +6202,7 @@
       "rival": "LANUS A",
       "localia": "Visitante",
       "direccion": "9 De Julio 1680, Lanús, Provincia de Buenos Aires",
-      "resultado": "",
+      "resultado": "50-25",
       "espacio": null
     },
     {
@@ -6215,7 +6215,7 @@
       "rival": "ITALIANO B",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "25-71",
       "espacio": null
     },
     {
@@ -6228,7 +6228,7 @@
       "rival": "LANUS A",
       "localia": "Visitante",
       "direccion": "9 De Julio 1680, Lanús, Provincia de Buenos Aires",
-      "resultado": "",
+      "resultado": "63-68",
       "espacio": null
     },
     {
