@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-10-03T23:29:02-03:00",
+  "generated_at": "2026-10-04T12:43:20-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -6241,7 +6241,7 @@
       "rival": "ARQUITECTURA C ROJO",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "37-44",
       "espacio": null
     },
     {
@@ -6254,7 +6254,7 @@
       "rival": "CLUB ATLETICO PALERMO - FLEX",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "35-33",
       "espacio": null
     },
     {
@@ -6267,7 +6267,7 @@
       "rival": "CLUB ATLETICO PALERMO - FLEX",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "5-20",
       "espacio": null
     },
     {
