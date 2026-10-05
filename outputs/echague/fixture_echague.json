@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-10-04T12:43:20-03:00",
+  "generated_at": "2026-10-04T22:41:54-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -6267,7 +6267,7 @@
       "rival": "CLUB ATLETICO PALERMO - FLEX",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "5-20",
+      "resultado": "24-63",
       "espacio": null
     },
     {
@@ -6280,7 +6280,7 @@
       "rival": "BANADE",
       "localia": "Visitante",
       "direccion": "",
-      "resultado": "",
+      "resultado": "57-13",
       "espacio": null
     },
     {
@@ -6293,7 +6293,7 @@
       "rival": "BANADE",
       "localia": "Visitante",
       "direccion": "",
-      "resultado": "",
+      "resultado": "66-17",
       "espacio": null
     },
     {
@@ -6306,7 +6306,7 @@
       "rival": "BANADE",
       "localia": "Visitante",
       "direccion": "",
-      "resultado": "",
+      "resultado": "33-45",
       "espacio": null
     },
     {
@@ -6319,7 +6319,7 @@
       "rival": "SAN MIGUEL",
       "localia": "Visitante",
       "direccion": "Angel Delia 1360, CP 1663",
-      "resultado": "",
+      "resultado": "70-75",
       "espacio": null
     },
     {
