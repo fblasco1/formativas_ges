@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-10-11T23:09:40-03:00",
+  "generated_at": "2026-10-12T17:10:10-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -7559,6 +7559,19 @@
     },
     {
       "source": "febamba_ges",
+      "external_id": "cgnJqw0MO8BlpTYP7lkltA",
+      "fecha": "2026-11-23",
+      "hora": "18:00",
+      "tira": "C",
+      "categoria": "SUP Flex",
+      "rival": "BANCO NACION",
+      "localia": "Local",
+      "direccion": "Portela 836, CABA (CP 1406)",
+      "resultado": "",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
       "external_id": "llotWhrGrcWdrLxV592FPg",
       "fecha": "2026-11-23",
       "hora": "21:30",
@@ -7656,19 +7669,6 @@
       "tira": "—",
       "categoria": "U9 Fem",
       "rival": "BANADE",
-      "localia": "Local",
-      "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
-      "external_id": "cgnJqw0MO8BlpTYP7lkltA",
-      "fecha": "2026-12-06",
-      "hora": "18:00",
-      "tira": "C",
-      "categoria": "SUP Flex",
-      "rival": "BANCO NACION",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
       "resultado": "",
