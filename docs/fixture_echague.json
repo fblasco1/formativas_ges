@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-10-11T13:37:30-03:00",
+  "generated_at": "2026-10-11T23:09:40-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -6345,7 +6345,7 @@
       "rival": "BECCAR AZUL",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "55-75",
       "espacio": null
     },
     {
@@ -6358,7 +6358,7 @@
       "rival": "JUVENCIA",
       "localia": "Visitante",
       "direccion": "",
-      "resultado": "",
+      "resultado": "83-73",
       "espacio": null
     },
     {
@@ -6371,7 +6371,7 @@
       "rival": "CLUB ATLETICO PILAR",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "66-67",
       "espacio": null
     },
     {
