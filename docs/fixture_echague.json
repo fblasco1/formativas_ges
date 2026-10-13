@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-10-12T17:10:10-03:00",
+  "generated_at": "2026-10-13T00:25:12-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -6384,7 +6384,7 @@
       "rival": "VICTORIA \"C\"",
       "localia": "Visitante",
       "direccion": "",
-      "resultado": "",
+      "resultado": "42-92",
       "espacio": null
     },
     {
