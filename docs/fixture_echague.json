@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-10-17T11:07:41-03:00",
+  "generated_at": "2026-10-17T21:43:18-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -6449,7 +6449,7 @@
       "rival": "COMUNICACIONES NEGRO B",
       "localia": "Visitante",
       "direccion": "Av San Martin 5125, 1407",
-      "resultado": "",
+      "resultado": "40-50",
       "espacio": null
     },
     {
@@ -6462,7 +6462,7 @@
       "rival": "COMUNICACIONES NEGRO B",
       "localia": "Visitante",
       "direccion": "Av San Martin 5125, 1407",
-      "resultado": "",
+      "resultado": "51-42",
       "espacio": null
     },
     {
@@ -6475,7 +6475,7 @@
       "rival": "COMUNICACIONES NEGRO B",
       "localia": "Visitante",
       "direccion": "Av San Martin 5125, 1407",
-      "resultado": "",
+      "resultado": "22-4",
       "espacio": null
     },
     {
@@ -6488,7 +6488,7 @@
       "rival": "COMUNICACIONES NEGRO",
       "localia": "Visitante",
       "direccion": "Av San Martin 5125, 1407",
-      "resultado": "",
+      "resultado": "66-63",
       "espacio": null
     },
     {
@@ -6501,7 +6501,7 @@
       "rival": "BANCO NACION",
       "localia": "Visitante",
       "direccion": "Zufriategui 1251, CP 1638",
-      "resultado": "",
+      "resultado": "57-78",
       "espacio": null
     },
     {
