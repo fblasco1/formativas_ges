@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-10-18T21:55:23-03:00",
+  "generated_at": "2026-10-19T14:23:36-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -6423,7 +6423,7 @@
       "rival": "COMUNICACIONES NEGRO B",
       "localia": "Visitante",
       "direccion": "Av San Martin 5125, 1407",
-      "resultado": "",
+      "resultado": "20-0",
       "espacio": null
     },
     {
@@ -6436,7 +6436,7 @@
       "rival": "COMUNICACIONES NEGRO B",
       "localia": "Visitante",
       "direccion": "Av San Martin 5125, 1407",
-      "resultado": "",
+      "resultado": "20-0",
       "espacio": null
     },
     {
@@ -6514,7 +6514,7 @@
       "rival": "CLUB ITALIANO",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "45-33",
+      "resultado": "76-49",
       "espacio": null
     },
     {
