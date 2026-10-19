@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-10-18T11:22:15-03:00",
+  "generated_at": "2026-10-18T21:55:23-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -6514,7 +6514,7 @@
       "rival": "CLUB ITALIANO",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "45-33",
       "espacio": null
     },
     {
