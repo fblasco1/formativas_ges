@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-10-19T14:23:36-03:00",
+  "generated_at": "2026-10-19T22:38:49-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -4902,7 +4902,7 @@
       "rival": "IMPERIO NEGRO B",
       "localia": "Visitante",
       "direccion": "manual",
-      "resultado": "16-34",
+      "resultado": "",
       "espacio": null
     },
     {
@@ -5084,7 +5084,7 @@
       "rival": "COMUNICACIONES NEGRO B",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "8-10",
+      "resultado": "20-0",
       "espacio": null
     },
     {
