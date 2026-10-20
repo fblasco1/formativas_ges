@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-10-19T22:38:49-03:00",
+  "generated_at": "2026-10-20T12:37:01-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -4902,7 +4902,7 @@
       "rival": "IMPERIO NEGRO B",
       "localia": "Visitante",
       "direccion": "manual",
-      "resultado": "",
+      "resultado": "0-1",
       "espacio": null
     },
     {
