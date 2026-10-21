@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-10-20T12:37:01-03:00",
+  "generated_at": "2026-10-20T22:22:11-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -3940,7 +3940,7 @@
       "rival": "OBRAS BASKET",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "1-0",
       "espacio": null
     },
     {
@@ -4915,7 +4915,7 @@
       "rival": "SAN MIGUEL Verde",
       "localia": "Visitante",
       "direccion": "manual",
-      "resultado": "52-16",
+      "resultado": "20-0",
       "espacio": null
     },
     {
@@ -5903,7 +5903,7 @@
       "rival": "TRISTAN SUAREZ",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "58-16",
+      "resultado": "20-0",
       "espacio": null
     },
     {
@@ -6714,19 +6714,6 @@
     },
     {
       "source": "febamba_ges",
-      "external_id": "QKWsunGa0WETrhnPFCDeOw",
-      "fecha": "2026-10-25",
-      "hora": "11:00",
-      "tira": "—",
-      "categoria": "U15 Fem",
-      "rival": "SPORTIVO VILLA BALLESTER",
-      "localia": "Local",
-      "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
       "external_id": "JMOJkg9hTxVm-07brCGvvQ",
       "fecha": "2026-10-25",
       "hora": "11:30",
@@ -6735,19 +6722,6 @@
       "rival": "VELEZ SARSFIELD FLEX",
       "localia": "Visitante",
       "direccion": "Juan B Justo 9200",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
-      "external_id": "1EdXmCuzjiMRea_pZV97xg",
-      "fecha": "2026-10-25",
-      "hora": "12:30",
-      "tira": "—",
-      "categoria": "U13 Fem",
-      "rival": "SPORTIVO VILLA BALLESTER",
-      "localia": "Local",
-      "direccion": "Portela 836, CABA (CP 1406)",
       "resultado": "",
       "espacio": null
     },
@@ -6771,19 +6745,6 @@
       "hora": "14:00",
       "tira": "—",
       "categoria": "U11 Fem",
-      "rival": "SPORTIVO VILLA BALLESTER",
-      "localia": "Local",
-      "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
-      "external_id": "MD3G7QQrX_Elgfcgit-Drw",
-      "fecha": "2026-10-25",
-      "hora": "15:30",
-      "tira": "—",
-      "categoria": "U9 Fem",
       "rival": "SPORTIVO VILLA BALLESTER",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
