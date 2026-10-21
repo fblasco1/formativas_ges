@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-10-20T22:22:11-03:00",
+  "generated_at": "2026-10-21T12:53:38-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -7143,45 +7143,6 @@
     },
     {
       "source": "febamba_ges",
-      "external_id": "LKbTQoDT5JP5Bh-GBL2nuA",
-      "fecha": "2026-11-07",
-      "hora": "14:00",
-      "tira": "AMARILLO",
-      "categoria": "U11",
-      "rival": "JOSE HERNANDEZ \"B\"",
-      "localia": "Visitante",
-      "direccion": "Bragado 5950, 1440",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
-      "external_id": "2CWyGQyphP8o5-hp7ClZsg",
-      "fecha": "2026-11-07",
-      "hora": "15:30",
-      "tira": "AMARILLO",
-      "categoria": "U9",
-      "rival": "JOSE HERNANDEZ \"B\"",
-      "localia": "Visitante",
-      "direccion": "Bragado 5950, 1440",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
-      "external_id": "TiQN9AQR_Eo2izh42NOBZw",
-      "fecha": "2026-11-07",
-      "hora": "18:00",
-      "tira": "AMARILLO",
-      "categoria": "U21",
-      "rival": "JOSE HERNANDEZ \"B\"",
-      "localia": "Visitante",
-      "direccion": "Bragado 5950, 1440",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
       "external_id": "jgzUToWKckpfJ3NGgTzZlA",
       "fecha": "2026-11-08",
       "hora": "10:00",
@@ -7255,6 +7216,45 @@
       "rival": "PRIME BASKETBALL",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
+      "resultado": "",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "2CWyGQyphP8o5-hp7ClZsg",
+      "fecha": "2026-11-11",
+      "hora": "18:00",
+      "tira": "AMARILLO",
+      "categoria": "U9",
+      "rival": "JOSE HERNANDEZ \"B\"",
+      "localia": "Visitante",
+      "direccion": "Bragado 5950, 1440",
+      "resultado": "",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "LKbTQoDT5JP5Bh-GBL2nuA",
+      "fecha": "2026-11-11",
+      "hora": "19:00",
+      "tira": "AMARILLO",
+      "categoria": "U11",
+      "rival": "JOSE HERNANDEZ \"B\"",
+      "localia": "Visitante",
+      "direccion": "Bragado 5950, 1440",
+      "resultado": "",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "TiQN9AQR_Eo2izh42NOBZw",
+      "fecha": "2026-11-11",
+      "hora": "20:30",
+      "tira": "AMARILLO",
+      "categoria": "U21",
+      "rival": "JOSE HERNANDEZ \"B\"",
+      "localia": "Visitante",
+      "direccion": "Bragado 5950, 1440",
       "resultado": "",
       "espacio": null
     },
@@ -7671,32 +7671,6 @@
       "rival": "U.V.V.A UNION VECINAL VILLA ADELINA",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
-      "external_id": "nI8jiIOPg-cfpMLTRIOkMw",
-      "fecha": "2026-12-20",
-      "hora": "12:30",
-      "tira": "—",
-      "categoria": "U13 Fem",
-      "rival": "ATENEO POPULAR VERSAILLES",
-      "localia": "Visitante",
-      "direccion": "Roma 950, 1408",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
-      "external_id": "USX41DsviDIxU0pM-jWs9g",
-      "fecha": "2026-12-20",
-      "hora": "15:30",
-      "tira": "—",
-      "categoria": "U9 Fem",
-      "rival": "ATENEO POPULAR VERSAILLES",
-      "localia": "Visitante",
-      "direccion": "Roma 950, 1408",
       "resultado": "",
       "espacio": null
     }
