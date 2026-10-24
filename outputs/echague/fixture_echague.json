@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-10-23T22:30:27-03:00",
+  "generated_at": "2026-10-24T11:20:28-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -6540,7 +6540,7 @@
       "rival": "CLUB NAUTICO BUCHARDO",
       "localia": "Visitante",
       "direccion": "Comodoro Rivadavia 1250",
-      "resultado": "63-51",
+      "resultado": "75-66",
       "espacio": null
     },
     {
@@ -6553,7 +6553,7 @@
       "rival": "IMPERIO NEGRO B",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "33-76",
       "espacio": null
     },
     {
@@ -6566,7 +6566,7 @@
       "rival": "ARGENTINO DE CASTELAR NORTE A",
       "localia": "Visitante",
       "direccion": "manual",
-      "resultado": "",
+      "resultado": "65-60",
       "espacio": null
     },
     {
@@ -6579,7 +6579,7 @@
       "rival": "IMPERIO NEGRO B",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "11-12",
       "espacio": null
     },
     {
