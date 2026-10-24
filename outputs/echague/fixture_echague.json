@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-10-23T12:41:58-03:00",
+  "generated_at": "2026-10-23T22:30:27-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -4525,7 +4525,7 @@
       "rival": "RACING ANEXO",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "34-31",
+      "resultado": "20-0",
       "espacio": null
     },
     {
@@ -5591,7 +5591,7 @@
       "rival": "ARGENTINOS JUNIORS",
       "localia": "Visitante",
       "direccion": "Tronador 41, Ciudad Autónoma de Buenos Aires",
-      "resultado": "31-49",
+      "resultado": "0-20",
       "espacio": null
     },
     {
@@ -6163,7 +6163,7 @@
       "rival": "ITALIANO B",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "62-47",
+      "resultado": "0-20",
       "espacio": null
     },
     {
@@ -6462,7 +6462,7 @@
       "rival": "COMUNICACIONES NEGRO B",
       "localia": "Visitante",
       "direccion": "Av San Martin 5125, 1407",
-      "resultado": "51-42",
+      "resultado": "20-0",
       "espacio": null
     },
     {
@@ -6540,7 +6540,7 @@
       "rival": "CLUB NAUTICO BUCHARDO",
       "localia": "Visitante",
       "direccion": "Comodoro Rivadavia 1250",
-      "resultado": "",
+      "resultado": "63-51",
       "espacio": null
     },
     {
@@ -7130,11 +7130,11 @@
     },
     {
       "source": "febamba_ges",
-      "external_id": "kV360ah8VqGSFaSKmp2dTA",
+      "external_id": "TiQN9AQR_Eo2izh42NOBZw",
       "fecha": "2026-11-07",
-      "hora": "12:30",
+      "hora": "18:00",
       "tira": "AMARILLO",
-      "categoria": "U13",
+      "categoria": "U21",
       "rival": "JOSE HERNANDEZ \"B\"",
       "localia": "Visitante",
       "direccion": "Bragado 5950, 1440",
@@ -7247,11 +7247,11 @@
     },
     {
       "source": "febamba_ges",
-      "external_id": "TiQN9AQR_Eo2izh42NOBZw",
+      "external_id": "kV360ah8VqGSFaSKmp2dTA",
       "fecha": "2026-11-11",
       "hora": "20:30",
       "tira": "AMARILLO",
-      "categoria": "U21",
+      "categoria": "U13",
       "rival": "JOSE HERNANDEZ \"B\"",
       "localia": "Visitante",
       "direccion": "Bragado 5950, 1440",
