@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-10-24T21:55:45-03:00",
+  "generated_at": "2026-10-25T11:54:43-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -6709,7 +6709,7 @@
       "rival": "VELEZ SARSFIELD FLEX",
       "localia": "Visitante",
       "direccion": "Juan B Justo 9200",
-      "resultado": "",
+      "resultado": "43-41",
       "espacio": null
     },
     {
@@ -6722,7 +6722,7 @@
       "rival": "VELEZ SARSFIELD FLEX",
       "localia": "Visitante",
       "direccion": "Juan B Justo 9200",
-      "resultado": "",
+      "resultado": "7-14",
       "espacio": null
     },
     {
