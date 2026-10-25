@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-10-24T11:20:28-03:00",
+  "generated_at": "2026-10-24T21:55:45-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -6579,7 +6579,7 @@
       "rival": "IMPERIO NEGRO B",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "11-12",
+      "resultado": "57-58",
       "espacio": null
     },
     {
@@ -6592,7 +6592,7 @@
       "rival": "ARGENTINO DE CASTELAR NORTE A",
       "localia": "Visitante",
       "direccion": "manual",
-      "resultado": "",
+      "resultado": "47-78",
       "espacio": null
     },
     {
@@ -6605,7 +6605,7 @@
       "rival": "IMPERIO NEGRO B",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "65-40",
       "espacio": null
     },
     {
@@ -6618,7 +6618,7 @@
       "rival": "ARGENTINO DE CASTELAR NORTE A",
       "localia": "Visitante",
       "direccion": "manual",
-      "resultado": "",
+      "resultado": "36-101",
       "espacio": null
     },
     {
@@ -6631,7 +6631,7 @@
       "rival": "IMPERIO NEGRO B",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "43-25",
       "espacio": null
     },
     {
@@ -6644,7 +6644,7 @@
       "rival": "ARGENTINO DE CASTELAR NORTE A",
       "localia": "Visitante",
       "direccion": "manual",
-      "resultado": "",
+      "resultado": "65-67",
       "espacio": null
     },
     {
@@ -6657,7 +6657,7 @@
       "rival": "IMPERIO NEGRO B",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "10-6",
       "espacio": null
     },
     {
@@ -6670,7 +6670,7 @@
       "rival": "ARGENTINO DE CASTELAR NORTE A",
       "localia": "Visitante",
       "direccion": "manual",
-      "resultado": "",
+      "resultado": "28-14",
       "espacio": null
     },
     {
@@ -6683,7 +6683,7 @@
       "rival": "IMPERIO NEGRO B",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "68-61",
       "espacio": null
     },
     {
@@ -6696,7 +6696,7 @@
       "rival": "ARGENTINO DE CASTELAR NORTE A",
       "localia": "Visitante",
       "direccion": "manual",
-      "resultado": "",
+      "resultado": "73-78",
       "espacio": null
     },
     {
