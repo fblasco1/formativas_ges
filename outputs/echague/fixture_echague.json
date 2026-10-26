@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-10-25T11:54:43-03:00",
+  "generated_at": "2026-10-25T22:03:00-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -6722,7 +6722,7 @@
       "rival": "VELEZ SARSFIELD FLEX",
       "localia": "Visitante",
       "direccion": "Juan B Justo 9200",
-      "resultado": "7-14",
+      "resultado": "25-27",
       "espacio": null
     },
     {
@@ -6735,7 +6735,7 @@
       "rival": "VELEZ SARSFIELD",
       "localia": "Visitante",
       "direccion": "Juan B Justo 9200",
-      "resultado": "",
+      "resultado": "39-24",
       "espacio": null
     },
     {
@@ -6748,7 +6748,7 @@
       "rival": "SPORTIVO VILLA BALLESTER",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "48-10",
       "espacio": null
     },
     {
@@ -6761,7 +6761,7 @@
       "rival": "VICTORIA \"C\"",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "67-61",
       "espacio": null
     },
     {
@@ -6774,7 +6774,7 @@
       "rival": "IMPERIO JRS",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "47-43",
       "espacio": null
     },
     {
