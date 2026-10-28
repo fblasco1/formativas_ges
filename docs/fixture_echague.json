@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-10-27T13:15:48-03:00",
+  "generated_at": "2026-10-27T23:04:53-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -6896,19 +6896,6 @@
     },
     {
       "source": "febamba_ges",
-      "external_id": "xPXrVjjbuY9IEHh1Uspw8A",
-      "fecha": "2026-11-01",
-      "hora": "10:00",
-      "tira": "FLEX",
-      "categoria": "U17 Flex",
-      "rival": "VILLA MITRE",
-      "localia": "Local",
-      "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
       "external_id": "aCfpgVGcfVmCKi5UN7ePBA",
       "fecha": "2026-11-01",
       "hora": "11:00",
@@ -6935,19 +6922,6 @@
     },
     {
       "source": "febamba_ges",
-      "external_id": "pYfT5k6J-1T8326DR8PVvA",
-      "fecha": "2026-11-01",
-      "hora": "11:30",
-      "tira": "FLEX",
-      "categoria": "U15 Flex",
-      "rival": "VILLA MITRE",
-      "localia": "Local",
-      "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
       "external_id": "szfd-EyZwsfvSUkVT3KYig",
       "fecha": "2026-11-01",
       "hora": "12:30",
@@ -6969,19 +6943,6 @@
       "rival": "ARQUITECTURA",
       "localia": "Visitante",
       "direccion": "",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
-      "external_id": "BaTt2IoQ7HsT1rhbYKdK9Q",
-      "fecha": "2026-11-01",
-      "hora": "13:00",
-      "tira": "FLEX",
-      "categoria": "U13 Flex",
-      "rival": "VILLA MITRE",
-      "localia": "Local",
-      "direccion": "Portela 836, CABA (CP 1406)",
       "resultado": "",
       "espacio": null
     },
@@ -7468,6 +7429,32 @@
     },
     {
       "source": "febamba_ges",
+      "external_id": "BaTt2IoQ7HsT1rhbYKdK9Q",
+      "fecha": "2026-11-22",
+      "hora": "9:00",
+      "tira": "FLEX",
+      "categoria": "U13 Flex",
+      "rival": "VILLA MITRE",
+      "localia": "Local",
+      "direccion": "Portela 836, CABA (CP 1406)",
+      "resultado": "",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "pYfT5k6J-1T8326DR8PVvA",
+      "fecha": "2026-11-22",
+      "hora": "10:30",
+      "tira": "FLEX",
+      "categoria": "U15 Flex",
+      "rival": "VILLA MITRE",
+      "localia": "Local",
+      "direccion": "Portela 836, CABA (CP 1406)",
+      "resultado": "",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
       "external_id": "UYJoCphUvIemTfE0oln2HA",
       "fecha": "2026-11-22",
       "hora": "11:00",
@@ -7476,6 +7463,19 @@
       "rival": "BECCAR",
       "localia": "Visitante",
       "direccion": "",
+      "resultado": "",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "xPXrVjjbuY9IEHh1Uspw8A",
+      "fecha": "2026-11-22",
+      "hora": "12:00",
+      "tira": "FLEX",
+      "categoria": "U17 Flex",
+      "rival": "VILLA MITRE",
+      "localia": "Local",
+      "direccion": "Portela 836, CABA (CP 1406)",
       "resultado": "",
       "espacio": null
     },
