@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-10-27T23:04:53-03:00",
+  "generated_at": "2026-10-28T14:04:14-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -6987,19 +6987,6 @@
     },
     {
       "source": "febamba_ges",
-      "external_id": "Zv45nPs0fpBF6F0hKqLfjQ",
-      "fecha": "2026-11-01",
-      "hora": "15:30",
-      "tira": "—",
-      "categoria": "U9 Fem",
-      "rival": "ARQUITECTURA",
-      "localia": "Visitante",
-      "direccion": "",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
       "external_id": "5FZpxArRvNYfJyihK6FPsA",
       "fecha": "2026-11-01",
       "hora": "18:00",
@@ -7455,19 +7442,6 @@
     },
     {
       "source": "febamba_ges",
-      "external_id": "UYJoCphUvIemTfE0oln2HA",
-      "fecha": "2026-11-22",
-      "hora": "11:00",
-      "tira": "—",
-      "categoria": "U15 Fem",
-      "rival": "BECCAR",
-      "localia": "Visitante",
-      "direccion": "",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
       "external_id": "xPXrVjjbuY9IEHh1Uspw8A",
       "fecha": "2026-11-22",
       "hora": "12:00",
@@ -7476,32 +7450,6 @@
       "rival": "VILLA MITRE",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
-      "external_id": "w7P6XcOL2n3lOknUnxQq_Q",
-      "fecha": "2026-11-22",
-      "hora": "12:30",
-      "tira": "—",
-      "categoria": "U13 Fem",
-      "rival": "BECCAR",
-      "localia": "Visitante",
-      "direccion": "",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
-      "external_id": "lUmuaV8lTXMKEsbV1afDLQ",
-      "fecha": "2026-11-22",
-      "hora": "14:00",
-      "tira": "—",
-      "categoria": "U11 Fem",
-      "rival": "BECCAR",
-      "localia": "Visitante",
-      "direccion": "",
       "resultado": "",
       "espacio": null
     },
