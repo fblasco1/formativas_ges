@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-10-30T23:07:24-03:00",
+  "generated_at": "2026-10-31T12:59:59-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -6813,7 +6813,7 @@
       "rival": "SAN MIGUEL Verde",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "76-51",
       "espacio": null
     },
     {
@@ -6826,7 +6826,7 @@
       "rival": "SAN MIGUEL Verde",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "67-52",
       "espacio": null
     },
     {
@@ -6839,7 +6839,7 @@
       "rival": "SAN MIGUEL Verde",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "1-8",
       "espacio": null
     },
     {
