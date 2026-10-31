@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-10-30T14:00:04-03:00",
+  "generated_at": "2026-10-30T23:07:24-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -6800,7 +6800,7 @@
       "rival": "ITALIANO B",
       "localia": "Visitante",
       "direccion": "Av Rivadavia 4731, 1424",
-      "resultado": "",
+      "resultado": "67-55",
       "espacio": null
     },
     {
@@ -7158,7 +7158,7 @@
       "source": "febamba_ges",
       "external_id": "kbZxjUaOwUJOXrU3NQoIfA",
       "fecha": "2026-11-08",
-      "hora": "18:00",
+      "hora": "17:00",
       "tira": "C",
       "categoria": "SUP Flex",
       "rival": "PRIME BASKETBALL",
