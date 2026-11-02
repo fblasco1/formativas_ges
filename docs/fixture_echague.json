@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-11-01T14:03:20-03:00",
+  "generated_at": "2026-11-01T23:11:37-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -6930,7 +6930,7 @@
       "rival": "RACING ANEXO",
       "localia": "Visitante",
       "direccion": "Tinogasta 3455, 1417",
-      "resultado": "37-36",
+      "resultado": "41-61",
       "espacio": null
     },
     {
@@ -6956,7 +6956,7 @@
       "rival": "RACING ANEXO",
       "localia": "Visitante",
       "direccion": "Tinogasta 3455, 1417",
-      "resultado": "",
+      "resultado": "30-25",
       "espacio": null
     },
     {
@@ -6969,7 +6969,7 @@
       "rival": "ARQUITECTURA",
       "localia": "Visitante",
       "direccion": "",
-      "resultado": "",
+      "resultado": "31-20",
       "espacio": null
     },
     {
@@ -6982,7 +6982,7 @@
       "rival": "RACING ANEXO",
       "localia": "Visitante",
       "direccion": "Tinogasta 3455, 1417",
-      "resultado": "",
+      "resultado": "4-24",
       "espacio": null
     },
     {
@@ -6995,20 +6995,7 @@
       "rival": "RACING ANEXO",
       "localia": "Visitante",
       "direccion": "Tinogasta 3455, 1417",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
-      "external_id": "KCOAm1ktleD7PWkWKGgS2Q",
-      "fecha": "2026-11-01",
-      "hora": "21:00",
-      "tira": "A",
-      "categoria": "Liga Metro",
-      "rival": "CLUB SOCIAL y DEPORTIVO PINOCHO",
-      "localia": "Local",
-      "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "70-75",
       "espacio": null
     },
     {
@@ -7045,6 +7032,19 @@
       "tira": "B",
       "categoria": "SUP",
       "rival": "SOCIEDAD HEBRAICA ARGENTINA",
+      "localia": "Local",
+      "direccion": "Portela 836, CABA (CP 1406)",
+      "resultado": "",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "KCOAm1ktleD7PWkWKGgS2Q",
+      "fecha": "2026-11-06",
+      "hora": "21:00",
+      "tira": "A",
+      "categoria": "Liga Metro",
+      "rival": "CLUB SOCIAL y DEPORTIVO PINOCHO",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
       "resultado": "",
