@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-11-03T00:53:18-03:00",
+  "generated_at": "2026-11-03T15:17:54-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -6670,7 +6670,7 @@
       "rival": "ARGENTINO DE CASTELAR NORTE A",
       "localia": "Visitante",
       "direccion": "manual",
-      "resultado": "28-14",
+      "resultado": "20-0",
       "espacio": null
     },
     {
