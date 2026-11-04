@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-11-03T23:58:52-03:00",
+  "generated_at": "2026-11-04T15:38:03-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -7117,19 +7117,6 @@
     },
     {
       "source": "febamba_ges",
-      "external_id": "kbZxjUaOwUJOXrU3NQoIfA",
-      "fecha": "2026-11-07",
-      "hora": "17:00",
-      "tira": "C",
-      "categoria": "SUP Flex",
-      "rival": "PRIME BASKETBALL",
-      "localia": "Local",
-      "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
       "external_id": "TiQN9AQR_Eo2izh42NOBZw",
       "fecha": "2026-11-07",
       "hora": "18:00",
@@ -7383,6 +7370,19 @@
       "tira": "B",
       "categoria": "SUP",
       "rival": "YUPANQUI",
+      "localia": "Local",
+      "direccion": "Portela 836, CABA (CP 1406)",
+      "resultado": "",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "kbZxjUaOwUJOXrU3NQoIfA",
+      "fecha": "2026-11-19",
+      "hora": "21:00",
+      "tira": "C",
+      "categoria": "SUP Flex",
+      "rival": "PRIME BASKETBALL",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
       "resultado": "",
