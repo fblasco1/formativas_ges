@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-11-04T15:38:03-03:00",
+  "generated_at": "2026-11-05T00:17:17-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -7008,7 +7008,7 @@
       "rival": "CHENQUE CROVARA",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "66-63",
       "espacio": null
     },
     {
@@ -7021,7 +7021,7 @@
       "rival": "CLUB ATLETICO 3 DE FEBRERO",
       "localia": "Visitante",
       "direccion": "Islas Malvinas 2681, CP 1702",
-      "resultado": "",
+      "resultado": "55-84",
       "espacio": null
     },
     {
@@ -7034,7 +7034,7 @@
       "rival": "SOCIEDAD HEBRAICA ARGENTINA",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "65-36",
       "espacio": null
     },
     {
