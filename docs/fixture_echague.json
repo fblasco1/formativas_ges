@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-11-08T23:27:37-03:00",
+  "generated_at": "2026-11-09T18:21:24-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -7138,6 +7138,19 @@
       "rival": "GEBA",
       "localia": "Visitante",
       "direccion": "Bartolome Mitre 1149, Ciudad Autónoma de Buenos Aires",
+      "resultado": "",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "r_3RIsPnbmMEhzNhP-eL4w",
+      "fecha": "2026-11-12",
+      "hora": "21:00",
+      "tira": "A",
+      "categoria": "Liga Metro",
+      "rival": "CLUB DEPORTIVO y SOCIAL COLEGIALES",
+      "localia": "Local",
+      "direccion": "Portela 836, CABA (CP 1406)",
       "resultado": "",
       "espacio": null
     },
