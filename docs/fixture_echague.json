@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-11-10T15:32:22-03:00",
+  "generated_at": "2026-11-10T23:36:57-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -7214,6 +7214,19 @@
       "tira": "AMARILLO",
       "categoria": "U9",
       "rival": "ARGENTINOS JUNIORS",
+      "localia": "Local",
+      "direccion": "Portela 836, CABA (CP 1406)",
+      "resultado": "",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "aGqYHhPbq4BZZqyDPwitlQ",
+      "fecha": "2026-11-14",
+      "hora": "16:00",
+      "tira": "AZUL",
+      "categoria": "U11",
+      "rival": "DEFENSORES DE HURLINGHAM VERDE",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
       "resultado": "",
