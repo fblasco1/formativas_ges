@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-11-10T23:36:57-03:00",
+  "generated_at": "2026-11-11T15:28:12-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -5916,7 +5916,7 @@
       "rival": "TRISTAN SUAREZ",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "20-0",
       "espacio": null
     },
     {
@@ -7247,32 +7247,6 @@
     },
     {
       "source": "febamba_ges",
-      "external_id": "evEL6wSfIBwixao9OIbn2g",
-      "fecha": "2026-11-14",
-      "hora": "20:00",
-      "tira": "C",
-      "categoria": "SUP Flex",
-      "rival": "PARQUE VIOLETA",
-      "localia": "Visitante",
-      "direccion": "",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
-      "external_id": "dG8YVtQSBTVWSTr_PEsJ3w",
-      "fecha": "2026-11-15",
-      "hora": "11:00",
-      "tira": "—",
-      "categoria": "U15 Fem",
-      "rival": "LAS HERAS",
-      "localia": "Visitante",
-      "direccion": "Libertad N° 5052, 1653",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
       "external_id": "d_0qyXH31iNdgHPaTVNMnw",
       "fecha": "2026-11-15",
       "hora": "11:30",
@@ -7338,14 +7312,14 @@
     },
     {
       "source": "febamba_ges",
-      "external_id": "fiC924pkgzp1wZ-q2kfoYg",
+      "external_id": "evEL6wSfIBwixao9OIbn2g",
       "fecha": "2026-11-15",
-      "hora": "15:30",
-      "tira": "—",
-      "categoria": "U9 Fem",
-      "rival": "LAS HERAS",
+      "hora": "18:00",
+      "tira": "C",
+      "categoria": "SUP Flex",
+      "rival": "PARQUE VIOLETA",
       "localia": "Visitante",
-      "direccion": "Libertad N° 5052, 1653",
+      "direccion": "",
       "resultado": "",
       "espacio": null
     },
@@ -7372,6 +7346,19 @@
       "rival": "PRIME BASKETBALL",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
+      "resultado": "",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "ygpMhIHB0LBNkmoPB19UJA",
+      "fecha": "2026-11-21",
+      "hora": "21:00",
+      "tira": "AZUL",
+      "categoria": "U21",
+      "rival": "RIVER PLATE",
+      "localia": "Visitante",
+      "direccion": "Figueroa Alcorta 7597, 1428",
       "resultado": "",
       "espacio": null
     },
