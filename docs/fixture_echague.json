@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-11-11T15:28:12-03:00",
+  "generated_at": "2026-11-12T00:41:29-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -7099,7 +7099,7 @@
       "rival": "JOSE HERNANDEZ \"B\"",
       "localia": "Visitante",
       "direccion": "Bragado 5950, 1440",
-      "resultado": "",
+      "resultado": "8-18",
       "espacio": null
     },
     {
@@ -7112,7 +7112,7 @@
       "rival": "JOSE HERNANDEZ \"B\"",
       "localia": "Visitante",
       "direccion": "Bragado 5950, 1440",
-      "resultado": "",
+      "resultado": "32-53",
       "espacio": null
     },
     {
@@ -7125,7 +7125,7 @@
       "rival": "JOSE HERNANDEZ \"B\"",
       "localia": "Visitante",
       "direccion": "Bragado 5950, 1440",
-      "resultado": "",
+      "resultado": "42-70",
       "espacio": null
     },
     {
@@ -7138,7 +7138,7 @@
       "rival": "GEBA",
       "localia": "Visitante",
       "direccion": "Bartolome Mitre 1149, Ciudad Autónoma de Buenos Aires",
-      "resultado": "",
+      "resultado": "65-67",
       "espacio": null
     },
     {
@@ -7247,11 +7247,11 @@
     },
     {
       "source": "febamba_ges",
-      "external_id": "d_0qyXH31iNdgHPaTVNMnw",
+      "external_id": "IIUJZOMXlbQpnC_2H-rv2w",
       "fecha": "2026-11-15",
-      "hora": "11:30",
+      "hora": "10:00",
       "tira": "FLEX",
-      "categoria": "U15 Flex",
+      "categoria": "U17 Flex",
       "rival": "UNIVERSIDAD DE LA MATANZA",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
@@ -7260,11 +7260,11 @@
     },
     {
       "source": "febamba_ges",
-      "external_id": "IIUJZOMXlbQpnC_2H-rv2w",
+      "external_id": "d_0qyXH31iNdgHPaTVNMnw",
       "fecha": "2026-11-15",
-      "hora": "12:00",
+      "hora": "11:30",
       "tira": "FLEX",
-      "categoria": "U17 Flex",
+      "categoria": "U15 Flex",
       "rival": "UNIVERSIDAD DE LA MATANZA",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
