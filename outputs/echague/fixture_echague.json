@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-11-12T00:41:29-03:00",
+  "generated_at": "2026-11-12T15:46:00-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -1847,7 +1847,7 @@
       "rival": "ATENEO POPULAR VERSAILLES",
       "localia": "Visitante",
       "direccion": "Roma 950, 1408",
-      "resultado": "",
+      "resultado": "0-20",
       "espacio": null
     },
     {
@@ -2094,7 +2094,7 @@
       "rival": "ARGENTINOS JRS Flex",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "0-20",
       "espacio": null
     },
     {
@@ -3862,7 +3862,7 @@
       "rival": "HARRODS GATH Y CHAVES",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "0-20",
       "espacio": null
     },
     {
