@@ -6,21 +6,23 @@ Reglas (confirmadas con la organización):
 
 * Navegación por etapa → nivel → zona. Los "niveles" son fases GES:
   Primera: ``TORNEO DE CLASIFICACION`` / ``TORNEO RECLASIFICATORIO``.
-  Segunda: ``INTERCONFERENCIA A`` / ``INTERCONFERENCIA B`` / ``NIVEL 1``.
+  Segunda: ``INTERCONFERENCIA A`` / ``INTERCONFERENCIA B`` /
+  ``NIVEL 1`` / ``NIVEL 2`` / ``NIVEL 3``.
   (``CLASIFICACION LFF`` es nacional y queda fuera de este informe.)
 * Categorías que suman a la tabla general (puntos por resultado):
-  U13 (Infantiles), U15 (Cadetes), U17 (Juveniles).
+  U13 (Infantiles), U15 (Cadetes), U17 (Juveniles), U21 (Liga Próximo).
     - Partido ganado: 2 puntos. Partido perdido: 1 punto.
     - Walkover ``20-0`` / ``0-20``: el ausente NO suma nada (0); el presente suma 2.
     - ``0-0``: ambos ausentes -> 0 para los dos.
-* Categorías de presentación (no suman por resultado): U11 (Mini), U9 (Pre Mini).
-    - Cada equipo suma 1 punto de presentación, salvo que no llegue al mínimo de
-      jugadores con >= 10:00 de juego (regla mini: 12 jugadores).
-    - En marcadores raros (0-0 / 20-0 / 0-20) se valida con el acta; en marcadores
-      normales se asume que ambos equipos se presentaron.
+* Categorías de presentación:
+  - U11 (Mini): suma 1 punto de presentación a la tabla general por partido
+    (salvo que no llegue al mínimo de 12 jugadores con >= 10:00).
+  - U9 (Pre Mini): se informa en su vista, pero NO alimenta la tabla general.
+  - En marcadores raros (0-0 / 20-0 / 0-20) se valida con el acta; en marcadores
+    normales se asume que ambos equipos se presentaron.
 * La tabla general es POR ZONA dentro de cada fase: a cada club/equipo se le suman los
   puntos de todas sus categorías. Las zonas se definen por las categorías grandes
-  (NORTE/CENTRO/OESTE/SUR x 1A/2B/3C); los puntos de presentación U9/U11 se atribuyen
+  (NORTE/CENTRO/OESTE/SUR x 1A/2B/3C); los puntos de presentación U11 se atribuyen
   al equipo por nombre normalizado.
 
 Este módulo es lógica pura (sin red); la descarga/orquestación vive en
@@ -59,10 +61,13 @@ CATEGORIAS: Dict[str, Dict[str, object]] = {
     "U13": {"nombre_ges": "INFANTILES MASCULINO", "id_categoria": 5078, "rol": ROL_GENERAL},
     "U15": {"nombre_ges": "CADETES MASCULINO", "id_categoria": 5077, "rol": ROL_GENERAL},
     "U17": {"nombre_ges": "JUVENILES MASCULINO", "id_categoria": 5076, "rol": ROL_GENERAL},
+    "U21": {"nombre_ges": "LIGA PROXIMO MASCULINO", "id_categoria": 5075, "rol": ROL_GENERAL},
 }
 
 EDADES_GENERAL = [e for e, c in CATEGORIAS.items() if c["rol"] == ROL_GENERAL]
 EDADES_PRESENTACION = [e for e, c in CATEGORIAS.items() if c["rol"] == ROL_PRESENTACION]
+# Solo estas edades suman pts de presentación a la tabla general (U9 queda en su vista).
+EDADES_PRESENTACION_GENERAL = ("U11",)
 
 # Nombre canónico de nivel (campo `fase` en partidos) -> nombres GES posibles.
 # La grafía varía entre categorías; "fase" en el dataclass es en realidad el nivel.
@@ -72,6 +77,8 @@ FASES_CANONICAS: Dict[str, Tuple[str, ...]] = {
     "INTERCONFERENCIA_A": ("INTERCONFERENCIA A",),
     "INTERCONFERENCIA_B": ("INTERCONFERENCIA B",),
     "NIVEL_1": ("NIVEL 1",),
+    "NIVEL_2": ("NIVEL 2",),
+    "NIVEL_3": ("NIVEL 3",),
 }
 
 FASE_LABEL: Dict[str, str] = {
@@ -80,6 +87,8 @@ FASE_LABEL: Dict[str, str] = {
     "INTERCONFERENCIA_A": "Interconferencia A",
     "INTERCONFERENCIA_B": "Interconferencia B",
     "NIVEL_1": "Nivel 1",
+    "NIVEL_2": "Nivel 2",
+    "NIVEL_3": "Nivel 3",
 }
 
 # Nivel canónico -> etapa de navegación (Primera / Segunda fase).
@@ -89,6 +98,8 @@ ETAPA_POR_FASE: Dict[str, str] = {
     "INTERCONFERENCIA_A": "SEGUNDA",
     "INTERCONFERENCIA_B": "SEGUNDA",
     "NIVEL_1": "SEGUNDA",
+    "NIVEL_2": "SEGUNDA",
+    "NIVEL_3": "SEGUNDA",
 }
 
 ETAPA_LABEL: Dict[str, str] = {
@@ -99,7 +110,13 @@ ETAPA_LABEL: Dict[str, str] = {
 # Orden de niveles dentro de cada etapa (para UI y payload).
 NIVELES_POR_ETAPA: Dict[str, Tuple[str, ...]] = {
     "PRIMERA": ("CLASIFICACION", "RECLASIFICACION"),
-    "SEGUNDA": ("INTERCONFERENCIA_A", "INTERCONFERENCIA_B", "NIVEL_1"),
+    "SEGUNDA": (
+        "INTERCONFERENCIA_A",
+        "INTERCONFERENCIA_B",
+        "NIVEL_1",
+        "NIVEL_2",
+        "NIVEL_3",
+    ),
 }
 
 FASE_ORDER: Tuple[str, ...] = (
@@ -108,6 +125,8 @@ FASE_ORDER: Tuple[str, ...] = (
     "INTERCONFERENCIA_A",
     "INTERCONFERENCIA_B",
     "NIVEL_1",
+    "NIVEL_2",
+    "NIVEL_3",
 )
 
 # Palabras de categoría a remover de la clave de emparejamiento de equipos.
@@ -123,8 +142,17 @@ _TOKENS_CATEGORIA = {
     "MOSQUITOS",
     "MOSQUITO",
     "PROXIMO",
+    "PROXIMA",
+    "LIGA",
     "SUPERIOR",
     "MAYORES",
+    # Prefijos de edad que a veces vienen pegados al nombre en el acta.
+    "U9",
+    "U11",
+    "U13",
+    "U15",
+    "U17",
+    "U21",
 }
 
 # Colores femeninos -> masculino (canónico) para unificar "BLANCA"/"BLANCO".
@@ -187,6 +215,13 @@ _ALIAS_CLAVE: Dict[str, str] = {
     "PORTENO ATLETICO CLUB B": "PORTENO ATLETICO CLUB B BLANCO",
     # SUR 2B: U11/U13/U17/U9 "MONTE GRANDE B" == U15 "MONTE GRANDE B NEGRO"
     "MONTE GRANDE B": "MONTE GRANDE B NEGRO",
+    # U21 / reclas: "NAUTICO BUCHARDO NORTE (A)" == tira "NAUTICO BUCHARDO A"
+    "NAUTICO BUCHARDO NORTE A": "NAUTICO BUCHARDO A",
+    # U21 Liga Próximo ↔ tiras U13-U17
+    "COMUNICACIONES AMARILLO": "COMUNICACIONES A AMARILLO",
+    "COMUNICACIONES NEGRO": "COMUNICACIONES B NEGRO",
+    "LOBOS ATHLETIC CLUB": "LOBOS",
+    "UVVA UNION VECINAL VILLA ADELINA AZUL": "UVVA UNION VECINAL VILLA ADELINA",
 }
 
 
@@ -253,6 +288,8 @@ def _tokens_canonicos(nombre: str) -> List[str]:
     """Tokens normalizados de un nombre (sin palabras de categoría, puntos ni guiones)."""
     base = normalizar_nombre(nombre).replace("PRE MINI", "PREMINI")
     base = base.replace(".", "").replace("-", " ")  # "C.A.S.A." == "C.A.S.A", "BLANCO - A"
+    # "AZUL(A)" / "AZUL (A)" → "AZUL A"
+    base = base.replace("(", " ").replace(")", " ")
     return [
         _canon_token(tok)
         for tok in base.split()
@@ -260,12 +297,20 @@ def _tokens_canonicos(nombre: str) -> List[str]:
     ]
 
 
+def norm_zona_fase(fase: str, zona: str) -> str:
+    """Normaliza zona y unifica grafías entre categorías (p.ej. U21 Nivel 1)."""
+    z = norm_zona(zona)
+    if fase == "NIVEL_1" and z in {"CENTRO", "NORTE", "SUR", "OESTE"}:
+        return f"{z} 1"
+    return z
+
+
 # --------------------------------------------------------------------------- #
 # Estructuras de entrada
 # --------------------------------------------------------------------------- #
 @dataclass
 class PartidoGeneral:
-    """Partido de categoría que suma a la tabla (U13/U15/U17)."""
+    """Partido de categoría que suma a la tabla (U13/U15/U17/U21)."""
 
     edad: str
     fase: str  # clave canónica de nivel (CLASIFICACION, INTERCONFERENCIA_A, …)
@@ -380,7 +425,7 @@ class FilaPosicion:
     walkover_favor: int = 0  # ganó por presentación rival (20-0 a favor)
     walkover_contra: int = 0  # perdió por no presentarse (0 puntos)
     pts_general: int = 0
-    # Presentación U9/U11
+    # Presentación U11 (alimenta la general)
     presentaciones: int = 0  # cantidad de puntos de presentación sumados
     pres_jugados: int = 0
     pres_no_presento: int = 0
@@ -533,7 +578,8 @@ def construir_standings(
             for clave, fila in filas.items():
                 fila.equipo = _nombre_para_mostrar(fila.nombres_ges, clave)
 
-    # 3) Presentación U9/U11 -> atribuir por clave de equipo a sus zonas en esa fase.
+    # 3) Presentación U11 -> atribuir por clave de equipo a sus zonas en esa fase.
+    #    U9 se recolecta para su vista, pero no suma a la general.
     sin_zona: List[Dict[str, object]] = []
 
     def _aplicar_pres(fila: FilaPosicion, presento: Optional[bool]) -> None:
@@ -547,6 +593,8 @@ def construir_standings(
             fila.pres_desconocidos += 1
 
     for pp in presentaciones:
+        if pp.edad not in EDADES_PRESENTACION_GENERAL:
+            continue
         presenta_local, presenta_visit = pp.presenta_local, pp.presenta_visit
         if presenta_local is None and presenta_visit is None:
             # No se pre-decidió: derivar del marcador (normal -> ambos presentan).
@@ -583,9 +631,64 @@ def construir_standings(
         for zona, filas in zonas.items():
             tablas_ordenadas[fase][zona] = ordenar_tabla(list(filas.values()))
 
+    # 5) Tablas regionales unificadas (Nivel 2: N/O/S; Nivel 3: Oeste)
+    _agregar_unificadas_regionales(tablas_ordenadas)
+
     return StandingsResultado(
         tablas=tablas_ordenadas, presentaciones_sin_zona=sin_zona
     )
+
+
+def _merge_filas_posicion(filas: List[FilaPosicion]) -> FilaPosicion:
+    """Combina filas del mismo equipo (p.ej. si apareciera en dos subzonas)."""
+    base = filas[0]
+    if len(filas) == 1:
+        return base
+    out = FilaPosicion(equipo=base.equipo, clave=base.clave)
+    out.nombres_ges = set().union(*(f.nombres_ges for f in filas))
+    for f in filas:
+        out.pj_general += f.pj_general
+        out.ganados += f.ganados
+        out.perdidos += f.perdidos
+        out.walkover_favor += f.walkover_favor
+        out.walkover_contra += f.walkover_contra
+        out.pts_general += f.pts_general
+        out.presentaciones += f.presentaciones
+        out.pres_jugados += f.pres_jugados
+        out.pres_no_presento += f.pres_no_presento
+        out.pres_desconocidos += f.pres_desconocidos
+        out.pts_presentacion += f.pts_presentacion
+    return out
+
+
+def _agregar_unificadas_regionales(
+    tablas: Dict[str, Dict[str, List[FilaPosicion]]],
+) -> None:
+    """
+    Agrega zonas regionales unificadas sin borrar los subgrupos:
+
+    * NIVEL_2: ``NORTE`` = NORTE A+B, ``OESTE`` = OESTE A+B, ``SUR`` = SUR A+B
+      (CENTRO ya es única).
+    * NIVEL_3: ``OESTE`` = OESTE A+B (CENTRO/NORTE/SUR ya son únicas).
+    """
+
+    def unificar(fase: str, destino: str, fuentes: Tuple[str, ...]) -> None:
+        zonas = tablas.get(fase) or {}
+        por_clave: Dict[str, List[FilaPosicion]] = defaultdict(list)
+        for src in fuentes:
+            for fila in zonas.get(src, []):
+                por_clave[fila.clave].append(fila)
+        if not por_clave:
+            return
+        merged = [_merge_filas_posicion(fs) for fs in por_clave.values()]
+        for f in merged:
+            f.equipo = _nombre_para_mostrar(f.nombres_ges, f.clave)
+        zonas[destino] = ordenar_tabla(merged)
+
+    unificar("NIVEL_2", "NORTE", ("NORTE A", "NORTE B"))
+    unificar("NIVEL_2", "OESTE", ("OESTE A", "OESTE B"))
+    unificar("NIVEL_2", "SUR", ("SUR A", "SUR B"))
+    unificar("NIVEL_3", "OESTE", ("OESTE A", "OESTE B"))
 
 
 def ordenar_tabla(filas: List[FilaPosicion]) -> List[FilaPosicion]:

@@ -22,6 +22,7 @@ NIVELES_JSON = ROOT / "outputs" / "viajes_elite42" / "niveles_viajes.json"
 STANDINGS_HTML = ROOT / "docs" / "formativas_2026_tabla_posiciones.html"
 STANDINGS_OUT = ROOT / "outputs" / "formativas_2026" / "tabla_posiciones.html"
 OUT_HTML = ROOT / "docs" / "propuesta_formativas_2027.html"
+NACIMIENTOS_JSON = ROOT / "outputs" / "nacimientos_formativas" / "resumen.json"
 
 FASES_SEGUNDA = (
     "INTERCONFERENCIA_A",
@@ -153,10 +154,34 @@ def _cargar_standings_segunda() -> dict:
     }
 
 
+def _cargar_nacimientos() -> dict:
+    """Jugadores únicos por año de nacimiento (Infantiles a Pre Mini, hasta hoy)."""
+    if not NACIMIENTOS_JSON.exists():
+        raise SystemExit(
+            f"Falta {NACIMIENTOS_JSON}. Corré el cruce de nacimientos formativos."
+        )
+    with NACIMIENTOS_JSON.open(encoding="utf-8") as f:
+        raw = json.load(f)
+    return {
+        "fecha": raw.get("generado") or "",
+        "years": raw.get("years") or [],
+        "teams": raw.get("teams") or [],
+        "unique": raw.get("unique") or [],
+        "suma": raw.get("suma") or [],
+        "n_jugadores": raw.get("n_jugadores") or 0,
+        "n_equipos": raw.get("n_equipos") or 0,
+        "n_multi": raw.get("n_multi") or 0,
+        "n_partidos": raw.get("n_partidos") or 0,
+        "n_box": raw.get("n_box") or 0,
+        "n_fuera": raw.get("n_fuera") or 0,
+    }
+
+
 def generar(payload: dict, out: Path = OUT_HTML) -> Path:
     data_js = json.dumps(payload, ensure_ascii=False)
     standings = _cargar_standings_segunda()
     standings_js = json.dumps(standings, ensure_ascii=False)
+    nacimientos_js = json.dumps(_cargar_nacimientos(), ensure_ascii=False)
     colores = payload["colores_region"]
     total = payload.get("total_equipos", sum(n["n_equipos"] for n in payload["niveles"]))
 
@@ -168,6 +193,7 @@ def generar(payload: dict, out: Path = OUT_HTML) -> Path:
         .replace("__COLOR_OESTE__", colores["OESTE"])
         .replace("__DATA_JS__", data_js)
         .replace("__STANDINGS_JS__", standings_js)
+        .replace("__NACIMIENTOS_JS__", nacimientos_js)
     )
 
     out.parent.mkdir(parents=True, exist_ok=True)
@@ -592,6 +618,12 @@ _HTML_TEMPLATE = """<!DOCTYPE html>
     .st-block { margin-top: 18px; }
     .st-block h4 { margin: 0 0 8px; font-size: 14px; }
     .st-meta { font-size: 12px; color: var(--muted); margin: 0 0 10px; }
+    .nac-search {
+      width: min(380px, 100%); border: 1px solid var(--line); border-radius: 999px;
+      padding: 8px 14px; font: inherit; margin: 0 0 12px; background: #fff;
+    }
+    .nac-wrap thead th { position: sticky; top: 0; z-index: 1; }
+    table.mock tr.total td { background: #f8fafc; font-weight: 700; }
 
     /* Dual metrics */
     .dual { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
@@ -700,6 +732,7 @@ _HTML_TEMPLATE = """<!DOCTYPE html>
         <a href="#escenarios">Escenarios</a>
         <a href="#niveles">Niveles</a>
         <a href="#explorador">Posiciones 2026</a>
+        <a href="#nacimientos">Nacimientos</a>
         <a href="#metricas">Tablas</a>
         <a href="#horarios">Horarios</a>
       </nav>
@@ -863,7 +896,24 @@ _HTML_TEMPLATE = """<!DOCTYPE html>
     </div>
   </section>
 
-  <section class="block alt" id="metricas">
+  <section class="block alt" id="nacimientos">
+    <div class="wrap-wide">
+      <p class="sec-kicker">Planteles 2026</p>
+      <h2 class="sec-title">Jugadores por año de nacimiento</h2>
+      <p class="sec-lead">
+        Infantiles, Cadetes, Juveniles, Liga Próximo, Mini y Pre Mini.
+        Cada jugador cuenta una vez por equipo si tuvo minutos en un acta
+        jugada hasta el <span id="nac-fecha">—</span>.
+        Años 2019 a 2006. La celda vacía es cero.
+      </p>
+      <div class="stats" id="nac-stats"></div>
+      <input id="nac-q" class="nac-search" type="search" placeholder="Buscar equipo"/>
+      <p class="st-meta" id="nac-nota"></p>
+      <div id="nac-tabla"></div>
+    </div>
+  </section>
+
+  <section class="block" id="metricas">
     <div class="wrap">
       <p class="sec-kicker">Clasificaciones</p>
       <h2 class="sec-title">Tabla por tira vs clasificación por categoría</h2>
@@ -880,7 +930,7 @@ _HTML_TEMPLATE = """<!DOCTYPE html>
     </div>
   </section>
 
-  <section class="block" id="horarios">
+  <section class="block alt" id="horarios">
     <div class="wrap">
       <p class="sec-kicker">Jornada</p>
       <h2 class="sec-title">Dos opciones de horarios</h2>
@@ -1112,6 +1162,7 @@ const DATA = __DATA_JS__;
 const COLORS = DATA.colores_region;
 const REGION_ORDER = ['CENTRO', 'NORTE', 'OESTE', 'SUR'];
 const STANDINGS = __STANDINGS_JS__;
+const NACIMIENTOS = __NACIMIENTOS_JS__;
 
 /* —— Niveles: tabs + mocks gráficos —— */
 const NIVELES_FMT = [
@@ -1756,6 +1807,76 @@ function renderNivelFmt(idx, zonaIdx) {
     bindStandingsZoneTabs('st-zona-tabs', 'st-tabla-wrap', fase, null);
   };
   if (fases.length) paint();
+})();
+
+function nacMiles(n) {
+  return String(n).replace(/\\B(?=(\\d{3})+(?!\\d))/g, ".");
+}
+function nacFold(s) {
+  return (s || "").normalize("NFD").replace(/[\\u0300-\\u036f]/g, "").toLowerCase();
+}
+function nacCelda(n, fuerte) {
+  if (!fuerte && !n) return "";
+  return nacMiles(n);
+}
+function renderNacimientos() {
+  const data = NACIMIENTOS || {};
+  const years = data.years || [];
+  const teams = data.teams || [];
+  const unique = data.unique || [];
+  const suma = data.suma || [];
+  const fechaEl = document.getElementById("nac-fecha");
+  if (fechaEl) fechaEl.textContent = (data.fecha || "").slice(0, 10) || "—";
+  const stats = document.getElementById("nac-stats");
+  if (stats) {
+    stats.innerHTML = [
+      [nacMiles(data.n_jugadores || 0), "Jugadores únicos 2006-2019"],
+      [nacMiles(data.n_equipos || 0), "Equipos"],
+      [nacMiles(data.n_multi || 0), "En más de un equipo"],
+    ].map(([a, b]) => `<div class="stat"><b>${a}</b><span>${b}</span></div>`).join("");
+  }
+  const q = nacFold((document.getElementById("nac-q") || {}).value || "");
+  const visibles = q ? teams.filter(t => nacFold(t[0]).includes(q)) : teams;
+  const nota = document.getElementById("nac-nota");
+  if (nota) {
+    nota.textContent = q
+      ? visibles.length + " equipos. La suma puede contar dos veces a quien jugó en dos de esos equipos."
+      : "Total únicos: un jugador en dos equipos figura en ambos y una sola vez en el total. " +
+        nacMiles(data.n_fuera || 0) + " jugadores de estas categorías nacieron fuera de 2006-2019.";
+  }
+  const head = ["Equipo", ...years.map(String), "Total"].map((h, i) =>
+    `<th class="${i ? "num" : ""}">${h}</th>`
+  ).join("");
+  const filas = visibles.map(t => {
+    const counts = t[1] || [];
+    const total = counts.reduce((a, b) => a + b, 0);
+    const celdas = counts.map(n => `<td class="num">${nacCelda(n, false)}</td>`).join("");
+    return `<tr><td class="club">${t[0]}</td>${celdas}<td class="num"><strong>${nacMiles(total)}</strong></td></tr>`;
+  });
+  if (!q) {
+    const sumaTotal = suma.reduce((a, b) => a + b, 0);
+    filas.push(`<tr class="total"><td>Suma de equipos</td>${suma.map(n => `<td class="num">${nacMiles(n)}</td>`).join("")}<td class="num">${nacMiles(sumaTotal)}</td></tr>`);
+    filas.push(`<tr class="total"><td>Total únicos</td>${unique.map(n => `<td class="num">${nacMiles(n)}</td>`).join("")}<td class="num">${nacMiles(data.n_jugadores || 0)}</td></tr>`);
+  } else if (visibles.length) {
+    const sumaVis = years.map((_, i) => visibles.reduce((a, t) => a + ((t[1] || [])[i] || 0), 0));
+    const sumaTotal = sumaVis.reduce((a, b) => a + b, 0);
+    filas.push(`<tr class="total"><td>Suma de equipos visibles</td>${sumaVis.map(n => `<td class="num">${nacMiles(n)}</td>`).join("")}<td class="num">${nacMiles(sumaTotal)}</td></tr>`);
+  }
+  const wrap = document.getElementById("nac-tabla");
+  if (!wrap) return;
+  wrap.innerHTML = `
+    <div class="mock-table-wrap nac-wrap" style="max-height:520px;overflow:auto">
+      <table class="mock">
+        <thead><tr>${head}</tr></thead>
+        <tbody>${filas.join("") || '<tr><td colspan="16">Ningún equipo coincide.</td></tr>'}</tbody>
+      </table>
+    </div>`;
+}
+(function initNacimientos() {
+  const input = document.getElementById("nac-q");
+  if (!input || !NACIMIENTOS) return;
+  input.addEventListener("input", renderNacimientos);
+  renderNacimientos();
 })();
 
 (function initNiveles() {
