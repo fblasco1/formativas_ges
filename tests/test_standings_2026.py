@@ -35,6 +35,8 @@ def test_clave_equipo_quita_categoria():
     assert clave_equipo("SPORTIVO PILAR CADETES") == "SPORTIVO PILAR"
     assert clave_equipo("SPORTIVO PILAR  JUVENILES") == "SPORTIVO PILAR"
     assert clave_equipo("SPORTIVO PILAR INFANTILES") == "SPORTIVO PILAR"
+    assert clave_equipo("U11 DEPORTIVO MORON B") == clave_equipo("DEPORTIVO MORON B")
+    assert clave_equipo("U13 DEPORTIVO MORON B") == clave_equipo("DEPORTIVO MORON B")
 
 
 def test_clave_equipo_conserva_color_letra():
@@ -164,16 +166,16 @@ def test_standings_basico_por_zona():
 
     # CLUB A: U15 gana(2) + U13 pierde(1) + U17 walkover gana(2) = 5 generales
     assert a.pts_general == 5
-    # presentación: U11 (1) + U9 (1) = 2
-    assert a.pts_presentacion == 2
-    assert a.puntos == 7
+    # presentación a la general: solo U11 (1); U9 no suma
+    assert a.pts_presentacion == 1
+    assert a.puntos == 6
     assert a.ganados == 2
     assert a.perdidos == 1
     assert a.walkover_favor == 1
 
     # CLUB B: U15 pierde(1) + U13 gana(2) + U17 no se presentó(0) = 3 generales
     assert b.pts_general == 3
-    # presentación: U11 (1) + U9 no presentó (0) = 1
+    # presentación: U11 (1); U9 no alimenta la general
     assert b.pts_presentacion == 1
     assert b.puntos == 4
     assert b.walkover_contra == 1
