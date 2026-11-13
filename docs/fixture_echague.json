@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-11-12T15:46:00-03:00",
+  "generated_at": "2026-11-13T00:12:51-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -7151,7 +7151,7 @@
       "rival": "CLUB DEPORTIVO y SOCIAL COLEGIALES",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "73-71",
       "espacio": null
     },
     {
@@ -7214,19 +7214,6 @@
       "tira": "AMARILLO",
       "categoria": "U9",
       "rival": "ARGENTINOS JUNIORS",
-      "localia": "Local",
-      "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
-      "external_id": "aGqYHhPbq4BZZqyDPwitlQ",
-      "fecha": "2026-11-14",
-      "hora": "16:00",
-      "tira": "AZUL",
-      "categoria": "U11",
-      "rival": "DEFENSORES DE HURLINGHAM VERDE",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
       "resultado": "",
@@ -7312,9 +7299,22 @@
     },
     {
       "source": "febamba_ges",
+      "external_id": "aGqYHhPbq4BZZqyDPwitlQ",
+      "fecha": "2026-11-15",
+      "hora": "16:00",
+      "tira": "AZUL",
+      "categoria": "U11",
+      "rival": "DEFENSORES DE HURLINGHAM VERDE",
+      "localia": "Local",
+      "direccion": "Portela 836, CABA (CP 1406)",
+      "resultado": "",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
       "external_id": "evEL6wSfIBwixao9OIbn2g",
       "fecha": "2026-11-15",
-      "hora": "18:00",
+      "hora": "20:30",
       "tira": "C",
       "categoria": "SUP Flex",
       "rival": "PARQUE VIOLETA",
