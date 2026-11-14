@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-11-13T23:57:44-03:00",
+  "generated_at": "2026-11-14T13:54:15-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -7143,19 +7143,6 @@
     },
     {
       "source": "febamba_ges",
-      "external_id": "r_3RIsPnbmMEhzNhP-eL4w",
-      "fecha": "2026-11-12",
-      "hora": "21:00",
-      "tira": "A",
-      "categoria": "Liga Metro",
-      "rival": "CLUB DEPORTIVO y SOCIAL COLEGIALES",
-      "localia": "Local",
-      "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "73-71",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
       "external_id": "2XYVKNDPToehUf0F5-omuA",
       "fecha": "2026-11-14",
       "hora": "9:30",
@@ -7164,7 +7151,7 @@
       "rival": "ARGENTINOS JUNIORS",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "30-54",
       "espacio": null
     },
     {
@@ -7177,7 +7164,7 @@
       "rival": "ARGENTINOS JUNIORS",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "53-51",
       "espacio": null
     },
     {
@@ -7190,7 +7177,7 @@
       "rival": "ARGENTINOS JUNIORS",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "41-46",
       "espacio": null
     },
     {
@@ -7229,19 +7216,6 @@
       "rival": "ARGENTINOS JUNIORS",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
-      "external_id": "phkwkz3kTQ5EYBhPYCksJQ",
-      "fecha": "2026-11-14",
-      "hora": "21:30",
-      "tira": "A",
-      "categoria": "Liga Metro",
-      "rival": "CLUB ATLETICO CAZA y PESCA",
-      "localia": "Visitante",
-      "direccion": "Balbastro Y Ruta 202, CP 1611",
       "resultado": "",
       "espacio": null
     },
@@ -7338,19 +7312,6 @@
     },
     {
       "source": "febamba_ges",
-      "external_id": "rwPj9rH3jb20tMYpCAc_aQ",
-      "fecha": "2026-11-16",
-      "hora": "21:30",
-      "tira": "A",
-      "categoria": "Liga Metro",
-      "rival": "CLUB ATLETICO CAZA y PESCA",
-      "localia": "Local",
-      "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
       "external_id": "XjdfVedg-Fia2yZFfhDFpQ",
       "fecha": "2026-11-18",
       "hora": "21:30",
@@ -7364,19 +7325,6 @@
     },
     {
       "source": "febamba_ges",
-      "external_id": "r1u31lJxe8BfqsXRnUbIKA",
-      "fecha": "2026-11-18",
-      "hora": "21:30",
-      "tira": "A",
-      "categoria": "Liga Metro",
-      "rival": "CLUB ATLETICO CAZA y PESCA",
-      "localia": "Visitante",
-      "direccion": "Balbastro Y Ruta 202, CP 1611",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
       "external_id": "kbZxjUaOwUJOXrU3NQoIfA",
       "fecha": "2026-11-19",
       "hora": "21:00",
@@ -7385,19 +7333,6 @@
       "rival": "PRIME BASKETBALL",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
-      "external_id": "ygpMhIHB0LBNkmoPB19UJA",
-      "fecha": "2026-11-21",
-      "hora": "21:00",
-      "tira": "AZUL",
-      "categoria": "U21",
-      "rival": "RIVER PLATE",
-      "localia": "Visitante",
-      "direccion": "Figueroa Alcorta 7597, 1428",
       "resultado": "",
       "espacio": null
     },
