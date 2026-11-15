@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-11-14T23:28:27-03:00",
+  "generated_at": "2026-11-15T14:36:58-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -7229,7 +7229,7 @@
       "rival": "UNIVERSIDAD DE LA MATANZA",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "46-64",
       "espacio": null
     },
     {
@@ -7242,7 +7242,7 @@
       "rival": "UNIVERSIDAD DE LA MATANZA",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "51-17",
       "espacio": null
     },
     {
@@ -7255,7 +7255,7 @@
       "rival": "LAS HERAS",
       "localia": "Visitante",
       "direccion": "Libertad N° 5052, 1653",
-      "resultado": "",
+      "resultado": "62-26",
       "espacio": null
     },
     {
@@ -7268,7 +7268,7 @@
       "rival": "UNIVERSIDAD DE LA MATANZA",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "53-22",
       "espacio": null
     },
     {
@@ -7281,7 +7281,7 @@
       "rival": "LAS HERAS",
       "localia": "Visitante",
       "direccion": "Libertad N° 5052, 1653",
-      "resultado": "",
+      "resultado": "1-4",
       "espacio": null
     },
     {
