@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-11-15T14:36:58-03:00",
+  "generated_at": "2026-11-15T23:37:20-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -7281,7 +7281,7 @@
       "rival": "LAS HERAS",
       "localia": "Visitante",
       "direccion": "Libertad N° 5052, 1653",
-      "resultado": "1-4",
+      "resultado": "33-47",
       "espacio": null
     },
     {
@@ -7294,7 +7294,7 @@
       "rival": "DEFENSORES DE HURLINGHAM VERDE",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "64-28",
       "espacio": null
     },
     {
@@ -7307,7 +7307,7 @@
       "rival": "PARQUE VIOLETA",
       "localia": "Visitante",
       "direccion": "",
-      "resultado": "",
+      "resultado": "43-79",
       "espacio": null
     },
     {
