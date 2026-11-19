@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-11-19T01:02:16-03:00",
+  "generated_at": "2026-11-19T16:25:42-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -7377,19 +7377,6 @@
     },
     {
       "source": "febamba_ges",
-      "external_id": "iAp-H3a9cVp7bt2JKjbMfw",
-      "fecha": "2026-11-21",
-      "hora": "14:00",
-      "tira": "AZUL",
-      "categoria": "U11",
-      "rival": "BOCA JUNIORS AZUL A",
-      "localia": "Visitante",
-      "direccion": "Arzobispo Espinosa 602, 1157",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
       "external_id": "ygpMhIHB0LBNkmoPB19UJA",
       "fecha": "2026-11-21",
       "hora": "21:00",
@@ -7455,6 +7442,19 @@
     },
     {
       "source": "febamba_ges",
+      "external_id": "iAp-H3a9cVp7bt2JKjbMfw",
+      "fecha": "2026-11-23",
+      "hora": "14:00",
+      "tira": "AZUL",
+      "categoria": "U11",
+      "rival": "BOCA JUNIORS AZUL A",
+      "localia": "Visitante",
+      "direccion": "Arzobispo Espinosa 602, 1157",
+      "resultado": "",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
       "external_id": "cgnJqw0MO8BlpTYP7lkltA",
       "fecha": "2026-11-23",
       "hora": "18:00",
@@ -7476,6 +7476,19 @@
       "rival": "UNIVERSIDAD DE BUENOS AIRES B",
       "localia": "Visitante",
       "direccion": "manual",
+      "resultado": "",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "SOtTRpWoftfrT1j0UsGajQ",
+      "fecha": "2026-11-23",
+      "hora": "21:30",
+      "tira": "A",
+      "categoria": "Liga Metro",
+      "rival": "CLUB SAN FERNANDO",
+      "localia": "Visitante",
+      "direccion": "Sarmiento Y Escalada S/N, CP 1646",
       "resultado": "",
       "espacio": null
     },
