@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-11-21T23:53:11-03:00",
+  "generated_at": "2026-11-22T15:18:45-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -7346,7 +7346,7 @@
       "rival": "VILLA MITRE",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "38-53",
       "espacio": null
     },
     {
@@ -7359,7 +7359,7 @@
       "rival": "VILLA MITRE",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "16-51",
       "espacio": null
     },
     {
@@ -7372,7 +7372,7 @@
       "rival": "VILLA MITRE",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "33-54",
       "espacio": null
     },
     {
