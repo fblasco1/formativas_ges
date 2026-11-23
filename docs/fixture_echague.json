@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-11-22T15:18:45-03:00",
+  "generated_at": "2026-11-23T00:35:30-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -7385,7 +7385,7 @@
       "rival": "SAN MIGUEL",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "72-89",
       "espacio": null
     },
     {
