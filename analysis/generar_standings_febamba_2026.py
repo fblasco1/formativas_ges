@@ -3,10 +3,11 @@
 Genera la tabla de posiciones general de FORMATIVAS 2026 (competencia GES 2015).
 
 Suma, por zona y por nivel (Clasificatorio / Reclasificación / Interconferencia A-B /
-Nivel 1), los puntos de las categorías U13/U15/U17 (ganado=2, perdido=1, walkover
-20-0 = 2 y 0 para el ausente) más los puntos de presentación de U9/U11 (1 por equipo
+Nivel 1-2-3), los puntos de las categorías U13/U15/U17/U21 (ganado=2, perdido=1, walkover
+20-0 = 2 y 0 para el ausente) más los puntos de presentación de U11 (1 por equipo
 que llega al mínimo de 12 jugadores con >= 10:00 de juego; en marcadores raros se
-valida con el acta de argentina.basketball). La UI navega Etapa → Nivel → Zona.
+valida con el acta de argentina.basketball). U9 se informa en su vista pero no
+suma a la general. La UI navega Etapa → Nivel → Zona.
 
 Ejemplos:
   python analysis/generar_standings_febamba_2026.py --progress
@@ -65,6 +66,7 @@ from ingest.febamba.standings_2026 import (
     presentacion_desde_acta,
     segundos_minimos,
     es_marcador_raro,
+    norm_zona_fase,
 )
 from ingest.febamba.mini_masc_regla_plantilla import (
     MIN_SEGUNDOS_PREMINI,
@@ -138,7 +140,7 @@ def resolver_fases(
 
 
 # --------------------------------------------------------------------------- #
-# Recolección de partidos generales (U13/U15/U17)
+# Recolección de partidos generales (U13/U15/U17/U21)
 # --------------------------------------------------------------------------- #
 def recolectar_generales(
     ges: GesDeportivaExtractor,
@@ -161,7 +163,7 @@ def recolectar_generales(
                     flush=True,
                 )
             for nombre_grupo, id_grupo in grupos.items():
-                zona = norm_zona(nombre_grupo)
+                zona = norm_zona_fase(fase_canon, nombre_grupo)
                 partidos = ges.get_info_partidos(
                     cat,
                     fecha_ini,
@@ -422,7 +424,7 @@ def recolectar_presentaciones(
             grupos = ges.get_grupos_de_fase(ID_COMPETENCIA, cat, int(id_fase))
             total_fase = 0
             for nombre_grupo, id_grupo in grupos.items():
-                zona = norm_zona(nombre_grupo)
+                zona = norm_zona_fase(fase_canon, nombre_grupo)
                 partidos = ges.get_info_partidos(
                     cat,
                     fecha_ini,
@@ -527,6 +529,11 @@ def cargar_dataset(
 ) -> Tuple[List[PartidoGeneral], List[PartidoPresentacion]]:
     generales = [PartidoGeneral(**g) for g in data.get("generales", [])]
     presentaciones = [PartidoPresentacion(**p) for p in data.get("presentaciones", [])]
+    for g in generales:
+        g.zona = norm_zona_fase(g.fase, g.zona)
+    for p in presentaciones:
+        if p.zona:
+            p.zona = norm_zona_fase(p.fase, p.zona)
     return generales, presentaciones
 
 
@@ -557,7 +564,7 @@ def construir_partidos_detalle(
 ) -> Dict[str, Dict[str, Dict[str, list]]]:
     """
     Detalle de partidos por edad -> fase -> zona, con flags de incumplimiento.
-    Para U13/U15/U17 marca no presentaciones (20-0 / 0-20 / 0-0); para U9/U11
+    Para U13/U15/U17/U21 marca no presentaciones (20-0 / 0-20 / 0-0); para U9/U11
     marca qué equipo no llegó al mínimo de jugadores o si falta el acta.
     """
     det: Dict[str, Dict[str, Dict[str, list]]] = {}
@@ -669,7 +676,7 @@ def construir_payload(
                 )
             tablas_json[fase][zona] = filas_json
 
-    # --- Tablas por categoría U13/U15/U17 ---
+    # --- Tablas por categoría U13/U15/U17/U21 ---
     cat_json: Dict[str, Dict[str, Dict[str, list]]] = {}
     for edad, fases in tablas_cat.items():
         cat_json[edad] = {}
@@ -735,7 +742,7 @@ def construir_payload(
 
     # --- Vistas disponibles ---
     vistas = [{"id": "GENERAL", "label": "General", "tipo": "general"}]
-    for edad in ["U17", "U15", "U13"]:
+    for edad in ["U21", "U17", "U15", "U13"]:
         if edad in cat_json:
             vistas.append({"id": edad, "label": _categoria_label(edad), "tipo": "categoria"})
     # U11 usa la tabla de resultados (acta) con columna de presentación.
@@ -1033,7 +1040,7 @@ def _render_html(payload: Dict[str, object]) -> str:
       const r = DATA.resumen;
       const items = [
         ["Equipos en tablas", r.filas_tabla],
-        ["Partidos U13/U15/U17", r.partidos_general],
+        ["Partidos U13/U15/U17/U21", r.partidos_general],
         ["Partidos U9/U11", r.partidos_presentacion],
       ];
       document.getElementById("stats").innerHTML = items.map(([l,n]) =>
@@ -1086,7 +1093,17 @@ def _render_html(payload: Dict[str, object]) -> str:
     }}
 
     function renderZonas() {{
-      const zonas = Object.keys((tablasDeVista())[faseActual] || {{}}).sort();
+      const raw = Object.keys((tablasDeVista())[faseActual] || {{}});
+      const peso = (z) => {{
+        const u = z.toUpperCase();
+        const reg = u.split(/\\s+/)[0];
+        const base = {{CENTRO:0, NORTE:10, OESTE:20, SUR:30, ZONA:40}}[reg] ?? 90;
+        if (u === reg) return base;           // unificada (NORTE, OESTE, …)
+        if (/\\s[AB]$/.test(u)) return base + 1 + (u.endsWith("B") ? 1 : 0);
+        if (/\\s1$/.test(u)) return base;
+        return base + 5;
+      }};
+      const zonas = raw.slice().sort((a, b) => peso(a) - peso(b) || a.localeCompare(b));
       if (!zonaActual || !zonas.includes(zonaActual)) zonaActual = zonas[0] || "";
       const sel = document.getElementById("sel-zona");
       sel.innerHTML = zonas.map(z => `<option value="${{z}}" ${{z===zonaActual?'selected':''}}>${{z}}</option>`).join("");
@@ -1367,11 +1384,11 @@ def _render_html(payload: Dict[str, object]) -> str:
       if (v.tipo === "resultado_mini") {{
         el.innerHTML = `<strong>MINI (U11).</strong> Puntos por el marcador oficial del fixture (penalizador): <em>ganar = 2</em>, <em>perder = 1</em>. En marcadores 20-0 / 0-20 / 0-0 el equipo penalizado suma <em>1 pt si presentó plantilla</em> (regla de cambios Q3) o <em>0 si no se presentó</em> (NP). <em>Pres.</em> = puntos de presentación (plantilla completa: ≥ ${{MIN_REG}} jugadores con ≥ 10:00) que alimentan la general. <em>Box</em> es el resultado real del acta, solo informativo. La tabla se ordena por puntos (Pts ↓, Pres. ↓, G ↓).`;
       }} else if (v.tipo === "presentacion") {{
-        el.innerHTML = `<strong>Puntos de presentación.</strong> Cada equipo suma 1 punto por partido salvo que no llegue a ${{MIN_REG}} jugadores con ≥ ${{minLabel(v.id)}} de juego (validado con el acta en marcadores 0-0 / 20-0 / 0-20). <em>S/dato</em> = acta no disponible.${{v.id === "U9" ? " En PREMINI el cuarto dura 8 minutos." : ""}}`;
+        el.innerHTML = `<strong>Puntos de presentación (vista ${{v.id}}).</strong> Cada equipo suma 1 punto por partido salvo que no llegue a ${{MIN_REG}} jugadores con ≥ ${{minLabel(v.id)}} de juego (validado con el acta en marcadores 0-0 / 20-0 / 0-20). <em>S/dato</em> = acta no disponible.${{v.id === "U9" ? " En PREMINI el cuarto dura 8 minutos. Esta vista es informativa: U9 no alimenta la tabla general." : ""}}`;
       }} else if (v.tipo === "categoria") {{
         el.innerHTML = `<strong>Puntos por resultado.</strong> Ganar = 2, perder = 1. Un <em>20-0</em> es no presentación: el ausente suma 0.`;
       }} else {{
-        el.innerHTML = `<strong>Tabla general.</strong> Suma los puntos de U13/U15/U17 (ganar 2, perder 1; 20-0 = 0 para el ausente) más los puntos de presentación de U9/U11 (1 por equipo que llega a ${{MIN_REG}} jugadores con ≥ 10:00).`;
+        el.innerHTML = `<strong>Tabla general.</strong> Suma los puntos de U13/U15/U17/U21 Liga Próximo (ganar 2, perder 1; 20-0 = 0 para el ausente) más los puntos de presentación de U11 (1 por equipo que llega a ${{MIN_REG}} jugadores con ≥ 10:00). U9 no suma a la general.`;
       }}
     }}
 
@@ -1452,7 +1469,7 @@ def main() -> int:
         fases_por_edad = resolver_fases(ges)
 
         if args.progress:
-            print("Descargando partidos U13/U15/U17…", file=sys.stderr)
+            print("Descargando partidos U13/U15/U17/U21…", file=sys.stderr)
         generales = recolectar_generales(
             ges,
             key=widget_key,
