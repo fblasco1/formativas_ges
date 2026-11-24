@@ -83,6 +83,8 @@ REGION_OVERRIDES_2027: Dict[str, str] = {
     clave_equipo("COLEGIALES NEGRO"): "CENTRO",
     clave_equipo("ITALIANO DE JOSE C PAZ"): "NORTE",
     clave_equipo("SAN MIGUEL BLANCO"): "NORTE",
+    clave_equipo("PORTENO ATLETICO CLUB BLANCO B"): "NORTE",
+    clave_equipo("UNIVERSIDAD DE BUENOS AIRES"): "CENTRO",
 }
 
 # Bandas de permanencia / descenso en tabla regional N4 (pos 1-indexed).
