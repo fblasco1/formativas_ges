@@ -310,6 +310,9 @@ def _asignar_niveles(mapeo: List[dict]) -> Dict[int, List[dict]]:
                         "_idx": -1,
                     }
                 enriched = dict(row)
+                # Preferir región 2027 del JSON (overrides / reequilibrio).
+                if e.get("region"):
+                    enriched["region"] = e["region"]
                 enriched["status_2027"] = e.get("status") or ""
                 enriched["detalle_2027"] = e.get("detalle") or ""
                 enriched["nivel_2026_origen"] = e.get("nivel_2026") or ""
