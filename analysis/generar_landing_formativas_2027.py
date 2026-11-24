@@ -23,6 +23,7 @@ STANDINGS_HTML = ROOT / "docs" / "formativas_2026_tabla_posiciones.html"
 STANDINGS_OUT = ROOT / "outputs" / "formativas_2026" / "tabla_posiciones.html"
 OUT_HTML = ROOT / "docs" / "propuesta_formativas_2027.html"
 NACIMIENTOS_JSON = ROOT / "outputs" / "nacimientos_formativas" / "resumen.json"
+CUMPLIMIENTO_JSON = ROOT / "outputs" / "cumplimiento" / "cumplimiento_plantillas.json"
 
 FASES_SEGUNDA = (
     "INTERCONFERENCIA_A",
@@ -177,11 +178,92 @@ def _cargar_nacimientos() -> dict:
     }
 
 
+def _cargar_cumplimiento() -> dict:
+    """% no completa plantilla + promedio en acta (Formativas 2026)."""
+    if not CUMPLIMIENTO_JSON.exists():
+        raise SystemExit(
+            f"Falta {CUMPLIMIENTO_JSON}. Corré analysis/cumplimiento_plantillas_formativas.py."
+        )
+    with CUMPLIMIENTO_JSON.open(encoding="utf-8") as f:
+        raw = json.load(f)
+
+    cats = ["U9", "U11", "U13", "U15", "U17", "U21"]
+    niveles_pref = [
+        "Interconferencia A",
+        "Interconferencia B",
+        "Nivel 1",
+        "Nivel 2",
+        "Nivel 3",
+        "Clasificatorio",
+        "Reclasificación",
+        "TOTAL",
+    ]
+    tablas: dict = {}
+    for cat in cats:
+        filas = []
+        for f in raw.get("tablas", {}).get(cat) or []:
+            filas.append(
+                {
+                    "nivel": f.get("nivel"),
+                    "ep": f.get("equipo_partidos") or 0,
+                    "pct": f.get("pct_no_completa"),
+                    "m12": f.get("menos_12") or 0,
+                    "pct_m12": f.get("pct_menos_12"),
+                    "comp": f.get("mala_composicion") or 0,
+                    "pct_comp": f.get("pct_mala_composicion"),
+                    "pct_min": f.get("pct_falla_minutos"),
+                    "pct_cua": f.get("pct_falla_cuartos"),
+                    "prom_acta": f.get("prom_acta"),
+                    "pct_lt12": f.get("pct_acta_lt12"),
+                    "pct_12_15": f.get("pct_acta_12_15"),
+                    "pct_gt15": f.get("pct_acta_gt15"),
+                    "nc": f.get("no_completa") or 0,
+                }
+            )
+        tablas[cat] = filas
+
+    totales = {}
+    for cat in cats:
+        tot = next((f for f in tablas[cat] if f["nivel"] == "TOTAL"), None)
+        if tot:
+            totales[cat] = {
+                "pct": tot["pct"],
+                "prom_acta": tot["prom_acta"],
+                "ep": tot["ep"],
+                "pct_m12": tot["pct_m12"],
+                "pct_comp": tot["pct_comp"],
+                "pct_min": tot["pct_min"],
+                "pct_cua": tot["pct_cua"],
+                "pct_lt12": tot.get("pct_lt12"),
+                "pct_12_15": tot.get("pct_12_15"),
+                "pct_gt15": tot.get("pct_gt15"),
+            }
+
+    u21 = raw.get("u21") or {}
+    return {
+        "fecha": (raw.get("fecha") or "")[:10],
+        "n_evaluaciones": raw.get("n_evaluaciones") or 0,
+        "reglas": raw.get("reglas") or {},
+        "notas": raw.get("notas") or [],
+        "cats": cats,
+        "niveles": niveles_pref,
+        "tablas": tablas,
+        "totales": totales,
+        "u21": {
+            "prom_jugadores": u21.get("prom_jugadores"),
+            "prom_u19": u21.get("prom_u19"),
+            "pct_15plus": u21.get("pct_partidos_15plus"),
+            "min_por_anio": u21.get("min_por_anio") or {},
+        },
+    }
+
+
 def generar(payload: dict, out: Path = OUT_HTML) -> Path:
     data_js = json.dumps(payload, ensure_ascii=False)
     standings = _cargar_standings_segunda()
     standings_js = json.dumps(standings, ensure_ascii=False)
     nacimientos_js = json.dumps(_cargar_nacimientos(), ensure_ascii=False)
+    cumplimiento_js = json.dumps(_cargar_cumplimiento(), ensure_ascii=False)
     colores = payload["colores_region"]
     total = payload.get("total_equipos", sum(n["n_equipos"] for n in payload["niveles"]))
 
@@ -194,6 +276,7 @@ def generar(payload: dict, out: Path = OUT_HTML) -> Path:
         .replace("__DATA_JS__", data_js)
         .replace("__STANDINGS_JS__", standings_js)
         .replace("__NACIMIENTOS_JS__", nacimientos_js)
+        .replace("__CUMPLIMIENTO_JS__", cumplimiento_js)
     )
 
     out.parent.mkdir(parents=True, exist_ok=True)
@@ -622,6 +705,10 @@ _HTML_TEMPLATE = """<!DOCTYPE html>
       width: min(380px, 100%); border: 1px solid var(--line); border-radius: 999px;
       padding: 8px 14px; font: inherit; margin: 0 0 12px; background: #fff;
     }
+    table.cum-table td.bad { color: #b91c1c; font-weight: 600; }
+    table.cum-table td.mid { color: #b45309; font-weight: 600; }
+    table.cum-table td.ok { color: #047857; }
+    #cum-tabs { margin: 0 0 12px; }
     .nac-wrap thead th { position: sticky; top: 0; z-index: 1; }
     table.mock tr.total td { background: #f8fafc; font-weight: 700; }
 
@@ -731,8 +818,10 @@ _HTML_TEMPLATE = """<!DOCTYPE html>
         <a href="#calendario">Calendario</a>
         <a href="#escenarios">Escenarios</a>
         <a href="#niveles">Niveles</a>
+        <a href="#movilidad">Ascensos</a>
         <a href="#explorador">Posiciones 2026</a>
         <a href="#nacimientos">Nacimientos</a>
+        <a href="#cumplimiento">Plantillas</a>
         <a href="#metricas">Tablas</a>
         <a href="#horarios">Horarios</a>
       </nav>
@@ -880,13 +969,71 @@ _HTML_TEMPLATE = """<!DOCTYPE html>
     </div>
   </section>
 
-  <section class="block" id="explorador">
+  <section class="block" id="movilidad">
+    <div class="wrap">
+      <p class="sec-kicker">Proyección 2027</p>
+      <h2 class="sec-title">Cómo se decide cada ascenso y descenso</h2>
+      <p class="sec-lead">
+        La movilidad de nivel se define con la <strong>tabla por tira</strong>
+        (suma U13 + U15 + U17 + U21; U11 solo aporta presentación). Equivalencia 2026→2027:
+        Inter A → N1 · Inter B → N2 · GES N1 → N3 · GES N2 → N4 · GES N3 → N5 · N6 nuevo.
+        Nadie desciende más de un escalón respecto de esa equivalencia.
+      </p>
+      <div class="grid-2">
+        <div class="panel">
+          <span class="tag tag-ok">Nivel 1 · Inter A</span>
+          <h3>Permanencia y descenso</h3>
+          <ul>
+            <li>Permanecen los primeros 6 de cada zona (por tira)</li>
+            <li>Descienden los últimos 2 de cada zona → Nivel 2 (−8)</li>
+            <li>Entran 8 ascendidos desde Nivel 2 (top 2 de cada zona Inter B)</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <span class="tag tag-mid">Nivel 2 · Inter B</span>
+          <h3>Ascenso, permanencia y descenso</h3>
+          <ul>
+            <li>Ascienden los 2 primeros de cada zona → Nivel 1 (+8)</li>
+            <li>Descienden los últimos 2 de cada zona → Nivel 3 (−8)</li>
+            <li>Entran 8 desde Nivel 3 (2 por región) y 8 desde Nivel 1</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <span class="tag tag-mid">Nivel 3 · Regional</span>
+          <h3>Desde GES Nivel 1 2026</h3>
+          <ul>
+            <li>Ascienden 2 por región → Nivel 2 (+8)</li>
+            <li>Descienden según cupo regional (para dejar N3 en 32) → Nivel 4</li>
+            <li>El resto permanece o se reubica en el pool regional N3–N6</li>
+          </ul>
+        </div>
+        <div class="panel">
+          <span class="tag tag-mid">Niveles 4, 5 y 6</span>
+          <h3>Ranking regional del remanente</h3>
+          <ul>
+            <li>Objetivo: 8 equipos por región (32 por nivel)</li>
+            <li>N4↔N5↔N6: suben/bajan por posición regional en la tira</li>
+            <li>Nivel 6 es el piso: puede recibir descendidos, no baja más</li>
+            <li>Tope: máximo 1 descenso vs. la equivalencia 2026</li>
+          </ul>
+        </div>
+      </div>
+      <div class="note-box" style="margin-top:18px">
+        Durante la temporada 2027, en cada fase de N1/N2 también hay movilidad interna
+        (últimos 2/zona descienden; en regionales ascienden 1°–2°/3° según el nivel).
+        LFF y playoff se definen <em>por categoría</em>, no por tira.
+      </div>
+    </div>
+  </section>
+
+  <section class="block alt" id="explorador">
     <div class="wrap-wide">
       <p class="sec-kicker">Tabla de posiciones 2026</p>
       <h2 class="sec-title">Segunda fase · Formativas (GES)</h2>
       <p class="sec-lead">
-        Tablas actuales de la Segunda Fase embebidas en esta página.
-        Elegí la fase y la zona. Fecha de standings: <span id="st-fecha">—</span>.
+        Tablas de la Segunda Fase embebidas en esta página (corte al
+        <span id="st-fecha">—</span>).
+        Elegí la fase y la zona. Las marcas ASC/DESC proyectan el nivel 2027.
       </p>
       <div class="nv-shell">
         <div class="nv-tabs" id="st-fase-tabs" role="tablist" aria-label="Fases Segunda 2026"></div>
@@ -896,7 +1043,7 @@ _HTML_TEMPLATE = """<!DOCTYPE html>
     </div>
   </section>
 
-  <section class="block alt" id="nacimientos">
+  <section class="block" id="nacimientos">
     <div class="wrap-wide">
       <p class="sec-kicker">Planteles 2026</p>
       <h2 class="sec-title">Jugadores por año de nacimiento</h2>
@@ -910,6 +1057,37 @@ _HTML_TEMPLATE = """<!DOCTYPE html>
       <input id="nac-q" class="nac-search" type="search" placeholder="Buscar equipo"/>
       <p class="st-meta" id="nac-nota"></p>
       <div id="nac-tabla"></div>
+    </div>
+  </section>
+
+  <section class="block alt" id="cumplimiento">
+    <div class="wrap-wide">
+      <p class="sec-kicker">Cumplimiento 2026</p>
+      <h2 class="sec-title">Completar plantilla por categoría y nivel</h2>
+      <p class="sec-lead">
+        Equipo-partido: ¿llega a 12 en acta (categoría + anterior) con el mínimo
+        de categoría propia? U9/U11/U13: 6+6…12+0 (máx. 15; todos deben jugar un cuarto)
+        · U15: 10+2…12+0 · U17: ≥8 · U21: ≥5.
+        Corte <span id="cum-fecha">—</span>.
+      </p>
+      <div class="stats" id="cum-stats"></div>
+      <p class="st-meta" id="cum-nota"></p>
+      <h3 style="margin:28px 0 10px;font-size:1.05rem">Promedio de jugadores en acta · por nivel</h3>
+      <p class="st-meta" style="margin:0 0 10px">
+        Comparación entre niveles (jugadores con minutos &gt; 0). Referencia: completar con 12;
+        en U9/U11/U13 el techo reglamentario es 15.
+      </p>
+      <div id="cum-matriz-prom"></div>
+      <h3 style="margin:32px 0 10px;font-size:1.05rem">% que no completa · por nivel</h3>
+      <div id="cum-matriz"></div>
+      <h3 style="margin:32px 0 10px;font-size:1.05rem">Detalle por categoría</h3>
+      <div class="nv-tabs" id="cum-tabs" role="tablist" aria-label="Categorías"></div>
+      <div id="cum-detalle"></div>
+      <p class="st-meta" style="margin-top:18px">
+        Minutos (10–20 / ≥10) y cuartos consecutivos o Q1+Q2 son reglas de juego aparte:
+        no restan del cupo de 12. Informe técnico:
+        <a href="cumplimiento_plantillas_formativas.html">cumplimiento_plantillas_formativas.html</a>.
+      </p>
     </div>
   </section>
 
@@ -1163,6 +1341,7 @@ const COLORS = DATA.colores_region;
 const REGION_ORDER = ['CENTRO', 'NORTE', 'OESTE', 'SUR'];
 const STANDINGS = __STANDINGS_JS__;
 const NACIMIENTOS = __NACIMIENTOS_JS__;
+const CUMPLIMIENTO = __CUMPLIMIENTO_JS__;
 
 /* —— Niveles: tabs + mocks gráficos —— */
 const NIVELES_FMT = [
@@ -1877,6 +2056,170 @@ function renderNacimientos() {
   if (!input || !NACIMIENTOS) return;
   input.addEventListener("input", renderNacimientos);
   renderNacimientos();
+})();
+
+function cumPct(v) {
+  if (v == null || v === "") return "—";
+  return Number(v).toFixed(1).replace(/\\.0$/, "") + "%";
+}
+function cumNum(v) {
+  if (v == null || v === "") return "—";
+  return String(v).replace(".", ",");
+}
+function cumShare(part, whole) {
+  if (!whole) return "—";
+  return cumPct((100 * part) / whole);
+}
+function cumClsProm(v, cat) {
+  if (v == null || v === "") return "";
+  const n = Number(v);
+  if (cat === "U17") return n >= 8 ? "ok" : "bad";
+  if (cat === "U21") return n >= 5 ? "ok" : "bad";
+  // U9-U15 cupo 12; techo 15 en U9-U13
+  if (n < 12) return "bad";
+  if (n <= 15) return "ok";
+  return "mid";
+}
+function renderCumplimiento(catActiva) {
+  const data = CUMPLIMIENTO || {};
+  const cats = data.cats || [];
+  const totales = data.totales || {};
+  const fechaEl = document.getElementById("cum-fecha");
+  if (fechaEl) fechaEl.textContent = data.fecha || "—";
+  const stats = document.getElementById("cum-stats");
+  if (stats) {
+    stats.innerHTML = cats.map(c => {
+      const t = totales[c] || {};
+      return `<div class="stat"><b>${cumNum(t.prom_acta)}</b><span>${c} · prom. en acta</span></div>`;
+    }).join("");
+  }
+  const nota = document.getElementById("cum-nota");
+  if (nota) {
+    nota.textContent = (data.n_evaluaciones || 0).toLocaleString("es-AR") +
+      " equipo-partidos. U9/U11/U13: completar ≥12 y hasta 15 (todos juegan un cuarto). " +
+      "El no-completa es casi siempre menos de 12 en acta.";
+  }
+  const nivelesMat = (data.niveles || []).filter(n => n !== "Otro");
+  const head = ["Nivel", ...cats].map((h, i) =>
+    `<th class="${i ? "num" : ""}">${h}</th>`
+  ).join("");
+
+  // Matriz promedio en acta (comparación entre niveles)
+  const filasProm = nivelesMat.map(niv => {
+    const celdas = cats.map(c => {
+      const f = (data.tablas[c] || []).find(x => x.nivel === niv);
+      const prom = f ? f.prom_acta : null;
+      return `<td class="num ${cumClsProm(prom, c)}">${cumNum(prom)}</td>`;
+    }).join("");
+    const strong = niv === "TOTAL" ? " class='total'" : "";
+    return `<tr${strong}><td>${niv}</td>${celdas}</tr>`;
+  }).join("");
+  const matrizProm = document.getElementById("cum-matriz-prom");
+  if (matrizProm) {
+    matrizProm.innerHTML = `
+      <div class="mock-table-wrap" style="overflow:auto">
+        <table class="mock cum-table">
+          <thead><tr>${head}</tr></thead>
+          <tbody>${filasProm}</tbody>
+        </table>
+      </div>`;
+  }
+
+  // Matriz % no completa
+  const filasMat = nivelesMat.map(niv => {
+    const celdas = cats.map(c => {
+      const f = (data.tablas[c] || []).find(x => x.nivel === niv);
+      const pct = f ? f.pct : null;
+      const cls = pct == null ? "" : (pct >= 50 ? "bad" : pct >= 25 ? "mid" : "ok");
+      return `<td class="num ${cls}">${cumPct(pct)}</td>`;
+    }).join("");
+    const strong = niv === "TOTAL" ? " class='total'" : "";
+    return `<tr${strong}><td>${niv}</td>${celdas}</tr>`;
+  }).join("");
+  const matriz = document.getElementById("cum-matriz");
+  if (matriz) {
+    matriz.innerHTML = `
+      <div class="mock-table-wrap" style="overflow:auto">
+        <table class="mock cum-table">
+          <thead><tr>${head}</tr></thead>
+          <tbody>${filasMat}</tbody>
+        </table>
+      </div>`;
+  }
+
+  const cat = catActiva || cats[0] || "U9";
+  const tabs = document.getElementById("cum-tabs");
+  if (tabs && !tabs.dataset.ready) {
+    tabs.innerHTML = cats.map(c =>
+      `<button type="button" role="tab" data-cat="${c}" class="${c === cat ? "active" : ""}">${c}</button>`
+    ).join("");
+    tabs.dataset.ready = "1";
+    tabs.addEventListener("click", (ev) => {
+      const b = ev.target.closest("button[data-cat]");
+      if (!b) return;
+      tabs.querySelectorAll("button").forEach(x => x.classList.toggle("active", x === b));
+      renderCumplimiento(b.getAttribute("data-cat"));
+    });
+  }
+  const filas = (data.tablas[cat] || []).filter(f => f.nivel !== "Otro");
+  const regla = (data.reglas || {})[
+    cat === "U9" || cat === "U11" || cat === "U13" ? "U9/U11/U13" : cat
+  ] || "";
+  const det = document.getElementById("cum-detalle");
+  if (!det) return;
+  const esMini = cat === "U9" || cat === "U11" || cat === "U13";
+  const headD = (
+    esMini
+      ? ["Nivel", "Equipo-partidos", "Prom. en acta", "% &lt;12", "% 12–15", "% &gt;15",
+         "% no completa", "% viola min", "% viola cuartos"]
+      : ["Nivel", "Equipo-partidos", "Prom. en acta", "% no completa",
+         "% &lt;12 cupo", "Share &lt;12", "% mala comp.",
+         "% viola min", "% viola cuartos"]
+  ).map((h, i) => `<th class="${i ? "num" : ""}">${h}</th>`).join("");
+  const bodyD = filas.map(f => {
+    const strong = f.nivel === "TOTAL" ? " class='total'" : "";
+    if (esMini) {
+      return `<tr${strong}>
+        <td>${f.nivel}</td>
+        <td class="num">${(f.ep || 0).toLocaleString("es-AR")}</td>
+        <td class="num">${cumNum(f.prom_acta)}</td>
+        <td class="num">${cumPct(f.pct_lt12)}</td>
+        <td class="num">${cumPct(f.pct_12_15)}</td>
+        <td class="num">${cumPct(f.pct_gt15)}</td>
+        <td class="num">${cumPct(f.pct)}</td>
+        <td class="num">${cumPct(f.pct_min)}</td>
+        <td class="num">${cumPct(f.pct_cua)}</td>
+      </tr>`;
+    }
+    return `<tr${strong}>
+      <td>${f.nivel}</td>
+      <td class="num">${(f.ep || 0).toLocaleString("es-AR")}</td>
+      <td class="num">${cumNum(f.prom_acta)}</td>
+      <td class="num">${cumPct(f.pct)}</td>
+      <td class="num">${cumPct(f.pct_m12)}</td>
+      <td class="num">${cumShare(f.m12, f.nc)}</td>
+      <td class="num">${cumPct(f.pct_comp)}</td>
+      <td class="num">${cumPct(f.pct_min)}</td>
+      <td class="num">${cumPct(f.pct_cua)}</td>
+    </tr>`;
+  }).join("");
+  det.innerHTML = `
+    <p class="st-meta" style="margin:8px 0 12px">${regla}</p>
+    <div class="mock-table-wrap" style="overflow:auto">
+      <table class="mock cum-table">
+        <thead><tr>${headD}</tr></thead>
+        <tbody>${bodyD}</tbody>
+      </table>
+    </div>
+    <p class="st-meta" style="margin-top:10px">${
+      esMini
+        ? "Bandas de tamaño de acta: &lt;12 (no completa), 12–15 (rango permitido), &gt;15 (sobre el máximo)."
+        : "Share = proporción dentro de los equipo-partidos que no completan plantilla."
+    }</p>`;
+}
+(function initCumplimiento() {
+  if (!CUMPLIMIENTO || !document.getElementById("cumplimiento")) return;
+  renderCumplimiento("U9");
 })();
 
 (function initNiveles() {

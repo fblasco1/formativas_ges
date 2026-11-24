@@ -1437,6 +1437,12 @@ def main() -> int:
     p.add_argument("--widget-key", default="", help="Default: config/competencias.json")
     p.add_argument("--fecha-ini", default="2025-1-1")
     p.add_argument("--fecha-fin", default="2026-12-31")
+    p.add_argument(
+        "--fecha-corte",
+        default="",
+        help="Incluye solo partidos hasta esta fecha (YYYY-MM-DD o DD/MM/YYYY). "
+        "También fija la fecha de actualización del informe.",
+    )
     p.add_argument("--out-html", default=str(OUT_HTML))
     p.add_argument("--out-json", default=str(OUT_JSON))
     p.add_argument("--desde-json", default="", help="Saltea la descarga y usa el dataset cacheado")
@@ -1451,7 +1457,24 @@ def main() -> int:
     p.add_argument("--progress", action="store_true")
     args = p.parse_args()
 
-    fecha_actualizacion = date.today().strftime("%d/%m/%Y")
+    corte_key: Optional[Tuple[int, int, int, int, int]] = None
+    if args.fecha_corte:
+        raw = str(args.fecha_corte).strip()
+        if "/" in raw:
+            # DD/MM/YYYY
+            d, m, y = (int(x) for x in raw.split("/")[:3])
+            fecha_actualizacion = f"{d:02d}/{m:02d}/{y}"
+            corte_key = (y, m, d, 23, 59)
+        else:
+            # YYYY-MM-DD
+            y, m, d = (int(x) for x in raw.replace("/", "-").split("-")[:3])
+            fecha_actualizacion = f"{d:02d}/{m:02d}/{y}"
+            corte_key = (y, m, d, 23, 59)
+        # Alinear ventana de descarga al corte si el usuario no la acotó.
+        if args.fecha_fin == "2026-12-31":
+            args.fecha_fin = f"{y}-{m}-{d}"
+    else:
+        fecha_actualizacion = date.today().strftime("%d/%m/%Y")
     OUT_DIR.mkdir(parents=True, exist_ok=True)
 
     if args.desde_json:
@@ -1497,6 +1520,17 @@ def main() -> int:
             json.dumps(serializar_dataset(generales, presentaciones), ensure_ascii=False, indent=2),
             encoding="utf-8",
         )
+
+    if corte_key is not None:
+        n_g0, n_p0 = len(generales), len(presentaciones)
+        generales = [g for g in generales if _fecha_key(g.fecha) <= corte_key]
+        presentaciones = [p for p in presentaciones if _fecha_key(p.fecha) <= corte_key]
+        if args.progress:
+            print(
+                f"Corte {fecha_actualizacion}: generales {n_g0}→{len(generales)}, "
+                f"presentaciones {n_p0}→{len(presentaciones)}",
+                file=sys.stderr,
+            )
 
     boxscores: Dict[str, Dict[str, object]] = {}
     if not args.sin_boxscores:
