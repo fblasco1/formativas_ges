@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-08-29T01:04:21-03:00",
+  "generated_at": "2026-11-23T19:31:19-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -13,7 +13,7 @@
       "categoria": "SUP",
       "rival": "UNIVERSIDAD DE BUENOS AIRES B",
       "localia": "Visitante",
-      "direccion": "Av Libertador 7501, Ciudad Autónoma de Buenos Aires",
+      "direccion": "manual",
       "resultado": "62-48",
       "espacio": null
     },
@@ -481,7 +481,7 @@
       "categoria": "U15 Fem",
       "rival": "MUNICIPALIDAD TRES DE FEBRERO",
       "localia": "Visitante",
-      "direccion": "Islas Malvinas 2681, Villa San Andrés, Provincia de Buenos Aires",
+      "direccion": "Juan B Alberdi 5470",
       "resultado": "33-57",
       "espacio": null
     },
@@ -494,7 +494,7 @@
       "categoria": "U13 Fem",
       "rival": "MUNICIPALIDAD TRES DE FEBRERO",
       "localia": "Visitante",
-      "direccion": "Islas Malvinas 2681, Villa San Andrés, Provincia de Buenos Aires",
+      "direccion": "Juan B Alberdi 5470",
       "resultado": "16-73",
       "espacio": null
     },
@@ -507,7 +507,7 @@
       "categoria": "U11 Fem",
       "rival": "MUNICIPALIDAD TRES DE FEBRERO",
       "localia": "Visitante",
-      "direccion": "Islas Malvinas 2681, Villa San Andrés, Provincia de Buenos Aires",
+      "direccion": "Juan B Alberdi 5470",
       "resultado": "30-31",
       "espacio": null
     },
@@ -572,7 +572,7 @@
       "categoria": "SUP",
       "rival": "VELEZ SARSFIELD",
       "localia": "Visitante",
-      "direccion": "manual",
+      "direccion": "Juan B Justo 9200",
       "resultado": "79-82",
       "espacio": null
     },
@@ -1664,7 +1664,7 @@
       "categoria": "SUP",
       "rival": "HURACAN DE SAN JUSTO",
       "localia": "Visitante",
-      "direccion": "Dr Ignacio Arieta 2967, 1754",
+      "direccion": "Dr Ignacio Arieta 2967, CP 1754",
       "resultado": "61-76",
       "espacio": null
     },
@@ -1768,7 +1768,7 @@
       "categoria": "U17 Flex",
       "rival": "ATENEO POPULAR VERSAILLES A",
       "localia": "Visitante",
-      "direccion": "Roma 950, 1408",
+      "direccion": "Roma 950, CP 1408",
       "resultado": "17-71",
       "espacio": null
     },
@@ -1847,7 +1847,7 @@
       "rival": "ATENEO POPULAR VERSAILLES",
       "localia": "Visitante",
       "direccion": "Roma 950, 1408",
-      "resultado": "",
+      "resultado": "0-20",
       "espacio": null
     },
     {
@@ -2015,7 +2015,7 @@
       "categoria": "U15 Fem",
       "rival": "GIMNASIA Y ESGRIMA DE VILLA DEL PARQUE",
       "localia": "Visitante",
-      "direccion": "Salguero 63, Lomas de Zamora, Provincia de Buenos Aires",
+      "direccion": "Tinogasta 3455, CP 1417",
       "resultado": "25-46",
       "espacio": null
     },
@@ -2054,7 +2054,7 @@
       "categoria": "U11 Fem",
       "rival": "GIMNASIA Y ESGRIMA DE VILLA DEL PARQUE",
       "localia": "Visitante",
-      "direccion": "Salguero 63, Lomas de Zamora, Provincia de Buenos Aires",
+      "direccion": "Tinogasta 3455, CP 1417",
       "resultado": "38-32",
       "espacio": null
     },
@@ -2094,7 +2094,7 @@
       "rival": "ARGENTINOS JRS Flex",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "0-20",
       "espacio": null
     },
     {
@@ -2847,7 +2847,7 @@
       "categoria": "U17 Flex",
       "rival": "CLUB ATLETICO PALERMO - FLEX",
       "localia": "Visitante",
-      "direccion": "Andrade 3052, 1878",
+      "direccion": "SIN CANCHA, CP C1425FVD",
       "resultado": "30-92",
       "espacio": null
     },
@@ -2873,7 +2873,7 @@
       "categoria": "U15 Flex",
       "rival": "CLUB ATLETICO PALERMO - FLEX",
       "localia": "Visitante",
-      "direccion": "Andrade 3052, 1878",
+      "direccion": "SIN CANCHA, CP C1425FVD",
       "resultado": "38-37",
       "espacio": null
     },
@@ -2939,7 +2939,7 @@
       "rival": "ARQUITECTURA C ROJO",
       "localia": "Visitante",
       "direccion": "",
-      "resultado": "",
+      "resultado": "0-20",
       "espacio": null
     },
     {
@@ -2951,7 +2951,7 @@
       "categoria": "SUP Flex",
       "rival": "CLUB ALMAGRO - FLEX",
       "localia": "Visitante",
-      "direccion": "",
+      "direccion": "NO CUENTA CON CANCHA",
       "resultado": "68-63",
       "espacio": null
     },
@@ -3406,7 +3406,7 @@
       "categoria": "SUP",
       "rival": "SAN LORENZO A",
       "localia": "Visitante",
-      "direccion": "Av. Varela 2706, Flores, Ciudad Autónoma de Buenos Aires",
+      "direccion": "Varela 2706, CP 1437",
       "resultado": "48-61",
       "espacio": null
     },
@@ -3862,7 +3862,7 @@
       "rival": "HARRODS GATH Y CHAVES",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "0-20",
       "espacio": null
     },
     {
@@ -3874,7 +3874,7 @@
       "categoria": "SUP Flex",
       "rival": "ALL BOYS B",
       "localia": "Visitante",
-      "direccion": "Alvarez Jonte 4180, 1407",
+      "direccion": "Alvarez Jonte 4180, CP 1407",
       "resultado": "70-50",
       "espacio": null
     },
@@ -3940,7 +3940,7 @@
       "rival": "OBRAS BASKET",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "1-0",
       "espacio": null
     },
     {
@@ -4290,7 +4290,7 @@
       "categoria": "SUP Flex",
       "rival": "JOSE HERNANDEZ",
       "localia": "Visitante",
-      "direccion": "Bragado 5950, 1440",
+      "direccion": "Bragado 5950, CP 1440",
       "resultado": "44-62",
       "espacio": null
     },
@@ -4525,7 +4525,7 @@
       "rival": "RACING ANEXO",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "34-31",
+      "resultado": "20-0",
       "espacio": null
     },
     {
@@ -4538,7 +4538,7 @@
       "rival": "RACING ANEXO",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "4-42",
+      "resultado": "20-0",
       "espacio": null
     },
     {
@@ -4686,6 +4686,19 @@
     },
     {
       "source": "febamba_ges",
+      "external_id": "3EIzjwJvvp7wBtRIt3utdg",
+      "fecha": "2026-08-23",
+      "hora": "0:00",
+      "tira": "—",
+      "categoria": "U13 Fem",
+      "rival": "HURACAN DE SAN JUSTO",
+      "localia": "Visitante",
+      "direccion": "Dr Ignacio Arieta 2967, CP 1754",
+      "resultado": "",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
       "external_id": "iTU1QIRn0elpjAvauLlK4g",
       "fecha": "2026-08-23",
       "hora": "11:00",
@@ -4732,7 +4745,7 @@
       "categoria": "Liga Metro",
       "rival": "JOSE HERNANDEZ",
       "localia": "Visitante",
-      "direccion": "Bragado 5950, 1440",
+      "direccion": "Bragado 5950, CP 1440",
       "resultado": "77-78",
       "espacio": null
     },
@@ -4745,7 +4758,7 @@
       "categoria": "U11 Fem",
       "rival": "HURACAN DE SAN JUSTO",
       "localia": "Visitante",
-      "direccion": "Dr Ignacio Arieta 2967, 1754",
+      "direccion": "Dr Ignacio Arieta 2967, CP 1754",
       "resultado": "45-25",
       "espacio": null
     },
@@ -4785,7 +4798,7 @@
       "rival": "IMPERIO NEGRO B",
       "localia": "Visitante",
       "direccion": "manual",
-      "resultado": "",
+      "resultado": "33-61",
       "espacio": null
     },
     {
@@ -4798,7 +4811,7 @@
       "rival": "SAN MIGUEL Verde",
       "localia": "Visitante",
       "direccion": "manual",
-      "resultado": "",
+      "resultado": "77-54",
       "espacio": null
     },
     {
@@ -4811,7 +4824,7 @@
       "rival": "IMPERIO NEGRO B",
       "localia": "Visitante",
       "direccion": "manual",
-      "resultado": "",
+      "resultado": "44-62",
       "espacio": null
     },
     {
@@ -4824,7 +4837,7 @@
       "rival": "SAN MIGUEL Verde",
       "localia": "Visitante",
       "direccion": "manual",
-      "resultado": "",
+      "resultado": "59-45",
       "espacio": null
     },
     {
@@ -4837,7 +4850,7 @@
       "rival": "IMPERIO NEGRO B",
       "localia": "Visitante",
       "direccion": "manual",
-      "resultado": "",
+      "resultado": "39-31",
       "espacio": null
     },
     {
@@ -4850,7 +4863,7 @@
       "rival": "SAN MIGUEL Verde",
       "localia": "Visitante",
       "direccion": "manual",
-      "resultado": "",
+      "resultado": "60-53",
       "espacio": null
     },
     {
@@ -4863,7 +4876,7 @@
       "rival": "IMPERIO NEGRO B",
       "localia": "Visitante",
       "direccion": "manual",
-      "resultado": "",
+      "resultado": "55-28",
       "espacio": null
     },
     {
@@ -4876,7 +4889,7 @@
       "rival": "SAN MIGUEL Verde",
       "localia": "Visitante",
       "direccion": "manual",
-      "resultado": "",
+      "resultado": "20-0",
       "espacio": null
     },
     {
@@ -4889,7 +4902,7 @@
       "rival": "IMPERIO NEGRO B",
       "localia": "Visitante",
       "direccion": "manual",
-      "resultado": "",
+      "resultado": "0-1",
       "espacio": null
     },
     {
@@ -4902,7 +4915,7 @@
       "rival": "SAN MIGUEL Verde",
       "localia": "Visitante",
       "direccion": "manual",
-      "resultado": "",
+      "resultado": "20-0",
       "espacio": null
     },
     {
@@ -4915,7 +4928,7 @@
       "rival": "IMPERIO NEGRO B",
       "localia": "Visitante",
       "direccion": "manual",
-      "resultado": "",
+      "resultado": "68-43",
       "espacio": null
     },
     {
@@ -4928,7 +4941,7 @@
       "rival": "SAN MIGUEL Verde",
       "localia": "Visitante",
       "direccion": "manual",
-      "resultado": "",
+      "resultado": "62-61",
       "espacio": null
     },
     {
@@ -4941,7 +4954,7 @@
       "rival": "ARGENTINO DE CASTELAR NORTE A",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "58-80",
       "espacio": null
     },
     {
@@ -4953,8 +4966,8 @@
       "categoria": "U17 Flex",
       "rival": "ESTUDIANTIL PORTEÑO",
       "localia": "Visitante",
-      "direccion": "Coronel Barcala 716, 1704",
-      "resultado": "",
+      "direccion": "Coronel Barcala 716, CP 1704",
+      "resultado": "45-66",
       "espacio": null
     },
     {
@@ -4967,7 +4980,7 @@
       "rival": "ARGENTINO DE CASTELAR NORTE A",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "62-3",
       "espacio": null
     },
     {
@@ -4979,8 +4992,8 @@
       "categoria": "U15 Flex",
       "rival": "ESTUDIANTIL PORTEÑO",
       "localia": "Visitante",
-      "direccion": "Coronel Barcala 716, 1704",
-      "resultado": "",
+      "direccion": "Coronel Barcala 716, CP 1704",
+      "resultado": "44-46",
       "espacio": null
     },
     {
@@ -4993,7 +5006,7 @@
       "rival": "LAS HERAS",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "25-31",
       "espacio": null
     },
     {
@@ -5005,8 +5018,8 @@
       "categoria": "U13 Flex",
       "rival": "ESTUDIANTIL PORTEÑO",
       "localia": "Visitante",
-      "direccion": "Coronel Barcala 716, 1704",
-      "resultado": "",
+      "direccion": "Coronel Barcala 716, CP 1704",
+      "resultado": "39-36",
       "espacio": null
     },
     {
@@ -5019,7 +5032,7 @@
       "rival": "LAS HERAS",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "80-6",
       "espacio": null
     },
     {
@@ -5032,7 +5045,7 @@
       "rival": "ATENEO POPULAR VERSAILLES",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "45-51",
       "espacio": null
     },
     {
@@ -5044,8 +5057,8 @@
       "categoria": "Liga Metro",
       "rival": "CLUB ATLETICO PILAR",
       "localia": "Visitante",
-      "direccion": "Andrade 3052, 1878",
-      "resultado": "",
+      "direccion": "ITUZAINGO 759, CP 2800",
+      "resultado": "59-69",
       "espacio": null
     },
     {
@@ -5058,7 +5071,7 @@
       "rival": "ATENEO POPULAR VERSAILLES",
       "localia": "Visitante",
       "direccion": "Roma 950, 1408",
-      "resultado": "",
+      "resultado": "70-57",
       "espacio": null
     },
     {
@@ -5071,7 +5084,7 @@
       "rival": "COMUNICACIONES NEGRO B",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "20-0",
       "espacio": null
     },
     {
@@ -5084,7 +5097,7 @@
       "rival": "COMUNICACIONES NEGRO B",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "20-0",
       "espacio": null
     },
     {
@@ -5097,7 +5110,7 @@
       "rival": "CLUB EL TALAR",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "70-98",
       "espacio": null
     },
     {
@@ -5110,7 +5123,7 @@
       "rival": "DEFENSORES DE HURLINGHAM VERDE",
       "localia": "Visitante",
       "direccion": "Dr Delfor Diaz 1846, 1686",
-      "resultado": "",
+      "resultado": "75-64",
       "espacio": null
     },
     {
@@ -5123,150 +5136,98 @@
       "rival": "DEFENSORES DE HURLINGHAM VERDE",
       "localia": "Visitante",
       "direccion": "Dr Delfor Diaz 1846, 1686",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
-      "external_id": "J_2pEcNT1AbGbrj3mPzPaQ",
-      "fecha": "2026-09-05",
-      "hora": "12:30",
-      "tira": "AZUL",
-      "categoria": "U13",
-      "rival": "DEFENSORES DE HURLINGHAM VERDE",
-      "localia": "Visitante",
-      "direccion": "Dr Delfor Diaz 1846, 1686",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
-      "external_id": "FXQVq0riECa_RUXsfCue9g",
-      "fecha": "2026-09-05",
-      "hora": "14:00",
-      "tira": "AZUL",
-      "categoria": "U11",
-      "rival": "DEFENSORES DE HURLINGHAM VERDE",
-      "localia": "Visitante",
-      "direccion": "Dr Delfor Diaz 1846, 1686",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
-      "external_id": "whmqyCG-LsEayujuvUUsFQ",
-      "fecha": "2026-09-05",
-      "hora": "15:30",
-      "tira": "AZUL",
-      "categoria": "U9",
-      "rival": "DEFENSORES DE HURLINGHAM VERDE",
-      "localia": "Visitante",
-      "direccion": "Dr Delfor Diaz 1846, 1686",
-      "resultado": "",
+      "resultado": "94-51",
       "espacio": null
     },
     {
       "source": "febamba_ges",
       "external_id": "-fH3o5VpmZO9D0e-7dHMhw",
       "fecha": "2026-09-05",
-      "hora": "18:00",
+      "hora": "12:30",
       "tira": "AZUL",
       "categoria": "U21",
       "rival": "DEFENSORES DE HURLINGHAM VERDE",
       "localia": "Visitante",
       "direccion": "Dr Delfor Diaz 1846, 1686",
-      "resultado": "",
+      "resultado": "65-54",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "J_2pEcNT1AbGbrj3mPzPaQ",
+      "fecha": "2026-09-05",
+      "hora": "14:00",
+      "tira": "AZUL",
+      "categoria": "U13",
+      "rival": "DEFENSORES DE HURLINGHAM VERDE",
+      "localia": "Visitante",
+      "direccion": "Dr Delfor Diaz 1846, 1686",
+      "resultado": "53-70",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "FXQVq0riECa_RUXsfCue9g",
+      "fecha": "2026-09-05",
+      "hora": "15:30",
+      "tira": "AZUL",
+      "categoria": "U11",
+      "rival": "DEFENSORES DE HURLINGHAM VERDE",
+      "localia": "Visitante",
+      "direccion": "Dr Delfor Diaz 1846, 1686",
+      "resultado": "75-33",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "whmqyCG-LsEayujuvUUsFQ",
+      "fecha": "2026-09-05",
+      "hora": "17:00",
+      "tira": "AZUL",
+      "categoria": "U9",
+      "rival": "DEFENSORES DE HURLINGHAM VERDE",
+      "localia": "Visitante",
+      "direccion": "Dr Delfor Diaz 1846, 1686",
+      "resultado": "63-12",
       "espacio": null
     },
     {
       "source": "febamba_ges",
       "external_id": "DL8dWfV-HPybVgXteYq7NA",
       "fecha": "2026-09-06",
-      "hora": "10:00",
+      "hora": "9:00",
       "tira": "FLEX",
       "categoria": "U17 Flex",
       "rival": "ATENEO POPULAR VERSAILLES A",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
-      "external_id": "mLNPcIYCis8kMBPblSx8MA",
-      "fecha": "2026-09-06",
-      "hora": "11:00",
-      "tira": "—",
-      "categoria": "U15 Fem",
-      "rival": "BECCAR",
-      "localia": "Local",
-      "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "18-66",
       "espacio": null
     },
     {
       "source": "febamba_ges",
       "external_id": "3CaDit0mwDMajszCbFMWGA",
       "fecha": "2026-09-06",
-      "hora": "11:30",
+      "hora": "10:30",
       "tira": "FLEX",
       "categoria": "U15 Flex",
       "rival": "ATENEO POPULAR VERSAILLES",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
-      "external_id": "4-yT2RQBiEz9ODVdPHVcFw",
-      "fecha": "2026-09-06",
-      "hora": "12:30",
-      "tira": "—",
-      "categoria": "U13 Fem",
-      "rival": "BECCAR",
-      "localia": "Local",
-      "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "23-49",
       "espacio": null
     },
     {
       "source": "febamba_ges",
       "external_id": "lqQsK_a44vm1knNDv0865A",
       "fecha": "2026-09-06",
-      "hora": "13:00",
+      "hora": "12:00",
       "tira": "FLEX",
       "categoria": "U13 Flex",
       "rival": "ATENEO POPULAR VERSAILLES",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
-      "external_id": "YgggyR8vvKPiIVuGjATRow",
-      "fecha": "2026-09-06",
-      "hora": "14:00",
-      "tira": "—",
-      "categoria": "U11 Fem",
-      "rival": "BECCAR",
-      "localia": "Local",
-      "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
-      "external_id": "1Ti2pt6iNxl0G2c4svsqsQ",
-      "fecha": "2026-09-06",
-      "hora": "15:30",
-      "tira": "—",
-      "categoria": "U9 Fem",
-      "rival": "BECCAR",
-      "localia": "Local",
-      "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "35-28",
       "espacio": null
     },
     {
@@ -5278,8 +5239,8 @@
       "categoria": "Liga Metro",
       "rival": "CLUB ITALIANO",
       "localia": "Visitante",
-      "direccion": "",
-      "resultado": "",
+      "direccion": "Av Rivadavia 4731, CP 1424",
+      "resultado": "69-53",
       "espacio": null
     },
     {
@@ -5292,7 +5253,7 @@
       "rival": "LANUS A",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "64-66",
       "espacio": null
     },
     {
@@ -5305,7 +5266,7 @@
       "rival": "ITALIANO B",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "58-56",
       "espacio": null
     },
     {
@@ -5318,20 +5279,7 @@
       "rival": "CLUB NAUTICO BUCHARDO",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
-      "external_id": "WpGbqNyOqACEUTQ159gWPA",
-      "fecha": "2026-09-12",
-      "hora": "9:30",
-      "tira": "AMARILLO",
-      "categoria": "U17",
-      "rival": "JOSE HERNANDEZ \"B\"",
-      "localia": "Local",
-      "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "78-63",
       "espacio": null
     },
     {
@@ -5344,20 +5292,7 @@
       "rival": "ITALIANO",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
-      "external_id": "kk6SasD1bztE3eaMfYDeyQ",
-      "fecha": "2026-09-12",
-      "hora": "11:00",
-      "tira": "AMARILLO",
-      "categoria": "U15",
-      "rival": "JOSE HERNANDEZ \"B\"",
-      "localia": "Local",
-      "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "59-103",
       "espacio": null
     },
     {
@@ -5370,20 +5305,7 @@
       "rival": "ITALIANO",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
-      "external_id": "snxUiH97qSp8I4hvQhS4gQ",
-      "fecha": "2026-09-12",
-      "hora": "12:30",
-      "tira": "AMARILLO",
-      "categoria": "U13",
-      "rival": "JOSE HERNANDEZ \"B\"",
-      "localia": "Local",
-      "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "63-74",
       "espacio": null
     },
     {
@@ -5396,20 +5318,7 @@
       "rival": "ITALIANO",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
-      "external_id": "b1PF4WJ0Ie67BuptljD29g",
-      "fecha": "2026-09-12",
-      "hora": "14:00",
-      "tira": "AMARILLO",
-      "categoria": "U11",
-      "rival": "JOSE HERNANDEZ \"B\"",
-      "localia": "Local",
-      "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "67-48",
       "espacio": null
     },
     {
@@ -5422,20 +5331,7 @@
       "rival": "ITALIANO",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
-      "external_id": "a_6drQVZ2fPayF0BiCJFgg",
-      "fecha": "2026-09-12",
-      "hora": "15:30",
-      "tira": "AMARILLO",
-      "categoria": "U9",
-      "rival": "JOSE HERNANDEZ \"B\"",
-      "localia": "Local",
-      "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "20-0",
       "espacio": null
     },
     {
@@ -5448,20 +5344,7 @@
       "rival": "ITALIANO",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
-      "external_id": "CgVlwzZgwwvA8Aslbn6yZg",
-      "fecha": "2026-09-12",
-      "hora": "17:00",
-      "tira": "AMARILLO",
-      "categoria": "U21",
-      "rival": "JOSE HERNANDEZ \"B\"",
-      "localia": "Local",
-      "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "44-10",
       "espacio": null
     },
     {
@@ -5474,7 +5357,33 @@
       "rival": "ITALIANO",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "79-65",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "WpGbqNyOqACEUTQ159gWPA",
+      "fecha": "2026-09-13",
+      "hora": "9:30",
+      "tira": "AMARILLO",
+      "categoria": "U17",
+      "rival": "JOSE HERNANDEZ \"B\"",
+      "localia": "Local",
+      "direccion": "Portela 836, CABA (CP 1406)",
+      "resultado": "31-60",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "kk6SasD1bztE3eaMfYDeyQ",
+      "fecha": "2026-09-13",
+      "hora": "11:00",
+      "tira": "AMARILLO",
+      "categoria": "U15",
+      "rival": "JOSE HERNANDEZ \"B\"",
+      "localia": "Local",
+      "direccion": "Portela 836, CABA (CP 1406)",
+      "resultado": "55-37",
       "espacio": null
     },
     {
@@ -5487,7 +5396,59 @@
       "rival": "ARGENTINOS JUNIORS",
       "localia": "Visitante",
       "direccion": "Tronador 41, Ciudad Autónoma de Buenos Aires",
-      "resultado": "",
+      "resultado": "23-47",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "snxUiH97qSp8I4hvQhS4gQ",
+      "fecha": "2026-09-13",
+      "hora": "12:30",
+      "tira": "AMARILLO",
+      "categoria": "U13",
+      "rival": "JOSE HERNANDEZ \"B\"",
+      "localia": "Local",
+      "direccion": "Portela 836, CABA (CP 1406)",
+      "resultado": "32-64",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "b1PF4WJ0Ie67BuptljD29g",
+      "fecha": "2026-09-13",
+      "hora": "14:00",
+      "tira": "AMARILLO",
+      "categoria": "U11",
+      "rival": "JOSE HERNANDEZ \"B\"",
+      "localia": "Local",
+      "direccion": "Portela 836, CABA (CP 1406)",
+      "resultado": "40-54",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "a_6drQVZ2fPayF0BiCJFgg",
+      "fecha": "2026-09-13",
+      "hora": "15:30",
+      "tira": "AMARILLO",
+      "categoria": "U9",
+      "rival": "JOSE HERNANDEZ \"B\"",
+      "localia": "Local",
+      "direccion": "Portela 836, CABA (CP 1406)",
+      "resultado": "0-1",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "CgVlwzZgwwvA8Aslbn6yZg",
+      "fecha": "2026-09-13",
+      "hora": "17:00",
+      "tira": "AMARILLO",
+      "categoria": "U21",
+      "rival": "JOSE HERNANDEZ \"B\"",
+      "localia": "Local",
+      "direccion": "Portela 836, CABA (CP 1406)",
+      "resultado": "41-65",
       "espacio": null
     },
     {
@@ -5500,7 +5461,7 @@
       "rival": "IMPERIO JRS",
       "localia": "Visitante",
       "direccion": "",
-      "resultado": "",
+      "resultado": "77-62",
       "espacio": null
     },
     {
@@ -5513,7 +5474,7 @@
       "rival": "CLUB SOCIAL y DEPORTIVO PRESIDENTE DERQUI",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "69-75",
       "espacio": null
     },
     {
@@ -5526,7 +5487,7 @@
       "rival": "CLUB DEPORTIVO y SOCIAL COLEGIALES",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "73-71",
       "espacio": null
     },
     {
@@ -5539,7 +5500,7 @@
       "rival": "SOCIEDAD HEBRAICA ARGENTINA",
       "localia": "Visitante",
       "direccion": "manual",
-      "resultado": "",
+      "resultado": "64-54",
       "espacio": null
     },
     {
@@ -5552,7 +5513,7 @@
       "rival": "ARGENTINOS JUNIORS",
       "localia": "Visitante",
       "direccion": "Tronador 41, Ciudad Autónoma de Buenos Aires",
-      "resultado": "",
+      "resultado": "42-48",
       "espacio": null
     },
     {
@@ -5565,7 +5526,7 @@
       "rival": "OBRAS BASKET",
       "localia": "Visitante",
       "direccion": "Avda Libertador 7395, 1429",
-      "resultado": "",
+      "resultado": "55-71",
       "espacio": null
     },
     {
@@ -5578,7 +5539,7 @@
       "rival": "ARGENTINOS JUNIORS",
       "localia": "Visitante",
       "direccion": "Tronador 41, Ciudad Autónoma de Buenos Aires",
-      "resultado": "",
+      "resultado": "39-35",
       "espacio": null
     },
     {
@@ -5591,7 +5552,7 @@
       "rival": "OBRAS BASKET",
       "localia": "Visitante",
       "direccion": "Avda Libertador 7395, 1429",
-      "resultado": "",
+      "resultado": "67-81",
       "espacio": null
     },
     {
@@ -5604,7 +5565,7 @@
       "rival": "ARGENTINOS JUNIORS",
       "localia": "Visitante",
       "direccion": "Tronador 41, Ciudad Autónoma de Buenos Aires",
-      "resultado": "",
+      "resultado": "30-36",
       "espacio": null
     },
     {
@@ -5617,7 +5578,7 @@
       "rival": "OBRAS BASKET",
       "localia": "Visitante",
       "direccion": "Avda Libertador 7395, 1429",
-      "resultado": "",
+      "resultado": "45-86",
       "espacio": null
     },
     {
@@ -5630,7 +5591,7 @@
       "rival": "ARGENTINOS JUNIORS",
       "localia": "Visitante",
       "direccion": "Tronador 41, Ciudad Autónoma de Buenos Aires",
-      "resultado": "",
+      "resultado": "0-20",
       "espacio": null
     },
     {
@@ -5643,7 +5604,7 @@
       "rival": "OBRAS BASKET",
       "localia": "Visitante",
       "direccion": "Avda Libertador 7395, 1429",
-      "resultado": "",
+      "resultado": "71-97",
       "espacio": null
     },
     {
@@ -5656,7 +5617,7 @@
       "rival": "ARGENTINOS JUNIORS",
       "localia": "Visitante",
       "direccion": "Tronador 41, Ciudad Autónoma de Buenos Aires",
-      "resultado": "",
+      "resultado": "20-0",
       "espacio": null
     },
     {
@@ -5669,98 +5630,98 @@
       "rival": "OBRAS BASKET",
       "localia": "Visitante",
       "direccion": "Avda Libertador 7395, 1429",
-      "resultado": "",
+      "resultado": "50-16",
       "espacio": null
     },
     {
       "source": "febamba_ges",
       "external_id": "uVMuyAtrowcyozRFevbSmg",
       "fecha": "2026-09-19",
-      "hora": "18:00",
+      "hora": "17:00",
       "tira": "AMARILLO",
       "categoria": "U21",
       "rival": "ARGENTINOS JUNIORS",
       "localia": "Visitante",
       "direccion": "Tronador 41, Ciudad Autónoma de Buenos Aires",
-      "resultado": "",
+      "resultado": "50-41",
       "espacio": null
     },
     {
       "source": "febamba_ges",
       "external_id": "FxSDNfWIloxpz2xarGW0zw",
       "fecha": "2026-09-20",
-      "hora": "10:00",
+      "hora": "9:00",
       "tira": "FLEX",
       "categoria": "U17 Flex",
       "rival": "A.F.A.L.P.  B",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "39-46",
       "espacio": null
     },
     {
       "source": "febamba_ges",
       "external_id": "l2QhVA4kqD5eTR7F1IpvdQ",
       "fecha": "2026-09-20",
-      "hora": "11:30",
+      "hora": "10:30",
       "tira": "FLEX",
       "categoria": "U15 Flex",
       "rival": "A.F.A.L.P. B",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
-      "external_id": "yDe8Nsmknw8x42_EhZV73w",
-      "fecha": "2026-09-20",
-      "hora": "12:30",
-      "tira": "—",
-      "categoria": "U13 Fem",
-      "rival": "ATENEO POPULAR VERSAILLES",
-      "localia": "Local",
-      "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "35-48",
       "espacio": null
     },
     {
       "source": "febamba_ges",
       "external_id": "8WpY2cdYzeJb3F0lsbsKPw",
       "fecha": "2026-09-20",
-      "hora": "13:00",
+      "hora": "12:00",
       "tira": "FLEX",
       "categoria": "U13 Flex",
       "rival": "A.F.A.L.P. B",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "20-19",
       "espacio": null
     },
     {
       "source": "febamba_ges",
       "external_id": "lUgVNb0zaQ6_djF6IBEXdQ",
       "fecha": "2026-09-20",
-      "hora": "14:00",
+      "hora": "13:30",
       "tira": "—",
       "categoria": "U11 Fem",
       "rival": "ATENEO POPULAR VERSAILLES",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "22-63",
       "espacio": null
     },
     {
       "source": "febamba_ges",
-      "external_id": "TlY2LGC-eoZVj_XwkkmWbg",
+      "external_id": "yDe8Nsmknw8x42_EhZV73w",
       "fecha": "2026-09-20",
-      "hora": "15:30",
+      "hora": "15:00",
       "tira": "—",
-      "categoria": "U9 Fem",
+      "categoria": "U13 Fem",
       "rival": "ATENEO POPULAR VERSAILLES",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "59-56",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "AwfJxzSe4mfGsQ9ZUNSP2Q",
+      "fecha": "2026-09-20",
+      "hora": "18:00",
+      "tira": "C",
+      "categoria": "SUP Flex",
+      "rival": "PRIME BASKETBALL",
+      "localia": "Visitante",
+      "direccion": "SIN CANCHA, CP 1417",
+      "resultado": "60-64",
       "espacio": null
     },
     {
@@ -5772,8 +5733,8 @@
       "categoria": "Liga Metro",
       "rival": "CLUB SOCIAL y DEPORTIVO PINOCHO",
       "localia": "Visitante",
-      "direccion": "CHACABUCO 1199, 1623",
-      "resultado": "",
+      "direccion": "Manuela Pedraza 5139, CP 1431",
+      "resultado": "75-71",
       "espacio": null
     },
     {
@@ -5786,7 +5747,7 @@
       "rival": "OBRAS BASKET",
       "localia": "Visitante",
       "direccion": "Avda Libertador 7395, 1429",
-      "resultado": "",
+      "resultado": "67-76",
       "espacio": null
     },
     {
@@ -5799,7 +5760,7 @@
       "rival": "GEBA",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "56-62",
       "espacio": null
     },
     {
@@ -5812,7 +5773,7 @@
       "rival": "CLUB ATLETICO 3 DE FEBRERO",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "68-85",
       "espacio": null
     },
     {
@@ -5825,7 +5786,7 @@
       "rival": "SAN ANDRES",
       "localia": "Visitante",
       "direccion": "Intendente Casares 2845, 1651",
-      "resultado": "",
+      "resultado": "20-0",
       "espacio": null
     },
     {
@@ -5838,7 +5799,7 @@
       "rival": "TRISTAN SUAREZ",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "67-31",
       "espacio": null
     },
     {
@@ -5851,7 +5812,7 @@
       "rival": "SAN ANDRES",
       "localia": "Visitante",
       "direccion": "Intendente Casares 2845, 1651",
-      "resultado": "",
+      "resultado": "58-83",
       "espacio": null
     },
     {
@@ -5864,7 +5825,7 @@
       "rival": "TRISTAN SUAREZ",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "49-59",
       "espacio": null
     },
     {
@@ -5877,7 +5838,7 @@
       "rival": "SAN ANDRES",
       "localia": "Visitante",
       "direccion": "Intendente Casares 2845, 1651",
-      "resultado": "",
+      "resultado": "29-90",
       "espacio": null
     },
     {
@@ -5890,7 +5851,7 @@
       "rival": "TRISTAN SUAREZ",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "45-54",
       "espacio": null
     },
     {
@@ -5903,7 +5864,7 @@
       "rival": "SAN ANDRES",
       "localia": "Visitante",
       "direccion": "Intendente Casares 2845, 1651",
-      "resultado": "",
+      "resultado": "20-115",
       "espacio": null
     },
     {
@@ -5916,7 +5877,7 @@
       "rival": "TRISTAN SUAREZ",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "67-45",
       "espacio": null
     },
     {
@@ -5929,7 +5890,7 @@
       "rival": "SAN ANDRES",
       "localia": "Visitante",
       "direccion": "Intendente Casares 2845, 1651",
-      "resultado": "",
+      "resultado": "0-1",
       "espacio": null
     },
     {
@@ -5942,7 +5903,7 @@
       "rival": "TRISTAN SUAREZ",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "20-0",
       "espacio": null
     },
     {
@@ -5955,7 +5916,7 @@
       "rival": "TRISTAN SUAREZ",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "20-0",
       "espacio": null
     },
     {
@@ -5968,20 +5929,7 @@
       "rival": "SAN ANDRES",
       "localia": "Visitante",
       "direccion": "Intendente Casares 2845, 1651",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
-      "external_id": "q_eu3FaKxLKqHJBdqrwB7w",
-      "fecha": "2026-09-27",
-      "hora": "10:00",
-      "tira": "FLEX",
-      "categoria": "U17 Flex",
-      "rival": "NOLTING",
-      "localia": "Visitante",
-      "direccion": "Alianza 350, 1702",
-      "resultado": "",
+      "resultado": "56-100",
       "espacio": null
     },
     {
@@ -5994,20 +5942,7 @@
       "rival": "U.V.V.A UNION VECINAL VILLA ADELINA",
       "localia": "Visitante",
       "direccion": "BERNARDO ADER 4048, 1606",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
-      "external_id": "AVDni8CSfvjN37ot5x843g",
-      "fecha": "2026-09-27",
-      "hora": "11:30",
-      "tira": "FLEX",
-      "categoria": "U15 Flex",
-      "rival": "NOLTING",
-      "localia": "Visitante",
-      "direccion": "Alianza 350, 1702",
-      "resultado": "",
+      "resultado": "39-41",
       "espacio": null
     },
     {
@@ -6020,20 +5955,7 @@
       "rival": "U.V.V.A UNION VECINAL VILLA ADELINA",
       "localia": "Visitante",
       "direccion": "BERNARDO ADER 4048, 1606",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
-      "external_id": "nYbmCJZcKZpbnP0_YvEiAg",
-      "fecha": "2026-09-27",
-      "hora": "13:00",
-      "tira": "FLEX",
-      "categoria": "U13 Flex",
-      "rival": "CLARIDAD",
-      "localia": "Visitante",
-      "direccion": "Alianza 250, 1702",
-      "resultado": "",
+      "resultado": "40-46",
       "espacio": null
     },
     {
@@ -6046,7 +5968,72 @@
       "rival": "U.V.V.A UNION VECINAL VILLA ADELINA",
       "localia": "Visitante",
       "direccion": "BERNARDO ADER 4048, 1606",
-      "resultado": "",
+      "resultado": "20-50",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "nYbmCJZcKZpbnP0_YvEiAg",
+      "fecha": "2026-09-27",
+      "hora": "16:30",
+      "tira": "FLEX",
+      "categoria": "U13 Flex",
+      "rival": "CLARIDAD",
+      "localia": "Visitante",
+      "direccion": "Alianza 250, 1702",
+      "resultado": "14-48",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "H2H9JZslmrqZTTUC4rAjmw",
+      "fecha": "2026-09-27",
+      "hora": "18:00",
+      "tira": "C",
+      "categoria": "SUP Flex",
+      "rival": "PARQUE VIOLETA",
+      "localia": "Local",
+      "direccion": "Portela 836, CABA (CP 1406)",
+      "resultado": "49-69",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "AVDni8CSfvjN37ot5x843g",
+      "fecha": "2026-09-27",
+      "hora": "18:30",
+      "tira": "FLEX",
+      "categoria": "U15 Flex",
+      "rival": "NOLTING",
+      "localia": "Visitante",
+      "direccion": "Alianza 350, 1702",
+      "resultado": "0-20",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "q_eu3FaKxLKqHJBdqrwB7w",
+      "fecha": "2026-09-27",
+      "hora": "20:00",
+      "tira": "FLEX",
+      "categoria": "U17 Flex",
+      "rival": "NOLTING",
+      "localia": "Visitante",
+      "direccion": "Alianza 350, 1702",
+      "resultado": "0-20",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "64s90o8h0FZc6IxXEaPgUQ",
+      "fecha": "2026-09-27",
+      "hora": "21:00",
+      "tira": "A",
+      "categoria": "Liga Metro",
+      "rival": "JOSE HERNANDEZ",
+      "localia": "Local",
+      "direccion": "Portela 836, CABA (CP 1406)",
+      "resultado": "84-74",
       "espacio": null
     },
     {
@@ -6059,7 +6046,20 @@
       "rival": "YUPANQUI",
       "localia": "Visitante",
       "direccion": "manual",
-      "resultado": "",
+      "resultado": "67-61",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "a0ybvdKWmu363Ws7MX-pdg",
+      "fecha": "2026-09-30",
+      "hora": "21:00",
+      "tira": "A",
+      "categoria": "Liga Metro",
+      "rival": "CLUB DEPORTIVO y SOCIAL COLEGIALES",
+      "localia": "Visitante",
+      "direccion": "Teodoro Garcia 2860, CP 1426",
+      "resultado": "70-61",
       "espacio": null
     },
     {
@@ -6072,7 +6072,7 @@
       "rival": "UNIVERSIDAD DE BUENOS AIRES B",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "58-50",
       "espacio": null
     },
     {
@@ -6085,7 +6085,7 @@
       "rival": "ITALIANO B",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "42-87",
       "espacio": null
     },
     {
@@ -6098,7 +6098,7 @@
       "rival": "LANUS A",
       "localia": "Visitante",
       "direccion": "9 De Julio 1680, Lanús, Provincia de Buenos Aires",
-      "resultado": "",
+      "resultado": "34-73",
       "espacio": null
     },
     {
@@ -6111,7 +6111,7 @@
       "rival": "ITALIANO B",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "43-60",
       "espacio": null
     },
     {
@@ -6124,7 +6124,7 @@
       "rival": "LANUS A",
       "localia": "Visitante",
       "direccion": "9 De Julio 1680, Lanús, Provincia de Buenos Aires",
-      "resultado": "",
+      "resultado": "64-76",
       "espacio": null
     },
     {
@@ -6137,7 +6137,7 @@
       "rival": "ITALIANO B",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "92-19",
       "espacio": null
     },
     {
@@ -6150,7 +6150,7 @@
       "rival": "LANUS A",
       "localia": "Visitante",
       "direccion": "9 De Julio 1680, Lanús, Provincia de Buenos Aires",
-      "resultado": "",
+      "resultado": "49-62",
       "espacio": null
     },
     {
@@ -6163,7 +6163,7 @@
       "rival": "ITALIANO B",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "0-20",
       "espacio": null
     },
     {
@@ -6176,7 +6176,7 @@
       "rival": "LANUS A",
       "localia": "Visitante",
       "direccion": "9 De Julio 1680, Lanús, Provincia de Buenos Aires",
-      "resultado": "",
+      "resultado": "64-61",
       "espacio": null
     },
     {
@@ -6189,7 +6189,7 @@
       "rival": "ITALIANO B",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "8-10",
       "espacio": null
     },
     {
@@ -6202,7 +6202,7 @@
       "rival": "LANUS A",
       "localia": "Visitante",
       "direccion": "9 De Julio 1680, Lanús, Provincia de Buenos Aires",
-      "resultado": "",
+      "resultado": "50-25",
       "espacio": null
     },
     {
@@ -6215,7 +6215,7 @@
       "rival": "ITALIANO B",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "25-71",
       "espacio": null
     },
     {
@@ -6228,98 +6228,124 @@
       "rival": "LANUS A",
       "localia": "Visitante",
       "direccion": "9 De Julio 1680, Lanús, Provincia de Buenos Aires",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
-      "external_id": "pFxaXHoW-UxoBGD6jxZ9bw",
-      "fecha": "2026-10-04",
-      "hora": "10:00",
-      "tira": "FLEX",
-      "categoria": "U17 Flex",
-      "rival": "CLUB ATLETICO PALERMO - FLEX",
-      "localia": "Local",
-      "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
-      "external_id": "-L8P_QncPgQRtJvoZtf5vg",
-      "fecha": "2026-10-04",
-      "hora": "11:00",
-      "tira": "—",
-      "categoria": "U15 Fem",
-      "rival": "BANADE",
-      "localia": "Visitante",
-      "direccion": "",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
-      "external_id": "JlgRyJ5UTvoeXV-mJXe4Sg",
-      "fecha": "2026-10-04",
-      "hora": "11:30",
-      "tira": "FLEX",
-      "categoria": "U15 Flex",
-      "rival": "CLUB ATLETICO PALERMO - FLEX",
-      "localia": "Local",
-      "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
-      "external_id": "bCq-QLZ4BqSyiKHn2pehSQ",
-      "fecha": "2026-10-04",
-      "hora": "12:30",
-      "tira": "—",
-      "categoria": "U13 Fem",
-      "rival": "BANADE",
-      "localia": "Visitante",
-      "direccion": "",
-      "resultado": "",
+      "resultado": "63-68",
       "espacio": null
     },
     {
       "source": "febamba_ges",
       "external_id": "Padkhih3s4nloCzM43fDPQ",
       "fecha": "2026-10-04",
-      "hora": "13:00",
+      "hora": "9:00",
       "tira": "FLEX",
       "categoria": "U13 Flex",
       "rival": "ARQUITECTURA C ROJO",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "37-44",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "JlgRyJ5UTvoeXV-mJXe4Sg",
+      "fecha": "2026-10-04",
+      "hora": "10:30",
+      "tira": "FLEX",
+      "categoria": "U15 Flex",
+      "rival": "CLUB ATLETICO PALERMO - FLEX",
+      "localia": "Local",
+      "direccion": "Portela 836, CABA (CP 1406)",
+      "resultado": "35-33",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "pFxaXHoW-UxoBGD6jxZ9bw",
+      "fecha": "2026-10-04",
+      "hora": "12:00",
+      "tira": "FLEX",
+      "categoria": "U17 Flex",
+      "rival": "CLUB ATLETICO PALERMO - FLEX",
+      "localia": "Local",
+      "direccion": "Portela 836, CABA (CP 1406)",
+      "resultado": "24-63",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "-L8P_QncPgQRtJvoZtf5vg",
+      "fecha": "2026-10-04",
+      "hora": "13:30",
+      "tira": "—",
+      "categoria": "U15 Fem",
+      "rival": "BANADE",
+      "localia": "Visitante",
+      "direccion": "",
+      "resultado": "57-13",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "bCq-QLZ4BqSyiKHn2pehSQ",
+      "fecha": "2026-10-04",
+      "hora": "15:00",
+      "tira": "—",
+      "categoria": "U13 Fem",
+      "rival": "BANADE",
+      "localia": "Visitante",
+      "direccion": "",
+      "resultado": "66-17",
       "espacio": null
     },
     {
       "source": "febamba_ges",
       "external_id": "JYJ7LePMbg1iarNKPYDJmA",
       "fecha": "2026-10-04",
-      "hora": "14:00",
+      "hora": "16:30",
       "tira": "—",
       "categoria": "U11 Fem",
       "rival": "BANADE",
       "localia": "Visitante",
       "direccion": "",
-      "resultado": "",
+      "resultado": "33-45",
       "espacio": null
     },
     {
       "source": "febamba_ges",
-      "external_id": "gGsxhjg5FeYDNunCN_y29A",
+      "external_id": "uPKeJ3K3Gsfvg18NY0t-GA",
       "fecha": "2026-10-04",
-      "hora": "15:30",
-      "tira": "—",
-      "categoria": "U9 Fem",
-      "rival": "BANADE",
+      "hora": "20:00",
+      "tira": "C",
+      "categoria": "SUP Flex",
+      "rival": "SAN MIGUEL",
       "localia": "Visitante",
-      "direccion": "",
-      "resultado": "",
+      "direccion": "Angel Delia 1360, CP 1663",
+      "resultado": "70-75",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "gWY_ozO9XUxw6_h0W1ZbLw",
+      "fecha": "2026-10-09",
+      "hora": "21:00",
+      "tira": "A",
+      "categoria": "Liga Metro",
+      "rival": "CLUB SPORTIVO ESCOBAR LM",
+      "localia": "Visitante",
+      "direccion": "COLON 533, CP 1625",
+      "resultado": "77-84",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "iG6-ABM0H4V0uHx0PxFFQw",
+      "fecha": "2026-10-11",
+      "hora": "18:00",
+      "tira": "C",
+      "categoria": "SUP Flex",
+      "rival": "BECCAR AZUL",
+      "localia": "Local",
+      "direccion": "Portela 836, CABA (CP 1406)",
+      "resultado": "55-75",
       "espacio": null
     },
     {
@@ -6332,7 +6358,59 @@
       "rival": "JUVENCIA",
       "localia": "Visitante",
       "direccion": "",
-      "resultado": "",
+      "resultado": "83-73",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "HqSd9uR7DgReo15Oevo04w",
+      "fecha": "2026-10-11",
+      "hora": "21:00",
+      "tira": "A",
+      "categoria": "Liga Metro",
+      "rival": "CLUB ATLETICO PILAR",
+      "localia": "Local",
+      "direccion": "Portela 836, CABA (CP 1406)",
+      "resultado": "66-67",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "WaR35bc-4JWx77GMGHYslg",
+      "fecha": "2026-10-12",
+      "hora": "20:30",
+      "tira": "C",
+      "categoria": "SUP Flex",
+      "rival": "VICTORIA \"C\"",
+      "localia": "Visitante",
+      "direccion": "",
+      "resultado": "42-92",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "fwt6JxfSu5_0pLqUtdywlA",
+      "fecha": "2026-10-14",
+      "hora": "21:00",
+      "tira": "A",
+      "categoria": "Liga Metro",
+      "rival": "CLUB EL TALAR",
+      "localia": "Visitante",
+      "direccion": "Nueva York 2944, CP 1419",
+      "resultado": "66-83",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "DKLsn_b7XhL2J718r-R8bQ",
+      "fecha": "2026-10-16",
+      "hora": "21:30",
+      "tira": "B",
+      "categoria": "SUP",
+      "rival": "ATENEO POPULAR VERSAILLES",
+      "localia": "Local",
+      "direccion": "Portela 836, CABA (CP 1406)",
+      "resultado": "59-50",
       "espacio": null
     },
     {
@@ -6345,7 +6423,7 @@
       "rival": "COMUNICACIONES NEGRO B",
       "localia": "Visitante",
       "direccion": "Av San Martin 5125, 1407",
-      "resultado": "",
+      "resultado": "20-0",
       "espacio": null
     },
     {
@@ -6358,7 +6436,7 @@
       "rival": "COMUNICACIONES NEGRO B",
       "localia": "Visitante",
       "direccion": "Av San Martin 5125, 1407",
-      "resultado": "",
+      "resultado": "20-0",
       "espacio": null
     },
     {
@@ -6371,7 +6449,7 @@
       "rival": "COMUNICACIONES NEGRO B",
       "localia": "Visitante",
       "direccion": "Av San Martin 5125, 1407",
-      "resultado": "",
+      "resultado": "40-50",
       "espacio": null
     },
     {
@@ -6384,7 +6462,7 @@
       "rival": "COMUNICACIONES NEGRO B",
       "localia": "Visitante",
       "direccion": "Av San Martin 5125, 1407",
-      "resultado": "",
+      "resultado": "20-0",
       "espacio": null
     },
     {
@@ -6397,7 +6475,7 @@
       "rival": "COMUNICACIONES NEGRO B",
       "localia": "Visitante",
       "direccion": "Av San Martin 5125, 1407",
-      "resultado": "",
+      "resultado": "22-4",
       "espacio": null
     },
     {
@@ -6410,7 +6488,33 @@
       "rival": "COMUNICACIONES NEGRO",
       "localia": "Visitante",
       "direccion": "Av San Martin 5125, 1407",
-      "resultado": "",
+      "resultado": "66-63",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "lvkva05avr-nstojM4qgrg",
+      "fecha": "2026-10-17",
+      "hora": "20:30",
+      "tira": "C",
+      "categoria": "SUP Flex",
+      "rival": "BANCO NACION",
+      "localia": "Visitante",
+      "direccion": "Zufriategui 1251, CP 1638",
+      "resultado": "64-88",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "GfMo8UPyXWB97MVaATSnfw",
+      "fecha": "2026-10-18",
+      "hora": "21:00",
+      "tira": "A",
+      "categoria": "Liga Metro",
+      "rival": "CLUB ITALIANO",
+      "localia": "Local",
+      "direccion": "Portela 836, CABA (CP 1406)",
+      "resultado": "76-49",
       "espacio": null
     },
     {
@@ -6423,20 +6527,20 @@
       "rival": "CIRCULO URQUIZA",
       "localia": "Visitante",
       "direccion": "manual",
-      "resultado": "",
+      "resultado": "85-81",
       "espacio": null
     },
     {
       "source": "febamba_ges",
-      "external_id": "DKLsn_b7XhL2J718r-R8bQ",
-      "fecha": "2026-10-22",
-      "hora": "21:30",
-      "tira": "B",
-      "categoria": "SUP",
-      "rival": "ATENEO POPULAR VERSAILLES",
-      "localia": "Local",
-      "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "external_id": "O0CfgMYU6BCiIajZLM-4Gw",
+      "fecha": "2026-10-23",
+      "hora": "21:15",
+      "tira": "A",
+      "categoria": "Liga Metro",
+      "rival": "CLUB NAUTICO BUCHARDO",
+      "localia": "Visitante",
+      "direccion": "Comodoro Rivadavia 1250",
+      "resultado": "75-66",
       "espacio": null
     },
     {
@@ -6449,7 +6553,7 @@
       "rival": "IMPERIO NEGRO B",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "33-76",
       "espacio": null
     },
     {
@@ -6462,7 +6566,7 @@
       "rival": "ARGENTINO DE CASTELAR NORTE A",
       "localia": "Visitante",
       "direccion": "manual",
-      "resultado": "",
+      "resultado": "65-60",
       "espacio": null
     },
     {
@@ -6475,7 +6579,7 @@
       "rival": "IMPERIO NEGRO B",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "57-58",
       "espacio": null
     },
     {
@@ -6488,7 +6592,7 @@
       "rival": "ARGENTINO DE CASTELAR NORTE A",
       "localia": "Visitante",
       "direccion": "manual",
-      "resultado": "",
+      "resultado": "47-78",
       "espacio": null
     },
     {
@@ -6501,7 +6605,7 @@
       "rival": "IMPERIO NEGRO B",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "65-40",
       "espacio": null
     },
     {
@@ -6514,7 +6618,7 @@
       "rival": "ARGENTINO DE CASTELAR NORTE A",
       "localia": "Visitante",
       "direccion": "manual",
-      "resultado": "",
+      "resultado": "36-101",
       "espacio": null
     },
     {
@@ -6527,7 +6631,7 @@
       "rival": "IMPERIO NEGRO B",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "43-25",
       "espacio": null
     },
     {
@@ -6540,7 +6644,7 @@
       "rival": "ARGENTINO DE CASTELAR NORTE A",
       "localia": "Visitante",
       "direccion": "manual",
-      "resultado": "",
+      "resultado": "65-67",
       "espacio": null
     },
     {
@@ -6553,7 +6657,7 @@
       "rival": "IMPERIO NEGRO B",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "10-6",
       "espacio": null
     },
     {
@@ -6566,7 +6670,7 @@
       "rival": "ARGENTINO DE CASTELAR NORTE A",
       "localia": "Visitante",
       "direccion": "manual",
-      "resultado": "",
+      "resultado": "20-0",
       "espacio": null
     },
     {
@@ -6579,7 +6683,7 @@
       "rival": "IMPERIO NEGRO B",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "68-61",
       "espacio": null
     },
     {
@@ -6592,7 +6696,7 @@
       "rival": "ARGENTINO DE CASTELAR NORTE A",
       "localia": "Visitante",
       "direccion": "manual",
-      "resultado": "",
+      "resultado": "73-78",
       "espacio": null
     },
     {
@@ -6604,21 +6708,8 @@
       "categoria": "U17 Flex",
       "rival": "VELEZ SARSFIELD FLEX",
       "localia": "Visitante",
-      "direccion": "manual",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
-      "external_id": "QKWsunGa0WETrhnPFCDeOw",
-      "fecha": "2026-10-25",
-      "hora": "11:00",
-      "tira": "—",
-      "categoria": "U15 Fem",
-      "rival": "SPORTIVO VILLA BALLESTER",
-      "localia": "Local",
-      "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "direccion": "Juan B Justo 9200",
+      "resultado": "20-0",
       "espacio": null
     },
     {
@@ -6630,21 +6721,8 @@
       "categoria": "U15 Flex",
       "rival": "VELEZ SARSFIELD FLEX",
       "localia": "Visitante",
-      "direccion": "manual",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
-      "external_id": "1EdXmCuzjiMRea_pZV97xg",
-      "fecha": "2026-10-25",
-      "hora": "12:30",
-      "tira": "—",
-      "categoria": "U13 Fem",
-      "rival": "SPORTIVO VILLA BALLESTER",
-      "localia": "Local",
-      "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "direccion": "Juan B Justo 9200",
+      "resultado": "25-27",
       "espacio": null
     },
     {
@@ -6656,8 +6734,8 @@
       "categoria": "U13 Flex",
       "rival": "VELEZ SARSFIELD",
       "localia": "Visitante",
-      "direccion": "manual",
-      "resultado": "",
+      "direccion": "Juan B Justo 9200",
+      "resultado": "39-24",
       "espacio": null
     },
     {
@@ -6670,20 +6748,46 @@
       "rival": "SPORTIVO VILLA BALLESTER",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "48-10",
       "espacio": null
     },
     {
       "source": "febamba_ges",
-      "external_id": "MD3G7QQrX_Elgfcgit-Drw",
+      "external_id": "QBO-9_AkTa8Ipb1R4kr_-w",
       "fecha": "2026-10-25",
-      "hora": "15:30",
-      "tira": "—",
-      "categoria": "U9 Fem",
-      "rival": "SPORTIVO VILLA BALLESTER",
+      "hora": "18:00",
+      "tira": "C",
+      "categoria": "SUP Flex",
+      "rival": "VICTORIA \"C\"",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "67-61",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "ggBWaK-zeaai9oXObgBWLg",
+      "fecha": "2026-10-25",
+      "hora": "21:00",
+      "tira": "A",
+      "categoria": "Liga Metro",
+      "rival": "IMPERIO JRS",
+      "localia": "Local",
+      "direccion": "Portela 836, CABA (CP 1406)",
+      "resultado": "74-70",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "A5t-VJsWKMR7igWYH_hgig",
+      "fecha": "2026-10-28",
+      "hora": "21:00",
+      "tira": "A",
+      "categoria": "Liga Metro",
+      "rival": "CLUB SOCIAL y DEPORTIVO PRESIDENTE DERQUI",
+      "localia": "Visitante",
+      "direccion": "Dorrego 866, CP 1635",
+      "resultado": "71-95",
       "espacio": null
     },
     {
@@ -6696,7 +6800,7 @@
       "rival": "ITALIANO B",
       "localia": "Visitante",
       "direccion": "Av Rivadavia 4731, 1424",
-      "resultado": "",
+      "resultado": "67-55",
       "espacio": null
     },
     {
@@ -6709,7 +6813,7 @@
       "rival": "SAN MIGUEL Verde",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "76-51",
       "espacio": null
     },
     {
@@ -6722,7 +6826,7 @@
       "rival": "SAN MIGUEL Verde",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "67-52",
       "espacio": null
     },
     {
@@ -6735,7 +6839,7 @@
       "rival": "SAN MIGUEL Verde",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "56-73",
       "espacio": null
     },
     {
@@ -6748,7 +6852,7 @@
       "rival": "SAN MIGUEL Verde",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "64-78",
       "espacio": null
     },
     {
@@ -6761,7 +6865,7 @@
       "rival": "SAN MIGUEL Verde",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "36-10",
       "espacio": null
     },
     {
@@ -6774,7 +6878,7 @@
       "rival": "SAN MIGUEL Verde",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "56-65",
       "espacio": null
     },
     {
@@ -6787,20 +6891,7 @@
       "rival": "RACING ANEXO",
       "localia": "Visitante",
       "direccion": "Tinogasta 3455, 1417",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
-      "external_id": "xPXrVjjbuY9IEHh1Uspw8A",
-      "fecha": "2026-11-01",
-      "hora": "10:00",
-      "tira": "FLEX",
-      "categoria": "U17 Flex",
-      "rival": "VILLA MITRE",
-      "localia": "Local",
-      "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "41-61",
       "espacio": null
     },
     {
@@ -6813,7 +6904,7 @@
       "rival": "RACING ANEXO",
       "localia": "Visitante",
       "direccion": "Tinogasta 3455, 1417",
-      "resultado": "",
+      "resultado": "61-80",
       "espacio": null
     },
     {
@@ -6826,20 +6917,7 @@
       "rival": "ARQUITECTURA",
       "localia": "Visitante",
       "direccion": "",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
-      "external_id": "pYfT5k6J-1T8326DR8PVvA",
-      "fecha": "2026-11-01",
-      "hora": "11:30",
-      "tira": "FLEX",
-      "categoria": "U15 Flex",
-      "rival": "VILLA MITRE",
-      "localia": "Local",
-      "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "26-23",
       "espacio": null
     },
     {
@@ -6852,7 +6930,7 @@
       "rival": "RACING ANEXO",
       "localia": "Visitante",
       "direccion": "Tinogasta 3455, 1417",
-      "resultado": "",
+      "resultado": "41-61",
       "espacio": null
     },
     {
@@ -6865,20 +6943,7 @@
       "rival": "ARQUITECTURA",
       "localia": "Visitante",
       "direccion": "",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
-      "external_id": "BaTt2IoQ7HsT1rhbYKdK9Q",
-      "fecha": "2026-11-01",
-      "hora": "13:00",
-      "tira": "FLEX",
-      "categoria": "U13 Flex",
-      "rival": "VILLA MITRE",
-      "localia": "Local",
-      "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "45-24",
       "espacio": null
     },
     {
@@ -6891,7 +6956,7 @@
       "rival": "RACING ANEXO",
       "localia": "Visitante",
       "direccion": "Tinogasta 3455, 1417",
-      "resultado": "",
+      "resultado": "20-0",
       "espacio": null
     },
     {
@@ -6904,7 +6969,7 @@
       "rival": "ARQUITECTURA",
       "localia": "Visitante",
       "direccion": "",
-      "resultado": "",
+      "resultado": "31-20",
       "espacio": null
     },
     {
@@ -6917,33 +6982,46 @@
       "rival": "RACING ANEXO",
       "localia": "Visitante",
       "direccion": "Tinogasta 3455, 1417",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
-      "external_id": "Zv45nPs0fpBF6F0hKqLfjQ",
-      "fecha": "2026-11-01",
-      "hora": "15:30",
-      "tira": "—",
-      "categoria": "U9 Fem",
-      "rival": "ARQUITECTURA",
-      "localia": "Visitante",
-      "direccion": "",
-      "resultado": "",
+      "resultado": "4-24",
       "espacio": null
     },
     {
       "source": "febamba_ges",
       "external_id": "5FZpxArRvNYfJyihK6FPsA",
       "fecha": "2026-11-01",
-      "hora": "18:00",
+      "hora": "17:45",
       "tira": "AMARILLO",
       "categoria": "U21",
       "rival": "RACING ANEXO",
       "localia": "Visitante",
       "direccion": "Tinogasta 3455, 1417",
-      "resultado": "",
+      "resultado": "70-75",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "v-KAUJyozBBha7CRF5lVqQ",
+      "fecha": "2026-11-04",
+      "hora": "20:00",
+      "tira": "C",
+      "categoria": "SUP Flex",
+      "rival": "CHENQUE CROVARA",
+      "localia": "Local",
+      "direccion": "Portela 836, CABA (CP 1406)",
+      "resultado": "66-63",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "eC9fNQSCWHDCP4IjgBQ6LQ",
+      "fecha": "2026-11-04",
+      "hora": "21:00",
+      "tira": "A",
+      "categoria": "Liga Metro",
+      "rival": "CLUB ATLETICO 3 DE FEBRERO",
+      "localia": "Visitante",
+      "direccion": "Islas Malvinas 2681, CP 1702",
+      "resultado": "55-84",
       "espacio": null
     },
     {
@@ -6956,7 +7034,20 @@
       "rival": "SOCIEDAD HEBRAICA ARGENTINA",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "65-36",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "KCOAm1ktleD7PWkWKGgS2Q",
+      "fecha": "2026-11-06",
+      "hora": "21:00",
+      "tira": "A",
+      "categoria": "Liga Metro",
+      "rival": "CLUB SOCIAL y DEPORTIVO PINOCHO",
+      "localia": "Local",
+      "direccion": "Portela 836, CABA (CP 1406)",
+      "resultado": "66-74",
       "espacio": null
     },
     {
@@ -6969,7 +7060,7 @@
       "rival": "JOSE HERNANDEZ \"B\"",
       "localia": "Visitante",
       "direccion": "Bragado 5950, 1440",
-      "resultado": "",
+      "resultado": "44-37",
       "espacio": null
     },
     {
@@ -6982,46 +7073,7 @@
       "rival": "JOSE HERNANDEZ \"B\"",
       "localia": "Visitante",
       "direccion": "Bragado 5950, 1440",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
-      "external_id": "kV360ah8VqGSFaSKmp2dTA",
-      "fecha": "2026-11-07",
-      "hora": "12:30",
-      "tira": "AMARILLO",
-      "categoria": "U13",
-      "rival": "JOSE HERNANDEZ \"B\"",
-      "localia": "Visitante",
-      "direccion": "Bragado 5950, 1440",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
-      "external_id": "LKbTQoDT5JP5Bh-GBL2nuA",
-      "fecha": "2026-11-07",
-      "hora": "14:00",
-      "tira": "AMARILLO",
-      "categoria": "U11",
-      "rival": "JOSE HERNANDEZ \"B\"",
-      "localia": "Visitante",
-      "direccion": "Bragado 5950, 1440",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
-      "external_id": "2CWyGQyphP8o5-hp7ClZsg",
-      "fecha": "2026-11-07",
-      "hora": "15:30",
-      "tira": "AMARILLO",
-      "categoria": "U9",
-      "rival": "JOSE HERNANDEZ \"B\"",
-      "localia": "Visitante",
-      "direccion": "Bragado 5950, 1440",
-      "resultado": "",
+      "resultado": "69-33",
       "espacio": null
     },
     {
@@ -7034,72 +7086,46 @@
       "rival": "JOSE HERNANDEZ \"B\"",
       "localia": "Visitante",
       "direccion": "Bragado 5950, 1440",
-      "resultado": "",
+      "resultado": "52-66",
       "espacio": null
     },
     {
       "source": "febamba_ges",
-      "external_id": "jgzUToWKckpfJ3NGgTzZlA",
-      "fecha": "2026-11-08",
-      "hora": "10:00",
-      "tira": "FLEX",
-      "categoria": "U17 Flex",
-      "rival": "HARRODS",
+      "external_id": "2CWyGQyphP8o5-hp7ClZsg",
+      "fecha": "2026-11-11",
+      "hora": "18:00",
+      "tira": "AMARILLO",
+      "categoria": "U9",
+      "rival": "JOSE HERNANDEZ \"B\"",
       "localia": "Visitante",
-      "direccion": "",
-      "resultado": "",
+      "direccion": "Bragado 5950, 1440",
+      "resultado": "8-18",
       "espacio": null
     },
     {
       "source": "febamba_ges",
-      "external_id": "g9rkQgPrnla6GqBXDcDsNQ",
-      "fecha": "2026-11-08",
-      "hora": "11:30",
-      "tira": "FLEX",
-      "categoria": "U15 Flex",
-      "rival": "HARRODS",
+      "external_id": "LKbTQoDT5JP5Bh-GBL2nuA",
+      "fecha": "2026-11-11",
+      "hora": "19:00",
+      "tira": "AMARILLO",
+      "categoria": "U11",
+      "rival": "JOSE HERNANDEZ \"B\"",
       "localia": "Visitante",
-      "direccion": "",
-      "resultado": "",
+      "direccion": "Bragado 5950, 1440",
+      "resultado": "32-53",
       "espacio": null
     },
     {
       "source": "febamba_ges",
-      "external_id": "hcBIEAfOi1jF3k4LenJtJw",
-      "fecha": "2026-11-08",
-      "hora": "13:00",
-      "tira": "FLEX",
-      "categoria": "U13 Flex",
-      "rival": "HARRODS GATH Y CHAVES",
+      "external_id": "kV360ah8VqGSFaSKmp2dTA",
+      "fecha": "2026-11-11",
+      "hora": "20:30",
+      "tira": "AMARILLO",
+      "categoria": "U13",
+      "rival": "JOSE HERNANDEZ \"B\"",
       "localia": "Visitante",
-      "direccion": "Virrey Del Pino 1480, 1426",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
-      "external_id": "oqm45t8V-xMtzcRsujjgdw",
-      "fecha": "2026-11-08",
-      "hora": "14:00",
-      "tira": "—",
-      "categoria": "U11 Fem",
-      "rival": "HURACAN DE SAN JUSTO",
-      "localia": "Local",
-      "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
-      "external_id": "J8SlB3rK9y0JW0qHe11dVQ",
-      "fecha": "2026-11-08",
-      "hora": "15:30",
-      "tira": "—",
-      "categoria": "U9 Fem",
-      "rival": "HURACAN DE SAN JUSTO",
-      "localia": "Local",
-      "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "direccion": "Bragado 5950, 1440",
+      "resultado": "42-70",
       "espacio": null
     },
     {
@@ -7112,7 +7138,20 @@
       "rival": "GEBA",
       "localia": "Visitante",
       "direccion": "Bartolome Mitre 1149, Ciudad Autónoma de Buenos Aires",
-      "resultado": "",
+      "resultado": "65-67",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "r_3RIsPnbmMEhzNhP-eL4w",
+      "fecha": "2026-11-12",
+      "hora": "21:00",
+      "tira": "A",
+      "categoria": "Liga Metro",
+      "rival": "CLUB DEPORTIVO y SOCIAL COLEGIALES",
+      "localia": "Local",
+      "direccion": "Portela 836, CABA (CP 1406)",
+      "resultado": "73-71",
       "espacio": null
     },
     {
@@ -7125,7 +7164,7 @@
       "rival": "ARGENTINOS JUNIORS",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "30-54",
       "espacio": null
     },
     {
@@ -7138,7 +7177,7 @@
       "rival": "ARGENTINOS JUNIORS",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "53-51",
       "espacio": null
     },
     {
@@ -7151,7 +7190,7 @@
       "rival": "ARGENTINOS JUNIORS",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "41-46",
       "espacio": null
     },
     {
@@ -7164,7 +7203,7 @@
       "rival": "ARGENTINOS JUNIORS",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "21-47",
       "espacio": null
     },
     {
@@ -7177,7 +7216,7 @@
       "rival": "ARGENTINOS JUNIORS",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "8-8",
       "espacio": null
     },
     {
@@ -7190,20 +7229,33 @@
       "rival": "ARGENTINOS JUNIORS",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "30-39",
       "espacio": null
     },
     {
       "source": "febamba_ges",
-      "external_id": "dG8YVtQSBTVWSTr_PEsJ3w",
-      "fecha": "2026-11-15",
-      "hora": "11:00",
-      "tira": "—",
-      "categoria": "U15 Fem",
-      "rival": "LAS HERAS",
+      "external_id": "phkwkz3kTQ5EYBhPYCksJQ",
+      "fecha": "2026-11-14",
+      "hora": "21:30",
+      "tira": "A",
+      "categoria": "Liga Metro",
+      "rival": "CLUB ATLETICO CAZA y PESCA",
       "localia": "Visitante",
-      "direccion": "Libertad N° 5052, 1653",
-      "resultado": "",
+      "direccion": "Balbastro Y Ruta 202, CP 1611",
+      "resultado": "52-97",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "IIUJZOMXlbQpnC_2H-rv2w",
+      "fecha": "2026-11-15",
+      "hora": "10:00",
+      "tira": "FLEX",
+      "categoria": "U17 Flex",
+      "rival": "UNIVERSIDAD DE LA MATANZA",
+      "localia": "Local",
+      "direccion": "Portela 836, CABA (CP 1406)",
+      "resultado": "46-64",
       "espacio": null
     },
     {
@@ -7216,20 +7268,7 @@
       "rival": "UNIVERSIDAD DE LA MATANZA",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
-      "external_id": "IIUJZOMXlbQpnC_2H-rv2w",
-      "fecha": "2026-11-15",
-      "hora": "12:00",
-      "tira": "FLEX",
-      "categoria": "U17 Flex",
-      "rival": "UNIVERSIDAD DE LA MATANZA",
-      "localia": "Local",
-      "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "51-17",
       "espacio": null
     },
     {
@@ -7242,7 +7281,7 @@
       "rival": "LAS HERAS",
       "localia": "Visitante",
       "direccion": "Libertad N° 5052, 1653",
-      "resultado": "",
+      "resultado": "62-26",
       "espacio": null
     },
     {
@@ -7255,7 +7294,7 @@
       "rival": "UNIVERSIDAD DE LA MATANZA",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "53-22",
       "espacio": null
     },
     {
@@ -7268,20 +7307,46 @@
       "rival": "LAS HERAS",
       "localia": "Visitante",
       "direccion": "Libertad N° 5052, 1653",
-      "resultado": "",
+      "resultado": "33-47",
       "espacio": null
     },
     {
       "source": "febamba_ges",
-      "external_id": "fiC924pkgzp1wZ-q2kfoYg",
+      "external_id": "aGqYHhPbq4BZZqyDPwitlQ",
       "fecha": "2026-11-15",
-      "hora": "15:30",
-      "tira": "—",
-      "categoria": "U9 Fem",
-      "rival": "LAS HERAS",
+      "hora": "16:00",
+      "tira": "AZUL",
+      "categoria": "U11",
+      "rival": "DEFENSORES DE HURLINGHAM VERDE",
+      "localia": "Local",
+      "direccion": "Portela 836, CABA (CP 1406)",
+      "resultado": "64-28",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "evEL6wSfIBwixao9OIbn2g",
+      "fecha": "2026-11-15",
+      "hora": "20:30",
+      "tira": "C",
+      "categoria": "SUP Flex",
+      "rival": "PARQUE VIOLETA",
       "localia": "Visitante",
-      "direccion": "Libertad N° 5052, 1653",
-      "resultado": "",
+      "direccion": "",
+      "resultado": "43-79",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "rwPj9rH3jb20tMYpCAc_aQ",
+      "fecha": "2026-11-16",
+      "hora": "21:30",
+      "tira": "A",
+      "categoria": "Liga Metro",
+      "rival": "CLUB ATLETICO CAZA y PESCA",
+      "localia": "Local",
+      "direccion": "Portela 836, CABA (CP 1406)",
+      "resultado": "66-91",
       "espacio": null
     },
     {
@@ -7294,59 +7359,111 @@
       "rival": "YUPANQUI",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
+      "resultado": "66-69",
       "espacio": null
     },
     {
       "source": "febamba_ges",
-      "external_id": "UYJoCphUvIemTfE0oln2HA",
-      "fecha": "2026-11-22",
-      "hora": "11:00",
-      "tira": "—",
-      "categoria": "U15 Fem",
-      "rival": "BECCAR",
+      "external_id": "kbZxjUaOwUJOXrU3NQoIfA",
+      "fecha": "2026-11-19",
+      "hora": "20:00",
+      "tira": "C",
+      "categoria": "SUP Flex",
+      "rival": "PRIME BASKETBALL",
+      "localia": "Local",
+      "direccion": "Portela 836, CABA (CP 1406)",
+      "resultado": "66-61",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "ygpMhIHB0LBNkmoPB19UJA",
+      "fecha": "2026-11-21",
+      "hora": "21:00",
+      "tira": "AZUL",
+      "categoria": "U21",
+      "rival": "RIVER PLATE",
       "localia": "Visitante",
-      "direccion": "",
-      "resultado": "",
+      "direccion": "Figueroa Alcorta 7597, 1428",
+      "resultado": "41-79",
       "espacio": null
     },
     {
       "source": "febamba_ges",
-      "external_id": "w7P6XcOL2n3lOknUnxQq_Q",
+      "external_id": "BaTt2IoQ7HsT1rhbYKdK9Q",
       "fecha": "2026-11-22",
-      "hora": "12:30",
-      "tira": "—",
-      "categoria": "U13 Fem",
-      "rival": "BECCAR",
-      "localia": "Visitante",
-      "direccion": "",
-      "resultado": "",
+      "hora": "9:00",
+      "tira": "FLEX",
+      "categoria": "U13 Flex",
+      "rival": "VILLA MITRE",
+      "localia": "Local",
+      "direccion": "Portela 836, CABA (CP 1406)",
+      "resultado": "38-53",
       "espacio": null
     },
     {
       "source": "febamba_ges",
-      "external_id": "lUmuaV8lTXMKEsbV1afDLQ",
+      "external_id": "pYfT5k6J-1T8326DR8PVvA",
       "fecha": "2026-11-22",
+      "hora": "10:30",
+      "tira": "FLEX",
+      "categoria": "U15 Flex",
+      "rival": "VILLA MITRE",
+      "localia": "Local",
+      "direccion": "Portela 836, CABA (CP 1406)",
+      "resultado": "16-51",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "xPXrVjjbuY9IEHh1Uspw8A",
+      "fecha": "2026-11-22",
+      "hora": "12:00",
+      "tira": "FLEX",
+      "categoria": "U17 Flex",
+      "rival": "VILLA MITRE",
+      "localia": "Local",
+      "direccion": "Portela 836, CABA (CP 1406)",
+      "resultado": "33-54",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "qII-syyBbi2eTGQYlzjLRg",
+      "fecha": "2026-11-22",
+      "hora": "18:00",
+      "tira": "C",
+      "categoria": "SUP Flex",
+      "rival": "SAN MIGUEL",
+      "localia": "Local",
+      "direccion": "Portela 836, CABA (CP 1406)",
+      "resultado": "72-89",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "iAp-H3a9cVp7bt2JKjbMfw",
+      "fecha": "2026-11-23",
       "hora": "14:00",
-      "tira": "—",
-      "categoria": "U11 Fem",
-      "rival": "BECCAR",
+      "tira": "AZUL",
+      "categoria": "U11",
+      "rival": "BOCA JUNIORS AZUL A",
       "localia": "Visitante",
-      "direccion": "",
-      "resultado": "",
+      "direccion": "Arzobispo Espinosa 602, 1157",
+      "resultado": "58-66",
       "espacio": null
     },
     {
       "source": "febamba_ges",
-      "external_id": "nk6iltL43hVSo04b_zqh0g",
-      "fecha": "2026-11-22",
-      "hora": "15:30",
-      "tira": "—",
-      "categoria": "U9 Fem",
-      "rival": "BECCAR",
-      "localia": "Visitante",
-      "direccion": "",
-      "resultado": "",
+      "external_id": "cgnJqw0MO8BlpTYP7lkltA",
+      "fecha": "2026-11-23",
+      "hora": "18:00",
+      "tira": "C",
+      "categoria": "SUP Flex",
+      "rival": "BANCO NACION",
+      "localia": "Local",
+      "direccion": "Portela 836, CABA (CP 1406)",
+      "resultado": "61-61",
       "espacio": null
     },
     {
@@ -7358,7 +7475,20 @@
       "categoria": "SUP",
       "rival": "UNIVERSIDAD DE BUENOS AIRES B",
       "localia": "Visitante",
-      "direccion": "Av Libertador 7501, Ciudad Autónoma de Buenos Aires",
+      "direccion": "manual",
+      "resultado": "",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "SOtTRpWoftfrT1j0UsGajQ",
+      "fecha": "2026-11-23",
+      "hora": "21:30",
+      "tira": "A",
+      "categoria": "Liga Metro",
+      "rival": "CLUB SAN FERNANDO",
+      "localia": "Visitante",
+      "direccion": "Sarmiento Y Escalada S/N, CP 1646",
       "resultado": "",
       "espacio": null
     },
@@ -7377,6 +7507,32 @@
     },
     {
       "source": "febamba_ges",
+      "external_id": "eZkDyfrP_MnXKns9lISJKg",
+      "fecha": "2026-11-28",
+      "hora": "21:30",
+      "tira": "C",
+      "categoria": "SUP Flex",
+      "rival": "BECCAR AZUL",
+      "localia": "Visitante",
+      "direccion": "Av Centenario 1947, 1643",
+      "resultado": "",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "hcBIEAfOi1jF3k4LenJtJw",
+      "fecha": "2026-11-29",
+      "hora": "10:00",
+      "tira": "FLEX",
+      "categoria": "U13 Flex",
+      "rival": "HARRODS GATH Y CHAVES",
+      "localia": "Visitante",
+      "direccion": "Virrey Del Pino 1480, 1426",
+      "resultado": "",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
       "external_id": "yHK1auI_8BH4drAMwB2BdA",
       "fecha": "2026-11-29",
       "hora": "11:00",
@@ -7385,6 +7541,32 @@
       "rival": "ARGENTINOS JUNIORS",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
+      "resultado": "",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "g9rkQgPrnla6GqBXDcDsNQ",
+      "fecha": "2026-11-29",
+      "hora": "11:30",
+      "tira": "FLEX",
+      "categoria": "U15 Flex",
+      "rival": "HARRODS",
+      "localia": "Visitante",
+      "direccion": "",
+      "resultado": "",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "jgzUToWKckpfJ3NGgTzZlA",
+      "fecha": "2026-11-29",
+      "hora": "13:00",
+      "tira": "FLEX",
+      "categoria": "U17 Flex",
+      "rival": "HARRODS",
+      "localia": "Visitante",
+      "direccion": "",
       "resultado": "",
       "espacio": null
     },
@@ -7476,32 +7658,6 @@
       "rival": "U.V.V.A UNION VECINAL VILLA ADELINA",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
-      "external_id": "nI8jiIOPg-cfpMLTRIOkMw",
-      "fecha": "2026-12-20",
-      "hora": "12:30",
-      "tira": "—",
-      "categoria": "U13 Fem",
-      "rival": "ATENEO POPULAR VERSAILLES",
-      "localia": "Visitante",
-      "direccion": "Roma 950, 1408",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
-      "external_id": "USX41DsviDIxU0pM-jWs9g",
-      "fecha": "2026-12-20",
-      "hora": "15:30",
-      "tira": "—",
-      "categoria": "U9 Fem",
-      "rival": "ATENEO POPULAR VERSAILLES",
-      "localia": "Visitante",
-      "direccion": "Roma 950, 1408",
       "resultado": "",
       "espacio": null
     }
