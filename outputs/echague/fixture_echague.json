@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-11-23T19:31:19-03:00",
+  "generated_at": "2026-11-24T03:52:38-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -7476,7 +7476,7 @@
       "rival": "UNIVERSIDAD DE BUENOS AIRES B",
       "localia": "Visitante",
       "direccion": "manual",
-      "resultado": "",
+      "resultado": "49-41",
       "espacio": null
     },
     {
@@ -7489,7 +7489,7 @@
       "rival": "CLUB SAN FERNANDO",
       "localia": "Visitante",
       "direccion": "Sarmiento Y Escalada S/N, CP 1646",
-      "resultado": "",
+      "resultado": "74-82",
       "espacio": null
     },
     {
