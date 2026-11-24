@@ -1,7 +1,7 @@
 {
   "meta": {
     "fecha_calculo": "2026-11-24",
-    "fecha_standings": "15/11/2026",
+    "fecha_standings": "24/11/2026",
     "total_equipos": 193,
     "fuente_standings": "docs/formativas_2026_tabla_posiciones.html",
     "nota_u21": "U21 = LIGA PROXIMO MASCULINO (GES 5075): suma a la tabla general junto con U13/U15/U17. Presentación a la general: solo U11 (U9 informativa).",
@@ -38,14 +38,14 @@
         {
           "clave": "EL TALAR",
           "region_2027": "CENTRO",
-          "nivel_2027": 3,
-          "status": "MANTIENE"
+          "nivel_2027": 2,
+          "status": "ASCIENDE"
         },
         {
           "clave": "SAN ANDRES",
           "region_2027": "NORTE",
-          "nivel_2027": 3,
-          "status": "ASCIENDE"
+          "nivel_2027": 5,
+          "status": "DESCIENDE"
         },
         {
           "clave": "17 DE AGOSTO",
@@ -90,8 +90,8 @@
           "status": "DESCIENDE"
         }
       ],
-      "clampados_tope_descenso": 29,
-      "demotes_reequilibrio": 41,
+      "clampados_tope_descenso": 25,
+      "demotes_reequilibrio": 38,
       "demotes_forzados_cupo": 4
     },
     "reglas": {
@@ -143,12 +143,12 @@
     "2": {
       "SUR": 12,
       "OESTE": 9,
-      "NORTE": 7,
-      "CENTRO": 4
+      "NORTE": 6,
+      "CENTRO": 5
     },
     "3": {
-      "CENTRO": 8,
       "NORTE": 8,
+      "CENTRO": 8,
       "SUR": 8,
       "OESTE": 8
     },
@@ -159,8 +159,8 @@
       "OESTE": 8
     },
     "5": {
-      "CENTRO": 8,
       "NORTE": 8,
+      "CENTRO": 8,
       "SUR": 8,
       "OESTE": 8
     },
@@ -501,9 +501,9 @@
           "equipo": "GIMNASIA Y ESGRIMA LA PLATA A",
           "clave": "GIMNASIA Y ESGRIMA LA A PLATA",
           "pos_2026": 3,
-          "puntos": 98,
+          "puntos": 99,
           "pts_general": 88,
-          "pts_presentacion": 10,
+          "pts_presentacion": 11,
           "pj_general": 56,
           "ganados": 32,
           "nivel_2026": "INTERCONFERENCIA_A",
@@ -549,9 +549,9 @@
           "equipo": "PRESIDENTE DERQUI",
           "clave": "PRESIDENTE DERQUI",
           "pos_2026": 6,
-          "puntos": 90,
+          "puntos": 91,
           "pts_general": 77,
-          "pts_presentacion": 13,
+          "pts_presentacion": 14,
           "pj_general": 56,
           "ganados": 21,
           "nivel_2026": "INTERCONFERENCIA_A",
@@ -1081,30 +1081,30 @@
           "detalle": "Desciende a Interconferencia B / Nivel 2"
         },
         {
-          "equipo": "U.V.V.A UNION VECINAL VILLA ADELINA",
-          "clave": "UVVA UNION VECINAL VILLA ADELINA",
+          "equipo": "EL TALAR",
+          "clave": "EL TALAR",
           "pos_2026": 1,
-          "puntos": 111,
-          "pts_general": 97,
-          "pts_presentacion": 14,
-          "pj_general": 60,
-          "ganados": 38,
+          "puntos": 123,
+          "pts_general": 108,
+          "pts_presentacion": 15,
+          "pj_general": 66,
+          "ganados": 43,
           "nivel_2026": "NIVEL_1",
           "zona_2026": "NORTE 1",
-          "region": "NORTE",
+          "region": "CENTRO",
           "status": "ASCIENDE",
           "nivel_2027": 2,
-          "detalle": "Asciende a Interconferencia B / Nivel 2"
+          "detalle": "Asciende a Interconferencia B / Nivel 2 · región 2027 NORTE→CENTRO (ajuste)"
         },
         {
-          "equipo": "SAN FERNANDO AZUL",
-          "clave": "SAN FERNANDO AZUL",
+          "equipo": "U.V.V.A UNION VECINAL VILLA ADELINA",
+          "clave": "UVVA UNION VECINAL VILLA ADELINA",
           "pos_2026": 2,
-          "puntos": 110,
-          "pts_general": 107,
-          "pts_presentacion": 3,
-          "pj_general": 63,
-          "ganados": 45,
+          "puntos": 121,
+          "pts_general": 106,
+          "pts_presentacion": 15,
+          "pj_general": 67,
+          "ganados": 40,
           "nivel_2026": "NIVEL_1",
           "zona_2026": "NORTE 1",
           "region": "NORTE",
@@ -1116,11 +1116,11 @@
           "equipo": "GEBA",
           "clave": "GEBA",
           "pos_2026": 1,
-          "puntos": 123,
-          "pts_general": 110,
-          "pts_presentacion": 13,
-          "pj_general": 56,
-          "ganados": 54,
+          "puntos": 132,
+          "pts_general": 118,
+          "pts_presentacion": 14,
+          "pj_general": 60,
+          "ganados": 58,
           "nivel_2026": "NIVEL_1",
           "zona_2026": "CENTRO 1",
           "region": "CENTRO",
@@ -1132,11 +1132,11 @@
           "equipo": "DEPORTIVO CROVARA A",
           "clave": "DEPORTIVO CROVARA A",
           "pos_2026": 2,
-          "puntos": 98,
-          "pts_general": 85,
-          "pts_presentacion": 13,
-          "pj_general": 52,
-          "ganados": 33,
+          "puntos": 116,
+          "pts_general": 101,
+          "pts_presentacion": 15,
+          "pj_general": 60,
+          "ganados": 41,
           "nivel_2026": "NIVEL_1",
           "zona_2026": "CENTRO 1",
           "region": "CENTRO",
@@ -1148,11 +1148,11 @@
           "equipo": "BERNAL",
           "clave": "BERNAL",
           "pos_2026": 1,
-          "puntos": 123,
-          "pts_general": 108,
-          "pts_presentacion": 15,
-          "pj_general": 60,
-          "ganados": 48,
+          "puntos": 141,
+          "pts_general": 124,
+          "pts_presentacion": 17,
+          "pj_general": 68,
+          "ganados": 56,
           "nivel_2026": "NIVEL_1",
           "zona_2026": "SUR 1",
           "region": "SUR",
@@ -1164,11 +1164,11 @@
           "equipo": "RACING CLUB",
           "clave": "RACING CLUB",
           "pos_2026": 2,
-          "puntos": 120,
-          "pts_general": 111,
-          "pts_presentacion": 9,
-          "pj_general": 63,
-          "ganados": 48,
+          "puntos": 127,
+          "pts_general": 117,
+          "pts_presentacion": 10,
+          "pj_general": 67,
+          "ganados": 50,
           "nivel_2026": "NIVEL_1",
           "zona_2026": "SUR 1",
           "region": "SUR",
@@ -1177,14 +1177,14 @@
           "detalle": "Asciende a Interconferencia B / Nivel 2"
         },
         {
-          "equipo": "CLUB CEPA",
-          "clave": "CLUB CEPA",
+          "equipo": "DEPORTIVO MORON A",
+          "clave": "DEPORTIVO MORON A",
           "pos_2026": 1,
-          "puntos": 95,
-          "pts_general": 86,
+          "puntos": 113,
+          "pts_general": 104,
           "pts_presentacion": 9,
-          "pj_general": 48,
-          "ganados": 38,
+          "pj_general": 56,
+          "ganados": 49,
           "nivel_2026": "NIVEL_1",
           "zona_2026": "OESTE 1",
           "region": "OESTE",
@@ -1193,14 +1193,14 @@
           "detalle": "Asciende a Interconferencia B / Nivel 2"
         },
         {
-          "equipo": "DEPORTIVO MORON A",
-          "clave": "DEPORTIVO MORON A",
+          "equipo": "A.F.A.L.P. A",
+          "clave": "AFALP A",
           "pos_2026": 2,
-          "puntos": 94,
-          "pts_general": 86,
-          "pts_presentacion": 8,
-          "pj_general": 47,
-          "ganados": 40,
+          "puntos": 101,
+          "pts_general": 89,
+          "pts_presentacion": 12,
+          "pj_general": 56,
+          "ganados": 35,
           "nivel_2026": "NIVEL_1",
           "zona_2026": "OESTE 1",
           "region": "OESTE",
@@ -1216,30 +1216,14 @@
       "n_equipos": 32,
       "equipos": [
         {
-          "equipo": "EL TALAR",
-          "clave": "EL TALAR",
+          "equipo": "SAN FERNANDO AZUL",
+          "clave": "SAN FERNANDO AZUL",
           "pos_2026": 3,
-          "puntos": 106,
-          "pts_general": 93,
-          "pts_presentacion": 13,
-          "pj_general": 58,
-          "ganados": 36,
-          "nivel_2026": "NIVEL_1",
-          "zona_2026": "NORTE 1",
-          "region": "CENTRO",
-          "status": "MANTIENE",
-          "nivel_2027": 3,
-          "detalle": "Permanece en Nivel 3 (cupo mínimo GES N1 → N3, NORTE) · región 2027 NORTE→CENTRO (ajuste)"
-        },
-        {
-          "equipo": "BANCO PROVINCIA",
-          "clave": "BANCO PROVINCIA",
-          "pos_2026": 4,
-          "puntos": 103,
-          "pts_general": 89,
-          "pts_presentacion": 14,
-          "pj_general": 61,
-          "ganados": 28,
+          "puntos": 119,
+          "pts_general": 115,
+          "pts_presentacion": 4,
+          "pj_general": 67,
+          "ganados": 49,
           "nivel_2026": "NIVEL_1",
           "zona_2026": "NORTE 1",
           "region": "NORTE",
@@ -1248,14 +1232,30 @@
           "detalle": "Permanece en Nivel 3 (cupo mínimo GES N1 → N3, NORTE)"
         },
         {
-          "equipo": "ESTRELLA DE BOEDO",
-          "clave": "ESTRELLA DE BOEDO",
+          "equipo": "BANCO PROVINCIA",
+          "clave": "BANCO PROVINCIA",
+          "pos_2026": 4,
+          "puntos": 111,
+          "pts_general": 95,
+          "pts_presentacion": 16,
+          "pj_general": 66,
+          "ganados": 29,
+          "nivel_2026": "NIVEL_1",
+          "zona_2026": "NORTE 1",
+          "region": "NORTE",
+          "status": "MANTIENE",
+          "nivel_2027": 3,
+          "detalle": "Permanece en Nivel 3 (cupo mínimo GES N1 → N3, NORTE)"
+        },
+        {
+          "equipo": "COPELLO",
+          "clave": "COPELLO",
           "pos_2026": 3,
-          "puntos": 95,
-          "pts_general": 83,
-          "pts_presentacion": 12,
-          "pj_general": 59,
-          "ganados": 26,
+          "puntos": 110,
+          "pts_general": 95,
+          "pts_presentacion": 15,
+          "pj_general": 60,
+          "ganados": 35,
           "nivel_2026": "NIVEL_1",
           "zona_2026": "CENTRO 1",
           "region": "CENTRO",
@@ -1267,11 +1267,11 @@
           "equipo": "PINOCHO BLANCO",
           "clave": "PINOCHO BLANCO",
           "pos_2026": 4,
-          "puntos": 92,
-          "pts_general": 81,
-          "pts_presentacion": 11,
-          "pj_general": 50,
-          "ganados": 31,
+          "puntos": 109,
+          "pts_general": 95,
+          "pts_presentacion": 14,
+          "pj_general": 60,
+          "ganados": 35,
           "nivel_2026": "NIVEL_1",
           "zona_2026": "CENTRO 1",
           "region": "CENTRO",
@@ -1283,11 +1283,11 @@
           "equipo": "UNION VILLEGAS",
           "clave": "UNION VILLEGAS",
           "pos_2026": 3,
-          "puntos": 114,
-          "pts_general": 99,
-          "pts_presentacion": 15,
-          "pj_general": 61,
-          "ganados": 38,
+          "puntos": 125,
+          "pts_general": 108,
+          "pts_presentacion": 17,
+          "pj_general": 68,
+          "ganados": 40,
           "nivel_2026": "NIVEL_1",
           "zona_2026": "SUR 1",
           "region": "SUR",
@@ -1299,11 +1299,11 @@
           "equipo": "BERAZATEGUI",
           "clave": "BERAZATEGUI",
           "pos_2026": 4,
-          "puntos": 114,
-          "pts_general": 99,
-          "pts_presentacion": 15,
-          "pj_general": 63,
-          "ganados": 37,
+          "puntos": 124,
+          "pts_general": 107,
+          "pts_presentacion": 17,
+          "pj_general": 67,
+          "ganados": 41,
           "nivel_2026": "NIVEL_1",
           "zona_2026": "SUR 1",
           "region": "SUR",
@@ -1312,14 +1312,14 @@
           "detalle": "Permanece en Nivel 3 (cupo mínimo GES N1 → N3, SUR)"
         },
         {
-          "equipo": "A.F.A.L.P. A",
-          "clave": "AFALP A",
+          "equipo": "CLUB CEPA",
+          "clave": "CLUB CEPA",
           "pos_2026": 3,
-          "puntos": 93,
-          "pts_general": 82,
-          "pts_presentacion": 11,
+          "puntos": 100,
+          "pts_general": 90,
+          "pts_presentacion": 10,
           "pj_general": 52,
-          "ganados": 32,
+          "ganados": 38,
           "nivel_2026": "NIVEL_1",
           "zona_2026": "OESTE 1",
           "region": "OESTE",
@@ -1331,11 +1331,11 @@
           "equipo": "CEDEM",
           "clave": "CEDEM",
           "pos_2026": 4,
-          "puntos": 89,
-          "pts_general": 78,
-          "pts_presentacion": 11,
-          "pj_general": 48,
-          "ganados": 30,
+          "puntos": 98,
+          "pts_general": 86,
+          "pts_presentacion": 12,
+          "pj_general": 52,
+          "ganados": 34,
           "nivel_2026": "NIVEL_1",
           "zona_2026": "OESTE 1",
           "region": "OESTE",
@@ -1347,11 +1347,11 @@
           "equipo": "BANCO NACION AZUL A",
           "clave": "BANCO NACION A AZUL",
           "pos_2026": 1,
-          "puntos": 118,
-          "pts_general": 104,
+          "puntos": 120,
+          "pts_general": 106,
           "pts_presentacion": 14,
-          "pj_general": 55,
-          "ganados": 49,
+          "pj_general": 56,
+          "ganados": 50,
           "nivel_2026": "NIVEL_2",
           "zona_2026": "NORTE",
           "region": "NORTE",
@@ -1363,11 +1363,11 @@
           "equipo": "NAUTICO BUCHARDO A",
           "clave": "NAUTICO BUCHARDO A",
           "pos_2026": 2,
-          "puntos": 115,
-          "pts_general": 103,
+          "puntos": 117,
+          "pts_general": 105,
           "pts_presentacion": 12,
-          "pj_general": 55,
-          "ganados": 48,
+          "pj_general": 56,
+          "ganados": 49,
           "nivel_2026": "NIVEL_2",
           "zona_2026": "NORTE",
           "region": "NORTE",
@@ -1376,13 +1376,13 @@
           "detalle": "Asciende a Nivel 3 (venía de NIVEL_2) · pos regional 2"
         },
         {
-          "equipo": "VICTORIA NEGRO",
-          "clave": "VICTORIA NEGRO",
+          "equipo": "UNION VECINAL DE MUNRO",
+          "clave": "UNION VECINAL DE MUNRO",
           "pos_2026": 5,
-          "puntos": 100,
-          "pts_general": 90,
-          "pts_presentacion": 10,
-          "pj_general": 63,
+          "puntos": 108,
+          "pts_general": 93,
+          "pts_presentacion": 15,
+          "pj_general": 65,
           "ganados": 28,
           "nivel_2026": "NIVEL_1",
           "zona_2026": "NORTE 1",
@@ -1392,14 +1392,14 @@
           "detalle": "Permanece en Nivel 3 · pos regional 3"
         },
         {
-          "equipo": "UNION VECINAL DE MUNRO",
-          "clave": "UNION VECINAL DE MUNRO",
+          "equipo": "HARRODS GATH Y CHAVES",
+          "clave": "HARRODS GATH Y CHAVES",
           "pos_2026": 6,
-          "puntos": 98,
-          "pts_general": 85,
-          "pts_presentacion": 13,
-          "pj_general": 60,
-          "ganados": 25,
+          "puntos": 108,
+          "pts_general": 93,
+          "pts_presentacion": 15,
+          "pj_general": 66,
+          "ganados": 27,
           "nivel_2026": "NIVEL_1",
           "zona_2026": "NORTE 1",
           "region": "NORTE",
@@ -1408,20 +1408,20 @@
           "detalle": "Permanece en Nivel 3 · pos regional 4"
         },
         {
-          "equipo": "COOP DE TORTUGUITAS",
-          "clave": "COOP DE TORTUGUITAS",
-          "pos_2026": 3,
-          "puntos": 94,
-          "pts_general": 82,
-          "pts_presentacion": 12,
-          "pj_general": 55,
+          "equipo": "VICTORIA NEGRO",
+          "clave": "VICTORIA NEGRO",
+          "pos_2026": 7,
+          "puntos": 103,
+          "pts_general": 93,
+          "pts_presentacion": 10,
+          "pj_general": 66,
           "ganados": 28,
-          "nivel_2026": "NIVEL_2",
-          "zona_2026": "NORTE",
+          "nivel_2026": "NIVEL_1",
+          "zona_2026": "NORTE 1",
           "region": "NORTE",
-          "status": "ASCIENDE",
+          "status": "MANTIENE",
           "nivel_2027": 3,
-          "detalle": "Asciende a Nivel 3 (venía de NIVEL_2) · pos regional 5"
+          "detalle": "Permanece en Nivel 3 · pos regional 5"
         },
         {
           "equipo": "BELLA VISTA",
@@ -1437,17 +1437,17 @@
           "region": "NORTE",
           "status": "DESCIENDE",
           "nivel_2027": 3,
-          "detalle": "Desciende a Nivel 3 (venía de INTERCONFERENCIA_B) · pos regional 12 · tope descenso (ideal N4)"
+          "detalle": "Desciende a Nivel 3 (venía de INTERCONFERENCIA_B) · pos regional 15 · tope descenso (ideal N5)"
         },
         {
-          "equipo": "CLUB ATLETICO HURACAN DE PARQUE PATRICIOS",
-          "clave": "CLUB ATLETICO HURACAN DE PARQUE PATRICIOS",
+          "equipo": "CIRCULO URQUIZA",
+          "clave": "CIRCULO URQUIZA",
           "pos_2026": 1,
-          "puntos": 122,
-          "pts_general": 109,
-          "pts_presentacion": 13,
-          "pj_general": 62,
-          "ganados": 49,
+          "puntos": 138,
+          "pts_general": 121,
+          "pts_presentacion": 17,
+          "pj_general": 69,
+          "ganados": 52,
           "nivel_2026": "NIVEL_3",
           "zona_2026": "CENTRO",
           "region": "CENTRO",
@@ -1456,14 +1456,14 @@
           "detalle": "Asciende a Nivel 3 (venía de NIVEL_3) · pos regional 1"
         },
         {
-          "equipo": "CIRCULO URQUIZA",
-          "clave": "CIRCULO URQUIZA",
+          "equipo": "MACABI",
+          "clave": "MACABI",
           "pos_2026": 2,
-          "puntos": 110,
-          "pts_general": 97,
-          "pts_presentacion": 13,
-          "pj_general": 57,
-          "ganados": 40,
+          "puntos": 135,
+          "pts_general": 125,
+          "pts_presentacion": 10,
+          "pj_general": 67,
+          "ganados": 60,
           "nivel_2026": "NIVEL_3",
           "zona_2026": "CENTRO",
           "region": "CENTRO",
@@ -1472,20 +1472,20 @@
           "detalle": "Asciende a Nivel 3 (venía de NIVEL_3) · pos regional 2"
         },
         {
-          "equipo": "SAN ANDRES",
-          "clave": "SAN ANDRES",
-          "pos_2026": 1,
-          "puntos": 109,
-          "pts_general": 95,
-          "pts_presentacion": 14,
-          "pj_general": 56,
-          "ganados": 41,
-          "nivel_2026": "NIVEL_2",
+          "equipo": "CLUB ATLETICO HURACAN DE PARQUE PATRICIOS",
+          "clave": "CLUB ATLETICO HURACAN DE PARQUE PATRICIOS",
+          "pos_2026": 3,
+          "puntos": 134,
+          "pts_general": 119,
+          "pts_presentacion": 15,
+          "pj_general": 69,
+          "ganados": 53,
+          "nivel_2026": "NIVEL_3",
           "zona_2026": "CENTRO",
-          "region": "NORTE",
+          "region": "CENTRO",
           "status": "ASCIENDE",
           "nivel_2027": 3,
-          "detalle": "Asciende a Nivel 3 (venía de NIVEL_2) · pos regional 3 · región 2027 CENTRO→NORTE (ajuste)"
+          "detalle": "Asciende a Nivel 3 (venía de NIVEL_3) · pos regional 3"
         },
         {
           "equipo": "VILLA MITRE",
@@ -1501,7 +1501,7 @@
           "region": "CENTRO",
           "status": "DESCIENDE",
           "nivel_2027": 3,
-          "detalle": "Desciende a Nivel 3 (venía de INTERCONFERENCIA_B) · pos regional 12 · tope descenso (ideal N4)"
+          "detalle": "Desciende a Nivel 3 (venía de INTERCONFERENCIA_B) · pos regional 14 · tope descenso (ideal N4)"
         },
         {
           "equipo": "FERROCARRIL OESTE BLANCA",
@@ -1517,7 +1517,7 @@
           "region": "CENTRO",
           "status": "DESCIENDE",
           "nivel_2027": 3,
-          "detalle": "Desciende a Nivel 3 (venía de INTERCONFERENCIA_B) · pos regional 16 · tope descenso (ideal N5)"
+          "detalle": "Desciende a Nivel 3 (venía de INTERCONFERENCIA_B) · pos regional 21 · tope descenso (ideal N5)"
         },
         {
           "equipo": "ARMENIA",
@@ -1533,12 +1533,76 @@
           "region": "CENTRO",
           "status": "DESCIENDE",
           "nivel_2027": 3,
-          "detalle": "Desciende a Nivel 3 (venía de INTERCONFERENCIA_B) · pos regional 23 · tope descenso (ideal N6)"
+          "detalle": "Desciende a Nivel 3 (venía de INTERCONFERENCIA_B) · pos regional 26 · tope descenso (ideal N6)"
+        },
+        {
+          "equipo": "LOS ANDES",
+          "clave": "LOS ANDES",
+          "pos_2026": 5,
+          "puntos": 114,
+          "pts_general": 97,
+          "pts_presentacion": 17,
+          "pj_general": 68,
+          "ganados": 29,
+          "nivel_2026": "NIVEL_1",
+          "zona_2026": "SUR 1",
+          "region": "SUR",
+          "status": "MANTIENE",
+          "nivel_2027": 3,
+          "detalle": "Permanece en Nivel 3 · pos regional 1"
+        },
+        {
+          "equipo": "C.S.D.Y C. MORENO",
+          "clave": "CSDY MORENO C",
+          "pos_2026": 6,
+          "puntos": 113,
+          "pts_general": 97,
+          "pts_presentacion": 16,
+          "pj_general": 61,
+          "ganados": 36,
+          "nivel_2026": "NIVEL_1",
+          "zona_2026": "SUR 1",
+          "region": "SUR",
+          "status": "MANTIENE",
+          "nivel_2027": 3,
+          "detalle": "Permanece en Nivel 3 · pos regional 2"
+        },
+        {
+          "equipo": "VILLA ESPANA",
+          "clave": "VILLA ESPANA",
+          "pos_2026": 1,
+          "puntos": 109,
+          "pts_general": 96,
+          "pts_presentacion": 13,
+          "pj_general": 56,
+          "ganados": 40,
+          "nivel_2026": "NIVEL_2",
+          "zona_2026": "SUR",
+          "region": "SUR",
+          "status": "ASCIENDE",
+          "nivel_2027": 3,
+          "detalle": "Asciende a Nivel 3 (venía de NIVEL_2) · pos regional 3"
+        },
+        {
+          "equipo": "BOCA JUNIORS AMARILLO B",
+          "clave": "BOCA JUNIORS AMARILLO B",
+          "pos_2026": 7,
+          "puntos": 109,
+          "pts_general": 93,
+          "pts_presentacion": 16,
+          "pj_general": 64,
+          "ganados": 30,
+          "nivel_2026": "NIVEL_1",
+          "zona_2026": "SUR 1",
+          "region": "SUR",
+          "status": "MANTIENE",
+          "nivel_2027": 3,
+          "detalle": "Permanece en Nivel 3 · pos regional 4"
         },
         {
           "equipo": "COOPERARIOS DE QUILMES",
           "clave": "COOPERARIOS DE QUILMES",
-          "pos_2026": 1,
+          "pos_2026": 2,
           "puntos": 108,
           "pts_general": 95,
           "pts_presentacion": 13,
@@ -1549,87 +1613,23 @@
           "region": "SUR",
           "status": "ASCIENDE",
           "nivel_2027": 3,
-          "detalle": "Asciende a Nivel 3 (venía de NIVEL_2) · pos regional 1"
+          "detalle": "Asciende a Nivel 3 (venía de NIVEL_2) · pos regional 5"
         },
         {
-          "equipo": "LOS ANDES",
-          "clave": "LOS ANDES",
-          "pos_2026": 5,
-          "puntos": 106,
-          "pts_general": 90,
-          "pts_presentacion": 16,
-          "pj_general": 63,
-          "ganados": 27,
+          "equipo": "OLIMPO",
+          "clave": "OLIMPO",
+          "pos_2026": 8,
+          "puntos": 108,
+          "pts_general": 91,
+          "pts_presentacion": 17,
+          "pj_general": 67,
+          "ganados": 24,
           "nivel_2026": "NIVEL_1",
           "zona_2026": "SUR 1",
           "region": "SUR",
           "status": "MANTIENE",
           "nivel_2027": 3,
-          "detalle": "Permanece en Nivel 3 · pos regional 2"
-        },
-        {
-          "equipo": "LANUS B",
-          "clave": "LANUS B",
-          "pos_2026": 2,
-          "puntos": 104,
-          "pts_general": 97,
-          "pts_presentacion": 7,
-          "pj_general": 55,
-          "ganados": 42,
-          "nivel_2026": "NIVEL_2",
-          "zona_2026": "SUR",
-          "region": "SUR",
-          "status": "ASCIENDE",
-          "nivel_2027": 3,
-          "detalle": "Asciende a Nivel 3 (venía de NIVEL_2) · pos regional 3"
-        },
-        {
-          "equipo": "VILLA ESPANA",
-          "clave": "VILLA ESPANA",
-          "pos_2026": 3,
-          "puntos": 101,
-          "pts_general": 89,
-          "pts_presentacion": 12,
-          "pj_general": 52,
-          "ganados": 37,
-          "nivel_2026": "NIVEL_2",
-          "zona_2026": "SUR",
-          "region": "SUR",
-          "status": "ASCIENDE",
-          "nivel_2027": 3,
-          "detalle": "Asciende a Nivel 3 (venía de NIVEL_2) · pos regional 4"
-        },
-        {
-          "equipo": "GUILLON BASQUET",
-          "clave": "GUILLON BASQUET",
-          "pos_2026": 4,
-          "puntos": 101,
-          "pts_general": 88,
-          "pts_presentacion": 13,
-          "pj_general": 55,
-          "ganados": 33,
-          "nivel_2026": "NIVEL_2",
-          "zona_2026": "SUR",
-          "region": "SUR",
-          "status": "ASCIENDE",
-          "nivel_2027": 3,
-          "detalle": "Asciende a Nivel 3 (venía de NIVEL_2) · pos regional 5"
-        },
-        {
-          "equipo": "JUVENTUD UNIDA",
-          "clave": "JUVENTUD UNIDA",
-          "pos_2026": 5,
-          "puntos": 101,
-          "pts_general": 88,
-          "pts_presentacion": 13,
-          "pj_general": 55,
-          "ganados": 33,
-          "nivel_2026": "NIVEL_2",
-          "zona_2026": "SUR",
-          "region": "SUR",
-          "status": "ASCIENDE",
-          "nivel_2027": 3,
-          "detalle": "Asciende a Nivel 3 (venía de NIVEL_2) · pos regional 6"
+          "detalle": "Permanece en Nivel 3 · pos regional 6"
         },
         {
           "equipo": "VELEZ SARSFIELD AZUL - B",
@@ -1677,7 +1677,7 @@
           "region": "OESTE",
           "status": "DESCIENDE",
           "nivel_2027": 3,
-          "detalle": "Desciende a Nivel 3 (venía de INTERCONFERENCIA_B) · pos regional 14 · tope descenso (ideal N4)"
+          "detalle": "Desciende a Nivel 3 (venía de INTERCONFERENCIA_B) · pos regional 16 · tope descenso (ideal N5)"
         },
         {
           "equipo": "MIDLAND",
@@ -1693,7 +1693,7 @@
           "region": "OESTE",
           "status": "DESCIENDE",
           "nivel_2027": 3,
-          "detalle": "Desciende a Nivel 3 (venía de INTERCONFERENCIA_B) · pos regional 17 · tope descenso (ideal N5)"
+          "detalle": "Desciende a Nivel 3 (venía de INTERCONFERENCIA_B) · pos regional 18 · tope descenso (ideal N5)"
         },
         {
           "equipo": "ARGENTINO DE CASTELAR CENTRO B",
@@ -1709,7 +1709,7 @@
           "region": "OESTE",
           "status": "DESCIENDE",
           "nivel_2027": 3,
-          "detalle": "Desciende a Nivel 3 (venía de INTERCONFERENCIA_B) · pos regional 21 · tope descenso (ideal N5)"
+          "detalle": "Desciende a Nivel 3 (venía de INTERCONFERENCIA_B) · pos regional 22 · tope descenso (ideal N5)"
         },
         {
           "equipo": "UNIVERSIDAD DE LA MATANZA",
@@ -1735,14 +1735,14 @@
       "n_equipos": 32,
       "equipos": [
         {
-          "equipo": "SPORTIVO VILLA BALLESTER",
-          "clave": "SPORTIVO VILLA BALLESTER",
-          "pos_2026": 7,
-          "puntos": 93,
-          "pts_general": 79,
-          "pts_presentacion": 14,
-          "pj_general": 59,
-          "ganados": 20,
+          "equipo": "ATLETICO PILAR",
+          "clave": "ATLETICO PILAR",
+          "pos_2026": 9,
+          "puntos": 101,
+          "pts_general": 97,
+          "pts_presentacion": 4,
+          "pj_general": 56,
+          "ganados": 45,
           "nivel_2026": "NIVEL_1",
           "zona_2026": "NORTE 1",
           "region": "NORTE",
@@ -1751,20 +1751,36 @@
           "detalle": "Desciende a Nivel 4 (venía de NIVEL_1) · pos regional 7"
         },
         {
-          "equipo": "HARRODS GATH Y CHAVES",
-          "clave": "HARRODS GATH Y CHAVES",
-          "pos_2026": 8,
-          "puntos": 92,
-          "pts_general": 78,
-          "pts_presentacion": 14,
+          "equipo": "COOP DE TORTUGUITAS",
+          "clave": "COOP DE TORTUGUITAS",
+          "pos_2026": 3,
+          "puntos": 96,
+          "pts_general": 84,
+          "pts_presentacion": 12,
           "pj_general": 56,
-          "ganados": 22,
-          "nivel_2026": "NIVEL_1",
-          "zona_2026": "NORTE 1",
+          "ganados": 29,
+          "nivel_2026": "NIVEL_2",
+          "zona_2026": "NORTE",
           "region": "NORTE",
-          "status": "DESCIENDE",
+          "status": "MANTIENE",
           "nivel_2027": 4,
-          "detalle": "Desciende a Nivel 4 (venía de NIVEL_1) · pos regional 8"
+          "detalle": "Permanece en Nivel 4 · pos regional 8"
+        },
+        {
+          "equipo": "INDEPENDIENTE DE ESCOBAR",
+          "clave": "INDEPENDIENTE DE ESCOBAR",
+          "pos_2026": 4,
+          "puntos": 94,
+          "pts_general": 88,
+          "pts_presentacion": 6,
+          "pj_general": 56,
+          "ganados": 33,
+          "nivel_2026": "NIVEL_2",
+          "zona_2026": "NORTE",
+          "region": "NORTE",
+          "status": "MANTIENE",
+          "nivel_2027": 4,
+          "detalle": "Permanece en Nivel 4 · pos regional 9"
         },
         {
           "equipo": "CIUDAD DE BUENOS AIRES B BLANCO",
@@ -1780,7 +1796,23 @@
           "region": "NORTE",
           "status": "MANTIENE",
           "nivel_2027": 4,
-          "detalle": "Permanece en Nivel 4 · pos regional 9"
+          "detalle": "Permanece en Nivel 4 · pos regional 10"
+        },
+        {
+          "equipo": "CAZA Y PESCA VERDE B",
+          "clave": "CAZA Y PESCA B VERDE",
+          "pos_2026": 10,
+          "puntos": 91,
+          "pts_general": 77,
+          "pts_presentacion": 14,
+          "pj_general": 65,
+          "ganados": 12,
+          "nivel_2026": "NIVEL_1",
+          "zona_2026": "NORTE 1",
+          "region": "NORTE",
+          "status": "DESCIENDE",
+          "nivel_2027": 4,
+          "detalle": "Desciende a Nivel 4 (venía de NIVEL_1) · pos regional 11"
         },
         {
           "equipo": "VICTORIA BLANCO",
@@ -1796,80 +1828,48 @@
           "region": "NORTE",
           "status": "ASCIENDE",
           "nivel_2027": 4,
-          "detalle": "Asciende a Nivel 4 (venía de NIVEL_3) · pos regional 10"
+          "detalle": "Asciende a Nivel 4 (venía de NIVEL_3) · pos regional 12"
         },
         {
           "equipo": "SOCIEDAD HEBRAICA ARGENTINA",
           "clave": "SOCIEDAD HEBRAICA ARGENTINA",
           "pos_2026": 2,
-          "puntos": 86,
-          "pts_general": 74,
+          "puntos": 88,
+          "pts_general": 76,
           "pts_presentacion": 12,
-          "pj_general": 47,
-          "ganados": 28,
+          "pj_general": 48,
+          "ganados": 29,
           "nivel_2026": "NIVEL_3",
           "zona_2026": "NORTE",
           "region": "NORTE",
           "status": "ASCIENDE",
           "nivel_2027": 4,
-          "detalle": "Asciende a Nivel 4 (venía de NIVEL_3) · pos regional 11"
+          "detalle": "Asciende a Nivel 4 (venía de NIVEL_3) · pos regional 13"
         },
         {
-          "equipo": "ATLETICO PILAR",
-          "clave": "ATLETICO PILAR",
-          "pos_2026": 9,
-          "puntos": 83,
-          "pts_general": 79,
-          "pts_presentacion": 4,
-          "pj_general": 47,
-          "ganados": 36,
+          "equipo": "SPORTIVO VILLA BALLESTER",
+          "clave": "SPORTIVO VILLA BALLESTER",
+          "pos_2026": 8,
+          "puntos": 103,
+          "pts_general": 88,
+          "pts_presentacion": 15,
+          "pj_general": 66,
+          "ganados": 22,
           "nivel_2026": "NIVEL_1",
           "zona_2026": "NORTE 1",
           "region": "NORTE",
           "status": "DESCIENDE",
           "nivel_2027": 4,
-          "detalle": "Desciende a Nivel 4 (venía de NIVEL_1) · pos regional 15 · tope descenso (ideal N5)"
+          "detalle": "Desciende a Nivel 4 (venía de NIVEL_1) · pos regional 6 · tope descenso (ideal N3)"
         },
         {
-          "equipo": "CAZA Y PESCA VERDE B",
-          "clave": "CAZA Y PESCA B VERDE",
-          "pos_2026": 10,
-          "puntos": 81,
-          "pts_general": 69,
-          "pts_presentacion": 12,
-          "pj_general": 57,
-          "ganados": 12,
-          "nivel_2026": "NIVEL_1",
-          "zona_2026": "NORTE 1",
-          "region": "NORTE",
-          "status": "DESCIENDE",
-          "nivel_2027": 4,
-          "detalle": "Desciende a Nivel 4 (venía de NIVEL_1) · pos regional 19 · tope descenso (ideal N5)"
-        },
-        {
-          "equipo": "INDEPENDIENTE DE ESCOBAR",
-          "clave": "INDEPENDIENTE DE ESCOBAR",
-          "pos_2026": 4,
-          "puntos": 93,
-          "pts_general": 87,
-          "pts_presentacion": 6,
-          "pj_general": 55,
-          "ganados": 33,
-          "nivel_2026": "NIVEL_2",
-          "zona_2026": "NORTE",
-          "region": "NORTE",
-          "status": "MANTIENE",
-          "nivel_2027": 4,
-          "detalle": "Permanece en Nivel 4 · pos regional 6 · tope descenso (ideal N3)"
-        },
-        {
-          "equipo": "COPELLO",
-          "clave": "COPELLO",
+          "equipo": "ESTRELLA DE BOEDO",
+          "clave": "ESTRELLA DE BOEDO",
           "pos_2026": 5,
-          "puntos": 92,
-          "pts_general": 80,
-          "pts_presentacion": 12,
-          "pj_general": 50,
+          "puntos": 106,
+          "pts_general": 92,
+          "pts_presentacion": 14,
+          "pj_general": 64,
           "ganados": 30,
           "nivel_2026": "NIVEL_1",
           "zona_2026": "CENTRO 1",
@@ -1881,76 +1881,76 @@
         {
           "equipo": "GEVP CELESTE B",
           "clave": "GEVP B CELESTE",
-          "pos_2026": 7,
-          "puntos": 84,
-          "pts_general": 72,
-          "pts_presentacion": 12,
-          "pj_general": 52,
-          "ganados": 20,
+          "pos_2026": 6,
+          "puntos": 95,
+          "pts_general": 81,
+          "pts_presentacion": 14,
+          "pj_general": 59,
+          "ganados": 22,
           "nivel_2026": "NIVEL_1",
           "zona_2026": "CENTRO 1",
           "region": "CENTRO",
           "status": "DESCIENDE",
           "nivel_2027": 4,
-          "detalle": "Desciende a Nivel 4 (venía de NIVEL_1) · pos regional 20 · tope descenso (ideal N5)"
+          "detalle": "Desciende a Nivel 4 (venía de NIVEL_1) · pos regional 13"
         },
         {
           "equipo": "ARQUITECTURA BLANCO B",
           "clave": "ARQUITECTURA B BLANCO",
-          "pos_2026": 6,
-          "puntos": 84,
-          "pts_general": 74,
-          "pts_presentacion": 10,
-          "pj_general": 56,
-          "ganados": 18,
+          "pos_2026": 7,
+          "puntos": 90,
+          "pts_general": 79,
+          "pts_presentacion": 11,
+          "pj_general": 60,
+          "ganados": 19,
           "nivel_2026": "NIVEL_1",
           "zona_2026": "CENTRO 1",
           "region": "CENTRO",
           "status": "DESCIENDE",
           "nivel_2027": 4,
-          "detalle": "Desciende a Nivel 4 (venía de NIVEL_1) · pos regional 21 · tope descenso (ideal N5)"
+          "detalle": "Desciende a Nivel 4 (venía de NIVEL_1) · pos regional 16 · tope descenso (ideal N5)"
         },
         {
           "equipo": "ALL BOYS BLANCO",
           "clave": "ALL BOYS BLANCO",
           "pos_2026": 8,
-          "puntos": 83,
-          "pts_general": 71,
-          "pts_presentacion": 12,
-          "pj_general": 56,
+          "puntos": 88,
+          "pts_general": 75,
+          "pts_presentacion": 13,
+          "pj_general": 60,
           "ganados": 16,
           "nivel_2026": "NIVEL_1",
           "zona_2026": "CENTRO 1",
           "region": "CENTRO",
           "status": "DESCIENDE",
           "nivel_2027": 4,
-          "detalle": "Desciende a Nivel 4 (venía de NIVEL_1) · pos regional 22 · tope descenso (ideal N5)"
+          "detalle": "Desciende a Nivel 4 (venía de NIVEL_1) · pos regional 19 · tope descenso (ideal N5)"
         },
         {
           "equipo": "YUPANQUI",
           "clave": "YUPANQUI",
           "pos_2026": 9,
-          "puntos": 68,
-          "pts_general": 64,
-          "pts_presentacion": 4,
-          "pj_general": 51,
-          "ganados": 13,
+          "puntos": 81,
+          "pts_general": 74,
+          "pts_presentacion": 7,
+          "pj_general": 59,
+          "ganados": 15,
           "nivel_2026": "NIVEL_1",
           "zona_2026": "CENTRO 1",
           "region": "CENTRO",
           "status": "DESCIENDE",
           "nivel_2027": 4,
-          "detalle": "Desciende a Nivel 4 (venía de NIVEL_1) · pos regional 26 · tope descenso (ideal N6)"
+          "detalle": "Desciende a Nivel 4 (venía de NIVEL_1) · pos regional 25 · tope descenso (ideal N6)"
         },
         {
           "equipo": "JUVENCIA",
           "clave": "JUVENCIA",
           "pos_2026": 7,
-          "puntos": 59,
-          "pts_general": 53,
-          "pts_presentacion": 6,
-          "pj_general": 39,
-          "ganados": 14,
+          "puntos": 71,
+          "pts_general": 63,
+          "pts_presentacion": 8,
+          "pj_general": 48,
+          "ganados": 15,
           "nivel_2026": "NIVEL_1",
           "zona_2026": "OESTE 1",
           "region": "CENTRO",
@@ -1959,14 +1959,14 @@
           "detalle": "Desciende a Nivel 4 (venía de NIVEL_1) · pos regional 27 · tope descenso (ideal N6)"
         },
         {
-          "equipo": "MACABI",
-          "clave": "MACABI",
-          "pos_2026": 4,
-          "puntos": 101,
-          "pts_general": 93,
-          "pts_presentacion": 8,
-          "pj_general": 51,
-          "ganados": 44,
+          "equipo": "NAUTICO BUCHARDO CENTRO (B)",
+          "clave": "NAUTICO BUCHARDO CENTRO B",
+          "pos_2026": 5,
+          "puntos": 116,
+          "pts_general": 103,
+          "pts_presentacion": 13,
+          "pj_general": 69,
+          "ganados": 34,
           "nivel_2026": "NIVEL_3",
           "zona_2026": "CENTRO",
           "region": "CENTRO",
@@ -1977,12 +1977,12 @@
         {
           "equipo": "SAN LORENZO ROJO B",
           "clave": "SAN LORENZO B ROJO",
-          "pos_2026": 3,
-          "puntos": 103,
-          "pts_general": 92,
-          "pts_presentacion": 11,
-          "pj_general": 62,
-          "ganados": 31,
+          "pos_2026": 4,
+          "puntos": 117,
+          "pts_general": 105,
+          "pts_presentacion": 12,
+          "pj_general": 69,
+          "ganados": 37,
           "nivel_2026": "NIVEL_3",
           "zona_2026": "CENTRO",
           "region": "CENTRO",
@@ -1991,14 +1991,14 @@
           "detalle": "Asciende a Nivel 4 (venía de NIVEL_3) · pos regional 4 · tope descenso (ideal N3)"
         },
         {
-          "equipo": "DEFENSORES DE GLEW",
-          "clave": "DEFENSORES DE GLEW",
-          "pos_2026": 6,
-          "puntos": 99,
-          "pts_general": 86,
-          "pts_presentacion": 13,
-          "pj_general": 53,
-          "ganados": 34,
+          "equipo": "LANUS B",
+          "clave": "LANUS B",
+          "pos_2026": 3,
+          "puntos": 107,
+          "pts_general": 99,
+          "pts_presentacion": 8,
+          "pj_general": 56,
+          "ganados": 43,
           "nivel_2026": "NIVEL_2",
           "zona_2026": "SUR",
           "region": "SUR",
@@ -2007,46 +2007,46 @@
           "detalle": "Permanece en Nivel 4 · pos regional 7"
         },
         {
-          "equipo": "BOCA JUNIORS AMARILLO B",
-          "clave": "BOCA JUNIORS AMARILLO B",
-          "pos_2026": 6,
-          "puntos": 99,
-          "pts_general": 85,
+          "equipo": "DEFENSORES DE GLEW",
+          "clave": "DEFENSORES DE GLEW",
+          "pos_2026": 4,
+          "puntos": 104,
+          "pts_general": 90,
           "pts_presentacion": 14,
-          "pj_general": 59,
-          "ganados": 27,
-          "nivel_2026": "NIVEL_1",
-          "zona_2026": "SUR 1",
+          "pj_general": 56,
+          "ganados": 35,
+          "nivel_2026": "NIVEL_2",
+          "zona_2026": "SUR",
           "region": "SUR",
-          "status": "DESCIENDE",
+          "status": "MANTIENE",
           "nivel_2027": 4,
-          "detalle": "Desciende a Nivel 4 (venía de NIVEL_1) · pos regional 8"
+          "detalle": "Permanece en Nivel 4 · pos regional 8"
         },
         {
-          "equipo": "OLIMPO",
-          "clave": "OLIMPO",
-          "pos_2026": 7,
-          "puntos": 98,
-          "pts_general": 83,
-          "pts_presentacion": 15,
-          "pj_general": 59,
-          "ganados": 24,
-          "nivel_2026": "NIVEL_1",
-          "zona_2026": "SUR 1",
-          "region": "SUR",
-          "status": "DESCIENDE",
-          "nivel_2027": 4,
-          "detalle": "Desciende a Nivel 4 (venía de NIVEL_1) · pos regional 9"
-        },
-        {
-          "equipo": "CLUB ATLETICO Y PROGRESO DE BRANDSEN",
-          "clave": "CLUB ATLETICO Y PROGRESO DE BRANDSEN",
-          "pos_2026": 1,
-          "puntos": 97,
-          "pts_general": 87,
-          "pts_presentacion": 10,
-          "pj_general": 53,
+          "equipo": "JUVENTUD UNIDA",
+          "clave": "JUVENTUD UNIDA",
+          "pos_2026": 5,
+          "puntos": 104,
+          "pts_general": 90,
+          "pts_presentacion": 14,
+          "pj_general": 56,
           "ganados": 34,
+          "nivel_2026": "NIVEL_2",
+          "zona_2026": "SUR",
+          "region": "SUR",
+          "status": "MANTIENE",
+          "nivel_2027": 4,
+          "detalle": "Permanece en Nivel 4 · pos regional 9"
+        },
+        {
+          "equipo": "MUNIC.AVELLANEDA",
+          "clave": "MUNICAVELLANEDA",
+          "pos_2026": 1,
+          "puntos": 103,
+          "pts_general": 94,
+          "pts_presentacion": 9,
+          "pj_general": 56,
+          "ganados": 40,
           "nivel_2026": "NIVEL_3",
           "zona_2026": "SUR",
           "region": "SUR",
@@ -2055,14 +2055,14 @@
           "detalle": "Asciende a Nivel 4 (venía de NIVEL_3) · pos regional 10"
         },
         {
-          "equipo": "PAMPERO",
-          "clave": "PAMPERO",
-          "pos_2026": 7,
-          "puntos": 97,
-          "pts_general": 84,
-          "pts_presentacion": 13,
+          "equipo": "GUILLON BASQUET",
+          "clave": "GUILLON BASQUET",
+          "pos_2026": 6,
+          "puntos": 103,
+          "pts_general": 89,
+          "pts_presentacion": 14,
           "pj_general": 56,
-          "ganados": 28,
+          "ganados": 33,
           "nivel_2026": "NIVEL_2",
           "zona_2026": "SUR",
           "region": "SUR",
@@ -2071,52 +2071,52 @@
           "detalle": "Permanece en Nivel 4 · pos regional 11"
         },
         {
-          "equipo": "C.S.D.Y C. MORENO",
-          "clave": "CSDY MORENO C",
-          "pos_2026": 8,
-          "puntos": 94,
-          "pts_general": 81,
-          "pts_presentacion": 13,
-          "pj_general": 52,
-          "ganados": 29,
-          "nivel_2026": "NIVEL_1",
-          "zona_2026": "SUR 1",
+          "equipo": "SOCIAL LANUS",
+          "clave": "SOCIAL LANUS",
+          "pos_2026": 7,
+          "puntos": 103,
+          "pts_general": 89,
+          "pts_presentacion": 14,
+          "pj_general": 56,
+          "ganados": 33,
+          "nivel_2026": "NIVEL_2",
+          "zona_2026": "SUR",
           "region": "SUR",
-          "status": "DESCIENDE",
+          "status": "MANTIENE",
           "nivel_2027": 4,
-          "detalle": "Desciende a Nivel 4 (venía de NIVEL_1) · pos regional 15 · tope descenso (ideal N5)"
+          "detalle": "Permanece en Nivel 4 · pos regional 12"
         },
         {
           "equipo": "COUNTRY BANFIELD A",
           "clave": "COUNTRY BANFIELD A",
           "pos_2026": 9,
-          "puntos": 94,
-          "pts_general": 79,
-          "pts_presentacion": 15,
-          "pj_general": 63,
-          "ganados": 18,
+          "puntos": 102,
+          "pts_general": 85,
+          "pts_presentacion": 17,
+          "pj_general": 68,
+          "ganados": 19,
           "nivel_2026": "NIVEL_1",
           "zona_2026": "SUR 1",
           "region": "SUR",
           "status": "DESCIENDE",
           "nivel_2027": 4,
-          "detalle": "Desciende a Nivel 4 (venía de NIVEL_1) · pos regional 16 · tope descenso (ideal N5)"
+          "detalle": "Desciende a Nivel 4 (venía de NIVEL_1) · pos regional 13"
         },
         {
           "equipo": "EZEIZA",
           "clave": "EZEIZA",
           "pos_2026": 10,
-          "puntos": 77,
-          "pts_general": 63,
-          "pts_presentacion": 14,
-          "pj_general": 59,
-          "ganados": 5,
+          "puntos": 84,
+          "pts_general": 69,
+          "pts_presentacion": 15,
+          "pj_general": 64,
+          "ganados": 6,
           "nivel_2026": "NIVEL_1",
           "zona_2026": "SUR 1",
           "region": "SUR",
           "status": "DESCIENDE",
           "nivel_2027": 4,
-          "detalle": "Desciende a Nivel 4 (venía de NIVEL_1) · pos regional 27 · tope descenso (ideal N6)"
+          "detalle": "Desciende a Nivel 4 (venía de NIVEL_1) · pos regional 26 · tope descenso (ideal N6)"
         },
         {
           "equipo": "SITAS ROJO",
@@ -2135,9 +2135,25 @@
           "detalle": "Permanece en Nivel 4 · pos regional 7"
         },
         {
+          "equipo": "INSTITUCION SARMIENTO BLANCO B",
+          "clave": "INSTITUCION SARMIENTO B BLANCO",
+          "pos_2026": 5,
+          "puntos": 85,
+          "pts_general": 78,
+          "pts_presentacion": 7,
+          "pj_general": 56,
+          "ganados": 22,
+          "nivel_2026": "NIVEL_1",
+          "zona_2026": "OESTE 1",
+          "region": "OESTE",
+          "status": "DESCIENDE",
+          "nivel_2027": 4,
+          "detalle": "Desciende a Nivel 4 (venía de NIVEL_1) · pos regional 13"
+        },
+        {
           "equipo": "ALEM",
           "clave": "ALEM",
-          "pos_2026": 5,
+          "pos_2026": 6,
           "puntos": 75,
           "pts_general": 69,
           "pts_presentacion": 6,
@@ -2148,39 +2164,23 @@
           "region": "OESTE",
           "status": "DESCIENDE",
           "nivel_2027": 4,
-          "detalle": "Desciende a Nivel 4 (venía de NIVEL_1) · pos regional 18 · tope descenso (ideal N5)"
-        },
-        {
-          "equipo": "INSTITUCION SARMIENTO BLANCO B",
-          "clave": "INSTITUCION SARMIENTO B BLANCO",
-          "pos_2026": 6,
-          "puntos": 71,
-          "pts_general": 66,
-          "pts_presentacion": 5,
-          "pj_general": 48,
-          "ganados": 18,
-          "nivel_2026": "NIVEL_1",
-          "zona_2026": "OESTE 1",
-          "region": "OESTE",
-          "status": "DESCIENDE",
-          "nivel_2027": 4,
-          "detalle": "Desciende a Nivel 4 (venía de NIVEL_1) · pos regional 24 · tope descenso (ideal N6)"
+          "detalle": "Desciende a Nivel 4 (venía de NIVEL_1) · pos regional 19 · tope descenso (ideal N5)"
         },
         {
           "equipo": "EL PORVENIR JOSE C. PAZ",
           "clave": "EL PORVENIR JOSE PAZ C",
           "pos_2026": 8,
-          "puntos": 55,
-          "pts_general": 47,
+          "puntos": 59,
+          "pts_general": 51,
           "pts_presentacion": 8,
-          "pj_general": 44,
+          "pj_general": 48,
           "ganados": 5,
           "nivel_2026": "NIVEL_1",
           "zona_2026": "OESTE 1",
           "region": "OESTE",
           "status": "DESCIENDE",
           "nivel_2027": 4,
-          "detalle": "Desciende a Nivel 4 (venía de NIVEL_1) · pos regional 31 · tope descenso (ideal N6)"
+          "detalle": "Desciende a Nivel 4 (venía de NIVEL_1) · pos regional 30 · tope descenso (ideal N6)"
         },
         {
           "equipo": "MORON BLANCO B",
@@ -2254,6 +2254,22 @@
       "n_equipos": 32,
       "equipos": [
         {
+          "equipo": "CLUB ATENEO INGENIERO RAVER",
+          "clave": "CLUB ATENEO INGENIERO RAVER",
+          "pos_2026": 7,
+          "puntos": 84,
+          "pts_general": 78,
+          "pts_presentacion": 6,
+          "pj_general": 46,
+          "ganados": 34,
+          "nivel_2026": "NIVEL_2",
+          "zona_2026": "NORTE",
+          "region": "NORTE",
+          "status": "DESCIENDE",
+          "nivel_2027": 5,
+          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 16"
+        },
+        {
           "equipo": "17 DE AGOSTO",
           "clave": "17 DE AGOSTO",
           "pos_2026": 8,
@@ -2267,7 +2283,7 @@
           "region": "CENTRO",
           "status": "DESCIENDE",
           "nivel_2027": 5,
-          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 17 · región 2027 NORTE→CENTRO (ajuste)"
+          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 18 · región 2027 NORTE→CENTRO (ajuste)"
         },
         {
           "equipo": "PLATENSE B",
@@ -2283,16 +2299,16 @@
           "region": "NORTE",
           "status": "DESCIENDE",
           "nivel_2027": 5,
-          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 18"
+          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 20"
         },
         {
           "equipo": "SAN FERNANDO BLANCO",
           "clave": "SAN FERNANDO BLANCO",
           "pos_2026": 10,
-          "puntos": 80,
-          "pts_general": 72,
+          "puntos": 81,
+          "pts_general": 73,
           "pts_presentacion": 8,
-          "pj_general": 55,
+          "pj_general": 56,
           "ganados": 17,
           "nivel_2026": "NIVEL_2",
           "zona_2026": "NORTE",
@@ -2302,14 +2318,14 @@
           "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 21"
         },
         {
-          "equipo": "NAUTICO HACOAJ AZUL B",
-          "clave": "NAUTICO HACOAJ AZUL B",
+          "equipo": "CLUB SOCIAL Y DEPORTIVO ARENAL",
+          "clave": "CLUB SOCIAL Y DEPORTIVO ARENAL",
           "pos_2026": 11,
-          "puntos": 72,
-          "pts_general": 59,
-          "pts_presentacion": 13,
-          "pj_general": 55,
-          "ganados": 4,
+          "puntos": 78,
+          "pts_general": 70,
+          "pts_presentacion": 8,
+          "pj_general": 46,
+          "ganados": 26,
           "nivel_2026": "NIVEL_2",
           "zona_2026": "NORTE",
           "region": "NORTE",
@@ -2318,14 +2334,14 @@
           "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 23 · tope descenso (ideal N6)"
         },
         {
-          "equipo": "CLUB SOCIAL Y DEPORTIVO ARENAL",
-          "clave": "CLUB SOCIAL Y DEPORTIVO ARENAL",
+          "equipo": "NAUTICO HACOAJ AZUL B",
+          "clave": "NAUTICO HACOAJ AZUL B",
           "pos_2026": 12,
-          "puntos": 69,
-          "pts_general": 62,
-          "pts_presentacion": 7,
-          "pj_general": 42,
-          "ganados": 22,
+          "puntos": 73,
+          "pts_general": 60,
+          "pts_presentacion": 13,
+          "pj_general": 56,
+          "ganados": 4,
           "nivel_2026": "NIVEL_2",
           "zona_2026": "NORTE",
           "region": "NORTE",
@@ -2350,105 +2366,41 @@
           "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 26 · tope descenso (ideal N6) · región 2027 NORTE→CENTRO (ajuste)"
         },
         {
-          "equipo": "CLUB ATENEO INGENIERO RAVER",
-          "clave": "CLUB ATENEO INGENIERO RAVER",
-          "pos_2026": 7,
-          "puntos": 84,
-          "pts_general": 78,
-          "pts_presentacion": 6,
+          "equipo": "LAS HERAS",
+          "clave": "LAS HERAS",
+          "pos_2026": 6,
+          "puntos": 87,
+          "pts_general": 79,
+          "pts_presentacion": 8,
           "pj_general": 46,
-          "ganados": 34,
+          "ganados": 33,
           "nivel_2026": "NIVEL_2",
           "zona_2026": "NORTE",
           "region": "NORTE",
           "status": "DESCIENDE",
           "nivel_2027": 5,
           "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 14 · tope descenso (ideal N4)"
-        },
-        {
-          "equipo": "LAS HERAS",
-          "clave": "LAS HERAS",
-          "pos_2026": 6,
-          "puntos": 85,
-          "pts_general": 77,
-          "pts_presentacion": 8,
-          "pj_general": 45,
-          "ganados": 32,
-          "nivel_2026": "NIVEL_2",
-          "zona_2026": "NORTE",
-          "region": "NORTE",
-          "status": "DESCIENDE",
-          "nivel_2027": 5,
-          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 13 · tope descenso (ideal N4)"
-        },
-        {
-          "equipo": "COMUNICACIONES NEGRO B",
-          "clave": "COMUNICACIONES B NEGRO",
-          "pos_2026": 6,
-          "puntos": 85,
-          "pts_general": 82,
-          "pts_presentacion": 3,
-          "pj_general": 56,
-          "ganados": 28,
-          "nivel_2026": "NIVEL_2",
-          "zona_2026": "CENTRO",
-          "region": "CENTRO",
-          "status": "DESCIENDE",
-          "nivel_2027": 5,
-          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 17"
-        },
-        {
-          "equipo": "JOSE HERNANDEZ B",
-          "clave": "JOSE HERNANDEZ B",
-          "pos_2026": 7,
-          "puntos": 85,
-          "pts_general": 72,
-          "pts_presentacion": 13,
-          "pj_general": 56,
-          "ganados": 16,
-          "nivel_2026": "NIVEL_2",
-          "zona_2026": "CENTRO",
-          "region": "NORTE",
-          "status": "DESCIENDE",
-          "nivel_2027": 5,
-          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 18 · reequilibrio región → NORTE"
         },
         {
           "equipo": "RACING ANEXO",
           "clave": "RACING ANEXO",
-          "pos_2026": 8,
-          "puntos": 84,
-          "pts_general": 81,
+          "pos_2026": 4,
+          "puntos": 90,
+          "pts_general": 87,
           "pts_presentacion": 3,
-          "pj_general": 52,
-          "ganados": 29,
-          "nivel_2026": "NIVEL_2",
-          "zona_2026": "CENTRO",
-          "region": "NORTE",
-          "status": "DESCIENDE",
-          "nivel_2027": 5,
-          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 19 · reequilibrio región → NORTE"
-        },
-        {
-          "equipo": "PEDRO ECHAGUE AMARILLO",
-          "clave": "PEDRO ECHAGUE AMARILLO",
-          "pos_2026": 5,
-          "puntos": 88,
-          "pts_general": 75,
-          "pts_presentacion": 13,
           "pj_general": 56,
-          "ganados": 19,
+          "ganados": 31,
           "nivel_2026": "NIVEL_2",
           "zona_2026": "CENTRO",
           "region": "CENTRO",
           "status": "DESCIENDE",
           "nivel_2027": 5,
-          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 14 · tope descenso (ideal N4)"
+          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 15"
         },
         {
           "equipo": "IMPERIO NEGRO B",
           "clave": "IMPERIO B NEGRO",
-          "pos_2026": 4,
+          "pos_2026": 5,
           "puntos": 89,
           "pts_general": 81,
           "pts_presentacion": 8,
@@ -2459,39 +2411,71 @@
           "region": "CENTRO",
           "status": "DESCIENDE",
           "nivel_2027": 5,
-          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 13 · tope descenso (ideal N4)"
+          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 17"
         },
         {
-          "equipo": "ARGENTINOS JUNIORS",
-          "clave": "ARGENTINOS JUNIORS",
-          "pos_2026": 3,
-          "puntos": 92,
-          "pts_general": 80,
-          "pts_presentacion": 12,
-          "pj_general": 52,
+          "equipo": "PEDRO ECHAGUE AMARILLO",
+          "clave": "PEDRO ECHAGUE AMARILLO",
+          "pos_2026": 6,
+          "puntos": 88,
+          "pts_general": 75,
+          "pts_presentacion": 13,
+          "pj_general": 56,
+          "ganados": 19,
+          "nivel_2026": "NIVEL_2",
+          "zona_2026": "CENTRO",
+          "region": "CENTRO",
+          "status": "DESCIENDE",
+          "nivel_2027": 5,
+          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 18"
+        },
+        {
+          "equipo": "COMUNICACIONES NEGRO B",
+          "clave": "COMUNICACIONES B NEGRO",
+          "pos_2026": 7,
+          "puntos": 86,
+          "pts_general": 82,
+          "pts_presentacion": 4,
+          "pj_general": 56,
           "ganados": 28,
           "nivel_2026": "NIVEL_2",
           "zona_2026": "CENTRO",
           "region": "CENTRO",
           "status": "DESCIENDE",
           "nivel_2027": 5,
-          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 10 · tope descenso (ideal N4)"
+          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 20"
         },
         {
-          "equipo": "DEPORTIVO CROVARA B",
-          "clave": "DEPORTIVO CROVARA B",
-          "pos_2026": 5,
-          "puntos": 99,
-          "pts_general": 87,
+          "equipo": "JOSE HERNANDEZ B",
+          "clave": "JOSE HERNANDEZ B",
+          "pos_2026": 8,
+          "puntos": 86,
+          "pts_general": 72,
+          "pts_presentacion": 14,
+          "pj_general": 56,
+          "ganados": 16,
+          "nivel_2026": "NIVEL_2",
+          "zona_2026": "CENTRO",
+          "region": "NORTE",
+          "status": "DESCIENDE",
+          "nivel_2027": 5,
+          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 22 · reequilibrio región → NORTE"
+        },
+        {
+          "equipo": "ARGENTINOS JUNIORS",
+          "clave": "ARGENTINOS JUNIORS",
+          "pos_2026": 3,
+          "puntos": 98,
+          "pts_general": 86,
           "pts_presentacion": 12,
-          "pj_general": 60,
-          "ganados": 28,
-          "nivel_2026": "NIVEL_3",
+          "pj_general": 56,
+          "ganados": 30,
+          "nivel_2026": "NIVEL_2",
           "zona_2026": "CENTRO",
           "region": "CENTRO",
-          "status": "MANTIENE",
+          "status": "DESCIENDE",
           "nivel_2027": 5,
-          "detalle": "Permanece en Nivel 5 · pos regional 7 · tope descenso (ideal N4)"
+          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 12 · tope descenso (ideal N4)"
         },
         {
           "equipo": "ITALIANO B",
@@ -2507,124 +2491,44 @@
           "region": "CENTRO",
           "status": "DESCIENDE",
           "nivel_2027": 5,
-          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 6 · tope descenso (ideal N3)"
+          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 11 · tope descenso (ideal N4)"
         },
         {
-          "equipo": "LUZ Y ARTE",
-          "clave": "LUZ Y ARTE",
-          "pos_2026": 10,
-          "puntos": 91,
-          "pts_general": 77,
+          "equipo": "SAN ANDRES",
+          "clave": "SAN ANDRES",
+          "pos_2026": 1,
+          "puntos": 109,
+          "pts_general": 95,
           "pts_presentacion": 14,
           "pj_general": 56,
-          "ganados": 21,
+          "ganados": 41,
           "nivel_2026": "NIVEL_2",
-          "zona_2026": "SUR",
-          "region": "SUR",
+          "zona_2026": "CENTRO",
+          "region": "NORTE",
           "status": "DESCIENDE",
           "nivel_2027": 5,
-          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 17"
+          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 8 · tope descenso (ideal N4) · región 2027 CENTRO→NORTE (ajuste)"
         },
         {
-          "equipo": "SPORTIVO ALSINA",
-          "clave": "SPORTIVO ALSINA",
-          "pos_2026": 11,
-          "puntos": 89,
-          "pts_general": 76,
+          "equipo": "PAMPERO",
+          "clave": "PAMPERO",
+          "pos_2026": 8,
+          "puntos": 97,
+          "pts_general": 84,
           "pts_presentacion": 13,
-          "pj_general": 53,
-          "ganados": 23,
-          "nivel_2026": "NIVEL_2",
-          "zona_2026": "SUR",
-          "region": "SUR",
-          "status": "DESCIENDE",
-          "nivel_2027": 5,
-          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 18"
-        },
-        {
-          "equipo": "TAMBEROS UNIDOS",
-          "clave": "TAMBEROS UNIDOS",
-          "pos_2026": 12,
-          "puntos": 89,
-          "pts_general": 75,
-          "pts_presentacion": 14,
           "pj_general": 56,
-          "ganados": 19,
+          "ganados": 28,
           "nivel_2026": "NIVEL_2",
           "zona_2026": "SUR",
           "region": "SUR",
           "status": "DESCIENDE",
           "nivel_2027": 5,
-          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 19"
-        },
-        {
-          "equipo": "DEFENSORES DE BANFIELD",
-          "clave": "DEFENSORES DE BANFIELD",
-          "pos_2026": 13,
-          "puntos": 88,
-          "pts_general": 74,
-          "pts_presentacion": 14,
-          "pj_general": 56,
-          "ganados": 18,
-          "nivel_2026": "NIVEL_2",
-          "zona_2026": "SUR",
-          "region": "SUR",
-          "status": "DESCIENDE",
-          "nivel_2027": 5,
-          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 21"
-        },
-        {
-          "equipo": "EL FOGON",
-          "clave": "EL FOGON",
-          "pos_2026": 14,
-          "puntos": 88,
-          "pts_general": 74,
-          "pts_presentacion": 14,
-          "pj_general": 56,
-          "ganados": 18,
-          "nivel_2026": "NIVEL_2",
-          "zona_2026": "SUR",
-          "region": "SUR",
-          "status": "DESCIENDE",
-          "nivel_2027": 5,
-          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 22"
-        },
-        {
-          "equipo": "COLON FC",
-          "clave": "COLON FC",
-          "pos_2026": 15,
-          "puntos": 84,
-          "pts_general": 72,
-          "pts_presentacion": 12,
-          "pj_general": 51,
-          "ganados": 22,
-          "nivel_2026": "NIVEL_2",
-          "zona_2026": "SUR",
-          "region": "SUR",
-          "status": "DESCIENDE",
-          "nivel_2027": 5,
-          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 25 · tope descenso (ideal N6)"
-        },
-        {
-          "equipo": "SOCIAL LANUS",
-          "clave": "SOCIAL LANUS",
-          "pos_2026": 9,
-          "puntos": 95,
-          "pts_general": 82,
-          "pts_presentacion": 13,
-          "pj_general": 52,
-          "ganados": 30,
-          "nivel_2026": "NIVEL_2",
-          "zona_2026": "SUR",
-          "region": "SUR",
-          "status": "DESCIENDE",
-          "nivel_2027": 5,
-          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 14 · tope descenso (ideal N4)"
+          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 15"
         },
         {
           "equipo": "GIMNASIA Y ESGRIMA DE LOMAS DE ZAMORA B",
           "clave": "GIMNASIA Y ESGRIMA DE LOMAS DE ZAMORA B",
-          "pos_2026": 8,
+          "pos_2026": 9,
           "puntos": 96,
           "pts_general": 86,
           "pts_presentacion": 10,
@@ -2635,23 +2539,119 @@
           "region": "SUR",
           "status": "DESCIENDE",
           "nivel_2027": 5,
-          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 13 · tope descenso (ideal N4)"
+          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 17"
         },
         {
-          "equipo": "DEFENSORES DE MORENO",
-          "clave": "DEFENSORES DE MORENO",
+          "equipo": "SPORTIVO ALSINA",
+          "clave": "SPORTIVO ALSINA",
+          "pos_2026": 10,
+          "puntos": 95,
+          "pts_general": 81,
+          "pts_presentacion": 14,
+          "pj_general": 56,
+          "ganados": 25,
+          "nivel_2026": "NIVEL_2",
+          "zona_2026": "SUR",
+          "region": "SUR",
+          "status": "DESCIENDE",
+          "nivel_2027": 5,
+          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 18"
+        },
+        {
+          "equipo": "COLON FC",
+          "clave": "COLON FC",
+          "pos_2026": 11,
+          "puntos": 92,
+          "pts_general": 78,
+          "pts_presentacion": 14,
+          "pj_general": 56,
+          "ganados": 23,
+          "nivel_2026": "NIVEL_2",
+          "zona_2026": "SUR",
+          "region": "SUR",
+          "status": "DESCIENDE",
+          "nivel_2027": 5,
+          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 19"
+        },
+        {
+          "equipo": "LUZ Y ARTE",
+          "clave": "LUZ Y ARTE",
+          "pos_2026": 12,
+          "puntos": 91,
+          "pts_general": 77,
+          "pts_presentacion": 14,
+          "pj_general": 56,
+          "ganados": 21,
+          "nivel_2026": "NIVEL_2",
+          "zona_2026": "SUR",
+          "region": "SUR",
+          "status": "DESCIENDE",
+          "nivel_2027": 5,
+          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 20"
+        },
+        {
+          "equipo": "TAMBEROS UNIDOS",
+          "clave": "TAMBEROS UNIDOS",
+          "pos_2026": 13,
+          "puntos": 89,
+          "pts_general": 75,
+          "pts_presentacion": 14,
+          "pj_general": 56,
+          "ganados": 19,
+          "nivel_2026": "NIVEL_2",
+          "zona_2026": "SUR",
+          "region": "SUR",
+          "status": "DESCIENDE",
+          "nivel_2027": 5,
+          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 22"
+        },
+        {
+          "equipo": "DEFENSORES DE BANFIELD",
+          "clave": "DEFENSORES DE BANFIELD",
           "pos_2026": 14,
-          "puntos": 77,
-          "pts_general": 73,
-          "pts_presentacion": 4,
-          "pj_general": 52,
-          "ganados": 22,
+          "puntos": 88,
+          "pts_general": 74,
+          "pts_presentacion": 14,
+          "pj_general": 56,
+          "ganados": 18,
+          "nivel_2026": "NIVEL_2",
+          "zona_2026": "SUR",
+          "region": "SUR",
+          "status": "DESCIENDE",
+          "nivel_2027": 5,
+          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 23 · tope descenso (ideal N6)"
+        },
+        {
+          "equipo": "EL FOGON",
+          "clave": "EL FOGON",
+          "pos_2026": 15,
+          "puntos": 88,
+          "pts_general": 74,
+          "pts_presentacion": 14,
+          "pj_general": 56,
+          "ganados": 18,
+          "nivel_2026": "NIVEL_2",
+          "zona_2026": "SUR",
+          "region": "SUR",
+          "status": "DESCIENDE",
+          "nivel_2027": 5,
+          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 24 · tope descenso (ideal N6)"
+        },
+        {
+          "equipo": "CIUDADELA NORTE",
+          "clave": "CIUDADELA NORTE",
+          "pos_2026": 14,
+          "puntos": 80,
+          "pts_general": 66,
+          "pts_presentacion": 14,
+          "pj_general": 56,
+          "ganados": 12,
           "nivel_2026": "NIVEL_2",
           "zona_2026": "OESTE",
           "region": "OESTE",
           "status": "DESCIENDE",
           "nivel_2027": 5,
-          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 16"
+          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 15"
         },
         {
           "equipo": "MUNICIPALIDAD DE HURLINGHAM",
@@ -2667,44 +2667,28 @@
           "region": "OESTE",
           "status": "DESCIENDE",
           "nivel_2027": 5,
-          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 22"
+          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 23 · tope descenso (ideal N6)"
         },
         {
-          "equipo": "CIUDADELA NORTE",
-          "clave": "CIUDADELA NORTE",
+          "equipo": "DEFENSORES DE MORENO",
+          "clave": "DEFENSORES DE MORENO",
           "pos_2026": 13,
-          "puntos": 80,
-          "pts_general": 66,
-          "pts_presentacion": 14,
+          "puntos": 84,
+          "pts_general": 79,
+          "pts_presentacion": 5,
           "pj_general": 56,
-          "ganados": 12,
+          "ganados": 24,
           "nivel_2026": "NIVEL_2",
           "zona_2026": "OESTE",
           "region": "OESTE",
           "status": "DESCIENDE",
           "nivel_2027": 5,
-          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 13 · tope descenso (ideal N4)"
-        },
-        {
-          "equipo": "ESTUDIANTIL PORTENO B",
-          "clave": "ESTUDIANTIL PORTENO B",
-          "pos_2026": 12,
-          "puntos": 86,
-          "pts_general": 86,
-          "pts_presentacion": 0,
-          "pj_general": 52,
-          "ganados": 35,
-          "nivel_2026": "NIVEL_2",
-          "zona_2026": "OESTE",
-          "region": "OESTE",
-          "status": "DESCIENDE",
-          "nivel_2027": 5,
-          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 12 · tope descenso (ideal N4)"
+          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 14 · tope descenso (ideal N4)"
         },
         {
           "equipo": "CLUB GEI BLANCO(B)",
           "clave": "CLUB GEI B BLANCO",
-          "pos_2026": 11,
+          "pos_2026": 12,
           "puntos": 88,
           "pts_general": 81,
           "pts_presentacion": 7,
@@ -2715,12 +2699,12 @@
           "region": "OESTE",
           "status": "DESCIENDE",
           "nivel_2027": 5,
-          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 11 · tope descenso (ideal N4)"
+          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 12 · tope descenso (ideal N4)"
         },
         {
           "equipo": "CENTRO ESPANOL",
           "clave": "CENTRO ESPANOL",
-          "pos_2026": 10,
+          "pos_2026": 11,
           "puntos": 91,
           "pts_general": 77,
           "pts_presentacion": 14,
@@ -2731,12 +2715,12 @@
           "region": "OESTE",
           "status": "DESCIENDE",
           "nivel_2027": 5,
-          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 10 · tope descenso (ideal N4)"
+          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 11 · tope descenso (ideal N4)"
         },
         {
           "equipo": "SPORTIVO HAEDO",
           "clave": "SPORTIVO HAEDO",
-          "pos_2026": 9,
+          "pos_2026": 10,
           "puntos": 91,
           "pts_general": 87,
           "pts_presentacion": 4,
@@ -2747,17 +2731,33 @@
           "region": "OESTE",
           "status": "DESCIENDE",
           "nivel_2027": 5,
-          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 9 · tope descenso (ideal N4)"
+          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 10 · tope descenso (ideal N4)"
         },
         {
           "equipo": "PORTUGUES DEL GRAN BUENOS AIRES",
           "clave": "PORTUGUES DEL GRAN BUENOS AIRES",
-          "pos_2026": 8,
+          "pos_2026": 9,
           "puntos": 92,
           "pts_general": 78,
           "pts_presentacion": 14,
           "pj_general": 56,
           "ganados": 22,
+          "nivel_2026": "NIVEL_2",
+          "zona_2026": "OESTE",
+          "region": "OESTE",
+          "status": "DESCIENDE",
+          "nivel_2027": 5,
+          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 9 · tope descenso (ideal N4)"
+        },
+        {
+          "equipo": "ESTUDIANTIL PORTENO B",
+          "clave": "ESTUDIANTIL PORTENO B",
+          "pos_2026": 8,
+          "puntos": 92,
+          "pts_general": 92,
+          "pts_presentacion": 0,
+          "pj_general": 56,
+          "ganados": 37,
           "nivel_2026": "NIVEL_2",
           "zona_2026": "OESTE",
           "region": "OESTE",
@@ -2792,10 +2792,10 @@
           "equipo": "BANCO NACION BLANCO B",
           "clave": "BANCO NACION B BLANCO",
           "pos_2026": 7,
-          "puntos": 63,
-          "pts_general": 53,
-          "pts_presentacion": 10,
-          "pj_general": 45,
+          "puntos": 66,
+          "pts_general": 55,
+          "pts_presentacion": 11,
+          "pj_general": 47,
           "ganados": 9,
           "nivel_2026": "NIVEL_3",
           "zona_2026": "NORTE",
@@ -2805,25 +2805,9 @@
           "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 27"
         },
         {
-          "equipo": "PINOCHO VERDE",
-          "clave": "PINOCHO VERDE",
-          "pos_2026": 5,
-          "puntos": 79,
-          "pts_general": 72,
-          "pts_presentacion": 7,
-          "pj_general": 46,
-          "ganados": 26,
-          "nivel_2026": "NIVEL_3",
-          "zona_2026": "NORTE",
-          "region": "CENTRO",
-          "status": "DESCIENDE",
-          "nivel_2027": 6,
-          "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 22 · tope descenso (ideal N5) · región 2027 NORTE→CENTRO (ajuste)"
-        },
-        {
           "equipo": "ATLETICO BOULOGNE",
           "clave": "ATLETICO BOULOGNE",
-          "pos_2026": 4,
+          "pos_2026": 5,
           "puntos": 80,
           "pts_general": 69,
           "pts_presentacion": 11,
@@ -2834,7 +2818,23 @@
           "region": "NORTE",
           "status": "DESCIENDE",
           "nivel_2027": 6,
-          "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 20 · tope descenso (ideal N5)"
+          "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 22 · tope descenso (ideal N5)"
+        },
+        {
+          "equipo": "PINOCHO VERDE",
+          "clave": "PINOCHO VERDE",
+          "pos_2026": 4,
+          "puntos": 82,
+          "pts_general": 74,
+          "pts_presentacion": 8,
+          "pj_general": 47,
+          "ganados": 27,
+          "nivel_2026": "NIVEL_3",
+          "zona_2026": "NORTE",
+          "region": "CENTRO",
+          "status": "DESCIENDE",
+          "nivel_2027": 6,
+          "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 19 · tope descenso (ideal N5) · región 2027 NORTE→CENTRO (ajuste)"
         },
         {
           "equipo": "SPORTIVO PILAR BLANCO B",
@@ -2850,16 +2850,16 @@
           "region": "NORTE",
           "status": "DESCIENDE",
           "nivel_2027": 6,
-          "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 16 · tope descenso (ideal N5)"
+          "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 17 · tope descenso (ideal N5)"
         },
         {
           "equipo": "3 DE FEBRERO CELESTE C",
           "clave": "3 DE FEBRERO C CELESTE",
           "pos_2026": 15,
-          "puntos": 48,
-          "pts_general": 45,
+          "puntos": 52,
+          "pts_general": 49,
           "pts_presentacion": 3,
-          "pj_general": 42,
+          "pj_general": 46,
           "ganados": 3,
           "nivel_2026": "NIVEL_2",
           "zona_2026": "NORTE",
@@ -2872,10 +2872,10 @@
           "equipo": "UNIVERSIDAD DE BUENOS AIRES",
           "clave": "UNIVERSIDAD DE BUENOS AIRES",
           "pos_2026": 14,
-          "puntos": 61,
-          "pts_general": 55,
+          "puntos": 62,
+          "pts_general": 56,
           "pts_presentacion": 6,
-          "pj_general": 35,
+          "pj_general": 36,
           "ganados": 20,
           "nivel_2026": "NIVEL_2",
           "zona_2026": "NORTE",
@@ -2888,11 +2888,27 @@
           "equipo": "NUEVA CHICAGO",
           "clave": "NUEVA CHICAGO",
           "pos_2026": 9,
-          "puntos": 73,
-          "pts_general": 61,
-          "pts_presentacion": 12,
-          "pj_general": 50,
-          "ganados": 20,
+          "puntos": 85,
+          "pts_general": 71,
+          "pts_presentacion": 14,
+          "pj_general": 59,
+          "ganados": 21,
+          "nivel_2026": "NIVEL_3",
+          "zona_2026": "CENTRO",
+          "region": "CENTRO",
+          "status": "DESCIENDE",
+          "nivel_2027": 6,
+          "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 23"
+        },
+        {
+          "equipo": "ALL BOYS NEGRO",
+          "clave": "ALL BOYS NEGRO",
+          "pos_2026": 10,
+          "puntos": 82,
+          "pts_general": 74,
+          "pts_presentacion": 8,
+          "pj_general": 70,
+          "ganados": 5,
           "nivel_2026": "NIVEL_3",
           "zona_2026": "CENTRO",
           "region": "CENTRO",
@@ -2901,84 +2917,52 @@
           "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 24"
         },
         {
-          "equipo": "ALL BOYS NEGRO",
-          "clave": "ALL BOYS NEGRO",
-          "pos_2026": 10,
-          "puntos": 71,
-          "pts_general": 65,
-          "pts_presentacion": 6,
-          "pj_general": 62,
-          "ganados": 4,
-          "nivel_2026": "NIVEL_3",
-          "zona_2026": "CENTRO",
-          "region": "CENTRO",
-          "status": "DESCIENDE",
-          "nivel_2027": 6,
-          "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 25"
-        },
-        {
           "equipo": "ALL BOYS SAAVEDRA",
           "clave": "ALL BOYS SAAVEDRA",
           "pos_2026": 8,
-          "puntos": 88,
-          "pts_general": 74,
-          "pts_presentacion": 14,
-          "pj_general": 57,
-          "ganados": 19,
+          "puntos": 104,
+          "pts_general": 88,
+          "pts_presentacion": 16,
+          "pj_general": 69,
+          "ganados": 22,
           "nivel_2026": "NIVEL_3",
           "zona_2026": "CENTRO",
           "region": "CENTRO",
           "status": "DESCIENDE",
           "nivel_2027": 6,
-          "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 15 · tope descenso (ideal N5)"
+          "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 10 · tope descenso (ideal N4)"
         },
         {
           "equipo": "ALDO BONZI",
           "clave": "ALDO BONZI",
           "pos_2026": 7,
-          "puntos": 92,
-          "pts_general": 79,
-          "pts_presentacion": 13,
-          "pj_general": 56,
-          "ganados": 23,
+          "puntos": 112,
+          "pts_general": 96,
+          "pts_presentacion": 16,
+          "pj_general": 70,
+          "ganados": 27,
           "nivel_2026": "NIVEL_3",
           "zona_2026": "CENTRO",
           "region": "CENTRO",
           "status": "DESCIENDE",
           "nivel_2027": 6,
-          "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 11 · tope descenso (ideal N4)"
+          "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 7 · tope descenso (ideal N4)"
         },
         {
-          "equipo": "NAUTICO BUCHARDO CENTRO (B)",
-          "clave": "NAUTICO BUCHARDO CENTRO B",
+          "equipo": "DEPORTIVO CROVARA B",
+          "clave": "DEPORTIVO CROVARA B",
           "pos_2026": 6,
-          "puntos": 93,
-          "pts_general": 83,
-          "pts_presentacion": 10,
-          "pj_general": 55,
-          "ganados": 28,
+          "puntos": 115,
+          "pts_general": 100,
+          "pts_presentacion": 15,
+          "pj_general": 71,
+          "ganados": 30,
           "nivel_2026": "NIVEL_3",
           "zona_2026": "CENTRO",
           "region": "CENTRO",
           "status": "DESCIENDE",
           "nivel_2027": 6,
-          "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 8 · tope descenso (ideal N4)"
-        },
-        {
-          "equipo": "GIMNASIA Y ESGRIMA LA PLATA B",
-          "clave": "GIMNASIA Y ESGRIMA LA B PLATA",
-          "pos_2026": 4,
-          "puntos": 87,
-          "pts_general": 87,
-          "pts_presentacion": 0,
-          "pj_general": 52,
-          "ganados": 35,
-          "nivel_2026": "NIVEL_3",
-          "zona_2026": "SUR",
-          "region": "SUR",
-          "status": "DESCIENDE",
-          "nivel_2027": 6,
-          "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 23"
+          "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 6 · tope descenso (ideal N3)"
         },
         {
           "equipo": "LA UNION",
@@ -2994,7 +2978,7 @@
           "region": "SUR",
           "status": "DESCIENDE",
           "nivel_2027": 6,
-          "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 24"
+          "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 25"
         },
         {
           "equipo": "TAPONAZO FUTBOL CLUB",
@@ -3010,33 +2994,33 @@
           "region": "SUR",
           "status": "DESCIENDE",
           "nivel_2027": 6,
-          "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 26"
+          "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 27"
         },
         {
           "equipo": "CLUB ATLETICO 9 DE JULIO DE LANUS",
           "clave": "CLUB ATLETICO 9 DE JULIO DE LANUS",
           "pos_2026": 7,
-          "puntos": 70,
-          "pts_general": 62,
-          "pts_presentacion": 8,
-          "pj_general": 49,
-          "ganados": 13,
+          "puntos": 79,
+          "pts_general": 70,
+          "pts_presentacion": 9,
+          "pj_general": 56,
+          "ganados": 14,
           "nivel_2026": "NIVEL_3",
           "zona_2026": "SUR",
           "region": "SUR",
           "status": "DESCIENDE",
           "nivel_2027": 6,
-          "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 29"
+          "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 28"
         },
         {
           "equipo": "COUNTRY BANFIELD B",
           "clave": "COUNTRY BANFIELD B",
           "pos_2026": 8,
-          "puntos": 55,
-          "pts_general": 55,
+          "puntos": 66,
+          "pts_general": 66,
           "pts_presentacion": 0,
-          "pj_general": 47,
-          "ganados": 9,
+          "pj_general": 56,
+          "ganados": 12,
           "nivel_2026": "NIVEL_3",
           "zona_2026": "SUR",
           "region": "SUR",
@@ -3045,52 +3029,68 @@
           "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 30"
         },
         {
+          "equipo": "GIMNASIA Y ESGRIMA LA PLATA B",
+          "clave": "GIMNASIA Y ESGRIMA LA B PLATA",
+          "pos_2026": 4,
+          "puntos": 90,
+          "pts_general": 90,
+          "pts_presentacion": 0,
+          "pj_general": 56,
+          "ganados": 36,
+          "nivel_2026": "NIVEL_3",
+          "zona_2026": "SUR",
+          "region": "SUR",
+          "status": "DESCIENDE",
+          "nivel_2027": 6,
+          "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 21 · tope descenso (ideal N5)"
+        },
+        {
           "equipo": "TALLERES",
           "clave": "TALLERES",
           "pos_2026": 3,
-          "puntos": 88,
-          "pts_general": 81,
+          "puntos": 96,
+          "pts_general": 89,
           "pts_presentacion": 7,
-          "pj_general": 52,
-          "ganados": 30,
+          "pj_general": 56,
+          "ganados": 34,
           "nivel_2026": "NIVEL_3",
           "zona_2026": "SUR",
           "region": "SUR",
           "status": "DESCIENDE",
           "nivel_2027": 6,
-          "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 20 · tope descenso (ideal N5)"
+          "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 16 · tope descenso (ideal N5)"
         },
         {
-          "equipo": "MUNIC.AVELLANEDA",
-          "clave": "MUNICAVELLANEDA",
+          "equipo": "CLUB ATLETICO Y PROGRESO DE BRANDSEN",
+          "clave": "CLUB ATLETICO Y PROGRESO DE BRANDSEN",
           "pos_2026": 2,
-          "puntos": 96,
-          "pts_general": 88,
-          "pts_presentacion": 8,
-          "pj_general": 53,
-          "ganados": 37,
+          "puntos": 101,
+          "pts_general": 91,
+          "pts_presentacion": 10,
+          "pj_general": 56,
+          "ganados": 36,
           "nivel_2026": "NIVEL_3",
           "zona_2026": "SUR",
           "region": "SUR",
           "status": "DESCIENDE",
           "nivel_2027": 6,
-          "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 12 · tope descenso (ideal N4)"
+          "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 14 · tope descenso (ideal N4)"
         },
         {
           "equipo": "MONTE GRANDE B NEGRO",
           "clave": "MONTE GRANDE B NEGRO",
           "pos_2026": 16,
-          "puntos": 73,
-          "pts_general": 60,
-          "pts_presentacion": 13,
-          "pj_general": 52,
-          "ganados": 8,
+          "puntos": 79,
+          "pts_general": 65,
+          "pts_presentacion": 14,
+          "pj_general": 56,
+          "ganados": 9,
           "nivel_2026": "NIVEL_2",
           "zona_2026": "SUR",
           "region": "SUR",
           "status": "DESCIENDE",
           "nivel_2027": 6,
-          "detalle": "Desciende a Nivel 6 (venía de NIVEL_2) · pos regional 28 · cupo 8/región (demote forzado)"
+          "detalle": "Desciende a Nivel 6 (venía de NIVEL_2) · pos regional 29 · cupo 8/región (demote forzado)"
         },
         {
           "equipo": "RAMOS MEJIA LTC",
@@ -3106,7 +3106,7 @@
           "region": "OESTE",
           "status": "DESCIENDE",
           "nivel_2027": 6,
-          "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 23"
+          "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 24"
         },
         {
           "equipo": "SAN MIGUEL BLANCO",
@@ -3170,7 +3170,7 @@
           "region": "OESTE",
           "status": "DESCIENDE",
           "nivel_2027": 6,
-          "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 30"
+          "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 31"
         },
         {
           "equipo": "CLUB GEI GRIS(C)",
@@ -3250,7 +3250,7 @@
           "region": "OESTE",
           "status": "DESCIENDE",
           "nivel_2027": 6,
-          "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 20 · tope descenso (ideal N5)"
+          "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 21 · tope descenso (ideal N5)"
         },
         {
           "equipo": "PASO DEL REY",
@@ -3266,7 +3266,7 @@
           "region": "OESTE",
           "status": "DESCIENDE",
           "nivel_2027": 6,
-          "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 19 · tope descenso (ideal N5)"
+          "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 20 · tope descenso (ideal N5)"
         },
         {
           "equipo": "FERROCARRIL OESTE NARANJA",
@@ -3282,7 +3282,7 @@
           "region": "CENTRO",
           "status": "DESCIENDE",
           "nivel_2027": 6,
-          "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 15 · tope descenso (ideal N5) · región 2027 OESTE→CENTRO (ajuste)"
+          "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 17 · tope descenso (ideal N5) · región 2027 OESTE→CENTRO (ajuste)"
         },
         {
           "equipo": "PORTENO ATLETICO CLUB BLANCO B",
@@ -3696,14 +3696,14 @@
       "region": "OESTE",
       "detalle": "Desciende a Interconferencia B / Nivel 2"
     },
-    "UVVA UNION VECINAL VILLA ADELINA": {
+    "EL TALAR": {
       "status": "ASCIENDE",
       "nivel_2027": 2,
       "nivel_2026": "NIVEL_1",
-      "region": "NORTE",
-      "detalle": "Asciende a Interconferencia B / Nivel 2"
+      "region": "CENTRO",
+      "detalle": "Asciende a Interconferencia B / Nivel 2 · región 2027 NORTE→CENTRO (ajuste)"
     },
-    "SAN FERNANDO AZUL": {
+    "UVVA UNION VECINAL VILLA ADELINA": {
       "status": "ASCIENDE",
       "nivel_2027": 2,
       "nivel_2026": "NIVEL_1",
@@ -3738,13 +3738,6 @@
       "region": "SUR",
       "detalle": "Asciende a Interconferencia B / Nivel 2"
     },
-    "CLUB CEPA": {
-      "status": "ASCIENDE",
-      "nivel_2027": 2,
-      "nivel_2026": "NIVEL_1",
-      "region": "OESTE",
-      "detalle": "Asciende a Interconferencia B / Nivel 2"
-    },
     "DEPORTIVO MORON A": {
       "status": "ASCIENDE",
       "nivel_2027": 2,
@@ -3752,12 +3745,19 @@
       "region": "OESTE",
       "detalle": "Asciende a Interconferencia B / Nivel 2"
     },
-    "EL TALAR": {
+    "AFALP A": {
+      "status": "ASCIENDE",
+      "nivel_2027": 2,
+      "nivel_2026": "NIVEL_1",
+      "region": "OESTE",
+      "detalle": "Asciende a Interconferencia B / Nivel 2"
+    },
+    "SAN FERNANDO AZUL": {
       "status": "MANTIENE",
       "nivel_2027": 3,
       "nivel_2026": "NIVEL_1",
-      "region": "CENTRO",
-      "detalle": "Permanece en Nivel 3 (cupo mínimo GES N1 → N3, NORTE) · región 2027 NORTE→CENTRO (ajuste)"
+      "region": "NORTE",
+      "detalle": "Permanece en Nivel 3 (cupo mínimo GES N1 → N3, NORTE)"
     },
     "BANCO PROVINCIA": {
       "status": "MANTIENE",
@@ -3766,7 +3766,7 @@
       "region": "NORTE",
       "detalle": "Permanece en Nivel 3 (cupo mínimo GES N1 → N3, NORTE)"
     },
-    "ESTRELLA DE BOEDO": {
+    "COPELLO": {
       "status": "MANTIENE",
       "nivel_2027": 3,
       "nivel_2026": "NIVEL_1",
@@ -3794,7 +3794,7 @@
       "region": "SUR",
       "detalle": "Permanece en Nivel 3 (cupo mínimo GES N1 → N3, SUR)"
     },
-    "AFALP A": {
+    "CLUB CEPA": {
       "status": "MANTIENE",
       "nivel_2027": 3,
       "nivel_2026": "NIVEL_1",
@@ -3822,117 +3822,117 @@
       "region": "NORTE",
       "detalle": "Asciende a Nivel 3 (venía de NIVEL_2) · pos regional 2"
     },
-    "VICTORIA NEGRO": {
+    "UNION VECINAL DE MUNRO": {
       "status": "MANTIENE",
       "nivel_2027": 3,
       "nivel_2026": "NIVEL_1",
       "region": "NORTE",
       "detalle": "Permanece en Nivel 3 · pos regional 3"
     },
-    "UNION VECINAL DE MUNRO": {
+    "HARRODS GATH Y CHAVES": {
       "status": "MANTIENE",
       "nivel_2027": 3,
       "nivel_2026": "NIVEL_1",
       "region": "NORTE",
       "detalle": "Permanece en Nivel 3 · pos regional 4"
     },
-    "COOP DE TORTUGUITAS": {
-      "status": "ASCIENDE",
+    "VICTORIA NEGRO": {
+      "status": "MANTIENE",
       "nivel_2027": 3,
-      "nivel_2026": "NIVEL_2",
+      "nivel_2026": "NIVEL_1",
       "region": "NORTE",
-      "detalle": "Asciende a Nivel 3 (venía de NIVEL_2) · pos regional 5"
+      "detalle": "Permanece en Nivel 3 · pos regional 5"
     },
     "BELLA VISTA": {
       "status": "DESCIENDE",
       "nivel_2027": 3,
       "nivel_2026": "INTERCONFERENCIA_B",
       "region": "NORTE",
-      "detalle": "Desciende a Nivel 3 (venía de INTERCONFERENCIA_B) · pos regional 12 · tope descenso (ideal N4)"
-    },
-    "CLUB ATLETICO HURACAN DE PARQUE PATRICIOS": {
-      "status": "ASCIENDE",
-      "nivel_2027": 3,
-      "nivel_2026": "NIVEL_3",
-      "region": "CENTRO",
-      "detalle": "Asciende a Nivel 3 (venía de NIVEL_3) · pos regional 1"
+      "detalle": "Desciende a Nivel 3 (venía de INTERCONFERENCIA_B) · pos regional 15 · tope descenso (ideal N5)"
     },
     "CIRCULO URQUIZA": {
       "status": "ASCIENDE",
       "nivel_2027": 3,
       "nivel_2026": "NIVEL_3",
       "region": "CENTRO",
-      "detalle": "Asciende a Nivel 3 (venía de NIVEL_3) · pos regional 2"
+      "detalle": "Asciende a Nivel 3 (venía de NIVEL_3) · pos regional 1"
     },
-    "SAN ANDRES": {
+    "MACABI": {
       "status": "ASCIENDE",
       "nivel_2027": 3,
-      "nivel_2026": "NIVEL_2",
-      "region": "NORTE",
-      "detalle": "Asciende a Nivel 3 (venía de NIVEL_2) · pos regional 3 · región 2027 CENTRO→NORTE (ajuste)"
+      "nivel_2026": "NIVEL_3",
+      "region": "CENTRO",
+      "detalle": "Asciende a Nivel 3 (venía de NIVEL_3) · pos regional 2"
+    },
+    "CLUB ATLETICO HURACAN DE PARQUE PATRICIOS": {
+      "status": "ASCIENDE",
+      "nivel_2027": 3,
+      "nivel_2026": "NIVEL_3",
+      "region": "CENTRO",
+      "detalle": "Asciende a Nivel 3 (venía de NIVEL_3) · pos regional 3"
     },
     "VILLA MITRE": {
       "status": "DESCIENDE",
       "nivel_2027": 3,
       "nivel_2026": "INTERCONFERENCIA_B",
       "region": "CENTRO",
-      "detalle": "Desciende a Nivel 3 (venía de INTERCONFERENCIA_B) · pos regional 12 · tope descenso (ideal N4)"
+      "detalle": "Desciende a Nivel 3 (venía de INTERCONFERENCIA_B) · pos regional 14 · tope descenso (ideal N4)"
     },
     "FERROCARRIL OESTE BLANCO": {
       "status": "DESCIENDE",
       "nivel_2027": 3,
       "nivel_2026": "INTERCONFERENCIA_B",
       "region": "CENTRO",
-      "detalle": "Desciende a Nivel 3 (venía de INTERCONFERENCIA_B) · pos regional 16 · tope descenso (ideal N5)"
+      "detalle": "Desciende a Nivel 3 (venía de INTERCONFERENCIA_B) · pos regional 21 · tope descenso (ideal N5)"
     },
     "ARMENIA": {
       "status": "DESCIENDE",
       "nivel_2027": 3,
       "nivel_2026": "INTERCONFERENCIA_B",
       "region": "CENTRO",
-      "detalle": "Desciende a Nivel 3 (venía de INTERCONFERENCIA_B) · pos regional 23 · tope descenso (ideal N6)"
-    },
-    "COOPERARIOS DE QUILMES": {
-      "status": "ASCIENDE",
-      "nivel_2027": 3,
-      "nivel_2026": "NIVEL_2",
-      "region": "SUR",
-      "detalle": "Asciende a Nivel 3 (venía de NIVEL_2) · pos regional 1"
+      "detalle": "Desciende a Nivel 3 (venía de INTERCONFERENCIA_B) · pos regional 26 · tope descenso (ideal N6)"
     },
     "LOS ANDES": {
       "status": "MANTIENE",
       "nivel_2027": 3,
       "nivel_2026": "NIVEL_1",
       "region": "SUR",
-      "detalle": "Permanece en Nivel 3 · pos regional 2"
+      "detalle": "Permanece en Nivel 3 · pos regional 1"
     },
-    "LANUS B": {
-      "status": "ASCIENDE",
+    "CSDY MORENO C": {
+      "status": "MANTIENE",
       "nivel_2027": 3,
-      "nivel_2026": "NIVEL_2",
+      "nivel_2026": "NIVEL_1",
       "region": "SUR",
-      "detalle": "Asciende a Nivel 3 (venía de NIVEL_2) · pos regional 3"
+      "detalle": "Permanece en Nivel 3 · pos regional 2"
     },
     "VILLA ESPANA": {
       "status": "ASCIENDE",
       "nivel_2027": 3,
       "nivel_2026": "NIVEL_2",
       "region": "SUR",
-      "detalle": "Asciende a Nivel 3 (venía de NIVEL_2) · pos regional 4"
+      "detalle": "Asciende a Nivel 3 (venía de NIVEL_2) · pos regional 3"
     },
-    "GUILLON BASQUET": {
+    "BOCA JUNIORS AMARILLO B": {
+      "status": "MANTIENE",
+      "nivel_2027": 3,
+      "nivel_2026": "NIVEL_1",
+      "region": "SUR",
+      "detalle": "Permanece en Nivel 3 · pos regional 4"
+    },
+    "COOPERARIOS DE QUILMES": {
       "status": "ASCIENDE",
       "nivel_2027": 3,
       "nivel_2026": "NIVEL_2",
       "region": "SUR",
       "detalle": "Asciende a Nivel 3 (venía de NIVEL_2) · pos regional 5"
     },
-    "JUVENTUD UNIDA": {
-      "status": "ASCIENDE",
+    "OLIMPO": {
+      "status": "MANTIENE",
       "nivel_2027": 3,
-      "nivel_2026": "NIVEL_2",
+      "nivel_2026": "NIVEL_1",
       "region": "SUR",
-      "detalle": "Asciende a Nivel 3 (venía de NIVEL_2) · pos regional 6"
+      "detalle": "Permanece en Nivel 3 · pos regional 6"
     },
     "VELEZ SARSFIELD AZUL B": {
       "status": "ASCIENDE",
@@ -3953,21 +3953,21 @@
       "nivel_2027": 3,
       "nivel_2026": "INTERCONFERENCIA_B",
       "region": "OESTE",
-      "detalle": "Desciende a Nivel 3 (venía de INTERCONFERENCIA_B) · pos regional 14 · tope descenso (ideal N4)"
+      "detalle": "Desciende a Nivel 3 (venía de INTERCONFERENCIA_B) · pos regional 16 · tope descenso (ideal N5)"
     },
     "MIDLAND": {
       "status": "DESCIENDE",
       "nivel_2027": 3,
       "nivel_2026": "INTERCONFERENCIA_B",
       "region": "OESTE",
-      "detalle": "Desciende a Nivel 3 (venía de INTERCONFERENCIA_B) · pos regional 17 · tope descenso (ideal N5)"
+      "detalle": "Desciende a Nivel 3 (venía de INTERCONFERENCIA_B) · pos regional 18 · tope descenso (ideal N5)"
     },
     "ARGENTINO DE CASTELAR CENTRO B": {
       "status": "DESCIENDE",
       "nivel_2027": 3,
       "nivel_2026": "INTERCONFERENCIA_B",
       "region": "OESTE",
-      "detalle": "Desciende a Nivel 3 (venía de INTERCONFERENCIA_B) · pos regional 21 · tope descenso (ideal N5)"
+      "detalle": "Desciende a Nivel 3 (venía de INTERCONFERENCIA_B) · pos regional 22 · tope descenso (ideal N5)"
     },
     "UNIVERSIDAD DE LA MATANZA": {
       "status": "DESCIENDE",
@@ -3976,63 +3976,63 @@
       "region": "OESTE",
       "detalle": "Desciende a Nivel 3 (venía de INTERCONFERENCIA_B) · pos regional 28 · tope descenso (ideal N6)"
     },
-    "SPORTIVO VILLA BALLESTER": {
+    "ATLETICO PILAR": {
       "status": "DESCIENDE",
       "nivel_2027": 4,
       "nivel_2026": "NIVEL_1",
       "region": "NORTE",
       "detalle": "Desciende a Nivel 4 (venía de NIVEL_1) · pos regional 7"
     },
-    "HARRODS GATH Y CHAVES": {
-      "status": "DESCIENDE",
-      "nivel_2027": 4,
-      "nivel_2026": "NIVEL_1",
-      "region": "NORTE",
-      "detalle": "Desciende a Nivel 4 (venía de NIVEL_1) · pos regional 8"
-    },
-    "CIUDAD DE BUENOS AIRES B BLANCO": {
+    "COOP DE TORTUGUITAS": {
       "status": "MANTIENE",
       "nivel_2027": 4,
       "nivel_2026": "NIVEL_2",
       "region": "NORTE",
-      "detalle": "Permanece en Nivel 4 · pos regional 9"
-    },
-    "VICTORIA BLANCO": {
-      "status": "ASCIENDE",
-      "nivel_2027": 4,
-      "nivel_2026": "NIVEL_3",
-      "region": "NORTE",
-      "detalle": "Asciende a Nivel 4 (venía de NIVEL_3) · pos regional 10"
-    },
-    "SOCIEDAD HEBRAICA ARGENTINA": {
-      "status": "ASCIENDE",
-      "nivel_2027": 4,
-      "nivel_2026": "NIVEL_3",
-      "region": "NORTE",
-      "detalle": "Asciende a Nivel 4 (venía de NIVEL_3) · pos regional 11"
-    },
-    "ATLETICO PILAR": {
-      "status": "DESCIENDE",
-      "nivel_2027": 4,
-      "nivel_2026": "NIVEL_1",
-      "region": "NORTE",
-      "detalle": "Desciende a Nivel 4 (venía de NIVEL_1) · pos regional 15 · tope descenso (ideal N5)"
-    },
-    "CAZA Y PESCA B VERDE": {
-      "status": "DESCIENDE",
-      "nivel_2027": 4,
-      "nivel_2026": "NIVEL_1",
-      "region": "NORTE",
-      "detalle": "Desciende a Nivel 4 (venía de NIVEL_1) · pos regional 19 · tope descenso (ideal N5)"
+      "detalle": "Permanece en Nivel 4 · pos regional 8"
     },
     "INDEPENDIENTE DE ESCOBAR": {
       "status": "MANTIENE",
       "nivel_2027": 4,
       "nivel_2026": "NIVEL_2",
       "region": "NORTE",
-      "detalle": "Permanece en Nivel 4 · pos regional 6 · tope descenso (ideal N3)"
+      "detalle": "Permanece en Nivel 4 · pos regional 9"
     },
-    "COPELLO": {
+    "CIUDAD DE BUENOS AIRES B BLANCO": {
+      "status": "MANTIENE",
+      "nivel_2027": 4,
+      "nivel_2026": "NIVEL_2",
+      "region": "NORTE",
+      "detalle": "Permanece en Nivel 4 · pos regional 10"
+    },
+    "CAZA Y PESCA B VERDE": {
+      "status": "DESCIENDE",
+      "nivel_2027": 4,
+      "nivel_2026": "NIVEL_1",
+      "region": "NORTE",
+      "detalle": "Desciende a Nivel 4 (venía de NIVEL_1) · pos regional 11"
+    },
+    "VICTORIA BLANCO": {
+      "status": "ASCIENDE",
+      "nivel_2027": 4,
+      "nivel_2026": "NIVEL_3",
+      "region": "NORTE",
+      "detalle": "Asciende a Nivel 4 (venía de NIVEL_3) · pos regional 12"
+    },
+    "SOCIEDAD HEBRAICA ARGENTINA": {
+      "status": "ASCIENDE",
+      "nivel_2027": 4,
+      "nivel_2026": "NIVEL_3",
+      "region": "NORTE",
+      "detalle": "Asciende a Nivel 4 (venía de NIVEL_3) · pos regional 13"
+    },
+    "SPORTIVO VILLA BALLESTER": {
+      "status": "DESCIENDE",
+      "nivel_2027": 4,
+      "nivel_2026": "NIVEL_1",
+      "region": "NORTE",
+      "detalle": "Desciende a Nivel 4 (venía de NIVEL_1) · pos regional 6 · tope descenso (ideal N3)"
+    },
+    "ESTRELLA DE BOEDO": {
       "status": "DESCIENDE",
       "nivel_2027": 4,
       "nivel_2026": "NIVEL_1",
@@ -4044,28 +4044,28 @@
       "nivel_2027": 4,
       "nivel_2026": "NIVEL_1",
       "region": "CENTRO",
-      "detalle": "Desciende a Nivel 4 (venía de NIVEL_1) · pos regional 20 · tope descenso (ideal N5)"
+      "detalle": "Desciende a Nivel 4 (venía de NIVEL_1) · pos regional 13"
     },
     "ARQUITECTURA B BLANCO": {
       "status": "DESCIENDE",
       "nivel_2027": 4,
       "nivel_2026": "NIVEL_1",
       "region": "CENTRO",
-      "detalle": "Desciende a Nivel 4 (venía de NIVEL_1) · pos regional 21 · tope descenso (ideal N5)"
+      "detalle": "Desciende a Nivel 4 (venía de NIVEL_1) · pos regional 16 · tope descenso (ideal N5)"
     },
     "ALL BOYS BLANCO": {
       "status": "DESCIENDE",
       "nivel_2027": 4,
       "nivel_2026": "NIVEL_1",
       "region": "CENTRO",
-      "detalle": "Desciende a Nivel 4 (venía de NIVEL_1) · pos regional 22 · tope descenso (ideal N5)"
+      "detalle": "Desciende a Nivel 4 (venía de NIVEL_1) · pos regional 19 · tope descenso (ideal N5)"
     },
     "YUPANQUI": {
       "status": "DESCIENDE",
       "nivel_2027": 4,
       "nivel_2026": "NIVEL_1",
       "region": "CENTRO",
-      "detalle": "Desciende a Nivel 4 (venía de NIVEL_1) · pos regional 26 · tope descenso (ideal N6)"
+      "detalle": "Desciende a Nivel 4 (venía de NIVEL_1) · pos regional 25 · tope descenso (ideal N6)"
     },
     "JUVENCIA": {
       "status": "DESCIENDE",
@@ -4074,7 +4074,7 @@
       "region": "CENTRO",
       "detalle": "Desciende a Nivel 4 (venía de NIVEL_1) · pos regional 27 · tope descenso (ideal N6)"
     },
-    "MACABI": {
+    "NAUTICO BUCHARDO CENTRO B": {
       "status": "ASCIENDE",
       "nivel_2027": 4,
       "nivel_2026": "NIVEL_3",
@@ -4088,61 +4088,61 @@
       "region": "CENTRO",
       "detalle": "Asciende a Nivel 4 (venía de NIVEL_3) · pos regional 4 · tope descenso (ideal N3)"
     },
-    "DEFENSORES DE GLEW": {
+    "LANUS B": {
       "status": "MANTIENE",
       "nivel_2027": 4,
       "nivel_2026": "NIVEL_2",
       "region": "SUR",
       "detalle": "Permanece en Nivel 4 · pos regional 7"
     },
-    "BOCA JUNIORS AMARILLO B": {
-      "status": "DESCIENDE",
+    "DEFENSORES DE GLEW": {
+      "status": "MANTIENE",
       "nivel_2027": 4,
-      "nivel_2026": "NIVEL_1",
+      "nivel_2026": "NIVEL_2",
       "region": "SUR",
-      "detalle": "Desciende a Nivel 4 (venía de NIVEL_1) · pos regional 8"
+      "detalle": "Permanece en Nivel 4 · pos regional 8"
     },
-    "OLIMPO": {
-      "status": "DESCIENDE",
+    "JUVENTUD UNIDA": {
+      "status": "MANTIENE",
       "nivel_2027": 4,
-      "nivel_2026": "NIVEL_1",
+      "nivel_2026": "NIVEL_2",
       "region": "SUR",
-      "detalle": "Desciende a Nivel 4 (venía de NIVEL_1) · pos regional 9"
+      "detalle": "Permanece en Nivel 4 · pos regional 9"
     },
-    "CLUB ATLETICO Y PROGRESO DE BRANDSEN": {
+    "MUNICAVELLANEDA": {
       "status": "ASCIENDE",
       "nivel_2027": 4,
       "nivel_2026": "NIVEL_3",
       "region": "SUR",
       "detalle": "Asciende a Nivel 4 (venía de NIVEL_3) · pos regional 10"
     },
-    "PAMPERO": {
+    "GUILLON BASQUET": {
       "status": "MANTIENE",
       "nivel_2027": 4,
       "nivel_2026": "NIVEL_2",
       "region": "SUR",
       "detalle": "Permanece en Nivel 4 · pos regional 11"
     },
-    "CSDY MORENO C": {
-      "status": "DESCIENDE",
+    "SOCIAL LANUS": {
+      "status": "MANTIENE",
       "nivel_2027": 4,
-      "nivel_2026": "NIVEL_1",
+      "nivel_2026": "NIVEL_2",
       "region": "SUR",
-      "detalle": "Desciende a Nivel 4 (venía de NIVEL_1) · pos regional 15 · tope descenso (ideal N5)"
+      "detalle": "Permanece en Nivel 4 · pos regional 12"
     },
     "COUNTRY BANFIELD A": {
       "status": "DESCIENDE",
       "nivel_2027": 4,
       "nivel_2026": "NIVEL_1",
       "region": "SUR",
-      "detalle": "Desciende a Nivel 4 (venía de NIVEL_1) · pos regional 16 · tope descenso (ideal N5)"
+      "detalle": "Desciende a Nivel 4 (venía de NIVEL_1) · pos regional 13"
     },
     "EZEIZA": {
       "status": "DESCIENDE",
       "nivel_2027": 4,
       "nivel_2026": "NIVEL_1",
       "region": "SUR",
-      "detalle": "Desciende a Nivel 4 (venía de NIVEL_1) · pos regional 27 · tope descenso (ideal N6)"
+      "detalle": "Desciende a Nivel 4 (venía de NIVEL_1) · pos regional 26 · tope descenso (ideal N6)"
     },
     "SITAS ROJO": {
       "status": "MANTIENE",
@@ -4151,26 +4151,26 @@
       "region": "OESTE",
       "detalle": "Permanece en Nivel 4 · pos regional 7"
     },
-    "ALEM": {
-      "status": "DESCIENDE",
-      "nivel_2027": 4,
-      "nivel_2026": "NIVEL_1",
-      "region": "OESTE",
-      "detalle": "Desciende a Nivel 4 (venía de NIVEL_1) · pos regional 18 · tope descenso (ideal N5)"
-    },
     "INSTITUCION SARMIENTO B BLANCO": {
       "status": "DESCIENDE",
       "nivel_2027": 4,
       "nivel_2026": "NIVEL_1",
       "region": "OESTE",
-      "detalle": "Desciende a Nivel 4 (venía de NIVEL_1) · pos regional 24 · tope descenso (ideal N6)"
+      "detalle": "Desciende a Nivel 4 (venía de NIVEL_1) · pos regional 13"
+    },
+    "ALEM": {
+      "status": "DESCIENDE",
+      "nivel_2027": 4,
+      "nivel_2026": "NIVEL_1",
+      "region": "OESTE",
+      "detalle": "Desciende a Nivel 4 (venía de NIVEL_1) · pos regional 19 · tope descenso (ideal N5)"
     },
     "EL PORVENIR JOSE PAZ C": {
       "status": "DESCIENDE",
       "nivel_2027": 4,
       "nivel_2026": "NIVEL_1",
       "region": "OESTE",
-      "detalle": "Desciende a Nivel 4 (venía de NIVEL_1) · pos regional 31 · tope descenso (ideal N6)"
+      "detalle": "Desciende a Nivel 4 (venía de NIVEL_1) · pos regional 30 · tope descenso (ideal N6)"
     },
     "MORON B BLANCO": {
       "status": "MANTIENE",
@@ -4200,19 +4200,26 @@
       "region": "OESTE",
       "detalle": "Permanece en Nivel 4 · pos regional 3 · tope descenso (ideal N3)"
     },
+    "CLUB ATENEO INGENIERO RAVER": {
+      "status": "DESCIENDE",
+      "nivel_2027": 5,
+      "nivel_2026": "NIVEL_2",
+      "region": "NORTE",
+      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 16"
+    },
     "17 DE AGOSTO": {
       "status": "DESCIENDE",
       "nivel_2027": 5,
       "nivel_2026": "NIVEL_2",
       "region": "CENTRO",
-      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 17 · región 2027 NORTE→CENTRO (ajuste)"
+      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 18 · región 2027 NORTE→CENTRO (ajuste)"
     },
     "PLATENSE B": {
       "status": "DESCIENDE",
       "nivel_2027": 5,
       "nivel_2026": "NIVEL_2",
       "region": "NORTE",
-      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 18"
+      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 20"
     },
     "SAN FERNANDO BLANCO": {
       "status": "DESCIENDE",
@@ -4221,14 +4228,14 @@
       "region": "NORTE",
       "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 21"
     },
-    "NAUTICO HACOAJ AZUL B": {
+    "CLUB SOCIAL Y DEPORTIVO ARENAL": {
       "status": "DESCIENDE",
       "nivel_2027": 5,
       "nivel_2026": "NIVEL_2",
       "region": "NORTE",
       "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 23 · tope descenso (ideal N6)"
     },
-    "CLUB SOCIAL Y DEPORTIVO ARENAL": {
+    "NAUTICO HACOAJ AZUL B": {
       "status": "DESCIENDE",
       "nivel_2027": 5,
       "nivel_2026": "NIVEL_2",
@@ -4242,77 +4249,77 @@
       "region": "CENTRO",
       "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 26 · tope descenso (ideal N6) · región 2027 NORTE→CENTRO (ajuste)"
     },
-    "CLUB ATENEO INGENIERO RAVER": {
-      "status": "DESCIENDE",
-      "nivel_2027": 5,
-      "nivel_2026": "NIVEL_2",
-      "region": "NORTE",
-      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 14 · tope descenso (ideal N4)"
-    },
     "LAS HERAS": {
       "status": "DESCIENDE",
       "nivel_2027": 5,
       "nivel_2026": "NIVEL_2",
       "region": "NORTE",
-      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 13 · tope descenso (ideal N4)"
-    },
-    "COMUNICACIONES B NEGRO": {
-      "status": "DESCIENDE",
-      "nivel_2027": 5,
-      "nivel_2026": "NIVEL_2",
-      "region": "CENTRO",
-      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 17"
-    },
-    "JOSE HERNANDEZ B": {
-      "status": "DESCIENDE",
-      "nivel_2027": 5,
-      "nivel_2026": "NIVEL_2",
-      "region": "NORTE",
-      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 18 · reequilibrio región → NORTE"
+      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 14 · tope descenso (ideal N4)"
     },
     "RACING ANEXO": {
       "status": "DESCIENDE",
       "nivel_2027": 5,
       "nivel_2026": "NIVEL_2",
-      "region": "NORTE",
-      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 19 · reequilibrio región → NORTE"
-    },
-    "PEDRO ECHAGUE AMARILLO": {
-      "status": "DESCIENDE",
-      "nivel_2027": 5,
-      "nivel_2026": "NIVEL_2",
       "region": "CENTRO",
-      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 14 · tope descenso (ideal N4)"
+      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 15"
     },
     "IMPERIO B NEGRO": {
       "status": "DESCIENDE",
       "nivel_2027": 5,
       "nivel_2026": "NIVEL_2",
       "region": "CENTRO",
-      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 13 · tope descenso (ideal N4)"
+      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 17"
+    },
+    "PEDRO ECHAGUE AMARILLO": {
+      "status": "DESCIENDE",
+      "nivel_2027": 5,
+      "nivel_2026": "NIVEL_2",
+      "region": "CENTRO",
+      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 18"
+    },
+    "COMUNICACIONES B NEGRO": {
+      "status": "DESCIENDE",
+      "nivel_2027": 5,
+      "nivel_2026": "NIVEL_2",
+      "region": "CENTRO",
+      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 20"
+    },
+    "JOSE HERNANDEZ B": {
+      "status": "DESCIENDE",
+      "nivel_2027": 5,
+      "nivel_2026": "NIVEL_2",
+      "region": "NORTE",
+      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 22 · reequilibrio región → NORTE"
     },
     "ARGENTINOS JUNIORS": {
       "status": "DESCIENDE",
       "nivel_2027": 5,
       "nivel_2026": "NIVEL_2",
       "region": "CENTRO",
-      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 10 · tope descenso (ideal N4)"
-    },
-    "DEPORTIVO CROVARA B": {
-      "status": "MANTIENE",
-      "nivel_2027": 5,
-      "nivel_2026": "NIVEL_3",
-      "region": "CENTRO",
-      "detalle": "Permanece en Nivel 5 · pos regional 7 · tope descenso (ideal N4)"
+      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 12 · tope descenso (ideal N4)"
     },
     "ITALIANO B": {
       "status": "DESCIENDE",
       "nivel_2027": 5,
       "nivel_2026": "NIVEL_2",
       "region": "CENTRO",
-      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 6 · tope descenso (ideal N3)"
+      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 11 · tope descenso (ideal N4)"
     },
-    "LUZ Y ARTE": {
+    "SAN ANDRES": {
+      "status": "DESCIENDE",
+      "nivel_2027": 5,
+      "nivel_2026": "NIVEL_2",
+      "region": "NORTE",
+      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 8 · tope descenso (ideal N4) · región 2027 CENTRO→NORTE (ajuste)"
+    },
+    "PAMPERO": {
+      "status": "DESCIENDE",
+      "nivel_2027": 5,
+      "nivel_2026": "NIVEL_2",
+      "region": "SUR",
+      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 15"
+    },
+    "GIMNASIA Y ESGRIMA DE LOMAS DE ZAMORA B": {
       "status": "DESCIENDE",
       "nivel_2027": 5,
       "nivel_2026": "NIVEL_2",
@@ -4326,98 +4333,91 @@
       "region": "SUR",
       "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 18"
     },
-    "TAMBEROS UNIDOS": {
+    "COLON FC": {
       "status": "DESCIENDE",
       "nivel_2027": 5,
       "nivel_2026": "NIVEL_2",
       "region": "SUR",
       "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 19"
     },
+    "LUZ Y ARTE": {
+      "status": "DESCIENDE",
+      "nivel_2027": 5,
+      "nivel_2026": "NIVEL_2",
+      "region": "SUR",
+      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 20"
+    },
+    "TAMBEROS UNIDOS": {
+      "status": "DESCIENDE",
+      "nivel_2027": 5,
+      "nivel_2026": "NIVEL_2",
+      "region": "SUR",
+      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 22"
+    },
     "DEFENSORES DE BANFIELD": {
       "status": "DESCIENDE",
       "nivel_2027": 5,
       "nivel_2026": "NIVEL_2",
       "region": "SUR",
-      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 21"
+      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 23 · tope descenso (ideal N6)"
     },
     "EL FOGON": {
       "status": "DESCIENDE",
       "nivel_2027": 5,
       "nivel_2026": "NIVEL_2",
       "region": "SUR",
-      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 22"
-    },
-    "COLON FC": {
-      "status": "DESCIENDE",
-      "nivel_2027": 5,
-      "nivel_2026": "NIVEL_2",
-      "region": "SUR",
-      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 25 · tope descenso (ideal N6)"
-    },
-    "SOCIAL LANUS": {
-      "status": "DESCIENDE",
-      "nivel_2027": 5,
-      "nivel_2026": "NIVEL_2",
-      "region": "SUR",
-      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 14 · tope descenso (ideal N4)"
-    },
-    "GIMNASIA Y ESGRIMA DE LOMAS DE ZAMORA B": {
-      "status": "DESCIENDE",
-      "nivel_2027": 5,
-      "nivel_2026": "NIVEL_2",
-      "region": "SUR",
-      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 13 · tope descenso (ideal N4)"
-    },
-    "DEFENSORES DE MORENO": {
-      "status": "DESCIENDE",
-      "nivel_2027": 5,
-      "nivel_2026": "NIVEL_2",
-      "region": "OESTE",
-      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 16"
-    },
-    "MUNICIPALIDAD DE HURLINGHAM": {
-      "status": "DESCIENDE",
-      "nivel_2027": 5,
-      "nivel_2026": "NIVEL_2",
-      "region": "OESTE",
-      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 22"
+      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 24 · tope descenso (ideal N6)"
     },
     "CIUDADELA NORTE": {
       "status": "DESCIENDE",
       "nivel_2027": 5,
       "nivel_2026": "NIVEL_2",
       "region": "OESTE",
-      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 13 · tope descenso (ideal N4)"
+      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 15"
     },
-    "ESTUDIANTIL PORTENO B": {
+    "MUNICIPALIDAD DE HURLINGHAM": {
       "status": "DESCIENDE",
       "nivel_2027": 5,
       "nivel_2026": "NIVEL_2",
       "region": "OESTE",
-      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 12 · tope descenso (ideal N4)"
+      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 23 · tope descenso (ideal N6)"
+    },
+    "DEFENSORES DE MORENO": {
+      "status": "DESCIENDE",
+      "nivel_2027": 5,
+      "nivel_2026": "NIVEL_2",
+      "region": "OESTE",
+      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 14 · tope descenso (ideal N4)"
     },
     "CLUB GEI B BLANCO": {
       "status": "DESCIENDE",
       "nivel_2027": 5,
       "nivel_2026": "NIVEL_2",
       "region": "OESTE",
-      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 11 · tope descenso (ideal N4)"
+      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 12 · tope descenso (ideal N4)"
     },
     "CENTRO ESPANOL": {
       "status": "DESCIENDE",
       "nivel_2027": 5,
       "nivel_2026": "NIVEL_2",
       "region": "OESTE",
-      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 10 · tope descenso (ideal N4)"
+      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 11 · tope descenso (ideal N4)"
     },
     "SPORTIVO HAEDO": {
       "status": "DESCIENDE",
       "nivel_2027": 5,
       "nivel_2026": "NIVEL_2",
       "region": "OESTE",
-      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 9 · tope descenso (ideal N4)"
+      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 10 · tope descenso (ideal N4)"
     },
     "PORTUGUES DEL GRAN BUENOS AIRES": {
+      "status": "DESCIENDE",
+      "nivel_2027": 5,
+      "nivel_2026": "NIVEL_2",
+      "region": "OESTE",
+      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 9 · tope descenso (ideal N4)"
+    },
+    "ESTUDIANTIL PORTENO B": {
       "status": "DESCIENDE",
       "nivel_2027": 5,
       "nivel_2026": "NIVEL_2",
@@ -4438,26 +4438,26 @@
       "region": "NORTE",
       "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 27"
     },
-    "PINOCHO VERDE": {
-      "status": "DESCIENDE",
-      "nivel_2027": 6,
-      "nivel_2026": "NIVEL_3",
-      "region": "CENTRO",
-      "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 22 · tope descenso (ideal N5) · región 2027 NORTE→CENTRO (ajuste)"
-    },
     "ATLETICO BOULOGNE": {
       "status": "DESCIENDE",
       "nivel_2027": 6,
       "nivel_2026": "NIVEL_3",
       "region": "NORTE",
-      "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 20 · tope descenso (ideal N5)"
+      "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 22 · tope descenso (ideal N5)"
+    },
+    "PINOCHO VERDE": {
+      "status": "DESCIENDE",
+      "nivel_2027": 6,
+      "nivel_2026": "NIVEL_3",
+      "region": "CENTRO",
+      "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 19 · tope descenso (ideal N5) · región 2027 NORTE→CENTRO (ajuste)"
     },
     "SPORTIVO PILAR B BLANCO": {
       "status": "DESCIENDE",
       "nivel_2027": 6,
       "nivel_2026": "NIVEL_3",
       "region": "NORTE",
-      "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 16 · tope descenso (ideal N5)"
+      "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 17 · tope descenso (ideal N5)"
     },
     "3 DE FEBRERO C CELESTE": {
       "status": "DESCIENDE",
@@ -4478,63 +4478,56 @@
       "nivel_2027": 6,
       "nivel_2026": "NIVEL_3",
       "region": "CENTRO",
-      "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 24"
+      "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 23"
     },
     "ALL BOYS NEGRO": {
       "status": "DESCIENDE",
       "nivel_2027": 6,
       "nivel_2026": "NIVEL_3",
       "region": "CENTRO",
-      "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 25"
+      "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 24"
     },
     "ALL BOYS SAAVEDRA": {
       "status": "DESCIENDE",
       "nivel_2027": 6,
       "nivel_2026": "NIVEL_3",
       "region": "CENTRO",
-      "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 15 · tope descenso (ideal N5)"
+      "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 10 · tope descenso (ideal N4)"
     },
     "ALDO BONZI": {
       "status": "DESCIENDE",
       "nivel_2027": 6,
       "nivel_2026": "NIVEL_3",
       "region": "CENTRO",
-      "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 11 · tope descenso (ideal N4)"
+      "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 7 · tope descenso (ideal N4)"
     },
-    "NAUTICO BUCHARDO CENTRO B": {
+    "DEPORTIVO CROVARA B": {
       "status": "DESCIENDE",
       "nivel_2027": 6,
       "nivel_2026": "NIVEL_3",
       "region": "CENTRO",
-      "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 8 · tope descenso (ideal N4)"
-    },
-    "GIMNASIA Y ESGRIMA LA B PLATA": {
-      "status": "DESCIENDE",
-      "nivel_2027": 6,
-      "nivel_2026": "NIVEL_3",
-      "region": "SUR",
-      "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 23"
+      "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 6 · tope descenso (ideal N3)"
     },
     "LA UNION": {
       "status": "DESCIENDE",
       "nivel_2027": 6,
       "nivel_2026": "NIVEL_3",
       "region": "SUR",
-      "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 24"
+      "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 25"
     },
     "TAPONAZO FUTBOL CLUB": {
       "status": "DESCIENDE",
       "nivel_2027": 6,
       "nivel_2026": "NIVEL_3",
       "region": "SUR",
-      "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 26"
+      "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 27"
     },
     "CLUB ATLETICO 9 DE JULIO DE LANUS": {
       "status": "DESCIENDE",
       "nivel_2027": 6,
       "nivel_2026": "NIVEL_3",
       "region": "SUR",
-      "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 29"
+      "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 28"
     },
     "COUNTRY BANFIELD B": {
       "status": "DESCIENDE",
@@ -4543,33 +4536,40 @@
       "region": "SUR",
       "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 30"
     },
+    "GIMNASIA Y ESGRIMA LA B PLATA": {
+      "status": "DESCIENDE",
+      "nivel_2027": 6,
+      "nivel_2026": "NIVEL_3",
+      "region": "SUR",
+      "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 21 · tope descenso (ideal N5)"
+    },
     "TALLERES": {
       "status": "DESCIENDE",
       "nivel_2027": 6,
       "nivel_2026": "NIVEL_3",
       "region": "SUR",
-      "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 20 · tope descenso (ideal N5)"
+      "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 16 · tope descenso (ideal N5)"
     },
-    "MUNICAVELLANEDA": {
+    "CLUB ATLETICO Y PROGRESO DE BRANDSEN": {
       "status": "DESCIENDE",
       "nivel_2027": 6,
       "nivel_2026": "NIVEL_3",
       "region": "SUR",
-      "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 12 · tope descenso (ideal N4)"
+      "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 14 · tope descenso (ideal N4)"
     },
     "MONTE GRANDE B NEGRO": {
       "status": "DESCIENDE",
       "nivel_2027": 6,
       "nivel_2026": "NIVEL_2",
       "region": "SUR",
-      "detalle": "Desciende a Nivel 6 (venía de NIVEL_2) · pos regional 28 · cupo 8/región (demote forzado)"
+      "detalle": "Desciende a Nivel 6 (venía de NIVEL_2) · pos regional 29 · cupo 8/región (demote forzado)"
     },
     "RAMOS MEJIA LTC": {
       "status": "DESCIENDE",
       "nivel_2027": 6,
       "nivel_2026": "NIVEL_3",
       "region": "OESTE",
-      "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 23"
+      "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 24"
     },
     "SAN MIGUEL BLANCO": {
       "status": "DESCIENDE",
@@ -4597,7 +4597,7 @@
       "nivel_2027": 6,
       "nivel_2026": "NIVEL_3",
       "region": "OESTE",
-      "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 30"
+      "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 31"
     },
     "CLUB GEI C GRIS": {
       "status": "DESCIENDE",
@@ -4632,21 +4632,21 @@
       "nivel_2027": 6,
       "nivel_2026": "NIVEL_3",
       "region": "OESTE",
-      "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 20 · tope descenso (ideal N5)"
+      "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 21 · tope descenso (ideal N5)"
     },
     "PASO DEL REY": {
       "status": "DESCIENDE",
       "nivel_2027": 6,
       "nivel_2026": "NIVEL_3",
       "region": "OESTE",
-      "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 19 · tope descenso (ideal N5)"
+      "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 20 · tope descenso (ideal N5)"
     },
     "FERROCARRIL OESTE NARANJA": {
       "status": "DESCIENDE",
       "nivel_2027": 6,
       "nivel_2026": "NIVEL_3",
       "region": "CENTRO",
-      "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 15 · tope descenso (ideal N5) · región 2027 OESTE→CENTRO (ajuste)"
+      "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 17 · tope descenso (ideal N5) · región 2027 OESTE→CENTRO (ajuste)"
     },
     "PORTENO ATLETICO CLUB B BLANCO": {
       "status": "DESCIENDE",
