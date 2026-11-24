@@ -28,6 +28,56 @@
         "SUR": 6,
         "OESTE": 6
       },
+      "region_overrides_2027": [
+        {
+          "clave": "FERROCARRIL OESTE NARANJA",
+          "region_2027": "CENTRO",
+          "nivel_2027": 6,
+          "status": "DESCIENDE"
+        },
+        {
+          "clave": "EL TALAR",
+          "region_2027": "CENTRO",
+          "nivel_2027": 3,
+          "status": "MANTIENE"
+        },
+        {
+          "clave": "SAN ANDRES",
+          "region_2027": "NORTE",
+          "nivel_2027": 3,
+          "status": "ASCIENDE"
+        },
+        {
+          "clave": "17 DE AGOSTO",
+          "region_2027": "CENTRO",
+          "nivel_2027": 5,
+          "status": "DESCIENDE"
+        },
+        {
+          "clave": "PINOCHO VERDE",
+          "region_2027": "CENTRO",
+          "nivel_2027": 6,
+          "status": "DESCIENDE"
+        },
+        {
+          "clave": "COLEGIALES NEGRO",
+          "region_2027": "CENTRO",
+          "nivel_2027": 5,
+          "status": "DESCIENDE"
+        },
+        {
+          "clave": "ITALIANO DE JOSE PAZ C",
+          "region_2027": "NORTE",
+          "nivel_2027": 6,
+          "status": "DESCIENDE"
+        },
+        {
+          "clave": "SAN MIGUEL BLANCO",
+          "region_2027": "NORTE",
+          "nivel_2027": 6,
+          "status": "DESCIENDE"
+        }
+      ],
       "clampados_tope_descenso": 29,
       "demotes_reequilibrio": 41,
       "demotes_forzados_cupo": 4
@@ -48,6 +98,16 @@
         "NIVEL_3": 5,
         "RECLASIFICACION": 5,
         "CLASIFICACION": 6
+      },
+      "region_overrides_2027": {
+        "FERROCARRIL OESTE NARANJA": "CENTRO",
+        "EL TALAR": "CENTRO",
+        "SAN ANDRES": "NORTE",
+        "17 DE AGOSTO": "CENTRO",
+        "PINOCHO VERDE": "CENTRO",
+        "COLEGIALES NEGRO": "CENTRO",
+        "ITALIANO DE JOSE PAZ C": "NORTE",
+        "SAN MIGUEL BLANCO": "NORTE"
       }
     }
   },
@@ -73,8 +133,8 @@
       "CENTRO": 4
     },
     "3": {
-      "NORTE": 8,
       "CENTRO": 8,
+      "NORTE": 8,
       "SUR": 8,
       "OESTE": 8
     },
@@ -85,16 +145,16 @@
       "OESTE": 8
     },
     "5": {
-      "NORTE": 8,
       "CENTRO": 8,
+      "NORTE": 8,
       "SUR": 8,
       "OESTE": 8
     },
     "6": {
-      "NORTE": 7,
-      "CENTRO": 5,
+      "NORTE": 8,
+      "CENTRO": 8,
       "SUR": 8,
-      "OESTE": 13
+      "OESTE": 9
     }
   },
   "niveles": {
@@ -1152,10 +1212,10 @@
           "ganados": 36,
           "nivel_2026": "NIVEL_1",
           "zona_2026": "NORTE 1",
-          "region": "NORTE",
+          "region": "CENTRO",
           "status": "MANTIENE",
           "nivel_2027": 3,
-          "detalle": "Permanece en Nivel 3 (cupo mínimo GES N1 → N3, NORTE)"
+          "detalle": "Permanece en Nivel 3 (cupo mínimo GES N1 → N3, NORTE) · región 2027 NORTE→CENTRO (ajuste)"
         },
         {
           "equipo": "BANCO PROVINCIA",
@@ -1408,10 +1468,10 @@
           "ganados": 41,
           "nivel_2026": "NIVEL_2",
           "zona_2026": "CENTRO",
-          "region": "CENTRO",
+          "region": "NORTE",
           "status": "ASCIENDE",
           "nivel_2027": 3,
-          "detalle": "Asciende a Nivel 3 (venía de NIVEL_2) · pos regional 3"
+          "detalle": "Asciende a Nivel 3 (venía de NIVEL_2) · pos regional 3 · región 2027 CENTRO→NORTE (ajuste)"
         },
         {
           "equipo": "VILLA MITRE",
@@ -2190,10 +2250,10 @@
           "ganados": 28,
           "nivel_2026": "NIVEL_2",
           "zona_2026": "NORTE",
-          "region": "NORTE",
+          "region": "CENTRO",
           "status": "DESCIENDE",
           "nivel_2027": 5,
-          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 17"
+          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 17 · región 2027 NORTE→CENTRO (ajuste)"
         },
         {
           "equipo": "PLATENSE B",
@@ -2270,10 +2330,10 @@
           "ganados": 12,
           "nivel_2026": "NIVEL_2",
           "zona_2026": "NORTE",
-          "region": "NORTE",
+          "region": "CENTRO",
           "status": "DESCIENDE",
           "nivel_2027": 5,
-          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 26 · tope descenso (ideal N6)"
+          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 26 · tope descenso (ideal N6) · región 2027 NORTE→CENTRO (ajuste)"
         },
         {
           "equipo": "CLUB ATENEO INGENIERO RAVER",
@@ -2334,10 +2394,10 @@
           "ganados": 16,
           "nivel_2026": "NIVEL_2",
           "zona_2026": "CENTRO",
-          "region": "CENTRO",
+          "region": "NORTE",
           "status": "DESCIENDE",
           "nivel_2027": 5,
-          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 18"
+          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 18 · reequilibrio región → NORTE"
         },
         {
           "equipo": "RACING ANEXO",
@@ -2350,10 +2410,10 @@
           "ganados": 29,
           "nivel_2026": "NIVEL_2",
           "zona_2026": "CENTRO",
-          "region": "CENTRO",
+          "region": "NORTE",
           "status": "DESCIENDE",
           "nivel_2027": 5,
-          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 19"
+          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 19 · reequilibrio región → NORTE"
         },
         {
           "equipo": "PEDRO ECHAGUE AMARILLO",
@@ -2741,10 +2801,10 @@
           "ganados": 26,
           "nivel_2026": "NIVEL_3",
           "zona_2026": "NORTE",
-          "region": "NORTE",
+          "region": "CENTRO",
           "status": "DESCIENDE",
           "nivel_2027": 6,
-          "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 22 · tope descenso (ideal N5)"
+          "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 22 · tope descenso (ideal N5) · región 2027 NORTE→CENTRO (ajuste)"
         },
         {
           "equipo": "ATLETICO BOULOGNE",
@@ -3045,10 +3105,10 @@
           "ganados": 19,
           "nivel_2026": "NIVEL_3",
           "zona_2026": "OESTE",
-          "region": "OESTE",
+          "region": "NORTE",
           "status": "DESCIENDE",
           "nivel_2027": 6,
-          "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 26"
+          "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 26 · región 2027 OESTE→NORTE (ajuste)"
         },
         {
           "equipo": "ITALIANO DE JOSE C PAZ",
@@ -3061,10 +3121,10 @@
           "ganados": 14,
           "nivel_2026": "NIVEL_3",
           "zona_2026": "OESTE",
-          "region": "OESTE",
+          "region": "NORTE",
           "status": "DESCIENDE",
           "nivel_2027": 6,
-          "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 27"
+          "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 27 · región 2027 OESTE→NORTE (ajuste)"
         },
         {
           "equipo": "DEFENSORES DE HURLINGHAM BLANCO",
@@ -3205,10 +3265,10 @@
           "ganados": 31,
           "nivel_2026": "NIVEL_3",
           "zona_2026": "OESTE",
-          "region": "OESTE",
+          "region": "CENTRO",
           "status": "DESCIENDE",
           "nivel_2027": 6,
-          "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 15 · tope descenso (ideal N5)"
+          "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 15 · tope descenso (ideal N5) · región 2027 OESTE→CENTRO (ajuste)"
         },
         {
           "equipo": "PORTENO ATLETICO CLUB BLANCO B",
@@ -3221,10 +3281,10 @@
           "ganados": 7,
           "nivel_2026": "NIVEL_2",
           "zona_2026": "OESTE",
-          "region": "OESTE",
+          "region": "CENTRO",
           "status": "DESCIENDE",
           "nivel_2027": 6,
-          "detalle": "Desciende a Nivel 6 (venía de NIVEL_2) · pos regional 25 · cupo 8/región (demote forzado)"
+          "detalle": "Desciende a Nivel 6 (venía de NIVEL_2) · pos regional 25 · cupo 8/región (demote forzado) · reequilibrio región → CENTRO"
         }
       ]
     }
@@ -3682,8 +3742,8 @@
       "status": "MANTIENE",
       "nivel_2027": 3,
       "nivel_2026": "NIVEL_1",
-      "region": "NORTE",
-      "detalle": "Permanece en Nivel 3 (cupo mínimo GES N1 → N3, NORTE)"
+      "region": "CENTRO",
+      "detalle": "Permanece en Nivel 3 (cupo mínimo GES N1 → N3, NORTE) · región 2027 NORTE→CENTRO (ajuste)"
     },
     "BANCO PROVINCIA": {
       "status": "MANTIENE",
@@ -3794,8 +3854,8 @@
       "status": "ASCIENDE",
       "nivel_2027": 3,
       "nivel_2026": "NIVEL_2",
-      "region": "CENTRO",
-      "detalle": "Asciende a Nivel 3 (venía de NIVEL_2) · pos regional 3"
+      "region": "NORTE",
+      "detalle": "Asciende a Nivel 3 (venía de NIVEL_2) · pos regional 3 · región 2027 CENTRO→NORTE (ajuste)"
     },
     "VILLA MITRE": {
       "status": "DESCIENDE",
@@ -4130,8 +4190,8 @@
       "status": "DESCIENDE",
       "nivel_2027": 5,
       "nivel_2026": "NIVEL_2",
-      "region": "NORTE",
-      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 17"
+      "region": "CENTRO",
+      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 17 · región 2027 NORTE→CENTRO (ajuste)"
     },
     "PLATENSE B": {
       "status": "DESCIENDE",
@@ -4165,8 +4225,8 @@
       "status": "DESCIENDE",
       "nivel_2027": 5,
       "nivel_2026": "NIVEL_2",
-      "region": "NORTE",
-      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 26 · tope descenso (ideal N6)"
+      "region": "CENTRO",
+      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 26 · tope descenso (ideal N6) · región 2027 NORTE→CENTRO (ajuste)"
     },
     "CLUB ATENEO INGENIERO RAVER": {
       "status": "DESCIENDE",
@@ -4193,15 +4253,15 @@
       "status": "DESCIENDE",
       "nivel_2027": 5,
       "nivel_2026": "NIVEL_2",
-      "region": "CENTRO",
-      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 18"
+      "region": "NORTE",
+      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 18 · reequilibrio región → NORTE"
     },
     "RACING ANEXO": {
       "status": "DESCIENDE",
       "nivel_2027": 5,
       "nivel_2026": "NIVEL_2",
-      "region": "CENTRO",
-      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 19"
+      "region": "NORTE",
+      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 19 · reequilibrio región → NORTE"
     },
     "PEDRO ECHAGUE AMARILLO": {
       "status": "DESCIENDE",
@@ -4368,8 +4428,8 @@
       "status": "DESCIENDE",
       "nivel_2027": 6,
       "nivel_2026": "NIVEL_3",
-      "region": "NORTE",
-      "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 22 · tope descenso (ideal N5)"
+      "region": "CENTRO",
+      "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 22 · tope descenso (ideal N5) · región 2027 NORTE→CENTRO (ajuste)"
     },
     "ATLETICO BOULOGNE": {
       "status": "DESCIENDE",
@@ -4501,15 +4561,15 @@
       "status": "DESCIENDE",
       "nivel_2027": 6,
       "nivel_2026": "NIVEL_3",
-      "region": "OESTE",
-      "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 26"
+      "region": "NORTE",
+      "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 26 · región 2027 OESTE→NORTE (ajuste)"
     },
     "ITALIANO DE JOSE PAZ C": {
       "status": "DESCIENDE",
       "nivel_2027": 6,
       "nivel_2026": "NIVEL_3",
-      "region": "OESTE",
-      "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 27"
+      "region": "NORTE",
+      "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 27 · región 2027 OESTE→NORTE (ajuste)"
     },
     "DEFENSORES DE HURLINGHAM BLANCO": {
       "status": "DESCIENDE",
@@ -4571,15 +4631,15 @@
       "status": "DESCIENDE",
       "nivel_2027": 6,
       "nivel_2026": "NIVEL_3",
-      "region": "OESTE",
-      "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 15 · tope descenso (ideal N5)"
+      "region": "CENTRO",
+      "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 15 · tope descenso (ideal N5) · región 2027 OESTE→CENTRO (ajuste)"
     },
     "PORTENO ATLETICO CLUB B BLANCO": {
       "status": "DESCIENDE",
       "nivel_2027": 6,
       "nivel_2026": "NIVEL_2",
-      "region": "OESTE",
-      "detalle": "Desciende a Nivel 6 (venía de NIVEL_2) · pos regional 25 · cupo 8/región (demote forzado)"
+      "region": "CENTRO",
+      "detalle": "Desciende a Nivel 6 (venía de NIVEL_2) · pos regional 25 · cupo 8/región (demote forzado) · reequilibrio región → CENTRO"
     }
   }
 }
