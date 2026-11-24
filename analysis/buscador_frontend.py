@@ -86,7 +86,11 @@ def script_buscador(
     function v(row, k) {{ const i = KEY[k]; return i == null ? "" : row[i]; }}
     function perfilName(row) {{ return PERFIL_NAMES[v(row,"pf")] || ""; }}
     function perfilCls(p) {{ return PERFIL_CLASS[p] || "perfil-Muestra-insuficiente"; }}
-    function playerIdRow(row) {{ return String(v(row,"pid") || v(row,"nombre_completo") + "|" + v(row,"cat")); }}
+    // pid + cat + equipo: mismo jugador en Echagüe A y B (o SUP vs METRO) = filas distintas.
+    function playerIdRow(row) {{
+      const base = String(v(row,"pid") || v(row,"nombre_completo") || "");
+      return base + "|" + String(v(row,"cat") || "") + "|" + String(v(row,"equipo") || "");
+    }}
     function fichaUrl(purl) {{ if (!purl) return ""; return purl.startsWith("http") ? purl : "https://argentina.basketball" + purl; }}
 
     function initData(pack) {{
@@ -103,11 +107,23 @@ def script_buscador(
       throw new Error("El navegador no soporta descompresión gzip.");
     }}
 
+    function _b64ToBuf(s) {{
+      const bin = atob(s); const a = new Uint8Array(bin.length);
+      for (let i = 0; i < bin.length; i++) a[i] = bin.charCodeAt(i);
+      return a.buffer;
+    }}
+
     async function loadPlainData() {{
       document.getElementById("loading").style.display = "flex";
-      const r = await fetch(DATA_BOOT.url, {{cache:"no-cache"}});
-      if (!r.ok) throw new Error("No se pudo cargar " + DATA_BOOT.url);
-      const gz = await r.arrayBuffer();
+      let gz;
+      if (DATA_BOOT.mode === "b64gz" && DATA_BOOT.data) {{
+        // Embebido: funciona al abrir el HTML en file:// (sin servidor).
+        gz = _b64ToBuf(DATA_BOOT.data);
+      }} else {{
+        const r = await fetch(DATA_BOOT.url, {{cache:"no-cache"}});
+        if (!r.ok) throw new Error("No se pudo cargar " + DATA_BOOT.url + " (abrí el HTML vía http://localhost o usá la versión embebida)");
+        gz = await r.arrayBuffer();
+      }}
       const raw = await gunzipBytes(gz);
       initData(JSON.parse(new TextDecoder().decode(raw)));
       document.getElementById("loading").style.display = "none";
@@ -368,26 +384,106 @@ def script_buscador(
       panel.classList.add("open");
     }}
 
+    const CMP_METRICS = [
+      {{key:"cat", label:"Categoría", higher:null}},
+      {{key:"pj", label:"PJ", higher:true}},
+      {{key:"edad", label:"Edad", higher:null}},
+      {{key:"min_p", label:"Min/p", higher:true}},
+      {{key:"pts_p", label:"Pts/p", higher:true}},
+      {{key:"ts_pct", label:"TS%", higher:true}},
+      {{key:"efg_pct", label:"eFG%", higher:true}},
+      {{key:"val_min", label:"Val/Min", higher:true}},
+      {{key:"reb_p", label:"Reb/p", higher:true}},
+      {{key:"ast_p", label:"Ast/p", higher:true}},
+      {{key:"ast_per", label:"Ast/Per", higher:true}},
+      {{key:"per_p", label:"Per/p", higher:false}},
+      {{key:"rob_p", label:"Rob/p", higher:true}},
+      {{key:"tap_p", label:"Tap/p", higher:true}},
+      {{key:"val_p", label:"Val/p", higher:true}},
+      {{key:"t2_pct", label:"2P%", higher:true}},
+      {{key:"t3_pct", label:"3P%", higher:true}},
+      {{key:"tl_pct", label:"TL%", higher:true}},
+      {{key:"perfil", label:"Perfil", higher:null}},
+    ];
+
+    function compareRows() {{
+      return compareIds.map(id => ROWS.find(r => playerIdRow(r) === id)).filter(Boolean);
+    }}
+
+    function closeCompare() {{
+      document.getElementById("compare-panel").classList.remove("open");
+      document.body.style.overflow = "";
+    }}
+
     function renderCompare() {{
       const panel = document.getElementById("compare-panel");
       const cont = document.getElementById("compare-content");
-      if (!compareIds.length) {{ panel.classList.remove("open"); cont.innerHTML = ""; return; }}
-      const rows = compareIds.map(id => ROWS.find(r => playerIdRow(r) === id)).filter(Boolean);
-      if (!rows.length) {{ panel.classList.remove("open"); return; }}
-      const metrics = ["cat","pj","min_p","pts_p","ts_pct","efg_pct","val_min","reb_p","ast_p","per_p","perfil"];
-      let html = "<table><thead><tr><th>Métrica</th>";
-      rows.forEach(r => {{ html += `<th>${{esc(v(r,"nombre_completo"))}}</th>`; }});
+      if (!compareIds.length) {{ closeCompare(); cont.innerHTML = ""; return; }}
+      const rows = compareRows();
+      if (!rows.length) {{ closeCompare(); return; }}
+      const names = rows.map(r => v(r,"nombre_completo")).join(" · ");
+      let html = `<div class="cmp-table-wrap">
+        <p class="cmp-meta">Scouting Formativas GES · Comparativa · ${{esc(names)}}</p>
+        <table><thead><tr><th>Métrica</th>`;
+      rows.forEach(r => {{
+        const eq = v(r,"equipo");
+        const edad = v(r,"edad");
+        html += `<th><span class="cmp-player">${{esc(v(r,"nombre_completo"))}}</span>
+          <span class="cmp-sub">${{esc(v(r,"cat"))}}${{eq ? " · " + esc(eq) : ""}}${{edad ? " · " + edad + " años" : ""}}</span></th>`;
+      }});
       html += "</tr></thead><tbody>";
-      metrics.forEach(m => {{
-        html += `<tr><td><b>${{m}}</b></td>`;
-        rows.forEach(r => {{
-          const val = m === "perfil" ? perfilName(r) : v(r, m);
-          html += `<td>${{esc(val!==""?val:"-")}}</td>`;
+      CMP_METRICS.forEach(m => {{
+        const vals = rows.map(r => m.key === "perfil" ? perfilName(r) : v(r, m.key));
+        let best = null;
+        if (m.higher !== null && rows.length > 1) {{
+          const nums = vals.map(x => (x === "" || x == null || isNaN(+x)) ? null : +x);
+          const usable = nums.filter(x => x !== null);
+          if (usable.length) best = m.higher ? Math.max(...usable) : Math.min(...usable);
+        }}
+        html += `<tr><td><b>${{esc(m.label)}}</b></td>`;
+        vals.forEach(val => {{
+          const num = (val === "" || val == null || isNaN(+val)) ? null : +val;
+          const win = best !== null && num === best;
+          html += `<td class="${{win ? "cmp-win" : ""}}">${{esc(val!==""&&val!=null?val:"-")}}</td>`;
         }});
         html += "</tr>";
       }});
-      html += "</tbody></table>";
-      cont.innerHTML = html; panel.classList.add("open");
+      html += "</tbody></table></div>";
+      cont.innerHTML = html;
+      panel.classList.add("open");
+      document.body.style.overflow = "hidden";
+    }}
+
+    function copyCompareText() {{
+      const rows = compareRows();
+      if (!rows.length) return;
+      const headers = ["Métrica"].concat(rows.map(r => {{
+        const eq = v(r,"equipo");
+        return v(r,"nombre_completo") + " (" + v(r,"cat") + (eq ? " · " + eq : "") + ")";
+      }}));
+      const lines = [headers.join("\\t")];
+      CMP_METRICS.forEach(m => {{
+        const vals = rows.map(r => {{
+          const val = m.key === "perfil" ? perfilName(r) : v(r, m.key);
+          return val === "" || val == null ? "-" : String(val);
+        }});
+        lines.push([m.label].concat(vals).join("\\t"));
+      }});
+      const text = lines.join("\\n");
+      const btn = document.getElementById("cmp-copy");
+      const done = () => {{
+        const prev = btn.textContent; btn.textContent = "¡Copiado!";
+        setTimeout(() => {{ btn.textContent = prev; }}, 1500);
+      }};
+      if (navigator.clipboard && navigator.clipboard.writeText) {{
+        navigator.clipboard.writeText(text).then(done).catch(() => {{
+          const ta = document.createElement("textarea"); ta.value = text; document.body.appendChild(ta);
+          ta.select(); document.execCommand("copy"); document.body.removeChild(ta); done();
+        }});
+      }} else {{
+        const ta = document.createElement("textarea"); ta.value = text; document.body.appendChild(ta);
+        ta.select(); document.execCommand("copy"); document.body.removeChild(ta); done();
+      }}
     }}
 
     function exportCSV() {{
@@ -454,7 +550,7 @@ def script_buscador(
         if (!tr) return;
         const id = playerIdRow(ROWS[+tr.dataset.idx]);
         if (e.target.checked) {{
-          if (compareIds.length >= 3) {{ e.target.checked = false; return; }}
+          if (compareIds.length >= 4) {{ e.target.checked = false; return; }}
           compareIds.push(id);
         }} else {{
           compareIds = compareIds.filter(x => x !== id);
@@ -482,6 +578,15 @@ def script_buscador(
       document.getElementById("f-limpiar").addEventListener("click", limpiar);
       document.getElementById("detail-close").addEventListener("click", () => document.getElementById("detail-panel").classList.remove("open"));
       document.getElementById("cmp-clear").addEventListener("click", () => {{ compareIds = []; renderCompare(); scheduleRender(); }});
+      document.getElementById("cmp-close").addEventListener("click", closeCompare);
+      document.getElementById("cmp-copy").addEventListener("click", copyCompareText);
+      document.getElementById("cmp-print").addEventListener("click", () => {{
+        // Forzar una sola hoja A4: márgenes estrechos + layout compacto (CSS @media print).
+        window.print();
+      }});
+      document.addEventListener("keydown", e => {{
+        if (e.key === "Escape" && document.getElementById("compare-panel").classList.contains("open")) closeCompare();
+      }});
       buildRangos(); buildPresets(); render(true);
     }}
 {arranque}

@@ -5,11 +5,13 @@ Buscador LOCAL de jugadores destacados por estadísticas (Formativas + Mayores).
 Genera una página HTML con tabla de jugadores buscable, filtrable y ordenable,
 basada en PROMEDIOS por partido, para las categorías:
 
-  U13 = INFANTILES MASCULINO   (comp. 2015, id_categoria 5078)
-  U15 = CADETES MASCULINO      (comp. 2015, id_categoria 5077)
-  U17 = JUVENILES MASCULINO    (comp. 2015, id_categoria 5076)
-  U21 = LIGA PROXIMO MASCULINO (comp. 2015, id_categoria 5075)
-  SUP = MAYORES MASCULINO      (comp. 2013, id_categoria 5074)
+  U13   = INFANTILES MASCULINO   (comp. 2015, id_categoria 5078)
+  U15   = CADETES MASCULINO      (comp. 2015, id_categoria 5077)
+  U17   = JUVENILES MASCULINO    (comp. 2015, id_categoria 5076)
+  U21   = LIGA PROXIMO MASCULINO (comp. 2015, id_categoria 5075)
+  SUP   = MAYORES MASCULINO      (comp. 2013, id_categoria 5074)
+  METRO = PRE FEDERAL MASCULINO  (comp. 2310, id_categoria 6290)  # Liga Metropolitana
+  LF    = LA LIGA FEDERAL        (comp. 2032, id_categoria 5117)  # CABB / no FeBAMBA
 
 ESTO ES LOCAL: el HTML se guarda en ``outputs/buscador/`` y NO se publica en
 docs/ ni se comitea.
@@ -79,6 +81,18 @@ CATEGORIAS: Dict[str, Dict[str, object]] = {
         "nombre_ges": "MAYORES MASCULINO",
         "id_categoria": 5074,
         "id_competencia": 2013,
+    },
+    # Liga Metropolitana / Pre Federal (continuación plantel A tras Pre Liga).
+    "METRO": {
+        "nombre_ges": "PRE FEDERAL MASCULINO",
+        "id_categoria": 6290,
+        "id_competencia": 2310,
+    },
+    # Liga Federal CABB (competencia nacional; no FeBAMBA).
+    "LF": {
+        "nombre_ges": "LA LIGA FEDERAL",
+        "id_categoria": 5117,
+        "id_competencia": 2032,
     },
 }
 
@@ -442,9 +456,10 @@ def agregar_jugadores(
     fichas: Optional[Dict[str, Dict[str, object]]] = None,
 ) -> List[Dict[str, object]]:
     """
-    Agrega por jugador. Clave: el ``pid`` (id de ficha) cuando existe — robusto ante
-    cambios de equipo dentro de la categoría — combinado con la categoría para no
-    mezclar a un mismo jugador entre categorías. Fallback a (categoría, equipo, nombre).
+    Agrega por jugador × categoría × equipo.
+
+    Así un mismo ``pid`` en PEDRO ECHAGUE y PEDRO ECHAGUE B (o SUP vs METRO)
+    genera filas de scouting separadas. Fallback sin pid: (cat, equipo, nombre).
     """
     fichas = fichas or {}
     acc: Dict[Tuple[str, ...], Dict[str, object]] = {}
@@ -462,7 +477,8 @@ def agregar_jugadores(
         for equipo_nombre, eq in lados:
             if not eq:
                 continue
-            equipo_disp = eq.get("nombre") or equipo_nombre
+            equipo_disp = (eq.get("nombre") or equipo_nombre or "").strip()
+            equipo_key = normalizar_nombre(equipo_disp)
             for j in eq.get("jugadores") or []:
                 seg = parse_minutos_a_segundos(j.get("min")) or 0
                 if seg <= 0:
@@ -472,12 +488,12 @@ def agregar_jugadores(
                     continue
                 pid = (str(j.get("pid")).strip() if j.get("pid") else "") or None
                 if pid:
-                    clave: Tuple[str, ...] = ("pid", p["categoria"], pid)
+                    clave: Tuple[str, ...] = ("pid", p["categoria"], equipo_key, pid)
                 else:
                     clave = (
                         "nm",
                         p["categoria"],
-                        normalizar_nombre(equipo_disp),
+                        equipo_key,
                         normalizar_nombre(nombre),
                     )
                 a = acc.get(clave)
@@ -486,9 +502,9 @@ def agregar_jugadores(
                         "nombre": nombre,
                         "nc_oc": (j.get("nombre_completo") or "").strip(),
                         "categoria": p["categoria"],
+                        "equipo": equipo_disp,
                         "pid": pid,
                         "purl": j.get("purl"),
-                        "equipos": {},  # equipo -> nº de partidos (para elegir el principal)
                         "pj": 0,
                         "seg": 0,
                     }
@@ -500,7 +516,6 @@ def agregar_jugadores(
                     acc[clave] = a
                 a["pj"] += 1
                 a["seg"] += seg
-                a["equipos"][equipo_disp] = a["equipos"].get(equipo_disp, 0) + 1
                 if pid and not a.get("pid"):
                     a["pid"] = pid
                     a["purl"] = j.get("purl")
@@ -522,11 +537,7 @@ def agregar_jugadores(
         def avg(x: int) -> float:
             return round(x / pj, 1)
 
-        equipo_disp = (
-            max(a["equipos"].items(), key=lambda kv: kv[1])[0]
-            if a["equipos"]
-            else a.get("equipo", "")
-        )
+        equipo_disp = a.get("equipo") or ""
         ficha = fichas.get(a["pid"]) if a.get("pid") else None
         nombre_ficha = ""
         fnac = ""
@@ -734,11 +745,80 @@ def _build_html(
     #detail-panel .stats-grid span {{ display:block; font-size:11px; color:var(--muted); }}
     #detail-panel textarea {{ width:100%; min-height:80px; resize:vertical; margin-top:6px; }}
     #detail-close {{ position:absolute; top:12px; right:14px; background:none; border:none; font-size:22px; cursor:pointer; color:var(--muted); }}
-    #compare-panel {{ display:none; position:fixed; bottom:0; left:0; right:0; max-height:40vh; overflow:auto;
-      background:var(--paper); border-top:2px solid var(--accent); box-shadow:0 -4px 24px rgba(0,0,0,.1);
-      z-index:99; padding:12px 20px; }}
-    #compare-panel.open {{ display:block; }}
-    #compare-panel h4 {{ margin:0 0 10px; font-size:14px; }}
+    #compare-panel {{ display:none; position:fixed; inset:0; z-index:120;
+      background:rgba(15,23,42,.45); padding:0; }}
+    #compare-panel.open {{ display:flex; align-items:stretch; justify-content:stretch; }}
+    #compare-panel .cmp-shell {{ flex:1; display:flex; flex-direction:column; background:var(--bg);
+      width:100%; height:100%; overflow:hidden; }}
+    #compare-panel .cmp-bar {{ display:flex; flex-wrap:wrap; align-items:center; gap:10px;
+      padding:14px 20px; background:var(--paper); border-bottom:1px solid var(--line); flex-shrink:0; }}
+    #compare-panel .cmp-bar h2 {{ margin:0; font-size:18px; flex:1; min-width:160px; }}
+    #compare-panel .cmp-bar .cmp-actions {{ display:flex; flex-wrap:wrap; gap:8px; }}
+    #compare-content {{ flex:1; overflow:auto; padding:20px; }}
+    #compare-content .cmp-table-wrap {{ background:var(--paper); border:1px solid var(--line);
+      border-radius:14px; padding:18px 20px; max-width:1100px; margin:0 auto; }}
+    #compare-content .cmp-meta {{ color:var(--muted); font-size:13px; margin:0 0 14px; }}
+    #compare-content table {{ width:100%; border-collapse:collapse; font-size:14px; }}
+    #compare-content th, #compare-content td {{ border-bottom:1px solid var(--line); padding:10px 12px;
+      text-align:center; }}
+    #compare-content th:first-child, #compare-content td:first-child {{ text-align:left; }}
+    #compare-content thead th {{ background:#f8fafc; position:sticky; top:0; z-index:1; font-size:13px;
+      text-transform:none; letter-spacing:0; color:var(--text); cursor:default; }}
+    #compare-content thead th:hover {{ color:var(--text); }}
+    #compare-content .cmp-win {{ font-weight:700; color:var(--accent); background:var(--accent-soft); }}
+    #compare-content .cmp-player {{ font-size:15px; font-weight:700; }}
+    #compare-content .cmp-sub {{ display:block; font-weight:400; color:var(--muted); font-size:12px; margin-top:2px; }}
+    @media print {{
+      @page {{ size: A4 portrait; margin: 8mm; }}
+      html, body {{
+        width: 100% !important; height: auto !important; margin: 0 !important; padding: 0 !important;
+        background: #fff !important; overflow: hidden !important;
+      }}
+      body * {{ visibility: hidden !important; }}
+      #compare-panel, #compare-panel * {{ visibility: visible !important; }}
+      #loading, #detail-panel, .layout, #login {{ display: none !important; }}
+      #compare-panel {{
+        position: absolute !important; inset: 0 auto auto 0 !important;
+        display: block !important; width: 100% !important; height: auto !important;
+        max-height: none !important; background: #fff !important; padding: 0 !important;
+        box-shadow: none !important; overflow: visible !important;
+        -webkit-print-color-adjust: exact; print-color-adjust: exact;
+      }}
+      #compare-panel .cmp-shell {{
+        display: block !important; height: auto !important; overflow: visible !important;
+        background: #fff !important;
+      }}
+      #compare-panel .cmp-bar {{
+        padding: 0 0 4mm 0 !important; border: none !important; background: transparent !important;
+        gap: 0 !important;
+      }}
+      #compare-panel .cmp-bar h2 {{ font-size: 13pt !important; }}
+      #compare-panel .cmp-bar .cmp-actions {{ display: none !important; }}
+      #compare-content {{
+        overflow: visible !important; padding: 0 !important; flex: none !important;
+      }}
+      #compare-content .cmp-table-wrap {{
+        border: none !important; border-radius: 0 !important; max-width: none !important;
+        padding: 0 !important; margin: 0 !important; background: #fff !important;
+        page-break-inside: avoid !important; break-inside: avoid !important;
+      }}
+      #compare-content .cmp-meta {{ font-size: 8pt !important; margin: 0 0 2mm 0 !important; }}
+      #compare-content table {{
+        width: 100% !important; font-size: 8.5pt !important; table-layout: fixed !important;
+        page-break-inside: avoid !important; break-inside: avoid !important;
+      }}
+      #compare-content th, #compare-content td {{
+        padding: 1.2mm 1.5mm !important; border-bottom: 0.3pt solid #cbd5e1 !important;
+        line-height: 1.15 !important; vertical-align: middle !important;
+      }}
+      #compare-content thead th {{
+        position: static !important; background: #f1f5f9 !important; font-size: 8pt !important;
+        padding-top: 2mm !important; padding-bottom: 2mm !important;
+      }}
+      #compare-content .cmp-player {{ font-size: 9pt !important; }}
+      #compare-content .cmp-sub {{ font-size: 7pt !important; margin-top: 0.5mm !important; }}
+      #compare-content .cmp-win {{ background: #eff6ff !important; }}
+    }}
     @media (max-width:900px) {{ .rangos-grid {{ grid-template-columns:repeat(2,1fr); }} }}
     .login-wrap {{ max-width:420px; margin:6vh auto 0; }}
     .login-card {{ background:var(--paper); border:1px solid var(--line); border-radius:14px; padding:24px; }}
@@ -757,7 +837,7 @@ def _build_html(
   <div class="layout">
     <header>
       <h1>Scouting de jugadores</h1>
-      <p class="subtitle">Formativas + Mayores · Masculino · Analítica avanzada · Actualizado: {fecha}</p>
+      <p class="subtitle">Formativas + Mayores + Liga Metropolitana + Liga Federal · Masculino · Analítica avanzada · Actualizado: {fecha}</p>
     </header>
 {login_block}
     <div id="app"{app_style}>
@@ -790,7 +870,7 @@ def _build_html(
         <summary>Filtros por estadística (rango mín–máx, combinables)</summary>
         <div class="rangos-grid" id="rangos"></div>
       </details>
-      <p class="note">Clic en encabezado para ordenar. TS% y eFG% son de temporada. Percentiles (Pct) son relativos a la categoría. Perfiles vía clustering K-Means (PJ≥5). Seguimiento y notas se guardan en tu navegador.</p>
+      <p class="note">Marcá ⚖ (hasta 4) para comparar jugadores. Clic en encabezado para ordenar. TS% y eFG% son de temporada. Percentiles (Pct) son relativos a la categoría. Perfiles vía clustering K-Means (PJ≥5). Seguimiento y notas se guardan en tu navegador.</p>
       <div class="tablewrap">
         <table>
           <thead><tr id="thead"></tr></thead>
@@ -811,9 +891,19 @@ def _build_html(
     <button type="button" id="detail-close" title="Cerrar">×</button>
     <div id="detail-content"></div>
   </div>
-  <div id="compare-panel">
-    <h4>Comparador <button type="button" class="btn-pill" id="cmp-clear" style="margin-left:8px">Limpiar</button></h4>
-    <div id="compare-content"></div>
+  <div id="compare-panel" role="dialog" aria-modal="true" aria-labelledby="cmp-title">
+    <div class="cmp-shell">
+      <div class="cmp-bar">
+        <h2 id="cmp-title">Comparativa de jugadores</h2>
+        <div class="cmp-actions">
+          <button type="button" class="btn" id="cmp-copy">Copiar texto</button>
+          <button type="button" class="btn" id="cmp-print">Imprimir / PDF</button>
+          <button type="button" class="btn-pill" id="cmp-clear">Limpiar</button>
+          <button type="button" class="btn-pill" id="cmp-close" title="Cerrar">Cerrar</button>
+        </div>
+      </div>
+      <div id="compare-content"></div>
+    </div>
   </div>
 
   <script>
@@ -881,15 +971,21 @@ _LOGIN_JS = """    const _b64d = s => {
 
 
 def _render_html(jugadores: List[Dict[str, object]], *, fecha: str) -> str:
-    """Versión LOCAL: shell liviano + datos comprimidos en archivo externo."""
+    """Versión LOCAL: datos gzip en base64 embebidos (abre sin servidor HTTP)."""
     OUT_DIR.mkdir(parents=True, exist_ok=True)
-    OUT_DATA_GZ.write_bytes(pack_gzip_bytes(jugadores))
+    gz = pack_gzip_bytes(jugadores)
+    OUT_DATA_GZ.write_bytes(gz)  # también en disco (scouting rival / reuso)
     cat_opts = "".join(f'<option value="{c}">{c}</option>' for c in CATEGORIAS)
     perfil_opts = "".join(f'<option value="{p}">{p}</option>' for p in PERFILES)
     perfil_opts += f'<option value="{PERFIL_INSUFICIENTE}">{PERFIL_INSUFICIENTE}</option>'
     guia = _build_perfil_guia_html()
     data_boot = "const DATA_BOOT = " + json.dumps(
-        {"mode": "plain", "url": "jugadores.json.gz"}, ensure_ascii=False
+        {
+            "mode": "b64gz",
+            "data": base64.b64encode(gz).decode("ascii"),
+            "url": "jugadores.json.gz",
+        },
+        ensure_ascii=False,
     ) + ";"
     boot = (
         "loadPlainData().then(iniciarApp).catch(e => {"
@@ -1022,7 +1118,7 @@ def main() -> int:
     p.add_argument(
         "--solo-categorias",
         default="",
-        help="Solo recolectar estas categorías (coma-separadas: SUP,U21). "
+        help="Solo recolectar estas categorías (coma-separadas: SUP,METRO,U21). "
         "Con --merge-cache se conserva el resto de partidos.json.",
     )
     p.add_argument(

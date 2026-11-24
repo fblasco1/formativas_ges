@@ -1,0 +1,309 @@
+{
+  "rango": [
+    1800,
+    2500
+  ],
+  "n_hits_interesantes": 17,
+  "hits": [
+    {
+      "id": 1893,
+      "status": 200,
+      "ok": true,
+      "temporada": "2025",
+      "titulo": "LIGA REGIONAL FEMENINA",
+      "delegacion": "REGIÓN DEPORTIVA CAB Nº 7",
+      "categorias": {
+        "MAYORES FEMENINO": "4690"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=1893"
+    },
+    {
+      "id": 1898,
+      "status": 200,
+      "ok": true,
+      "temporada": "2025",
+      "titulo": "LIGA METROPOLITANA",
+      "delegacion": "FEDERACION DE BASQUETBOL DEL AREA METROPOLITANA DE BUENOS AIRES",
+      "categorias": {
+        "PRE FEDERAL MASCULINO": "4700"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=1898"
+    },
+    {
+      "id": 1916,
+      "status": 200,
+      "ok": true,
+      "temporada": "2025",
+      "titulo": "AVB - CLAUSURA 2025",
+      "delegacion": "FEDERACION DE BASKETBALL DE LA PROVINCIA DE SANTA FE",
+      "categorias": {
+        "PRE FEDERAL MASCULINO": "4764"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=1916"
+    },
+    {
+      "id": 1922,
+      "status": 200,
+      "ok": true,
+      "temporada": "2025",
+      "titulo": "F.B.PC. TORNEO PRE FEDERAL PRIMERA M 2025",
+      "delegacion": "FEDERACION DE BASQUETBOL DE LA PROVINCIA DE CORRIENTES",
+      "categorias": {
+        "PRE FEDERAL MASCULINO": "4774"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=1922"
+    },
+    {
+      "id": 1928,
+      "status": 200,
+      "ok": true,
+      "temporada": "2025",
+      "titulo": "PREFEDERAL 2025 - FBPT",
+      "delegacion": "FEDERACION DE BASQUETBOL DE LA PROVINCIA DE TUCUMAN",
+      "categorias": {
+        "PRE FEDERAL MASCULINO": "4792"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=1928"
+    },
+    {
+      "id": 1954,
+      "status": 200,
+      "ok": true,
+      "temporada": "2025",
+      "titulo": "TORNEO PRE FEDERAL - FEPAMBA 2025",
+      "delegacion": "FEDERACION PAMPEANA DE BASQUETBOL",
+      "categorias": {
+        "PRE FEDERAL MASCULINO": "4863"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=1954"
+    },
+    {
+      "id": 1955,
+      "status": 200,
+      "ok": true,
+      "temporada": "2025",
+      "titulo": "Torneo PRE FEDERAL  \"60° Aniversario Canal 7\"",
+      "delegacion": "FEDERACION DE BASQUETBOL DE SANTIAGO DEL ESTERO",
+      "categorias": {
+        "MAYORES MASCULINO": "4864"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=1955"
+    },
+    {
+      "id": 1962,
+      "status": 200,
+      "ok": true,
+      "temporada": "2025",
+      "titulo": "CLAUSURA 2025",
+      "delegacion": "REGIÓN DEPORTIVA CAB Nº 6",
+      "categorias": {
+        "PRE FEDERAL MASCULINO": "4886",
+        "U17 MASCULINO": "4885",
+        "U15 MASCULINO": "4884",
+        "U13 MIXTO": "4883",
+        "MINI MIXTO": "4882"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=1962"
+    },
+    {
+      "id": 1965,
+      "status": 200,
+      "ok": true,
+      "temporada": "2025",
+      "titulo": "FORMATIVAS COMPETENCIA CLAUSURA",
+      "delegacion": "REGIÓN DEPORTIVA CAB Nº 7",
+      "categorias": {
+        "U21 MASCULINO": "4897",
+        "U21 FEMENINO": "4896",
+        "U17 MASCULINO": "4898",
+        "U17 FEMENINO": "4895",
+        "U15 MASCULINO": "4899",
+        "U15 FEMENINO": "4894",
+        "U13 MASCULINO": "4900",
+        "U13 FEMENINO": "4893",
+        "U11 MASCULINO": "4901",
+        "U11 FEMENINO": "4892",
+        "MINI MIXTO": "4966"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=1965"
+    },
+    {
+      "id": 1966,
+      "status": 200,
+      "ok": true,
+      "temporada": "2025",
+      "titulo": "FORMATIVAS DESARROLLO CLAUSURA",
+      "delegacion": "REGIÓN DEPORTIVA CAB Nº 7",
+      "categorias": {
+        "U21 MASCULINO": "4902",
+        "U17 MASCULINO": "4903",
+        "U15 MASCULINO": "4904",
+        "U13 MASCULINO": "4905",
+        "U11 MASCULINO": "4906"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=1966"
+    },
+    {
+      "id": 1972,
+      "status": 200,
+      "ok": true,
+      "temporada": "2025",
+      "titulo": "PRE-FEDERAL NORTE",
+      "delegacion": "FEDERACION DE BASKETBALL DE LA PROVINCIA DE SANTA FE",
+      "categorias": {
+        "PRE FEDERAL MASCULINO": "4928"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=1972"
+    },
+    {
+      "id": 1977,
+      "status": 200,
+      "ok": true,
+      "temporada": "2025",
+      "titulo": "Torneo Pre Federal Mayores  Masculino 2025",
+      "delegacion": "FEDERACION DE BASQUETBOL DEL CHUBUT",
+      "categorias": {
+        "PRE FEDERAL MASCULINO": "4958"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=1977"
+    },
+    {
+      "id": 1980,
+      "status": 200,
+      "ok": true,
+      "temporada": "2025",
+      "titulo": "PRIMERA FEMENINA CLAUSURA",
+      "delegacion": "REGIÓN DEPORTIVA CAB Nº 7",
+      "categorias": {
+        "MAYORES FEMENINO": "4969"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=1980"
+    },
+    {
+      "id": 1981,
+      "status": 200,
+      "ok": true,
+      "temporada": "2025",
+      "titulo": "PRE FEDERAL MASCULINO",
+      "delegacion": "REGIÓN DEPORTIVA CAB Nº 7",
+      "categorias": {
+        "PRE FEDERAL MASCULINO": "4970",
+        "MAYORES MASCULINO": "4971"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=1981"
+    },
+    {
+      "id": 1987,
+      "status": 200,
+      "ok": true,
+      "temporada": "2025",
+      "titulo": "COPA JUJUY - PRE FEDERAL 2025- MASCULINO",
+      "delegacion": "FEDERACION DE BASQUETBOL DE LA PROVINCIA DE JUJUY",
+      "categorias": {
+        "PRE FEDERAL MASCULINO": "4996"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=1987"
+    },
+    {
+      "id": 1994,
+      "status": 200,
+      "ok": true,
+      "temporada": "2025",
+      "titulo": "TORNEO PRE FEDERAL 2025",
+      "delegacion": "FEDERACION DE BASQUETBOL DE LA PROVINCIA DE CATAMARCA",
+      "categorias": {
+        "PRE FEDERAL MASCULINO": "5009"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=1994"
+    },
+    {
+      "id": 2310,
+      "status": 200,
+      "ok": true,
+      "temporada": "2026",
+      "titulo": "LIGA METROPOLITANA",
+      "delegacion": "FEDERACION DE BASQUETBOL DEL AREA METROPOLITANA DE BUENOS AIRES",
+      "categorias": {
+        "PRE FEDERAL MASCULINO": "6290"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=2310"
+    }
+  ],
+  "target_cab7": [
+    {
+      "id": 1893,
+      "status": 200,
+      "ok": true,
+      "temporada": "2025",
+      "titulo": "LIGA REGIONAL FEMENINA",
+      "delegacion": "REGIÓN DEPORTIVA CAB Nº 7",
+      "categorias": {
+        "MAYORES FEMENINO": "4690"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=1893"
+    },
+    {
+      "id": 1965,
+      "status": 200,
+      "ok": true,
+      "temporada": "2025",
+      "titulo": "FORMATIVAS COMPETENCIA CLAUSURA",
+      "delegacion": "REGIÓN DEPORTIVA CAB Nº 7",
+      "categorias": {
+        "U21 MASCULINO": "4897",
+        "U21 FEMENINO": "4896",
+        "U17 MASCULINO": "4898",
+        "U17 FEMENINO": "4895",
+        "U15 MASCULINO": "4899",
+        "U15 FEMENINO": "4894",
+        "U13 MASCULINO": "4900",
+        "U13 FEMENINO": "4893",
+        "U11 MASCULINO": "4901",
+        "U11 FEMENINO": "4892",
+        "MINI MIXTO": "4966"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=1965"
+    },
+    {
+      "id": 1966,
+      "status": 200,
+      "ok": true,
+      "temporada": "2025",
+      "titulo": "FORMATIVAS DESARROLLO CLAUSURA",
+      "delegacion": "REGIÓN DEPORTIVA CAB Nº 7",
+      "categorias": {
+        "U21 MASCULINO": "4902",
+        "U17 MASCULINO": "4903",
+        "U15 MASCULINO": "4904",
+        "U13 MASCULINO": "4905",
+        "U11 MASCULINO": "4906"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=1966"
+    },
+    {
+      "id": 1980,
+      "status": 200,
+      "ok": true,
+      "temporada": "2025",
+      "titulo": "PRIMERA FEMENINA CLAUSURA",
+      "delegacion": "REGIÓN DEPORTIVA CAB Nº 7",
+      "categorias": {
+        "MAYORES FEMENINO": "4969"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=1980"
+    },
+    {
+      "id": 1981,
+      "status": 200,
+      "ok": true,
+      "temporada": "2025",
+      "titulo": "PRE FEDERAL MASCULINO",
+      "delegacion": "REGIÓN DEPORTIVA CAB Nº 7",
+      "categorias": {
+        "PRE FEDERAL MASCULINO": "4970",
+        "MAYORES MASCULINO": "4971"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=1981"
+    }
+  ]
+}

@@ -3,15 +3,16 @@
 <head>
   <meta charset="utf-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1"/>
-  <title>Entrenadores formativas 2026</title>
+  <title>Entrenadores formativas + Liga Metro 2026</title>
   <style>
     :root {
-      --bg: #f8fafc;
+      --bg: #f1f5f9;
       --paper: #ffffff;
       --text: #0f172a;
       --muted: #64748b;
       --line: #e2e8f0;
       --accent: #2563eb;
+      --accent-soft: #eff6ff;
     }
     * { box-sizing: border-box; }
     body {
@@ -21,245 +22,538 @@
       color: var(--text);
       line-height: 1.45;
     }
-    .page {
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 32px 24px 48px;
-    }
+    .page { max-width: 1100px; margin: 0 auto; padding: 24px 20px 48px; }
     header {
       background: var(--paper);
       border: 1px solid var(--line);
       border-radius: 12px;
-      padding: 28px 32px;
-      margin-bottom: 24px;
+      padding: 24px 28px;
+      margin-bottom: 16px;
     }
-    h1 {
-      margin: 0 0 8px;
-      font-size: 28px;
-      font-weight: 700;
-      letter-spacing: -0.02em;
+    h1 { margin: 0 0 8px; font-size: 26px; font-weight: 700; letter-spacing: -0.02em; }
+    .subtitle { color: var(--muted); font-size: 13px; margin: 0; }
+    .tabs {
+      display: flex; gap: 6px; margin-bottom: 16px;
+      background: var(--paper); border: 1px solid var(--line);
+      border-radius: 10px; padding: 6px; width: fit-content;
     }
-    .subtitle { color: var(--muted); font-size: 14px; margin: 0; }
+    .tab-btn {
+      border: 0; background: transparent; color: var(--muted);
+      padding: 10px 16px; border-radius: 8px; font: inherit; font-weight: 600;
+      cursor: pointer;
+    }
+    .tab-btn.active { background: var(--accent); color: #fff; }
+    .panel { display: none; }
+    .panel.active { display: block; }
     .stats {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 12px;
-      margin: 24px 0;
+      display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 16px 0 20px;
     }
     .stat {
-      background: var(--paper);
-      border: 1px solid var(--line);
-      border-radius: 10px;
-      padding: 16px;
+      background: var(--paper); border: 1px solid var(--line);
+      border-radius: 10px; padding: 16px;
     }
     .stat .n { font-size: 26px; font-weight: 700; color: var(--accent); }
     .stat .l { font-size: 12px; color: var(--muted); margin-top: 4px; }
-    .grid-2 {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 20px;
-      margin-bottom: 20px;
+    .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 16px; }
+    section, .card {
+      background: var(--paper); border: 1px solid var(--line);
+      border-radius: 12px; padding: 20px 22px; margin-bottom: 16px;
     }
-    section {
-      background: var(--paper);
-      border: 1px solid var(--line);
-      border-radius: 12px;
-      padding: 22px 24px;
-      margin-bottom: 20px;
-    }
-    h2 {
-      margin: 0 0 6px;
-      font-size: 17px;
-      font-weight: 700;
-    }
-    .caption {
-      margin: 0 0 16px;
-      font-size: 12px;
-      color: var(--muted);
-    }
+    h2 { margin: 0 0 6px; font-size: 16px; font-weight: 700; }
+    .caption { margin: 0 0 14px; font-size: 12px; color: var(--muted); }
     .legend {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 6px 16px;
-      font-size: 12px;
-      margin-top: 8px;
+      display: grid; grid-template-columns: 1fr 1fr; gap: 6px 16px; font-size: 12px;
     }
     .legend span { display: flex; align-items: center; gap: 8px; }
     .dot { width: 10px; height: 10px; border-radius: 2px; flex-shrink: 0; }
-    table {
-      width: 100%;
-      border-collapse: collapse;
-      font-size: 13px;
-    }
+    table { width: 100%; border-collapse: collapse; font-size: 13px; }
     th, td {
-      border-bottom: 1px solid var(--line);
-      padding: 10px 8px;
-      text-align: left;
-      vertical-align: top;
+      border-bottom: 1px solid var(--line); padding: 10px 8px;
+      text-align: left; vertical-align: middle;
     }
-    th { color: var(--muted); font-weight: 600; font-size: 11px; text-transform: uppercase; letter-spacing: 0.04em; }
-    tr:last-child td { border-bottom: none; }
+    th {
+      color: var(--muted); font-weight: 600; font-size: 11px;
+      text-transform: uppercase; letter-spacing: 0.04em;
+      position: sticky; top: 0; background: var(--paper); z-index: 1;
+    }
     .note {
-      background: #eff6ff;
-      border: 1px solid #bfdbfe;
-      border-radius: 8px;
-      padding: 12px 14px;
-      font-size: 12px;
-      color: #1e3a8a;
-      margin-top: 12px;
+      background: var(--accent-soft); border: 1px solid #bfdbfe;
+      border-radius: 8px; padding: 12px 14px; font-size: 12px;
+      color: #1e3a8a; margin-top: 12px;
     }
-    footer {
-      text-align: center;
-      color: var(--muted);
-      font-size: 11px;
-      margin-top: 24px;
+    .filters {
+      display: flex; flex-wrap: wrap; gap: 10px; align-items: end;
+      margin-bottom: 14px;
+    }
+    .filters label { display: flex; flex-direction: column; gap: 4px; font-size: 12px; color: var(--muted); }
+    .filters input, .filters select {
+      border: 1px solid var(--line); border-radius: 8px;
+      padding: 9px 11px; font: inherit; min-width: 180px; color: var(--text);
+      background: #fff;
+    }
+    .filters input.wp {
+      min-width: 140px; width: 150px; font-variant-numeric: tabular-nums;
+    }
+    .chip-row { display: flex; flex-wrap: wrap; gap: 5px; }
+    .chip {
+      display: inline-block; background: #f1f5f9; border: 1px solid var(--line);
+      border-radius: 999px; padding: 2px 9px; font-size: 11px; color: #334155;
+      white-space: nowrap;
+    }
+    .name-cell { font-weight: 600; white-space: nowrap; }
+    .club-cell { color: #334155; }
+    .count-bar {
+      display: flex; justify-content: space-between; align-items: center;
+      margin-bottom: 10px; font-size: 13px; color: var(--muted);
+    }
+    .table-wrap {
+      max-height: 70vh; overflow: auto; border: 1px solid var(--line);
+      border-radius: 10px;
+    }
+    .table-wrap table { margin: 0; }
+    .table-wrap td, .table-wrap th { padding: 11px 12px; }
+    .status-pill {
+      display: inline-block; font-size: 11px; font-weight: 600;
+      padding: 4px 10px; border-radius: 999px; margin-top: 8px;
+      background: #f1f5f9; color: #475569; border: 1px solid var(--line);
+    }
+    .status-pill.ok { background: #ecfdf5; color: #065f46; border-color: #a7f3d0; }
+    .status-pill.warn { background: #fffbeb; color: #92400e; border-color: #fde68a; }
+    .status-pill.err { background: #fef2f2; color: #991b1b; border-color: #fecaca; }
+    .wp-wrap { display: flex; align-items: center; gap: 6px; }
+    .wp-msg { font-size: 11px; color: var(--muted); min-width: 2.5rem; }
+    .wp-msg.ok { color: #059669; }
+    .wp-msg.err { color: #dc2626; }
+    footer { text-align: center; color: var(--muted); font-size: 11px; margin-top: 20px; }
+    @media (max-width: 800px) {
+      .stats, .grid-2 { grid-template-columns: 1fr 1fr; }
+      .name-cell { white-space: normal; }
     }
     @media print {
-      body { background: white; }
-      .page { max-width: none; padding: 0; }
-      section, header, .stat { break-inside: avoid; }
+      .tabs, .filters { display: none !important; }
+      .panel { display: block !important; }
+      .table-wrap { max-height: none; overflow: visible; }
     }
   </style>
 </head>
 <body>
   <div class="page">
     <header>
-      <h1>Entrenadores por club y categorías formativas</h1>
-      <p class="subtitle">Temporada 2026 · Liga Federal Formativas · 2026-03-01 a 2026-05-31 · Fuente: argentina.basketball (compCats 5075–5080)</p>
-      <p class="subtitle" style="margin-top:8px">Criterio: entrenador principal = quien más partidos dirigió en cada (club, categoría). Cada vínculo entrenador–club se cuenta una sola vez en su combinación exacta de categorías.</p>
+      <h1>Entrenadores por club y categorías</h1>
+      <p class="subtitle">Temporada 2026 · Formativas + Liga Metro · 2026-03-01 (formativas) / 2026-08-01 (Metro) a 2026-05-31 (formativas) / 2026-11-30 (Metro)</p>
+      <p class="subtitle" style="margin-top:6px">Fuente: argentina.basketball (5075–5080 + 6290). El nombre completo del entrenador es un solo campo (apellido + nombre).</p>
     </header>
 
-    <div class="stats">
-      <div class="stat"><div class="n">6.010</div><div class="l">Partidos analizados</div></div>
-      <div class="stat"><div class="n">470</div><div class="l">Vínculos entrenador–club</div></div>
-      <div class="stat"><div class="n">33</div><div class="l">Combinaciones con casos</div></div>
-      <div class="stat"><div class="n">4</div><div class="l">Con las 6 categorías</div></div>
+    <div class="tabs" role="tablist">
+      <button type="button" class="tab-btn active" data-tab="resumen" role="tab">Resumen</button>
+      <button type="button" class="tab-btn" data-tab="listado" role="tab">Listado de entrenadores</button>
     </div>
 
-    <div class="grid-2">
-      <section>
-        <h2>Distribución por cantidad de categorías a cargo</h2>
-        <p class="caption">Cantidad de entrenadores–club según cuántas categorías dirigen (conteo exclusivo).</p>
-        <div style="display:flex;gap:20px;align-items:center">
-          <svg viewBox="0 0 220 220" width="220" height="220" role="img" aria-label="Distribución por cantidad de categorías">
-<path d="M 110.00 30.80 A 79.20 79.20 0 0 1 167.66 164.29 L 143.44 141.49 A 45.94 45.94 0 0 0 110.00 64.06 Z" fill="#2563eb"/>
-<path d="M 167.66 164.29 A 79.20 79.20 0 0 1 51.62 163.52 L 76.14 141.04 A 45.94 45.94 0 0 0 143.44 141.49 Z" fill="#0891b2"/>
-<path d="M 51.62 163.52 A 79.20 79.20 0 0 1 76.18 38.38 L 90.39 68.46 A 45.94 45.94 0 0 0 76.14 141.04 Z" fill="#059669"/>
-<path d="M 76.18 38.38 A 79.20 79.20 0 0 1 98.40 31.65 L 103.27 64.56 A 45.94 45.94 0 0 0 90.39 68.46 Z" fill="#d97706"/>
-<path d="M 98.40 31.65 A 79.20 79.20 0 0 1 105.77 30.91 L 107.54 64.13 A 45.94 45.94 0 0 0 103.27 64.56 Z" fill="#7c3aed"/>
-<path d="M 105.77 30.91 A 79.20 79.20 0 0 1 110.00 30.80 L 110.00 64.06 A 45.94 45.94 0 0 0 107.54 64.13 Z" fill="#dc2626"/>
-<text x="110" y="106" text-anchor="middle" fill="#0f172a" font-size="22" font-weight="700" font-family="Segoe UI, sans-serif">470</text>
+    <div id="panel-resumen" class="panel active" role="tabpanel">
+      <div class="stats">
+        <div class="stat"><div class="n">6.535</div><div class="l">Partidos analizados</div></div>
+        <div class="stat"><div class="n">515</div><div class="l">Vínculos entrenador–club</div></div>
+        <div class="stat"><div class="n">35</div><div class="l">Combinaciones con casos</div></div>
+        <div class="stat"><div class="n">0</div><div class="l">Con las 7 categorías</div></div>
+      </div>
+
+      <div class="grid-2">
+        <section>
+          <h2>Distribución por cantidad de categorías a cargo</h2>
+          <p class="caption">Conteo exclusivo: cada entrenador–club suma en una sola combinación.</p>
+          <div style="display:flex;gap:20px;align-items:center;flex-wrap:wrap">
+            <svg viewBox="0 0 220 220" width="220" height="220" role="img">
+<path d="M 110.00 30.80 A 79.20 79.20 0 0 1 146.71 180.18 L 131.29 150.70 A 45.94 45.94 0 0 0 110.00 64.06 Z" fill="#2563eb"/>
+<path d="M 146.71 180.18 A 79.20 79.20 0 0 1 43.08 152.36 L 71.18 134.57 A 45.94 45.94 0 0 0 131.29 150.70 Z" fill="#0891b2"/>
+<path d="M 43.08 152.36 A 79.20 79.20 0 0 1 78.97 37.13 L 92.00 67.74 A 45.94 45.94 0 0 0 71.18 134.57 Z" fill="#059669"/>
+<path d="M 78.97 37.13 A 79.20 79.20 0 0 1 99.40 31.51 L 103.85 64.48 A 45.94 45.94 0 0 0 92.00 67.74 Z" fill="#d97706"/>
+<path d="M 99.40 31.51 A 79.20 79.20 0 0 1 106.14 30.89 L 107.76 64.12 A 45.94 45.94 0 0 0 103.85 64.48 Z" fill="#7c3aed"/>
+<path d="M 106.14 30.89 A 79.20 79.20 0 0 1 110.00 30.80 L 110.00 64.06 A 45.94 45.94 0 0 0 107.76 64.12 Z" fill="#dc2626"/>
+<text x="110" y="106" text-anchor="middle" fill="#0f172a" font-size="22" font-weight="700" font-family="Segoe UI, sans-serif">515</text>
 <text x="110" y="126" text-anchor="middle" fill="#64748b" font-size="11" font-family="Segoe UI, sans-serif">vínculos</text>
 </svg>
-          <div class="legend">
-            <span><i class="dot" style="background:#2563eb"></i>1 categoría · 174</span><span><i class="dot" style="background:#0891b2"></i>2 categorías · 123</span><span><i class="dot" style="background:#059669"></i>3 categorías · 140</span><span><i class="dot" style="background:#d97706"></i>4 categorías · 22</span><span><i class="dot" style="background:#7c3aed"></i>5 categorías · 7</span><span><i class="dot" style="background:#dc2626"></i>6 categorías · 4</span>
+            <div class="legend">
+              <span><i class="dot" style="background:#2563eb"></i>1 categoría · 218</span><span><i class="dot" style="background:#0891b2"></i>2 categorías · 122</span><span><i class="dot" style="background:#059669"></i>3 categorías · 142</span><span><i class="dot" style="background:#d97706"></i>4 categorías · 22</span><span><i class="dot" style="background:#7c3aed"></i>5 categorías · 7</span><span><i class="dot" style="background:#dc2626"></i>6 categorías · 4</span>
+            </div>
           </div>
-        </div>
-      </section>
-      <section>
-        <h2>Solo una categoría (6 grupos individuales)</h2>
-        <p class="caption">Entrenadores–club que dirigen únicamente esa categoría.</p>
-        <svg viewBox="0 0 420 248" width="100%" role="img" aria-label="Gráfico de barras">
-<rect width="420" height="248" fill="transparent"/>
+        </section>
+        <section>
+          <h2>Solo una categoría</h2>
+          <p class="caption">Entrenadores–club que dirigen únicamente esa categoría.</p>
+          <svg viewBox="0 0 420 286" width="100%" role="img" aria-label="Gráfico de barras">
+<rect width="420" height="286" fill="transparent"/>
 <text x="0" y="30.16" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">LIGA PROXIMO</text>
 <rect x="292" y="10" width="80" height="28" rx="3" fill="#2563eb"/>
-<text x="380" y="30.16" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">76</text>
-<text x="0" y="68.16" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">PRE MINI</text>
-<rect x="292" y="48" width="27" height="28" rx="3" fill="#2563eb"/>
-<text x="327" y="68.16" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">26</text>
-<text x="0" y="106.16" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">INFANTILES</text>
-<rect x="292" y="86" width="24" height="28" rx="3" fill="#2563eb"/>
-<text x="324" y="106.16" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">23</text>
-<text x="0" y="144.16" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">CADETES</text>
-<rect x="292" y="124" width="22" height="28" rx="3" fill="#2563eb"/>
-<text x="322" y="144.16" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">21</text>
-<text x="0" y="182.16" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">JUVENILES</text>
-<rect x="292" y="162" width="17" height="28" rx="3" fill="#2563eb"/>
-<text x="317" y="182.16" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">17</text>
-<text x="0" y="220.16" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">MINI</text>
-<rect x="292" y="200" width="11" height="28" rx="3" fill="#2563eb"/>
-<text x="311" y="220.16" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">11</text>
+<text x="380" y="30.16" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">74</text>
+<text x="0" y="68.16" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">LIGA METRO</text>
+<rect x="292" y="48" width="50" height="28" rx="3" fill="#2563eb"/>
+<text x="350" y="68.16" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">47</text>
+<text x="0" y="106.16" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">PRE MINI</text>
+<rect x="292" y="86" width="27" height="28" rx="3" fill="#2563eb"/>
+<text x="327" y="106.16" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">25</text>
+<text x="0" y="144.16" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">INFANTILES</text>
+<rect x="292" y="124" width="24" height="28" rx="3" fill="#2563eb"/>
+<text x="324" y="144.16" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">23</text>
+<text x="0" y="182.16" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">CADETES</text>
+<rect x="292" y="162" width="22" height="28" rx="3" fill="#2563eb"/>
+<text x="322" y="182.16" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">21</text>
+<text x="0" y="220.16" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">JUVENILES</text>
+<rect x="292" y="200" width="18" height="28" rx="3" fill="#2563eb"/>
+<text x="318" y="220.16" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">17</text>
+<text x="0" y="258.16" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">MINI</text>
+<rect x="292" y="238" width="11" height="28" rx="3" fill="#2563eb"/>
+<text x="311" y="258.16" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">11</text>
 </svg>
-      </section>
-    </div>
+        </section>
+      </div>
 
-    <section>
-      <h2>Combinaciones más frecuentes (top 15)</h2>
-      <p class="caption">Solo combinaciones con cantidad &gt; 0. Cada entrenador–club aparece en una sola fila.</p>
-      <svg viewBox="0 0 900 500" width="100%" role="img" aria-label="Gráfico de barras">
+      <section>
+        <h2>Combinaciones más frecuentes (top 15)</h2>
+        <p class="caption">Cada vínculo aparece en una sola fila.</p>
+        <svg viewBox="0 0 900 500" width="100%" role="img" aria-label="Gráfico de barras">
 <rect width="900" height="500" fill="transparent"/>
 <text x="0" y="27.28" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">LIGA PROXIMO</text>
 <rect x="292" y="10" width="560" height="24" rx="3" fill="#2563eb"/>
-<text x="860" y="27.28" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">76</text>
+<text x="860" y="27.28" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">74</text>
 <text x="0" y="59.28" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">PRE MINI, MINI, INFANTILES</text>
-<rect x="292" y="42" width="515" height="24" rx="3" fill="#2563eb"/>
-<text x="815" y="59.28" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">70</text>
+<rect x="292" y="42" width="537" height="24" rx="3" fill="#2563eb"/>
+<text x="837" y="59.28" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">71</text>
 <text x="0" y="91.28" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">CADETES, JUVENILES, LIGA PROXIMO</text>
-<rect x="292" y="74" width="353" height="24" rx="3" fill="#2563eb"/>
-<text x="653" y="91.28" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">48</text>
-<text x="0" y="123.28" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">CADETES, JUVENILES</text>
-<rect x="292" y="106" width="287" height="24" rx="3" fill="#2563eb"/>
-<text x="587" y="123.28" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">39</text>
-<text x="0" y="155.28" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">PRE MINI, MINI</text>
-<rect x="292" y="138" width="265" height="24" rx="3" fill="#2563eb"/>
-<text x="565" y="155.28" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">36</text>
-<text x="0" y="187.28" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">PRE MINI</text>
-<rect x="292" y="170" width="191" height="24" rx="3" fill="#2563eb"/>
-<text x="491" y="187.28" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">26</text>
-<text x="0" y="219.28" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">INFANTILES</text>
-<rect x="292" y="202" width="169" height="24" rx="3" fill="#2563eb"/>
-<text x="469" y="219.28" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">23</text>
-<text x="0" y="251.28" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">CADETES</text>
-<rect x="292" y="234" width="154" height="24" rx="3" fill="#2563eb"/>
-<text x="454" y="251.28" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">21</text>
-<text x="0" y="283.28" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">JUVENILES, LIGA PROXIMO</text>
-<rect x="292" y="266" width="147" height="24" rx="3" fill="#2563eb"/>
-<text x="447" y="283.28" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">20</text>
-<text x="0" y="315.28" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">JUVENILES</text>
-<rect x="292" y="298" width="125" height="24" rx="3" fill="#2563eb"/>
-<text x="425" y="315.28" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">17</text>
-<text x="0" y="347.28" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">INFANTILES, CADETES, JUVENILES</text>
-<rect x="292" y="330" width="110" height="24" rx="3" fill="#2563eb"/>
-<text x="410" y="347.28" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">15</text>
-<text x="0" y="379.28" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">MINI, INFANTILES</text>
-<rect x="292" y="362" width="95" height="24" rx="3" fill="#2563eb"/>
-<text x="395" y="379.28" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">13</text>
-<text x="0" y="411.28" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">MINI</text>
-<rect x="292" y="394" width="81" height="24" rx="3" fill="#2563eb"/>
-<text x="381" y="411.28" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">11</text>
-<text x="0" y="443.28" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">INFANTILES, CADETES, JUVENILES, LIGA PROXIMO</text>
-<rect x="292" y="426" width="51" height="24" rx="3" fill="#2563eb"/>
-<text x="351" y="443.28" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">7</text>
-<text x="0" y="475.28" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">PRE MINI, MINI, INFANTILES, CADETES</text>
-<rect x="292" y="458" width="51" height="24" rx="3" fill="#2563eb"/>
-<text x="351" y="475.28" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">7</text>
+<rect x="292" y="74" width="370" height="24" rx="3" fill="#2563eb"/>
+<text x="670" y="91.28" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">49</text>
+<text x="0" y="123.28" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">LIGA METRO</text>
+<rect x="292" y="106" width="355" height="24" rx="3" fill="#2563eb"/>
+<text x="655" y="123.28" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">47</text>
+<text x="0" y="155.28" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">CADETES, JUVENILES</text>
+<rect x="292" y="138" width="287" height="24" rx="3" fill="#2563eb"/>
+<text x="587" y="155.28" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">38</text>
+<text x="0" y="187.28" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">PRE MINI, MINI</text>
+<rect x="292" y="170" width="272" height="24" rx="3" fill="#2563eb"/>
+<text x="572" y="187.28" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">36</text>
+<text x="0" y="219.28" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">PRE MINI</text>
+<rect x="292" y="202" width="189" height="24" rx="3" fill="#2563eb"/>
+<text x="489" y="219.28" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">25</text>
+<text x="0" y="251.28" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">INFANTILES</text>
+<rect x="292" y="234" width="174" height="24" rx="3" fill="#2563eb"/>
+<text x="474" y="251.28" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">23</text>
+<text x="0" y="283.28" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">CADETES</text>
+<rect x="292" y="266" width="158" height="24" rx="3" fill="#2563eb"/>
+<text x="458" y="283.28" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">21</text>
+<text x="0" y="315.28" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">JUVENILES, LIGA PROXIMO</text>
+<rect x="292" y="298" width="151" height="24" rx="3" fill="#2563eb"/>
+<text x="451" y="315.28" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">20</text>
+<text x="0" y="347.28" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">JUVENILES</text>
+<rect x="292" y="330" width="128" height="24" rx="3" fill="#2563eb"/>
+<text x="428" y="347.28" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">17</text>
+<text x="0" y="379.28" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">INFANTILES, CADETES, JUVENILES</text>
+<rect x="292" y="362" width="113" height="24" rx="3" fill="#2563eb"/>
+<text x="413" y="379.28" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">15</text>
+<text x="0" y="411.28" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">MINI, INFANTILES</text>
+<rect x="292" y="394" width="90" height="24" rx="3" fill="#2563eb"/>
+<text x="390" y="411.28" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">12</text>
+<text x="0" y="443.28" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">MINI</text>
+<rect x="292" y="426" width="83" height="24" rx="3" fill="#2563eb"/>
+<text x="383" y="443.28" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">11</text>
+<text x="0" y="475.28" fill="#334155" font-size="12" font-family="Segoe UI, sans-serif">INFANTILES, CADETES, JUVENILES, LIGA PROXIMO</text>
+<rect x="292" y="458" width="52" height="24" rx="3" fill="#2563eb"/>
+<text x="352" y="475.28" fill="#0f172a" font-size="12" font-weight="600" font-family="Segoe UI, sans-serif">7</text>
 </svg>
-    </section>
+      </section>
 
-    <section>
-      <h2>Entrenadores con las 6 categorías a cargo</h2>
-      <p class="caption">PRE MINI, MINI, INFANTILES, CADETES, JUVENILES y LIGA PROXIMO en el mismo club.</p>
-      <table>
-        <thead><tr><th>Entrenador</th><th>Club</th><th>Categorías</th></tr></thead>
-        <tbody>
-          <tr><td>AGUIRRE, AYLEN LAURA</td><td>DEFENSORES DE GLEW</td><td>PRE MINI, MINI, INFANTILES, CADETES, JUVENILES, LIGA PROXIMO</td></tr><tr><td>LUCIA, NICOLAS CLAUDIO</td><td>MUNIC.AVELLANEDA</td><td>PRE MINI, MINI, INFANTILES, CADETES, JUVENILES, LIGA PROXIMO</td></tr><tr><td>GIMENEZ, ALEXIS NAHUEL</td><td>UNION VILLEGAS</td><td>PRE MINI, MINI, INFANTILES, CADETES, JUVENILES, LIGA PROXIMO</td></tr><tr><td>MARQUES DA FONTE, NICOLAS</td><td>VILLA ESPAÑA</td><td>PRE MINI, MINI, INFANTILES, CADETES, JUVENILES, LIGA PROXIMO</td></tr>
-        </tbody>
-      </table>
-    </section>
+      <section>
+        <h2>Entrenadores con las 7 categorías a cargo</h2>
+        <p class="caption">PRE MINI, MINI, INFANTILES, CADETES, JUVENILES, LIGA PROXIMO, LIGA METRO</p>
+        <table>
+          <thead><tr><th>Entrenador</th><th>Club</th></tr></thead>
+          <tbody>
+            <tr><td colspan='2'>Ninguno en este período</td></tr>
+          </tbody>
+        </table>
+      </section>
 
-    <section>
-      <h2>Tabla completa de combinaciones activas (33 de 63)</h2>
-      <p class="caption">Las 30 combinaciones teóricas restantes tienen cantidad 0 en este período.</p>
-      <table>
-        <thead><tr><th>Combinación</th><th>Cantidad</th><th>N° categorías</th></tr></thead>
-        <tbody>
-          <tr><td>LIGA PROXIMO</td><td>76</td><td>1</td></tr><tr><td>PRE MINI, MINI, INFANTILES</td><td>70</td><td>3</td></tr><tr><td>CADETES, JUVENILES, LIGA PROXIMO</td><td>48</td><td>3</td></tr><tr><td>CADETES, JUVENILES</td><td>39</td><td>2</td></tr><tr><td>PRE MINI, MINI</td><td>36</td><td>2</td></tr><tr><td>PRE MINI</td><td>26</td><td>1</td></tr><tr><td>INFANTILES</td><td>23</td><td>1</td></tr><tr><td>CADETES</td><td>21</td><td>1</td></tr><tr><td>JUVENILES, LIGA PROXIMO</td><td>20</td><td>2</td></tr><tr><td>JUVENILES</td><td>17</td><td>1</td></tr><tr><td>INFANTILES, CADETES, JUVENILES</td><td>15</td><td>3</td></tr><tr><td>MINI, INFANTILES</td><td>13</td><td>2</td></tr><tr><td>MINI</td><td>11</td><td>1</td></tr><tr><td>INFANTILES, CADETES, JUVENILES, LIGA PROXIMO</td><td>7</td><td>4</td></tr><tr><td>PRE MINI, MINI, INFANTILES, CADETES</td><td>7</td><td>4</td></tr><tr><td>INFANTILES, CADETES</td><td>6</td><td>2</td></tr><tr><td>MINI, INFANTILES, CADETES, JUVENILES</td><td>5</td><td>4</td></tr><tr><td>PRE MINI, MINI, INFANTILES, CADETES, JUVENILES</td><td>5</td><td>5</td></tr><tr><td>PRE MINI, MINI, INFANTILES, CADETES, JUVENILES, LIGA PROXIMO</td><td>4</td><td>6</td></tr><tr><td>PRE MINI, INFANTILES</td><td>3</td><td>2</td></tr><tr><td>PRE MINI, MINI, LIGA PROXIMO</td><td>3</td><td>3</td></tr><tr><td>CADETES, LIGA PROXIMO</td><td>2</td><td>2</td></tr><tr><td>MINI, INFANTILES, CADETES</td><td>2</td><td>3</td></tr><tr><td>MINI, INFANTILES, CADETES, JUVENILES, LIGA PROXIMO</td><td>2</td><td>5</td></tr><tr><td>INFANTILES, LIGA PROXIMO</td><td>1</td><td>2</td></tr><tr><td>MINI, CADETES, JUVENILES</td><td>1</td><td>3</td></tr><tr><td>MINI, INFANTILES, JUVENILES</td><td>1</td><td>3</td></tr><tr><td>MINI, LIGA PROXIMO</td><td>1</td><td>2</td></tr><tr><td>PRE MINI, CADETES</td><td>1</td><td>2</td></tr><tr><td>PRE MINI, LIGA PROXIMO</td><td>1</td><td>2</td></tr><tr><td>PRE MINI, MINI, CADETES, JUVENILES</td><td>1</td><td>4</td></tr><tr><td>PRE MINI, MINI, INFANTILES, JUVENILES</td><td>1</td><td>4</td></tr><tr><td>PRE MINI, MINI, INFANTILES, LIGA PROXIMO</td><td>1</td><td>4</td></tr>
-        </tbody>
-      </table>
-      <div class="note">Importante: las cantidades no se suman entre filas. Un entrenador con 3 categorías cuenta solo en su combinación exacta, no en subgrupos más pequeños.</div>
-    </section>
+      <section>
+        <h2>Combinaciones activas (35 de 127)</h2>
+        <p class="caption">92 combinaciones teóricas con cantidad 0.</p>
+        <table>
+          <thead><tr><th>Combinación</th><th>Cantidad</th><th>N°</th></tr></thead>
+          <tbody>
+            <tr><td>LIGA PROXIMO</td><td>74</td><td>1</td></tr><tr><td>PRE MINI, MINI, INFANTILES</td><td>71</td><td>3</td></tr><tr><td>CADETES, JUVENILES, LIGA PROXIMO</td><td>49</td><td>3</td></tr><tr><td>LIGA METRO</td><td>47</td><td>1</td></tr><tr><td>CADETES, JUVENILES</td><td>38</td><td>2</td></tr><tr><td>PRE MINI, MINI</td><td>36</td><td>2</td></tr><tr><td>PRE MINI</td><td>25</td><td>1</td></tr><tr><td>INFANTILES</td><td>23</td><td>1</td></tr><tr><td>CADETES</td><td>21</td><td>1</td></tr><tr><td>JUVENILES, LIGA PROXIMO</td><td>20</td><td>2</td></tr><tr><td>JUVENILES</td><td>17</td><td>1</td></tr><tr><td>INFANTILES, CADETES, JUVENILES</td><td>15</td><td>3</td></tr><tr><td>MINI, INFANTILES</td><td>12</td><td>2</td></tr><tr><td>MINI</td><td>11</td><td>1</td></tr><tr><td>INFANTILES, CADETES, JUVENILES, LIGA PROXIMO</td><td>7</td><td>4</td></tr><tr><td>PRE MINI, MINI, INFANTILES, CADETES</td><td>7</td><td>4</td></tr><tr><td>INFANTILES, CADETES</td><td>6</td><td>2</td></tr><tr><td>MINI, INFANTILES, CADETES, JUVENILES</td><td>5</td><td>4</td></tr><tr><td>PRE MINI, MINI, INFANTILES, CADETES, JUVENILES</td><td>5</td><td>5</td></tr><tr><td>PRE MINI, MINI, INFANTILES, CADETES, JUVENILES, LIGA PROXIMO</td><td>4</td><td>6</td></tr><tr><td>PRE MINI, INFANTILES</td><td>3</td><td>2</td></tr><tr><td>PRE MINI, MINI, LIGA PROXIMO</td><td>3</td><td>3</td></tr><tr><td>CADETES, LIGA PROXIMO</td><td>2</td><td>2</td></tr><tr><td>MINI, INFANTILES, CADETES</td><td>2</td><td>3</td></tr><tr><td>MINI, INFANTILES, CADETES, JUVENILES, LIGA PROXIMO</td><td>2</td><td>5</td></tr><tr><td>INFANTILES, LIGA PROXIMO</td><td>1</td><td>2</td></tr><tr><td>LIGA PROXIMO, LIGA METRO</td><td>1</td><td>2</td></tr><tr><td>MINI, CADETES, JUVENILES</td><td>1</td><td>3</td></tr><tr><td>MINI, INFANTILES, JUVENILES</td><td>1</td><td>3</td></tr><tr><td>MINI, LIGA PROXIMO</td><td>1</td><td>2</td></tr><tr><td>PRE MINI, CADETES</td><td>1</td><td>2</td></tr><tr><td>PRE MINI, LIGA PROXIMO</td><td>1</td><td>2</td></tr><tr><td>PRE MINI, MINI, CADETES, JUVENILES</td><td>1</td><td>4</td></tr><tr><td>PRE MINI, MINI, INFANTILES, JUVENILES</td><td>1</td><td>4</td></tr><tr><td>PRE MINI, MINI, INFANTILES, LIGA PROXIMO</td><td>1</td><td>4</td></tr>
+          </tbody>
+        </table>
+        <div class="note">Las cantidades no se suman entre filas: un entrenador con 3 categorías cuenta solo en su combinación exacta.</div>
+      </section>
+    </div>
 
-    <footer>Generado automáticamente · GES LNB y TNA · 2026-03-01 – 2026-05-31</footer>
+    <div id="panel-listado" class="panel" role="tabpanel">
+      <div class="card">
+        <h2>Listado de entrenadores</h2>
+        <p class="caption">Nombre completo en una sola columna. Filtrá por categoría. El WhatsApp se guarda en Google Sheets.</p>
+        <span id="sheetsStatus" class="status-pill">Conectado a Google Sheets (lectura/escritura WhatsApp).</span>
+
+        <div class="filters" style="margin-top:14px">
+          <label>Buscar
+            <input type="search" id="q" placeholder="Nombre o club…" autocomplete="off"/>
+          </label>
+          <label>Categoría
+            <select id="cat">
+              <option value="">Todas</option>
+            </select>
+          </label>
+          <label>Solo con WhatsApp
+            <select id="wpFilter">
+              <option value="">Todos</option>
+              <option value="con">Con número</option>
+              <option value="sin">Sin número</option>
+            </select>
+          </label>
+          <button type="button" id="btnReload" class="tab-btn" style="background:#f8fafc;border:1px solid var(--line);color:var(--text);align-self:end">Recargar Sheet</button>
+        </div>
+
+        <div class="count-bar">
+          <span id="countLabel">0 entrenadores</span>
+          <button type="button" id="btnExport" class="tab-btn" style="background:#f8fafc;border:1px solid var(--line);color:var(--text)">Exportar CSV</button>
+        </div>
+
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th>Entrenador</th>
+                <th>Club</th>
+                <th>Categorías a cargo</th>
+                <th>WhatsApp</th>
+              </tr>
+            </thead>
+            <tbody id="tbody"></tbody>
+          </table>
+        </div>
+        <div class="note">Ver setup en <code>docs/entrenadores_sheets.md</code>. Si no hay <code>webapp_url</code>, el WhatsApp queda solo en este navegador (localStorage) como respaldo.</div>
+      </div>
+    </div>
+
+    <footer>Generado automáticamente · GES LNB y TNA</footer>
   </div>
+
+  <script>
+  const EMBEDDED_DATA = [{"key": "RECHIMON, TOMAS||17 DE AGOSTO", "entrenador": "RECHIMON, TOMAS", "club": "17 DE AGOSTO", "categorias": ["MINI", "INFANTILES", "CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "RUHLEMANN APRAIZ, JEREMIAS||17 DE AGOSTO", "entrenador": "RUHLEMANN APRAIZ, JEREMIAS", "club": "17 DE AGOSTO", "categorias": ["PRE MINI"], "whatsapp": ""}, {"key": "SALZMAN, MAURO||17 DE AGOSTO", "entrenador": "SALZMAN, MAURO", "club": "17 DE AGOSTO", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "CAMARDA, MARTIN||3 DE FEBRERO AZUL B", "entrenador": "CAMARDA, MARTIN", "club": "3 DE FEBRERO AZUL B", "categorias": ["CADETES", "JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "FRITZ TEODORI, SANTIAGO FEDERICO||3 DE FEBRERO AZUL B", "entrenador": "FRITZ TEODORI, SANTIAGO FEDERICO", "club": "3 DE FEBRERO AZUL B", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "DE CRUZ, SEBASTIAN MATIAS||3 DE FEBRERO BLANCO A", "entrenador": "DE CRUZ, SEBASTIAN MATIAS", "club": "3 DE FEBRERO BLANCO A", "categorias": ["PRE MINI"], "whatsapp": ""}, {"key": "SEDANI, JOAQUIN NICOLAS||3 DE FEBRERO BLANCO A", "entrenador": "SEDANI, JOAQUIN NICOLAS", "club": "3 DE FEBRERO BLANCO A", "categorias": ["CADETES", "JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "TERRERA, SANTIAGO MANUEL||3 DE FEBRERO BLANCO A", "entrenador": "TERRERA, SANTIAGO MANUEL", "club": "3 DE FEBRERO BLANCO A", "categorias": ["MINI", "INFANTILES"], "whatsapp": ""}, {"key": "CORVALAN, EZEQUIEL ALEJANDRO||3 DE FEBRERO CELESTE C", "entrenador": "CORVALAN, EZEQUIEL ALEJANDRO", "club": "3 DE FEBRERO CELESTE C", "categorias": ["INFANTILES", "CADETES", "JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "BIANCHI, CARLOS ERNESTO||A.F.A.L.P.", "entrenador": "BIANCHI, CARLOS ERNESTO", "club": "A.F.A.L.P.", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "BIANCHI, NICOLAS FACUNDO||A.F.A.L.P.", "entrenador": "BIANCHI, NICOLAS FACUNDO", "club": "A.F.A.L.P.", "categorias": ["CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "SANTANA, JULIAN||A.F.A.L.P.", "entrenador": "SANTANA, JULIAN", "club": "A.F.A.L.P.", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "D'ALESSANDRO, ANTONELA||ALDO BONZI", "entrenador": "D'ALESSANDRO, ANTONELA", "club": "ALDO BONZI", "categorias": ["PRE MINI"], "whatsapp": ""}, {"key": "ESCOBAR, KAREN||ALDO BONZI", "entrenador": "ESCOBAR, KAREN", "club": "ALDO BONZI", "categorias": ["CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "GONZALEZ, EDUARDO GABRIEL||ALDO BONZI", "entrenador": "GONZALEZ, EDUARDO GABRIEL", "club": "ALDO BONZI", "categorias": ["MINI", "INFANTILES"], "whatsapp": ""}, {"key": "OJEDA, LEANDRO||ALDO BONZI", "entrenador": "OJEDA, LEANDRO", "club": "ALDO BONZI", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "CABRAL, GONZALO ALEJANDRO||ALEJANDRO KORN", "entrenador": "CABRAL, GONZALO ALEJANDRO", "club": "ALEJANDRO KORN", "categorias": ["PRE MINI", "MINI"], "whatsapp": ""}, {"key": "FRISA, NICOLAS CARLOS GABRIEL||ALEJANDRO KORN", "entrenador": "FRISA, NICOLAS CARLOS GABRIEL", "club": "ALEJANDRO KORN", "categorias": ["INFANTILES", "CADETES", "JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "KLOSTER, LUCAS NAHUEL||ALEM", "entrenador": "KLOSTER, LUCAS NAHUEL", "club": "ALEM", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "REPPE , IGNACIO ESTEBAN||ALEM", "entrenador": "REPPE , IGNACIO ESTEBAN", "club": "ALEM", "categorias": ["CADETES", "JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "DUGNANI, TAHIEL||ALL BOYS", "entrenador": "DUGNANI, TAHIEL", "club": "ALL BOYS", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "ESCOBAR, GABRIEL ALEJANDRO||ALL BOYS", "entrenador": "ESCOBAR, GABRIEL ALEJANDRO", "club": "ALL BOYS", "categorias": ["CADETES", "JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "CARDILLO, RICARDO IGNACIO||ALL BOYS DE SAAVEDRA", "entrenador": "CARDILLO, RICARDO IGNACIO", "club": "ALL BOYS DE SAAVEDRA", "categorias": ["CADETES", "JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "LOPEZ MALIANDI, CAMILA||ALL BOYS DE SAAVEDRA", "entrenador": "LOPEZ MALIANDI, CAMILA", "club": "ALL BOYS DE SAAVEDRA", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "ALVAREZ, ALDO RUBEN||APV", "entrenador": "ALVAREZ, ALDO RUBEN", "club": "APV", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "CORONEL CINGOLANI, DANIEL ADRIAN||APV", "entrenador": "CORONEL CINGOLANI, DANIEL ADRIAN", "club": "APV", "categorias": ["CADETES"], "whatsapp": ""}, {"key": "KOT, DANIEL LEONARDO||APV", "entrenador": "KOT, DANIEL LEONARDO", "club": "APV", "categorias": ["JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "LAMELA, FERNANDO||ARGENTINO DE CASTELAR", "entrenador": "LAMELA, FERNANDO", "club": "ARGENTINO DE CASTELAR", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "ROMERO, JONATHAN||ARGENTINO DE CASTELAR", "entrenador": "ROMERO, JONATHAN", "club": "ARGENTINO DE CASTELAR", "categorias": ["CADETES", "JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "GARRIDO, GUSTAVO GUILLERMO||ARGENTINOS JUNIORS", "entrenador": "GARRIDO, GUSTAVO GUILLERMO", "club": "ARGENTINOS JUNIORS", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "LLORET, NICOLAS||ARGENTINOS JUNIORS", "entrenador": "LLORET, NICOLAS", "club": "ARGENTINOS JUNIORS", "categorias": ["INFANTILES", "CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "RODRIGUEZ LEGER, ALEJO GABRIEL||ARGENTINOS JUNIORS", "entrenador": "RODRIGUEZ LEGER, ALEJO GABRIEL", "club": "ARGENTINOS JUNIORS", "categorias": ["MINI"], "whatsapp": ""}, {"key": "DE MARCO, CLARA||ARMENIA", "entrenador": "DE MARCO, CLARA", "club": "ARMENIA", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "NIEWIALKONSKI, PABLO MATIAS||ARMENIA", "entrenador": "NIEWIALKONSKI, PABLO MATIAS", "club": "ARMENIA", "categorias": ["CADETES", "JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "VICONDOA BOGAZZI, GABRIEL||ARQUITECTURA BLANCO B", "entrenador": "VICONDOA BOGAZZI, GABRIEL", "club": "ARQUITECTURA BLANCO B", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "VIDUIDO, NICOLAS MARCELO||ARQUITECTURA BLANCO B", "entrenador": "VIDUIDO, NICOLAS MARCELO", "club": "ARQUITECTURA BLANCO B", "categorias": ["CADETES", "JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "PIPUTTO, DANIEL ENRIQUE||ARQUITECTURA NEGRO A", "entrenador": "PIPUTTO, DANIEL ENRIQUE", "club": "ARQUITECTURA NEGRO A", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "PISTARELLI, WALTER RODOLFO||ARQUITECTURA NEGRO A", "entrenador": "PISTARELLI, WALTER RODOLFO", "club": "ARQUITECTURA NEGRO A", "categorias": ["MINI", "INFANTILES", "CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "QUEREJETA, FRANCISCO||ARQUITECTURA NEGRO A", "entrenador": "QUEREJETA, FRANCISCO", "club": "ARQUITECTURA NEGRO A", "categorias": ["PRE MINI"], "whatsapp": ""}, {"key": "PAIS, LAUTARO||ATLETICO BOULOGNE", "entrenador": "PAIS, LAUTARO", "club": "ATLETICO BOULOGNE", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "SPADA, ALFREDO MARTIN||ATLETICO BOULOGNE", "entrenador": "SPADA, ALFREDO MARTIN", "club": "ATLETICO BOULOGNE", "categorias": ["CADETES", "JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "LAVERGNE, EMMANUEL ALBERTO||ATLETICO PILAR", "entrenador": "LAVERGNE, EMMANUEL ALBERTO", "club": "ATLETICO PILAR", "categorias": ["JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "PACHECO, TOMAS MAXIMILIANO||ATLETICO PILAR", "entrenador": "PACHECO, TOMAS MAXIMILIANO", "club": "ATLETICO PILAR", "categorias": ["INFANTILES"], "whatsapp": ""}, {"key": "QUINTANA, ALFREDO JAVIER||ATLETICO PILAR", "entrenador": "QUINTANA, ALFREDO JAVIER", "club": "ATLETICO PILAR", "categorias": ["CADETES"], "whatsapp": ""}, {"key": "SALVATIERRA VACA, RAUL||ATLETICO PILAR", "entrenador": "SALVATIERRA VACA, RAUL", "club": "ATLETICO PILAR", "categorias": ["PRE MINI", "MINI"], "whatsapp": ""}, {"key": "CAMBON, ADRIAN ALEJANDRO||BANADE", "entrenador": "CAMBON, ADRIAN ALEJANDRO", "club": "BANADE", "categorias": ["INFANTILES", "CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "NEPOMNASCHY, ESTEBAN CARLOS||BANADE", "entrenador": "NEPOMNASCHY, ESTEBAN CARLOS", "club": "BANADE", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "SERRANO, MARIANO NICOLAS||BANADE", "entrenador": "SERRANO, MARIANO NICOLAS", "club": "BANADE", "categorias": ["PRE MINI", "MINI"], "whatsapp": ""}, {"key": "CEJAS, EMMANUEL||BANCO NACION", "entrenador": "CEJAS, EMMANUEL", "club": "BANCO NACION", "categorias": ["CADETES", "JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "SCHOFRIN, VALENTIN NAHUEL||BANCO NACION", "entrenador": "SCHOFRIN, VALENTIN NAHUEL", "club": "BANCO NACION", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "BIGLIA, MARIANO GABRIEL||BANCO PROVINCIA", "entrenador": "BIGLIA, MARIANO GABRIEL", "club": "BANCO PROVINCIA", "categorias": ["CADETES", "JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "RODRIGUEZ, ALEJO JULIAN||BANCO PROVINCIA", "entrenador": "RODRIGUEZ, ALEJO JULIAN", "club": "BANCO PROVINCIA", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "MAISANO, JOAQUIN VICENTE||BECCAR AZUL", "entrenador": "MAISANO, JOAQUIN VICENTE", "club": "BECCAR AZUL", "categorias": ["JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "ROMEDIETTI, LUCAS||BECCAR AZUL", "entrenador": "ROMEDIETTI, LUCAS", "club": "BECCAR AZUL", "categorias": ["PRE MINI", "MINI", "INFANTILES", "CADETES"], "whatsapp": ""}, {"key": "MARTINEZ VAZQUEZ, JUAN ARTURO||BELLA VISTA", "entrenador": "MARTINEZ VAZQUEZ, JUAN ARTURO", "club": "BELLA VISTA", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "MESSORE, DAVID SEBASTIAN||BELLA VISTA", "entrenador": "MESSORE, DAVID SEBASTIAN", "club": "BELLA VISTA", "categorias": ["PRE MINI", "MINI"], "whatsapp": ""}, {"key": "ROSELL, EMILIANO MARTIN||BELLA VISTA", "entrenador": "ROSELL, EMILIANO MARTIN", "club": "BELLA VISTA", "categorias": ["INFANTILES", "CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "AGROMARTIN, JOAQUIN FABIAN||BERAZATEGUI", "entrenador": "AGROMARTIN, JOAQUIN FABIAN", "club": "BERAZATEGUI", "categorias": ["PRE MINI", "MINI", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "BENITEZ, GABRIEL SEBASTIAN||BERAZATEGUI", "entrenador": "BENITEZ, GABRIEL SEBASTIAN", "club": "BERAZATEGUI", "categorias": ["CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "GOMEZ, GONZALO||BERAZATEGUI", "entrenador": "GOMEZ, GONZALO", "club": "BERAZATEGUI", "categorias": ["INFANTILES"], "whatsapp": ""}, {"key": "LEDESMA, FACUNDO NAHUEL||BERNAL", "entrenador": "LEDESMA, FACUNDO NAHUEL", "club": "BERNAL", "categorias": ["JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "SOSA PRADO, EZEQUIEL||BERNAL", "entrenador": "SOSA PRADO, EZEQUIEL", "club": "BERNAL", "categorias": ["PRE MINI", "MINI", "INFANTILES", "CADETES"], "whatsapp": ""}, {"key": "BALLERO , PABLO LUIS||BOCA JUNIORS AMARILLO B", "entrenador": "BALLERO , PABLO LUIS", "club": "BOCA JUNIORS AMARILLO B", "categorias": ["JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "MENGA, LAUTARO MARTIN||BOCA JUNIORS AMARILLO B", "entrenador": "MENGA, LAUTARO MARTIN", "club": "BOCA JUNIORS AMARILLO B", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "SERE, MARIA INES||BOCA JUNIORS AMARILLO B", "entrenador": "SERE, MARIA INES", "club": "BOCA JUNIORS AMARILLO B", "categorias": ["CADETES"], "whatsapp": ""}, {"key": "BRIGNARDELLO, GIANLUCA||BOCA JUNIORS AZUL A", "entrenador": "BRIGNARDELLO, GIANLUCA", "club": "BOCA JUNIORS AZUL A", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "DE ROSA, MICAELA||BOCA JUNIORS AZUL A", "entrenador": "DE ROSA, MICAELA", "club": "BOCA JUNIORS AZUL A", "categorias": ["PRE MINI", "MINI"], "whatsapp": ""}, {"key": "HERNANDEZ, LAUTARO||BOCA JUNIORS AZUL A", "entrenador": "HERNANDEZ, LAUTARO", "club": "BOCA JUNIORS AZUL A", "categorias": ["INFANTILES", "CADETES"], "whatsapp": ""}, {"key": "LUKAC, AGUSTIN||BOCA JUNIORS AZUL A", "entrenador": "LUKAC, AGUSTIN", "club": "BOCA JUNIORS AZUL A", "categorias": ["JUVENILES"], "whatsapp": ""}, {"key": "PORRETTA, SEBASTIAN CARLOS||BURZACO FC", "entrenador": "PORRETTA, SEBASTIAN CARLOS", "club": "BURZACO FC", "categorias": ["CADETES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "ROMERO, ADRIAN EZEQUIEL||BURZACO FC", "entrenador": "ROMERO, ADRIAN EZEQUIEL", "club": "BURZACO FC", "categorias": ["PRE MINI", "MINI", "INFANTILES", "JUVENILES"], "whatsapp": ""}, {"key": "BONALD, FABIO LEONARDO||C.A.S.A PADUA", "entrenador": "BONALD, FABIO LEONARDO", "club": "C.A.S.A PADUA", "categorias": ["CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "CHAUMERI , JORGE MOISES||C.A.S.A PADUA", "entrenador": "CHAUMERI , JORGE MOISES", "club": "C.A.S.A PADUA", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "LEDESMA, ESTEBAN||C.A.S.A PADUA", "entrenador": "LEDESMA, ESTEBAN", "club": "C.A.S.A PADUA", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "MUSI , JORGE JULIAN||C.A.S.A DE PADUA", "entrenador": "MUSI , JORGE JULIAN", "club": "C.A.S.A de PADUA", "categorias": ["LIGA METRO"], "whatsapp": ""}, {"key": "LEDESMA, ESTEBAN||C.A.S.A. PADUA B", "entrenador": "LEDESMA, ESTEBAN", "club": "C.A.S.A. PADUA B", "categorias": ["CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "SERIO, NAHUEL||C.A.S.A. PADUA B", "entrenador": "SERIO, NAHUEL", "club": "C.A.S.A. PADUA B", "categorias": ["MINI", "INFANTILES"], "whatsapp": ""}, {"key": "BELLO , DANIEL ADRIAN||CAZA Y PESCA", "entrenador": "BELLO , DANIEL ADRIAN", "club": "CAZA Y PESCA", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "FILLIOL, ALBERTO EUGENIO||CAZA Y PESCA", "entrenador": "FILLIOL, ALBERTO EUGENIO", "club": "CAZA Y PESCA", "categorias": ["INFANTILES", "CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "JUAREZ, LUCAS GASTON||CAZA Y PESCA", "entrenador": "JUAREZ, LUCAS GASTON", "club": "CAZA Y PESCA", "categorias": ["PRE MINI", "MINI"], "whatsapp": ""}, {"key": "CORDERO, LUCAS IVAN||CAZA Y PESCA VERDE B", "entrenador": "CORDERO, LUCAS IVAN", "club": "CAZA Y PESCA VERDE B", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "SANCHEZ, JULIAN OCTAVIO||CAZA Y PESCA VERDE B", "entrenador": "SANCHEZ, JULIAN OCTAVIO", "club": "CAZA Y PESCA VERDE B", "categorias": ["CADETES", "JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "ALEM, ESTEBAN HIPOLITO||CAÑUELAS FC", "entrenador": "ALEM, ESTEBAN HIPOLITO", "club": "CAÑUELAS FC", "categorias": ["INFANTILES", "CADETES"], "whatsapp": ""}, {"key": "CASEY, MATÍAS||CAÑUELAS FC", "entrenador": "CASEY, MATÍAS", "club": "CAÑUELAS FC", "categorias": ["JUVENILES"], "whatsapp": ""}, {"key": "GIUDICI, BAUTISTA ANDRES||CAÑUELAS FC", "entrenador": "GIUDICI, BAUTISTA ANDRES", "club": "CAÑUELAS FC", "categorias": ["PRE MINI", "MINI"], "whatsapp": ""}, {"key": "SANCHEZ, DIONEL ANIBAL||CAÑUELAS FC", "entrenador": "SANCHEZ, DIONEL ANIBAL", "club": "CAÑUELAS FC", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "SANCHEZ, DIONEL ANIBAL||CAÑUELAS FUTBOL CLUB", "entrenador": "SANCHEZ, DIONEL ANIBAL", "club": "CAÑUELAS FUTBOL CLUB", "categorias": ["LIGA METRO"], "whatsapp": ""}, {"key": "BERTOLA, SEBASTIAN||CEDEM", "entrenador": "BERTOLA, SEBASTIAN", "club": "CEDEM", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "GRANDEZ, JULIAN EMANUEL||CEDEM", "entrenador": "GRANDEZ, JULIAN EMANUEL", "club": "CEDEM", "categorias": ["CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "PAGNINI, LUCIA||CEDEM", "entrenador": "PAGNINI, LUCIA", "club": "CEDEM", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "CASTAÑEDA, MATIAS ALE||CENTRO ESPAÑOL", "entrenador": "CASTAÑEDA, MATIAS ALE", "club": "CENTRO ESPAÑOL", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "LEDESMA, FACUNDO TOMAS||CENTRO ESPAÑOL", "entrenador": "LEDESMA, FACUNDO TOMAS", "club": "CENTRO ESPAÑOL", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "VALCARCE, NAZARENO||CENTRO ESPAÑOL", "entrenador": "VALCARCE, NAZARENO", "club": "CENTRO ESPAÑOL", "categorias": ["CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "DOMINGUEZ CORDONE, FERNANDO||CENTRO GALICIA", "entrenador": "DOMINGUEZ CORDONE, FERNANDO", "club": "CENTRO GALICIA", "categorias": ["INFANTILES"], "whatsapp": ""}, {"key": "GARCIA, MARTIN EMILIO||CENTRO GALICIA", "entrenador": "GARCIA, MARTIN EMILIO", "club": "CENTRO GALICIA", "categorias": ["PRE MINI", "MINI"], "whatsapp": ""}, {"key": "PARDO, MATIAS||CENTRO GALICIA", "entrenador": "PARDO, MATIAS", "club": "CENTRO GALICIA", "categorias": ["CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "VILLEGAS, MAXIMILIANO||CENTRO GALICIA", "entrenador": "VILLEGAS, MAXIMILIANO", "club": "CENTRO GALICIA", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "BARRIONUEVO, CARLOS CRISTIAN||CIRCULO URQUIZA", "entrenador": "BARRIONUEVO, CARLOS CRISTIAN", "club": "CIRCULO URQUIZA", "categorias": ["CADETES", "JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "BIRACOURITZ, AGUSTIN RAUL||CIRCULO URQUIZA", "entrenador": "BIRACOURITZ, AGUSTIN RAUL", "club": "CIRCULO URQUIZA", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "BRIGNANI, AGUSTIN||CIUDAD DE BUENOS AIRES", "entrenador": "BRIGNANI, AGUSTIN", "club": "CIUDAD DE BUENOS AIRES", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "RUSH, PATRICIO SANTIAGO||CIUDAD DE BUENOS AIRES", "entrenador": "RUSH, PATRICIO SANTIAGO", "club": "CIUDAD DE BUENOS AIRES", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "BRIGNANI, AGUSTIN||CIUDAD DE BUENOS AIRES A AZUL", "entrenador": "BRIGNANI, AGUSTIN", "club": "CIUDAD DE BUENOS AIRES A AZUL", "categorias": ["CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "DI SALVO MEDINA, RODRIGO LAUTADO||CIUDAD DE BUENOS AIRES B BLANCO", "entrenador": "DI SALVO MEDINA, RODRIGO LAUTADO", "club": "CIUDAD DE BUENOS AIRES B BLANCO", "categorias": ["CADETES", "JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "RICHELET, JOHN ALEXIS||CIUDAD DE BUENOS AIRES B BLANCO", "entrenador": "RICHELET, JOHN ALEXIS", "club": "CIUDAD DE BUENOS AIRES B BLANCO", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "LATASA, ADRIÁN DANIEL||CIUDADELA NORTE", "entrenador": "LATASA, ADRIÁN DANIEL", "club": "CIUDADELA NORTE", "categorias": ["CADETES", "JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "STANISZEWSKI, IGNACIO||CIUDADELA NORTE", "entrenador": "STANISZEWSKI, IGNACIO", "club": "CIUDADELA NORTE", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "ALVAREZ, JORGE EZEQUIEL||CLARIDAD", "entrenador": "ALVAREZ, JORGE EZEQUIEL", "club": "CLARIDAD", "categorias": ["INFANTILES", "CADETES"], "whatsapp": ""}, {"key": "LANNES, SEBASTIAN||CLARIDAD", "entrenador": "LANNES, SEBASTIAN", "club": "CLARIDAD", "categorias": ["JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "UGOLINI POPBLA, TIAGO||CLARIDAD", "entrenador": "UGOLINI POPBLA, TIAGO", "club": "CLARIDAD", "categorias": ["PRE MINI", "MINI"], "whatsapp": ""}, {"key": "DE LIO, ANIBAL||CLUB ATLETICO Y PROGRESO DE BRANDSEN", "entrenador": "DE LIO, ANIBAL", "club": "CLUB  ATLETICO Y PROGRESO DE BRANDSEN", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "MOUZO, ANGEL GUIDO||CLUB ATLETICO Y PROGRESO DE BRANDSEN", "entrenador": "MOUZO, ANGEL GUIDO", "club": "CLUB  ATLETICO Y PROGRESO DE BRANDSEN", "categorias": ["PRE MINI", "MINI", "INFANTILES", "CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "MAJSTROVIC , MARCELO ADRIAN||CLUB ALETICO INDEPENDIENTE DE BURZACO", "entrenador": "MAJSTROVIC , MARCELO ADRIAN", "club": "CLUB ALETICO INDEPENDIENTE DE BURZACO", "categorias": ["LIGA METRO"], "whatsapp": ""}, {"key": "BENEDETTO, EDUARDO HUGO||CLUB ATENEO INGENIERO RAVER", "entrenador": "BENEDETTO, EDUARDO HUGO", "club": "CLUB ATENEO INGENIERO RAVER", "categorias": ["CADETES", "JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "BIANCHI, SANTIAGO||CLUB ATENEO INGENIERO RAVER", "entrenador": "BIANCHI, SANTIAGO", "club": "CLUB ATENEO INGENIERO RAVER", "categorias": ["PRE MINI", "MINI"], "whatsapp": ""}, {"key": "PAMIO, LUCIA MARIA CLARA||CLUB ATENEO INGENIERO RAVER", "entrenador": "PAMIO, LUCIA MARIA CLARA", "club": "CLUB ATENEO INGENIERO RAVER", "categorias": ["INFANTILES"], "whatsapp": ""}, {"key": "PIRANI, FRANCISCO EUGENIO||CLUB ATENEO POPULAR VERSAILLES", "entrenador": "PIRANI, FRANCISCO EUGENIO", "club": "CLUB ATENEO POPULAR VERSAILLES", "categorias": ["LIGA METRO"], "whatsapp": ""}, {"key": "LAGINESTRA, HERNAN OSCAR||CLUB ATLETICO 3 DE FEBRERO", "entrenador": "LAGINESTRA, HERNAN OSCAR", "club": "CLUB ATLETICO 3 DE FEBRERO", "categorias": ["LIGA METRO"], "whatsapp": ""}, {"key": "ALCOBRE, AGUSTINA||CLUB ATLETICO 9 DE JULIO DE LANUS", "entrenador": "ALCOBRE, AGUSTINA", "club": "CLUB ATLETICO 9 DE JULIO DE LANUS", "categorias": ["PRE MINI", "MINI"], "whatsapp": ""}, {"key": "CISCO, CRISTIAN DARIO||CLUB ATLETICO 9 DE JULIO DE LANUS", "entrenador": "CISCO, CRISTIAN DARIO", "club": "CLUB ATLETICO 9 DE JULIO DE LANUS", "categorias": ["INFANTILES", "CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "SOLER, EMILIANO JOSE||CLUB ATLETICO 9 DE JULIO DE LANUS", "entrenador": "SOLER, EMILIANO JOSE", "club": "CLUB ATLETICO 9 DE JULIO DE LANUS", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "BELLO , DANIEL ADRIAN||CLUB ATLETICO CAZA Y PESCA", "entrenador": "BELLO , DANIEL ADRIAN", "club": "CLUB ATLETICO CAZA y PESCA", "categorias": ["LIGA METRO"], "whatsapp": ""}, {"key": "BARRIOS, PABLO DAMIAN||CLUB ATLETICO ESTUDIANTIL PORTEÑO", "entrenador": "BARRIOS, PABLO DAMIAN", "club": "CLUB ATLETICO ESTUDIANTIL PORTEÑO", "categorias": ["LIGA METRO"], "whatsapp": ""}, {"key": "PONZANO, LEONARDO PONZANO||CLUB ATLETICO HURACAN", "entrenador": "PONZANO, LEONARDO PONZANO", "club": "CLUB ATLETICO HURACAN", "categorias": ["CADETES", "JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "SALAMO, STEFANO||CLUB ATLETICO HURACAN", "entrenador": "SALAMO, STEFANO", "club": "CLUB ATLETICO HURACAN", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "SEOANE, JORGE ALBERTO||CLUB ATLETICO INDEPENDIENTE DE AVELLANEDA", "entrenador": "SEOANE, JORGE ALBERTO", "club": "CLUB ATLETICO INDEPENDIENTE de AVELLANEDA", "categorias": ["LIGA METRO"], "whatsapp": ""}, {"key": "GOMEZ, HERNAN ANIBAL||CLUB ATLETICO MONTE GRANDE LM", "entrenador": "GOMEZ, HERNAN ANIBAL", "club": "CLUB ATLETICO MONTE GRANDE LM", "categorias": ["LIGA METRO"], "whatsapp": ""}, {"key": "NOVOA, IGNACIO NICOLAS||CLUB ATLETICO PILAR", "entrenador": "NOVOA, IGNACIO NICOLAS", "club": "CLUB ATLETICO PILAR", "categorias": ["LIGA METRO"], "whatsapp": ""}, {"key": "NUÑEZ, FACUNDO||CLUB ATLETICO SAN MIGUEL", "entrenador": "NUÑEZ, FACUNDO", "club": "CLUB ATLETICO SAN MIGUEL", "categorias": ["LIGA METRO"], "whatsapp": ""}, {"key": "MARTINEZ, LEONARDO||CLUB ATLETICO TALLERES DE R. ESCALADA", "entrenador": "MARTINEZ, LEONARDO", "club": "CLUB ATLETICO TALLERES DE R. ESCALADA", "categorias": ["LIGA METRO"], "whatsapp": ""}, {"key": "MARCO , LUIS ARIEL||CLUB ATLETICO VELEZ SARSFIELD", "entrenador": "MARCO , LUIS ARIEL", "club": "CLUB ATLETICO VELEZ SARSFIELD", "categorias": ["LIGA METRO"], "whatsapp": ""}, {"key": "ENCINA, MAGALÍ IVANA||CLUB CEPA", "entrenador": "ENCINA, MAGALÍ IVANA", "club": "CLUB CEPA", "categorias": ["PRE MINI", "MINI"], "whatsapp": ""}, {"key": "MANSILLA, FRANCISCO ARIEL||CLUB CEPA", "entrenador": "MANSILLA, FRANCISCO ARIEL", "club": "CLUB CEPA", "categorias": ["INFANTILES"], "whatsapp": ""}, {"key": "REVELLO, SERGIO MARTIN||CLUB CEPA", "entrenador": "REVELLO, SERGIO MARTIN", "club": "CLUB CEPA", "categorias": ["CADETES", "JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "LOVECE NICOLAS EDGARDO||CLUB CIUDAD DE BUENOS AIRES", "entrenador": "LOVECE NICOLAS EDGARDO", "club": "CLUB CIUDAD DE BUENOS AIRES", "categorias": ["LIGA METRO"], "whatsapp": ""}, {"key": "NESPEREIRA, JOSE LUIS||CLUB DEPORTIVO DEFENSORES DE HURLINGHAM", "entrenador": "NESPEREIRA, JOSE LUIS", "club": "CLUB DEPORTIVO DEFENSORES DE HURLINGHAM", "categorias": ["LIGA METRO"], "whatsapp": ""}, {"key": "SILVA, SEBASTIAN ALFREDO||CLUB DEPORTIVO MUTUAL Y BIBLIOTECA POPULAR LEANDRO N. ALEM", "entrenador": "SILVA, SEBASTIAN ALFREDO", "club": "CLUB DEPORTIVO MUTUAL y BIBLIOTECA POPULAR LEANDRO N. ALEM", "categorias": ["LIGA METRO"], "whatsapp": ""}, {"key": "BAY, MARCELO DANIEL||CLUB DEPORTIVO SAN ANDRES", "entrenador": "BAY, MARCELO DANIEL", "club": "CLUB DEPORTIVO SAN ANDRES", "categorias": ["LIGA METRO"], "whatsapp": ""}, {"key": "BLOTTA, MARCELO ANGEL||CLUB DEPORTIVO Y SOCIAL COLEGIALES", "entrenador": "BLOTTA, MARCELO ANGEL", "club": "CLUB DEPORTIVO y SOCIAL COLEGIALES", "categorias": ["LIGA METRO"], "whatsapp": ""}, {"key": "VOLPI, ALEJO AGUSTIN||CLUB EL TALAR", "entrenador": "VOLPI, ALEJO AGUSTIN", "club": "CLUB EL TALAR", "categorias": ["LIGA METRO"], "whatsapp": ""}, {"key": "BOSCHETTI, RENZO||CLUB GEI AZUL(A)", "entrenador": "BOSCHETTI, RENZO", "club": "CLUB GEI AZUL(A)", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "CABRERA, JAVIER NICOLAS||CLUB GEI BLANCO(B)", "entrenador": "CABRERA, JAVIER NICOLAS", "club": "CLUB GEI BLANCO(B)", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "IZZO, MATIAS||CLUB GEI GRIS(C)", "entrenador": "IZZO, MATIAS", "club": "CLUB GEI GRIS(C)", "categorias": ["MINI", "INFANTILES", "CADETES", "JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "RAVAGLIATE, LEONEL OMAR||CLUB GIMNASIA Y ESGRIMA LA PLATA", "entrenador": "RAVAGLIATE, LEONEL OMAR", "club": "CLUB GIMNASIA Y ESGRIMA LA PLATA", "categorias": ["LIGA METRO"], "whatsapp": ""}, {"key": "GONZALEZ, JUAN IGNACIO||CLUB GIMNASIA Y ESGRIMA DE ITUZAINGO", "entrenador": "GONZALEZ, JUAN IGNACIO", "club": "CLUB GIMNASIA y ESGRIMA DE ITUZAINGO", "categorias": ["LIGA METRO"], "whatsapp": ""}, {"key": "GIORGI, LUCIANO IVAN||CLUB GIMNASIA Y ESGRIMA DE LOMAS DE ZAMORA", "entrenador": "GIORGI, LUCIANO IVAN", "club": "CLUB GIMNASIA y ESGRIMA DE LOMAS DE ZAMORA", "categorias": ["LIGA METRO"], "whatsapp": ""}, {"key": "PEVERI, GASTÓN||CLUB GIMNASIA Y ESGRIMA DE VILLA DEL PARQUE", "entrenador": "PEVERI, GASTÓN", "club": "CLUB GIMNASIA y ESGRIMA DE VILLA DEL PARQUE", "categorias": ["LIGA METRO"], "whatsapp": ""}, {"key": "CORDOBA, RONALDO||CLUB ITALIANO", "entrenador": "CORDOBA, RONALDO", "club": "CLUB ITALIANO", "categorias": ["LIGA METRO"], "whatsapp": ""}, {"key": "MOGGIO , ANDRES||CLUB MORON", "entrenador": "MOGGIO , ANDRES", "club": "CLUB MORON", "categorias": ["LIGA METRO"], "whatsapp": ""}, {"key": "KUPERMAN, ALEJANDRO||CLUB NAUTICO BUCHARDO", "entrenador": "KUPERMAN, ALEJANDRO", "club": "CLUB NAUTICO BUCHARDO", "categorias": ["LIGA METRO"], "whatsapp": ""}, {"key": "MARANO, MAXIMILIANO||CLUB NAUTICO HACOAJ", "entrenador": "MARANO, MAXIMILIANO", "club": "CLUB NAUTICO HACOAJ", "categorias": ["LIGA METRO"], "whatsapp": ""}, {"key": "RODRIGUEZ, SEBASTIAN ANDRES||CLUB RECREATIVO LOS INDIOS DE MORENO", "entrenador": "RODRIGUEZ, SEBASTIAN ANDRES", "club": "CLUB RECREATIVO LOS INDIOS DE MORENO", "categorias": ["LIGA METRO"], "whatsapp": ""}, {"key": "MARTINEZ , GUSTAVO ENRIQUE||CLUB S. Y D. LAS HERAS", "entrenador": "MARTINEZ , GUSTAVO ENRIQUE", "club": "CLUB S. y D. LAS HERAS", "categorias": ["LIGA METRO"], "whatsapp": ""}, {"key": "RANALLI, GUIDO||CLUB SAN FERNANDO", "entrenador": "RANALLI, GUIDO", "club": "CLUB SAN FERNANDO", "categorias": ["LIGA METRO"], "whatsapp": ""}, {"key": "PARISE, GABRIEL ROLANDO||CLUB SOCIAL BECCAR", "entrenador": "PARISE, GABRIEL ROLANDO", "club": "CLUB SOCIAL BECCAR", "categorias": ["LIGA METRO"], "whatsapp": ""}, {"key": "BACCHINI, CARLOS ADRIAN||CLUB SOCIAL CLARIDAD DE FOMENTO Y CULTURAL", "entrenador": "BACCHINI, CARLOS ADRIAN", "club": "CLUB SOCIAL CLARIDAD DE FOMENTO y CULTURAL", "categorias": ["LIGA METRO"], "whatsapp": ""}, {"key": "MANSILLA, FRANCISCO ARIEL||CLUB SOCIAL CULTURAL Y DEPORTIVO CEPA", "entrenador": "MANSILLA, FRANCISCO ARIEL", "club": "CLUB SOCIAL CULTURAL y DEPORTIVO CEPA", "categorias": ["LIGA METRO"], "whatsapp": ""}, {"key": "CASTRO DOMINGUEZ , LEONARDO||CLUB SOCIAL DE ALEJANDRO KORN", "entrenador": "CASTRO DOMINGUEZ , LEONARDO", "club": "CLUB SOCIAL DE ALEJANDRO KORN", "categorias": ["LIGA METRO"], "whatsapp": ""}, {"key": "TAMAGUSUKU, GERMAN||CLUB SOCIAL DEPORTIVO Y CULTURAL ARGENTINO DE CASTELAR", "entrenador": "TAMAGUSUKU, GERMAN", "club": "CLUB SOCIAL DEPORTIVO Y CULTURAL ARGENTINO DE CASTELAR", "categorias": ["LIGA METRO"], "whatsapp": ""}, {"key": "MANZO, BAUTISTA AUGUSTO||CLUB SOCIAL Y DEPORTIVO ARENAL", "entrenador": "MANZO, BAUTISTA AUGUSTO", "club": "CLUB SOCIAL Y DEPORTIVO ARENAL", "categorias": ["PRE MINI", "MINI"], "whatsapp": ""}, {"key": "POLICASTRO, MARCELO RUBEN||CLUB SOCIAL Y DEPORTIVO ARENAL", "entrenador": "POLICASTRO, MARCELO RUBEN", "club": "CLUB SOCIAL Y DEPORTIVO ARENAL", "categorias": ["INFANTILES", "CADETES", "JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "BRACCO, SEBASTIAN||CLUB SOCIAL Y DEPORTIVO PINOCHO", "entrenador": "BRACCO, SEBASTIAN", "club": "CLUB SOCIAL y DEPORTIVO PINOCHO", "categorias": ["LIGA METRO"], "whatsapp": ""}, {"key": "MARTINEZ, FEDERICO GABRIEL||CLUB SOCIAL Y DEPORTIVO PRESIDENTE DERQUI", "entrenador": "MARTINEZ, FEDERICO GABRIEL", "club": "CLUB SOCIAL y DEPORTIVO PRESIDENTE DERQUI", "categorias": ["LIGA METRO"], "whatsapp": ""}, {"key": "TRAVNIK, MARCELO||CLUB SPORTIVO ESCOBAR LM", "entrenador": "TRAVNIK, MARCELO", "club": "CLUB SPORTIVO ESCOBAR LM", "categorias": ["LIGA METRO"], "whatsapp": ""}, {"key": "FIORIDO, ALEJANDRO||CLUB SPORTIVO PILAR - PRE FEDERAL MASCULINO", "entrenador": "FIORIDO, ALEJANDRO", "club": "CLUB SPORTIVO PILAR  - PRE FEDERAL Masculino", "categorias": ["LIGA METRO"], "whatsapp": ""}, {"key": "CHAVES, LUCAS||COLEGIALES", "entrenador": "CHAVES, LUCAS", "club": "COLEGIALES", "categorias": ["CADETES", "JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "GONZALVEZ, SANTINO||COLEGIALES", "entrenador": "GONZALVEZ, SANTINO", "club": "COLEGIALES", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "ALBA, MARIANO MATIAS||COLON FC", "entrenador": "ALBA, MARIANO MATIAS", "club": "COLON FC", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "MASTROFILIPPO, SANTIAGO||COLON FC", "entrenador": "MASTROFILIPPO, SANTIAGO", "club": "COLON FC", "categorias": ["CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "ROMERO, FACUNDO DANIEL||COLON FC", "entrenador": "ROMERO, FACUNDO DANIEL", "club": "COLON FC", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "BRASESCO, EZEQUIEL||COMUNICACIONES AMARILLO", "entrenador": "BRASESCO, EZEQUIEL", "club": "COMUNICACIONES AMARILLO", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "LAMAS, BENICIO||COMUNICACIONES AMARILLO A", "entrenador": "LAMAS, BENICIO", "club": "COMUNICACIONES AMARILLO A", "categorias": ["PRE MINI", "MINI"], "whatsapp": ""}, {"key": "LEONI , IGNACIO EDUARDO||COMUNICACIONES AMARILLO A", "entrenador": "LEONI , IGNACIO EDUARDO", "club": "COMUNICACIONES AMARILLO A", "categorias": ["INFANTILES", "CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "LANZI, MARIANO EMANUEL||COMUNICACIONES NEGRO", "entrenador": "LANZI, MARIANO EMANUEL", "club": "COMUNICACIONES NEGRO", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "CASAL, PATRICIO JAVIER||COMUNICACIONES NEGRO B", "entrenador": "CASAL, PATRICIO JAVIER", "club": "COMUNICACIONES NEGRO B", "categorias": ["PRE MINI", "MINI"], "whatsapp": ""}, {"key": "VITALI, JUAN MARTIN||COMUNICACIONES NEGRO B", "entrenador": "VITALI, JUAN MARTIN", "club": "COMUNICACIONES NEGRO B", "categorias": ["INFANTILES", "CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "AMADO , OMAR HORACIO||COOP DE TORTUGUITAS", "entrenador": "AMADO , OMAR HORACIO", "club": "COOP DE TORTUGUITAS", "categorias": ["CADETES"], "whatsapp": ""}, {"key": "BALMACEDA, CLAUDIO||COOP DE TORTUGUITAS", "entrenador": "BALMACEDA, CLAUDIO", "club": "COOP DE TORTUGUITAS", "categorias": ["JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "PAGÈZ, NICOLÀS PABLO||COOP DE TORTUGUITAS", "entrenador": "PAGÈZ, NICOLÀS PABLO", "club": "COOP DE TORTUGUITAS", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "BIONDI, LUCAS AGUSTÍN||COOPERARIOS DE QUILMES", "entrenador": "BIONDI, LUCAS AGUSTÍN", "club": "COOPERARIOS DE QUILMES", "categorias": ["INFANTILES"], "whatsapp": ""}, {"key": "GARZON , FEDERICO ALEJANDRO||COOPERARIOS DE QUILMES", "entrenador": "GARZON , FEDERICO ALEJANDRO", "club": "COOPERARIOS DE QUILMES", "categorias": ["CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "PIZARRO, AGUSTIN||COOPERARIOS DE QUILMES", "entrenador": "PIZARRO, AGUSTIN", "club": "COOPERARIOS DE QUILMES", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "VICO, FRANCISCO||COOPERARIOS DE QUILMES", "entrenador": "VICO, FRANCISCO", "club": "COOPERARIOS DE QUILMES", "categorias": ["PRE MINI", "MINI"], "whatsapp": ""}, {"key": "CASTRO DASCOLI, SEBASTIAN||COPELLO", "entrenador": "CASTRO DASCOLI, SEBASTIAN", "club": "COPELLO", "categorias": ["PRE MINI", "MINI"], "whatsapp": ""}, {"key": "GOENAGA, MIGUEL ANGEL||COPELLO", "entrenador": "GOENAGA, MIGUEL ANGEL", "club": "COPELLO", "categorias": ["INFANTILES", "CADETES"], "whatsapp": ""}, {"key": "LEGNANI, LEONARDO ANDRES||COPELLO", "entrenador": "LEGNANI, LEONARDO ANDRES", "club": "COPELLO", "categorias": ["JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "COLOMBO FORLANI, MANUEL||COUNTRY BANFIELD", "entrenador": "COLOMBO FORLANI, MANUEL", "club": "COUNTRY BANFIELD", "categorias": ["PRE MINI"], "whatsapp": ""}, {"key": "GODOY, AGUSTÍN EZEQUIEL||COUNTRY BANFIELD", "entrenador": "GODOY, AGUSTÍN EZEQUIEL", "club": "COUNTRY BANFIELD", "categorias": ["MINI", "INFANTILES", "CADETES"], "whatsapp": ""}, {"key": "SAINZ, THIAGO AGUSTIN||COUNTRY BANFIELD", "entrenador": "SAINZ, THIAGO AGUSTIN", "club": "COUNTRY BANFIELD", "categorias": ["JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "BRELLANO RENAULT, CHIARA LUNA||CLUB SOCIAL DEPORTIVO Y CULTURAL MORENO", "entrenador": "BRELLANO RENAULT, CHIARA LUNA", "club": "Club Social Deportivo y Cultural Moreno", "categorias": ["INFANTILES"], "whatsapp": ""}, {"key": "LUQUE, FRANCISCO AGUSTIN||CLUB SOCIAL DEPORTIVO Y CULTURAL MORENO", "entrenador": "LUQUE, FRANCISCO AGUSTIN", "club": "Club Social Deportivo y Cultural Moreno", "categorias": ["CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "ROMERO, RAMON HUMBERTO||CLUB SOCIAL DEPORTIVO Y CULTURAL MORENO", "entrenador": "ROMERO, RAMON HUMBERTO", "club": "Club Social Deportivo y Cultural Moreno", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "SALVADEO, VALENTINA||CLUB SOCIAL DEPORTIVO Y CULTURAL MORENO", "entrenador": "SALVADEO, VALENTINA", "club": "Club Social Deportivo y Cultural Moreno", "categorias": ["PRE MINI", "MINI"], "whatsapp": ""}, {"key": "DIAZ MORESCO, TOMAS||DEFENSORES DE BANFIELD", "entrenador": "DIAZ MORESCO, TOMAS", "club": "DEFENSORES DE BANFIELD", "categorias": ["PRE MINI", "MINI"], "whatsapp": ""}, {"key": "MIRARCHI, LUCAS||DEFENSORES DE BANFIELD", "entrenador": "MIRARCHI, LUCAS", "club": "DEFENSORES DE BANFIELD", "categorias": ["INFANTILES", "CADETES"], "whatsapp": ""}, {"key": "SAINZ, HERNAN CARLOS||DEFENSORES DE BANFIELD", "entrenador": "SAINZ, HERNAN CARLOS", "club": "DEFENSORES DE BANFIELD", "categorias": ["JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "AGUIRRE, AYLEN LAURA||DEFENSORES DE GLEW", "entrenador": "AGUIRRE, AYLEN LAURA", "club": "DEFENSORES DE GLEW", "categorias": ["PRE MINI", "MINI", "INFANTILES", "CADETES", "JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "MARTINEZ VAZQUEZ, JUAN ARTURO||DEFENSORES DE HURLINGHAM BLANCO", "entrenador": "MARTINEZ VAZQUEZ, JUAN ARTURO", "club": "DEFENSORES DE HURLINGHAM  BLANCO", "categorias": ["CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "MICHAUD, JUAN PABLO||DEFENSORES DE HURLINGHAM BLANCO", "entrenador": "MICHAUD, JUAN PABLO", "club": "DEFENSORES DE HURLINGHAM  BLANCO", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "NESPEREIRA, JOSE LUIS||DEFENSORES DE HURLINGHAM BLANCO", "entrenador": "NESPEREIRA, JOSE LUIS", "club": "DEFENSORES DE HURLINGHAM  BLANCO", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "BLANCO, GUSTAVO JOSE||DEFENSORES DE HURLINGHAM BLANCO", "entrenador": "BLANCO, GUSTAVO JOSE", "club": "DEFENSORES DE HURLINGHAM BLANCO", "categorias": ["PRE MINI", "MINI", "INFANTILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "MESSORE, DAVID SEBASTIAN||DEFENSORES DE HURLINGHAM BLANCO", "entrenador": "MESSORE, DAVID SEBASTIAN", "club": "DEFENSORES DE HURLINGHAM BLANCO", "categorias": ["CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "AMPUERO , FLAVIO JOSE||DEFENSORES DE MORENO", "entrenador": "AMPUERO , FLAVIO JOSE", "club": "DEFENSORES DE MORENO", "categorias": ["CADETES", "JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "ROMERO, DIEGO EMANUEL||DEFENSORES DE MORENO", "entrenador": "ROMERO, DIEGO EMANUEL", "club": "DEFENSORES DE MORENO", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "CZEMERNICKI, FACUNDO MARTIN||DEFENSORES DE SANTOS LUGARES", "entrenador": "CZEMERNICKI, FACUNDO MARTIN", "club": "DEFENSORES DE SANTOS LUGARES", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "FONTEIRIZ, JAVIER ALEJANDRO||DEFENSORES DE SANTOS LUGARES", "entrenador": "FONTEIRIZ, JAVIER ALEJANDRO", "club": "DEFENSORES DE SANTOS LUGARES", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "LORENZO, MATIAS||DEFENSORES DE SANTOS LUGARES", "entrenador": "LORENZO, MATIAS", "club": "DEFENSORES DE SANTOS LUGARES", "categorias": ["CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "GONZALEZ, NAHUEL OSVALDO||DEPORTIVO CROVARA", "entrenador": "GONZALEZ, NAHUEL OSVALDO", "club": "DEPORTIVO CROVARA", "categorias": ["CADETES", "JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "IGLESIAS, AGUSTIN||DEPORTIVO CROVARA", "entrenador": "IGLESIAS, AGUSTIN", "club": "DEPORTIVO CROVARA", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "TESTON, ROBERTO VALOIS||DEPORTIVO MORON", "entrenador": "TESTON, ROBERTO VALOIS", "club": "DEPORTIVO MORON", "categorias": ["LIGA METRO"], "whatsapp": ""}, {"key": "RAIMONDE, EZEQUIEL AGUSTÍN||DEPORTIVO MORON A", "entrenador": "RAIMONDE, EZEQUIEL AGUSTÍN", "club": "DEPORTIVO MORON A", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "TESTON, ROBERTO VALOIS||DEPORTIVO MORON A", "entrenador": "TESTON, ROBERTO VALOIS", "club": "DEPORTIVO MORON A", "categorias": ["CADETES", "JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "BAY, MARCELO DANIEL||DEPORTIVO SAN ANDRES", "entrenador": "BAY, MARCELO DANIEL", "club": "DEPORTIVO SAN ANDRES", "categorias": ["CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "SIEBENHART, JAVIER EMILIO||DEPORTIVO SAN ANDRES", "entrenador": "SIEBENHART, JAVIER EMILIO", "club": "DEPORTIVO SAN ANDRES", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "TERMINIELO, MARCOS DANIEL||DEPORTIVO SAN ANDRES", "entrenador": "TERMINIELO, MARCOS DANIEL", "club": "DEPORTIVO SAN ANDRES", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "GALARREGUI, MARCELO DANIEL||EL FOGON", "entrenador": "GALARREGUI, MARCELO DANIEL", "club": "EL FOGON", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "GARCIA, FERNANDO JAVIER||EL FOGON", "entrenador": "GARCIA, FERNANDO JAVIER", "club": "EL FOGON", "categorias": ["PRE MINI", "MINI", "INFANTILES", "CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "RAMIREZ , JULIO NICOLAS||EL PALOMAR", "entrenador": "RAMIREZ , JULIO NICOLAS", "club": "EL PALOMAR", "categorias": ["INFANTILES", "CADETES", "JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "RAMIREZ, FACUNDO||EL PALOMAR", "entrenador": "RAMIREZ, FACUNDO", "club": "EL PALOMAR", "categorias": ["PRE MINI", "MINI"], "whatsapp": ""}, {"key": "LUGRIN, NAHUEL FEDERICO||EL PORVENIR", "entrenador": "LUGRIN, NAHUEL FEDERICO", "club": "EL PORVENIR", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "PERRIELLO, LUCAS FEDERICO||EL PORVENIR", "entrenador": "PERRIELLO, LUCAS FEDERICO", "club": "EL PORVENIR", "categorias": ["CADETES", "JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "GALANTE, FEDERICO||EL TALAR", "entrenador": "GALANTE, FEDERICO", "club": "EL TALAR", "categorias": ["JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "MANSILLA, FRANCISCO||EL TALAR", "entrenador": "MANSILLA, FRANCISCO", "club": "EL TALAR", "categorias": ["CADETES"], "whatsapp": ""}, {"key": "MARINO, MAXIMILIANO ARIEL||EL TALAR", "entrenador": "MARINO, MAXIMILIANO ARIEL", "club": "EL TALAR", "categorias": ["PRE MINI", "MINI"], "whatsapp": ""}, {"key": "MASCI, MARCELO ALEJANDRO||EL TALAR", "entrenador": "MASCI, MARCELO ALEJANDRO", "club": "EL TALAR", "categorias": ["INFANTILES"], "whatsapp": ""}, {"key": "HEREDIA, EDUARDO HORACIO||ESTRELLA DE BOEDO", "entrenador": "HEREDIA, EDUARDO HORACIO", "club": "ESTRELLA DE BOEDO", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "STACHIOTTI, HECTOR OSCAR||ESTRELLA DE BOEDO", "entrenador": "STACHIOTTI, HECTOR OSCAR", "club": "ESTRELLA DE BOEDO", "categorias": ["CADETES", "JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "GARCIA PEREZ, FRANCO A.||ESTUDIANTIL PORTEÑO", "entrenador": "GARCIA PEREZ, FRANCO A.", "club": "ESTUDIANTIL PORTEÑO", "categorias": ["MINI", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "KAMIN, EMILIANO ADRIAN||ESTUDIANTIL PORTEÑO", "entrenador": "KAMIN, EMILIANO ADRIAN", "club": "ESTUDIANTIL PORTEÑO", "categorias": ["INFANTILES", "CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "NEME, ALEJANDRO GERMAN||ESTUDIANTIL PORTEÑO", "entrenador": "NEME, ALEJANDRO GERMAN", "club": "ESTUDIANTIL PORTEÑO", "categorias": ["PRE MINI"], "whatsapp": ""}, {"key": "PAMPANINI, CAYETANO CARLOS||EZEIZA", "entrenador": "PAMPANINI, CAYETANO CARLOS", "club": "EZEIZA", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "VEGA GUZMAN, LAUTARO JOSE||EZEIZA", "entrenador": "VEGA GUZMAN, LAUTARO JOSE", "club": "EZEIZA", "categorias": ["PRE MINI", "MINI", "INFANTILES", "CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "BELLUSCI, JUAN IGNACIO||FERROCARRIL OESTE BLANCA", "entrenador": "BELLUSCI, JUAN IGNACIO", "club": "FERROCARRIL OESTE BLANCA", "categorias": ["CADETES"], "whatsapp": ""}, {"key": "BONAFINA, TIAGO MIGUEL||FERROCARRIL OESTE BLANCO", "entrenador": "BONAFINA, TIAGO MIGUEL", "club": "FERROCARRIL OESTE BLANCO", "categorias": ["JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "PERUCHENA, LUCAS||FERROCARRIL OESTE BLANCO", "entrenador": "PERUCHENA, LUCAS", "club": "FERROCARRIL OESTE BLANCO", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "CIUFFO, GIANLUCA||FERROCARRIL OESTE NARANJA", "entrenador": "CIUFFO, GIANLUCA", "club": "FERROCARRIL OESTE NARANJA", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "GARCÍA COSOLETO, ALEJANDRO EZEQUIEL||FERROCARRIL OESTE NARANJA", "entrenador": "GARCÍA COSOLETO, ALEJANDRO EZEQUIEL", "club": "FERROCARRIL OESTE NARANJA", "categorias": ["CADETES", "JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "DI GILIO, JUAN MANUEL||FERROCARRIL OESTE VERDE", "entrenador": "DI GILIO, JUAN MANUEL", "club": "FERROCARRIL OESTE VERDE", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "FIGUERERO, MARCOS ALEJANDRO||FERROCARRIL OESTE VERDE", "entrenador": "FIGUERERO, MARCOS ALEJANDRO", "club": "FERROCARRIL OESTE VERDE", "categorias": ["JUVENILES"], "whatsapp": ""}, {"key": "OVANDO, VICTOR MANUEL||FERROCARRIL OESTE VERDE", "entrenador": "OVANDO, VICTOR MANUEL", "club": "FERROCARRIL OESTE VERDE", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "ROSSI , NICOLAS ALEJANDRO||FERROCARRIL OESTE VERDE", "entrenador": "ROSSI , NICOLAS ALEJANDRO", "club": "FERROCARRIL OESTE VERDE", "categorias": ["CADETES"], "whatsapp": ""}, {"key": "BRIANSO, FEDERICO LEANDRO||G Y E DE LOMAS DE ZAMORA", "entrenador": "BRIANSO, FEDERICO LEANDRO", "club": "G Y E DE LOMAS DE ZAMORA", "categorias": ["PRE MINI", "MINI", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "SAMBIASE, MANUEL JOAQUIN||G Y E DE LOMAS DE ZAMORA", "entrenador": "SAMBIASE, MANUEL JOAQUIN", "club": "G Y E DE LOMAS DE ZAMORA", "categorias": ["INFANTILES", "CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "BELLO, TOMAS MARTIN||GEBA", "entrenador": "BELLO, TOMAS MARTIN", "club": "GEBA", "categorias": ["INFANTILES"], "whatsapp": ""}, {"key": "CIRILLO, MARCELO||GEBA", "entrenador": "CIRILLO, MARCELO", "club": "GEBA", "categorias": ["CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "MARTINEZ, LEONARDO||GEBA", "entrenador": "MARTINEZ, LEONARDO", "club": "GEBA", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "SELSER, IOSHUA||GEBA", "entrenador": "SELSER, IOSHUA", "club": "GEBA", "categorias": ["PRE MINI", "MINI"], "whatsapp": ""}, {"key": "CABRERA, JAVIER NICOLAS||GEI", "entrenador": "CABRERA, JAVIER NICOLAS", "club": "GEI", "categorias": ["MINI"], "whatsapp": ""}, {"key": "IZZO, MATIAS||GEI", "entrenador": "IZZO, MATIAS", "club": "GEI", "categorias": ["PRE MINI", "INFANTILES"], "whatsapp": ""}, {"key": "TRIMBOLI, STEFANO EMANUEL||GEI", "entrenador": "TRIMBOLI, STEFANO EMANUEL", "club": "GEI", "categorias": ["CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "GARCIA, SANTIAGO||GEVP", "entrenador": "GARCIA, SANTIAGO", "club": "GEVP", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "PACHECO, HORACIO ALFREDO||GEVP", "entrenador": "PACHECO, HORACIO ALFREDO", "club": "GEVP", "categorias": ["CADETES", "JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "GARBINO, NICOLAS FABIAN||GIMNASIA Y ESGRIMA LA PLATA A", "entrenador": "GARBINO, NICOLAS FABIAN", "club": "GIMNASIA Y ESGRIMA LA PLATA A", "categorias": ["CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "MANTINI, SOFIA LARA||GIMNASIA Y ESGRIMA LA PLATA A", "entrenador": "MANTINI, SOFIA LARA", "club": "GIMNASIA Y ESGRIMA LA PLATA A", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "SOTO, FRANCISCO EZEQUIEL||GIMNASIA Y ESGRIMA LA PLATA A", "entrenador": "SOTO, FRANCISCO EZEQUIEL", "club": "GIMNASIA Y ESGRIMA LA PLATA A", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "GALHARRETBORDE, AGUSTIN ALBERTO||GIMNASIA Y ESGRIMA LA PLATA B", "entrenador": "GALHARRETBORDE, AGUSTIN ALBERTO", "club": "GIMNASIA Y ESGRIMA LA PLATA B", "categorias": ["INFANTILES"], "whatsapp": ""}, {"key": "LLANOS, AZARIEL ADRIAN||GIMNASIA Y ESGRIMA LA PLATA B", "entrenador": "LLANOS, AZARIEL ADRIAN", "club": "GIMNASIA Y ESGRIMA LA PLATA B", "categorias": ["CADETES", "JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "GARCÍA , DIEGO LEANDRO||GUILLON BASQUET", "entrenador": "GARCÍA , DIEGO LEANDRO", "club": "GUILLON BASQUET", "categorias": ["CADETES", "JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "ZAPLARA , CRISTIAN GASTÓN||GUILLON BASQUET", "entrenador": "ZAPLARA , CRISTIAN GASTÓN", "club": "GUILLON BASQUET", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "MERCADO , JORGE DANIEL||HARRODS GATH Y CHAVES", "entrenador": "MERCADO , JORGE DANIEL", "club": "HARRODS GATH Y CHAVES", "categorias": ["CADETES", "JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "SANTILLI, JULIETA||HARRODS GATH Y CHAVES", "entrenador": "SANTILLI, JULIETA", "club": "HARRODS GATH Y CHAVES", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "ACOSTA, JUAN PABLO||HURACAN DE SAN JUSTO", "entrenador": "ACOSTA, JUAN PABLO", "club": "HURACAN DE SAN JUSTO", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "ESCUBILLA, PABLO JOAQUIN||HURACAN DE SAN JUSTO", "entrenador": "ESCUBILLA, PABLO JOAQUIN", "club": "HURACAN DE SAN JUSTO", "categorias": ["LIGA METRO"], "whatsapp": ""}, {"key": "TROVATO, ROMAN FRANCO||HURACAN DE SAN JUSTO", "entrenador": "TROVATO, ROMAN FRANCO", "club": "HURACAN DE SAN JUSTO", "categorias": ["CADETES", "JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "BERAZATEGUI, JUAN PABLO||IMPERIO JRS", "entrenador": "BERAZATEGUI, JUAN PABLO", "club": "IMPERIO JRS", "categorias": ["LIGA METRO"], "whatsapp": ""}, {"key": "BERAZATEGUI, JUAN PABLO||IMPERIO JUNIORS", "entrenador": "BERAZATEGUI, JUAN PABLO", "club": "IMPERIO JUNIORS", "categorias": ["JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "FRESNO, JUAN PABLO||IMPERIO JUNIORS", "entrenador": "FRESNO, JUAN PABLO", "club": "IMPERIO JUNIORS", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "ISRAELOFF, PABLO ESTEBAN||IMPERIO JUNIORS", "entrenador": "ISRAELOFF, PABLO ESTEBAN", "club": "IMPERIO JUNIORS", "categorias": ["CADETES"], "whatsapp": ""}, {"key": "ECEOLAZA DEVOTO, LAUTARO||INDEPENDIENTE", "entrenador": "ECEOLAZA DEVOTO, LAUTARO", "club": "INDEPENDIENTE", "categorias": ["MINI", "INFANTILES"], "whatsapp": ""}, {"key": "LOPEZ, JAVIER PABLO||INDEPENDIENTE", "entrenador": "LOPEZ, JAVIER PABLO", "club": "INDEPENDIENTE", "categorias": ["CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "NUNZIO, MARTIN||INDEPENDIENTE", "entrenador": "NUNZIO, MARTIN", "club": "INDEPENDIENTE", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "TEDESCHI PASQUALE, LUCA||INDEPENDIENTE", "entrenador": "TEDESCHI PASQUALE, LUCA", "club": "INDEPENDIENTE", "categorias": ["PRE MINI"], "whatsapp": ""}, {"key": "NAVARRETE, BRIAN NAHUEL||INDEPENDIENTE DE BURZACO", "entrenador": "NAVARRETE, BRIAN NAHUEL", "club": "INDEPENDIENTE DE BURZACO", "categorias": ["PRE MINI", "MINI", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "QUERCIA, BRUNO MAXIMILIANO||INDEPENDIENTE DE BURZACO", "entrenador": "QUERCIA, BRUNO MAXIMILIANO", "club": "INDEPENDIENTE DE BURZACO", "categorias": ["INFANTILES", "CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "AGOSTINELLI, FEDERICO DANIEL||INDEPENDIENTE DE ESCOBAR", "entrenador": "AGOSTINELLI, FEDERICO DANIEL", "club": "INDEPENDIENTE DE ESCOBAR", "categorias": ["JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "SARMIENTO, MARCELO ALEJANDRO||INDEPENDIENTE DE ESCOBAR", "entrenador": "SARMIENTO, MARCELO ALEJANDRO", "club": "INDEPENDIENTE DE ESCOBAR", "categorias": ["PRE MINI", "MINI", "INFANTILES", "CADETES"], "whatsapp": ""}, {"key": "PETRANTONIO, GUSTAVO MARCELO||INSTITUCION CUL. DEP. MUTUAL Y BIBLIOTECA POPULAR 'DOMINGO FAUSTINO SARMIENTO'", "entrenador": "PETRANTONIO, GUSTAVO MARCELO", "club": "INSTITUCION CUL. DEP. MUTUAL y BIBLIOTECA POPULAR 'DOMINGO FAUSTINO SARMIENTO'", "categorias": ["LIGA METRO"], "whatsapp": ""}, {"key": "CURI, TOMAS AGUSTIN||INSTITUCION CULTURAL Y DEPORTIVA PEDRO ECHAGUE", "entrenador": "CURI, TOMAS AGUSTIN", "club": "INSTITUCION CULTURAL y DEPORTIVA PEDRO ECHAGUE", "categorias": ["LIGA METRO"], "whatsapp": ""}, {"key": "AZCUNE, MARTIN||INSTITUCION SARMIENTO", "entrenador": "AZCUNE, MARTIN", "club": "INSTITUCION SARMIENTO", "categorias": ["INFANTILES", "CADETES", "JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "SOLJACIC, MARIANO OSCAR||INSTITUCION SARMIENTO", "entrenador": "SOLJACIC, MARIANO OSCAR", "club": "INSTITUCION SARMIENTO", "categorias": ["PRE MINI", "MINI"], "whatsapp": ""}, {"key": "IGLESIAS LOPEZ, SANTIAGO||ITALIANO", "entrenador": "IGLESIAS LOPEZ, SANTIAGO", "club": "ITALIANO", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "LOPEZ, MARCELO ENRIQUE||ITALIANO", "entrenador": "LOPEZ, MARCELO ENRIQUE", "club": "ITALIANO", "categorias": ["JUVENILES"], "whatsapp": ""}, {"key": "MARTINEZ, CAROLINA BELEN||ITALIANO", "entrenador": "MARTINEZ, CAROLINA BELEN", "club": "ITALIANO", "categorias": ["CADETES"], "whatsapp": ""}, {"key": "MAYOCHI, RENZO||ITALIANO", "entrenador": "MAYOCHI, RENZO", "club": "ITALIANO", "categorias": ["MINI", "INFANTILES"], "whatsapp": ""}, {"key": "MAZA, JOAQUIN GABRIEL||ITALIANO", "entrenador": "MAZA, JOAQUIN GABRIEL", "club": "ITALIANO", "categorias": ["PRE MINI"], "whatsapp": ""}, {"key": "MALVICINI, ROBERTO DANIEL||ITALIANO DE JOSE C PAZ", "entrenador": "MALVICINI, ROBERTO DANIEL", "club": "ITALIANO DE JOSE C PAZ", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "RENNER TONINELLI, NCOLAS ARIEL||ITALIANO DE JOSE C PAZ", "entrenador": "RENNER TONINELLI, NCOLAS ARIEL", "club": "ITALIANO DE JOSE C PAZ", "categorias": ["PRE MINI", "MINI", "INFANTILES", "CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "DO CAMPO, LEANDRO JAVIER||JOSE HERNANDEZ", "entrenador": "DO CAMPO, LEANDRO JAVIER", "club": "JOSE HERNANDEZ", "categorias": ["CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "FERNANDEZ SOSA, FLAVIO ARISTIDES||JOSE HERNANDEZ", "entrenador": "FERNANDEZ SOSA, FLAVIO ARISTIDES", "club": "JOSE HERNANDEZ", "categorias": ["LIGA PROXIMO", "LIGA METRO"], "whatsapp": ""}, {"key": "PONCE, JERONIMO GASPAR||JOSE HERNANDEZ", "entrenador": "PONCE, JERONIMO GASPAR", "club": "JOSE HERNANDEZ", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "CHERNOPOLOFF, CAMILA||JUVENCIA", "entrenador": "CHERNOPOLOFF, CAMILA", "club": "JUVENCIA", "categorias": ["PRE MINI", "MINI"], "whatsapp": ""}, {"key": "CORLITO, LEONEL ELIAN||JUVENCIA", "entrenador": "CORLITO, LEONEL ELIAN", "club": "JUVENCIA", "categorias": ["INFANTILES", "CADETES", "JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "AMUNDARAIN, LUIS MARIA||JUVENTUD UNIDA", "entrenador": "AMUNDARAIN, LUIS MARIA", "club": "JUVENTUD UNIDA", "categorias": ["CADETES", "JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "CASTIGLIONI, EZEQUIEL||JUVENTUD UNIDA", "entrenador": "CASTIGLIONI, EZEQUIEL", "club": "JUVENTUD UNIDA", "categorias": ["PRE MINI", "INFANTILES"], "whatsapp": ""}, {"key": "VERGARA, VALENTIN GABRIEL||JUVENTUD UNIDA", "entrenador": "VERGARA, VALENTIN GABRIEL", "club": "JUVENTUD UNIDA", "categorias": ["MINI"], "whatsapp": ""}, {"key": "HERRERA, DARIO AGUSTIN||LA UNION", "entrenador": "HERRERA, DARIO AGUSTIN", "club": "LA UNION", "categorias": ["PRE MINI", "MINI", "INFANTILES", "CADETES"], "whatsapp": ""}, {"key": "SOSA , MARCELO OSCAR||LA UNION", "entrenador": "SOSA , MARCELO OSCAR", "club": "LA UNION", "categorias": ["JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "MALDONADO, MAURO ARIEL||LANUS", "entrenador": "MALDONADO, MAURO ARIEL", "club": "LANUS", "categorias": ["CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "MÜLLER, GASTON||LANUS", "entrenador": "MÜLLER, GASTON", "club": "LANUS", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "RELLAN, FACUNDO NICOLAS||LANUS", "entrenador": "RELLAN, FACUNDO NICOLAS", "club": "LANUS", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "BAPTISTA, DIEGO HERNAN||LAS HERAS", "entrenador": "BAPTISTA, DIEGO HERNAN", "club": "LAS HERAS", "categorias": ["INFANTILES", "CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "IGLESIAS, PABLO LEONARDO||LAS HERAS", "entrenador": "IGLESIAS, PABLO LEONARDO", "club": "LAS HERAS", "categorias": ["PRE MINI", "MINI"], "whatsapp": ""}, {"key": "MARTINEZ , GUSTAVO ENRIQUE||LAS HERAS", "entrenador": "MARTINEZ , GUSTAVO ENRIQUE", "club": "LAS HERAS", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "CARRIZO, ANÍBAL JULIO||LOBOS ATHLETIC CLUB", "entrenador": "CARRIZO, ANÍBAL JULIO", "club": "LOBOS  ATHLETIC  CLUB", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "LOPRETE DÍAZ, JUAN CRUZ||LOBOS CADETES", "entrenador": "LOPRETE DÍAZ, JUAN CRUZ", "club": "LOBOS  CADETES", "categorias": ["CADETES"], "whatsapp": ""}, {"key": "LOPRETE DÍAZ, JUAN CRUZ||LOBOS INFANTILES", "entrenador": "LOPRETE DÍAZ, JUAN CRUZ", "club": "LOBOS  INFANTILES", "categorias": ["INFANTILES"], "whatsapp": ""}, {"key": "LOPRETE DÍAZ, JUAN CRUZ||LOBOS JUVENILES", "entrenador": "LOPRETE DÍAZ, JUAN CRUZ", "club": "LOBOS  JUVENILES", "categorias": ["JUVENILES"], "whatsapp": ""}, {"key": "SCOPEL, FRANCO GABRIEL||LOBOS MINI", "entrenador": "SCOPEL, FRANCO GABRIEL", "club": "LOBOS  MINI", "categorias": ["MINI"], "whatsapp": ""}, {"key": "FERNANDEZ, FAUSTO DANIEL||LOBOS PREMINI", "entrenador": "FERNANDEZ, FAUSTO DANIEL", "club": "LOBOS PREMINI", "categorias": ["PRE MINI"], "whatsapp": ""}, {"key": "CAPOANO, ELIANA AGUSTINA||LOS ANDES", "entrenador": "CAPOANO, ELIANA AGUSTINA", "club": "LOS ANDES", "categorias": ["PRE MINI", "MINI"], "whatsapp": ""}, {"key": "D ANCORA, IVAN DANIEL||LOS ANDES", "entrenador": "D ANCORA, IVAN DANIEL", "club": "LOS ANDES", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "PUGLIESE, GERARDO||LOS ANDES", "entrenador": "PUGLIESE, GERARDO", "club": "LOS ANDES", "categorias": ["INFANTILES", "CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "LOPEZ, FRANCO GASTON||LOS INDIOS CADETES A", "entrenador": "LOPEZ, FRANCO GASTON", "club": "LOS INDIOS CADETES A", "categorias": ["CADETES"], "whatsapp": ""}, {"key": "TOURN BAISCH, DANTE EMILIANO||LOS INDIOS CADETES B", "entrenador": "TOURN BAISCH, DANTE EMILIANO", "club": "LOS INDIOS CADETES B", "categorias": ["CADETES"], "whatsapp": ""}, {"key": "LOPEZ, FRANCO GASTON||LOS INDIOS INFANTILES A", "entrenador": "LOPEZ, FRANCO GASTON", "club": "LOS INDIOS INFANTILES A", "categorias": ["INFANTILES"], "whatsapp": ""}, {"key": "TOURN BAISCH, DANTE EMILIANO||LOS INDIOS INFANTILES B", "entrenador": "TOURN BAISCH, DANTE EMILIANO", "club": "LOS INDIOS INFANTILES B", "categorias": ["INFANTILES"], "whatsapp": ""}, {"key": "LOPEZ, FRANCO GASTON||LOS INDIOS JUVENILES A", "entrenador": "LOPEZ, FRANCO GASTON", "club": "LOS INDIOS JUVENILES A", "categorias": ["JUVENILES"], "whatsapp": ""}, {"key": "TOURN BAISCH, DANTE EMILIANO||LOS INDIOS JUVENILES B", "entrenador": "TOURN BAISCH, DANTE EMILIANO", "club": "LOS INDIOS JUVENILES B", "categorias": ["JUVENILES"], "whatsapp": ""}, {"key": "FERNANDEZ, EMMANUEL MARTIN||LOS INDIOS LIGA PROXIMA A", "entrenador": "FERNANDEZ, EMMANUEL MARTIN", "club": "LOS INDIOS LIGA PROXIMA A", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "TOURN BAISCH, DANTE EMILIANO||LOS INDIOS LIGA PROXIMA B", "entrenador": "TOURN BAISCH, DANTE EMILIANO", "club": "LOS INDIOS LIGA PROXIMA B", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "ORNELLA, AGUSTINA||LOS INDIOS MINI A", "entrenador": "ORNELLA, AGUSTINA", "club": "LOS INDIOS MINI A", "categorias": ["MINI"], "whatsapp": ""}, {"key": "IBAÑEZ , SANTIAGO||LOS INDIOS MINI B", "entrenador": "IBAÑEZ , SANTIAGO", "club": "LOS INDIOS MINI B", "categorias": ["MINI"], "whatsapp": ""}, {"key": "ORNELLA, AGUSTINA||LOS INDIOS PREMINI A", "entrenador": "ORNELLA, AGUSTINA", "club": "LOS INDIOS PREMINI A", "categorias": ["PRE MINI"], "whatsapp": ""}, {"key": "IBAÑEZ , SANTIAGO||LOS INDIOS PREMINI B", "entrenador": "IBAÑEZ , SANTIAGO", "club": "LOS INDIOS PREMINI B", "categorias": ["PRE MINI"], "whatsapp": ""}, {"key": "CRUPI, FRANCO AUGUSTO||LUZ Y ARTE", "entrenador": "CRUPI, FRANCO AUGUSTO", "club": "LUZ Y ARTE", "categorias": ["PRE MINI"], "whatsapp": ""}, {"key": "MENDEZ, SEBASTIAN||LUZ Y ARTE", "entrenador": "MENDEZ, SEBASTIAN", "club": "LUZ Y ARTE", "categorias": ["CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "MIGUEL, NICOLAS ALEJANDRO||LUZ Y ARTE", "entrenador": "MIGUEL, NICOLAS ALEJANDRO", "club": "LUZ Y ARTE", "categorias": ["MINI", "INFANTILES"], "whatsapp": ""}, {"key": "SCHMIDT, GERMAN ESTEBAN||LUZ Y ARTE", "entrenador": "SCHMIDT, GERMAN ESTEBAN", "club": "LUZ Y ARTE", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "ARAGONA, LUCIANO NAHUEL||MACABI", "entrenador": "ARAGONA, LUCIANO NAHUEL", "club": "MACABI", "categorias": ["PRE MINI"], "whatsapp": ""}, {"key": "BROFMAN, STEVEN||MACABI", "entrenador": "BROFMAN, STEVEN", "club": "MACABI", "categorias": ["MINI", "INFANTILES"], "whatsapp": ""}, {"key": "FARIÑA, MATEO JULIAN||MACABI", "entrenador": "FARIÑA, MATEO JULIAN", "club": "MACABI", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "SAGASTUME CEDONES, SANTIAGO||MACABI", "entrenador": "SAGASTUME CEDONES, SANTIAGO", "club": "MACABI", "categorias": ["CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "GOMEZ, MILAGROS TALIA BELEN||MIDLAND", "entrenador": "GOMEZ, MILAGROS TALIA BELEN", "club": "MIDLAND", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "PORTILLO, LEANDRO CESAR||MIDLAND", "entrenador": "PORTILLO, LEANDRO CESAR", "club": "MIDLAND", "categorias": ["CADETES", "JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "ELIZAGA, JUAN MANUEL||MONTE GRANDE", "entrenador": "ELIZAGA, JUAN MANUEL", "club": "MONTE GRANDE", "categorias": ["CADETES"], "whatsapp": ""}, {"key": "CHOBANIAN, ALEJANDRO||MONTE GRANDE B", "entrenador": "CHOBANIAN, ALEJANDRO", "club": "MONTE GRANDE B", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "ELIZAGA, JUAN MANUEL||MONTE GRANDE B", "entrenador": "ELIZAGA, JUAN MANUEL", "club": "MONTE GRANDE B", "categorias": ["JUVENILES"], "whatsapp": ""}, {"key": "ELIZAGA, JUAN MANUEL||MONTE GRANDE NEGRO B", "entrenador": "ELIZAGA, JUAN MANUEL", "club": "MONTE GRANDE NEGRO B", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "IACOVELLA, NICOLAS AGUSTIN||MONTE GRANDE ROJO A", "entrenador": "IACOVELLA, NICOLAS AGUSTIN", "club": "MONTE GRANDE ROJO A", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "URTIAGA, ARAMIS||MONTE GRANDE ROJO A", "entrenador": "URTIAGA, ARAMIS", "club": "MONTE GRANDE ROJO A", "categorias": ["CADETES", "JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "BAVASSO, AGUSTIN NICOLAS||MORON BLANCO B", "entrenador": "BAVASSO, AGUSTIN NICOLAS", "club": "MORON BLANCO B", "categorias": ["CADETES", "JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "BIONDI, IGNACIO ARIEL||MORON BLANCO B", "entrenador": "BIONDI, IGNACIO ARIEL", "club": "MORON BLANCO B", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "MOGGIO , ANDRES||MORON ROJO A", "entrenador": "MOGGIO , ANDRES", "club": "MORON ROJO A", "categorias": ["CADETES", "JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "PAVON, FACUNDO||MORON ROJO A", "entrenador": "PAVON, FACUNDO", "club": "MORON ROJO A", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "LUCIA, NICOLAS CLAUDIO||MUNIC.AVELLANEDA", "entrenador": "LUCIA, NICOLAS CLAUDIO", "club": "MUNIC.AVELLANEDA", "categorias": ["PRE MINI", "MINI", "INFANTILES", "CADETES", "JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "CESARIO, FACUNDO EDGARDO||MUNICIPALIDAD DE HURLINGHAM", "entrenador": "CESARIO, FACUNDO EDGARDO", "club": "MUNICIPALIDAD DE HURLINGHAM", "categorias": ["MINI", "INFANTILES"], "whatsapp": ""}, {"key": "GATICA , GUILLERMINA MARIA SOL||MUNICIPALIDAD DE HURLINGHAM", "entrenador": "GATICA , GUILLERMINA MARIA SOL", "club": "MUNICIPALIDAD DE HURLINGHAM", "categorias": ["PRE MINI"], "whatsapp": ""}, {"key": "SANCHEZ, NAHUEL MARTIN||MUNICIPALIDAD DE HURLINGHAM", "entrenador": "SANCHEZ, NAHUEL MARTIN", "club": "MUNICIPALIDAD DE HURLINGHAM", "categorias": ["CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "SANCHEZ, PEDRO ALEJANDRO||MUNICIPALIDAD DE HURLINGHAM", "entrenador": "SANCHEZ, PEDRO ALEJANDRO", "club": "MUNICIPALIDAD DE HURLINGHAM", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "ALBERINO, FACUNDO DAMIAN||NAUTICO BUCHARDO", "entrenador": "ALBERINO, FACUNDO DAMIAN", "club": "NAUTICO BUCHARDO", "categorias": ["CADETES", "JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "MIZRAHI, RAMIRO IVAN||NAUTICO BUCHARDO", "entrenador": "MIZRAHI, RAMIRO IVAN", "club": "NAUTICO BUCHARDO", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "MIZRAHI , SALOMON GUILLERMO||NAUTICO BUCHARDO A", "entrenador": "MIZRAHI , SALOMON GUILLERMO", "club": "NAUTICO BUCHARDO A", "categorias": ["INFANTILES"], "whatsapp": ""}, {"key": "FEIJOO, GONZALO||NAUTICO HACOAJ", "entrenador": "FEIJOO, GONZALO", "club": "NAUTICO HACOAJ", "categorias": ["INFANTILES", "CADETES"], "whatsapp": ""}, {"key": "MANSILLA, MATIAS||NAUTICO HACOAJ", "entrenador": "MANSILLA, MATIAS", "club": "NAUTICO HACOAJ", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "TIERNO, ALEJANDRO||NAUTICO HACOAJ", "entrenador": "TIERNO, ALEJANDRO", "club": "NAUTICO HACOAJ", "categorias": ["PRE MINI", "MINI"], "whatsapp": ""}, {"key": "VILLALBA, FERNANDO||NAUTICO HACOAJ", "entrenador": "VILLALBA, FERNANDO", "club": "NAUTICO HACOAJ", "categorias": ["JUVENILES"], "whatsapp": ""}, {"key": "DIAZ, YANINA VERONICA||NOLTING", "entrenador": "DIAZ, YANINA VERONICA", "club": "NOLTING", "categorias": ["INFANTILES", "CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "GONZALEZ, IGNACIO LEONARDO||NOLTING", "entrenador": "GONZALEZ, IGNACIO LEONARDO", "club": "NOLTING", "categorias": ["PRE MINI", "MINI"], "whatsapp": ""}, {"key": "VERGER GALLI, LUCAS AGUSTIN||NOLTING", "entrenador": "VERGER GALLI, LUCAS AGUSTIN", "club": "NOLTING", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "MAZZA, ALEJANDRO||NUEVA CHICAGO", "entrenador": "MAZZA, ALEJANDRO", "club": "NUEVA CHICAGO", "categorias": ["MINI", "INFANTILES", "CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "PURDON, MARCELO||NUEVA CHICAGO", "entrenador": "PURDON, MARCELO", "club": "NUEVA CHICAGO", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "CURTI, NAHUEL ALEJANDRO||OBRAS", "entrenador": "CURTI, NAHUEL ALEJANDRO", "club": "OBRAS", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "DI BELLA, RUBEN RICARDO||OBRAS", "entrenador": "DI BELLA, RUBEN RICARDO", "club": "OBRAS", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "FALCONE, MATIAS AGUSTIN||OBRAS", "entrenador": "FALCONE, MATIAS AGUSTIN", "club": "OBRAS", "categorias": ["CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "ARGUIMBAU, CANDELARIA||OLIMPO", "entrenador": "ARGUIMBAU, CANDELARIA", "club": "OLIMPO", "categorias": ["PRE MINI"], "whatsapp": ""}, {"key": "VUGALTER, GABRIEL DAVID||OLIMPO", "entrenador": "VUGALTER, GABRIEL DAVID", "club": "OLIMPO", "categorias": ["MINI", "INFANTILES", "CADETES", "JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "D'ORTONA, MICAELA||PAMPERO", "entrenador": "D'ORTONA, MICAELA", "club": "PAMPERO", "categorias": ["MINI", "INFANTILES", "CADETES"], "whatsapp": ""}, {"key": "FORNARO, BRENDA ROMINA||PAMPERO", "entrenador": "FORNARO, BRENDA ROMINA", "club": "PAMPERO", "categorias": ["PRE MINI"], "whatsapp": ""}, {"key": "SUTIL, NICOLAS ANTONIO||PAMPERO", "entrenador": "SUTIL, NICOLAS ANTONIO", "club": "PAMPERO", "categorias": ["JUVENILES"], "whatsapp": ""}, {"key": "VILLALBA, NAHUEL NICOLAS||PAMPERO", "entrenador": "VILLALBA, NAHUEL NICOLAS", "club": "PAMPERO", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "BARRIO, GUILLERMO FEDERICO||PASO DEL REY", "entrenador": "BARRIO, GUILLERMO FEDERICO", "club": "PASO DEL REY", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "IONNA, LAUTARO||PASO DEL REY", "entrenador": "IONNA, LAUTARO", "club": "PASO DEL REY", "categorias": ["INFANTILES", "CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "IONNA, VALENTIN||PASO DEL REY", "entrenador": "IONNA, VALENTIN", "club": "PASO DEL REY", "categorias": ["PRE MINI", "MINI"], "whatsapp": ""}, {"key": "CURI, TOMAS AGUSTIN||PEDRO ECHAGUE", "entrenador": "CURI, TOMAS AGUSTIN", "club": "PEDRO ECHAGUE", "categorias": ["MINI", "INFANTILES", "CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "FILINICH, SANTIAGO LUCAS||PEDRO ECHAGUE", "entrenador": "FILINICH, SANTIAGO LUCAS", "club": "PEDRO ECHAGUE", "categorias": ["PRE MINI"], "whatsapp": ""}, {"key": "GALMARINI, FEDERICO||PEDRO ECHAGUE", "entrenador": "GALMARINI, FEDERICO", "club": "PEDRO ECHAGUE", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "ACOSTA, FEDERICO||PINOCHO", "entrenador": "ACOSTA, FEDERICO", "club": "PINOCHO", "categorias": ["INFANTILES"], "whatsapp": ""}, {"key": "BRACCI DIEGO||PINOCHO", "entrenador": "BRACCI DIEGO", "club": "PINOCHO", "categorias": ["CADETES", "JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "BRACCI, SANTINO||PINOCHO", "entrenador": "BRACCI, SANTINO", "club": "PINOCHO", "categorias": ["PRE MINI", "MINI"], "whatsapp": ""}, {"key": "BIANCHINI, OCTAVIO||PLATENSE", "entrenador": "BIANCHINI, OCTAVIO", "club": "PLATENSE", "categorias": ["JUVENILES"], "whatsapp": ""}, {"key": "FERRER, MELANIE||PLATENSE", "entrenador": "FERRER, MELANIE", "club": "PLATENSE", "categorias": ["CADETES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "HENTSCHEL, BORIS||PLATENSE", "entrenador": "HENTSCHEL, BORIS", "club": "PLATENSE", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "URQUIZA, JORGE||PORTEÑO ATLETICO CLUB", "entrenador": "URQUIZA, JORGE", "club": "PORTEÑO ATLETICO CLUB", "categorias": ["LIGA METRO"], "whatsapp": ""}, {"key": "FLORENTIN , LAUTARO||PORTEÑO ATLETICO CLUB AZUL", "entrenador": "FLORENTIN , LAUTARO", "club": "PORTEÑO ATLETICO CLUB  AZUL", "categorias": ["CADETES"], "whatsapp": ""}, {"key": "PICCOLI, MELISA||PORTEÑO ATLETICO CLUB AZUL", "entrenador": "PICCOLI, MELISA", "club": "PORTEÑO ATLETICO CLUB  AZUL", "categorias": ["MINI", "INFANTILES"], "whatsapp": ""}, {"key": "URQUIZA, JORGE||PORTEÑO ATLETICO CLUB AZUL", "entrenador": "URQUIZA, JORGE", "club": "PORTEÑO ATLETICO CLUB  AZUL", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "GARABATO , FACUNDO||PORTEÑO ATLETICO CLUB B", "entrenador": "GARABATO , FACUNDO", "club": "PORTEÑO ATLETICO CLUB  B", "categorias": ["PRE MINI", "CADETES"], "whatsapp": ""}, {"key": "FLORENTIN , LAUTARO||PORTEÑO ATLETICO CLUB BLANCO B", "entrenador": "FLORENTIN , LAUTARO", "club": "PORTEÑO ATLETICO CLUB  BLANCO B", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "GARABATO , FACUNDO||PORTEÑO ATLETICO CLUB BLANCO B", "entrenador": "GARABATO , FACUNDO", "club": "PORTEÑO ATLETICO CLUB  BLANCO B", "categorias": ["MINI", "INFANTILES", "JUVENILES"], "whatsapp": ""}, {"key": "FLORENTIN , LAUTARO||PORTEÑO ATLETICO CLUB AZUL", "entrenador": "FLORENTIN , LAUTARO", "club": "PORTEÑO ATLETICO CLUB AZUL", "categorias": ["JUVENILES"], "whatsapp": ""}, {"key": "PICCOLI, MELISA||PORTEÑO ATLETICO CLUB AZUL", "entrenador": "PICCOLI, MELISA", "club": "PORTEÑO ATLETICO CLUB AZUL", "categorias": ["PRE MINI"], "whatsapp": ""}, {"key": "BARRIOS, GONZALO RODRIGO||PORTUGUES DEL GRAN BUENOS AIRES", "entrenador": "BARRIOS, GONZALO RODRIGO", "club": "PORTUGUES DEL GRAN BUENOS AIRES", "categorias": ["CADETES", "JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "GOMEZ, ANGEL NAHUEL||PORTUGUES DEL GRAN BUENOS AIRES", "entrenador": "GOMEZ, ANGEL NAHUEL", "club": "PORTUGUES DEL GRAN BUENOS AIRES", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "FIORE, RAMIRO MATIAS||PRESIDENTE DERQUI", "entrenador": "FIORE, RAMIRO MATIAS", "club": "PRESIDENTE DERQUI", "categorias": ["INFANTILES"], "whatsapp": ""}, {"key": "IGLESIAS, ELISEO||PRESIDENTE DERQUI", "entrenador": "IGLESIAS, ELISEO", "club": "PRESIDENTE DERQUI", "categorias": ["CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "LORGE, FRANCO NICOLÁS||PRESIDENTE DERQUI", "entrenador": "LORGE, FRANCO NICOLÁS", "club": "PRESIDENTE DERQUI", "categorias": ["PRE MINI", "MINI"], "whatsapp": ""}, {"key": "MARTINEZ, FEDERICO GABRIEL||PRESIDENTE DERQUI", "entrenador": "MARTINEZ, FEDERICO GABRIEL", "club": "PRESIDENTE DERQUI", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "CORIA, LUCAS EZEQUIEL||QUILMES ATLETICO CLUB", "entrenador": "CORIA, LUCAS EZEQUIEL", "club": "QUILMES ATLETICO CLUB", "categorias": ["PRE MINI", "MINI", "INFANTILES", "CADETES"], "whatsapp": ""}, {"key": "DEL PRETE, PEDRO DAMIAN||QUILMES ATLETICO CLUB", "entrenador": "DEL PRETE, PEDRO DAMIAN", "club": "QUILMES ATLETICO CLUB", "categorias": ["JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "BOUZA, JUAN MANUEL||RACING ANEXO", "entrenador": "BOUZA, JUAN MANUEL", "club": "RACING ANEXO", "categorias": ["CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "MANIERI, NICOLÁS VITO||RACING ANEXO", "entrenador": "MANIERI, NICOLÁS VITO", "club": "RACING ANEXO", "categorias": ["PRE MINI", "MINI"], "whatsapp": ""}, {"key": "ORZUZA VEGA, FACUNDO EZEQUIEL||RACING ANEXO", "entrenador": "ORZUZA VEGA, FACUNDO EZEQUIEL", "club": "RACING ANEXO", "categorias": ["INFANTILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "AYALA, BRUNO AGUSTIN||RACING CLUB", "entrenador": "AYALA, BRUNO AGUSTIN", "club": "RACING CLUB", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "CASTRO, LEONARDO||RACING CLUB", "entrenador": "CASTRO, LEONARDO", "club": "RACING CLUB", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "SCHMIDT, JUAN IGNACIO||RACING CLUB", "entrenador": "SCHMIDT, JUAN IGNACIO", "club": "RACING CLUB", "categorias": ["CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "ASQUINI , LEONARDO||RAMOS MEJIA LTC", "entrenador": "ASQUINI , LEONARDO", "club": "RAMOS MEJIA LTC", "categorias": ["INFANTILES"], "whatsapp": ""}, {"key": "KANESHIRO, FACUNDO AGUSTIN||RAMOS MEJIA LTC", "entrenador": "KANESHIRO, FACUNDO AGUSTIN", "club": "RAMOS MEJIA LTC", "categorias": ["PRE MINI", "MINI", "CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "PONTILLO, PATRICIO LEANDRO||RAMOS MEJIA LTC", "entrenador": "PONTILLO, PATRICIO LEANDRO", "club": "RAMOS MEJIA LTC", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "ANFOSSO, ESTEBAN||RIVER PLATE", "entrenador": "ANFOSSO, ESTEBAN", "club": "RIVER PLATE", "categorias": ["CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "BAJZ, AGUSTIN||RIVER PLATE", "entrenador": "BAJZ, AGUSTIN", "club": "RIVER PLATE", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "SANTIN, LUCIANO JAVIER||RIVER PLATE", "entrenador": "SANTIN, LUCIANO JAVIER", "club": "RIVER PLATE", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "COSENZA , ALEJANDRO MARTIN||SAN FERNANDO", "entrenador": "COSENZA , ALEJANDRO MARTIN", "club": "SAN FERNANDO", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "LEIRA, MARCOS SEBASTIAN||SAN FERNANDO", "entrenador": "LEIRA, MARCOS SEBASTIAN", "club": "SAN FERNANDO", "categorias": ["CADETES"], "whatsapp": ""}, {"key": "PARAREDA, TOMAS||SAN FERNANDO", "entrenador": "PARAREDA, TOMAS", "club": "SAN FERNANDO", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "SAUCEDO, CARLOS ANDRES||SAN FERNANDO", "entrenador": "SAUCEDO, CARLOS ANDRES", "club": "SAN FERNANDO", "categorias": ["JUVENILES"], "whatsapp": ""}, {"key": "CLAVIJO, NICOLAS MIGUEL||SAN LORENZO", "entrenador": "CLAVIJO, NICOLAS MIGUEL", "club": "SAN LORENZO", "categorias": ["PRE MINI", "INFANTILES"], "whatsapp": ""}, {"key": "CORREA, GONZALO MARTIN||SAN LORENZO", "entrenador": "CORREA, GONZALO MARTIN", "club": "SAN LORENZO", "categorias": ["CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "SELMO, MATIAS||SAN LORENZO", "entrenador": "SELMO, MATIAS", "club": "SAN LORENZO", "categorias": ["MINI"], "whatsapp": ""}, {"key": "VALENTE, OSVALDO OSCAR||SAN LORENZO", "entrenador": "VALENTE, OSVALDO OSCAR", "club": "SAN LORENZO", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "CAPONETO, SERGIO DANIEL||SAN MIGUEL BLANCO", "entrenador": "CAPONETO, SERGIO DANIEL", "club": "SAN MIGUEL BLANCO", "categorias": ["MINI"], "whatsapp": ""}, {"key": "MELOGNEO, SAMANTA LAURA||SAN MIGUEL BLANCO", "entrenador": "MELOGNEO, SAMANTA LAURA", "club": "SAN MIGUEL BLANCO", "categorias": ["JUVENILES"], "whatsapp": ""}, {"key": "MILAN, ALEJANDRO||SAN MIGUEL BLANCO", "entrenador": "MILAN, ALEJANDRO", "club": "SAN MIGUEL BLANCO", "categorias": ["INFANTILES"], "whatsapp": ""}, {"key": "NEGRETTE, MAXIMILIANO||SAN MIGUEL BLANCO", "entrenador": "NEGRETTE, MAXIMILIANO", "club": "SAN MIGUEL BLANCO", "categorias": ["CADETES"], "whatsapp": ""}, {"key": "NUÑEZ, FACUNDO||SAN MIGUEL BLANCO", "entrenador": "NUÑEZ, FACUNDO", "club": "SAN MIGUEL BLANCO", "categorias": ["PRE MINI", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "AMAGO, FERNANDO JAVIER||SITAS ROJO", "entrenador": "AMAGO, FERNANDO JAVIER", "club": "SITAS ROJO", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "ARREGUI, JUAN MANUEL||SITAS ROJO", "entrenador": "ARREGUI, JUAN MANUEL", "club": "SITAS ROJO", "categorias": ["CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "SIMONIELLO, MARCELO||SITAS ROJO", "entrenador": "SIMONIELLO, MARCELO", "club": "SITAS ROJO", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "AMAGO, FERNANDO JAVIER||SITAS VERDE", "entrenador": "AMAGO, FERNANDO JAVIER", "club": "SITAS VERDE", "categorias": ["MINI"], "whatsapp": ""}, {"key": "CORTES, DAVID RICARDO||SITAS VERDE", "entrenador": "CORTES, DAVID RICARDO", "club": "SITAS VERDE", "categorias": ["CADETES", "JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "DIEZ, NICOLAS ALEJANDRO||SITAS VERDE", "entrenador": "DIEZ, NICOLAS ALEJANDRO", "club": "SITAS VERDE", "categorias": ["INFANTILES"], "whatsapp": ""}, {"key": "PAGANINI, JULIAN||SITAS VERDE", "entrenador": "PAGANINI, JULIAN", "club": "SITAS VERDE", "categorias": ["PRE MINI"], "whatsapp": ""}, {"key": "PARISE, GABRIEL ROLANDO||SOCIAL BECCAR", "entrenador": "PARISE, GABRIEL ROLANDO", "club": "SOCIAL BECCAR", "categorias": ["JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "RACCA, MATEO EZEQUIEL||SOCIAL BECCAR", "entrenador": "RACCA, MATEO EZEQUIEL", "club": "SOCIAL BECCAR", "categorias": ["PRE MINI", "MINI", "INFANTILES", "CADETES"], "whatsapp": ""}, {"key": "MIGUEL, PABLO MARTIN||SOCIAL LANUS", "entrenador": "MIGUEL, PABLO MARTIN", "club": "SOCIAL LANUS", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "MORREALE, VICTOR HUGO||SOCIAL LANUS", "entrenador": "MORREALE, VICTOR HUGO", "club": "SOCIAL LANUS", "categorias": ["PRE MINI", "MINI", "INFANTILES", "CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "SCHMIDT, GERMAN ESTEBAN||SOCIEDAD CULTURAL Y RECREATIVA LUZ Y ARTE", "entrenador": "SCHMIDT, GERMAN ESTEBAN", "club": "SOCIEDAD CULTURAL y RECREATIVA LUZ y ARTE", "categorias": ["LIGA METRO"], "whatsapp": ""}, {"key": "MARENGO, AGUSTIN CARLOS||SOCIEDAD HEBRAICA ARGENTINA", "entrenador": "MARENGO, AGUSTIN CARLOS", "club": "SOCIEDAD HEBRAICA ARGENTINA", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "PETERSEN, SANTIAGO MARTIN||SOCIEDAD HEBRAICA ARGENTINA", "entrenador": "PETERSEN, SANTIAGO MARTIN", "club": "SOCIEDAD HEBRAICA ARGENTINA", "categorias": ["CADETES", "JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "AGÜERA, VICTOR EMANUEL||SPORTIVO ALSINA", "entrenador": "AGÜERA, VICTOR EMANUEL", "club": "SPORTIVO ALSINA", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "VEIRA, MARINES||SPORTIVO ALSINA", "entrenador": "VEIRA, MARINES", "club": "SPORTIVO ALSINA", "categorias": ["CADETES", "JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "BRUCKNER, FERNANDO ANDRÉS||SPORTIVO ESCOBAR", "entrenador": "BRUCKNER, FERNANDO ANDRÉS", "club": "SPORTIVO ESCOBAR", "categorias": ["CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "MACHADO, MARIANO AGUSTÍN||SPORTIVO ESCOBAR", "entrenador": "MACHADO, MARIANO AGUSTÍN", "club": "SPORTIVO ESCOBAR", "categorias": ["PRE MINI"], "whatsapp": ""}, {"key": "TRAVNIK, MARCELO||SPORTIVO ESCOBAR", "entrenador": "TRAVNIK, MARCELO", "club": "SPORTIVO ESCOBAR", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "VERDE, FEDERICO||SPORTIVO ESCOBAR", "entrenador": "VERDE, FEDERICO", "club": "SPORTIVO ESCOBAR", "categorias": ["MINI", "INFANTILES"], "whatsapp": ""}, {"key": "GARCIA, GONZALO ARIEL||SPORTIVO HAEDO", "entrenador": "GARCIA, GONZALO ARIEL", "club": "SPORTIVO HAEDO", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "GARCIA, RODRIGO EZEQUIEL||SPORTIVO HAEDO", "entrenador": "GARCIA, RODRIGO EZEQUIEL", "club": "SPORTIVO HAEDO", "categorias": ["CADETES", "JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "FIORIDO, ALEJANDRO||SPORTIVO PILAR JUVENILES", "entrenador": "FIORIDO, ALEJANDRO", "club": "SPORTIVO PILAR  JUVENILES", "categorias": ["JUVENILES"], "whatsapp": ""}, {"key": "FERNANDEZ DAITCH, LUCAS||SPORTIVO PILAR BLANCO B", "entrenador": "FERNANDEZ DAITCH, LUCAS", "club": "SPORTIVO PILAR BLANCO B", "categorias": ["CADETES", "JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "SALDEÑA, JUAN CRUZ||SPORTIVO PILAR BLANCO B", "entrenador": "SALDEÑA, JUAN CRUZ", "club": "SPORTIVO PILAR BLANCO B", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "FIORIDO, ALEJANDRO||SPORTIVO PILAR CADETES", "entrenador": "FIORIDO, ALEJANDRO", "club": "SPORTIVO PILAR CADETES", "categorias": ["CADETES"], "whatsapp": ""}, {"key": "NEPOMNASCHY, ESTEBAN CARLOS||SPORTIVO PILAR INFANTILES", "entrenador": "NEPOMNASCHY, ESTEBAN CARLOS", "club": "SPORTIVO PILAR INFANTILES", "categorias": ["INFANTILES"], "whatsapp": ""}, {"key": "NEPOMNASCHY, ESTEBAN CARLOS||SPORTIVO PILAR MINI", "entrenador": "NEPOMNASCHY, ESTEBAN CARLOS", "club": "SPORTIVO PILAR MINI", "categorias": ["MINI"], "whatsapp": ""}, {"key": "NEPOMNASCHY, ESTEBAN CARLOS||SPORTIVO PILAR PRE MINI", "entrenador": "NEPOMNASCHY, ESTEBAN CARLOS", "club": "SPORTIVO PILAR PRE MINI", "categorias": ["PRE MINI"], "whatsapp": ""}, {"key": "GONZALEZ , GUILLERMO NICOLAS||SPORTIVO PILAR PROXIMO", "entrenador": "GONZALEZ , GUILLERMO NICOLAS", "club": "SPORTIVO PILAR PROXIMO", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "AIRA FERNANDO CARLOS||SPORTIVO VILLA BALLESTER", "entrenador": "AIRA FERNANDO CARLOS", "club": "SPORTIVO VILLA BALLESTER", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "GARCÍA, LUCAS NICOLÁS||SPORTIVO VILLA BALLESTER", "entrenador": "GARCÍA, LUCAS NICOLÁS", "club": "SPORTIVO VILLA BALLESTER", "categorias": ["CADETES", "JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "BARREIRO , JORGE||TALLERES", "entrenador": "BARREIRO , JORGE", "club": "TALLERES", "categorias": ["CADETES", "JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "BESASSO, SERENA ROSARIO||TALLERES", "entrenador": "BESASSO, SERENA ROSARIO", "club": "TALLERES", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "AVALOS, AGUSTINA AILÉN||TAMBEROS UNIDOS", "entrenador": "AVALOS, AGUSTINA AILÉN", "club": "TAMBEROS UNIDOS", "categorias": ["PRE MINI", "MINI"], "whatsapp": ""}, {"key": "JUAN C., ZORRILLA||TAMBEROS UNIDOS", "entrenador": "JUAN C., ZORRILLA", "club": "TAMBEROS UNIDOS", "categorias": ["INFANTILES", "CADETES", "JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "BRUCH, OMAR ALBERTO||TAPONAZO FUTBOL CLUB", "entrenador": "BRUCH, OMAR ALBERTO", "club": "TAPONAZO  FUTBOL CLUB", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "ESCALANTE AZULA, HERNAN JORGE||TAPONAZO FUTBOL CLUB", "entrenador": "ESCALANTE AZULA, HERNAN JORGE", "club": "TAPONAZO  FUTBOL CLUB", "categorias": ["MINI", "INFANTILES"], "whatsapp": ""}, {"key": "NAVARRETE, BRIAN NAHUEL||TAPONAZO FUTBOL CLUB", "entrenador": "NAVARRETE, BRIAN NAHUEL", "club": "TAPONAZO  FUTBOL CLUB", "categorias": ["CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "SEPÚLVEDA, LÍA PAMELA PATRICIA||TAPONAZO FUTBOL CLUB", "entrenador": "SEPÚLVEDA, LÍA PAMELA PATRICIA", "club": "TAPONAZO  FUTBOL CLUB", "categorias": ["PRE MINI"], "whatsapp": ""}, {"key": "D ANGELO, TOMAS RAFAEL||TEMPERLEY", "entrenador": "D ANGELO, TOMAS RAFAEL", "club": "TEMPERLEY", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "MOSQUERA, FACUNDO NAHUEL||TEMPERLEY", "entrenador": "MOSQUERA, FACUNDO NAHUEL", "club": "TEMPERLEY", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "SAINZ, LUCAS MARTIN||TEMPERLEY", "entrenador": "SAINZ, LUCAS MARTIN", "club": "TEMPERLEY", "categorias": ["CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "ALBERRO, MATIAS||TRISTAN SUAREZ", "entrenador": "ALBERRO, MATIAS", "club": "TRISTAN SUAREZ", "categorias": ["CADETES", "JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "RONDAN, NAZARENO EMANUEL||TRISTAN SUAREZ", "entrenador": "RONDAN, NAZARENO EMANUEL", "club": "TRISTAN SUAREZ", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "EIJO, GERMAN AGUSTIN||U.V.V.A UNION VECINAL VILLA ADELINA 'AZUL'", "entrenador": "EIJO, GERMAN AGUSTIN", "club": "U.V.V.A UNION VECINAL VILLA ADELINA 'AZUL'", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "COLL, SACHA NICOLAS||U.V.V.A. UNION VECINAL VILLA ADELINA", "entrenador": "COLL, SACHA NICOLAS", "club": "U.V.V.A. UNION VECINAL VILLA ADELINA", "categorias": ["CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "LAPUENTE, DIEGO DANIEL||U.V.V.A. UNION VECINAL VILLA ADELINA", "entrenador": "LAPUENTE, DIEGO DANIEL", "club": "U.V.V.A. UNION VECINAL VILLA ADELINA", "categorias": ["INFANTILES"], "whatsapp": ""}, {"key": "PALADIN, ORIANA||U.V.V.A. UNION VECINAL VILLA ADELINA", "entrenador": "PALADIN, ORIANA", "club": "U.V.V.A. UNION VECINAL VILLA ADELINA", "categorias": ["PRE MINI", "MINI"], "whatsapp": ""}, {"key": "RAMOS, ALEJO BERNABE||U11 DEPORTIVO MORON B", "entrenador": "RAMOS, ALEJO BERNABE", "club": "U11 DEPORTIVO MORON B", "categorias": ["MINI"], "whatsapp": ""}, {"key": "FANCHI, FRANCO||U13 DEPORTIVO MORON B", "entrenador": "FANCHI, FRANCO", "club": "U13 DEPORTIVO MORON B", "categorias": ["INFANTILES"], "whatsapp": ""}, {"key": "FANCHI, FRANCO||U15 DEPORTIVO MORON B", "entrenador": "FANCHI, FRANCO", "club": "U15  DEPORTIVO MORON B", "categorias": ["CADETES"], "whatsapp": ""}, {"key": "FANCHI, FRANCO||U17 DEPORTIVO MORON B", "entrenador": "FANCHI, FRANCO", "club": "U17 DEPORTIVO MORON B", "categorias": ["JUVENILES"], "whatsapp": ""}, {"key": "FANCHI, FRANCO||U21 DEPORTIVO MORON B", "entrenador": "FANCHI, FRANCO", "club": "U21 DEPORTIVO MORON B", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "RAMOS, ALEJO BERNABE||U9 DEPORTIVO MORON B", "entrenador": "RAMOS, ALEJO BERNABE", "club": "U9 DEPORTIVO MORON B", "categorias": ["PRE MINI"], "whatsapp": ""}, {"key": "MISENTA, JUAN CARLOS.||UNION FLORIDA", "entrenador": "MISENTA, JUAN CARLOS.", "club": "UNION FLORIDA", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "OSKORIP , VLADIMIR ALEJANDRO||UNION FLORIDA", "entrenador": "OSKORIP , VLADIMIR ALEJANDRO", "club": "UNION FLORIDA", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "VILLAR, FRANCO||UNION FLORIDA", "entrenador": "VILLAR, FRANCO", "club": "UNION FLORIDA", "categorias": ["CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "DAS PEDRAS, BRUNO DAMIAN||UNION VECINAL DE MUNRO", "entrenador": "DAS PEDRAS, BRUNO DAMIAN", "club": "UNION VECINAL DE MUNRO", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "NASELLI ASTARLOA, IGNACIO AMILCAR||UNION VECINAL DE MUNRO", "entrenador": "NASELLI ASTARLOA, IGNACIO AMILCAR", "club": "UNION VECINAL DE MUNRO", "categorias": ["CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "SEVEGNANI, SEBASTIAN OMAR||UNION VECINAL DE MUNRO", "entrenador": "SEVEGNANI, SEBASTIAN OMAR", "club": "UNION VECINAL DE MUNRO", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "SEVEGNANI, SEBASTIAN OMAR||UNION VECINAL FOMENTO DE MUNRO", "entrenador": "SEVEGNANI, SEBASTIAN OMAR", "club": "UNION VECINAL FOMENTO DE MUNRO", "categorias": ["LIGA METRO"], "whatsapp": ""}, {"key": "GIMENEZ, ALEXIS NAHUEL||UNION VILLEGAS", "entrenador": "GIMENEZ, ALEXIS NAHUEL", "club": "UNION VILLEGAS", "categorias": ["PRE MINI", "MINI", "INFANTILES", "CADETES", "JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "BARROJO, JONATHAN||UNITARIOS DE MARCOS PAZ", "entrenador": "BARROJO, JONATHAN", "club": "UNITARIOS DE MARCOS PAZ", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "JACQUET, GONZALO||UNITARIOS DE MARCOS PAZ", "entrenador": "JACQUET, GONZALO", "club": "UNITARIOS DE MARCOS PAZ", "categorias": ["JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "SPINELLI, GIANFRANCO||UNITARIOS DE MARCOS PAZ", "entrenador": "SPINELLI, GIANFRANCO", "club": "UNITARIOS DE MARCOS PAZ", "categorias": ["CADETES"], "whatsapp": ""}, {"key": "MENIS , LEANDRO AGUSTIN||UNIVERSIDAD DE BUENOS AIRES", "entrenador": "MENIS , LEANDRO AGUSTIN", "club": "UNIVERSIDAD DE BUENOS AIRES", "categorias": ["MINI", "CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "TORRES CLARO, RICARDO MARIANO||UNIVERSIDAD DE BUENOS AIRES", "entrenador": "TORRES CLARO, RICARDO MARIANO", "club": "UNIVERSIDAD DE BUENOS AIRES", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "MARTINEZ SANZ, JUAN CRUZ||UNLAM", "entrenador": "MARTINEZ SANZ, JUAN CRUZ", "club": "UNLAM", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "REMEDI, RODRIGO DAMIAN||UNLAM", "entrenador": "REMEDI, RODRIGO DAMIAN", "club": "UNLAM", "categorias": ["CADETES", "JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "BUSTAMANTE DIPAOLO, LUCIANO URIEL||VARELA JRS", "entrenador": "BUSTAMANTE DIPAOLO, LUCIANO URIEL", "club": "VARELA JRS", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "FRANCO, THIAGO ANDRES||VARELA JRS", "entrenador": "FRANCO, THIAGO ANDRES", "club": "VARELA JRS", "categorias": ["CADETES", "JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "BARRAGAN, EZEQUIEL MARTIN||VELEZ SARSFIELD", "entrenador": "BARRAGAN, EZEQUIEL MARTIN", "club": "VELEZ SARSFIELD", "categorias": ["JUVENILES"], "whatsapp": ""}, {"key": "CASTILLO, SOFIA||VELEZ SARSFIELD", "entrenador": "CASTILLO, SOFIA", "club": "VELEZ SARSFIELD", "categorias": ["MINI", "INFANTILES"], "whatsapp": ""}, {"key": "MARCO , LUIS ARIEL||VELEZ SARSFIELD", "entrenador": "MARCO , LUIS ARIEL", "club": "VELEZ SARSFIELD", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "RODRIGUEZ, LEONEL||VELEZ SARSFIELD", "entrenador": "RODRIGUEZ, LEONEL", "club": "VELEZ SARSFIELD", "categorias": ["PRE MINI"], "whatsapp": ""}, {"key": "SANCHEZ, PABLO MARTIN||VELEZ SARSFIELD", "entrenador": "SANCHEZ, PABLO MARTIN", "club": "VELEZ SARSFIELD", "categorias": ["CADETES"], "whatsapp": ""}, {"key": "CONTI, FACUNDO DAVID||VICTORIA BLANCO", "entrenador": "CONTI, FACUNDO DAVID", "club": "VICTORIA BLANCO", "categorias": ["INFANTILES", "CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "HUERGO, FRANCISCO||VICTORIA BLANCO", "entrenador": "HUERGO, FRANCISCO", "club": "VICTORIA BLANCO", "categorias": ["PRE MINI", "MINI"], "whatsapp": ""}, {"key": "SONNET, AGUSTIN EZEQUIEL||VICTORIA BLANCO", "entrenador": "SONNET, AGUSTIN EZEQUIEL", "club": "VICTORIA BLANCO", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "CATTANI, MARTIN GERARDO||VICTORIA NEGRO", "entrenador": "CATTANI, MARTIN GERARDO", "club": "VICTORIA NEGRO", "categorias": ["PRE MINI", "MINI", "INFANTILES"], "whatsapp": ""}, {"key": "PEREZ, ALEJANDRO HORACIO||VICTORIA NEGRO", "entrenador": "PEREZ, ALEJANDRO HORACIO", "club": "VICTORIA NEGRO", "categorias": ["JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "SECCHIARI , TOMAS BERNARDO||VICTORIA NEGRO", "entrenador": "SECCHIARI , TOMAS BERNARDO", "club": "VICTORIA NEGRO", "categorias": ["CADETES"], "whatsapp": ""}, {"key": "MARQUES DA FONTE, NICOLAS||VILLA ESPAÑA", "entrenador": "MARQUES DA FONTE, NICOLAS", "club": "VILLA ESPAÑA", "categorias": ["PRE MINI", "MINI", "INFANTILES", "CADETES", "JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "CARBONE , FEDERICO||VILLA MITRE", "entrenador": "CARBONE , FEDERICO", "club": "VILLA MITRE", "categorias": ["MINI", "INFANTILES", "CADETES", "JUVENILES"], "whatsapp": ""}, {"key": "MARTINEZ FRANCHINI , LEONARDO||VILLA MITRE", "entrenador": "MARTINEZ FRANCHINI , LEONARDO", "club": "VILLA MITRE", "categorias": ["PRE MINI"], "whatsapp": ""}, {"key": "MENENDEZ, IGNACIO||VILLA MITRE", "entrenador": "MENENDEZ, IGNACIO", "club": "VILLA MITRE", "categorias": ["LIGA PROXIMO"], "whatsapp": ""}, {"key": "ANDUJAR, MACARENA||WILDE SPORTING", "entrenador": "ANDUJAR, MACARENA", "club": "WILDE SPORTING", "categorias": ["CADETES", "JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "CASTILLO, JEREMIAS LEON||WILDE SPORTING", "entrenador": "CASTILLO, JEREMIAS LEON", "club": "WILDE SPORTING", "categorias": ["INFANTILES"], "whatsapp": ""}, {"key": "MOREIRA, MAXIMILIANO DAMIA||WILDE SPORTING", "entrenador": "MOREIRA, MAXIMILIANO DAMIA", "club": "WILDE SPORTING", "categorias": ["PRE MINI", "MINI"], "whatsapp": ""}, {"key": "CID, TOBIAS EZEQUIEL||YUPANQUI", "entrenador": "CID, TOBIAS EZEQUIEL", "club": "YUPANQUI", "categorias": ["JUVENILES", "LIGA PROXIMO"], "whatsapp": ""}, {"key": "GREGORI, NICOLAS||YUPANQUI", "entrenador": "GREGORI, NICOLAS", "club": "YUPANQUI", "categorias": ["PRE MINI", "MINI", "INFANTILES", "CADETES"], "whatsapp": ""}];
+  let DATA = EMBEDDED_DATA.slice();
+  const CATS = ["PRE MINI", "MINI", "INFANTILES", "CADETES", "JUVENILES", "LIGA PROXIMO", "LIGA METRO"];
+  const WEBAPP_URL = "https://script.google.com/macros/s/AKfycbyeVUJrPN4SnoNskFZ2Oc5u8K6Qo2bs4FrufreWtvn7va1N8uuozMRkKyljIciFjK1Vvw/exec";
+  const WP_KEY = "entrenadores_wp_2026_v1";
+  const wpCache = Object.create(null);
+
+  function setStatus(text, kind) {
+    const el = document.getElementById("sheetsStatus");
+    el.textContent = text;
+    el.className = "status-pill" + (kind ? " " + kind : "");
+  }
+
+  function loadLocalWp() {
+    try { return JSON.parse(localStorage.getItem(WP_KEY) || "{}"); }
+    catch (e) { return {}; }
+  }
+  function saveLocalWp(map) {
+    localStorage.setItem(WP_KEY, JSON.stringify(map));
+  }
+  function rowKey(r) {
+    if (r.key) return String(r.key).toUpperCase();
+    return (r.entrenador + "||" + r.club).toUpperCase();
+  }
+  function getWp(r) {
+    const k = rowKey(r);
+    if (wpCache[k] !== undefined) return wpCache[k];
+    if (r.whatsapp) return r.whatsapp;
+    return loadLocalWp()[k] || "";
+  }
+  function setWpLocal(r, value) {
+    const k = rowKey(r);
+    wpCache[k] = value;
+    const map = loadLocalWp();
+    if (value) map[k] = value; else delete map[k];
+    saveLocalWp(map);
+  }
+
+  const catSel = document.getElementById("cat");
+  CATS.forEach(c => {
+    const o = document.createElement("option");
+    o.value = c; o.textContent = c;
+    catSel.appendChild(o);
+  });
+
+  document.querySelectorAll(".tab-btn[data-tab]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      document.querySelectorAll(".tab-btn[data-tab]").forEach(b => b.classList.remove("active"));
+      document.querySelectorAll(".panel").forEach(p => p.classList.remove("active"));
+      btn.classList.add("active");
+      document.getElementById("panel-" + btn.dataset.tab).classList.add("active");
+    });
+  });
+
+  function filtered() {
+    const q = (document.getElementById("q").value || "").trim().toUpperCase();
+    const cat = catSel.value;
+    const wpMode = document.getElementById("wpFilter").value;
+    return DATA.filter(r => {
+      if (cat && !(r.categorias || []).includes(cat)) return false;
+      if (q) {
+        const hay = (r.entrenador + " " + r.club).toUpperCase();
+        if (!hay.includes(q)) return false;
+      }
+      const num = (getWp(r) || "").trim();
+      if (wpMode === "con" && !num) return false;
+      if (wpMode === "sin" && num) return false;
+      return true;
+    });
+  }
+
+  async function saveWpToSheets(r, value, msgEl) {
+    setWpLocal(r, value);
+    if (!WEBAPP_URL) {
+      if (msgEl) { msgEl.textContent = "local"; msgEl.className = "wp-msg ok"; }
+      return;
+    }
+    if (msgEl) { msgEl.textContent = "…"; msgEl.className = "wp-msg"; }
+    try {
+      const res = await fetch(WEBAPP_URL, {
+        method: "POST",
+        headers: { "Content-Type": "text/plain;charset=utf-8" },
+        body: JSON.stringify({ key: rowKey(r), whatsapp: value }),
+        redirect: "follow",
+      });
+      const text = await res.text();
+      let data = null;
+      try { data = JSON.parse(text); } catch (e) {}
+      if (data && data.ok) {
+        if (msgEl) { msgEl.textContent = "OK"; msgEl.className = "wp-msg ok"; }
+      } else {
+        const err = (data && data.error) || ("HTTP " + res.status);
+        if (msgEl) { msgEl.textContent = "err"; msgEl.className = "wp-msg err"; msgEl.title = err; }
+      }
+    } catch (err) {
+      if (msgEl) {
+        msgEl.textContent = "err";
+        msgEl.className = "wp-msg err";
+        msgEl.title = String(err);
+      }
+    }
+  }
+
+  function render() {
+    const rows = filtered();
+    const tb = document.getElementById("tbody");
+    tb.innerHTML = "";
+    document.getElementById("countLabel").textContent =
+      rows.length + " de " + DATA.length + " entrenadores";
+
+    rows.forEach(r => {
+      const tr = document.createElement("tr");
+
+      const tdN = document.createElement("td");
+      tdN.className = "name-cell";
+      tdN.textContent = r.entrenador;
+
+      const tdC = document.createElement("td");
+      tdC.className = "club-cell";
+      tdC.textContent = r.club;
+
+      const tdCat = document.createElement("td");
+      const wrap = document.createElement("div");
+      wrap.className = "chip-row";
+      (r.categorias || []).forEach(c => {
+        const chip = document.createElement("span");
+        chip.className = "chip";
+        chip.textContent = c;
+        wrap.appendChild(chip);
+      });
+      tdCat.appendChild(wrap);
+
+      const tdW = document.createElement("td");
+      const wrapW = document.createElement("div");
+      wrapW.className = "wp-wrap";
+      const inp = document.createElement("input");
+      inp.className = "wp";
+      inp.type = "tel";
+      inp.inputMode = "numeric";
+      inp.placeholder = "54911…";
+      inp.value = getWp(r);
+      const msg = document.createElement("span");
+      msg.className = "wp-msg";
+      inp.addEventListener("change", () => {
+        saveWpToSheets(r, inp.value.trim(), msg);
+      });
+      wrapW.appendChild(inp);
+      wrapW.appendChild(msg);
+      tdW.appendChild(wrapW);
+
+      tr.appendChild(tdN);
+      tr.appendChild(tdC);
+      tr.appendChild(tdCat);
+      tr.appendChild(tdW);
+      tb.appendChild(tr);
+    });
+  }
+
+  async function loadFromSheets() {
+    if (!WEBAPP_URL) {
+      setStatus("Sin webapp_url — listado embebido (WhatsApp local)", "warn");
+      DATA = EMBEDDED_DATA.slice();
+      render();
+      return;
+    }
+    setStatus("Cargando desde Google Sheets…", "");
+    try {
+      const res = await fetch(WEBAPP_URL, { method: "GET", redirect: "follow" });
+      const text = await res.text();
+      const data = JSON.parse(text);
+      if (!data.ok || !Array.isArray(data.rows)) {
+        throw new Error((data && data.error) || "Respuesta inválida");
+      }
+      DATA = data.rows.map(r => ({
+        key: r.key || rowKey(r),
+        entrenador: r.entrenador || "",
+        club: r.club || "",
+        categorias: Array.isArray(r.categorias) ? r.categorias : [],
+        whatsapp: r.whatsapp || "",
+      }));
+      DATA.forEach(r => {
+        if (r.whatsapp) wpCache[rowKey(r)] = r.whatsapp;
+      });
+      setStatus("Conectado a Google Sheets · " + DATA.length + " filas", "ok");
+      render();
+    } catch (err) {
+      setStatus("No se pudo leer Sheets — usando listado embebido (" + String(err) + ")", "err");
+      DATA = EMBEDDED_DATA.slice();
+      render();
+    }
+  }
+
+  ["q", "cat", "wpFilter"].forEach(id => {
+    document.getElementById(id).addEventListener("input", render);
+    document.getElementById(id).addEventListener("change", render);
+  });
+  document.getElementById("btnReload").addEventListener("click", loadFromSheets);
+
+  document.getElementById("btnExport").addEventListener("click", () => {
+    const rows = filtered();
+    const lines = [["Entrenador", "Club", "Categorias", "WhatsApp"].join(";")];
+    rows.forEach(r => {
+      const cats = (r.categorias || []).join(" | ");
+      const num = getWp(r) || "";
+      const cells = [r.entrenador, r.club, cats, num].map(v => {
+        const s = String(v).replace(/"/g, '""');
+        return '"' + s + '"';
+      });
+      lines.push(cells.join(";"));
+    });
+    const blob = new Blob(["\ufeff" + lines.join("\n")], { type: "text/csv;charset=utf-8" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = "entrenadores_con_whatsapp.csv";
+    a.click();
+    URL.revokeObjectURL(a.href);
+  });
+
+  loadFromSheets();
+  </script>
 </body>
 </html>

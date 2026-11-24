@@ -1,5 +1,7 @@
 {
-  "n": 11,
+  "generado": "2026-11-04T12:28:02",
+  "techo_id": 2394,
+  "n": 12,
   "competencias": [
     {
       "id": 2013,
@@ -125,7 +127,7 @@
       "temporada": "2026",
       "titulo": "FORMATIVAS",
       "delegacion": "CONFEDERACIÓN ARGENTINA DE BASQUETBOL",
-      "n_categorias": 8,
+      "n_categorias": 10,
       "categorias": {
         "LA LIGA FEDERAL PROXIMO MASCULINA": "5590",
         "LA LIGA FEDERAL PROXIMO FEMENINA": "5591",
@@ -133,21 +135,35 @@
         "LA LIGA FEDERAL JUVENILES FEMENINA": "5593",
         "LA LIGA FEDERAL CADETES MASCULINA": "5594",
         "LA LIGA FEDERAL CADETES FEMENINA": "5595",
+        "LA LIGA FEDERAL INFANTILES MASCULINA": "5596",
+        "LA LIGA FEDERAL INFANTILES FEMENINA": "5597",
         "LA LIGA FEDERAL MINI MASCULINA": "5598",
         "LA LIGA FEDERAL MINI FEMENINA": "5599"
       },
       "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=2121"
     },
     {
-      "id": 2288,
+      "id": 2310,
       "temporada": "2026",
-      "titulo": "ARGENTINO DE FEDERACIONES U11F",
+      "titulo": "LIGA METROPOLITANA",
       "delegacion": "FEDERACION DE BASQUETBOL DEL AREA METROPOLITANA DE BUENOS AIRES",
       "n_categorias": 1,
       "categorias": {
-        "MINI FEMENINO": "6224"
+        "PRE FEDERAL MASCULINO": "6290"
       },
-      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=2288"
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=2310"
+    },
+    {
+      "id": 2394,
+      "temporada": "2026",
+      "titulo": "ARGENTINO 3X3",
+      "delegacion": "CONFEDERACIÓN ARGENTINA DE BASQUETBOL",
+      "n_categorias": 2,
+      "categorias": {
+        "U23-FEMENINO": "6527",
+        "U23 MASCULINO": "6525"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=2394"
     }
   ]
 }

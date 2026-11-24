@@ -1,0 +1,352 @@
+{
+  "generado": "2026-11-04T12:38:16",
+  "rango": [
+    0,
+    9999
+  ],
+  "filtro_delegacion": "REGION DEPORTIVA CAB N° 7",
+  "filtro_categoria_o_titulo": "PRE FEDERAL MASCULINO",
+  "n_match": 4,
+  "n_cab7": 20,
+  "errores": 0,
+  "matches": [
+    {
+      "id": 560,
+      "temporada": "2022",
+      "titulo": "PRE FEDERAL MASCULINO",
+      "delegacion": "REGIÓN DEPORTIVA CAB Nº 7",
+      "n_categorias": 1,
+      "categorias": {
+        "PRE FEDERAL MASCULINO": "1182"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=560"
+    },
+    {
+      "id": 1048,
+      "temporada": "2023",
+      "titulo": "PRE FEDERAL MASCULINO",
+      "delegacion": "REGIÓN DEPORTIVA CAB Nº 7",
+      "n_categorias": 1,
+      "categorias": {
+        "PRE FEDERAL MASCULINO": "2350"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=1048"
+    },
+    {
+      "id": 1564,
+      "temporada": "2024",
+      "titulo": "PRE FEDERAL MASCULINO",
+      "delegacion": "REGIÓN DEPORTIVA CAB Nº 7",
+      "n_categorias": 2,
+      "categorias": {
+        "PRE FEDERAL MASCULINO": "3633",
+        "MAYORES MASCULINO": "3634"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=1564"
+    },
+    {
+      "id": 1981,
+      "temporada": "2025",
+      "titulo": "PRE FEDERAL MASCULINO",
+      "delegacion": "REGIÓN DEPORTIVA CAB Nº 7",
+      "n_categorias": 2,
+      "categorias": {
+        "PRE FEDERAL MASCULINO": "4970",
+        "MAYORES MASCULINO": "4971"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=1981"
+    }
+  ],
+  "cab7_todas": [
+    {
+      "id": 560,
+      "temporada": "2022",
+      "titulo": "PRE FEDERAL MASCULINO",
+      "delegacion": "REGIÓN DEPORTIVA CAB Nº 7",
+      "n_categorias": 1,
+      "categorias": {
+        "PRE FEDERAL MASCULINO": "1182"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=560"
+    },
+    {
+      "id": 653,
+      "temporada": "2022",
+      "titulo": "PRE FEDERAL FEMENINO",
+      "delegacion": "REGIÓN DEPORTIVA CAB Nº 7",
+      "n_categorias": 1,
+      "categorias": {
+        "PRE FEDERAL FEMENINA": "1414"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=653"
+    },
+    {
+      "id": 769,
+      "temporada": "2023",
+      "titulo": "TORNEO INTEGRACIÓN DE FORMATIVAS",
+      "delegacion": "REGIÓN DEPORTIVA CAB Nº 7",
+      "n_categorias": 9,
+      "categorias": {
+        "U19 MASCULINO": "1649",
+        "U19 FEMENINO": "1648",
+        "U17 MASCULINO": "1647",
+        "U17 FEMENINO": "1646",
+        "U15 MASCULINO": "1645",
+        "U15 FEMENINO": "1644",
+        "U13 MASCULINO": "1643",
+        "U13 FEMENINO": "1642",
+        "MINI MIXTO": "1674"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=769"
+    },
+    {
+      "id": 1027,
+      "temporada": "2023",
+      "titulo": "TORNEO CLAUSURA DE FORMATIVAS 2023",
+      "delegacion": "REGIÓN DEPORTIVA CAB Nº 7",
+      "n_categorias": 10,
+      "categorias": {
+        "U19 MASCULINO": "2323",
+        "U19 FEMENINO": "2322",
+        "U17 MASCULINO": "2321",
+        "U17 FEMENINO": "2320",
+        "U15 MASCULINO": "2319",
+        "U15 FEMENINO": "2318",
+        "U13 MASCULINO": "2317",
+        "U13 FEMENINO": "2316",
+        "MINI FEMENINO": "2325",
+        "MINI MIXTO": "2324"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=1027"
+    },
+    {
+      "id": 1048,
+      "temporada": "2023",
+      "titulo": "PRE FEDERAL MASCULINO",
+      "delegacion": "REGIÓN DEPORTIVA CAB Nº 7",
+      "n_categorias": 1,
+      "categorias": {
+        "PRE FEDERAL MASCULINO": "2350"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=1048"
+    },
+    {
+      "id": 1257,
+      "temporada": "2024",
+      "titulo": "INTEGRACION FORMATIVAS",
+      "delegacion": "REGIÓN DEPORTIVA CAB Nº 7",
+      "n_categorias": 10,
+      "categorias": {
+        "U21 MASCULINO": "2820",
+        "U21 FEMENINO": "2821",
+        "U17 MASCULINO": "2818",
+        "U17 FEMENINO": "2819",
+        "U15 MASCULINO": "2816",
+        "U15 FEMENINO": "2817",
+        "U13 MASCULINO": "2814",
+        "U13 FEMENINO": "2815",
+        "MINI FEMENINO": "2813",
+        "MINI MIXTO": "2812"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=1257"
+    },
+    {
+      "id": 1311,
+      "temporada": "2024",
+      "titulo": "APERTURA PRIMERA MASCULINO",
+      "delegacion": "REGIÓN DEPORTIVA CAB Nº 7",
+      "n_categorias": 1,
+      "categorias": {
+        "MAYORES MASCULINO": "2869"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=1311"
+    },
+    {
+      "id": 1358,
+      "temporada": "2024",
+      "titulo": "APERTURA PRIMERA FEMENINO",
+      "delegacion": "REGIÓN DEPORTIVA CAB Nº 7",
+      "n_categorias": 1,
+      "categorias": {
+        "MAYORES FEMENINO": "3061"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=1358"
+    },
+    {
+      "id": 1538,
+      "temporada": "2024",
+      "titulo": "CLAUSURA PRIMERA FEMENINO",
+      "delegacion": "REGIÓN DEPORTIVA CAB Nº 7",
+      "n_categorias": 1,
+      "categorias": {
+        "MAYORES FEMENINO": "3565"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=1538"
+    },
+    {
+      "id": 1539,
+      "temporada": "2024",
+      "titulo": "CLAUSURA FORMATIVAS",
+      "delegacion": "REGIÓN DEPORTIVA CAB Nº 7",
+      "n_categorias": 10,
+      "categorias": {
+        "U21 MASCULINO": "3575",
+        "U21 FEMENINO": "3576",
+        "U17 MASCULINO": "3573",
+        "U17 FEMENINO": "3574",
+        "U15 MASCULINO": "3571",
+        "U15 FEMENINO": "3572",
+        "U13 MASCULINO": "3569",
+        "U13 FEMENINO": "3570",
+        "MINI FEMENINO": "3568",
+        "MINI MIXTO": "3567"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=1539"
+    },
+    {
+      "id": 1540,
+      "temporada": "2024",
+      "titulo": "LIGA DESARROLLO MASCULINA",
+      "delegacion": "REGIÓN DEPORTIVA CAB Nº 7",
+      "n_categorias": 5,
+      "categorias": {
+        "U21 MASCULINO": "3581",
+        "U17 MASCULINO": "3580",
+        "U15 MASCULINO": "3579",
+        "U13 MASCULINO": "3578",
+        "MINI MIXTO": "3577"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=1540"
+    },
+    {
+      "id": 1564,
+      "temporada": "2024",
+      "titulo": "PRE FEDERAL MASCULINO",
+      "delegacion": "REGIÓN DEPORTIVA CAB Nº 7",
+      "n_categorias": 2,
+      "categorias": {
+        "PRE FEDERAL MASCULINO": "3633",
+        "MAYORES MASCULINO": "3634"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=1564"
+    },
+    {
+      "id": 1748,
+      "temporada": "2025",
+      "titulo": "INTEGRACION FORMATIVAS",
+      "delegacion": "REGIÓN DEPORTIVA CAB Nº 7",
+      "n_categorias": 11,
+      "categorias": {
+        "U21 MASCULINO": "4113",
+        "U21 FEMENINO": "4118",
+        "U17 MASCULINO": "4114",
+        "U17 FEMENINO": "4119",
+        "U15 MASCULINO": "4115",
+        "U15 FEMENINO": "4120",
+        "U13 MASCULINO": "4116",
+        "U13 FEMENINO": "4121",
+        "U11 MASCULINO": "4117",
+        "U9 MIXTO": "4350",
+        "MOSQUITOS MIXTO": "4349"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=1748"
+    },
+    {
+      "id": 1750,
+      "temporada": "2025",
+      "titulo": "LIGA DESARROLLO MASCULINO",
+      "delegacion": "REGIÓN DEPORTIVA CAB Nº 7",
+      "n_categorias": 5,
+      "categorias": {
+        "U21 MASCULINO": "4123",
+        "U17 MASCULINO": "4124",
+        "U15 MASCULINO": "4125",
+        "U13 MASCULINO": "4126",
+        "U11 MASCULINO": "4127"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=1750"
+    },
+    {
+      "id": 1789,
+      "temporada": "2025",
+      "titulo": "PRIMERA LOCAL",
+      "delegacion": "REGIÓN DEPORTIVA CAB Nº 7",
+      "n_categorias": 2,
+      "categorias": {
+        "MAYORES MASCULINO": "4351",
+        "MAYORES FEMENINO": "4352"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=1789"
+    },
+    {
+      "id": 1893,
+      "temporada": "2025",
+      "titulo": "LIGA REGIONAL FEMENINA",
+      "delegacion": "REGIÓN DEPORTIVA CAB Nº 7",
+      "n_categorias": 1,
+      "categorias": {
+        "MAYORES FEMENINO": "4690"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=1893"
+    },
+    {
+      "id": 1965,
+      "temporada": "2025",
+      "titulo": "FORMATIVAS COMPETENCIA CLAUSURA",
+      "delegacion": "REGIÓN DEPORTIVA CAB Nº 7",
+      "n_categorias": 11,
+      "categorias": {
+        "U21 MASCULINO": "4897",
+        "U21 FEMENINO": "4896",
+        "U17 MASCULINO": "4898",
+        "U17 FEMENINO": "4895",
+        "U15 MASCULINO": "4899",
+        "U15 FEMENINO": "4894",
+        "U13 MASCULINO": "4900",
+        "U13 FEMENINO": "4893",
+        "U11 MASCULINO": "4901",
+        "U11 FEMENINO": "4892",
+        "MINI MIXTO": "4966"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=1965"
+    },
+    {
+      "id": 1966,
+      "temporada": "2025",
+      "titulo": "FORMATIVAS DESARROLLO CLAUSURA",
+      "delegacion": "REGIÓN DEPORTIVA CAB Nº 7",
+      "n_categorias": 5,
+      "categorias": {
+        "U21 MASCULINO": "4902",
+        "U17 MASCULINO": "4903",
+        "U15 MASCULINO": "4904",
+        "U13 MASCULINO": "4905",
+        "U11 MASCULINO": "4906"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=1966"
+    },
+    {
+      "id": 1980,
+      "temporada": "2025",
+      "titulo": "PRIMERA FEMENINA CLAUSURA",
+      "delegacion": "REGIÓN DEPORTIVA CAB Nº 7",
+      "n_categorias": 1,
+      "categorias": {
+        "MAYORES FEMENINO": "4969"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=1980"
+    },
+    {
+      "id": 1981,
+      "temporada": "2025",
+      "titulo": "PRE FEDERAL MASCULINO",
+      "delegacion": "REGIÓN DEPORTIVA CAB Nº 7",
+      "n_categorias": 2,
+      "categorias": {
+        "PRE FEDERAL MASCULINO": "4970",
+        "MAYORES MASCULINO": "4971"
+      },
+      "url": "https://competicionescabb.gesdeportiva.es/competicion.aspx?competencia=1981"
+    }
+  ]
+}

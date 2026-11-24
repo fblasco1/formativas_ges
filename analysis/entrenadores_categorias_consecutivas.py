@@ -1,21 +1,23 @@
 # -*- coding: utf-8 -*-
 """
-Entrenadores principales por club y categoría formativa, y conteo de las 63
-combinaciones posibles de categorías a cargo (C(6,1)+…+C(6,6)).
+Entrenadores principales por club y categoría, y conteo de todas las
+combinaciones posibles de categorías a cargo (2^N - 1 grupos).
 
 Criterio de entrenador principal en (club, categoría): el que más partidos
 dirigió esa categoría en ese club. Si hubo empate, gana el nombre alfabético.
 
-Categorías base: PRE MINI, MINI, INFANTILES, CADETES, JUVENILES, LIGA PROXIMO.
+Categorías base: PRE MINI, MINI, INFANTILES, CADETES, JUVENILES, LIGA PROXIMO,
+LIGA METRO (PRE FEDERAL MASCULINO, compCat 6290).
 
 Entrada:
-  - PostgreSQL (--desde-db, por defecto si hay config.json y conexión OK)
+  - PostgreSQL (--desde-db)
   - CSV con columnas Categoria, Equipo, Entrenador (--csv, repetible).
     Para contar partidos use filas sin unificar (una por aparición en partido).
+  - Portal argentina.basketball (--extraer-portal): formativas 5075-5080 + METRO 6290.
 
 Salida (por defecto en outputs/entrenadores/):
-  - entrenadores_club_categorias.csv  → Entrenador, Club, Categorias_A_Cargo
-  - combinaciones_categorias.csv      → Combinacion, Cantidad, N_Categorias
+  - entrenadores_club_categorias_YYYY.csv  → Entrenador, Club, Categorias_A_Cargo
+  - combinaciones_categorias_YYYY.csv      → Combinacion, Cantidad, N_Categorias
 """
 
 from __future__ import annotations
@@ -37,6 +39,9 @@ if str(ROOT) not in sys.path:
 
 FECHA_INI_DEFAULT = "2026-03-01"
 FECHA_FIN_DEFAULT = "2026-05-31"
+# LIGA METRO (Pre Federal) 2026 corre en otra ventana que las formativas.
+FECHA_INI_METRO_DEFAULT = "2026-08-01"
+FECHA_FIN_METRO_DEFAULT = "2026-11-30"
 
 CATEGORIAS_BASE: Tuple[str, ...] = (
     "PRE MINI",
@@ -45,7 +50,12 @@ CATEGORIAS_BASE: Tuple[str, ...] = (
     "CADETES",
     "JUVENILES",
     "LIGA PROXIMO",
+    "LIGA METRO",
 )
+
+# CompCatId portal → etiqueta de categoría en CSV de entrenadores.
+METRO_COMP_CAT_ID = 6290
+METRO_CATEGORIA_LABEL = "LIGA METRO"
 
 _RE_WS = re.compile(r"\s+")
 
@@ -53,10 +63,15 @@ _RE_WS = re.compile(r"\s+")
 def _norm_entrenador(s: str) -> str:
     s = (s or "").strip().upper()
     s = _RE_WS.sub(" ", s)
-    # Casos tipo "APELLIDO, NOMBRE, APELLIDO, NOMBRE" (mismo nombre duplicado).
-    parts = [p.strip() for p in s.split(",") if p.strip()]
-    if len(parts) >= 2 and len(set(parts)) == 1:
-        s = parts[0]
+    # Duplicado exacto "APELLIDO, NOMBRE, APELLIDO, NOMBRE" → una sola vez.
+    if "," in s:
+        parts = [p.strip() for p in s.split(",") if p.strip()]
+        if len(parts) >= 4 and len(parts) % 2 == 0:
+            half = len(parts) // 2
+            if parts[:half] == parts[half:]:
+                s = ", ".join(parts[:half])
+        elif len(parts) >= 2 and len(set(parts)) == 1:
+            s = parts[0]
     return s
 
 
@@ -80,31 +95,45 @@ def categoria_a_base(categoria: str) -> Optional[str]:
         return "JUVENILES"
     if c.startswith("LIGA PROXIMO"):
         return "LIGA PROXIMO"
+    # Liga Metropolitana / Pre Federal (plantel A mayores).
+    if (
+        c.startswith("LIGA METRO")
+        or c.startswith("PRE FEDERAL")
+        or "METROPOLITANA" in c
+        or c == "METRO"
+    ):
+        return "LIGA METRO"
     return None
 
 
 def _split_entrenadores(raw: Optional[str]) -> List[str]:
+    """
+    Un valor de campo = un entrenador.
+
+    El portal usa el formato ``APELLIDO, NOMBRE[S]``: la coma separa apellido de
+    nombre, no a dos entrenadores. Varios técnicos llegan como filas distintas
+    (o como lista en el HTML), no unidos por coma en un solo string.
+
+    Solo se parte si hay un delimitador explícito entre personas (``;`` o `` / ``).
+    """
     if not raw:
         return []
     text = str(raw).strip()
     if not text:
         return []
-    # "COACH1, COACH2" con apellido,nombre → no partir si hay un solo bloque APELLIDO, NOMBRE.
-    if text.count(",") == 1:
-        return [_norm_entrenador(text)]
-    parts = [p.strip() for p in text.split(",") if p.strip()]
-    if len(parts) == 2 and all(" " in p for p in parts):
-        return [_norm_entrenador(text)]
+
+    # Delimitadores entre personas (no la coma apellido/nombre).
+    if ";" in text or " / " in text:
+        chunks = re.split(r"\s*;\s*|\s+/\s+", text)
+    else:
+        chunks = [text]
+
     out: List[str] = []
     seen: Set[str] = set()
-    for p in parts:
-        n = _norm_entrenador(p)
+    for chunk in chunks:
+        n = _norm_entrenador(chunk)
         if n and n not in seen:
             seen.add(n)
-            out.append(n)
-    if not out:
-        n = _norm_entrenador(text)
-        if n:
             out.append(n)
     return out
 
@@ -299,6 +328,39 @@ def escribir_csv(path: Path, rows: List[Dict[str, str]], fieldnames: List[str]) 
             w.writerow({k: row.get(k, "") for k in fieldnames})
 
 
+def _extraer_metro_compcat(
+    *,
+    fecha_ini: str,
+    fecha_fin: str,
+    out_path: Path,
+    workers: int = 4,
+) -> Path:
+    """Descarga entrenadores LIGA METRO (compCat 6290) vía script por compCat."""
+    cmd = [
+        sys.executable,
+        str(ROOT / "analysis" / "extraer_entrenadores_por_compcat.py"),
+        "--comp-cat-id",
+        str(METRO_COMP_CAT_ID),
+        "--fecha-ini",
+        fecha_ini,
+        "--fecha-fin",
+        fecha_fin,
+        "--categoria",
+        METRO_CATEGORIA_LABEL,
+        "--out",
+        str(out_path),
+        "--mantener-duplicados",
+        "--workers",
+        str(workers),
+    ]
+    print(
+        f"Extrayendo LIGA METRO (compCat {METRO_COMP_CAT_ID}) {fecha_ini} .. {fecha_fin}...",
+        flush=True,
+    )
+    subprocess.check_call(cmd, cwd=str(ROOT))
+    return out_path
+
+
 def extraer_apariciones_portal(
     *,
     fecha_ini: str,
@@ -306,14 +368,18 @@ def extraer_apariciones_portal(
     out_dir: Path,
     mapeo_equipo_club: Dict[str, str],
     workers: int = 4,
+    incluir_metro: bool = True,
+    fecha_ini_metro: Optional[str] = None,
+    fecha_fin_metro: Optional[str] = None,
 ) -> List[Tuple[str, str, str]]:
     from ingest.argbasket.pipeline_fixture import generar_fixture_consolidado, write_csv
 
     out_dir.mkdir(parents=True, exist_ok=True)
     fixture_path = out_dir / "fixture_2026.csv"
     raw_path = out_dir / "entrenadores_raw_2026.csv"
+    metro_path = out_dir / "entrenadores_raw_metro_2026.csv"
 
-    print(f"Descargando fixture {fecha_ini} .. {fecha_fin} (5075-5080)...", flush=True)
+    print(f"Descargando fixture formativas {fecha_ini} .. {fecha_fin} (5075-5080)...", flush=True)
     rows = generar_fixture_consolidado(
         fecha_ini=fecha_ini,
         fecha_fin=fecha_fin,
@@ -324,7 +390,7 @@ def extraer_apariciones_portal(
         progress=True,
     )
     write_csv(str(fixture_path), rows)
-    print(f"Fixture: {len(rows)} filas -> {fixture_path}", flush=True)
+    print(f"Fixture formativas: {len(rows)} filas -> {fixture_path}", flush=True)
 
     cmd = [
         sys.executable,
@@ -341,15 +407,30 @@ def extraer_apariciones_portal(
         "--workers",
         str(workers),
     ]
-    print("Extrayendo entrenadores por partido...", flush=True)
+    print("Extrayendo entrenadores formativas por partido...", flush=True)
     subprocess.check_call(cmd, cwd=str(ROOT))
 
-    return cargar_desde_csv([str(raw_path)], mapeo_equipo_club)
+    csv_paths = [str(raw_path)]
+    if incluir_metro:
+        metro_ini = fecha_ini_metro or FECHA_INI_METRO_DEFAULT
+        metro_fin = fecha_fin_metro or FECHA_FIN_METRO_DEFAULT
+        _extraer_metro_compcat(
+            fecha_ini=metro_ini,
+            fecha_fin=metro_fin,
+            out_path=metro_path,
+            workers=workers,
+        )
+        csv_paths.append(str(metro_path))
+
+    return cargar_desde_csv(csv_paths, mapeo_equipo_club)
 
 
 def main() -> int:
     p = argparse.ArgumentParser(
-        description="Entrenadores principales por club y combinaciones de categorías (63 grupos)."
+        description=(
+            "Entrenadores principales por club y combinaciones de categorías "
+            f"({len(CATEGORIAS_BASE)} categorías → {2 ** len(CATEGORIAS_BASE) - 1} grupos)."
+        )
     )
     p.add_argument(
         "--csv",
@@ -366,7 +447,22 @@ def main() -> int:
     p.add_argument(
         "--extraer-portal",
         action="store_true",
-        help="Descargar fixture y entrenadores desde argentina.basketball (5075-5080).",
+        help="Descargar fixture y entrenadores desde argentina.basketball (5075-5080 + METRO 6290).",
+    )
+    p.add_argument(
+        "--sin-metro",
+        action="store_true",
+        help="Con --extraer-portal, omitir LIGA METRO (compCat 6290).",
+    )
+    p.add_argument(
+        "--fecha-ini-metro",
+        default=FECHA_INI_METRO_DEFAULT,
+        help=f"Inicio LIGA METRO (YYYY-MM-DD). Por defecto: {FECHA_INI_METRO_DEFAULT}.",
+    )
+    p.add_argument(
+        "--fecha-fin-metro",
+        default=FECHA_FIN_METRO_DEFAULT,
+        help=f"Fin LIGA METRO (YYYY-MM-DD). Por defecto: {FECHA_FIN_METRO_DEFAULT}.",
     )
     p.add_argument(
         "--fecha-ini",
@@ -421,6 +517,9 @@ def main() -> int:
                 out_dir=Path(args.out_dir),
                 mapeo_equipo_club=mapeo,
                 workers=args.workers,
+                incluir_metro=not args.sin_metro,
+                fecha_ini_metro=args.fecha_ini_metro,
+                fecha_fin_metro=args.fecha_fin_metro,
             )
         except Exception as exc:
             print(f"Error extrayendo desde portal: {exc}", file=sys.stderr)
@@ -455,11 +554,12 @@ def main() -> int:
     fuente = f"portal {args.fecha_ini} .. {args.fecha_fin}" if usar_portal else (
         f"PostgreSQL (temporada {args.temporada})" if usar_db else f"{len(args.csvs)} CSV"
     )
+    n_combos = len(tabla)
     print(f"Fuente: {fuente}")
     print(f"Apariciones (club, categoría, entrenador): {len(apariciones):,}")
     print(f"Entrenadores con categorías a cargo: {len(listado):,}")
     print(f"Listado -> {path_listado}")
-    print(f"Combinaciones (63 filas) -> {path_tabla}")
+    print(f"Combinaciones ({n_combos} filas) -> {path_tabla}")
     print()
     print("Resumen por cantidad de categorías:")
     buckets: Counter[str] = Counter()
