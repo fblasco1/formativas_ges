@@ -92,10 +92,11 @@ NIVELES_ORDEN = [
     "Nivel 1",
     "Nivel 2",
     "Nivel 3",
-    "Clasificatorio",
-    "Reclasificación",
     "Otro",
 ]
+
+# Primera fase: no se muestran ni entran al TOTAL del informe.
+NIVELES_EXCLUIDOS = {"Clasificatorio", "Reclasificación"}
 
 
 def log(msg: str) -> None:
@@ -447,6 +448,8 @@ def analizar(
         if cat not in CATS_DATA:
             continue
         nivel = nivel_de_fase(p.get("fase") or "")
+        if nivel in NIVELES_EXCLUIDOS:
+            continue
         box = boxes.get(p["id_partido"])
         if not box or not box.get("ok"):
             for _ in (0, 1):
@@ -735,6 +738,7 @@ def analizar(
         },
         "notas": [
             "Unidad de análisis: equipo-partido (local y visitante cuentan aparte).",
+            "Solo Segunda fase (Interconferencia A/B y Niveles 1–3); se excluyen Clasificatorio y Reclasificación.",
             "U9/U11/U13: completar = ≥12 en acta cat+anterior con ≥6 de la categoría (6+6…12+0).",
             "U15: completar = ≥10 jugadores de la categoría en acta (min>0).",
             "Prom. en acta = promedio de jugadores con minutos > 0 por equipo-partido (comparar entre niveles).",

@@ -237,17 +237,19 @@ def _cargar_cumplimiento() -> dict:
         "Nivel 1",
         "Nivel 2",
         "Nivel 3",
-        "Clasificatorio",
-        "Reclasificación",
         "TOTAL",
     ]
+    excluir_nivel = {"Clasificatorio", "Reclasificación"}
     tablas: dict = {}
     for cat in cats:
         filas = []
         for f in raw.get("tablas", {}).get(cat) or []:
+            niv = f.get("nivel")
+            if niv in excluir_nivel:
+                continue
             filas.append(
                 {
-                    "nivel": f.get("nivel"),
+                    "nivel": niv,
                     "ep": f.get("equipo_partidos") or 0,
                     "pct": f.get("pct_no_completa"),
                     "m12": f.get("menos_12") or 0,
