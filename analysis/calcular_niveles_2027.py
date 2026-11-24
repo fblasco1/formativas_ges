@@ -15,7 +15,8 @@ Reglas de cupo / movilidad 2027:
   Nadie desciende más de 1 nivel respecto de esa equivalencia.
   - Inter A: bajan últimos 2/grupo (8) → N2
   - Inter B: suben 2/grupo a N1 (8); bajan 2/grupo a N3 (8)
-  - GES Nivel 1: suben 2/región a N2 (8); el resto entra al pool N3–N6
+  - GES Nivel 1: suben 2/región a N2 (8); al menos 2/región permanecen en N3;
+    el resto entra al pool regional N3–N6
   - N3–N6: ranking regional (objetivo 8/región) con tope de 1 descenso
 
   python analysis/calcular_niveles_2027.py
@@ -65,6 +66,8 @@ MAX_DESCENSO = 1  # nadie baja más de un nivel respecto de su equivalencia
 # (N - 8 ascienden a N2 - D + 8 de Inter B + 8 de N4 = 32 ⇒ D = N - 24).
 DESCENSOS_N3_BASE = {"NORTE": 4, "SUR": 4, "CENTRO": 3, "OESTE": 2}  # suma 13 (N=37)
 ASCENSOS_N3_A_N2 = 2
+# Mínimo de equipos del GES Nivel 1 2026 que permanecen en N3 2027, por región.
+MIN_STAY_N3_FROM_GES_N1 = 2
 ASCENSOS_N4_A_N3 = 2
 TARGET_N3 = 32
 CUPO_REGIONAL = 8  # N3–N5: objetivo 8 por región (32/nivel)
@@ -213,29 +216,48 @@ def _ideal_banda(pos_regional: int) -> int:
 
 def _asignar_n3_a_n6_con_tope_descenso(
     pool_reg: Dict[str, List[dict]],
+    *,
+    cupo_n3_por_region: Optional[Dict[str, int]] = None,
 ) -> Tuple[Dict[int, List[dict]], dict]:
     """
     Ranking regional 8×4 con tope de un descenso respecto de la equivalencia 2026.
 
     1) Destino ideal por posición (1-8→N3 … 25+→N6), clamp a origen+1.
-    2) Si un nivel 3–5 queda con >8, se degrada al más débil que aún pueda bajar
+       Si cupo_n3_por_region[reg] < 8 (porque ya hay plazas N3 reservadas),
+       la banda N3 del pool se achica.
+    2) Si un nivel 3–5 queda sobre cupo, se degrada al más débil que aún pueda bajar
        un escalón (sin violar el tope). Quienes no pueden bajar más quedan de más.
     """
     por_nivel: Dict[int, List[dict]] = {3: [], 4: [], 5: [], 6: []}
     clampados = 0
     demotes = 0
     demotes_forzados = 0
+    cupo_n3 = cupo_n3_por_region or {}
 
     for reg in REGIONES:
         items = pool_reg.get(reg, [])
+        cupo3 = int(cupo_n3.get(reg, CUPO_REGIONAL))
+        cupo3 = max(0, min(CUPO_REGIONAL, cupo3))
         buckets: Dict[int, List[dict]] = {3: [], 4: [], 5: [], 6: []}
         for x in items:
             fase = x["fase"]
-            ideal = _ideal_banda(x["pos_regional"])
+            # Recalcular banda ideal si N3 del pool tiene menos de 8 plazas.
+            pos = int(x["pos_regional"])
+            if cupo3 <= 0:
+                ideal = _ideal_banda(pos + CUPO_REGIONAL)  # corre bandas hacia N4+
+                if ideal < 4:
+                    ideal = 4
+            elif pos <= cupo3:
+                ideal = 3
+            elif pos <= cupo3 + 8:
+                ideal = 4
+            elif pos <= cupo3 + 16:
+                ideal = 5
+            else:
+                ideal = 6
             max_l = _max_nivel_2027(fase)
             dest = min(ideal, max_l)
             if dest < 3:
-                # Remanente no debería incluir Inter A; si aparece, queda en N2 fuera.
                 dest = max_l if max_l >= 3 else 3
             if dest != ideal:
                 clampados += 1
@@ -245,10 +267,10 @@ def _asignar_n3_a_n6_con_tope_descenso(
             x["max_l"] = max_l
             buckets[dest].append(x)
 
-        # Rebalance: cupo estricto 8/región en N3–N5 (32/nivel).
-        # Preferir respetar tope de 1 descenso; si el cupo no cierra, forzar demote.
+        # Rebalance: cupo estricto por región en N3–N5.
+        cupos = {3: cupo3, 4: CUPO_REGIONAL, 5: CUPO_REGIONAL}
         for L in (3, 4, 5):
-            while len(buckets[L]) > CUPO_REGIONAL:
+            while len(buckets[L]) > cupos[L]:
                 movibles = [x for x in buckets[L] if x["max_l"] >= L + 1]
                 forzado = False
                 if not movibles:
@@ -418,15 +440,16 @@ def calcular(data: dict) -> dict:
             n3_by_reg[reg].append((r, zona))
 
     n_nivel1 = sum(len(v) for v in n3_by_reg.values())
-    DESCENSOS_N3, CENTRO_DESDE_ABAJO = _plan_descensos_n3(n_nivel1)
+    # Plan histórico de descensos (referencia); la permanencia mínima en N3
+    # se fija con MIN_STAY_N3_FROM_GES_N1 y el resto va al pool regional.
+    _plan_descensos_n3(n_nivel1)
 
     n3_up: List[dict] = []
     n3_keep: List[dict] = []
-    n3_down: List[dict] = []
+    keep_por_region: Dict[str, int] = {r: 0 for r in REGIONES}
     for reg in REGIONES:
         items = n3_by_reg.get(reg, [])
         n_up = ASCENSOS_N3_A_N2
-        n_down = DESCENSOS_N3[reg]
         for r, zona in items[:n_up]:
             n3_up.append(
                 _entry(
@@ -439,8 +462,10 @@ def calcular(data: dict) -> dict:
                     detalle="Asciende a Interconferencia B / Nivel 2",
                 )
             )
-        mid = items[n_up : len(items) - n_down if n_down else len(items)]
-        for r, zona in mid:
+        # Garantía: al menos MIN_STAY_N3_FROM_GES_N1 del GES N1 quedan en N3.
+        restantes = items[n_up:]
+        n_keep = min(MIN_STAY_N3_FROM_GES_N1, len(restantes))
+        for r, zona in restantes[:n_keep]:
             n3_keep.append(
                 _entry(
                     r,
@@ -449,26 +474,21 @@ def calcular(data: dict) -> dict:
                     region=reg,
                     status="MANTIENE",
                     nivel_2027=3,
-                    detalle="Permanece en Nivel 3",
+                    detalle=(
+                        f"Permanece en Nivel 3 (cupo mínimo GES N1 → N3, {reg})"
+                    ),
                 )
             )
-        if n_down:
-            for r, zona in items[-n_down:]:
-                n3_down.append(
-                    _entry(
-                        r,
-                        nivel_2026="NIVEL_1",
-                        zona_2026=zona,
-                        region=reg,
-                        status="DESCIENDE",
-                        nivel_2027=4,
-                        detalle=f"Desciende a Nivel 4 ({reg})",
-                    )
-                )
+            keep_por_region[reg] += 1
+        # El resto del GES N1 entra al pool regional (no se fija descenso acá).
 
     nivel1 = a_keep + b_up
     nivel2 = b_keep + a_down + n3_up
-    assigned_top = {e["clave"] for e in nivel1 + nivel2}
+    # N3 reservados + N1/N2 ya no compiten en el pool.
+    assigned_top = {e["clave"] for e in nivel1 + nivel2 + n3_keep}
+    cupo_n3_pool = {
+        r: max(0, CUPO_REGIONAL - keep_por_region.get(r, 0)) for r in REGIONES
+    }
 
     # --- N3–N6: 8 por región (32/nivel), ranking regional del remanente ---
     # Universo priorizando fase actual (N3→N2→N1→…); excluye ya ubicados en N1/N2.
@@ -531,9 +551,11 @@ def calcular(data: dict) -> dict:
         for i, x in enumerate(pool_reg[reg], 1):
             x["pos_regional"] = i
 
-    por_nivel, stats_tope = _asignar_n3_a_n6_con_tope_descenso(pool_reg)
+    por_nivel, stats_tope = _asignar_n3_a_n6_con_tope_descenso(
+        pool_reg, cupo_n3_por_region=cupo_n3_pool
+    )
 
-    nivel3 = por_nivel[3]
+    nivel3 = n3_keep + por_nivel[3]
     nivel4 = por_nivel[4]
     nivel5 = por_nivel[5]
     nivel6 = por_nivel[6]
@@ -584,6 +606,8 @@ def calcular(data: dict) -> dict:
             ),
             "pool_remanente_por_region": pool_counts,
             "n1_n2_interregional": True,
+            "ges_n1_keep_n3_por_region": dict(keep_por_region),
+            "cupo_n3_pool_por_region": dict(cupo_n3_pool),
             **stats_tope,
         },
         "reglas": {
@@ -591,6 +615,7 @@ def calcular(data: dict) -> dict:
             "inter_b_ascensos_por_grupo": 2,
             "inter_b_descensos_por_grupo": 2,
             "n3_ascensos_por_region_a_n2": ASCENSOS_N3_A_N2,
+            "n3_min_stay_ges_n1_por_region": MIN_STAY_N3_FROM_GES_N1,
             "n3_a_n6_cupo_por_region": CUPO_REGIONAL,
             "max_descenso_niveles": MAX_DESCENSO,
             "equivalencia_2026": dict(ORIGEN_EQUIV),

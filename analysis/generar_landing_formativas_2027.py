@@ -1046,11 +1046,12 @@ _HTML_TEMPLATE = """<!DOCTYPE html>
         </div>
         <div class="panel">
           <span class="tag tag-mid">GES Nivel 1 2026 → N3</span>
-          <h3>Ascenso fijo + pool regional</h3>
+          <h3>Ascenso, permanencia mínima y pool</h3>
           <ul>
-            <li>Ascienden sí o sí los 2 primeros de cada región → Nivel 2</li>
-            <li>El resto entra al <strong>ranking regional</strong> del remanente (N3–N6)</li>
-            <li>Cupo N3–N5: 8 equipos por región; N6 recibe el sobrante</li>
+            <li>Ascienden los 2 primeros de cada región → Nivel 2</li>
+            <li>Permanecen al menos 2 por región en Nivel 3 (cupo mínimo)</li>
+            <li>El resto compite en el ranking regional N3–N6</li>
+            <li>Cupo N3–N5: 8 por región; N6 recibe el sobrante</li>
           </ul>
         </div>
         <div class="panel">
@@ -1065,12 +1066,10 @@ _HTML_TEMPLATE = """<!DOCTYPE html>
       </div>
 
       <div class="note-box" style="margin-top:18px">
-        <strong>¿Por qué en Centro (GES N1) casi todos descienden?</strong>
-        Centro tiene 9 equipos: suben GEBA y Deportivo Crovara A.
-        Los otros 7 no “quedan” automáticamente en N3: compiten en el ranking regional
-        de Centro contra equipos de Inter B, GES N2 y GES N3.
-        Las 8 plazas de N3 Centro las ocupan otros clubes mejor ubicados en ese ranking;
-        los de GES N1 Centro quedan en N4 (tope de 1 descenso desde equivalencia N3).
+        <strong>GES Nivel 1 → N3:</strong> por región ascienden 2 y <em>permanecen al menos 2</em>
+        en Nivel 3. El resto del GES N1 entra al pool regional (puede ir a N3–N6 según ranking
+        y tope de 1 descenso). Ejemplo Centro: GEBA y Crovara A → N2; los 3° y 4° de la tabla
+        Centro quedan en N3; del 5° en adelante compiten en el pool.
       </div>
 
       <h3 style="margin:28px 0 10px;font-size:1.05rem">GES Nivel 1 2026 · destino 2027</h3>
