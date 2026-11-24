@@ -1,0 +1,4104 @@
+{
+  "fecha": "24/11/2026",
+  "n_partidos": 15660,
+  "n_evaluaciones": 30434,
+  "solo_segunda": false,
+  "sin_pbp": true,
+  "bandas": {
+    "U7": [
+      2019,
+      2022
+    ],
+    "U9": [
+      2017,
+      2018
+    ],
+    "U11": [
+      2015,
+      2016
+    ],
+    "U13": [
+      2013,
+      2014
+    ],
+    "U15": [
+      2011,
+      2012
+    ],
+    "U17": [
+      2009,
+      2010
+    ],
+    "U21": [
+      2005,
+      2008
+    ]
+  },
+  "reglas": {
+    "U9/U11/U13": "Completar: ≥12 en acta cat+anterior con ≥6 de la categoría (6+6…12+0). Máximo 15 en plantilla; todos deben jugar un cuarto. Juego: 10-20 min; sin cuartos consecutivos",
+    "U15": "Completar: ≥10 jugadores de la categoría en acta. Juego: todos ≥10 min; sin Q1+Q2",
+    "U17": "Completar: ≥8 entre categoría y anterior (minutos > 0)",
+    "U21": "Completar: ≥5 jugadores con minutos > 0",
+    "U7": "Sin partidos en dataset (Mosquitos no relevado)"
+  },
+  "tablas": {
+    "U9": [
+      {
+        "nivel": "Interconferencia A",
+        "equipo_partidos": 426,
+        "no_completa": 180,
+        "pct_no_completa": 42.3,
+        "menos_12": 179,
+        "pct_menos_12": 42.0,
+        "mala_composicion": 1,
+        "pct_mala_composicion": 0.2,
+        "falla_minutos": 305,
+        "pct_falla_minutos": 71.6,
+        "falla_cuartos": 311,
+        "pct_falla_cuartos": 73.0,
+        "no_cumple": 408,
+        "pct_no_cumple": 95.8,
+        "prom_acta": 11.27,
+        "prom_plantilla": 11.27,
+        "pct_acta_lt12": 42.0,
+        "pct_acta_12_15": 58.0,
+        "pct_acta_gt15": 0.0,
+        "con_pbp": 424,
+        "sin_acta": 2,
+        "motivos": [
+          [
+            "cuartos (consec/Q1+Q2)",
+            311
+          ],
+          [
+            "minutos fuera de regla",
+            305
+          ],
+          [
+            "menos del mínimo de plantilla",
+            179
+          ],
+          [
+            "composición insuficiente",
+            1
+          ]
+        ]
+      },
+      {
+        "nivel": "Interconferencia B",
+        "equipo_partidos": 430,
+        "no_completa": 200,
+        "pct_no_completa": 46.5,
+        "menos_12": 200,
+        "pct_menos_12": 46.5,
+        "mala_composicion": 0,
+        "pct_mala_composicion": 0.0,
+        "falla_minutos": 291,
+        "pct_falla_minutos": 67.7,
+        "falla_cuartos": 339,
+        "pct_falla_cuartos": 78.8,
+        "no_cumple": 408,
+        "pct_no_cumple": 94.9,
+        "prom_acta": 10.86,
+        "prom_plantilla": 10.86,
+        "pct_acta_lt12": 46.5,
+        "pct_acta_12_15": 53.3,
+        "pct_acta_gt15": 0.2,
+        "con_pbp": 416,
+        "sin_acta": 12,
+        "motivos": [
+          [
+            "cuartos (consec/Q1+Q2)",
+            339
+          ],
+          [
+            "minutos fuera de regla",
+            291
+          ],
+          [
+            "menos del mínimo de plantilla",
+            200
+          ]
+        ]
+      },
+      {
+        "nivel": "Nivel 1",
+        "equipo_partidos": 393,
+        "no_completa": 202,
+        "pct_no_completa": 51.4,
+        "menos_12": 202,
+        "pct_menos_12": 51.4,
+        "mala_composicion": 0,
+        "pct_mala_composicion": 0.0,
+        "falla_minutos": 258,
+        "pct_falla_minutos": 65.6,
+        "falla_cuartos": 284,
+        "pct_falla_cuartos": 72.3,
+        "no_cumple": 370,
+        "pct_no_cumple": 94.1,
+        "prom_acta": 10.1,
+        "prom_plantilla": 10.1,
+        "pct_acta_lt12": 51.4,
+        "pct_acta_12_15": 48.6,
+        "pct_acta_gt15": 0.0,
+        "con_pbp": 360,
+        "sin_acta": 57,
+        "motivos": [
+          [
+            "cuartos (consec/Q1+Q2)",
+            284
+          ],
+          [
+            "minutos fuera de regla",
+            258
+          ],
+          [
+            "menos del mínimo de plantilla",
+            202
+          ]
+        ]
+      },
+      {
+        "nivel": "Nivel 2",
+        "equipo_partidos": 544,
+        "no_completa": 374,
+        "pct_no_completa": 68.8,
+        "menos_12": 374,
+        "pct_menos_12": 68.8,
+        "mala_composicion": 0,
+        "pct_mala_composicion": 0.0,
+        "falla_minutos": 380,
+        "pct_falla_minutos": 69.9,
+        "falla_cuartos": 383,
+        "pct_falla_cuartos": 70.4,
+        "no_cumple": 533,
+        "pct_no_cumple": 98.0,
+        "prom_acta": 8.96,
+        "prom_plantilla": 8.94,
+        "pct_acta_lt12": 68.8,
+        "pct_acta_12_15": 31.2,
+        "pct_acta_gt15": 0.0,
+        "con_pbp": 480,
+        "sin_acta": 38,
+        "motivos": [
+          [
+            "cuartos (consec/Q1+Q2)",
+            383
+          ],
+          [
+            "minutos fuera de regla",
+            380
+          ],
+          [
+            "menos del mínimo de plantilla",
+            374
+          ]
+        ]
+      },
+      {
+        "nivel": "Nivel 3",
+        "equipo_partidos": 227,
+        "no_completa": 196,
+        "pct_no_completa": 86.3,
+        "menos_12": 196,
+        "pct_menos_12": 86.3,
+        "mala_composicion": 0,
+        "pct_mala_composicion": 0.0,
+        "falla_minutos": 137,
+        "pct_falla_minutos": 60.4,
+        "falla_cuartos": 149,
+        "pct_falla_cuartos": 65.6,
+        "no_cumple": 225,
+        "pct_no_cumple": 99.1,
+        "prom_acta": 6.92,
+        "prom_plantilla": 6.92,
+        "pct_acta_lt12": 86.3,
+        "pct_acta_12_15": 13.7,
+        "pct_acta_gt15": 0.0,
+        "con_pbp": 174,
+        "sin_acta": 39,
+        "motivos": [
+          [
+            "menos del mínimo de plantilla",
+            196
+          ],
+          [
+            "cuartos (consec/Q1+Q2)",
+            149
+          ],
+          [
+            "minutos fuera de regla",
+            137
+          ]
+        ]
+      },
+      {
+        "nivel": "Clasificatorio",
+        "equipo_partidos": 1165,
+        "no_completa": 583,
+        "pct_no_completa": 50.0,
+        "menos_12": 583,
+        "pct_menos_12": 50.0,
+        "mala_composicion": 0,
+        "pct_mala_composicion": 0.0,
+        "falla_minutos": 834,
+        "pct_falla_minutos": 71.6,
+        "falla_cuartos": 829,
+        "pct_falla_cuartos": 71.2,
+        "no_cumple": 1124,
+        "pct_no_cumple": 96.5,
+        "prom_acta": 10.23,
+        "prom_plantilla": 10.23,
+        "pct_acta_lt12": 50.0,
+        "pct_acta_12_15": 49.8,
+        "pct_acta_gt15": 0.2,
+        "con_pbp": 1076,
+        "sin_acta": 33,
+        "motivos": [
+          [
+            "minutos fuera de regla",
+            834
+          ],
+          [
+            "cuartos (consec/Q1+Q2)",
+            829
+          ],
+          [
+            "menos del mínimo de plantilla",
+            583
+          ]
+        ]
+      },
+      {
+        "nivel": "Reclasificación",
+        "equipo_partidos": 1195,
+        "no_completa": 959,
+        "pct_no_completa": 80.3,
+        "menos_12": 959,
+        "pct_menos_12": 80.3,
+        "mala_composicion": 0,
+        "pct_mala_composicion": 0.0,
+        "falla_minutos": 742,
+        "pct_falla_minutos": 62.1,
+        "falla_cuartos": 766,
+        "pct_falla_cuartos": 64.1,
+        "no_cumple": 1174,
+        "pct_no_cumple": 98.2,
+        "prom_acta": 7.31,
+        "prom_plantilla": 7.31,
+        "pct_acta_lt12": 80.3,
+        "pct_acta_12_15": 19.7,
+        "pct_acta_gt15": 0.0,
+        "con_pbp": 926,
+        "sin_acta": 273,
+        "motivos": [
+          [
+            "menos del mínimo de plantilla",
+            959
+          ],
+          [
+            "cuartos (consec/Q1+Q2)",
+            766
+          ],
+          [
+            "minutos fuera de regla",
+            742
+          ]
+        ]
+      },
+      {
+        "nivel": "TOTAL",
+        "equipo_partidos": 4380,
+        "no_completa": 2694,
+        "pct_no_completa": 61.5,
+        "menos_12": 2693,
+        "pct_menos_12": 61.5,
+        "mala_composicion": 1,
+        "pct_mala_composicion": 0.0,
+        "falla_minutos": 2947,
+        "pct_falla_minutos": 67.3,
+        "falla_cuartos": 3061,
+        "pct_falla_cuartos": 69.9,
+        "no_cumple": 4242,
+        "pct_no_cumple": 96.8,
+        "prom_acta": 9.25,
+        "prom_plantilla": 9.25,
+        "pct_acta_lt12": 61.5,
+        "pct_acta_12_15": 38.4,
+        "pct_acta_gt15": 0.1,
+        "con_pbp": 3856,
+        "sin_acta": 454,
+        "motivos": []
+      }
+    ],
+    "U11": [
+      {
+        "nivel": "Interconferencia A",
+        "equipo_partidos": 430,
+        "no_completa": 36,
+        "pct_no_completa": 8.4,
+        "menos_12": 35,
+        "pct_menos_12": 8.1,
+        "mala_composicion": 1,
+        "pct_mala_composicion": 0.2,
+        "falla_minutos": 57,
+        "pct_falla_minutos": 13.3,
+        "falla_cuartos": 285,
+        "pct_falla_cuartos": 66.3,
+        "no_cumple": 302,
+        "pct_no_cumple": 70.2,
+        "prom_acta": 12.67,
+        "prom_plantilla": 12.67,
+        "pct_acta_lt12": 7.9,
+        "pct_acta_12_15": 92.1,
+        "pct_acta_gt15": 0.0,
+        "con_pbp": 430,
+        "sin_acta": 0,
+        "motivos": [
+          [
+            "cuartos (consec/Q1+Q2)",
+            285
+          ],
+          [
+            "minutos fuera de regla",
+            57
+          ],
+          [
+            "menos del mínimo de plantilla",
+            35
+          ],
+          [
+            "composición insuficiente",
+            1
+          ]
+        ]
+      },
+      {
+        "nivel": "Interconferencia B",
+        "equipo_partidos": 442,
+        "no_completa": 65,
+        "pct_no_completa": 14.7,
+        "menos_12": 65,
+        "pct_menos_12": 14.7,
+        "mala_composicion": 0,
+        "pct_mala_composicion": 0.0,
+        "falla_minutos": 84,
+        "pct_falla_minutos": 19.0,
+        "falla_cuartos": 307,
+        "pct_falla_cuartos": 69.5,
+        "no_cumple": 320,
+        "pct_no_cumple": 72.4,
+        "prom_acta": 12.4,
+        "prom_plantilla": 12.4,
+        "pct_acta_lt12": 14.7,
+        "pct_acta_12_15": 85.3,
+        "pct_acta_gt15": 0.0,
+        "con_pbp": 440,
+        "sin_acta": 0,
+        "motivos": [
+          [
+            "cuartos (consec/Q1+Q2)",
+            307
+          ],
+          [
+            "minutos fuera de regla",
+            84
+          ],
+          [
+            "menos del mínimo de plantilla",
+            65
+          ]
+        ]
+      },
+      {
+        "nivel": "Nivel 1",
+        "equipo_partidos": 405,
+        "no_completa": 85,
+        "pct_no_completa": 21.0,
+        "menos_12": 85,
+        "pct_menos_12": 21.0,
+        "mala_composicion": 0,
+        "pct_mala_composicion": 0.0,
+        "falla_minutos": 97,
+        "pct_falla_minutos": 24.0,
+        "falla_cuartos": 273,
+        "pct_falla_cuartos": 67.4,
+        "no_cumple": 303,
+        "pct_no_cumple": 74.8,
+        "prom_acta": 12.01,
+        "prom_plantilla": 12.01,
+        "pct_acta_lt12": 21.0,
+        "pct_acta_12_15": 78.8,
+        "pct_acta_gt15": 0.2,
+        "con_pbp": 368,
+        "sin_acta": 45,
+        "motivos": [
+          [
+            "cuartos (consec/Q1+Q2)",
+            273
+          ],
+          [
+            "minutos fuera de regla",
+            97
+          ],
+          [
+            "menos del mínimo de plantilla",
+            85
+          ]
+        ]
+      },
+      {
+        "nivel": "Nivel 2",
+        "equipo_partidos": 617,
+        "no_completa": 173,
+        "pct_no_completa": 28.0,
+        "menos_12": 173,
+        "pct_menos_12": 28.0,
+        "mala_composicion": 0,
+        "pct_mala_composicion": 0.0,
+        "falla_minutos": 168,
+        "pct_falla_minutos": 27.2,
+        "falla_cuartos": 432,
+        "pct_falla_cuartos": 70.0,
+        "no_cumple": 493,
+        "pct_no_cumple": 79.9,
+        "prom_acta": 11.31,
+        "prom_plantilla": 11.3,
+        "pct_acta_lt12": 27.7,
+        "pct_acta_12_15": 72.1,
+        "pct_acta_gt15": 0.2,
+        "con_pbp": 584,
+        "sin_acta": 7,
+        "motivos": [
+          [
+            "cuartos (consec/Q1+Q2)",
+            432
+          ],
+          [
+            "menos del mínimo de plantilla",
+            173
+          ],
+          [
+            "minutos fuera de regla",
+            168
+          ]
+        ]
+      },
+      {
+        "nivel": "Nivel 3",
+        "equipo_partidos": 322,
+        "no_completa": 176,
+        "pct_no_completa": 54.7,
+        "menos_12": 176,
+        "pct_menos_12": 54.7,
+        "mala_composicion": 0,
+        "pct_mala_composicion": 0.0,
+        "falla_minutos": 169,
+        "pct_falla_minutos": 52.5,
+        "falla_cuartos": 246,
+        "pct_falla_cuartos": 76.4,
+        "no_cumple": 287,
+        "pct_no_cumple": 89.1,
+        "prom_acta": 9.99,
+        "prom_plantilla": 9.96,
+        "pct_acta_lt12": 53.7,
+        "pct_acta_12_15": 46.3,
+        "pct_acta_gt15": 0.0,
+        "con_pbp": 296,
+        "sin_acta": 18,
+        "motivos": [
+          [
+            "cuartos (consec/Q1+Q2)",
+            246
+          ],
+          [
+            "menos del mínimo de plantilla",
+            176
+          ],
+          [
+            "minutos fuera de regla",
+            169
+          ]
+        ]
+      },
+      {
+        "nivel": "Clasificatorio",
+        "equipo_partidos": 1193,
+        "no_completa": 164,
+        "pct_no_completa": 13.7,
+        "menos_12": 164,
+        "pct_menos_12": 13.7,
+        "mala_composicion": 0,
+        "pct_mala_composicion": 0.0,
+        "falla_minutos": 319,
+        "pct_falla_minutos": 26.7,
+        "falla_cuartos": 738,
+        "pct_falla_cuartos": 61.9,
+        "no_cumple": 800,
+        "pct_no_cumple": 67.1,
+        "prom_acta": 12.29,
+        "prom_plantilla": 12.29,
+        "pct_acta_lt12": 13.7,
+        "pct_acta_12_15": 86.1,
+        "pct_acta_gt15": 0.2,
+        "con_pbp": 1186,
+        "sin_acta": 9,
+        "motivos": [
+          [
+            "cuartos (consec/Q1+Q2)",
+            738
+          ],
+          [
+            "minutos fuera de regla",
+            319
+          ],
+          [
+            "menos del mínimo de plantilla",
+            164
+          ]
+        ]
+      },
+      {
+        "nivel": "Reclasificación",
+        "equipo_partidos": 1542,
+        "no_completa": 670,
+        "pct_no_completa": 43.5,
+        "menos_12": 670,
+        "pct_menos_12": 43.5,
+        "mala_composicion": 0,
+        "pct_mala_composicion": 0.0,
+        "falla_minutos": 680,
+        "pct_falla_minutos": 44.1,
+        "falla_cuartos": 1050,
+        "pct_falla_cuartos": 68.1,
+        "no_cumple": 1249,
+        "pct_no_cumple": 81.0,
+        "prom_acta": 10.51,
+        "prom_plantilla": 10.5,
+        "pct_acta_lt12": 43.1,
+        "pct_acta_12_15": 56.9,
+        "pct_acta_gt15": 0.0,
+        "con_pbp": 1428,
+        "sin_acta": 96,
+        "motivos": [
+          [
+            "cuartos (consec/Q1+Q2)",
+            1050
+          ],
+          [
+            "minutos fuera de regla",
+            680
+          ],
+          [
+            "menos del mínimo de plantilla",
+            670
+          ]
+        ]
+      },
+      {
+        "nivel": "Otro",
+        "equipo_partidos": 42,
+        "no_completa": 0,
+        "pct_no_completa": 0.0,
+        "menos_12": 0,
+        "pct_menos_12": 0.0,
+        "mala_composicion": 0,
+        "pct_mala_composicion": 0.0,
+        "falla_minutos": 1,
+        "pct_falla_minutos": 2.4,
+        "falla_cuartos": 12,
+        "pct_falla_cuartos": 28.6,
+        "no_cumple": 13,
+        "pct_no_cumple": 31.0,
+        "prom_acta": 12.55,
+        "prom_plantilla": 12.55,
+        "pct_acta_lt12": 0.0,
+        "pct_acta_12_15": 100.0,
+        "pct_acta_gt15": 0.0,
+        "con_pbp": 42,
+        "sin_acta": 2,
+        "motivos": [
+          [
+            "cuartos (consec/Q1+Q2)",
+            12
+          ],
+          [
+            "minutos fuera de regla",
+            1
+          ]
+        ]
+      },
+      {
+        "nivel": "TOTAL",
+        "equipo_partidos": 4993,
+        "no_completa": 1369,
+        "pct_no_completa": 27.4,
+        "menos_12": 1368,
+        "pct_menos_12": 27.4,
+        "mala_composicion": 1,
+        "pct_mala_composicion": 0.0,
+        "falla_minutos": 1575,
+        "pct_falla_minutos": 31.5,
+        "falla_cuartos": 3343,
+        "pct_falla_cuartos": 67.0,
+        "no_cumple": 3767,
+        "pct_no_cumple": 75.4,
+        "prom_acta": 11.49,
+        "prom_plantilla": 11.48,
+        "pct_acta_lt12": 27.2,
+        "pct_acta_12_15": 72.8,
+        "pct_acta_gt15": 0.1,
+        "con_pbp": 4774,
+        "sin_acta": 177,
+        "motivos": []
+      }
+    ],
+    "U13": [
+      {
+        "nivel": "Interconferencia A",
+        "equipo_partidos": 440,
+        "no_completa": 10,
+        "pct_no_completa": 2.3,
+        "menos_12": 10,
+        "pct_menos_12": 2.3,
+        "mala_composicion": 0,
+        "pct_mala_composicion": 0.0,
+        "falla_minutos": 53,
+        "pct_falla_minutos": 12.0,
+        "falla_cuartos": 387,
+        "pct_falla_cuartos": 88.0,
+        "no_cumple": 387,
+        "pct_no_cumple": 88.0,
+        "prom_acta": 12.63,
+        "prom_plantilla": 12.63,
+        "pct_acta_lt12": 2.3,
+        "pct_acta_12_15": 97.7,
+        "pct_acta_gt15": 0.0,
+        "con_pbp": 440,
+        "sin_acta": 0,
+        "motivos": [
+          [
+            "cuartos (consec/Q1+Q2)",
+            387
+          ],
+          [
+            "minutos fuera de regla",
+            53
+          ],
+          [
+            "menos del mínimo de plantilla",
+            10
+          ]
+        ]
+      },
+      {
+        "nivel": "Interconferencia B",
+        "equipo_partidos": 446,
+        "no_completa": 9,
+        "pct_no_completa": 2.0,
+        "menos_12": 9,
+        "pct_menos_12": 2.0,
+        "mala_composicion": 0,
+        "pct_mala_composicion": 0.0,
+        "falla_minutos": 46,
+        "pct_falla_minutos": 10.3,
+        "falla_cuartos": 381,
+        "pct_falla_cuartos": 85.4,
+        "no_cumple": 382,
+        "pct_no_cumple": 85.7,
+        "prom_acta": 12.55,
+        "prom_plantilla": 12.55,
+        "pct_acta_lt12": 2.0,
+        "pct_acta_12_15": 98.0,
+        "pct_acta_gt15": 0.0,
+        "con_pbp": 446,
+        "sin_acta": 0,
+        "motivos": [
+          [
+            "cuartos (consec/Q1+Q2)",
+            381
+          ],
+          [
+            "minutos fuera de regla",
+            46
+          ],
+          [
+            "menos del mínimo de plantilla",
+            9
+          ]
+        ]
+      },
+      {
+        "nivel": "Nivel 1",
+        "equipo_partidos": 398,
+        "no_completa": 16,
+        "pct_no_completa": 4.0,
+        "menos_12": 16,
+        "pct_menos_12": 4.0,
+        "mala_composicion": 0,
+        "pct_mala_composicion": 0.0,
+        "falla_minutos": 45,
+        "pct_falla_minutos": 11.3,
+        "falla_cuartos": 324,
+        "pct_falla_cuartos": 81.4,
+        "no_cumple": 332,
+        "pct_no_cumple": 83.4,
+        "prom_acta": 12.45,
+        "prom_plantilla": 12.45,
+        "pct_acta_lt12": 4.0,
+        "pct_acta_12_15": 96.0,
+        "pct_acta_gt15": 0.0,
+        "con_pbp": 394,
+        "sin_acta": 38,
+        "motivos": [
+          [
+            "cuartos (consec/Q1+Q2)",
+            324
+          ],
+          [
+            "minutos fuera de regla",
+            45
+          ],
+          [
+            "menos del mínimo de plantilla",
+            16
+          ]
+        ]
+      },
+      {
+        "nivel": "Nivel 2",
+        "equipo_partidos": 611,
+        "no_completa": 54,
+        "pct_no_completa": 8.8,
+        "menos_12": 53,
+        "pct_menos_12": 8.7,
+        "mala_composicion": 1,
+        "pct_mala_composicion": 0.2,
+        "falla_minutos": 92,
+        "pct_falla_minutos": 15.1,
+        "falla_cuartos": 463,
+        "pct_falla_cuartos": 75.8,
+        "no_cumple": 485,
+        "pct_no_cumple": 79.4,
+        "prom_acta": 12.44,
+        "prom_plantilla": 12.44,
+        "pct_acta_lt12": 8.7,
+        "pct_acta_12_15": 91.3,
+        "pct_acta_gt15": 0.0,
+        "con_pbp": 608,
+        "sin_acta": 3,
+        "motivos": [
+          [
+            "cuartos (consec/Q1+Q2)",
+            463
+          ],
+          [
+            "minutos fuera de regla",
+            92
+          ],
+          [
+            "menos del mínimo de plantilla",
+            53
+          ],
+          [
+            "composición insuficiente",
+            1
+          ]
+        ]
+      },
+      {
+        "nivel": "Nivel 3",
+        "equipo_partidos": 362,
+        "no_completa": 148,
+        "pct_no_completa": 40.9,
+        "menos_12": 147,
+        "pct_menos_12": 40.6,
+        "mala_composicion": 1,
+        "pct_mala_composicion": 0.3,
+        "falla_minutos": 164,
+        "pct_falla_minutos": 45.3,
+        "falla_cuartos": 300,
+        "pct_falla_cuartos": 82.9,
+        "no_cumple": 329,
+        "pct_no_cumple": 90.9,
+        "prom_acta": 10.93,
+        "prom_plantilla": 10.93,
+        "pct_acta_lt12": 40.6,
+        "pct_acta_12_15": 59.4,
+        "pct_acta_gt15": 0.0,
+        "con_pbp": 346,
+        "sin_acta": 14,
+        "motivos": [
+          [
+            "cuartos (consec/Q1+Q2)",
+            300
+          ],
+          [
+            "minutos fuera de regla",
+            164
+          ],
+          [
+            "menos del mínimo de plantilla",
+            147
+          ],
+          [
+            "composición insuficiente",
+            1
+          ]
+        ]
+      },
+      {
+        "nivel": "Clasificatorio",
+        "equipo_partidos": 1204,
+        "no_completa": 42,
+        "pct_no_completa": 3.5,
+        "menos_12": 42,
+        "pct_menos_12": 3.5,
+        "mala_composicion": 0,
+        "pct_mala_composicion": 0.0,
+        "falla_minutos": 183,
+        "pct_falla_minutos": 15.2,
+        "falla_cuartos": 1026,
+        "pct_falla_cuartos": 85.2,
+        "no_cumple": 1044,
+        "pct_no_cumple": 86.7,
+        "prom_acta": 12.56,
+        "prom_plantilla": 12.56,
+        "pct_acta_lt12": 3.5,
+        "pct_acta_12_15": 96.5,
+        "pct_acta_gt15": 0.0,
+        "con_pbp": 1204,
+        "sin_acta": 0,
+        "motivos": [
+          [
+            "cuartos (consec/Q1+Q2)",
+            1026
+          ],
+          [
+            "minutos fuera de regla",
+            183
+          ],
+          [
+            "menos del mínimo de plantilla",
+            42
+          ]
+        ]
+      },
+      {
+        "nivel": "Reclasificación",
+        "equipo_partidos": 1603,
+        "no_completa": 430,
+        "pct_no_completa": 26.8,
+        "menos_12": 427,
+        "pct_menos_12": 26.6,
+        "mala_composicion": 3,
+        "pct_mala_composicion": 0.2,
+        "falla_minutos": 522,
+        "pct_falla_minutos": 32.6,
+        "falla_cuartos": 1296,
+        "pct_falla_cuartos": 80.8,
+        "no_cumple": 1384,
+        "pct_no_cumple": 86.3,
+        "prom_acta": 11.53,
+        "prom_plantilla": 11.53,
+        "pct_acta_lt12": 26.6,
+        "pct_acta_12_15": 73.4,
+        "pct_acta_gt15": 0.0,
+        "con_pbp": 1570,
+        "sin_acta": 61,
+        "motivos": [
+          [
+            "cuartos (consec/Q1+Q2)",
+            1296
+          ],
+          [
+            "minutos fuera de regla",
+            522
+          ],
+          [
+            "menos del mínimo de plantilla",
+            427
+          ],
+          [
+            "composición insuficiente",
+            3
+          ]
+        ]
+      },
+      {
+        "nivel": "Otro",
+        "equipo_partidos": 70,
+        "no_completa": 0,
+        "pct_no_completa": 0.0,
+        "menos_12": 0,
+        "pct_menos_12": 0.0,
+        "mala_composicion": 0,
+        "pct_mala_composicion": 0.0,
+        "falla_minutos": 4,
+        "pct_falla_minutos": 5.7,
+        "falla_cuartos": 61,
+        "pct_falla_cuartos": 87.1,
+        "no_cumple": 62,
+        "pct_no_cumple": 88.6,
+        "prom_acta": 12.41,
+        "prom_plantilla": 12.41,
+        "pct_acta_lt12": 0.0,
+        "pct_acta_12_15": 100.0,
+        "pct_acta_gt15": 0.0,
+        "con_pbp": 70,
+        "sin_acta": 0,
+        "motivos": [
+          [
+            "cuartos (consec/Q1+Q2)",
+            61
+          ],
+          [
+            "minutos fuera de regla",
+            4
+          ]
+        ]
+      },
+      {
+        "nivel": "TOTAL",
+        "equipo_partidos": 5134,
+        "no_completa": 709,
+        "pct_no_completa": 13.8,
+        "menos_12": 704,
+        "pct_menos_12": 13.7,
+        "mala_composicion": 5,
+        "pct_mala_composicion": 0.1,
+        "falla_minutos": 1109,
+        "pct_falla_minutos": 21.6,
+        "falla_cuartos": 4238,
+        "pct_falla_cuartos": 82.5,
+        "no_cumple": 4405,
+        "pct_no_cumple": 85.8,
+        "prom_acta": 12.11,
+        "prom_plantilla": 12.11,
+        "pct_acta_lt12": 13.7,
+        "pct_acta_12_15": 86.3,
+        "pct_acta_gt15": 0.0,
+        "con_pbp": 5078,
+        "sin_acta": 116,
+        "motivos": []
+      }
+    ],
+    "U15": [
+      {
+        "nivel": "Interconferencia A",
+        "equipo_partidos": 440,
+        "no_completa": 31,
+        "pct_no_completa": 7.0,
+        "menos_12": 31,
+        "pct_menos_12": 7.0,
+        "mala_composicion": 0,
+        "pct_mala_composicion": 0.0,
+        "falla_minutos": 337,
+        "pct_falla_minutos": 76.6,
+        "falla_cuartos": 13,
+        "pct_falla_cuartos": 3.0,
+        "no_cumple": 354,
+        "pct_no_cumple": 80.5,
+        "prom_acta": 11.6,
+        "prom_plantilla": 11.6,
+        "pct_acta_lt12": 31.6,
+        "pct_acta_12_15": 68.4,
+        "pct_acta_gt15": 0.0,
+        "con_pbp": 440,
+        "sin_acta": 2,
+        "motivos": [
+          [
+            "minutos fuera de regla",
+            337
+          ],
+          [
+            "menos de 10 de la categoría en acta",
+            31
+          ],
+          [
+            "cuartos (consec/Q1+Q2)",
+            13
+          ]
+        ]
+      },
+      {
+        "nivel": "Interconferencia B",
+        "equipo_partidos": 446,
+        "no_completa": 32,
+        "pct_no_completa": 7.2,
+        "menos_12": 32,
+        "pct_menos_12": 7.2,
+        "mala_composicion": 0,
+        "pct_mala_composicion": 0.0,
+        "falla_minutos": 343,
+        "pct_falla_minutos": 76.9,
+        "falla_cuartos": 15,
+        "pct_falla_cuartos": 3.4,
+        "no_cumple": 358,
+        "pct_no_cumple": 80.3,
+        "prom_acta": 11.67,
+        "prom_plantilla": 11.67,
+        "pct_acta_lt12": 24.9,
+        "pct_acta_12_15": 75.1,
+        "pct_acta_gt15": 0.0,
+        "con_pbp": 446,
+        "sin_acta": 0,
+        "motivos": [
+          [
+            "minutos fuera de regla",
+            343
+          ],
+          [
+            "menos de 10 de la categoría en acta",
+            32
+          ],
+          [
+            "cuartos (consec/Q1+Q2)",
+            15
+          ]
+        ]
+      },
+      {
+        "nivel": "Nivel 1",
+        "equipo_partidos": 424,
+        "no_completa": 64,
+        "pct_no_completa": 15.1,
+        "menos_12": 64,
+        "pct_menos_12": 15.1,
+        "mala_composicion": 0,
+        "pct_mala_composicion": 0.0,
+        "falla_minutos": 323,
+        "pct_falla_minutos": 76.2,
+        "falla_cuartos": 44,
+        "pct_falla_cuartos": 10.4,
+        "no_cumple": 354,
+        "pct_no_cumple": 83.5,
+        "prom_acta": 11.36,
+        "prom_plantilla": 11.36,
+        "pct_acta_lt12": 34.9,
+        "pct_acta_12_15": 65.1,
+        "pct_acta_gt15": 0.0,
+        "con_pbp": 420,
+        "sin_acta": 34,
+        "motivos": [
+          [
+            "minutos fuera de regla",
+            323
+          ],
+          [
+            "menos de 10 de la categoría en acta",
+            64
+          ],
+          [
+            "cuartos (consec/Q1+Q2)",
+            44
+          ]
+        ]
+      },
+      {
+        "nivel": "Nivel 2",
+        "equipo_partidos": 641,
+        "no_completa": 67,
+        "pct_no_completa": 10.5,
+        "menos_12": 67,
+        "pct_menos_12": 10.5,
+        "mala_composicion": 0,
+        "pct_mala_composicion": 0.0,
+        "falla_minutos": 445,
+        "pct_falla_minutos": 69.4,
+        "falla_cuartos": 48,
+        "pct_falla_cuartos": 7.5,
+        "no_cumple": 491,
+        "pct_no_cumple": 76.6,
+        "prom_acta": 11.49,
+        "prom_plantilla": 11.49,
+        "pct_acta_lt12": 34.3,
+        "pct_acta_12_15": 65.7,
+        "pct_acta_gt15": 0.0,
+        "con_pbp": 638,
+        "sin_acta": 1,
+        "motivos": [
+          [
+            "minutos fuera de regla",
+            445
+          ],
+          [
+            "menos de 10 de la categoría en acta",
+            67
+          ],
+          [
+            "cuartos (consec/Q1+Q2)",
+            48
+          ]
+        ]
+      },
+      {
+        "nivel": "Nivel 3",
+        "equipo_partidos": 369,
+        "no_completa": 133,
+        "pct_no_completa": 36.0,
+        "menos_12": 133,
+        "pct_menos_12": 36.0,
+        "mala_composicion": 0,
+        "pct_mala_composicion": 0.0,
+        "falla_minutos": 184,
+        "pct_falla_minutos": 49.9,
+        "falla_cuartos": 107,
+        "pct_falla_cuartos": 29.0,
+        "no_cumple": 278,
+        "pct_no_cumple": 75.3,
+        "prom_acta": 10.53,
+        "prom_plantilla": 10.53,
+        "pct_acta_lt12": 57.2,
+        "pct_acta_12_15": 42.8,
+        "pct_acta_gt15": 0.0,
+        "con_pbp": 364,
+        "sin_acta": 3,
+        "motivos": [
+          [
+            "minutos fuera de regla",
+            184
+          ],
+          [
+            "menos de 10 de la categoría en acta",
+            133
+          ],
+          [
+            "cuartos (consec/Q1+Q2)",
+            107
+          ]
+        ]
+      },
+      {
+        "nivel": "Clasificatorio",
+        "equipo_partidos": 1204,
+        "no_completa": 110,
+        "pct_no_completa": 9.1,
+        "menos_12": 110,
+        "pct_menos_12": 9.1,
+        "mala_composicion": 0,
+        "pct_mala_composicion": 0.0,
+        "falla_minutos": 851,
+        "pct_falla_minutos": 70.7,
+        "falla_cuartos": 96,
+        "pct_falla_cuartos": 8.0,
+        "no_cumple": 920,
+        "pct_no_cumple": 76.4,
+        "prom_acta": 11.6,
+        "prom_plantilla": 11.6,
+        "pct_acta_lt12": 27.1,
+        "pct_acta_12_15": 72.9,
+        "pct_acta_gt15": 0.0,
+        "con_pbp": 1202,
+        "sin_acta": 0,
+        "motivos": [
+          [
+            "minutos fuera de regla",
+            851
+          ],
+          [
+            "menos de 10 de la categoría en acta",
+            110
+          ],
+          [
+            "cuartos (consec/Q1+Q2)",
+            96
+          ]
+        ]
+      },
+      {
+        "nivel": "Reclasificación",
+        "equipo_partidos": 1670,
+        "no_completa": 399,
+        "pct_no_completa": 23.9,
+        "menos_12": 399,
+        "pct_menos_12": 23.9,
+        "mala_composicion": 0,
+        "pct_mala_composicion": 0.0,
+        "falla_minutos": 989,
+        "pct_falla_minutos": 59.2,
+        "falla_cuartos": 326,
+        "pct_falla_cuartos": 19.5,
+        "no_cumple": 1283,
+        "pct_no_cumple": 76.8,
+        "prom_acta": 10.85,
+        "prom_plantilla": 10.85,
+        "pct_acta_lt12": 45.3,
+        "pct_acta_12_15": 54.7,
+        "pct_acta_gt15": 0.0,
+        "con_pbp": 1626,
+        "sin_acta": 34,
+        "motivos": [
+          [
+            "minutos fuera de regla",
+            989
+          ],
+          [
+            "menos de 10 de la categoría en acta",
+            399
+          ],
+          [
+            "cuartos (consec/Q1+Q2)",
+            326
+          ]
+        ]
+      },
+      {
+        "nivel": "Otro",
+        "equipo_partidos": 72,
+        "no_completa": 2,
+        "pct_no_completa": 2.8,
+        "menos_12": 2,
+        "pct_menos_12": 2.8,
+        "mala_composicion": 0,
+        "pct_mala_composicion": 0.0,
+        "falla_minutos": 62,
+        "pct_falla_minutos": 86.1,
+        "falla_cuartos": 4,
+        "pct_falla_cuartos": 5.6,
+        "no_cumple": 62,
+        "pct_no_cumple": 86.1,
+        "prom_acta": 11.65,
+        "prom_plantilla": 11.65,
+        "pct_acta_lt12": 27.8,
+        "pct_acta_12_15": 72.2,
+        "pct_acta_gt15": 0.0,
+        "con_pbp": 72,
+        "sin_acta": 0,
+        "motivos": [
+          [
+            "minutos fuera de regla",
+            62
+          ],
+          [
+            "cuartos (consec/Q1+Q2)",
+            4
+          ],
+          [
+            "menos de 10 de la categoría en acta",
+            2
+          ]
+        ]
+      },
+      {
+        "nivel": "TOTAL",
+        "equipo_partidos": 5266,
+        "no_completa": 838,
+        "pct_no_completa": 15.9,
+        "menos_12": 838,
+        "pct_menos_12": 15.9,
+        "mala_composicion": 0,
+        "pct_mala_composicion": 0.0,
+        "falla_minutos": 3534,
+        "pct_falla_minutos": 67.1,
+        "falla_cuartos": 653,
+        "pct_falla_cuartos": 12.4,
+        "no_cumple": 4100,
+        "pct_no_cumple": 77.9,
+        "prom_acta": 11.26,
+        "prom_plantilla": 11.26,
+        "pct_acta_lt12": 36.7,
+        "pct_acta_12_15": 63.3,
+        "pct_acta_gt15": 0.0,
+        "con_pbp": 5208,
+        "sin_acta": 74,
+        "motivos": []
+      }
+    ],
+    "U17": [
+      {
+        "nivel": "Interconferencia A",
+        "equipo_partidos": 440,
+        "no_completa": 4,
+        "pct_no_completa": 0.9,
+        "menos_12": 4,
+        "pct_menos_12": 0.9,
+        "mala_composicion": 0,
+        "pct_mala_composicion": 0.0,
+        "falla_minutos": 0,
+        "pct_falla_minutos": 0.0,
+        "falla_cuartos": 0,
+        "pct_falla_cuartos": 0.0,
+        "no_cumple": 4,
+        "pct_no_cumple": 0.9,
+        "prom_acta": 10.55,
+        "prom_plantilla": 10.55,
+        "pct_acta_lt12": 69.3,
+        "pct_acta_12_15": 30.7,
+        "pct_acta_gt15": 0.0,
+        "con_pbp": 0,
+        "sin_acta": 0,
+        "motivos": [
+          [
+            "menos del mínimo de plantilla",
+            4
+          ]
+        ]
+      },
+      {
+        "nivel": "Interconferencia B",
+        "equipo_partidos": 445,
+        "no_completa": 1,
+        "pct_no_completa": 0.2,
+        "menos_12": 1,
+        "pct_menos_12": 0.2,
+        "mala_composicion": 0,
+        "pct_mala_composicion": 0.0,
+        "falla_minutos": 0,
+        "pct_falla_minutos": 0.0,
+        "falla_cuartos": 0,
+        "pct_falla_cuartos": 0.0,
+        "no_cumple": 1,
+        "pct_no_cumple": 0.2,
+        "prom_acta": 10.73,
+        "prom_plantilla": 10.73,
+        "pct_acta_lt12": 66.3,
+        "pct_acta_12_15": 33.7,
+        "pct_acta_gt15": 0.0,
+        "con_pbp": 0,
+        "sin_acta": 1,
+        "motivos": [
+          [
+            "menos del mínimo de plantilla",
+            1
+          ]
+        ]
+      },
+      {
+        "nivel": "Nivel 1",
+        "equipo_partidos": 420,
+        "no_completa": 11,
+        "pct_no_completa": 2.6,
+        "menos_12": 11,
+        "pct_menos_12": 2.6,
+        "mala_composicion": 0,
+        "pct_mala_composicion": 0.0,
+        "falla_minutos": 0,
+        "pct_falla_minutos": 0.0,
+        "falla_cuartos": 0,
+        "pct_falla_cuartos": 0.0,
+        "no_cumple": 11,
+        "pct_no_cumple": 2.6,
+        "prom_acta": 10.34,
+        "prom_plantilla": 10.34,
+        "pct_acta_lt12": 72.6,
+        "pct_acta_12_15": 27.4,
+        "pct_acta_gt15": 0.0,
+        "con_pbp": 0,
+        "sin_acta": 36,
+        "motivos": [
+          [
+            "menos del mínimo de plantilla",
+            11
+          ]
+        ]
+      },
+      {
+        "nivel": "Nivel 2",
+        "equipo_partidos": 638,
+        "no_completa": 6,
+        "pct_no_completa": 0.9,
+        "menos_12": 6,
+        "pct_menos_12": 0.9,
+        "mala_composicion": 0,
+        "pct_mala_composicion": 0.0,
+        "falla_minutos": 0,
+        "pct_falla_minutos": 0.0,
+        "falla_cuartos": 0,
+        "pct_falla_cuartos": 0.0,
+        "no_cumple": 6,
+        "pct_no_cumple": 0.9,
+        "prom_acta": 10.83,
+        "prom_plantilla": 10.83,
+        "pct_acta_lt12": 61.3,
+        "pct_acta_12_15": 38.7,
+        "pct_acta_gt15": 0.0,
+        "con_pbp": 0,
+        "sin_acta": 0,
+        "motivos": [
+          [
+            "menos del mínimo de plantilla",
+            6
+          ]
+        ]
+      },
+      {
+        "nivel": "Nivel 3",
+        "equipo_partidos": 400,
+        "no_completa": 14,
+        "pct_no_completa": 3.5,
+        "menos_12": 14,
+        "pct_menos_12": 3.5,
+        "mala_composicion": 0,
+        "pct_mala_composicion": 0.0,
+        "falla_minutos": 0,
+        "pct_falla_minutos": 0.0,
+        "falla_cuartos": 0,
+        "pct_falla_cuartos": 0.0,
+        "no_cumple": 14,
+        "pct_no_cumple": 3.5,
+        "prom_acta": 10.08,
+        "prom_plantilla": 10.08,
+        "pct_acta_lt12": 79.5,
+        "pct_acta_12_15": 20.5,
+        "pct_acta_gt15": 0.0,
+        "con_pbp": 0,
+        "sin_acta": 0,
+        "motivos": [
+          [
+            "menos del mínimo de plantilla",
+            14
+          ]
+        ]
+      },
+      {
+        "nivel": "Clasificatorio",
+        "equipo_partidos": 1202,
+        "no_completa": 5,
+        "pct_no_completa": 0.4,
+        "menos_12": 5,
+        "pct_menos_12": 0.4,
+        "mala_composicion": 0,
+        "pct_mala_composicion": 0.0,
+        "falla_minutos": 0,
+        "pct_falla_minutos": 0.0,
+        "falla_cuartos": 0,
+        "pct_falla_cuartos": 0.0,
+        "no_cumple": 5,
+        "pct_no_cumple": 0.4,
+        "prom_acta": 10.91,
+        "prom_plantilla": 10.91,
+        "pct_acta_lt12": 56.7,
+        "pct_acta_12_15": 43.3,
+        "pct_acta_gt15": 0.0,
+        "con_pbp": 0,
+        "sin_acta": 0,
+        "motivos": [
+          [
+            "menos del mínimo de plantilla",
+            5
+          ]
+        ]
+      },
+      {
+        "nivel": "Reclasificación",
+        "equipo_partidos": 1698,
+        "no_completa": 33,
+        "pct_no_completa": 1.9,
+        "menos_12": 33,
+        "pct_menos_12": 1.9,
+        "mala_composicion": 0,
+        "pct_mala_composicion": 0.0,
+        "falla_minutos": 0,
+        "pct_falla_minutos": 0.0,
+        "falla_cuartos": 0,
+        "pct_falla_cuartos": 0.0,
+        "no_cumple": 33,
+        "pct_no_cumple": 1.9,
+        "prom_acta": 10.63,
+        "prom_plantilla": 10.63,
+        "pct_acta_lt12": 63.1,
+        "pct_acta_12_15": 36.9,
+        "pct_acta_gt15": 0.0,
+        "con_pbp": 0,
+        "sin_acta": 10,
+        "motivos": [
+          [
+            "menos del mínimo de plantilla",
+            33
+          ]
+        ]
+      },
+      {
+        "nivel": "Otro",
+        "equipo_partidos": 70,
+        "no_completa": 0,
+        "pct_no_completa": 0.0,
+        "menos_12": 0,
+        "pct_menos_12": 0.0,
+        "mala_composicion": 0,
+        "pct_mala_composicion": 0.0,
+        "falla_minutos": 0,
+        "pct_falla_minutos": 0.0,
+        "falla_cuartos": 0,
+        "pct_falla_cuartos": 0.0,
+        "no_cumple": 0,
+        "pct_no_cumple": 0.0,
+        "prom_acta": 10.63,
+        "prom_plantilla": 10.63,
+        "pct_acta_lt12": 64.3,
+        "pct_acta_12_15": 35.7,
+        "pct_acta_gt15": 0.0,
+        "con_pbp": 0,
+        "sin_acta": 0,
+        "motivos": []
+      },
+      {
+        "nivel": "TOTAL",
+        "equipo_partidos": 5313,
+        "no_completa": 74,
+        "pct_no_completa": 1.4,
+        "menos_12": 74,
+        "pct_menos_12": 1.4,
+        "mala_composicion": 0,
+        "pct_mala_composicion": 0.0,
+        "falla_minutos": 0,
+        "pct_falla_minutos": 0.0,
+        "falla_cuartos": 0,
+        "pct_falla_cuartos": 0.0,
+        "no_cumple": 74,
+        "pct_no_cumple": 1.4,
+        "prom_acta": 10.65,
+        "prom_plantilla": 10.65,
+        "pct_acta_lt12": 64.2,
+        "pct_acta_12_15": 35.8,
+        "pct_acta_gt15": 0.0,
+        "con_pbp": 0,
+        "sin_acta": 47,
+        "motivos": []
+      }
+    ],
+    "U21": [
+      {
+        "nivel": "Interconferencia A",
+        "equipo_partidos": 436,
+        "no_completa": 2,
+        "pct_no_completa": 0.5,
+        "menos_12": 2,
+        "pct_menos_12": 0.5,
+        "mala_composicion": 0,
+        "pct_mala_composicion": 0.0,
+        "falla_minutos": 0,
+        "pct_falla_minutos": 0.0,
+        "falla_cuartos": 0,
+        "pct_falla_cuartos": 0.0,
+        "no_cumple": 2,
+        "pct_no_cumple": 0.5,
+        "prom_acta": 10.03,
+        "prom_plantilla": 8.05,
+        "pct_acta_lt12": 83.7,
+        "pct_acta_12_15": 16.3,
+        "pct_acta_gt15": 0.0,
+        "con_pbp": 0,
+        "sin_acta": 0,
+        "motivos": [
+          [
+            "menos del mínimo de plantilla",
+            2
+          ]
+        ]
+      },
+      {
+        "nivel": "Interconferencia B",
+        "equipo_partidos": 446,
+        "no_completa": 2,
+        "pct_no_completa": 0.4,
+        "menos_12": 2,
+        "pct_menos_12": 0.4,
+        "mala_composicion": 0,
+        "pct_mala_composicion": 0.0,
+        "falla_minutos": 0,
+        "pct_falla_minutos": 0.0,
+        "falla_cuartos": 0,
+        "pct_falla_cuartos": 0.0,
+        "no_cumple": 2,
+        "pct_no_cumple": 0.4,
+        "prom_acta": 10.08,
+        "prom_plantilla": 8.74,
+        "pct_acta_lt12": 80.0,
+        "pct_acta_12_15": 20.0,
+        "pct_acta_gt15": 0.0,
+        "con_pbp": 0,
+        "sin_acta": 0,
+        "motivos": [
+          [
+            "menos del mínimo de plantilla",
+            2
+          ]
+        ]
+      },
+      {
+        "nivel": "Nivel 1",
+        "equipo_partidos": 460,
+        "no_completa": 0,
+        "pct_no_completa": 0.0,
+        "menos_12": 0,
+        "pct_menos_12": 0.0,
+        "mala_composicion": 0,
+        "pct_mala_composicion": 0.0,
+        "falla_minutos": 0,
+        "pct_falla_minutos": 0.0,
+        "falla_cuartos": 0,
+        "pct_falla_cuartos": 0.0,
+        "no_cumple": 0,
+        "pct_no_cumple": 0.0,
+        "prom_acta": 10.07,
+        "prom_plantilla": 8.63,
+        "pct_acta_lt12": 83.0,
+        "pct_acta_12_15": 17.0,
+        "pct_acta_gt15": 0.0,
+        "con_pbp": 0,
+        "sin_acta": 0,
+        "motivos": []
+      },
+      {
+        "nivel": "Nivel 2",
+        "equipo_partidos": 638,
+        "no_completa": 2,
+        "pct_no_completa": 0.3,
+        "menos_12": 2,
+        "pct_menos_12": 0.3,
+        "mala_composicion": 0,
+        "pct_mala_composicion": 0.0,
+        "falla_minutos": 0,
+        "pct_falla_minutos": 0.0,
+        "falla_cuartos": 0,
+        "pct_falla_cuartos": 0.0,
+        "no_cumple": 2,
+        "pct_no_cumple": 0.3,
+        "prom_acta": 10.33,
+        "prom_plantilla": 8.99,
+        "pct_acta_lt12": 70.2,
+        "pct_acta_12_15": 29.8,
+        "pct_acta_gt15": 0.0,
+        "con_pbp": 0,
+        "sin_acta": 0,
+        "motivos": [
+          [
+            "menos del mínimo de plantilla",
+            2
+          ]
+        ]
+      },
+      {
+        "nivel": "Nivel 3",
+        "equipo_partidos": 408,
+        "no_completa": 2,
+        "pct_no_completa": 0.5,
+        "menos_12": 2,
+        "pct_menos_12": 0.5,
+        "mala_composicion": 0,
+        "pct_mala_composicion": 0.0,
+        "falla_minutos": 0,
+        "pct_falla_minutos": 0.0,
+        "falla_cuartos": 0,
+        "pct_falla_cuartos": 0.0,
+        "no_cumple": 2,
+        "pct_no_cumple": 0.5,
+        "prom_acta": 10.19,
+        "prom_plantilla": 9.25,
+        "pct_acta_lt12": 73.3,
+        "pct_acta_12_15": 26.7,
+        "pct_acta_gt15": 0.0,
+        "con_pbp": 0,
+        "sin_acta": 0,
+        "motivos": [
+          [
+            "menos del mínimo de plantilla",
+            2
+          ]
+        ]
+      },
+      {
+        "nivel": "Clasificatorio",
+        "equipo_partidos": 1204,
+        "no_completa": 2,
+        "pct_no_completa": 0.2,
+        "menos_12": 2,
+        "pct_menos_12": 0.2,
+        "mala_composicion": 0,
+        "pct_mala_composicion": 0.0,
+        "falla_minutos": 0,
+        "pct_falla_minutos": 0.0,
+        "falla_cuartos": 0,
+        "pct_falla_cuartos": 0.0,
+        "no_cumple": 2,
+        "pct_no_cumple": 0.2,
+        "prom_acta": 10.55,
+        "prom_plantilla": 9.15,
+        "pct_acta_lt12": 68.2,
+        "pct_acta_12_15": 31.8,
+        "pct_acta_gt15": 0.0,
+        "con_pbp": 0,
+        "sin_acta": 0,
+        "motivos": [
+          [
+            "menos del mínimo de plantilla",
+            2
+          ]
+        ]
+      },
+      {
+        "nivel": "Reclasificación",
+        "equipo_partidos": 1692,
+        "no_completa": 14,
+        "pct_no_completa": 0.8,
+        "menos_12": 14,
+        "pct_menos_12": 0.8,
+        "mala_composicion": 0,
+        "pct_mala_composicion": 0.0,
+        "falla_minutos": 0,
+        "pct_falla_minutos": 0.0,
+        "falla_cuartos": 0,
+        "pct_falla_cuartos": 0.0,
+        "no_cumple": 14,
+        "pct_no_cumple": 0.8,
+        "prom_acta": 10.33,
+        "prom_plantilla": 9.38,
+        "pct_acta_lt12": 68.9,
+        "pct_acta_12_15": 31.1,
+        "pct_acta_gt15": 0.0,
+        "con_pbp": 0,
+        "sin_acta": 18,
+        "motivos": [
+          [
+            "menos del mínimo de plantilla",
+            14
+          ]
+        ]
+      },
+      {
+        "nivel": "Otro",
+        "equipo_partidos": 64,
+        "no_completa": 0,
+        "pct_no_completa": 0.0,
+        "menos_12": 0,
+        "pct_menos_12": 0.0,
+        "mala_composicion": 0,
+        "pct_mala_composicion": 0.0,
+        "falla_minutos": 0,
+        "pct_falla_minutos": 0.0,
+        "falla_cuartos": 0,
+        "pct_falla_cuartos": 0.0,
+        "no_cumple": 0,
+        "pct_no_cumple": 0.0,
+        "prom_acta": 10.22,
+        "prom_plantilla": 8.72,
+        "pct_acta_lt12": 79.7,
+        "pct_acta_12_15": 20.3,
+        "pct_acta_gt15": 0.0,
+        "con_pbp": 0,
+        "sin_acta": 0,
+        "motivos": []
+      },
+      {
+        "nivel": "TOTAL",
+        "equipo_partidos": 5348,
+        "no_completa": 24,
+        "pct_no_completa": 0.4,
+        "menos_12": 24,
+        "pct_menos_12": 0.4,
+        "mala_composicion": 0,
+        "pct_mala_composicion": 0.0,
+        "falla_minutos": 0,
+        "pct_falla_minutos": 0.0,
+        "falla_cuartos": 0,
+        "pct_falla_cuartos": 0.0,
+        "no_cumple": 24,
+        "pct_no_cumple": 0.4,
+        "prom_acta": 10.3,
+        "prom_plantilla": 9.04,
+        "pct_acta_lt12": 72.7,
+        "pct_acta_12_15": 27.3,
+        "pct_acta_gt15": 0.0,
+        "con_pbp": 0,
+        "sin_acta": 18,
+        "motivos": []
+      }
+    ]
+  },
+  "u21": {
+    "n_equipo_partidos": 5348,
+    "prom_jugadores": 10.3,
+    "prom_u19": 5.0,
+    "prom_2005_2006": 4.0,
+    "pct_partidos_15plus": 0.0,
+    "pct_partidos_u19_mayoria": 54.4,
+    "n_equipos": 193,
+    "pct_equipos_plantel_15plus": 43.0,
+    "planteles_15plus": [
+      {
+        "equipo": "CLUB GEI GRIS(C)",
+        "plantel_unico": 22,
+        "u19_unicos": 16,
+        "y2005_2006_unicos": 6,
+        "pct_u19": 72.7
+      },
+      {
+        "equipo": "SAN LORENZO ROJO B",
+        "plantel_unico": 22,
+        "u19_unicos": 14,
+        "y2005_2006_unicos": 8,
+        "pct_u19": 63.6
+      },
+      {
+        "equipo": "HURACAN DE SAN JUSTO A",
+        "plantel_unico": 21,
+        "u19_unicos": 12,
+        "y2005_2006_unicos": 9,
+        "pct_u19": 57.1
+      },
+      {
+        "equipo": "COPELLO",
+        "plantel_unico": 20,
+        "u19_unicos": 13,
+        "y2005_2006_unicos": 7,
+        "pct_u19": 65.0
+      },
+      {
+        "equipo": "GIMNASIA Y ESGRIMA LA PLATA B",
+        "plantel_unico": 20,
+        "u19_unicos": 13,
+        "y2005_2006_unicos": 7,
+        "pct_u19": 65.0
+      },
+      {
+        "equipo": "RAMOS MEJIA LTC",
+        "plantel_unico": 20,
+        "u19_unicos": 13,
+        "y2005_2006_unicos": 7,
+        "pct_u19": 65.0
+      },
+      {
+        "equipo": "ALEM",
+        "plantel_unico": 19,
+        "u19_unicos": 8,
+        "y2005_2006_unicos": 11,
+        "pct_u19": 42.1
+      },
+      {
+        "equipo": "ARQUITECTURA BLANCO B",
+        "plantel_unico": 19,
+        "u19_unicos": 17,
+        "y2005_2006_unicos": 2,
+        "pct_u19": 89.5
+      },
+      {
+        "equipo": "COLEGIALES NEGRO",
+        "plantel_unico": 19,
+        "u19_unicos": 7,
+        "y2005_2006_unicos": 12,
+        "pct_u19": 36.8
+      },
+      {
+        "equipo": "HURACAN DE SAN JUSTO B",
+        "plantel_unico": 19,
+        "u19_unicos": 14,
+        "y2005_2006_unicos": 5,
+        "pct_u19": 73.7
+      },
+      {
+        "equipo": "INDEPENDIENTE DE ESCOBAR",
+        "plantel_unico": 19,
+        "u19_unicos": 9,
+        "y2005_2006_unicos": 10,
+        "pct_u19": 47.4
+      },
+      {
+        "equipo": "PEDRO ECHAGUE AMARILLO",
+        "plantel_unico": 19,
+        "u19_unicos": 11,
+        "y2005_2006_unicos": 8,
+        "pct_u19": 57.9
+      },
+      {
+        "equipo": "PLATENSE A",
+        "plantel_unico": 19,
+        "u19_unicos": 15,
+        "y2005_2006_unicos": 4,
+        "pct_u19": 78.9
+      },
+      {
+        "equipo": "SAN LORENZO AZUL",
+        "plantel_unico": 19,
+        "u19_unicos": 10,
+        "y2005_2006_unicos": 9,
+        "pct_u19": 52.6
+      },
+      {
+        "equipo": "UNITARIOS DE MARCOS PAZ",
+        "plantel_unico": 19,
+        "u19_unicos": 8,
+        "y2005_2006_unicos": 11,
+        "pct_u19": 42.1
+      },
+      {
+        "equipo": "ALL BOYS NEGRO",
+        "plantel_unico": 18,
+        "u19_unicos": 11,
+        "y2005_2006_unicos": 7,
+        "pct_u19": 61.1
+      },
+      {
+        "equipo": "EL TALAR",
+        "plantel_unico": 18,
+        "u19_unicos": 13,
+        "y2005_2006_unicos": 5,
+        "pct_u19": 72.2
+      },
+      {
+        "equipo": "FERROCARRIL OESTE BLANCO",
+        "plantel_unico": 18,
+        "u19_unicos": 8,
+        "y2005_2006_unicos": 10,
+        "pct_u19": 44.4
+      },
+      {
+        "equipo": "FERROCARRIL OESTE VERDE",
+        "plantel_unico": 18,
+        "u19_unicos": 12,
+        "y2005_2006_unicos": 6,
+        "pct_u19": 66.7
+      },
+      {
+        "equipo": "INSTITUCION SARMIENTO BLANCO B",
+        "plantel_unico": 18,
+        "u19_unicos": 10,
+        "y2005_2006_unicos": 8,
+        "pct_u19": 55.6
+      },
+      {
+        "equipo": "MUNICIPALIDAD DE HURLINGHAM",
+        "plantel_unico": 18,
+        "u19_unicos": 13,
+        "y2005_2006_unicos": 5,
+        "pct_u19": 72.2
+      },
+      {
+        "equipo": "VICTORIA BLANCO",
+        "plantel_unico": 18,
+        "u19_unicos": 9,
+        "y2005_2006_unicos": 9,
+        "pct_u19": 50.0
+      },
+      {
+        "equipo": "GEBA",
+        "plantel_unico": 17,
+        "u19_unicos": 4,
+        "y2005_2006_unicos": 13,
+        "pct_u19": 23.5
+      },
+      {
+        "equipo": "GUILLON BASQUET",
+        "plantel_unico": 17,
+        "u19_unicos": 10,
+        "y2005_2006_unicos": 7,
+        "pct_u19": 58.8
+      },
+      {
+        "equipo": "NUEVA CHICAGO",
+        "plantel_unico": 17,
+        "u19_unicos": 6,
+        "y2005_2006_unicos": 11,
+        "pct_u19": 35.3
+      },
+      {
+        "equipo": "PRESIDENTE DERQUI",
+        "plantel_unico": 17,
+        "u19_unicos": 11,
+        "y2005_2006_unicos": 6,
+        "pct_u19": 64.7
+      },
+      {
+        "equipo": "TALLERES",
+        "plantel_unico": 17,
+        "u19_unicos": 4,
+        "y2005_2006_unicos": 13,
+        "pct_u19": 23.5
+      },
+      {
+        "equipo": "VILLA ESPANA",
+        "plantel_unico": 17,
+        "u19_unicos": 8,
+        "y2005_2006_unicos": 9,
+        "pct_u19": 47.1
+      },
+      {
+        "equipo": "17 DE AGOSTO",
+        "plantel_unico": 16,
+        "u19_unicos": 9,
+        "y2005_2006_unicos": 7,
+        "pct_u19": 56.2
+      },
+      {
+        "equipo": "ALDO BONZI",
+        "plantel_unico": 16,
+        "u19_unicos": 10,
+        "y2005_2006_unicos": 6,
+        "pct_u19": 62.5
+      },
+      {
+        "equipo": "ALL BOYS BLANCO",
+        "plantel_unico": 16,
+        "u19_unicos": 8,
+        "y2005_2006_unicos": 8,
+        "pct_u19": 50.0
+      },
+      {
+        "equipo": "ALL BOYS SAAVEDRA",
+        "plantel_unico": 16,
+        "u19_unicos": 2,
+        "y2005_2006_unicos": 14,
+        "pct_u19": 12.5
+      },
+      {
+        "equipo": "ATENEO POPULAR VERSAILLES",
+        "plantel_unico": 16,
+        "u19_unicos": 5,
+        "y2005_2006_unicos": 11,
+        "pct_u19": 31.2
+      },
+      {
+        "equipo": "CENTRO ESPANOL",
+        "plantel_unico": 16,
+        "u19_unicos": 12,
+        "y2005_2006_unicos": 4,
+        "pct_u19": 75.0
+      },
+      {
+        "equipo": "CENTRO GALICIA",
+        "plantel_unico": 16,
+        "u19_unicos": 11,
+        "y2005_2006_unicos": 5,
+        "pct_u19": 68.8
+      },
+      {
+        "equipo": "COOPERARIOS DE QUILMES",
+        "plantel_unico": 16,
+        "u19_unicos": 6,
+        "y2005_2006_unicos": 10,
+        "pct_u19": 37.5
+      },
+      {
+        "equipo": "DEFENSORES DE GLEW",
+        "plantel_unico": 16,
+        "u19_unicos": 7,
+        "y2005_2006_unicos": 9,
+        "pct_u19": 43.8
+      },
+      {
+        "equipo": "EL FOGON",
+        "plantel_unico": 16,
+        "u19_unicos": 6,
+        "y2005_2006_unicos": 10,
+        "pct_u19": 37.5
+      },
+      {
+        "equipo": "FERROCARRIL OESTE NARANJA",
+        "plantel_unico": 16,
+        "u19_unicos": 10,
+        "y2005_2006_unicos": 6,
+        "pct_u19": 62.5
+      },
+      {
+        "equipo": "INDEPENDIENTE",
+        "plantel_unico": 16,
+        "u19_unicos": 8,
+        "y2005_2006_unicos": 8,
+        "pct_u19": 50.0
+      },
+      {
+        "equipo": "ITALIANO B",
+        "plantel_unico": 16,
+        "u19_unicos": 12,
+        "y2005_2006_unicos": 4,
+        "pct_u19": 75.0
+      },
+      {
+        "equipo": "JOSE HERNANDEZ B",
+        "plantel_unico": 16,
+        "u19_unicos": 9,
+        "y2005_2006_unicos": 7,
+        "pct_u19": 56.2
+      },
+      {
+        "equipo": "MACABI",
+        "plantel_unico": 16,
+        "u19_unicos": 8,
+        "y2005_2006_unicos": 8,
+        "pct_u19": 50.0
+      },
+      {
+        "equipo": "MIDLAND",
+        "plantel_unico": 16,
+        "u19_unicos": 7,
+        "y2005_2006_unicos": 9,
+        "pct_u19": 43.8
+      },
+      {
+        "equipo": "NAUTICO HACOAJ AZUL B",
+        "plantel_unico": 16,
+        "u19_unicos": 14,
+        "y2005_2006_unicos": 2,
+        "pct_u19": 87.5
+      },
+      {
+        "equipo": "PINOCHO BLANCO",
+        "plantel_unico": 16,
+        "u19_unicos": 7,
+        "y2005_2006_unicos": 9,
+        "pct_u19": 43.8
+      },
+      {
+        "equipo": "PLATENSE B",
+        "plantel_unico": 16,
+        "u19_unicos": 11,
+        "y2005_2006_unicos": 5,
+        "pct_u19": 68.8
+      },
+      {
+        "equipo": "RACING CLUB",
+        "plantel_unico": 16,
+        "u19_unicos": 8,
+        "y2005_2006_unicos": 8,
+        "pct_u19": 50.0
+      },
+      {
+        "equipo": "SAN MIGUEL BLANCO",
+        "plantel_unico": 16,
+        "u19_unicos": 9,
+        "y2005_2006_unicos": 7,
+        "pct_u19": 56.2
+      },
+      {
+        "equipo": "SOCIEDAD HEBRAICA ARGENTINA",
+        "plantel_unico": 16,
+        "u19_unicos": 11,
+        "y2005_2006_unicos": 5,
+        "pct_u19": 68.8
+      },
+      {
+        "equipo": "SPORTIVO PILAR",
+        "plantel_unico": 16,
+        "u19_unicos": 7,
+        "y2005_2006_unicos": 9,
+        "pct_u19": 43.8
+      },
+      {
+        "equipo": "TEMPERLEY",
+        "plantel_unico": 16,
+        "u19_unicos": 10,
+        "y2005_2006_unicos": 6,
+        "pct_u19": 62.5
+      },
+      {
+        "equipo": "UNION VECINAL DE MUNRO",
+        "plantel_unico": 16,
+        "u19_unicos": 3,
+        "y2005_2006_unicos": 13,
+        "pct_u19": 18.8
+      },
+      {
+        "equipo": "UNIVERSIDAD DE BUENOS AIRES",
+        "plantel_unico": 16,
+        "u19_unicos": 8,
+        "y2005_2006_unicos": 8,
+        "pct_u19": 50.0
+      },
+      {
+        "equipo": "VARELA JRS",
+        "plantel_unico": 16,
+        "u19_unicos": 12,
+        "y2005_2006_unicos": 4,
+        "pct_u19": 75.0
+      },
+      {
+        "equipo": "3 DE FEBRERO AZUL B",
+        "plantel_unico": 15,
+        "u19_unicos": 11,
+        "y2005_2006_unicos": 4,
+        "pct_u19": 73.3
+      },
+      {
+        "equipo": "ARGENTINO DE CASTELAR SUR C",
+        "plantel_unico": 15,
+        "u19_unicos": 7,
+        "y2005_2006_unicos": 8,
+        "pct_u19": 46.7
+      },
+      {
+        "equipo": "ARMENIA",
+        "plantel_unico": 15,
+        "u19_unicos": 7,
+        "y2005_2006_unicos": 8,
+        "pct_u19": 46.7
+      },
+      {
+        "equipo": "BANCO NACION BLANCO B",
+        "plantel_unico": 15,
+        "u19_unicos": 11,
+        "y2005_2006_unicos": 4,
+        "pct_u19": 73.3
+      },
+      {
+        "equipo": "BERAZATEGUI",
+        "plantel_unico": 15,
+        "u19_unicos": 10,
+        "y2005_2006_unicos": 5,
+        "pct_u19": 66.7
+      },
+      {
+        "equipo": "CIUDADELA NORTE",
+        "plantel_unico": 15,
+        "u19_unicos": 8,
+        "y2005_2006_unicos": 7,
+        "pct_u19": 53.3
+      },
+      {
+        "equipo": "CLUB GEI AZUL(A)",
+        "plantel_unico": 15,
+        "u19_unicos": 7,
+        "y2005_2006_unicos": 8,
+        "pct_u19": 46.7
+      },
+      {
+        "equipo": "COLEGIALES BLANCO",
+        "plantel_unico": 15,
+        "u19_unicos": 10,
+        "y2005_2006_unicos": 5,
+        "pct_u19": 66.7
+      },
+      {
+        "equipo": "COUNTRY BANFIELD A",
+        "plantel_unico": 15,
+        "u19_unicos": 12,
+        "y2005_2006_unicos": 3,
+        "pct_u19": 80.0
+      },
+      {
+        "equipo": "DEFENSORES DE HURLINGHAM BLANCO",
+        "plantel_unico": 15,
+        "u19_unicos": 9,
+        "y2005_2006_unicos": 6,
+        "pct_u19": 60.0
+      },
+      {
+        "equipo": "DEFENSORES DE SANTOS LUGARES",
+        "plantel_unico": 15,
+        "u19_unicos": 11,
+        "y2005_2006_unicos": 4,
+        "pct_u19": 73.3
+      },
+      {
+        "equipo": "DEPORTIVO CROVARA B",
+        "plantel_unico": 15,
+        "u19_unicos": 10,
+        "y2005_2006_unicos": 5,
+        "pct_u19": 66.7
+      },
+      {
+        "equipo": "DEPORTIVO MORON B",
+        "plantel_unico": 15,
+        "u19_unicos": 12,
+        "y2005_2006_unicos": 3,
+        "pct_u19": 80.0
+      },
+      {
+        "equipo": "ESTRELLA DE BOEDO",
+        "plantel_unico": 15,
+        "u19_unicos": 9,
+        "y2005_2006_unicos": 6,
+        "pct_u19": 60.0
+      },
+      {
+        "equipo": "EZEIZA",
+        "plantel_unico": 15,
+        "u19_unicos": 6,
+        "y2005_2006_unicos": 9,
+        "pct_u19": 40.0
+      },
+      {
+        "equipo": "IMPERIO BLANCO A",
+        "plantel_unico": 15,
+        "u19_unicos": 8,
+        "y2005_2006_unicos": 7,
+        "pct_u19": 53.3
+      },
+      {
+        "equipo": "IMPERIO NEGRO B",
+        "plantel_unico": 15,
+        "u19_unicos": 11,
+        "y2005_2006_unicos": 4,
+        "pct_u19": 73.3
+      },
+      {
+        "equipo": "LA UNION",
+        "plantel_unico": 15,
+        "u19_unicos": 6,
+        "y2005_2006_unicos": 9,
+        "pct_u19": 40.0
+      },
+      {
+        "equipo": "MORON BLANCO B",
+        "plantel_unico": 15,
+        "u19_unicos": 6,
+        "y2005_2006_unicos": 9,
+        "pct_u19": 40.0
+      },
+      {
+        "equipo": "NAUTICO BUCHARDO CENTRO (B)",
+        "plantel_unico": 15,
+        "u19_unicos": 13,
+        "y2005_2006_unicos": 2,
+        "pct_u19": 86.7
+      },
+      {
+        "equipo": "PASO DEL REY",
+        "plantel_unico": 15,
+        "u19_unicos": 5,
+        "y2005_2006_unicos": 10,
+        "pct_u19": 33.3
+      },
+      {
+        "equipo": "PEDRO ECHAGUE AZUL",
+        "plantel_unico": 15,
+        "u19_unicos": 9,
+        "y2005_2006_unicos": 6,
+        "pct_u19": 60.0
+      },
+      {
+        "equipo": "PINOCHO",
+        "plantel_unico": 15,
+        "u19_unicos": 6,
+        "y2005_2006_unicos": 9,
+        "pct_u19": 40.0
+      },
+      {
+        "equipo": "PORTENO ATLETICO CLUB BLANCO B",
+        "plantel_unico": 15,
+        "u19_unicos": 11,
+        "y2005_2006_unicos": 4,
+        "pct_u19": 73.3
+      },
+      {
+        "equipo": "PORTUGUES DEL GRAN BUENOS AIRES",
+        "plantel_unico": 15,
+        "u19_unicos": 10,
+        "y2005_2006_unicos": 5,
+        "pct_u19": 66.7
+      },
+      {
+        "equipo": "SAN FERNANDO BLANCO",
+        "plantel_unico": 15,
+        "u19_unicos": 3,
+        "y2005_2006_unicos": 12,
+        "pct_u19": 20.0
+      },
+      {
+        "equipo": "SPORTIVO ESCOBAR",
+        "plantel_unico": 15,
+        "u19_unicos": 10,
+        "y2005_2006_unicos": 5,
+        "pct_u19": 66.7
+      },
+      {
+        "equipo": "UNIVERSIDAD DE LA MATANZA",
+        "plantel_unico": 15,
+        "u19_unicos": 6,
+        "y2005_2006_unicos": 9,
+        "pct_u19": 40.0
+      }
+    ],
+    "minutos_por_anio": {
+      "2005": {
+        "n_apariciones": 10043,
+        "min_promedio": 22.77
+      },
+      "2006": {
+        "n_apariciones": 11424,
+        "min_promedio": 21.15
+      },
+      "2007": {
+        "n_apariciones": 12482,
+        "min_promedio": 19.5
+      },
+      "2008": {
+        "n_apariciones": 14379,
+        "min_promedio": 18.45
+      }
+    },
+    "equipos": [
+      {
+        "equipo": "ALL BOYS NEGRO",
+        "partidos": 30,
+        "prom_jugadores_por_partido": 11.8,
+        "prom_u19_2007_2008": 7.1,
+        "prom_2005_2006": 4.7,
+        "pct_u19": 60.2,
+        "min_por_anio": {
+          "2005": 19.66,
+          "2006": 16.79,
+          "2007": 14.61,
+          "2008": 17.71
+        }
+      },
+      {
+        "equipo": "PEDRO ECHAGUE AMARILLO",
+        "partidos": 30,
+        "prom_jugadores_por_partido": 11.7,
+        "prom_u19_2007_2008": 6.3,
+        "prom_2005_2006": 5.4,
+        "pct_u19": 53.9,
+        "min_por_anio": {
+          "2005": 23.57,
+          "2006": 21.29,
+          "2007": 12.74,
+          "2008": 12.87
+        }
+      },
+      {
+        "equipo": "TEMPERLEY",
+        "partidos": 28,
+        "prom_jugadores_por_partido": 11.7,
+        "prom_u19_2007_2008": 6.3,
+        "prom_2005_2006": 4.5,
+        "pct_u19": 58.1,
+        "min_por_anio": {
+          "2005": 13.69,
+          "2006": 22.31,
+          "2007": 20.03,
+          "2008": 15.41
+        }
+      },
+      {
+        "equipo": "VICTORIA BLANCO",
+        "partidos": 27,
+        "prom_jugadores_por_partido": 11.7,
+        "prom_u19_2007_2008": 4.3,
+        "prom_2005_2006": 6.4,
+        "pct_u19": 39.9,
+        "min_por_anio": {
+          "2005": 22.45,
+          "2006": 20.12,
+          "2007": 6.93,
+          "2008": 14.16
+        }
+      },
+      {
+        "equipo": "ESTUDIANTIL PORTENO B",
+        "partidos": 30,
+        "prom_jugadores_por_partido": 11.6,
+        "prom_u19_2007_2008": 7.1,
+        "prom_2005_2006": 2.9,
+        "pct_u19": 70.7,
+        "min_por_anio": {
+          "2006": 20.63,
+          "2007": 17.63,
+          "2008": 17.6
+        }
+      },
+      {
+        "equipo": "FERROCARRIL OESTE VERDE",
+        "partidos": 31,
+        "prom_jugadores_por_partido": 11.6,
+        "prom_u19_2007_2008": 6.9,
+        "prom_2005_2006": 2.6,
+        "pct_u19": 72.6,
+        "min_por_anio": {
+          "2005": 19.96,
+          "2006": 19.02,
+          "2007": 17.33,
+          "2008": 17.6
+        }
+      },
+      {
+        "equipo": "GUILLON BASQUET",
+        "partidos": 24,
+        "prom_jugadores_por_partido": 11.6,
+        "prom_u19_2007_2008": 5.6,
+        "prom_2005_2006": 5.2,
+        "pct_u19": 51.5,
+        "min_por_anio": {
+          "2005": 20.31,
+          "2006": 22.53,
+          "2007": 7.68,
+          "2008": 14.44
+        }
+      },
+      {
+        "equipo": "PLATENSE A",
+        "partidos": 28,
+        "prom_jugadores_por_partido": 11.6,
+        "prom_u19_2007_2008": 9.2,
+        "prom_2005_2006": 2.1,
+        "pct_u19": 81.7,
+        "min_por_anio": {
+          "2005": 21.98,
+          "2006": 22.2,
+          "2007": 14.07,
+          "2008": 17.3
+        }
+      },
+      {
+        "equipo": "CIUDADELA NORTE",
+        "partidos": 29,
+        "prom_jugadores_por_partido": 11.5,
+        "prom_u19_2007_2008": 4.4,
+        "prom_2005_2006": 4.1,
+        "pct_u19": 51.6,
+        "min_por_anio": {
+          "2005": 22.85,
+          "2006": 23.91,
+          "2007": 19.19,
+          "2008": 14.37
+        }
+      },
+      {
+        "equipo": "CLUB GEI GRIS(C)",
+        "partidos": 26,
+        "prom_jugadores_por_partido": 11.5,
+        "prom_u19_2007_2008": 8.2,
+        "prom_2005_2006": 3.1,
+        "pct_u19": 72.7,
+        "min_por_anio": {
+          "2006": 16.49,
+          "2007": 18.82,
+          "2008": 14.34
+        }
+      },
+      {
+        "equipo": "DEFENSORES DE SANTOS LUGARES",
+        "partidos": 30,
+        "prom_jugadores_por_partido": 11.5,
+        "prom_u19_2007_2008": 8.8,
+        "prom_2005_2006": 2.6,
+        "pct_u19": 77.0,
+        "min_por_anio": {
+          "2005": 9.31,
+          "2006": 19.89,
+          "2007": 18.84,
+          "2008": 17.92
+        }
+      },
+      {
+        "equipo": "GEBA",
+        "partidos": 30,
+        "prom_jugadores_por_partido": 11.5,
+        "prom_u19_2007_2008": 2.8,
+        "prom_2005_2006": 7.4,
+        "pct_u19": 27.2,
+        "min_por_anio": {
+          "2005": 17.63,
+          "2006": 18.62,
+          "2007": 17.06,
+          "2008": 16.03
+        }
+      },
+      {
+        "equipo": "HURACAN DE SAN JUSTO B",
+        "partidos": 27,
+        "prom_jugadores_por_partido": 11.5,
+        "prom_u19_2007_2008": 8.5,
+        "prom_2005_2006": 3.0,
+        "pct_u19": 74.1,
+        "min_por_anio": {
+          "2005": 17.54,
+          "2006": 10.06,
+          "2007": 18.37,
+          "2008": 16.91
+        }
+      },
+      {
+        "equipo": "PAMPERO",
+        "partidos": 24,
+        "prom_jugadores_por_partido": 11.5,
+        "prom_u19_2007_2008": 3.9,
+        "prom_2005_2006": 4.9,
+        "pct_u19": 44.3,
+        "min_por_anio": {
+          "2005": 20.91,
+          "2006": 20.78,
+          "2007": 18.66,
+          "2008": 13.08
+        }
+      },
+      {
+        "equipo": "VICTORIA NEGRO",
+        "partidos": 28,
+        "prom_jugadores_por_partido": 11.5,
+        "prom_u19_2007_2008": 5.0,
+        "prom_2005_2006": 3.5,
+        "pct_u19": 59.0,
+        "min_por_anio": {
+          "2005": 15.41,
+          "2006": 20.38,
+          "2007": 23.93,
+          "2008": 18.67
+        }
+      },
+      {
+        "equipo": "GIMNASIA Y ESGRIMA LA PLATA B",
+        "partidos": 29,
+        "prom_jugadores_por_partido": 11.4,
+        "prom_u19_2007_2008": 5.5,
+        "prom_2005_2006": 5.9,
+        "pct_u19": 48.3,
+        "min_por_anio": {
+          "2005": 27.07,
+          "2006": 17.34,
+          "2007": 12.28,
+          "2008": 14.03
+        }
+      },
+      {
+        "equipo": "ITALIANO",
+        "partidos": 29,
+        "prom_jugadores_por_partido": 11.4,
+        "prom_u19_2007_2008": 4.4,
+        "prom_2005_2006": 6.0,
+        "pct_u19": 42.2,
+        "min_por_anio": {
+          "2005": 24.39,
+          "2006": 17.04,
+          "2007": 11.29,
+          "2008": 11.34
+        }
+      },
+      {
+        "equipo": "ITALIANO B",
+        "partidos": 30,
+        "prom_jugadores_por_partido": 11.4,
+        "prom_u19_2007_2008": 8.8,
+        "prom_2005_2006": 2.7,
+        "pct_u19": 76.7,
+        "min_por_anio": {
+          "2005": 12.14,
+          "2006": 18.17,
+          "2007": 14.2,
+          "2008": 18.34
+        }
+      },
+      {
+        "equipo": "MORON BLANCO B",
+        "partidos": 30,
+        "prom_jugadores_por_partido": 11.4,
+        "prom_u19_2007_2008": 4.5,
+        "prom_2005_2006": 6.6,
+        "pct_u19": 40.4,
+        "min_por_anio": {
+          "2005": 19.39,
+          "2006": 17.98,
+          "2007": 13.48,
+          "2008": 16.38
+        }
+      },
+      {
+        "equipo": "RAMOS MEJIA LTC",
+        "partidos": 27,
+        "prom_jugadores_por_partido": 11.4,
+        "prom_u19_2007_2008": 5.5,
+        "prom_2005_2006": 5.4,
+        "pct_u19": 50.5,
+        "min_por_anio": {
+          "2005": 16.97,
+          "2006": 21.13,
+          "2007": 19.73,
+          "2008": 12.13
+        }
+      },
+      {
+        "equipo": "SAN LORENZO AZUL",
+        "partidos": 32,
+        "prom_jugadores_por_partido": 11.4,
+        "prom_u19_2007_2008": 5.6,
+        "prom_2005_2006": 5.2,
+        "pct_u19": 52.0,
+        "min_por_anio": {
+          "2005": 19.46,
+          "2006": 18.97,
+          "2007": 21.21,
+          "2008": 15.59
+        }
+      },
+      {
+        "equipo": "3 DE FEBRERO BLANCO A",
+        "partidos": 27,
+        "prom_jugadores_por_partido": 11.3,
+        "prom_u19_2007_2008": 5.4,
+        "prom_2005_2006": 1.9,
+        "pct_u19": 73.7,
+        "min_por_anio": {
+          "2006": 16.9,
+          "2007": 16.66,
+          "2008": 15.7
+        }
+      },
+      {
+        "equipo": "CENTRO ESPANOL",
+        "partidos": 30,
+        "prom_jugadores_por_partido": 11.3,
+        "prom_u19_2007_2008": 8.5,
+        "prom_2005_2006": 2.7,
+        "pct_u19": 76.2,
+        "min_por_anio": {
+          "2005": 19.73,
+          "2006": 12.14,
+          "2007": 17.85,
+          "2008": 16.67
+        }
+      },
+      {
+        "equipo": "COMUNICACIONES AMARILLO",
+        "partidos": 28,
+        "prom_jugadores_por_partido": 11.3,
+        "prom_u19_2007_2008": 6.6,
+        "prom_2005_2006": 1.0,
+        "pct_u19": 86.9,
+        "min_por_anio": {
+          "2006": 32.15,
+          "2007": 18.64,
+          "2008": 17.15
+        }
+      },
+      {
+        "equipo": "COOPERARIOS DE QUILMES",
+        "partidos": 30,
+        "prom_jugadores_por_partido": 11.3,
+        "prom_u19_2007_2008": 4.0,
+        "prom_2005_2006": 7.3,
+        "pct_u19": 35.1,
+        "min_por_anio": {
+          "2005": 22.75,
+          "2006": 17.31,
+          "2007": 11.59,
+          "2008": 13.01
+        }
+      },
+      {
+        "equipo": "INSTITUCION SARMIENTO BLANCO B",
+        "partidos": 22,
+        "prom_jugadores_por_partido": 11.3,
+        "prom_u19_2007_2008": 6.5,
+        "prom_2005_2006": 4.6,
+        "pct_u19": 58.4,
+        "min_por_anio": {
+          "2005": 29.04,
+          "2006": 17.84,
+          "2007": 12.9,
+          "2008": 18.98
+        }
+      },
+      {
+        "equipo": "SAN LORENZO ROJO B",
+        "partidos": 31,
+        "prom_jugadores_por_partido": 11.3,
+        "prom_u19_2007_2008": 7.8,
+        "prom_2005_2006": 3.5,
+        "pct_u19": 68.9,
+        "min_por_anio": {
+          "2005": 20.44,
+          "2006": 14.52,
+          "2007": 20.18,
+          "2008": 14.67
+        }
+      },
+      {
+        "equipo": "ALL BOYS BLANCO",
+        "partidos": 26,
+        "prom_jugadores_por_partido": 11.2,
+        "prom_u19_2007_2008": 5.3,
+        "prom_2005_2006": 5.7,
+        "pct_u19": 47.9,
+        "min_por_anio": {
+          "2005": 22.32,
+          "2006": 18.07,
+          "2007": 17.49,
+          "2008": 14.39
+        }
+      },
+      {
+        "equipo": "EL TALAR",
+        "partidos": 27,
+        "prom_jugadores_por_partido": 11.2,
+        "prom_u19_2007_2008": 7.2,
+        "prom_2005_2006": 3.5,
+        "pct_u19": 67.2,
+        "min_por_anio": {
+          "2005": 25.49,
+          "2006": 16.63,
+          "2007": 16.32,
+          "2008": 18.63
+        }
+      },
+      {
+        "equipo": "PLATENSE B",
+        "partidos": 25,
+        "prom_jugadores_por_partido": 11.2,
+        "prom_u19_2007_2008": 6.9,
+        "prom_2005_2006": 4.0,
+        "pct_u19": 63.4,
+        "min_por_anio": {
+          "2005": 20.06,
+          "2006": 20.15,
+          "2007": 17.75,
+          "2008": 16.51
+        }
+      },
+      {
+        "equipo": "ALDO BONZI",
+        "partidos": 30,
+        "prom_jugadores_por_partido": 11.1,
+        "prom_u19_2007_2008": 6.6,
+        "prom_2005_2006": 2.6,
+        "pct_u19": 71.4,
+        "min_por_anio": {
+          "2005": 21.62,
+          "2006": 8.22,
+          "2007": 13.72,
+          "2008": 18.84
+        }
+      },
+      {
+        "equipo": "ATENEO POPULAR VERSAILLES",
+        "partidos": 29,
+        "prom_jugadores_por_partido": 11.1,
+        "prom_u19_2007_2008": 2.1,
+        "prom_2005_2006": 7.2,
+        "pct_u19": 22.7,
+        "min_por_anio": {
+          "2005": 20.06,
+          "2006": 20.09,
+          "2007": 15.35,
+          "2008": 10.35
+        }
+      },
+      {
+        "equipo": "DEFENSORES DE HURLINGHAM BLANCO",
+        "partidos": 28,
+        "prom_jugadores_por_partido": 11.1,
+        "prom_u19_2007_2008": 6.4,
+        "prom_2005_2006": 4.8,
+        "pct_u19": 57.2,
+        "min_por_anio": {
+          "2005": 29.47,
+          "2006": 24.1,
+          "2007": 10.7,
+          "2008": 11.83
+        }
+      },
+      {
+        "equipo": "DEPORTIVO CROVARA B",
+        "partidos": 31,
+        "prom_jugadores_por_partido": 11.1,
+        "prom_u19_2007_2008": 6.5,
+        "prom_2005_2006": 2.7,
+        "pct_u19": 70.9,
+        "min_por_anio": {
+          "2005": 27.61,
+          "2006": 22.22,
+          "2007": 23.23,
+          "2008": 12.92
+        }
+      },
+      {
+        "equipo": "INDEPENDIENTE DE BURZACO",
+        "partidos": 28,
+        "prom_jugadores_por_partido": 11.1,
+        "prom_u19_2007_2008": 3.3,
+        "prom_2005_2006": 6.6,
+        "pct_u19": 33.5,
+        "min_por_anio": {
+          "2005": 11.79,
+          "2006": 18.95,
+          "2007": 22.1,
+          "2008": 17.79
+        }
+      },
+      {
+        "equipo": "JUVENTUD UNIDA",
+        "partidos": 24,
+        "prom_jugadores_por_partido": 11.1,
+        "prom_u19_2007_2008": 5.7,
+        "prom_2005_2006": 2.6,
+        "pct_u19": 68.3,
+        "min_por_anio": {
+          "2006": 24.07,
+          "2007": 16.13,
+          "2008": 17.46
+        }
+      },
+      {
+        "equipo": "MUNICIPALIDAD DE HURLINGHAM",
+        "partidos": 30,
+        "prom_jugadores_por_partido": 11.1,
+        "prom_u19_2007_2008": 8.0,
+        "prom_2005_2006": 3.0,
+        "pct_u19": 72.7,
+        "min_por_anio": {
+          "2005": 15.36,
+          "2006": 15.24,
+          "2007": 18.4,
+          "2008": 19.81
+        }
+      },
+      {
+        "equipo": "C.A.S.A PADUA B",
+        "partidos": 30,
+        "prom_jugadores_por_partido": 11.0,
+        "prom_u19_2007_2008": 5.7,
+        "prom_2005_2006": 4.2,
+        "pct_u19": 57.4,
+        "min_por_anio": {
+          "2005": 21.93,
+          "2006": 16.87,
+          "2007": 17.86,
+          "2008": 25.18
+        }
+      },
+      {
+        "equipo": "CLUB GEI BLANCO(B)",
+        "partidos": 28,
+        "prom_jugadores_por_partido": 11.0,
+        "prom_u19_2007_2008": 3.0,
+        "prom_2005_2006": 7.4,
+        "pct_u19": 29.0,
+        "min_por_anio": {
+          "2005": 15.56,
+          "2006": 18.82,
+          "2007": 16.59,
+          "2008": 20.1
+        }
+      },
+      {
+        "equipo": "DEFENSORES DE GLEW",
+        "partidos": 30,
+        "prom_jugadores_por_partido": 11.0,
+        "prom_u19_2007_2008": 4.1,
+        "prom_2005_2006": 6.5,
+        "pct_u19": 38.4,
+        "min_por_anio": {
+          "2005": 19.73,
+          "2006": 22.12,
+          "2007": 16.23,
+          "2008": 8.64
+        }
+      },
+      {
+        "equipo": "HURACAN DE SAN JUSTO A",
+        "partidos": 26,
+        "prom_jugadores_por_partido": 11.0,
+        "prom_u19_2007_2008": 5.0,
+        "prom_2005_2006": 4.6,
+        "pct_u19": 52.2,
+        "min_por_anio": {
+          "2005": 20.84,
+          "2006": 15.42,
+          "2007": 19.76,
+          "2008": 12.19
+        }
+      },
+      {
+        "equipo": "IMPERIO NEGRO B",
+        "partidos": 30,
+        "prom_jugadores_por_partido": 11.0,
+        "prom_u19_2007_2008": 8.2,
+        "prom_2005_2006": 2.8,
+        "pct_u19": 74.5,
+        "min_por_anio": {
+          "2005": 21.13,
+          "2006": 21.96,
+          "2007": 24.2,
+          "2008": 13.54
+        }
+      },
+      {
+        "equipo": "INDEPENDIENTE",
+        "partidos": 27,
+        "prom_jugadores_por_partido": 11.0,
+        "prom_u19_2007_2008": 5.3,
+        "prom_2005_2006": 4.7,
+        "pct_u19": 52.8,
+        "min_por_anio": {
+          "2005": 24.02,
+          "2006": 13.45,
+          "2007": 19.08,
+          "2008": 10.36
+        }
+      },
+      {
+        "equipo": "NAUTICO BUCHARDO NORTE (A)",
+        "partidos": 26,
+        "prom_jugadores_por_partido": 11.0,
+        "prom_u19_2007_2008": 8.2,
+        "prom_2005_2006": 2.1,
+        "pct_u19": 79.6,
+        "min_por_anio": {
+          "2005": 16.85,
+          "2006": 22.61,
+          "2007": 18.82,
+          "2008": 19.06
+        }
+      },
+      {
+        "equipo": "ALL BOYS SAAVEDRA",
+        "partidos": 30,
+        "prom_jugadores_por_partido": 10.9,
+        "prom_u19_2007_2008": 1.9,
+        "prom_2005_2006": 8.3,
+        "pct_u19": 18.8,
+        "min_por_anio": {
+          "2005": 16.22,
+          "2006": 18.28,
+          "2007": 27.27
+        }
+      },
+      {
+        "equipo": "BERAZATEGUI",
+        "partidos": 31,
+        "prom_jugadores_por_partido": 10.9,
+        "prom_u19_2007_2008": 7.6,
+        "prom_2005_2006": 2.7,
+        "pct_u19": 74.0,
+        "min_por_anio": {
+          "2005": 24.24,
+          "2006": 19.33,
+          "2007": 21.04,
+          "2008": 17.23
+        }
+      },
+      {
+        "equipo": "BERNAL",
+        "partidos": 26,
+        "prom_jugadores_por_partido": 10.9,
+        "prom_u19_2007_2008": 5.8,
+        "prom_2005_2006": 4.0,
+        "pct_u19": 59.2,
+        "min_por_anio": {
+          "2005": 30.86,
+          "2006": 12.82,
+          "2007": 15.61,
+          "2008": 13.59
+        }
+      },
+      {
+        "equipo": "BOCA JUNIORS AZUL A",
+        "partidos": 27,
+        "prom_jugadores_por_partido": 10.9,
+        "prom_u19_2007_2008": 4.4,
+        "prom_2005_2006": 1.8,
+        "pct_u19": 71.0,
+        "min_por_anio": {
+          "2006": 22.48,
+          "2007": 15.21,
+          "2008": 20.49
+        }
+      },
+      {
+        "equipo": "HARRODS GATH Y CHAVES",
+        "partidos": 27,
+        "prom_jugadores_por_partido": 10.9,
+        "prom_u19_2007_2008": 6.3,
+        "prom_2005_2006": 4.0,
+        "pct_u19": 61.2,
+        "min_por_anio": {
+          "2005": 19.75,
+          "2006": 22.18,
+          "2007": 15.63,
+          "2008": 19.21
+        }
+      },
+      {
+        "equipo": "LANUS A",
+        "partidos": 31,
+        "prom_jugadores_por_partido": 10.9,
+        "prom_u19_2007_2008": 3.8,
+        "prom_2005_2006": 3.2,
+        "pct_u19": 54.8,
+        "min_por_anio": {
+          "2006": 23.26,
+          "2007": 22.74,
+          "2008": 20.37
+        }
+      },
+      {
+        "equipo": "MONTE GRANDE ROJO A",
+        "partidos": 26,
+        "prom_jugadores_por_partido": 10.9,
+        "prom_u19_2007_2008": 5.8,
+        "prom_2005_2006": 3.2,
+        "pct_u19": 64.5,
+        "min_por_anio": {
+          "2005": 26.31,
+          "2006": 22.3,
+          "2007": 25.94,
+          "2008": 17.03
+        }
+      },
+      {
+        "equipo": "RACING CLUB",
+        "partidos": 30,
+        "prom_jugadores_por_partido": 10.9,
+        "prom_u19_2007_2008": 5.9,
+        "prom_2005_2006": 3.7,
+        "pct_u19": 61.4,
+        "min_por_anio": {
+          "2005": 16.18,
+          "2006": 25.43,
+          "2007": 17.24,
+          "2008": 16.64
+        }
+      },
+      {
+        "equipo": "CENTRO GALICIA",
+        "partidos": 26,
+        "prom_jugadores_por_partido": 10.8,
+        "prom_u19_2007_2008": 7.3,
+        "prom_2005_2006": 3.3,
+        "pct_u19": 68.6,
+        "min_por_anio": {
+          "2005": 25.43,
+          "2006": 12.81,
+          "2007": 20.78,
+          "2008": 14.09
+        }
+      },
+      {
+        "equipo": "COMUNICACIONES NEGRO",
+        "partidos": 30,
+        "prom_jugadores_por_partido": 10.8,
+        "prom_u19_2007_2008": 6.2,
+        "prom_2005_2006": 2.8,
+        "pct_u19": 68.9,
+        "min_por_anio": {
+          "2005": 27.64,
+          "2006": 24.15,
+          "2007": 15.79,
+          "2008": 16.32
+        }
+      },
+      {
+        "equipo": "COPELLO",
+        "partidos": 25,
+        "prom_jugadores_por_partido": 10.8,
+        "prom_u19_2007_2008": 6.2,
+        "prom_2005_2006": 4.6,
+        "pct_u19": 57.2,
+        "min_por_anio": {
+          "2005": 12.42,
+          "2006": 23.97,
+          "2007": 15.31,
+          "2008": 17.96
+        }
+      },
+      {
+        "equipo": "DEPORTIVO CROVARA A",
+        "partidos": 26,
+        "prom_jugadores_por_partido": 10.8,
+        "prom_u19_2007_2008": 4.3,
+        "prom_2005_2006": 3.7,
+        "pct_u19": 53.6,
+        "min_por_anio": {
+          "2005": 22.74,
+          "2006": 24.26,
+          "2007": 20.41,
+          "2008": 18.12
+        }
+      },
+      {
+        "equipo": "DEPORTIVO MORON B",
+        "partidos": 28,
+        "prom_jugadores_por_partido": 10.8,
+        "prom_u19_2007_2008": 8.2,
+        "prom_2005_2006": 2.1,
+        "pct_u19": 79.3,
+        "min_por_anio": {
+          "2005": 26.28,
+          "2006": 27.24,
+          "2007": 11.92,
+          "2008": 19.51
+        }
+      },
+      {
+        "equipo": "ESTUDIANTIL PORTENO A",
+        "partidos": 25,
+        "prom_jugadores_por_partido": 10.8,
+        "prom_u19_2007_2008": 5.3,
+        "prom_2005_2006": 3.1,
+        "pct_u19": 63.0,
+        "min_por_anio": {
+          "2005": 25.14,
+          "2006": 30.4,
+          "2007": 20.07,
+          "2008": 13.72
+        }
+      },
+      {
+        "equipo": "NAUTICO BUCHARDO CENTRO (B)",
+        "partidos": 31,
+        "prom_jugadores_por_partido": 10.8,
+        "prom_u19_2007_2008": 9.0,
+        "prom_2005_2006": 1.6,
+        "pct_u19": 84.5,
+        "min_por_anio": {
+          "2005": 20.91,
+          "2006": 17.29,
+          "2007": 22.09,
+          "2008": 17.73
+        }
+      },
+      {
+        "equipo": "OBRAS BASKET",
+        "partidos": 30,
+        "prom_jugadores_por_partido": 10.8,
+        "prom_u19_2007_2008": 4.7,
+        "prom_2005_2006": 0.1,
+        "pct_u19": 97.2,
+        "min_por_anio": {
+          "2006": 22.97,
+          "2007": 17.16,
+          "2008": 23.48
+        }
+      },
+      {
+        "equipo": "SAN FERNANDO BLANCO",
+        "partidos": 26,
+        "prom_jugadores_por_partido": 10.8,
+        "prom_u19_2007_2008": 2.8,
+        "prom_2005_2006": 8.0,
+        "pct_u19": 25.7,
+        "min_por_anio": {
+          "2005": 22.21,
+          "2006": 16.87,
+          "2007": 18.32,
+          "2008": 20.57
+        }
+      },
+      {
+        "equipo": "UNION VILLEGAS",
+        "partidos": 28,
+        "prom_jugadores_por_partido": 10.8,
+        "prom_u19_2007_2008": 6.1,
+        "prom_2005_2006": 1.0,
+        "pct_u19": 85.9,
+        "min_por_anio": {
+          "2005": 23.7,
+          "2006": 16.24,
+          "2007": 17.91,
+          "2008": 23.02
+        }
+      },
+      {
+        "equipo": "ARQUITECTURA NEGRO A",
+        "partidos": 28,
+        "prom_jugadores_por_partido": 10.7,
+        "prom_u19_2007_2008": 5.2,
+        "prom_2005_2006": 4.9,
+        "pct_u19": 51.4,
+        "min_por_anio": {
+          "2005": 20.42,
+          "2006": 22.36,
+          "2007": 17.72,
+          "2008": 18.15
+        }
+      },
+      {
+        "equipo": "CLUB CEPA",
+        "partidos": 29,
+        "prom_jugadores_por_partido": 10.7,
+        "prom_u19_2007_2008": 1.2,
+        "prom_2005_2006": 7.5,
+        "pct_u19": 14.2,
+        "min_por_anio": {
+          "2005": 19.45,
+          "2006": 20.43,
+          "2007": 14.02,
+          "2008": 18.46
+        }
+      },
+      {
+        "equipo": "COLEGIALES BLANCO",
+        "partidos": 29,
+        "prom_jugadores_por_partido": 10.7,
+        "prom_u19_2007_2008": 7.8,
+        "prom_2005_2006": 2.6,
+        "pct_u19": 75.3,
+        "min_por_anio": {
+          "2005": 27.41,
+          "2006": 9.89,
+          "2007": 18.81
+        }
+      },
+      {
+        "equipo": "FERROCARRIL OESTE NARANJA",
+        "partidos": 25,
+        "prom_jugadores_por_partido": 10.7,
+        "prom_u19_2007_2008": 6.8,
+        "prom_2005_2006": 3.8,
+        "pct_u19": 63.8,
+        "min_por_anio": {
+          "2005": 24.04,
+          "2007": 17.32,
+          "2008": 14.97
+        }
+      },
+      {
+        "equipo": "UNION VECINAL DE MUNRO",
+        "partidos": 29,
+        "prom_jugadores_por_partido": 10.7,
+        "prom_u19_2007_2008": 2.1,
+        "prom_2005_2006": 8.6,
+        "pct_u19": 19.9,
+        "min_por_anio": {
+          "2005": 19.66,
+          "2006": 15.69,
+          "2007": 22.61,
+          "2008": 3.99
+        }
+      },
+      {
+        "equipo": "3 DE FEBRERO AZUL B",
+        "partidos": 26,
+        "prom_jugadores_por_partido": 10.6,
+        "prom_u19_2007_2008": 6.1,
+        "prom_2005_2006": 3.0,
+        "pct_u19": 66.9,
+        "min_por_anio": {
+          "2005": 24.5,
+          "2006": 13.02,
+          "2007": 18.78,
+          "2008": 18.66
+        }
+      },
+      {
+        "equipo": "ARQUITECTURA BLANCO B",
+        "partidos": 27,
+        "prom_jugadores_por_partido": 10.6,
+        "prom_u19_2007_2008": 8.8,
+        "prom_2005_2006": 1.7,
+        "pct_u19": 83.8,
+        "min_por_anio": {
+          "2006": 18.0,
+          "2007": 19.71,
+          "2008": 19.34
+        }
+      },
+      {
+        "equipo": "BANCO NACION AZUL A",
+        "partidos": 27,
+        "prom_jugadores_por_partido": 10.6,
+        "prom_u19_2007_2008": 4.5,
+        "prom_2005_2006": 4.0,
+        "pct_u19": 52.8,
+        "min_por_anio": {
+          "2005": 21.46,
+          "2006": 23.21,
+          "2007": 19.76,
+          "2008": 15.72
+        }
+      },
+      {
+        "equipo": "CANUELAS FC",
+        "partidos": 32,
+        "prom_jugadores_por_partido": 10.6,
+        "prom_u19_2007_2008": 4.6,
+        "prom_2005_2006": 5.5,
+        "pct_u19": 45.7,
+        "min_por_anio": {
+          "2005": 26.32,
+          "2006": 20.6,
+          "2007": 13.03,
+          "2008": 23.27
+        }
+      },
+      {
+        "equipo": "IMPERIO BLANCO A",
+        "partidos": 31,
+        "prom_jugadores_por_partido": 10.6,
+        "prom_u19_2007_2008": 5.1,
+        "prom_2005_2006": 5.4,
+        "pct_u19": 48.8,
+        "min_por_anio": {
+          "2005": 15.91,
+          "2006": 24.68,
+          "2007": 18.85,
+          "2008": 15.04
+        }
+      },
+      {
+        "equipo": "LANUS B",
+        "partidos": 24,
+        "prom_jugadores_por_partido": 10.6,
+        "prom_u19_2007_2008": 7.6,
+        "prom_2005_2006": 1.0,
+        "pct_u19": 88.0,
+        "min_por_anio": {
+          "2005": 22.31,
+          "2006": 5.32,
+          "2007": 19.6,
+          "2008": 20.11
+        }
+      },
+      {
+        "equipo": "LOS INDIOS B",
+        "partidos": 26,
+        "prom_jugadores_por_partido": 10.6,
+        "prom_u19_2007_2008": 4.4,
+        "prom_2005_2006": 3.2,
+        "pct_u19": 57.8,
+        "min_por_anio": {
+          "2005": 22.63,
+          "2006": 24.69,
+          "2007": 13.75,
+          "2008": 24.29
+        }
+      },
+      {
+        "equipo": "MORON ROJO A",
+        "partidos": 28,
+        "prom_jugadores_por_partido": 10.6,
+        "prom_u19_2007_2008": 3.2,
+        "prom_2005_2006": 6.4,
+        "pct_u19": 33.1,
+        "min_por_anio": {
+          "2005": 19.31,
+          "2006": 20.54,
+          "2007": 21.87,
+          "2008": 19.01
+        }
+      },
+      {
+        "equipo": "PEDRO ECHAGUE AZUL",
+        "partidos": 30,
+        "prom_jugadores_por_partido": 10.6,
+        "prom_u19_2007_2008": 4.4,
+        "prom_2005_2006": 5.2,
+        "pct_u19": 45.8,
+        "min_por_anio": {
+          "2005": 24.57,
+          "2006": 20.52,
+          "2007": 21.34,
+          "2008": 12.71
+        }
+      },
+      {
+        "equipo": "TRISTAN SUAREZ",
+        "partidos": 27,
+        "prom_jugadores_por_partido": 10.6,
+        "prom_u19_2007_2008": 5.6,
+        "prom_2005_2006": 3.3,
+        "pct_u19": 62.7,
+        "min_por_anio": {
+          "2005": 14.52,
+          "2006": 19.09,
+          "2007": 24.44,
+          "2008": 18.95
+        }
+      },
+      {
+        "equipo": "ALEM",
+        "partidos": 24,
+        "prom_jugadores_por_partido": 10.5,
+        "prom_u19_2007_2008": 3.7,
+        "prom_2005_2006": 6.7,
+        "pct_u19": 35.3,
+        "min_por_anio": {
+          "2005": 27.38,
+          "2006": 15.89,
+          "2007": 12.35,
+          "2008": 13.2
+        }
+      },
+      {
+        "equipo": "FERROCARRIL OESTE BLANCO",
+        "partidos": 28,
+        "prom_jugadores_por_partido": 10.5,
+        "prom_u19_2007_2008": 3.9,
+        "prom_2005_2006": 5.9,
+        "pct_u19": 39.4,
+        "min_por_anio": {
+          "2005": 19.97,
+          "2006": 20.17,
+          "2007": 19.14,
+          "2008": 14.57
+        }
+      },
+      {
+        "equipo": "GIMNASIA Y ESGRIMA LA PLATA A",
+        "partidos": 27,
+        "prom_jugadores_por_partido": 10.5,
+        "prom_u19_2007_2008": 7.1,
+        "prom_2005_2006": 1.4,
+        "pct_u19": 83.9,
+        "min_por_anio": {
+          "2006": 25.65,
+          "2007": 20.29,
+          "2008": 19.43
+        }
+      }
+    ],
+    "planteles": [
+      {
+        "equipo": "CLUB GEI GRIS(C)",
+        "plantel_unico": 22,
+        "u19_unicos": 16,
+        "y2005_2006_unicos": 6,
+        "pct_u19": 72.7
+      },
+      {
+        "equipo": "SAN LORENZO ROJO B",
+        "plantel_unico": 22,
+        "u19_unicos": 14,
+        "y2005_2006_unicos": 8,
+        "pct_u19": 63.6
+      },
+      {
+        "equipo": "HURACAN DE SAN JUSTO A",
+        "plantel_unico": 21,
+        "u19_unicos": 12,
+        "y2005_2006_unicos": 9,
+        "pct_u19": 57.1
+      },
+      {
+        "equipo": "COPELLO",
+        "plantel_unico": 20,
+        "u19_unicos": 13,
+        "y2005_2006_unicos": 7,
+        "pct_u19": 65.0
+      },
+      {
+        "equipo": "GIMNASIA Y ESGRIMA LA PLATA B",
+        "plantel_unico": 20,
+        "u19_unicos": 13,
+        "y2005_2006_unicos": 7,
+        "pct_u19": 65.0
+      },
+      {
+        "equipo": "RAMOS MEJIA LTC",
+        "plantel_unico": 20,
+        "u19_unicos": 13,
+        "y2005_2006_unicos": 7,
+        "pct_u19": 65.0
+      },
+      {
+        "equipo": "ALEM",
+        "plantel_unico": 19,
+        "u19_unicos": 8,
+        "y2005_2006_unicos": 11,
+        "pct_u19": 42.1
+      },
+      {
+        "equipo": "ARQUITECTURA BLANCO B",
+        "plantel_unico": 19,
+        "u19_unicos": 17,
+        "y2005_2006_unicos": 2,
+        "pct_u19": 89.5
+      },
+      {
+        "equipo": "COLEGIALES NEGRO",
+        "plantel_unico": 19,
+        "u19_unicos": 7,
+        "y2005_2006_unicos": 12,
+        "pct_u19": 36.8
+      },
+      {
+        "equipo": "HURACAN DE SAN JUSTO B",
+        "plantel_unico": 19,
+        "u19_unicos": 14,
+        "y2005_2006_unicos": 5,
+        "pct_u19": 73.7
+      },
+      {
+        "equipo": "INDEPENDIENTE DE ESCOBAR",
+        "plantel_unico": 19,
+        "u19_unicos": 9,
+        "y2005_2006_unicos": 10,
+        "pct_u19": 47.4
+      },
+      {
+        "equipo": "PEDRO ECHAGUE AMARILLO",
+        "plantel_unico": 19,
+        "u19_unicos": 11,
+        "y2005_2006_unicos": 8,
+        "pct_u19": 57.9
+      },
+      {
+        "equipo": "PLATENSE A",
+        "plantel_unico": 19,
+        "u19_unicos": 15,
+        "y2005_2006_unicos": 4,
+        "pct_u19": 78.9
+      },
+      {
+        "equipo": "SAN LORENZO AZUL",
+        "plantel_unico": 19,
+        "u19_unicos": 10,
+        "y2005_2006_unicos": 9,
+        "pct_u19": 52.6
+      },
+      {
+        "equipo": "UNITARIOS DE MARCOS PAZ",
+        "plantel_unico": 19,
+        "u19_unicos": 8,
+        "y2005_2006_unicos": 11,
+        "pct_u19": 42.1
+      },
+      {
+        "equipo": "ALL BOYS NEGRO",
+        "plantel_unico": 18,
+        "u19_unicos": 11,
+        "y2005_2006_unicos": 7,
+        "pct_u19": 61.1
+      },
+      {
+        "equipo": "EL TALAR",
+        "plantel_unico": 18,
+        "u19_unicos": 13,
+        "y2005_2006_unicos": 5,
+        "pct_u19": 72.2
+      },
+      {
+        "equipo": "FERROCARRIL OESTE BLANCO",
+        "plantel_unico": 18,
+        "u19_unicos": 8,
+        "y2005_2006_unicos": 10,
+        "pct_u19": 44.4
+      },
+      {
+        "equipo": "FERROCARRIL OESTE VERDE",
+        "plantel_unico": 18,
+        "u19_unicos": 12,
+        "y2005_2006_unicos": 6,
+        "pct_u19": 66.7
+      },
+      {
+        "equipo": "INSTITUCION SARMIENTO BLANCO B",
+        "plantel_unico": 18,
+        "u19_unicos": 10,
+        "y2005_2006_unicos": 8,
+        "pct_u19": 55.6
+      },
+      {
+        "equipo": "MUNICIPALIDAD DE HURLINGHAM",
+        "plantel_unico": 18,
+        "u19_unicos": 13,
+        "y2005_2006_unicos": 5,
+        "pct_u19": 72.2
+      },
+      {
+        "equipo": "VICTORIA BLANCO",
+        "plantel_unico": 18,
+        "u19_unicos": 9,
+        "y2005_2006_unicos": 9,
+        "pct_u19": 50.0
+      },
+      {
+        "equipo": "GEBA",
+        "plantel_unico": 17,
+        "u19_unicos": 4,
+        "y2005_2006_unicos": 13,
+        "pct_u19": 23.5
+      },
+      {
+        "equipo": "GUILLON BASQUET",
+        "plantel_unico": 17,
+        "u19_unicos": 10,
+        "y2005_2006_unicos": 7,
+        "pct_u19": 58.8
+      },
+      {
+        "equipo": "NUEVA CHICAGO",
+        "plantel_unico": 17,
+        "u19_unicos": 6,
+        "y2005_2006_unicos": 11,
+        "pct_u19": 35.3
+      },
+      {
+        "equipo": "PRESIDENTE DERQUI",
+        "plantel_unico": 17,
+        "u19_unicos": 11,
+        "y2005_2006_unicos": 6,
+        "pct_u19": 64.7
+      },
+      {
+        "equipo": "TALLERES",
+        "plantel_unico": 17,
+        "u19_unicos": 4,
+        "y2005_2006_unicos": 13,
+        "pct_u19": 23.5
+      },
+      {
+        "equipo": "VILLA ESPANA",
+        "plantel_unico": 17,
+        "u19_unicos": 8,
+        "y2005_2006_unicos": 9,
+        "pct_u19": 47.1
+      },
+      {
+        "equipo": "17 DE AGOSTO",
+        "plantel_unico": 16,
+        "u19_unicos": 9,
+        "y2005_2006_unicos": 7,
+        "pct_u19": 56.2
+      },
+      {
+        "equipo": "ALDO BONZI",
+        "plantel_unico": 16,
+        "u19_unicos": 10,
+        "y2005_2006_unicos": 6,
+        "pct_u19": 62.5
+      },
+      {
+        "equipo": "ALL BOYS BLANCO",
+        "plantel_unico": 16,
+        "u19_unicos": 8,
+        "y2005_2006_unicos": 8,
+        "pct_u19": 50.0
+      },
+      {
+        "equipo": "ALL BOYS SAAVEDRA",
+        "plantel_unico": 16,
+        "u19_unicos": 2,
+        "y2005_2006_unicos": 14,
+        "pct_u19": 12.5
+      },
+      {
+        "equipo": "ATENEO POPULAR VERSAILLES",
+        "plantel_unico": 16,
+        "u19_unicos": 5,
+        "y2005_2006_unicos": 11,
+        "pct_u19": 31.2
+      },
+      {
+        "equipo": "CENTRO ESPANOL",
+        "plantel_unico": 16,
+        "u19_unicos": 12,
+        "y2005_2006_unicos": 4,
+        "pct_u19": 75.0
+      },
+      {
+        "equipo": "CENTRO GALICIA",
+        "plantel_unico": 16,
+        "u19_unicos": 11,
+        "y2005_2006_unicos": 5,
+        "pct_u19": 68.8
+      },
+      {
+        "equipo": "COOPERARIOS DE QUILMES",
+        "plantel_unico": 16,
+        "u19_unicos": 6,
+        "y2005_2006_unicos": 10,
+        "pct_u19": 37.5
+      },
+      {
+        "equipo": "DEFENSORES DE GLEW",
+        "plantel_unico": 16,
+        "u19_unicos": 7,
+        "y2005_2006_unicos": 9,
+        "pct_u19": 43.8
+      },
+      {
+        "equipo": "EL FOGON",
+        "plantel_unico": 16,
+        "u19_unicos": 6,
+        "y2005_2006_unicos": 10,
+        "pct_u19": 37.5
+      },
+      {
+        "equipo": "FERROCARRIL OESTE NARANJA",
+        "plantel_unico": 16,
+        "u19_unicos": 10,
+        "y2005_2006_unicos": 6,
+        "pct_u19": 62.5
+      },
+      {
+        "equipo": "INDEPENDIENTE",
+        "plantel_unico": 16,
+        "u19_unicos": 8,
+        "y2005_2006_unicos": 8,
+        "pct_u19": 50.0
+      },
+      {
+        "equipo": "ITALIANO B",
+        "plantel_unico": 16,
+        "u19_unicos": 12,
+        "y2005_2006_unicos": 4,
+        "pct_u19": 75.0
+      },
+      {
+        "equipo": "JOSE HERNANDEZ B",
+        "plantel_unico": 16,
+        "u19_unicos": 9,
+        "y2005_2006_unicos": 7,
+        "pct_u19": 56.2
+      },
+      {
+        "equipo": "MACABI",
+        "plantel_unico": 16,
+        "u19_unicos": 8,
+        "y2005_2006_unicos": 8,
+        "pct_u19": 50.0
+      },
+      {
+        "equipo": "MIDLAND",
+        "plantel_unico": 16,
+        "u19_unicos": 7,
+        "y2005_2006_unicos": 9,
+        "pct_u19": 43.8
+      },
+      {
+        "equipo": "NAUTICO HACOAJ AZUL B",
+        "plantel_unico": 16,
+        "u19_unicos": 14,
+        "y2005_2006_unicos": 2,
+        "pct_u19": 87.5
+      },
+      {
+        "equipo": "PINOCHO BLANCO",
+        "plantel_unico": 16,
+        "u19_unicos": 7,
+        "y2005_2006_unicos": 9,
+        "pct_u19": 43.8
+      },
+      {
+        "equipo": "PLATENSE B",
+        "plantel_unico": 16,
+        "u19_unicos": 11,
+        "y2005_2006_unicos": 5,
+        "pct_u19": 68.8
+      },
+      {
+        "equipo": "RACING CLUB",
+        "plantel_unico": 16,
+        "u19_unicos": 8,
+        "y2005_2006_unicos": 8,
+        "pct_u19": 50.0
+      },
+      {
+        "equipo": "SAN MIGUEL BLANCO",
+        "plantel_unico": 16,
+        "u19_unicos": 9,
+        "y2005_2006_unicos": 7,
+        "pct_u19": 56.2
+      },
+      {
+        "equipo": "SOCIEDAD HEBRAICA ARGENTINA",
+        "plantel_unico": 16,
+        "u19_unicos": 11,
+        "y2005_2006_unicos": 5,
+        "pct_u19": 68.8
+      },
+      {
+        "equipo": "SPORTIVO PILAR",
+        "plantel_unico": 16,
+        "u19_unicos": 7,
+        "y2005_2006_unicos": 9,
+        "pct_u19": 43.8
+      },
+      {
+        "equipo": "TEMPERLEY",
+        "plantel_unico": 16,
+        "u19_unicos": 10,
+        "y2005_2006_unicos": 6,
+        "pct_u19": 62.5
+      },
+      {
+        "equipo": "UNION VECINAL DE MUNRO",
+        "plantel_unico": 16,
+        "u19_unicos": 3,
+        "y2005_2006_unicos": 13,
+        "pct_u19": 18.8
+      },
+      {
+        "equipo": "UNIVERSIDAD DE BUENOS AIRES",
+        "plantel_unico": 16,
+        "u19_unicos": 8,
+        "y2005_2006_unicos": 8,
+        "pct_u19": 50.0
+      },
+      {
+        "equipo": "VARELA JRS",
+        "plantel_unico": 16,
+        "u19_unicos": 12,
+        "y2005_2006_unicos": 4,
+        "pct_u19": 75.0
+      },
+      {
+        "equipo": "3 DE FEBRERO AZUL B",
+        "plantel_unico": 15,
+        "u19_unicos": 11,
+        "y2005_2006_unicos": 4,
+        "pct_u19": 73.3
+      },
+      {
+        "equipo": "ARGENTINO DE CASTELAR SUR C",
+        "plantel_unico": 15,
+        "u19_unicos": 7,
+        "y2005_2006_unicos": 8,
+        "pct_u19": 46.7
+      },
+      {
+        "equipo": "ARMENIA",
+        "plantel_unico": 15,
+        "u19_unicos": 7,
+        "y2005_2006_unicos": 8,
+        "pct_u19": 46.7
+      },
+      {
+        "equipo": "BANCO NACION BLANCO B",
+        "plantel_unico": 15,
+        "u19_unicos": 11,
+        "y2005_2006_unicos": 4,
+        "pct_u19": 73.3
+      },
+      {
+        "equipo": "BERAZATEGUI",
+        "plantel_unico": 15,
+        "u19_unicos": 10,
+        "y2005_2006_unicos": 5,
+        "pct_u19": 66.7
+      },
+      {
+        "equipo": "CIUDADELA NORTE",
+        "plantel_unico": 15,
+        "u19_unicos": 8,
+        "y2005_2006_unicos": 7,
+        "pct_u19": 53.3
+      },
+      {
+        "equipo": "CLUB GEI AZUL(A)",
+        "plantel_unico": 15,
+        "u19_unicos": 7,
+        "y2005_2006_unicos": 8,
+        "pct_u19": 46.7
+      },
+      {
+        "equipo": "COLEGIALES BLANCO",
+        "plantel_unico": 15,
+        "u19_unicos": 10,
+        "y2005_2006_unicos": 5,
+        "pct_u19": 66.7
+      },
+      {
+        "equipo": "COUNTRY BANFIELD A",
+        "plantel_unico": 15,
+        "u19_unicos": 12,
+        "y2005_2006_unicos": 3,
+        "pct_u19": 80.0
+      },
+      {
+        "equipo": "DEFENSORES DE HURLINGHAM BLANCO",
+        "plantel_unico": 15,
+        "u19_unicos": 9,
+        "y2005_2006_unicos": 6,
+        "pct_u19": 60.0
+      },
+      {
+        "equipo": "DEFENSORES DE SANTOS LUGARES",
+        "plantel_unico": 15,
+        "u19_unicos": 11,
+        "y2005_2006_unicos": 4,
+        "pct_u19": 73.3
+      },
+      {
+        "equipo": "DEPORTIVO CROVARA B",
+        "plantel_unico": 15,
+        "u19_unicos": 10,
+        "y2005_2006_unicos": 5,
+        "pct_u19": 66.7
+      },
+      {
+        "equipo": "DEPORTIVO MORON B",
+        "plantel_unico": 15,
+        "u19_unicos": 12,
+        "y2005_2006_unicos": 3,
+        "pct_u19": 80.0
+      },
+      {
+        "equipo": "ESTRELLA DE BOEDO",
+        "plantel_unico": 15,
+        "u19_unicos": 9,
+        "y2005_2006_unicos": 6,
+        "pct_u19": 60.0
+      },
+      {
+        "equipo": "EZEIZA",
+        "plantel_unico": 15,
+        "u19_unicos": 6,
+        "y2005_2006_unicos": 9,
+        "pct_u19": 40.0
+      },
+      {
+        "equipo": "IMPERIO BLANCO A",
+        "plantel_unico": 15,
+        "u19_unicos": 8,
+        "y2005_2006_unicos": 7,
+        "pct_u19": 53.3
+      },
+      {
+        "equipo": "IMPERIO NEGRO B",
+        "plantel_unico": 15,
+        "u19_unicos": 11,
+        "y2005_2006_unicos": 4,
+        "pct_u19": 73.3
+      },
+      {
+        "equipo": "LA UNION",
+        "plantel_unico": 15,
+        "u19_unicos": 6,
+        "y2005_2006_unicos": 9,
+        "pct_u19": 40.0
+      },
+      {
+        "equipo": "MORON BLANCO B",
+        "plantel_unico": 15,
+        "u19_unicos": 6,
+        "y2005_2006_unicos": 9,
+        "pct_u19": 40.0
+      },
+      {
+        "equipo": "NAUTICO BUCHARDO CENTRO (B)",
+        "plantel_unico": 15,
+        "u19_unicos": 13,
+        "y2005_2006_unicos": 2,
+        "pct_u19": 86.7
+      },
+      {
+        "equipo": "PASO DEL REY",
+        "plantel_unico": 15,
+        "u19_unicos": 5,
+        "y2005_2006_unicos": 10,
+        "pct_u19": 33.3
+      },
+      {
+        "equipo": "PEDRO ECHAGUE AZUL",
+        "plantel_unico": 15,
+        "u19_unicos": 9,
+        "y2005_2006_unicos": 6,
+        "pct_u19": 60.0
+      },
+      {
+        "equipo": "PINOCHO",
+        "plantel_unico": 15,
+        "u19_unicos": 6,
+        "y2005_2006_unicos": 9,
+        "pct_u19": 40.0
+      },
+      {
+        "equipo": "PORTENO ATLETICO CLUB BLANCO B",
+        "plantel_unico": 15,
+        "u19_unicos": 11,
+        "y2005_2006_unicos": 4,
+        "pct_u19": 73.3
+      },
+      {
+        "equipo": "PORTUGUES DEL GRAN BUENOS AIRES",
+        "plantel_unico": 15,
+        "u19_unicos": 10,
+        "y2005_2006_unicos": 5,
+        "pct_u19": 66.7
+      }
+    ]
+  },
+  "notas": [
+    "Unidad de análisis: equipo-partido (local y visitante cuentan aparte).",
+    "U9/U11/U13: completar = ≥12 en acta cat+anterior con ≥6 de la categoría (6+6…12+0).",
+    "U15: completar = ≥10 jugadores de la categoría en acta (min>0).",
+    "Prom. en acta = promedio de jugadores con minutos > 0 por equipo-partido (comparar entre niveles).",
+    "U9/U11/U13: plantilla máxima 15; todos deben jugar al menos un cuarto.",
+    "Minutos y cuartos son reglas de juego aparte: no restan del cupo; se informan en columnas propias.",
+    "Categoría anterior = banda etaria más chica (ej. U13←U11, U11←U9, U9←U7/2019+).",
+    "U17/U21: sin mínimos individuales de minutos; se cuentan jugadores con minutos > 0.",
+    "Cuartos consecutivos / Q1-Q2 solo se evalúan si hay play-by-play del partido.",
+    "U7 (Mosquitos) no está en el corpus de partidos descargado."
+  ]
+}

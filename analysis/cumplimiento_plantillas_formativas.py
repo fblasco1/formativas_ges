@@ -3,10 +3,10 @@
 Cumplimiento de plantilla por categoría y nivel (Formativas FeBAMBA 2026).
 
 Reglas (temporada 2026, según pedido federación):
-  Completar plantilla = jugadores en acta (min>0) de cat+anterior:
-    U9/U11/U13: ≥12 con ≥6 de la categoría (6+6 … 12+0).
+  Completar plantilla = jugadores en acta (min>0):
+    U9/U11/U13: ≥12 cat+anterior con ≥6 de la categoría (6+6 … 12+0).
                  Máximo 15 en plantilla; todos deben jugar al menos un cuarto.
-    U15: ≥12 con ≥10 de la categoría (10+2 … 12+0).
+    U15: ≥10 jugadores de la categoría en acta.
     U17: ≥8 entre cat + anterior.
     U21: ≥5 jugadores.
   Reglas de juego (aparte, también se miden):
@@ -232,12 +232,12 @@ def eval_equipo(
     """
     Evalúa completar plantilla y reglas de juego por separado.
 
-    Completar (cupo en acta, min>0, cat + anterior):
-      U9/U11/U13: ≥12 con ≥6 de la categoría (6+6…12+0).
-      U15: ≥12 con ≥10 de la categoría (10+2…12+0).
+    Completar (cupo en acta, min>0):
+      U9/U11/U13: ≥12 cat+anterior con ≥6 de la categoría (6+6…12+0).
+      U15: ≥10 de la categoría en acta.
       U17: ≥8 cat+anterior; U21: ≥5.
 
-    Reglas de juego (no reducen el cupo de 12; se reportan aparte):
+    Reglas de juego (no reducen el cupo; se reportan aparte):
       U9/U11/U13: todos 10-20 min; sin cuartos consecutivos (si hay PBP).
       U15: todos ≥10 min; sin Q1+Q2 (si hay PBP).
     """
@@ -323,14 +323,14 @@ def eval_equipo(
             motivos.append(f"composición {n_cat} cat + {n_prev} ant (mínimo {min_cat} de la categoría)")
     elif cat == "U15":
         min_cat = 10
-        if n_plantilla < 12:
+        if n_cat < min_cat:
             completa = False
+            # Misma bandera de “cupo insuficiente” que usa el informe.
             falla_menos_12 = True
-            motivos.append(f"menos de 12 en acta cat+ant ({n_plantilla}: {n_cat} cat + {n_prev} ant)")
-        elif n_cat < min_cat:
-            completa = False
-            falla_composicion = True
-            motivos.append(f"composición {n_cat} cat + {n_prev} ant (mínimo {min_cat} de la categoría)")
+            motivos.append(
+                f"menos de {min_cat} de la categoría en acta ({n_cat} cat"
+                f"{f' + {n_prev} ant' if n_prev else ''})"
+            )
     elif cat == "U17":
         if n_plantilla < 8:
             completa = False
@@ -699,7 +699,7 @@ def analizar(
         "bandas": {k: list(v) for k, v in BANDAS.items()},
         "reglas": {
             "U9/U11/U13": "Completar: ≥12 en acta cat+anterior con ≥6 de la categoría (6+6…12+0). Máximo 15 en plantilla; todos deben jugar un cuarto. Juego: 10-20 min; sin cuartos consecutivos",
-            "U15": "Completar: ≥12 en acta cat+anterior con ≥10 de la categoría (10+2…12+0). Juego: todos ≥10 min; sin Q1+Q2",
+            "U15": "Completar: ≥10 jugadores de la categoría en acta. Juego: todos ≥10 min; sin Q1+Q2",
             "U17": "Completar: ≥8 entre categoría y anterior (minutos > 0)",
             "U21": "Completar: ≥5 jugadores con minutos > 0",
             "U7": "Sin partidos en dataset (Mosquitos no relevado)",
@@ -735,11 +735,11 @@ def analizar(
         },
         "notas": [
             "Unidad de análisis: equipo-partido (local y visitante cuentan aparte).",
-            "Completar = jugadores en acta (min>0) de categoría + anterior: ≥12, con mínimo de categoría propia (6 en U9/U11/U13, 10 en U15).",
-            "Combinaciones válidas: (6+6)…(12+0) o en U15 (10+2)…(12+0).",
+            "U9/U11/U13: completar = ≥12 en acta cat+anterior con ≥6 de la categoría (6+6…12+0).",
+            "U15: completar = ≥10 jugadores de la categoría en acta (min>0).",
             "Prom. en acta = promedio de jugadores con minutos > 0 por equipo-partido (comparar entre niveles).",
             "U9/U11/U13: plantilla máxima 15; todos deben jugar al menos un cuarto.",
-            "Minutos y cuartos son reglas de juego aparte: no restan del cupo de 12; se informan en columnas propias.",
+            "Minutos y cuartos son reglas de juego aparte: no restan del cupo; se informan en columnas propias.",
             "Categoría anterior = banda etaria más chica (ej. U13←U11, U11←U9, U9←U7/2019+).",
             "U17/U21: sin mínimos individuales de minutos; se cuentan jugadores con minutos > 0.",
             "Cuartos consecutivos / Q1-Q2 solo se evalúan si hay play-by-play del partido.",
