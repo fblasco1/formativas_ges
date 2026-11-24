@@ -24,6 +24,7 @@ STANDINGS_OUT = ROOT / "outputs" / "formativas_2026" / "tabla_posiciones.html"
 OUT_HTML = ROOT / "docs" / "propuesta_formativas_2027.html"
 NACIMIENTOS_JSON = ROOT / "outputs" / "nacimientos_formativas" / "resumen.json"
 CUMPLIMIENTO_JSON = ROOT / "outputs" / "cumplimiento" / "cumplimiento_plantillas.json"
+NIVELES_2027_JSON = ROOT / "data" / "niveles_2027.json"
 
 FASES_SEGUNDA = (
     "INTERCONFERENCIA_A",
@@ -155,6 +156,48 @@ def _cargar_standings_segunda() -> dict:
     }
 
 
+def _cargar_niveles_2027() -> dict:
+    """Listado de equipos por nivel 2027 + meta de cupos."""
+    if not NIVELES_2027_JSON.exists():
+        raise SystemExit(
+            f"Falta {NIVELES_2027_JSON}. Corré analysis/calcular_niveles_2027.py."
+        )
+    with NIVELES_2027_JSON.open(encoding="utf-8") as f:
+        raw = json.load(f)
+    niveles = {}
+    for k, bloque in (raw.get("niveles") or {}).items():
+        niveles[str(k)] = {
+            "id": int(k),
+            "nombre": bloque.get("nombre") or f"Nivel {k}",
+            "n_equipos": bloque.get("n_equipos") or len(bloque.get("equipos") or []),
+            "equipos": [
+                {
+                    "equipo": e.get("equipo"),
+                    "region": e.get("region"),
+                    "status": e.get("status"),
+                    "nivel_2026": e.get("nivel_2026"),
+                    "zona_2026": e.get("zona_2026"),
+                    "pos_2026": e.get("pos_2026"),
+                    "puntos": e.get("puntos"),
+                    "detalle": e.get("detalle"),
+                    "nivel_2027": e.get("nivel_2027"),
+                }
+                for e in (bloque.get("equipos") or [])
+            ],
+        }
+    return {
+        "fecha_standings": (raw.get("meta") or {}).get("fecha_standings") or "",
+        "cupos": raw.get("cupos") or {},
+        "por_region": raw.get("por_region") or {},
+        "meta": {
+            "total_equipos": (raw.get("meta") or {}).get("total_equipos"),
+            "equilibrio": (raw.get("meta") or {}).get("equilibrio_regional") or {},
+            "reglas": (raw.get("meta") or {}).get("reglas") or {},
+        },
+        "niveles": niveles,
+    }
+
+
 def _cargar_nacimientos() -> dict:
     """Jugadores únicos por año de nacimiento (Infantiles a Pre Mini, hasta hoy)."""
     if not NACIMIENTOS_JSON.exists():
@@ -262,6 +305,7 @@ def generar(payload: dict, out: Path = OUT_HTML) -> Path:
     data_js = json.dumps(payload, ensure_ascii=False)
     standings = _cargar_standings_segunda()
     standings_js = json.dumps(standings, ensure_ascii=False)
+    niveles_2027_js = json.dumps(_cargar_niveles_2027(), ensure_ascii=False)
     nacimientos_js = json.dumps(_cargar_nacimientos(), ensure_ascii=False)
     cumplimiento_js = json.dumps(_cargar_cumplimiento(), ensure_ascii=False)
     colores = payload["colores_region"]
@@ -275,6 +319,7 @@ def generar(payload: dict, out: Path = OUT_HTML) -> Path:
         .replace("__COLOR_OESTE__", colores["OESTE"])
         .replace("__DATA_JS__", data_js)
         .replace("__STANDINGS_JS__", standings_js)
+        .replace("__NIVELES_2027_JS__", niveles_2027_js)
         .replace("__NACIMIENTOS_JS__", nacimientos_js)
         .replace("__CUMPLIMIENTO_JS__", cumplimiento_js)
     )
@@ -970,7 +1015,7 @@ _HTML_TEMPLATE = """<!DOCTYPE html>
   </section>
 
   <section class="block" id="movilidad">
-    <div class="wrap">
+    <div class="wrap-wide">
       <p class="sec-kicker">Proyección 2027</p>
       <h2 class="sec-title">Cómo se decide cada ascenso y descenso</h2>
       <p class="sec-lead">
@@ -978,6 +1023,7 @@ _HTML_TEMPLATE = """<!DOCTYPE html>
         (suma U13 + U15 + U17 + U21; U11 solo aporta presentación). Equivalencia 2026→2027:
         Inter A → N1 · Inter B → N2 · GES N1 → N3 · GES N2 → N4 · GES N3 → N5 · N6 nuevo.
         Nadie desciende más de un escalón respecto de esa equivalencia.
+        Corte standings: <span id="mov-fecha">—</span>.
       </p>
       <div class="grid-2">
         <div class="panel">
@@ -999,30 +1045,45 @@ _HTML_TEMPLATE = """<!DOCTYPE html>
           </ul>
         </div>
         <div class="panel">
-          <span class="tag tag-mid">Nivel 3 · Regional</span>
-          <h3>Desde GES Nivel 1 2026</h3>
+          <span class="tag tag-mid">GES Nivel 1 2026 → N3</span>
+          <h3>Ascenso fijo + pool regional</h3>
           <ul>
-            <li>Ascienden 2 por región → Nivel 2 (+8)</li>
-            <li>Descienden según cupo regional (para dejar N3 en 32) → Nivel 4</li>
-            <li>El resto permanece o se reubica en el pool regional N3–N6</li>
+            <li>Ascienden sí o sí los 2 primeros de cada región → Nivel 2</li>
+            <li>El resto entra al <strong>ranking regional</strong> del remanente (N3–N6)</li>
+            <li>Cupo N3–N5: 8 equipos por región; N6 recibe el sobrante</li>
           </ul>
         </div>
         <div class="panel">
           <span class="tag tag-mid">Niveles 4, 5 y 6</span>
           <h3>Ranking regional del remanente</h3>
           <ul>
-            <li>Objetivo: 8 equipos por región (32 por nivel)</li>
-            <li>N4↔N5↔N6: suben/bajan por posición regional en la tira</li>
-            <li>Nivel 6 es el piso: puede recibir descendidos, no baja más</li>
+            <li>Se ordena toda la región (salvo ya ubicados en N1/N2)</li>
             <li>Tope: máximo 1 descenso vs. la equivalencia 2026</li>
+            <li>Nivel 6 es el piso del esquema</li>
           </ul>
         </div>
       </div>
+
       <div class="note-box" style="margin-top:18px">
-        Durante la temporada 2027, en cada fase de N1/N2 también hay movilidad interna
-        (últimos 2/zona descienden; en regionales ascienden 1°–2°/3° según el nivel).
-        LFF y playoff se definen <em>por categoría</em>, no por tira.
+        <strong>¿Por qué en Centro (GES N1) casi todos descienden?</strong>
+        Centro tiene 9 equipos: suben GEBA y Deportivo Crovara A.
+        Los otros 7 no “quedan” automáticamente en N3: compiten en el ranking regional
+        de Centro contra equipos de Inter B, GES N2 y GES N3.
+        Las 8 plazas de N3 Centro las ocupan otros clubes mejor ubicados en ese ranking;
+        los de GES N1 Centro quedan en N4 (tope de 1 descenso desde equivalencia N3).
       </div>
+
+      <h3 style="margin:28px 0 10px;font-size:1.05rem">GES Nivel 1 2026 · destino 2027</h3>
+      <p class="st-meta" style="margin:0 0 10px">
+        Tabla por región (tira). Elegí la región para ver a dónde va cada equipo.
+      </p>
+      <div class="nv-tabs" id="mov-n1-tabs" role="tablist" aria-label="Regiones GES N1"></div>
+      <div id="mov-n1-tabla"></div>
+
+      <h3 style="margin:32px 0 10px;font-size:1.05rem">Equipos por nivel 2027</h3>
+      <div class="stats" id="mov-cupos"></div>
+      <div class="nv-tabs" id="mov-n2027-tabs" role="tablist" aria-label="Niveles 2027"></div>
+      <div id="mov-n2027-lista"></div>
     </div>
   </section>
 
@@ -1340,6 +1401,7 @@ const DATA = __DATA_JS__;
 const COLORS = DATA.colores_region;
 const REGION_ORDER = ['CENTRO', 'NORTE', 'OESTE', 'SUR'];
 const STANDINGS = __STANDINGS_JS__;
+const NIVELES_2027 = __NIVELES_2027_JS__;
 const NACIMIENTOS = __NACIMIENTOS_JS__;
 const CUMPLIMIENTO = __CUMPLIMIENTO_JS__;
 
@@ -1986,6 +2048,140 @@ function renderNivelFmt(idx, zonaIdx) {
     bindStandingsZoneTabs('st-zona-tabs', 'st-tabla-wrap', fase, null);
   };
   if (fases.length) paint();
+})();
+
+function movBadge(info) {
+  if (!info) return '';
+  const st = info.status || '';
+  const n = info.nivel_2027;
+  const title = (info.detalle || '').replace(/"/g, '&quot;');
+  if (st === 'ASCIENDE') return ` <span class="chip-r asc" title="${title}">ASC → N${n}</span>`;
+  if (st === 'DESCIENDE') return ` <span class="chip-r desc" title="${title}">DESC → N${n}</span>`;
+  if (st === 'MANTIENE') return ` <span class="chip-r keep" title="${title}">N${n}</span>`;
+  return '';
+}
+function movInfoEquipo(nombre) {
+  const mov = (STANDINGS && STANDINGS.movilidad) || {};
+  if (mov[nombre]) return mov[nombre];
+  // fallback por listado 2027
+  const niveles = (NIVELES_2027 && NIVELES_2027.niveles) || {};
+  for (const k of Object.keys(niveles)) {
+    for (const e of (niveles[k].equipos || [])) {
+      if (e.equipo === nombre) {
+        return { status: e.status, nivel_2027: e.nivel_2027, detalle: e.detalle };
+      }
+    }
+  }
+  return null;
+}
+function renderMovN1(region) {
+  const tablas = ((STANDINGS || {}).tablas || {}).NIVEL_1 || {};
+  const zona = Object.keys(tablas).find(z => (z || '').toUpperCase().startsWith(region)) || '';
+  const filas = tablas[zona] || [];
+  const wrap = document.getElementById('mov-n1-tabla');
+  if (!wrap) return;
+  const body = filas.map(f => {
+    const info = movInfoEquipo(f.equipo);
+    const badge = movBadge(info);
+    const dest = info && info.nivel_2027 != null ? `N${info.nivel_2027}` : '—';
+    return `<tr>
+      <td class="pos">${f.pos ?? ''}</td>
+      <td class="club">${f.equipo || ''}${badge}</td>
+      <td class="num">${f.pj ?? '—'}</td>
+      <td class="num">${f.g ?? '—'}</td>
+      <td class="num"><strong>${f.pts ?? '—'}</strong></td>
+      <td class="num">${dest}</td>
+    </tr>`;
+  }).join('');
+  wrap.innerHTML = `
+    <p class="st-meta" style="margin:0 0 8px">${zona || region} · ${filas.length} equipos · tira U13+U15+U17+U21 (+U11 presentación)</p>
+    <div class="mock-table-wrap" style="overflow:auto">
+      <table class="mock">
+        <thead><tr>
+          <th>#</th><th>Equipo</th><th class="num">PJ</th><th class="num">PG</th>
+          <th class="num">Pts</th><th class="num">2027</th>
+        </tr></thead>
+        <tbody>${body || '<tr><td colspan="6">Sin datos</td></tr>'}</tbody>
+      </table>
+    </div>`;
+}
+function renderMovN2027(nivelId) {
+  const bloque = ((NIVELES_2027 || {}).niveles || {})[String(nivelId)] || {};
+  const eqs = (bloque.equipos || []).slice().sort((a, b) => {
+    const ra = a.region || '';
+    const rb = b.region || '';
+    if (ra !== rb) return ra.localeCompare(rb);
+    return (a.pos_2026 || 99) - (b.pos_2026 || 99);
+  });
+  const wrap = document.getElementById('mov-n2027-lista');
+  if (!wrap) return;
+  const body = eqs.map(e => {
+    const badge = movBadge(e);
+    return `<tr>
+      <td class="club">${e.equipo || ''}${badge}</td>
+      <td>${e.region || '—'}</td>
+      <td>${(e.nivel_2026 || '').replace(/_/g, ' ')}</td>
+      <td>${e.zona_2026 || '—'}</td>
+      <td class="num">${e.pos_2026 ?? '—'}</td>
+      <td class="num">${e.puntos ?? '—'}</td>
+    </tr>`;
+  }).join('');
+  wrap.innerHTML = `
+    <p class="st-meta" style="margin:0 0 8px">${bloque.nombre || ('Nivel ' + nivelId)} · ${eqs.length} equipos</p>
+    <div class="mock-table-wrap" style="max-height:480px;overflow:auto">
+      <table class="mock">
+        <thead><tr>
+          <th>Equipo</th><th>Región</th><th>Origen 2026</th><th>Zona 2026</th>
+          <th class="num">Pos</th><th class="num">Pts</th>
+        </tr></thead>
+        <tbody>${body || '<tr><td colspan="6">Sin datos</td></tr>'}</tbody>
+      </table>
+    </div>`;
+}
+(function initMovilidad() {
+  if (!document.getElementById('movilidad')) return;
+  const fechaEl = document.getElementById('mov-fecha');
+  if (fechaEl) fechaEl.textContent = (NIVELES_2027 && NIVELES_2027.fecha_standings) || (STANDINGS && STANDINGS.fecha) || '—';
+
+  const cupos = document.getElementById('mov-cupos');
+  if (cupos && NIVELES_2027) {
+    const c = NIVELES_2027.cupos || {};
+    cupos.innerHTML = [1,2,3,4,5,6].map(n => {
+      const v = c[String(n)] != null ? c[String(n)] : '—';
+      return `<div class="stat"><b>${v}</b><span>Nivel ${n}</span></div>`;
+    }).join('');
+  }
+
+  const regs = ['CENTRO', 'NORTE', 'OESTE', 'SUR'];
+  let reg = 'CENTRO';
+  const tabsN1 = document.getElementById('mov-n1-tabs');
+  if (tabsN1) {
+    const paint = () => {
+      tabsN1.innerHTML = regs.map(r =>
+        `<button type="button" class="${r === reg ? 'active' : ''}" data-r="${r}">${r}</button>`
+      ).join('');
+      tabsN1.querySelectorAll('button').forEach(btn => {
+        btn.onclick = () => { reg = btn.dataset.r; paint(); };
+      });
+      renderMovN1(reg);
+    };
+    paint();
+  }
+
+  let n2027 = '1';
+  const tabsN = document.getElementById('mov-n2027-tabs');
+  if (tabsN) {
+    const paint = () => {
+      tabsN.innerHTML = [1,2,3,4,5,6].map(n =>
+        `<button type="button" class="${String(n) === n2027 ? 'active' : ''}" data-n="${n}">Nivel ${n}</button>`
+      ).join('');
+      tabsN.querySelectorAll('button').forEach(btn => {
+        btn.onclick = () => { n2027 = btn.dataset.n; paint(); };
+      });
+      renderMovN2027(n2027);
+    };
+    paint();
+  }
 })();
 
 function nacMiles(n) {
