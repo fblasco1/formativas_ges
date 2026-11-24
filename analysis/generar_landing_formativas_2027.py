@@ -1072,14 +1072,9 @@ _HTML_TEMPLATE = """<!DOCTYPE html>
         en Nivel 3. El resto del GES N1 entra al pool regional (puede ir a N3–N6 según ranking
         y tope de 1 descenso). Ejemplo Centro: GEBA y Crovara A → N2; los 3° y 4° de la tabla
         Centro quedan en N3; del 5° en adelante compiten en el pool.
+        La tabla completa con destino 2027 está en
+        <a href="#explorador">Tabla de posiciones 2026</a> (fase Nivel 1).
       </div>
-
-      <h3 style="margin:28px 0 10px;font-size:1.05rem">GES Nivel 1 2026 · destino 2027</h3>
-      <p class="st-meta" style="margin:0 0 10px">
-        Tabla por región (tira). Elegí la región para ver a dónde va cada equipo.
-      </p>
-      <div class="nv-tabs" id="mov-n1-tabs" role="tablist" aria-label="Regiones GES N1"></div>
-      <div id="mov-n1-tabla"></div>
 
       <h3 style="margin:32px 0 10px;font-size:1.05rem">Equipos por nivel 2027</h3>
       <div class="stats" id="mov-cupos"></div>
@@ -1093,9 +1088,10 @@ _HTML_TEMPLATE = """<!DOCTYPE html>
       <p class="sec-kicker">Tabla de posiciones 2026</p>
       <h2 class="sec-title">Segunda fase · Formativas (GES)</h2>
       <p class="sec-lead">
-        Tablas de la Segunda Fase embebidas en esta página (corte al
-        <span id="st-fecha">—</span>).
-        Elegí la fase y la zona. Las marcas ASC/DESC proyectan el nivel 2027.
+        Tablas de la Segunda Fase (corte al <span id="st-fecha">—</span>).
+        Elegí la fase y la zona: Interconferencia A/B o GES Niveles 1–3.
+        La columna <strong>2027</strong> y las marcas ASC/DESC muestran el destino proyectado
+        (tira U13+U15+U17+U21; U11 solo presentación).
       </p>
       <div class="nv-shell">
         <div class="nv-tabs" id="st-fase-tabs" role="tablist" aria-label="Fases Segunda 2026"></div>
@@ -1881,22 +1877,38 @@ function renderNvMap(equipos, mixScheme) {
   window._nvMap = map;
 }
 
+function movBadge(info) {
+  if (!info) return '';
+  const st = info.status || '';
+  const n = info.nivel_2027;
+  const title = (info.detalle || '').replace(/"/g, '&quot;');
+  if (st === 'ASCIENDE') return ` <span class="chip-r asc" title="${title}">ASC → N${n}</span>`;
+  if (st === 'DESCIENDE') return ` <span class="chip-r desc" title="${title}">DESC → N${n}</span>`;
+  if (st === 'MANTIENE') return ` <span class="chip-r keep" title="${title}">N${n}</span>`;
+  return '';
+}
+function movInfoEquipo(nombre) {
+  const mov = (STANDINGS && STANDINGS.movilidad) || {};
+  if (mov[nombre]) return mov[nombre];
+  const niveles = (NIVELES_2027 && NIVELES_2027.niveles) || {};
+  for (const k of Object.keys(niveles)) {
+    for (const e of (niveles[k].equipos || [])) {
+      if (e.equipo === nombre) {
+        return { status: e.status, nivel_2027: e.nivel_2027, detalle: e.detalle };
+      }
+    }
+  }
+  return null;
+}
 function htmlStandingsTable(faseKey, zonaKey) {
   const zonas = (STANDINGS.tablas && STANDINGS.tablas[faseKey]) || {};
   const filas = zonas[zonaKey] || [];
   const label = (STANDINGS.fase_labels && STANDINGS.fase_labels[faseKey]) || faseKey;
-  const mov = STANDINGS.movilidad || {};
   const body = filas.map(f => {
     const eq = f.equipo || '';
-    const info = mov[eq] || null;
-    let badge = '';
-    if (info) {
-      const st = info.status || '';
-      const title = (info.detalle || st).replace(/"/g, '&quot;');
-      if (st === 'ASCIENDE') badge = ` <span class="chip-r asc" title="${title}">ASC → N${info.nivel_2027 ?? ''}</span>`;
-      else if (st === 'DESCIENDE') badge = ` <span class="chip-r desc" title="${title}">DESC → N${info.nivel_2027 ?? ''}</span>`;
-      else if (st === 'MANTIENE') badge = ` <span class="chip-r keep" title="${title}">N${info.nivel_2027 ?? '='}</span>`;
-    }
+    const info = movInfoEquipo(eq);
+    const badge = movBadge(info);
+    const dest = info && info.nivel_2027 != null ? `N${info.nivel_2027}` : '—';
     return `<tr>
     <td class="pos">${f.pos ?? ''}</td>
     <td class="club">${eq}${badge}</td>
@@ -1906,11 +1918,13 @@ function htmlStandingsTable(faseKey, zonaKey) {
     <td class="num">${f.pts_g ?? '—'}</td>
     <td class="num">${f.pts_pres ?? '—'}</td>
     <td class="num"><strong>${f.pts ?? '—'}</strong></td>
+    <td class="num">${dest}</td>
   </tr>`;
   }).join('');
   return `
     <div class="st-meta">${label} · ${zonaKey} · ${filas.length} equipos${STANDINGS.fecha ? ' · act. ' + STANDINGS.fecha : ''}
-      · <span class="chip-r asc">ASC</span> asciende · <span class="chip-r desc">DESC</span> desciende · <span class="chip-r keep">N#</span> mantiene (proy. 2027)
+      · tira U13+U15+U17+U21 (+U11 presentación)
+      · <span class="chip-r asc">ASC</span> asciende · <span class="chip-r desc">DESC</span> desciende · <span class="chip-r keep">N#</span> mantiene
     </div>
     <div class="mock-table-wrap" style="max-height:480px;overflow:auto">
       <table class="mock">
@@ -1919,9 +1933,10 @@ function htmlStandingsTable(faseKey, zonaKey) {
             <th>#</th><th>Equipo</th>
             <th class="num">PJ</th><th class="num">G</th><th class="num">P</th>
             <th class="num">Pts cat.</th><th class="num">Pres.</th><th class="num">Pts tira</th>
+            <th class="num">2027</th>
           </tr>
         </thead>
-        <tbody>${body || '<tr><td colspan="8">Sin filas</td></tr>'}</tbody>
+        <tbody>${body || '<tr><td colspan="9">Sin filas</td></tr>'}</tbody>
       </table>
     </div>`;
 }
@@ -2037,7 +2052,8 @@ function renderNivelFmt(idx, zonaIdx) {
   const tabs = document.getElementById('st-fase-tabs');
   if (!tabs) return;
   const fases = Object.keys(STANDINGS.tablas || {});
-  let fase = fases[0];
+  // Preferir GES Nivel 1 (destino 2027 más consultado); si no, la primera fase.
+  let fase = fases.includes('NIVEL_1') ? 'NIVEL_1' : fases[0];
   const paint = () => {
     tabs.innerHTML = fases.map(f => {
       const lab = (STANDINGS.fase_labels && STANDINGS.fase_labels[f]) || f;
@@ -2046,66 +2062,13 @@ function renderNivelFmt(idx, zonaIdx) {
     tabs.querySelectorAll('button').forEach(btn => {
       btn.onclick = () => { fase = btn.dataset.f; paint(); };
     });
-    bindStandingsZoneTabs('st-zona-tabs', 'st-tabla-wrap', fase, null);
+    const zonas = Object.keys((STANDINGS.tablas && STANDINGS.tablas[fase]) || {});
+    const prefZona = zonas.find(z => (z || '').toUpperCase().startsWith('CENTRO')) || null;
+    bindStandingsZoneTabs('st-zona-tabs', 'st-tabla-wrap', fase, prefZona);
   };
   if (fases.length) paint();
 })();
 
-function movBadge(info) {
-  if (!info) return '';
-  const st = info.status || '';
-  const n = info.nivel_2027;
-  const title = (info.detalle || '').replace(/"/g, '&quot;');
-  if (st === 'ASCIENDE') return ` <span class="chip-r asc" title="${title}">ASC → N${n}</span>`;
-  if (st === 'DESCIENDE') return ` <span class="chip-r desc" title="${title}">DESC → N${n}</span>`;
-  if (st === 'MANTIENE') return ` <span class="chip-r keep" title="${title}">N${n}</span>`;
-  return '';
-}
-function movInfoEquipo(nombre) {
-  const mov = (STANDINGS && STANDINGS.movilidad) || {};
-  if (mov[nombre]) return mov[nombre];
-  // fallback por listado 2027
-  const niveles = (NIVELES_2027 && NIVELES_2027.niveles) || {};
-  for (const k of Object.keys(niveles)) {
-    for (const e of (niveles[k].equipos || [])) {
-      if (e.equipo === nombre) {
-        return { status: e.status, nivel_2027: e.nivel_2027, detalle: e.detalle };
-      }
-    }
-  }
-  return null;
-}
-function renderMovN1(region) {
-  const tablas = ((STANDINGS || {}).tablas || {}).NIVEL_1 || {};
-  const zona = Object.keys(tablas).find(z => (z || '').toUpperCase().startsWith(region)) || '';
-  const filas = tablas[zona] || [];
-  const wrap = document.getElementById('mov-n1-tabla');
-  if (!wrap) return;
-  const body = filas.map(f => {
-    const info = movInfoEquipo(f.equipo);
-    const badge = movBadge(info);
-    const dest = info && info.nivel_2027 != null ? `N${info.nivel_2027}` : '—';
-    return `<tr>
-      <td class="pos">${f.pos ?? ''}</td>
-      <td class="club">${f.equipo || ''}${badge}</td>
-      <td class="num">${f.pj ?? '—'}</td>
-      <td class="num">${f.g ?? '—'}</td>
-      <td class="num"><strong>${f.pts ?? '—'}</strong></td>
-      <td class="num">${dest}</td>
-    </tr>`;
-  }).join('');
-  wrap.innerHTML = `
-    <p class="st-meta" style="margin:0 0 8px">${zona || region} · ${filas.length} equipos · tira U13+U15+U17+U21 (+U11 presentación)</p>
-    <div class="mock-table-wrap" style="overflow:auto">
-      <table class="mock">
-        <thead><tr>
-          <th>#</th><th>Equipo</th><th class="num">PJ</th><th class="num">PG</th>
-          <th class="num">Pts</th><th class="num">2027</th>
-        </tr></thead>
-        <tbody>${body || '<tr><td colspan="6">Sin datos</td></tr>'}</tbody>
-      </table>
-    </div>`;
-}
 function renderMovN2027(nivelId) {
   const bloque = ((NIVELES_2027 || {}).niveles || {})[String(nivelId)] || {};
   const eqs = (bloque.equipos || []).slice().sort((a, b) => {
@@ -2151,22 +2114,6 @@ function renderMovN2027(nivelId) {
       const v = c[String(n)] != null ? c[String(n)] : '—';
       return `<div class="stat"><b>${v}</b><span>Nivel ${n}</span></div>`;
     }).join('');
-  }
-
-  const regs = ['CENTRO', 'NORTE', 'OESTE', 'SUR'];
-  let reg = 'CENTRO';
-  const tabsN1 = document.getElementById('mov-n1-tabs');
-  if (tabsN1) {
-    const paint = () => {
-      tabsN1.innerHTML = regs.map(r =>
-        `<button type="button" class="${r === reg ? 'active' : ''}" data-r="${r}">${r}</button>`
-      ).join('');
-      tabsN1.querySelectorAll('button').forEach(btn => {
-        btn.onclick = () => { reg = btn.dataset.r; paint(); };
-      });
-      renderMovN1(reg);
-    };
-    paint();
   }
 
   let n2027 = '1';
