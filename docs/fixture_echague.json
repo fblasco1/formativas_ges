@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-11-24T03:52:38-03:00",
+  "generated_at": "2026-11-24T18:03:23-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -7463,7 +7463,7 @@
       "rival": "BANCO NACION",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "61-61",
+      "resultado": "62-61",
       "espacio": null
     },
     {
@@ -7603,19 +7603,6 @@
       "hora": "14:00",
       "tira": "—",
       "categoria": "U11 Fem",
-      "rival": "BANADE",
-      "localia": "Local",
-      "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
-      "external_id": "hGvrEJ-l5hXHpvYq8SDXSw",
-      "fecha": "2026-12-06",
-      "hora": "15:30",
-      "tira": "—",
-      "categoria": "U9 Fem",
       "rival": "BANADE",
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
