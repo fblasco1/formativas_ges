@@ -1125,9 +1125,9 @@ _HTML_TEMPLATE = """<!DOCTYPE html>
       <p class="sec-kicker">Cumplimiento 2026</p>
       <h2 class="sec-title">Completar plantilla por categoría y nivel</h2>
       <p class="sec-lead">
-        Equipo-partido: ¿llega a 12 en acta (categoría + anterior) con el mínimo
-        de categoría propia? U9/U11/U13: 6+6…12+0 (máx. 15; todos deben jugar un cuarto)
-        · U15: 10+2…12+0 · U17: ≥8 · U21: ≥5.
+        Equipo-partido: ¿completa plantilla? U9/U11/U13: ≥12 en acta cat+anterior
+        con ≥6 de la categoría (6+6…12+0; máx. 15; todos deben jugar un cuarto)
+        · U15: ≥10 de la categoría en acta · U17: ≥8 · U21: ≥5.
         Corte <span id="cum-fecha">—</span>.
       </p>
       <div class="stats" id="cum-stats"></div>
@@ -2268,9 +2268,10 @@ function cumShare(part, whole) {
 function cumClsProm(v, cat) {
   if (v == null || v === "") return "";
   const n = Number(v);
+  if (cat === "U15") return n >= 10 ? "ok" : "bad";
   if (cat === "U17") return n >= 8 ? "ok" : "bad";
   if (cat === "U21") return n >= 5 ? "ok" : "bad";
-  // U9-U15 cupo 12; techo 15 en U9-U13
+  // U9/U11/U13 cupo 12; techo 15
   if (n < 12) return "bad";
   if (n <= 15) return "ok";
   return "mid";
@@ -2292,7 +2293,7 @@ function renderCumplimiento(catActiva) {
   if (nota) {
     nota.textContent = (data.n_evaluaciones || 0).toLocaleString("es-AR") +
       " equipo-partidos. U9/U11/U13: completar ≥12 y hasta 15 (todos juegan un cuarto). " +
-      "El no-completa es casi siempre menos de 12 en acta.";
+      "U15: completar con ≥10 de la categoría en acta.";
   }
   const nivelesMat = (data.niveles || []).filter(n => n !== "Otro");
   const head = ["Nivel", ...cats].map((h, i) =>
