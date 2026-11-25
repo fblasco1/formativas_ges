@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-11-24T18:03:23-03:00",
+  "generated_at": "2026-11-25T02:18:46-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -7507,19 +7507,6 @@
     },
     {
       "source": "febamba_ges",
-      "external_id": "eZkDyfrP_MnXKns9lISJKg",
-      "fecha": "2026-11-28",
-      "hora": "21:30",
-      "tira": "C",
-      "categoria": "SUP Flex",
-      "rival": "BECCAR AZUL",
-      "localia": "Visitante",
-      "direccion": "Av Centenario 1947, 1643",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
       "external_id": "hcBIEAfOi1jF3k4LenJtJw",
       "fecha": "2026-11-29",
       "hora": "10:00",
@@ -7567,6 +7554,19 @@
       "rival": "HARRODS",
       "localia": "Visitante",
       "direccion": "",
+      "resultado": "",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "eZkDyfrP_MnXKns9lISJKg",
+      "fecha": "2026-11-29",
+      "hora": "20:00",
+      "tira": "C",
+      "categoria": "SUP Flex",
+      "rival": "BECCAR AZUL",
+      "localia": "Visitante",
+      "direccion": "Av Centenario 1947, 1643",
       "resultado": "",
       "espacio": null
     },
