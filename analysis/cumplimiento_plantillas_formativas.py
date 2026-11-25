@@ -92,11 +92,10 @@ NIVELES_ORDEN = [
     "Nivel 1",
     "Nivel 2",
     "Nivel 3",
-    "Otro",
 ]
 
-# Primera fase: no se muestran ni entran al TOTAL del informe.
-NIVELES_EXCLUIDOS = {"Clasificatorio", "Reclasificación"}
+# Fuera del informe: 1ª fase y copas/LFF (no son los niveles de Segunda).
+NIVELES_EXCLUIDOS = {"Clasificatorio", "Reclasificación", "Otro"}
 
 
 def log(msg: str) -> None:
@@ -138,6 +137,9 @@ def nivel_de_fase(fase: str) -> str:
         return "Clasificatorio"
     if "RECLASIFIC" in f:
         return "Reclasificación"
+    # LFF / triangular / playoffs sueltos → fuera de los niveles de Segunda.
+    if "LFF" in f or "TRIANGULAR" in f or "PLAYOFF" in f or "COPA" in f:
+        return "Otro"
     return "Otro"
 
 
@@ -778,7 +780,7 @@ def analizar(
         },
         "notas": [
             "Unidad de análisis: equipo-partido (local y visitante cuentan aparte).",
-            "Solo Segunda fase (Interconferencia A/B y Niveles 1–3); se excluyen Clasificatorio y Reclasificación.",
+            "Solo Segunda fase (Interconferencia A/B y Niveles 1–3); se excluyen Clasificatorio, Reclasificación y LFF/playoffs.",
             "U9/U11/U13: completar = ≥12 en acta cat+anterior con ≥6 de la categoría (6+6…12+0).",
             "U15: completar = ≥10 jugadores de la categoría en acta (min>0).",
             "Prom. en acta = promedio de jugadores con minutos > 0 por equipo-partido (comparar entre niveles).",
