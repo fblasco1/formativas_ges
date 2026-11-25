@@ -434,7 +434,11 @@ def analizar(
     u21_u19_counts: List[int] = []
     u21_u21only_counts: List[int] = []  # 2005-2006
     u21_seg_por_anio: Dict[int, List[int]] = defaultdict(list)
-    u21_equipos: Dict[str, dict] = {}
+    u21_seg_por_anio_nivel: Dict[str, Dict[int, List[int]]] = defaultdict(
+        lambda: defaultdict(list)
+    )
+    # (clave, nivel) -> slot de minutos / plantel en ese nivel
+    u21_equipos: Dict[Tuple[str, str], dict] = {}
     # clave -> set(pid) únicos en la temporada
     u21_pids: Dict[str, Set[str]] = defaultdict(set)
     u21_pids_u19: Dict[str, Set[str]] = defaultdict(set)
@@ -481,6 +485,8 @@ def analizar(
                         continue
                     anios_eq[anio] += 1
                     u21_seg_por_anio[anio].append(seg)
+                    if 2005 <= anio <= 2008:
+                        u21_seg_por_anio_nivel[nivel][anio].append(seg)
                 n_u19 = sum(anios_eq[y] for y in (2007, 2008))
                 n_old = sum(anios_eq[y] for y in (2005, 2006))
                 n_tot = sum(anios_eq.values())
@@ -488,8 +494,15 @@ def analizar(
                 u21_u19_counts.append(n_u19)
                 u21_u21only_counts.append(n_old)
                 slot = u21_equipos.setdefault(
-                    clave,
-                    {"anios": Counter(), "seg": defaultdict(list), "partidos": 0, "nombres": set()},
+                    (clave, nivel),
+                    {
+                        "clave": clave,
+                        "nivel": nivel,
+                        "anios": Counter(),
+                        "seg": defaultdict(list),
+                        "partidos": 0,
+                        "nombres": set(),
+                    },
                 )
                 slot["partidos"] += 1
                 slot["nombres"].add(raw)
@@ -640,6 +653,12 @@ def analizar(
     def avg(xs: List[int]) -> Optional[float]:
         return round(sum(xs) / len(xs), 1) if xs else None
 
+    def _min_stats(segs: List[int]) -> dict:
+        return {
+            "n": len(segs),
+            "prom": round((sum(segs) / len(segs)) / 60.0, 2) if segs else None,
+        }
+
     u21_min_por_anio = {
         str(y): {
             "n_apariciones": len(segs),
@@ -648,25 +667,36 @@ def analizar(
         for y, segs in sorted(u21_seg_por_anio.items())
         if 2005 <= y <= 2008
     }
+    u21_min_por_nivel: Dict[str, dict] = {}
+    for niv, by_y in u21_seg_por_anio_nivel.items():
+        u21_min_por_nivel[niv] = {
+            str(y): _min_stats(by_y[y])
+            for y in (2005, 2006, 2007, 2008)
+            if by_y.get(y)
+        }
 
-    # equipos U21 con plantel grande / muchos U19
+    # equipos U21 por nivel (fila = equipo en un nivel)
+    nivel_rank = {n: i for i, n in enumerate(NIVELES_ORDEN)}
     equipos_u21 = []
-    for clave, slot in u21_equipos.items():
+    nombres_por_clave_u21: Dict[str, set] = defaultdict(set)
+    for (clave, nivel), slot in u21_equipos.items():
         anios = slot["anios"]
         n_u19 = anios[2007] + anios[2008]
         n_old = anios[2005] + anios[2006]
-        # promedio jugadores por partido (apariciones / partidos)
         pj = max(1, slot["partidos"])
         prom_roster = round(sum(anios.values()) / pj, 1)
         prom_u19 = round(n_u19 / pj, 1)
         prom_old = round(n_old / pj, 1)
         min_por_anio = {
-            str(y): round((sum(slot["seg"][y]) / len(slot["seg"][y])) / 60.0, 2)
+            str(y): _min_stats(slot["seg"][y])
             for y in (2005, 2006, 2007, 2008)
             if slot["seg"].get(y)
         }
+        nombres_por_clave_u21[clave] |= set(slot["nombres"])
         equipos_u21.append({
+            "clave": clave,
             "equipo": _elegir_nombre(slot["nombres"], clave),
+            "nivel": nivel,
             "partidos": slot["partidos"],
             "prom_jugadores_por_partido": prom_roster,
             "prom_u19_2007_2008": prom_u19,
@@ -674,7 +704,12 @@ def analizar(
             "pct_u19": round(100.0 * n_u19 / max(1, n_u19 + n_old), 1),
             "min_por_anio": min_por_anio,
         })
-    equipos_u21.sort(key=lambda e: (-e["prom_jugadores_por_partido"], e["equipo"]))
+    equipos_u21.sort(
+        key=lambda e: (
+            nivel_rank.get(e["nivel"], 99),
+            e["equipo"],
+        )
+    )
 
     planteles_u21 = []
     for clave, pids in u21_pids.items():
@@ -682,9 +717,7 @@ def analizar(
         n19 = len(u21_pids_u19.get(clave) or ())
         nold = len(u21_pids_old.get(clave) or ())
         planteles_u21.append({
-            "equipo": _elegir_nombre(u21_equipos[clave]["nombres"], clave)
-            if clave in u21_equipos
-            else clave,
+            "equipo": _elegir_nombre(nombres_por_clave_u21.get(clave) or {clave}, clave),
             "plantel_unico": n,
             "u19_unicos": n19,
             "y2005_2006_unicos": nold,
@@ -733,8 +766,15 @@ def analizar(
             ),
             "planteles_15plus": [e for e in planteles_u21 if e["plantel_unico"] >= 15],
             "minutos_por_anio": u21_min_por_anio,
-            "equipos": equipos_u21[:80],
-            "planteles": planteles_u21[:80],
+            "minutos_por_anio_por_nivel": u21_min_por_nivel,
+            "anios": [2005, 2006, 2007, 2008],
+            "niveles": [
+                n
+                for n in NIVELES_ORDEN
+                if any(e["nivel"] == n for e in equipos_u21)
+            ],
+            "equipos": equipos_u21,
+            "planteles": planteles_u21,
         },
         "notas": [
             "Unidad de análisis: equipo-partido (local y visitante cuentan aparte).",

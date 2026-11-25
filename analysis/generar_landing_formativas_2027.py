@@ -285,6 +285,23 @@ def _cargar_cumplimiento() -> dict:
             }
 
     u21 = raw.get("u21") or {}
+    anios_u21 = u21.get("anios") or [2005, 2006, 2007, 2008]
+    equipos_u21 = []
+    for e in u21.get("equipos") or []:
+        mpa = {}
+        for y, d in (e.get("min_por_anio") or {}).items():
+            if isinstance(d, dict):
+                mpa[str(y)] = {"prom": d.get("prom"), "n": d.get("n") or 0}
+            else:
+                mpa[str(y)] = {"prom": d, "n": 0}
+        equipos_u21.append(
+            {
+                "equipo": e.get("equipo") or "",
+                "nivel": e.get("nivel") or "Otro",
+                "partidos": e.get("partidos") or 0,
+                "min_por_anio": mpa,
+            }
+        )
     return {
         "fecha": (raw.get("fecha") or "")[:10],
         "n_evaluaciones": raw.get("n_evaluaciones") or 0,
@@ -298,7 +315,18 @@ def _cargar_cumplimiento() -> dict:
             "prom_jugadores": u21.get("prom_jugadores"),
             "prom_u19": u21.get("prom_u19"),
             "pct_15plus": u21.get("pct_partidos_15plus"),
-            "min_por_anio": u21.get("min_por_anio") or {},
+            "min_por_anio": u21.get("minutos_por_anio") or u21.get("min_por_anio") or {},
+            "min_por_anio_nivel": u21.get("minutos_por_anio_por_nivel") or {},
+            "anios": anios_u21,
+            "niveles": u21.get("niveles")
+            or [
+                "Interconferencia A",
+                "Interconferencia B",
+                "Nivel 1",
+                "Nivel 2",
+                "Nivel 3",
+            ],
+            "equipos": equipos_u21,
         },
     }
 
@@ -757,14 +785,14 @@ _HTML_TEMPLATE = """<!DOCTYPE html>
     table.cum-table td.ok { color: #047857; }
     #cum-tabs { margin: 0 0 12px; }
     .nac-wrap thead th { position: sticky; top: 0; z-index: 1; }
-    table.mock tr.total td { background: #f8fafc; font-weight: 700; }
+    table.mock tr.total td { background: #f1f5f9; font-weight: 700; position: sticky; bottom: 0; }
 
     /* Dual metrics */
     .dual { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
     .dual .panel h3 { display: flex; align-items: center; gap: 8px; }
 
     /* Explorer */
-    #explorador { scroll-margin-top: 64px; }
+    #explorador, #u21 { scroll-margin-top: 64px; }
     .explorer-shell {
       background: var(--paper); border: 1px solid var(--line);
       border-radius: 18px; padding: 18px 18px 22px;
@@ -869,6 +897,7 @@ _HTML_TEMPLATE = """<!DOCTYPE html>
         <a href="#explorador">Posiciones 2026</a>
         <a href="#nacimientos">Nacimientos</a>
         <a href="#cumplimiento">Plantillas</a>
+        <a href="#u21">U19–U21</a>
         <a href="#metricas">Tablas</a>
         <a href="#horarios">Horarios</a>
       </nav>
@@ -1149,7 +1178,22 @@ _HTML_TEMPLATE = """<!DOCTYPE html>
     </div>
   </section>
 
-  <section class="block" id="metricas">
+  <section class="block" id="u21">
+    <div class="wrap-wide">
+      <p class="sec-kicker">Liga Próximo · U21</p>
+      <h2 class="sec-title">Minutos por año de nacimiento (U19–U21)</h2>
+      <p class="sec-lead">
+        Promedio de minutos por aparición en acta, por equipo y año de nacimiento
+        (2005–2008). U19 = 2007–2008. Filtrá por nivel: la fila TOTAL recalcula
+        el promedio ponderado del filtro. Corte <span id="u21-fecha">—</span>.
+      </p>
+      <div class="nv-tabs" id="u21-nivel-tabs" role="tablist" aria-label="Niveles U21"></div>
+      <p class="st-meta" id="u21-nota"></p>
+      <div id="u21-tabla"></div>
+    </div>
+  </section>
+
+  <section class="block alt" id="metricas">
     <div class="wrap">
       <p class="sec-kicker">Clasificaciones</p>
       <h2 class="sec-title">Tabla por tira vs clasificación por categoría</h2>
@@ -1166,7 +1210,7 @@ _HTML_TEMPLATE = """<!DOCTYPE html>
     </div>
   </section>
 
-  <section class="block alt" id="horarios">
+  <section class="block" id="horarios">
     <div class="wrap">
       <p class="sec-kicker">Jornada</p>
       <h2 class="sec-title">Dos opciones de horarios</h2>
@@ -2365,6 +2409,93 @@ function renderCumplimiento(catActiva) {
 (function initCumplimiento() {
   if (!CUMPLIMIENTO || !document.getElementById("cumplimiento")) return;
   renderCumplimiento("U9");
+})();
+
+function u21FmtMin(v) {
+  if (v == null || v === "") return "—";
+  return Number(v).toLocaleString("es-AR", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+}
+function renderU21(nivelActivo) {
+  const u21 = (CUMPLIMIENTO && CUMPLIMIENTO.u21) || {};
+  const anios = (u21.anios || [2005, 2006, 2007, 2008]).map(String);
+  const niveles = u21.niveles || [];
+  const equipos = u21.equipos || [];
+  const fechaEl = document.getElementById("u21-fecha");
+  if (fechaEl) fechaEl.textContent = (CUMPLIMIENTO && CUMPLIMIENTO.fecha) || "—";
+
+  const tabs = document.getElementById("u21-nivel-tabs");
+  if (tabs) {
+    const opts = [["TODOS", "Todos"]].concat(niveles.map(n => [n, n]));
+    tabs.innerHTML = opts.map(([val, lab]) => {
+      const nEq = val === "TODOS"
+        ? equipos.length
+        : equipos.filter(e => e.nivel === val).length;
+      return `<button type="button" class="${val === nivelActivo ? "active" : ""}" data-nivel="${val}">${lab} (${nEq})</button>`;
+    }).join("");
+    tabs.querySelectorAll("button").forEach(b => {
+      b.onclick = () => renderU21(b.getAttribute("data-nivel"));
+    });
+  }
+
+  const filtrados = nivelActivo === "TODOS"
+    ? equipos.slice()
+    : equipos.filter(e => e.nivel === nivelActivo);
+
+  // Promedio ponderado por apariciones (n) del filtro activo.
+  const tot = {};
+  for (const y of anios) {
+    let suma = 0, n = 0;
+    for (const e of filtrados) {
+      const d = (e.min_por_anio || {})[y];
+      if (!d || d.prom == null || !d.n) continue;
+      suma += Number(d.prom) * Number(d.n);
+      n += Number(d.n);
+    }
+    tot[y] = n ? suma / n : null;
+  }
+
+  const nota = document.getElementById("u21-nota");
+  if (nota) {
+    nota.textContent = filtrados.length.toLocaleString("es-AR") +
+      " equipos" + (nivelActivo === "TODOS" ? " · todos los niveles" : " · " + nivelActivo) +
+      ". Minutos = promedio por aparición en acta.";
+  }
+
+  const head = ["Equipo", "Nivel", ...anios.map(y => y + (y === "2007" || y === "2008" ? " · U19" : "")), "PJ"];
+  const body = filtrados.map(e => {
+    const cells = anios.map(y => {
+      const d = (e.min_por_anio || {})[y];
+      return `<td class="num">${u21FmtMin(d && d.prom)}</td>`;
+    }).join("");
+    return `<tr>
+      <td class="club">${e.equipo || ""}</td>
+      <td>${e.nivel || "—"}</td>
+      ${cells}
+      <td class="num">${e.partidos || 0}</td>
+    </tr>`;
+  }).join("");
+  const totCells = anios.map(y => `<td class="num">${u21FmtMin(tot[y])}</td>`).join("");
+  const wrap = document.getElementById("u21-tabla");
+  if (!wrap) return;
+  wrap.innerHTML = `
+    <div class="mock-table-wrap" style="max-height:560px;overflow:auto">
+      <table class="mock cum-table">
+        <thead><tr>${head.map((h,i) => `<th${i>=2?" class='num'":""}>${h}</th>`).join("")}</tr></thead>
+        <tbody>
+          ${body || '<tr><td colspan="7">Sin datos</td></tr>'}
+          <tr class="total">
+            <td><strong>TOTAL</strong></td>
+            <td>${nivelActivo === "TODOS" ? "Todos" : nivelActivo}</td>
+            ${totCells}
+            <td class="num">${filtrados.reduce((a,e)=>a+(e.partidos||0),0)}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>`;
+}
+(function initU21() {
+  if (!CUMPLIMIENTO || !document.getElementById("u21")) return;
+  renderU21("TODOS");
 })();
 
 (function initNiveles() {
