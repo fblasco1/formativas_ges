@@ -1,6 +1,6 @@
 {
   "meta": {
-    "fecha_calculo": "2026-11-24",
+    "fecha_calculo": "2026-11-25",
     "fecha_standings": "24/11/2026",
     "total_equipos": 193,
     "fuente_standings": "docs/formativas_2026_tabla_posiciones.html",
@@ -62,7 +62,7 @@
         {
           "clave": "COLEGIALES NEGRO",
           "region_2027": "CENTRO",
-          "nivel_2027": 5,
+          "nivel_2027": 6,
           "status": "DESCIENDE"
         },
         {
@@ -88,6 +88,12 @@
           "region_2027": "CENTRO",
           "nivel_2027": 6,
           "status": "DESCIENDE"
+        },
+        {
+          "clave": "VELEZ SARSFIELD AZUL B",
+          "region_2027": "CENTRO",
+          "nivel_2027": 3,
+          "status": "ASCIENDE"
         }
       ],
       "clampados_tope_descenso": 25,
@@ -121,7 +127,12 @@
         "ITALIANO DE JOSE PAZ C": "NORTE",
         "SAN MIGUEL BLANCO": "NORTE",
         "PORTENO ATLETICO CLUB B BLANCO": "NORTE",
-        "UNIVERSIDAD DE BUENOS AIRES": "CENTRO"
+        "UNIVERSIDAD DE BUENOS AIRES": "CENTRO",
+        "VELEZ SARSFIELD AZUL B": "CENTRO"
+      },
+      "nivel_overrides_2027": {
+        "VELEZ SARSFIELD AZUL B": 3,
+        "CLUB ATLETICO HURACAN DE PARQUE PATRICIOS": 4
       }
     }
   },
@@ -166,9 +177,9 @@
     },
     "6": {
       "NORTE": 8,
-      "CENTRO": 8,
+      "CENTRO": 9,
       "SUR": 8,
-      "OESTE": 9
+      "OESTE": 8
     }
   },
   "niveles": {
@@ -1472,22 +1483,6 @@
           "detalle": "Asciende a Nivel 3 (venía de NIVEL_3) · pos regional 2"
         },
         {
-          "equipo": "CLUB ATLETICO HURACAN DE PARQUE PATRICIOS",
-          "clave": "CLUB ATLETICO HURACAN DE PARQUE PATRICIOS",
-          "pos_2026": 3,
-          "puntos": 134,
-          "pts_general": 119,
-          "pts_presentacion": 15,
-          "pj_general": 69,
-          "ganados": 53,
-          "nivel_2026": "NIVEL_3",
-          "zona_2026": "CENTRO",
-          "region": "CENTRO",
-          "status": "ASCIENDE",
-          "nivel_2027": 3,
-          "detalle": "Asciende a Nivel 3 (venía de NIVEL_3) · pos regional 3"
-        },
-        {
           "equipo": "VILLA MITRE",
           "clave": "VILLA MITRE",
           "pos_2026": 7,
@@ -1642,10 +1637,10 @@
           "ganados": 43,
           "nivel_2026": "NIVEL_2",
           "zona_2026": "OESTE",
-          "region": "OESTE",
+          "region": "CENTRO",
           "status": "ASCIENDE",
           "nivel_2027": 3,
-          "detalle": "Asciende a Nivel 3 (venía de NIVEL_2) · pos regional 1"
+          "detalle": "Asciende a Nivel 3 (venía de NIVEL_2) · pos regional 1 · región 2027 OESTE→CENTRO (ajuste)"
         },
         {
           "equipo": "C.A.S.A PADUA B",
@@ -1726,6 +1721,22 @@
           "status": "DESCIENDE",
           "nivel_2027": 3,
           "detalle": "Desciende a Nivel 3 (venía de INTERCONFERENCIA_B) · pos regional 28 · tope descenso (ideal N6)"
+        },
+        {
+          "equipo": "DEFENSORES DE SANTOS LUGARES",
+          "clave": "DEFENSORES DE SANTOS LUGARES",
+          "pos_2026": 3,
+          "puntos": 107,
+          "pts_general": 95,
+          "pts_presentacion": 12,
+          "pj_general": 56,
+          "ganados": 39,
+          "nivel_2026": "NIVEL_2",
+          "zona_2026": "OESTE",
+          "region": "OESTE",
+          "status": "ASCIENDE",
+          "nivel_2027": 3,
+          "detalle": "Permanece en Nivel 4 · pos regional 3 · tope descenso (ideal N3) · reequilibrio cupo OESTE 4→3"
         }
       ]
     },
@@ -1925,22 +1936,6 @@
           "status": "DESCIENDE",
           "nivel_2027": 4,
           "detalle": "Desciende a Nivel 4 (venía de NIVEL_1) · pos regional 19 · tope descenso (ideal N5)"
-        },
-        {
-          "equipo": "YUPANQUI",
-          "clave": "YUPANQUI",
-          "pos_2026": 9,
-          "puntos": 81,
-          "pts_general": 74,
-          "pts_presentacion": 7,
-          "pj_general": 59,
-          "ganados": 15,
-          "nivel_2026": "NIVEL_1",
-          "zona_2026": "CENTRO 1",
-          "region": "CENTRO",
-          "status": "DESCIENDE",
-          "nivel_2027": 4,
-          "detalle": "Desciende a Nivel 4 (venía de NIVEL_1) · pos regional 25 · tope descenso (ideal N6)"
         },
         {
           "equipo": "JUVENCIA",
@@ -2231,20 +2226,36 @@
           "detalle": "Permanece en Nivel 4 · pos regional 4 · tope descenso (ideal N3)"
         },
         {
-          "equipo": "DEFENSORES DE SANTOS LUGARES",
-          "clave": "DEFENSORES DE SANTOS LUGARES",
+          "equipo": "CLUB ATLETICO HURACAN DE PARQUE PATRICIOS",
+          "clave": "CLUB ATLETICO HURACAN DE PARQUE PATRICIOS",
           "pos_2026": 3,
-          "puntos": 107,
-          "pts_general": 95,
-          "pts_presentacion": 12,
+          "puntos": 134,
+          "pts_general": 119,
+          "pts_presentacion": 15,
+          "pj_general": 69,
+          "ganados": 53,
+          "nivel_2026": "NIVEL_3",
+          "zona_2026": "CENTRO",
+          "region": "CENTRO",
+          "status": "DESCIENDE",
+          "nivel_2027": 4,
+          "detalle": "Asciende a Nivel 3 (venía de NIVEL_3) · pos regional 3 · nivel 2027 forzado 3→4 (ajuste)"
+        },
+        {
+          "equipo": "ESTUDIANTIL PORTENO B",
+          "clave": "ESTUDIANTIL PORTENO B",
+          "pos_2026": 8,
+          "puntos": 92,
+          "pts_general": 92,
+          "pts_presentacion": 0,
           "pj_general": 56,
-          "ganados": 39,
+          "ganados": 37,
           "nivel_2026": "NIVEL_2",
           "zona_2026": "OESTE",
           "region": "OESTE",
           "status": "MANTIENE",
           "nivel_2027": 4,
-          "detalle": "Permanece en Nivel 4 · pos regional 3 · tope descenso (ideal N3)"
+          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 8 · tope descenso (ideal N4) · reequilibrio cupo OESTE 5→4"
         }
       ]
     },
@@ -2348,22 +2359,6 @@
           "status": "DESCIENDE",
           "nivel_2027": 5,
           "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 24 · tope descenso (ideal N6)"
-        },
-        {
-          "equipo": "COLEGIALES NEGRO",
-          "clave": "COLEGIALES NEGRO",
-          "pos_2026": 13,
-          "puntos": 67,
-          "pts_general": 57,
-          "pts_presentacion": 10,
-          "pj_general": 46,
-          "ganados": 12,
-          "nivel_2026": "NIVEL_2",
-          "zona_2026": "NORTE",
-          "region": "CENTRO",
-          "status": "DESCIENDE",
-          "nivel_2027": 5,
-          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 26 · tope descenso (ideal N6) · región 2027 NORTE→CENTRO (ajuste)"
         },
         {
           "equipo": "LAS HERAS",
@@ -2750,20 +2745,36 @@
           "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 9 · tope descenso (ideal N4)"
         },
         {
-          "equipo": "ESTUDIANTIL PORTENO B",
-          "clave": "ESTUDIANTIL PORTENO B",
-          "pos_2026": 8,
-          "puntos": 92,
-          "pts_general": 92,
-          "pts_presentacion": 0,
-          "pj_general": 56,
-          "ganados": 37,
-          "nivel_2026": "NIVEL_2",
-          "zona_2026": "OESTE",
-          "region": "OESTE",
+          "equipo": "YUPANQUI",
+          "clave": "YUPANQUI",
+          "pos_2026": 9,
+          "puntos": 81,
+          "pts_general": 74,
+          "pts_presentacion": 7,
+          "pj_general": 59,
+          "ganados": 15,
+          "nivel_2026": "NIVEL_1",
+          "zona_2026": "CENTRO 1",
+          "region": "CENTRO",
           "status": "DESCIENDE",
           "nivel_2027": 5,
-          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 8 · tope descenso (ideal N4)"
+          "detalle": "Desciende a Nivel 4 (venía de NIVEL_1) · pos regional 25 · tope descenso (ideal N6) · reequilibrio cupo CENTRO 4→5"
+        },
+        {
+          "equipo": "PASO DEL REY",
+          "clave": "PASO DEL REY",
+          "pos_2026": 2,
+          "puntos": 74,
+          "pts_general": 66,
+          "pts_presentacion": 8,
+          "pj_general": 37,
+          "ganados": 29,
+          "nivel_2026": "NIVEL_3",
+          "zona_2026": "OESTE",
+          "region": "OESTE",
+          "status": "MANTIENE",
+          "nivel_2027": 5,
+          "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 20 · tope descenso (ideal N5) · reequilibrio cupo OESTE 6→5"
         }
       ]
     },
@@ -3253,22 +3264,6 @@
           "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 21 · tope descenso (ideal N5)"
         },
         {
-          "equipo": "PASO DEL REY",
-          "clave": "PASO DEL REY",
-          "pos_2026": 2,
-          "puntos": 74,
-          "pts_general": 66,
-          "pts_presentacion": 8,
-          "pj_general": 37,
-          "ganados": 29,
-          "nivel_2026": "NIVEL_3",
-          "zona_2026": "OESTE",
-          "region": "OESTE",
-          "status": "DESCIENDE",
-          "nivel_2027": 6,
-          "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 20 · tope descenso (ideal N5)"
-        },
-        {
           "equipo": "FERROCARRIL OESTE NARANJA",
           "clave": "FERROCARRIL OESTE NARANJA",
           "pos_2026": 1,
@@ -3299,6 +3294,22 @@
           "status": "DESCIENDE",
           "nivel_2027": 6,
           "detalle": "Desciende a Nivel 6 (venía de NIVEL_2) · pos regional 25 · cupo 8/región (demote forzado) · región 2027 OESTE→NORTE (ajuste)"
+        },
+        {
+          "equipo": "COLEGIALES NEGRO",
+          "clave": "COLEGIALES NEGRO",
+          "pos_2026": 13,
+          "puntos": 67,
+          "pts_general": 57,
+          "pts_presentacion": 10,
+          "pj_general": 46,
+          "ganados": 12,
+          "nivel_2026": "NIVEL_2",
+          "zona_2026": "NORTE",
+          "region": "CENTRO",
+          "status": "DESCIENDE",
+          "nivel_2027": 6,
+          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 26 · tope descenso (ideal N6) · región 2027 NORTE→CENTRO (ajuste) · reequilibrio cupo CENTRO 5→6"
         }
       ]
     }
@@ -3864,13 +3875,6 @@
       "region": "CENTRO",
       "detalle": "Asciende a Nivel 3 (venía de NIVEL_3) · pos regional 2"
     },
-    "CLUB ATLETICO HURACAN DE PARQUE PATRICIOS": {
-      "status": "ASCIENDE",
-      "nivel_2027": 3,
-      "nivel_2026": "NIVEL_3",
-      "region": "CENTRO",
-      "detalle": "Asciende a Nivel 3 (venía de NIVEL_3) · pos regional 3"
-    },
     "VILLA MITRE": {
       "status": "DESCIENDE",
       "nivel_2027": 3,
@@ -3938,8 +3942,8 @@
       "status": "ASCIENDE",
       "nivel_2027": 3,
       "nivel_2026": "NIVEL_2",
-      "region": "OESTE",
-      "detalle": "Asciende a Nivel 3 (venía de NIVEL_2) · pos regional 1"
+      "region": "CENTRO",
+      "detalle": "Asciende a Nivel 3 (venía de NIVEL_2) · pos regional 1 · región 2027 OESTE→CENTRO (ajuste)"
     },
     "CASA PADUA B": {
       "status": "ASCIENDE",
@@ -3975,6 +3979,13 @@
       "nivel_2026": "INTERCONFERENCIA_B",
       "region": "OESTE",
       "detalle": "Desciende a Nivel 3 (venía de INTERCONFERENCIA_B) · pos regional 28 · tope descenso (ideal N6)"
+    },
+    "DEFENSORES DE SANTOS LUGARES": {
+      "status": "ASCIENDE",
+      "nivel_2027": 3,
+      "nivel_2026": "NIVEL_2",
+      "region": "OESTE",
+      "detalle": "Permanece en Nivel 4 · pos regional 3 · tope descenso (ideal N3) · reequilibrio cupo OESTE 4→3"
     },
     "ATLETICO PILAR": {
       "status": "DESCIENDE",
@@ -4059,13 +4070,6 @@
       "nivel_2026": "NIVEL_1",
       "region": "CENTRO",
       "detalle": "Desciende a Nivel 4 (venía de NIVEL_1) · pos regional 19 · tope descenso (ideal N5)"
-    },
-    "YUPANQUI": {
-      "status": "DESCIENDE",
-      "nivel_2027": 4,
-      "nivel_2026": "NIVEL_1",
-      "region": "CENTRO",
-      "detalle": "Desciende a Nivel 4 (venía de NIVEL_1) · pos regional 25 · tope descenso (ideal N6)"
     },
     "JUVENCIA": {
       "status": "DESCIENDE",
@@ -4193,12 +4197,19 @@
       "region": "OESTE",
       "detalle": "Permanece en Nivel 4 · pos regional 4 · tope descenso (ideal N3)"
     },
-    "DEFENSORES DE SANTOS LUGARES": {
+    "CLUB ATLETICO HURACAN DE PARQUE PATRICIOS": {
+      "status": "DESCIENDE",
+      "nivel_2027": 4,
+      "nivel_2026": "NIVEL_3",
+      "region": "CENTRO",
+      "detalle": "Asciende a Nivel 3 (venía de NIVEL_3) · pos regional 3 · nivel 2027 forzado 3→4 (ajuste)"
+    },
+    "ESTUDIANTIL PORTENO B": {
       "status": "MANTIENE",
       "nivel_2027": 4,
       "nivel_2026": "NIVEL_2",
       "region": "OESTE",
-      "detalle": "Permanece en Nivel 4 · pos regional 3 · tope descenso (ideal N3)"
+      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 8 · tope descenso (ideal N4) · reequilibrio cupo OESTE 5→4"
     },
     "CLUB ATENEO INGENIERO RAVER": {
       "status": "DESCIENDE",
@@ -4241,13 +4252,6 @@
       "nivel_2026": "NIVEL_2",
       "region": "NORTE",
       "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 24 · tope descenso (ideal N6)"
-    },
-    "COLEGIALES NEGRO": {
-      "status": "DESCIENDE",
-      "nivel_2027": 5,
-      "nivel_2026": "NIVEL_2",
-      "region": "CENTRO",
-      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 26 · tope descenso (ideal N6) · región 2027 NORTE→CENTRO (ajuste)"
     },
     "LAS HERAS": {
       "status": "DESCIENDE",
@@ -4417,12 +4421,19 @@
       "region": "OESTE",
       "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 9 · tope descenso (ideal N4)"
     },
-    "ESTUDIANTIL PORTENO B": {
+    "YUPANQUI": {
       "status": "DESCIENDE",
       "nivel_2027": 5,
-      "nivel_2026": "NIVEL_2",
+      "nivel_2026": "NIVEL_1",
+      "region": "CENTRO",
+      "detalle": "Desciende a Nivel 4 (venía de NIVEL_1) · pos regional 25 · tope descenso (ideal N6) · reequilibrio cupo CENTRO 4→5"
+    },
+    "PASO DEL REY": {
+      "status": "MANTIENE",
+      "nivel_2027": 5,
+      "nivel_2026": "NIVEL_3",
       "region": "OESTE",
-      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 8 · tope descenso (ideal N4)"
+      "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 20 · tope descenso (ideal N5) · reequilibrio cupo OESTE 6→5"
     },
     "BECCAR AZUL": {
       "status": "DESCIENDE",
@@ -4634,13 +4645,6 @@
       "region": "OESTE",
       "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 21 · tope descenso (ideal N5)"
     },
-    "PASO DEL REY": {
-      "status": "DESCIENDE",
-      "nivel_2027": 6,
-      "nivel_2026": "NIVEL_3",
-      "region": "OESTE",
-      "detalle": "Desciende a Nivel 6 (venía de NIVEL_3) · pos regional 20 · tope descenso (ideal N5)"
-    },
     "FERROCARRIL OESTE NARANJA": {
       "status": "DESCIENDE",
       "nivel_2027": 6,
@@ -4654,6 +4658,13 @@
       "nivel_2026": "NIVEL_2",
       "region": "NORTE",
       "detalle": "Desciende a Nivel 6 (venía de NIVEL_2) · pos regional 25 · cupo 8/región (demote forzado) · región 2027 OESTE→NORTE (ajuste)"
+    },
+    "COLEGIALES NEGRO": {
+      "status": "DESCIENDE",
+      "nivel_2027": 6,
+      "nivel_2026": "NIVEL_2",
+      "region": "CENTRO",
+      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 26 · tope descenso (ideal N6) · región 2027 NORTE→CENTRO (ajuste) · reequilibrio cupo CENTRO 5→6"
     }
   }
 }
