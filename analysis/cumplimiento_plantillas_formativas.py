@@ -502,6 +502,7 @@ def analizar(
                         "nivel": nivel,
                         "anios": Counter(),
                         "seg": defaultdict(list),
+                        "pids_por_anio": defaultdict(set),
                         "partidos": 0,
                         "nombres": set(),
                     },
@@ -516,6 +517,8 @@ def analizar(
                     seg = parse_minutos_a_segundos(j.get("min")) or 0
                     if anio is not None:
                         slot["seg"][anio].append(seg)
+                        if pid and 2005 <= anio <= 2008:
+                            slot["pids_por_anio"][anio].add(pid)
                     if pid and anio is not None and 2005 <= anio <= 2008:
                         u21_pids[clave].add(pid)
                         if anio in (2007, 2008):
@@ -655,9 +658,11 @@ def analizar(
     def avg(xs: List[int]) -> Optional[float]:
         return round(sum(xs) / len(xs), 1) if xs else None
 
-    def _min_stats(segs: List[int]) -> dict:
+    def _min_stats(segs: List[int], n_jugadores: Optional[int] = None) -> dict:
+        """prom = minutos promedio por aparición; n = jugadores únicos."""
         return {
-            "n": len(segs),
+            "n": int(n_jugadores) if n_jugadores is not None else len(segs),
+            "n_apariciones": len(segs),
             "prom": round((sum(segs) / len(segs)) / 60.0, 2) if segs else None,
         }
 
@@ -690,7 +695,10 @@ def analizar(
         prom_u19 = round(n_u19 / pj, 1)
         prom_old = round(n_old / pj, 1)
         min_por_anio = {
-            str(y): _min_stats(slot["seg"][y])
+            str(y): _min_stats(
+                slot["seg"][y],
+                n_jugadores=len(slot["pids_por_anio"].get(y) or ()),
+            )
             for y in (2005, 2006, 2007, 2008)
             if slot["seg"].get(y)
         }
