@@ -85,6 +85,13 @@ REGION_OVERRIDES_2027: Dict[str, str] = {
     clave_equipo("SAN MIGUEL BLANCO"): "NORTE",
     clave_equipo("PORTENO ATLETICO CLUB BLANCO B"): "NORTE",
     clave_equipo("UNIVERSIDAD DE BUENOS AIRES"): "CENTRO",
+    clave_equipo("VELEZ SARSFIELD AZUL - B"): "CENTRO",
+}
+
+# Forzar nivel 2027 (clave → nivel). Se aplica antes del reequilibrio 8/región.
+NIVEL_OVERRIDES_2027: Dict[str, int] = {
+    clave_equipo("VELEZ SARSFIELD AZUL - B"): 3,
+    clave_equipo("CLUB ATLETICO HURACAN DE PARQUE PATRICIOS"): 4,
 }
 
 # Bandas de permanencia / descenso en tabla regional N4 (pos 1-indexed).
@@ -242,6 +249,122 @@ def _aplicar_overrides_y_reequilibrar_nivel(
     if strict:
         _counts()  # deja contadores listos si se inspecciona en debug
     return equipos
+
+
+def _status_vs_equiv(nivel_2026: str, nivel_2027: int) -> str:
+    equiv = ORIGEN_EQUIV.get(nivel_2026 or "", nivel_2027)
+    if nivel_2027 < equiv:
+        return "ASCIENDE"
+    if nivel_2027 > equiv:
+        return "DESCIENDE"
+    return "MANTIENE"
+
+
+def _aplicar_nivel_overrides(niveles: Dict[int, List[dict]]) -> Dict[int, List[dict]]:
+    """Mueve equipos a su nivel forzado (NIVEL_OVERRIDES_2027)."""
+    if not NIVEL_OVERRIDES_2027:
+        return niveles
+    by_clave: Dict[str, Tuple[int, dict]] = {}
+    for n, eqs in niveles.items():
+        for e in eqs:
+            ck = e.get("clave") or clave_equipo(e.get("equipo") or "")
+            e["clave"] = ck
+            by_clave[ck] = (n, e)
+    for ck, dest in NIVEL_OVERRIDES_2027.items():
+        if ck not in by_clave:
+            continue
+        cur, e = by_clave[ck]
+        if cur == dest:
+            # Igual fuerza región override ya aplicado después; solo anota.
+            continue
+        niveles[cur] = [x for x in niveles[cur] if x.get("clave") != ck]
+        prev = cur
+        e["nivel_2027"] = dest
+        # Status según el movimiento 2027 (no solo equivalencia 2026).
+        if dest < prev:
+            e["status"] = "ASCIENDE"
+        elif dest > prev:
+            e["status"] = "DESCIENDE"
+        else:
+            e["status"] = _status_vs_equiv(e.get("nivel_2026") or "", dest)
+        extra = f" · nivel 2027 forzado {prev}→{dest} (ajuste)"
+        det = e.get("detalle") or ""
+        if extra.strip() not in det:
+            e["detalle"] = det + extra
+        niveles.setdefault(dest, []).append(e)
+        by_clave[ck] = (dest, e)
+    return niveles
+
+
+def _reequilibrar_cupos_n3_a_n6(niveles: Dict[int, List[dict]]) -> Dict[int, List[dict]]:
+    """
+    Restaura 8/región en N3–N5 moviendo equipos entre niveles de la misma región.
+    N6 absorbe el remanente (sin cupo estricto).
+    No mueve equipos con NIVEL_OVERRIDES_2027.
+    """
+    fixed = set(NIVEL_OVERRIDES_2027.keys())
+
+    def _reg_count(n: int, reg: str) -> int:
+        return sum(1 for e in niveles.get(n, []) if e.get("region") == reg)
+
+    def _cands(n: int, reg: str, *, worst_first: bool) -> List[dict]:
+        xs = [
+            e
+            for e in niveles.get(n, [])
+            if e.get("region") == reg and (e.get("clave") or "") not in fixed
+        ]
+        xs.sort(
+            key=lambda e: (
+                int(e.get("pos_2026") or 99),
+                str(e.get("equipo") or ""),
+            ),
+            reverse=worst_first,
+        )
+        return xs
+
+    def _move(e: dict, src: int, dst: int, motivo: str) -> None:
+        niveles[src] = [x for x in niveles[src] if x.get("clave") != e.get("clave")]
+        e["nivel_2027"] = dst
+        e["status"] = _status_vs_equiv(e.get("nivel_2026") or "", dst)
+        extra = f" · {motivo}"
+        det = e.get("detalle") or ""
+        if extra.strip() not in det:
+            e["detalle"] = det + extra
+        niveles.setdefault(dst, []).append(e)
+
+    # Cascada N3←N4←N5←N6 y demotes N3→N4→N5→N6 hasta cerrar cupos.
+    for _ in range(200):
+        changed = False
+        for reg in REGIONES:
+            # Demotes: exceso en N3–N5 hacia el nivel inferior.
+            for n_src, n_dst in ((3, 4), (4, 5), (5, 6)):
+                while _reg_count(n_src, reg) > CUPO_REGIONAL:
+                    cands = _cands(n_src, reg, worst_first=True)
+                    if not cands:
+                        break
+                    _move(
+                        cands[0],
+                        n_src,
+                        n_dst,
+                        f"reequilibrio cupo {reg} {n_src}→{n_dst}",
+                    )
+                    changed = True
+            # Promotes: faltante en N3–N5 desde el nivel inferior.
+            for n_dst, n_src in ((3, 4), (4, 5), (5, 6)):
+                while _reg_count(n_dst, reg) < CUPO_REGIONAL:
+                    cands = _cands(n_src, reg, worst_first=False)
+                    if not cands:
+                        break
+                    _move(
+                        cands[0],
+                        n_src,
+                        n_dst,
+                        f"reequilibrio cupo {reg} {n_src}→{n_dst}",
+                    )
+                    changed = True
+        if not changed:
+            break
+    return niveles
 
 
 def _unir_filas_por_region(
@@ -661,18 +784,32 @@ def calcular(data: dict) -> dict:
         6: nivel6,
     }
 
-    # Ajustes geográficos 2027 (sin cambiar nivel).
+    # 1) Forzar niveles puntuales (p.ej. Vélez N3 / Huracán N4).
+    niveles = _aplicar_nivel_overrides(niveles)
+
+    # 2) Ajustes geográficos 2027.
     # N1/N2 son interregionales: solo override, sin forzar 8/región.
     for n in (1, 2):
         niveles[n] = _aplicar_overrides_y_reequilibrar_nivel(
             niveles[n], cupo=None, strict=False
         )
-    # N3–N5: cupo estricto 8/región.
+    # N3–N5: cupo estricto 8/región (solo región dentro del nivel).
     for n in (3, 4, 5):
         niveles[n] = _aplicar_overrides_y_reequilibrar_nivel(
             niveles[n], cupo=CUPO_REGIONAL, strict=True
         )
     # N6: remanente; se intenta acercar a 8/región sin forzar.
+    niveles[6] = _aplicar_overrides_y_reequilibrar_nivel(
+        niveles[6], cupo=CUPO_REGIONAL, strict=False
+    )
+
+    # 3) Cerrar cupos 8/región moviendo entre N3–N6 de la misma región.
+    niveles = _reequilibrar_cupos_n3_a_n6(niveles)
+    # Reaplicar región fija (por si un promote/demote tocó overrides).
+    for n in (3, 4, 5):
+        niveles[n] = _aplicar_overrides_y_reequilibrar_nivel(
+            niveles[n], cupo=CUPO_REGIONAL, strict=True
+        )
     niveles[6] = _aplicar_overrides_y_reequilibrar_nivel(
         niveles[6], cupo=CUPO_REGIONAL, strict=False
     )
@@ -741,6 +878,9 @@ def calcular(data: dict) -> dict:
             "equivalencia_2026": dict(ORIGEN_EQUIV),
             "region_overrides_2027": {
                 ck: reg for ck, reg in REGION_OVERRIDES_2027.items()
+            },
+            "nivel_overrides_2027": {
+                ck: n for ck, n in NIVEL_OVERRIDES_2027.items()
             },
         },
     }
