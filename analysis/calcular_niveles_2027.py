@@ -95,6 +95,7 @@ REGION_OVERRIDES_2027: Dict[str, str] = {
 NIVEL_OVERRIDES_2027: Dict[str, int] = {
     clave_equipo("VELEZ SARSFIELD AZUL - B"): 3,
     clave_equipo("CLUB ATLETICO HURACAN DE PARQUE PATRICIOS"): 4,
+    clave_equipo("SAN ANDRES"): 3,
 }
 
 # Bandas de permanencia / descenso en tabla regional N4 (pos 1-indexed).
