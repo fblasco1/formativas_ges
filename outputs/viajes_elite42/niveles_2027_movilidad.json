@@ -49,6 +49,12 @@
         },
         {
           "clave": "17 DE AGOSTO",
+          "region_2027": "NORTE",
+          "nivel_2027": 5,
+          "status": "DESCIENDE"
+        },
+        {
+          "clave": "COMUNICACIONES B NEGRO",
           "region_2027": "CENTRO",
           "nivel_2027": 5,
           "status": "DESCIENDE"
@@ -133,7 +139,8 @@
         "FERROCARRIL OESTE NARANJA": "CENTRO",
         "EL TALAR": "CENTRO",
         "SAN ANDRES": "NORTE",
-        "17 DE AGOSTO": "CENTRO",
+        "17 DE AGOSTO": "NORTE",
+        "COMUNICACIONES B NEGRO": "CENTRO",
         "PINOCHO VERDE": "CENTRO",
         "COLEGIALES NEGRO": "CENTRO",
         "ITALIANO DE JOSE PAZ C": "NORTE",
@@ -2305,10 +2312,10 @@
           "ganados": 28,
           "nivel_2026": "NIVEL_2",
           "zona_2026": "NORTE",
-          "region": "CENTRO",
+          "region": "NORTE",
           "status": "DESCIENDE",
           "nivel_2027": 5,
-          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 18 · región 2027 NORTE→CENTRO (ajuste)"
+          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 18"
         },
         {
           "equipo": "PLATENSE B",
@@ -2449,10 +2456,10 @@
           "ganados": 28,
           "nivel_2026": "NIVEL_2",
           "zona_2026": "CENTRO",
-          "region": "NORTE",
+          "region": "CENTRO",
           "status": "DESCIENDE",
           "nivel_2027": 5,
-          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 20 · reequilibrio región → NORTE"
+          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 20"
         },
         {
           "equipo": "JOSE HERNANDEZ B",
@@ -4236,8 +4243,8 @@
       "status": "DESCIENDE",
       "nivel_2027": 5,
       "nivel_2026": "NIVEL_2",
-      "region": "CENTRO",
-      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 18 · región 2027 NORTE→CENTRO (ajuste)"
+      "region": "NORTE",
+      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 18"
     },
     "PLATENSE B": {
       "status": "DESCIENDE",
@@ -4299,8 +4306,8 @@
       "status": "DESCIENDE",
       "nivel_2027": 5,
       "nivel_2026": "NIVEL_2",
-      "region": "NORTE",
-      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 20 · reequilibrio región → NORTE"
+      "region": "CENTRO",
+      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 20"
     },
     "JOSE HERNANDEZ B": {
       "status": "DESCIENDE",
