@@ -1469,90 +1469,110 @@
       "Nivel 3": {
         "2005": {
           "n": 847,
+          "n_apariciones": 847,
           "prom": 22.07
         },
         "2006": {
           "n": 786,
+          "n_apariciones": 786,
           "prom": 20.28
         },
         "2007": {
           "n": 1018,
+          "n_apariciones": 1018,
           "prom": 20.08
         },
         "2008": {
           "n": 1125,
+          "n_apariciones": 1125,
           "prom": 18.0
         }
       },
       "Nivel 2": {
         "2005": {
           "n": 1235,
+          "n_apariciones": 1235,
           "prom": 22.9
         },
         "2006": {
           "n": 1410,
+          "n_apariciones": 1410,
           "prom": 21.0
         },
         "2007": {
           "n": 1404,
+          "n_apariciones": 1404,
           "prom": 19.49
         },
         "2008": {
           "n": 1685,
+          "n_apariciones": 1685,
           "prom": 18.37
         }
       },
       "Nivel 1": {
         "2005": {
           "n": 815,
+          "n_apariciones": 815,
           "prom": 23.71
         },
         "2006": {
           "n": 1001,
+          "n_apariciones": 1001,
           "prom": 21.71
         },
         "2007": {
           "n": 915,
+          "n_apariciones": 915,
           "prom": 20.16
         },
         "2008": {
           "n": 1241,
+          "n_apariciones": 1241,
           "prom": 19.57
         }
       },
       "Interconferencia A": {
         "2005": {
           "n": 661,
+          "n_apariciones": 661,
           "prom": 23.4
         },
         "2006": {
           "n": 875,
+          "n_apariciones": 875,
           "prom": 23.04
         },
         "2007": {
           "n": 913,
+          "n_apariciones": 913,
           "prom": 20.68
         },
         "2008": {
           "n": 1061,
+          "n_apariciones": 1061,
           "prom": 19.67
         }
       },
       "Interconferencia B": {
         "2005": {
           "n": 804,
+          "n_apariciones": 804,
           "prom": 23.62
         },
         "2006": {
           "n": 876,
+          "n_apariciones": 876,
           "prom": 21.42
         },
         "2007": {
           "n": 1248,
+          "n_apariciones": 1248,
           "prom": 19.71
         },
         "2008": {
           "n": 970,
+          "n_apariciones": 970,
           "prom": 19.34
         }
       }
@@ -1582,15 +1602,18 @@
         "pct_u19": 67.8,
         "min_por_anio": {
           "2006": {
-            "n": 28,
+            "n": 3,
+            "n_apariciones": 28,
             "prom": 17.71
           },
           "2007": {
-            "n": 37,
+            "n": 4,
+            "n_apariciones": 37,
             "prom": 17.73
           },
           "2008": {
-            "n": 22,
+            "n": 2,
+            "n_apariciones": 22,
             "prom": 17.38
           }
         }
@@ -1606,19 +1629,23 @@
         "pct_u19": 48.3,
         "min_por_anio": {
           "2005": {
-            "n": 44,
+            "n": 4,
+            "n_apariciones": 44,
             "prom": 27.76
           },
           "2006": {
-            "n": 16,
+            "n": 2,
+            "n_apariciones": 16,
             "prom": 15.58
           },
           "2007": {
-            "n": 30,
+            "n": 3,
+            "n_apariciones": 30,
             "prom": 17.09
           },
           "2008": {
-            "n": 26,
+            "n": 2,
+            "n_apariciones": 26,
             "prom": 19.61
           }
         }
@@ -1634,15 +1661,18 @@
         "pct_u19": 78.2,
         "min_por_anio": {
           "2006": {
-            "n": 27,
+            "n": 2,
+            "n_apariciones": 27,
             "prom": 27.4
           },
           "2007": {
-            "n": 73,
+            "n": 6,
+            "n_apariciones": 73,
             "prom": 20.78
           },
           "2008": {
-            "n": 24,
+            "n": 2,
+            "n_apariciones": 24,
             "prom": 19.41
           }
         }
@@ -1658,15 +1688,18 @@
         "pct_u19": 81.1,
         "min_por_anio": {
           "2006": {
-            "n": 17,
+            "n": 3,
+            "n_apariciones": 17,
             "prom": 23.84
           },
           "2007": {
-            "n": 6,
+            "n": 1,
+            "n_apariciones": 6,
             "prom": 15.43
           },
           "2008": {
-            "n": 67,
+            "n": 8,
+            "n_apariciones": 67,
             "prom": 21.06
           }
         }
@@ -1682,19 +1715,23 @@
         "pct_u19": 42.0,
         "min_por_anio": {
           "2005": {
-            "n": 48,
+            "n": 5,
+            "n_apariciones": 48,
             "prom": 22.52
           },
           "2006": {
-            "n": 17,
+            "n": 2,
+            "n_apariciones": 17,
             "prom": 18.64
           },
           "2007": {
-            "n": 21,
+            "n": 3,
+            "n_apariciones": 21,
             "prom": 20.54
           },
           "2008": {
-            "n": 26,
+            "n": 2,
+            "n_apariciones": 26,
             "prom": 22.16
           }
         }
@@ -1710,19 +1747,23 @@
         "pct_u19": 34.4,
         "min_por_anio": {
           "2005": {
-            "n": 12,
+            "n": 1,
+            "n_apariciones": 12,
             "prom": 25.63
           },
           "2006": {
-            "n": 47,
+            "n": 4,
+            "n_apariciones": 47,
             "prom": 23.42
           },
           "2007": {
-            "n": 21,
+            "n": 3,
+            "n_apariciones": 21,
             "prom": 24.97
           },
           "2008": {
-            "n": 10,
+            "n": 1,
+            "n_apariciones": 10,
             "prom": 29.92
           }
         }
@@ -1738,19 +1779,23 @@
         "pct_u19": 63.7,
         "min_por_anio": {
           "2005": {
-            "n": 14,
+            "n": 2,
+            "n_apariciones": 14,
             "prom": 18.17
           },
           "2006": {
-            "n": 27,
+            "n": 3,
+            "n_apariciones": 27,
             "prom": 29.55
           },
           "2007": {
-            "n": 37,
+            "n": 3,
+            "n_apariciones": 37,
             "prom": 20.27
           },
           "2008": {
-            "n": 35,
+            "n": 3,
+            "n_apariciones": 35,
             "prom": 22.11
           }
         }
@@ -1766,15 +1811,18 @@
         "pct_u19": 85.9,
         "min_por_anio": {
           "2006": {
-            "n": 14,
+            "n": 1,
+            "n_apariciones": 14,
             "prom": 34.48
           },
           "2007": {
-            "n": 36,
+            "n": 3,
+            "n_apariciones": 36,
             "prom": 19.25
           },
           "2008": {
-            "n": 49,
+            "n": 5,
+            "n_apariciones": 49,
             "prom": 17.63
           }
         }
@@ -1790,19 +1838,23 @@
         "pct_u19": 66.7,
         "min_por_anio": {
           "2005": {
-            "n": 26,
+            "n": 2,
+            "n_apariciones": 26,
             "prom": 25.95
           },
           "2006": {
-            "n": 10,
+            "n": 1,
+            "n_apariciones": 10,
             "prom": 26.0
           },
           "2007": {
-            "n": 49,
+            "n": 5,
+            "n_apariciones": 49,
             "prom": 23.28
           },
           "2008": {
-            "n": 23,
+            "n": 2,
+            "n_apariciones": 23,
             "prom": 18.65
           }
         }
@@ -1818,19 +1870,23 @@
         "pct_u19": 52.9,
         "min_por_anio": {
           "2005": {
-            "n": 32,
+            "n": 3,
+            "n_apariciones": 32,
             "prom": 24.77
           },
           "2006": {
-            "n": 9,
+            "n": 1,
+            "n_apariciones": 9,
             "prom": 32.29
           },
           "2007": {
-            "n": 22,
+            "n": 2,
+            "n_apariciones": 22,
             "prom": 25.04
           },
           "2008": {
-            "n": 24,
+            "n": 4,
+            "n_apariciones": 24,
             "prom": 15.39
           }
         }
@@ -1846,19 +1902,23 @@
         "pct_u19": 65.9,
         "min_por_anio": {
           "2005": {
-            "n": 15,
+            "n": 2,
+            "n_apariciones": 15,
             "prom": 19.38
           },
           "2006": {
-            "n": 27,
+            "n": 4,
+            "n_apariciones": 27,
             "prom": 18.42
           },
           "2007": {
-            "n": 31,
+            "n": 4,
+            "n_apariciones": 31,
             "prom": 19.34
           },
           "2008": {
-            "n": 50,
+            "n": 5,
+            "n_apariciones": 50,
             "prom": 18.66
           }
         }
@@ -1874,19 +1934,23 @@
         "pct_u19": 53.1,
         "min_por_anio": {
           "2005": {
-            "n": 40,
+            "n": 3,
+            "n_apariciones": 40,
             "prom": 27.74
           },
           "2006": {
-            "n": 13,
+            "n": 1,
+            "n_apariciones": 13,
             "prom": 26.08
           },
           "2007": {
-            "n": 23,
+            "n": 2,
+            "n_apariciones": 23,
             "prom": 12.19
           },
           "2008": {
-            "n": 37,
+            "n": 3,
+            "n_apariciones": 37,
             "prom": 23.41
           }
         }
@@ -1902,19 +1966,23 @@
         "pct_u19": 31.9,
         "min_por_anio": {
           "2005": {
-            "n": 67,
+            "n": 5,
+            "n_apariciones": 67,
             "prom": 23.17
           },
           "2006": {
-            "n": 14,
+            "n": 1,
+            "n_apariciones": 14,
             "prom": 31.92
           },
           "2007": {
-            "n": 13,
+            "n": 1,
+            "n_apariciones": 13,
             "prom": 15.59
           },
           "2008": {
-            "n": 25,
+            "n": 2,
+            "n_apariciones": 25,
             "prom": 22.63
           }
         }
@@ -1930,15 +1998,18 @@
         "pct_u19": 87.4,
         "min_por_anio": {
           "2006": {
-            "n": 13,
+            "n": 1,
+            "n_apariciones": 13,
             "prom": 29.94
           },
           "2007": {
-            "n": 24,
+            "n": 2,
+            "n_apariciones": 24,
             "prom": 23.74
           },
           "2008": {
-            "n": 66,
+            "n": 6,
+            "n_apariciones": 66,
             "prom": 21.95
           }
         }
@@ -1954,19 +2025,23 @@
         "pct_u19": 51.6,
         "min_por_anio": {
           "2005": {
-            "n": 35,
+            "n": 4,
+            "n_apariciones": 35,
             "prom": 16.06
           },
           "2006": {
-            "n": 40,
+            "n": 3,
+            "n_apariciones": 40,
             "prom": 26.34
           },
           "2007": {
-            "n": 50,
+            "n": 5,
+            "n_apariciones": 50,
             "prom": 17.48
           },
           "2008": {
-            "n": 30,
+            "n": 3,
+            "n_apariciones": 30,
             "prom": 11.18
           }
         }
@@ -1982,15 +2057,18 @@
         "pct_u19": 69.8,
         "min_por_anio": {
           "2005": {
-            "n": 19,
+            "n": 2,
+            "n_apariciones": 19,
             "prom": 22.57
           },
           "2007": {
-            "n": 33,
+            "n": 4,
+            "n_apariciones": 33,
             "prom": 28.99
           },
           "2008": {
-            "n": 11,
+            "n": 1,
+            "n_apariciones": 11,
             "prom": 15.38
           }
         }
@@ -2006,19 +2084,23 @@
         "pct_u19": 40.4,
         "min_por_anio": {
           "2005": {
-            "n": 47,
+            "n": 4,
+            "n_apariciones": 47,
             "prom": 26.48
           },
           "2006": {
-            "n": 40,
+            "n": 3,
+            "n_apariciones": 40,
             "prom": 16.34
           },
           "2007": {
-            "n": 21,
+            "n": 2,
+            "n_apariciones": 21,
             "prom": 8.52
           },
           "2008": {
-            "n": 38,
+            "n": 3,
+            "n_apariciones": 38,
             "prom": 10.72
           }
         }
@@ -2034,15 +2116,18 @@
         "pct_u19": 53.8,
         "min_por_anio": {
           "2006": {
-            "n": 43,
+            "n": 4,
+            "n_apariciones": 43,
             "prom": 22.93
           },
           "2007": {
-            "n": 36,
+            "n": 3,
+            "n_apariciones": 36,
             "prom": 22.91
           },
           "2008": {
-            "n": 14,
+            "n": 1,
+            "n_apariciones": 14,
             "prom": 21.59
           }
         }
@@ -2058,19 +2143,23 @@
         "pct_u19": 60.7,
         "min_por_anio": {
           "2005": {
-            "n": 13,
+            "n": 1,
+            "n_apariciones": 13,
             "prom": 24.83
           },
           "2006": {
-            "n": 35,
+            "n": 3,
+            "n_apariciones": 35,
             "prom": 23.2
           },
           "2007": {
-            "n": 13,
+            "n": 1,
+            "n_apariciones": 13,
             "prom": 23.65
           },
           "2008": {
-            "n": 61,
+            "n": 7,
+            "n_apariciones": 61,
             "prom": 17.82
           }
         }
@@ -2086,19 +2175,23 @@
         "pct_u19": 33.6,
         "min_por_anio": {
           "2005": {
-            "n": 52,
+            "n": 4,
+            "n_apariciones": 52,
             "prom": 18.32
           },
           "2006": {
-            "n": 39,
+            "n": 3,
+            "n_apariciones": 39,
             "prom": 21.28
           },
           "2007": {
-            "n": 27,
+            "n": 2,
+            "n_apariciones": 27,
             "prom": 22.95
           },
           "2008": {
-            "n": 19,
+            "n": 2,
+            "n_apariciones": 19,
             "prom": 18.8
           }
         }
@@ -2114,11 +2207,13 @@
         "pct_u19": 100.0,
         "min_por_anio": {
           "2007": {
-            "n": 37,
+            "n": 4,
+            "n_apariciones": 37,
             "prom": 16.78
           },
           "2008": {
-            "n": 31,
+            "n": 7,
+            "n_apariciones": 31,
             "prom": 23.39
           }
         }
@@ -2134,19 +2229,23 @@
         "pct_u19": 45.8,
         "min_por_anio": {
           "2005": {
-            "n": 10,
+            "n": 1,
+            "n_apariciones": 10,
             "prom": 25.25
           },
           "2006": {
-            "n": 61,
+            "n": 5,
+            "n_apariciones": 61,
             "prom": 20.65
           },
           "2007": {
-            "n": 32,
+            "n": 5,
+            "n_apariciones": 32,
             "prom": 22.69
           },
           "2008": {
-            "n": 28,
+            "n": 3,
+            "n_apariciones": 28,
             "prom": 10.91
           }
         }
@@ -2162,19 +2261,23 @@
         "pct_u19": 33.3,
         "min_por_anio": {
           "2005": {
-            "n": 42,
+            "n": 4,
+            "n_apariciones": 42,
             "prom": 24.18
           },
           "2006": {
-            "n": 36,
+            "n": 4,
+            "n_apariciones": 36,
             "prom": 19.43
           },
           "2007": {
-            "n": 10,
+            "n": 2,
+            "n_apariciones": 10,
             "prom": 19.79
           },
           "2008": {
-            "n": 29,
+            "n": 3,
+            "n_apariciones": 29,
             "prom": 20.63
           }
         }
@@ -2190,19 +2293,23 @@
         "pct_u19": 81.1,
         "min_por_anio": {
           "2005": {
-            "n": 6,
+            "n": 2,
+            "n_apariciones": 6,
             "prom": 19.79
           },
           "2006": {
-            "n": 17,
+            "n": 2,
+            "n_apariciones": 17,
             "prom": 16.83
           },
           "2007": {
-            "n": 20,
+            "n": 2,
+            "n_apariciones": 20,
             "prom": 11.39
           },
           "2008": {
-            "n": 79,
+            "n": 8,
+            "n_apariciones": 79,
             "prom": 26.72
           }
         }
@@ -2218,19 +2325,23 @@
         "pct_u19": 27.9,
         "min_por_anio": {
           "2005": {
-            "n": 8,
+            "n": 1,
+            "n_apariciones": 8,
             "prom": 17.32
           },
           "2006": {
-            "n": 54,
+            "n": 5,
+            "n_apariciones": 54,
             "prom": 25.4
           },
           "2007": {
-            "n": 17,
+            "n": 2,
+            "n_apariciones": 17,
             "prom": 14.58
           },
           "2008": {
-            "n": 7,
+            "n": 1,
+            "n_apariciones": 7,
             "prom": 30.54
           }
         }
@@ -2246,19 +2357,23 @@
         "pct_u19": 42.0,
         "min_por_anio": {
           "2005": {
-            "n": 6,
+            "n": 1,
+            "n_apariciones": 6,
             "prom": 20.57
           },
           "2006": {
-            "n": 63,
+            "n": 6,
+            "n_apariciones": 63,
             "prom": 24.19
           },
           "2007": {
-            "n": 14,
+            "n": 1,
+            "n_apariciones": 14,
             "prom": 23.13
           },
           "2008": {
-            "n": 36,
+            "n": 4,
+            "n_apariciones": 36,
             "prom": 17.89
           }
         }
@@ -2274,19 +2389,23 @@
         "pct_u19": 46.8,
         "min_por_anio": {
           "2005": {
-            "n": 20,
+            "n": 3,
+            "n_apariciones": 20,
             "prom": 20.19
           },
           "2006": {
-            "n": 62,
+            "n": 6,
+            "n_apariciones": 62,
             "prom": 19.66
           },
           "2007": {
-            "n": 22,
+            "n": 2,
+            "n_apariciones": 22,
             "prom": 22.89
           },
           "2008": {
-            "n": 50,
+            "n": 6,
+            "n_apariciones": 50,
             "prom": 12.6
           }
         }
@@ -2302,15 +2421,18 @@
         "pct_u19": 85.7,
         "min_por_anio": {
           "2006": {
-            "n": 14,
+            "n": 1,
+            "n_apariciones": 14,
             "prom": 35.49
           },
           "2007": {
-            "n": 26,
+            "n": 3,
+            "n_apariciones": 26,
             "prom": 22.69
           },
           "2008": {
-            "n": 58,
+            "n": 6,
+            "n_apariciones": 58,
             "prom": 23.03
           }
         }
@@ -2326,19 +2448,23 @@
         "pct_u19": 48.6,
         "min_por_anio": {
           "2005": {
-            "n": 26,
+            "n": 2,
+            "n_apariciones": 26,
             "prom": 35.2
           },
           "2006": {
-            "n": 29,
+            "n": 3,
+            "n_apariciones": 29,
             "prom": 19.36
           },
           "2007": {
-            "n": 38,
+            "n": 3,
+            "n_apariciones": 38,
             "prom": 26.57
           },
           "2008": {
-            "n": 14,
+            "n": 1,
+            "n_apariciones": 14,
             "prom": 19.39
           }
         }
@@ -2354,19 +2480,23 @@
         "pct_u19": 51.5,
         "min_por_anio": {
           "2005": {
-            "n": 28,
+            "n": 3,
+            "n_apariciones": 28,
             "prom": 22.85
           },
           "2006": {
-            "n": 21,
+            "n": 4,
+            "n_apariciones": 21,
             "prom": 29.22
           },
           "2007": {
-            "n": 35,
+            "n": 3,
+            "n_apariciones": 35,
             "prom": 22.6
           },
           "2008": {
-            "n": 17,
+            "n": 2,
+            "n_apariciones": 17,
             "prom": 19.66
           }
         }
@@ -2382,19 +2512,23 @@
         "pct_u19": 65.7,
         "min_por_anio": {
           "2005": {
-            "n": 18,
+            "n": 3,
+            "n_apariciones": 18,
             "prom": 13.97
           },
           "2006": {
-            "n": 19,
+            "n": 4,
+            "n_apariciones": 19,
             "prom": 21.56
           },
           "2007": {
-            "n": 36,
+            "n": 3,
+            "n_apariciones": 36,
             "prom": 24.37
           },
           "2008": {
-            "n": 35,
+            "n": 3,
+            "n_apariciones": 35,
             "prom": 20.55
           }
         }
@@ -2410,19 +2544,23 @@
         "pct_u19": 43.4,
         "min_por_anio": {
           "2005": {
-            "n": 33,
+            "n": 3,
+            "n_apariciones": 33,
             "prom": 24.66
           },
           "2006": {
-            "n": 23,
+            "n": 2,
+            "n_apariciones": 23,
             "prom": 25.02
           },
           "2007": {
-            "n": 23,
+            "n": 2,
+            "n_apariciones": 23,
             "prom": 21.16
           },
           "2008": {
-            "n": 20,
+            "n": 3,
+            "n_apariciones": 20,
             "prom": 21.63
           }
         }
@@ -2438,19 +2576,23 @@
         "pct_u19": 65.3,
         "min_por_anio": {
           "2005": {
-            "n": 30,
+            "n": 3,
+            "n_apariciones": 30,
             "prom": 24.67
           },
           "2006": {
-            "n": 11,
+            "n": 1,
+            "n_apariciones": 11,
             "prom": 10.24
           },
           "2007": {
-            "n": 30,
+            "n": 5,
+            "n_apariciones": 30,
             "prom": 19.84
           },
           "2008": {
-            "n": 47,
+            "n": 4,
+            "n_apariciones": 47,
             "prom": 21.5
           }
         }
@@ -2466,15 +2608,18 @@
         "pct_u19": 90.5,
         "min_por_anio": {
           "2005": {
-            "n": 14,
+            "n": 1,
+            "n_apariciones": 14,
             "prom": 29.8
           },
           "2007": {
-            "n": 61,
+            "n": 5,
+            "n_apariciones": 61,
             "prom": 18.26
           },
           "2008": {
-            "n": 72,
+            "n": 7,
+            "n_apariciones": 72,
             "prom": 17.62
           }
         }
@@ -2490,19 +2635,23 @@
         "pct_u19": 49.6,
         "min_por_anio": {
           "2005": {
-            "n": 17,
+            "n": 2,
+            "n_apariciones": 17,
             "prom": 22.45
           },
           "2006": {
-            "n": 44,
+            "n": 4,
+            "n_apariciones": 44,
             "prom": 18.58
           },
           "2007": {
-            "n": 26,
+            "n": 2,
+            "n_apariciones": 26,
             "prom": 19.72
           },
           "2008": {
-            "n": 34,
+            "n": 4,
+            "n_apariciones": 34,
             "prom": 18.56
           }
         }
@@ -2518,19 +2667,23 @@
         "pct_u19": 46.4,
         "min_por_anio": {
           "2005": {
-            "n": 36,
+            "n": 3,
+            "n_apariciones": 36,
             "prom": 20.09
           },
           "2006": {
-            "n": 38,
+            "n": 3,
+            "n_apariciones": 38,
             "prom": 23.1
           },
           "2007": {
-            "n": 59,
+            "n": 5,
+            "n_apariciones": 59,
             "prom": 18.55
           },
           "2008": {
-            "n": 5,
+            "n": 2,
+            "n_apariciones": 5,
             "prom": 16.92
           }
         }
@@ -2546,19 +2699,23 @@
         "pct_u19": 25.7,
         "min_por_anio": {
           "2005": {
-            "n": 39,
+            "n": 5,
+            "n_apariciones": 39,
             "prom": 21.32
           },
           "2006": {
-            "n": 45,
+            "n": 6,
+            "n_apariciones": 45,
             "prom": 20.54
           },
           "2007": {
-            "n": 25,
+            "n": 3,
+            "n_apariciones": 25,
             "prom": 17.02
           },
           "2008": {
-            "n": 4,
+            "n": 1,
+            "n_apariciones": 4,
             "prom": 10.35
           }
         }
@@ -2574,19 +2731,23 @@
         "pct_u19": 50.8,
         "min_por_anio": {
           "2005": {
-            "n": 22,
+            "n": 2,
+            "n_apariciones": 22,
             "prom": 25.38
           },
           "2006": {
-            "n": 39,
+            "n": 3,
+            "n_apariciones": 39,
             "prom": 22.59
           },
           "2007": {
-            "n": 33,
+            "n": 3,
+            "n_apariciones": 33,
             "prom": 14.93
           },
           "2008": {
-            "n": 30,
+            "n": 3,
+            "n_apariciones": 30,
             "prom": 23.34
           }
         }
@@ -2602,19 +2763,23 @@
         "pct_u19": 65.9,
         "min_por_anio": {
           "2005": {
-            "n": 9,
+            "n": 1,
+            "n_apariciones": 9,
             "prom": 37.06
           },
           "2006": {
-            "n": 22,
+            "n": 2,
+            "n_apariciones": 22,
             "prom": 22.47
           },
           "2007": {
-            "n": 19,
+            "n": 2,
+            "n_apariciones": 19,
             "prom": 17.28
           },
           "2008": {
-            "n": 41,
+            "n": 4,
+            "n_apariciones": 41,
             "prom": 24.0
           }
         }
@@ -2630,19 +2795,23 @@
         "pct_u19": 71.2,
         "min_por_anio": {
           "2005": {
-            "n": 19,
+            "n": 2,
+            "n_apariciones": 19,
             "prom": 25.26
           },
           "2006": {
-            "n": 13,
+            "n": 1,
+            "n_apariciones": 13,
             "prom": 23.03
           },
           "2007": {
-            "n": 60,
+            "n": 5,
+            "n_apariciones": 60,
             "prom": 28.73
           },
           "2008": {
-            "n": 19,
+            "n": 3,
+            "n_apariciones": 19,
             "prom": 8.47
           }
         }
@@ -2658,19 +2827,23 @@
         "pct_u19": 42.9,
         "min_por_anio": {
           "2005": {
-            "n": 26,
+            "n": 2,
+            "n_apariciones": 26,
             "prom": 24.71
           },
           "2006": {
-            "n": 58,
+            "n": 5,
+            "n_apariciones": 58,
             "prom": 20.05
           },
           "2007": {
-            "n": 45,
+            "n": 4,
+            "n_apariciones": 45,
             "prom": 12.58
           },
           "2008": {
-            "n": 18,
+            "n": 2,
+            "n_apariciones": 18,
             "prom": 23.09
           }
         }
@@ -2686,19 +2859,23 @@
         "pct_u19": 67.6,
         "min_por_anio": {
           "2005": {
-            "n": 41,
+            "n": 4,
+            "n_apariciones": 41,
             "prom": 27.08
           },
           "2006": {
-            "n": 4,
+            "n": 1,
+            "n_apariciones": 4,
             "prom": 8.18
           },
           "2007": {
-            "n": 38,
+            "n": 4,
+            "n_apariciones": 38,
             "prom": 22.67
           },
           "2008": {
-            "n": 56,
+            "n": 6,
+            "n_apariciones": 56,
             "prom": 13.77
           }
         }
@@ -2714,15 +2891,18 @@
         "pct_u19": 65.1,
         "min_por_anio": {
           "2006": {
-            "n": 38,
+            "n": 3,
+            "n_apariciones": 38,
             "prom": 25.1
           },
           "2007": {
-            "n": 31,
+            "n": 3,
+            "n_apariciones": 31,
             "prom": 22.56
           },
           "2008": {
-            "n": 40,
+            "n": 3,
+            "n_apariciones": 40,
             "prom": 19.13
           }
         }
@@ -2738,19 +2918,23 @@
         "pct_u19": 60.5,
         "min_por_anio": {
           "2005": {
-            "n": 25,
+            "n": 3,
+            "n_apariciones": 25,
             "prom": 21.03
           },
           "2006": {
-            "n": 22,
+            "n": 3,
+            "n_apariciones": 22,
             "prom": 24.69
           },
           "2007": {
-            "n": 49,
+            "n": 4,
+            "n_apariciones": 49,
             "prom": 19.63
           },
           "2008": {
-            "n": 23,
+            "n": 2,
+            "n_apariciones": 23,
             "prom": 19.23
           }
         }
@@ -2766,15 +2950,18 @@
         "pct_u19": 79.1,
         "min_por_anio": {
           "2005": {
-            "n": 19,
+            "n": 2,
+            "n_apariciones": 19,
             "prom": 24.38
           },
           "2006": {
-            "n": 10,
+            "n": 1,
+            "n_apariciones": 10,
             "prom": 14.01
           },
           "2007": {
-            "n": 110,
+            "n": 9,
+            "n_apariciones": 110,
             "prom": 19.68
           }
         }
@@ -2790,19 +2977,23 @@
         "pct_u19": 42.5,
         "min_por_anio": {
           "2005": {
-            "n": 38,
+            "n": 4,
+            "n_apariciones": 38,
             "prom": 20.17
           },
           "2006": {
-            "n": 50,
+            "n": 5,
+            "n_apariciones": 50,
             "prom": 19.16
           },
           "2007": {
-            "n": 46,
+            "n": 5,
+            "n_apariciones": 46,
             "prom": 17.68
           },
           "2008": {
-            "n": 19,
+            "n": 2,
+            "n_apariciones": 19,
             "prom": 13.27
           }
         }
@@ -2818,19 +3009,23 @@
         "pct_u19": 55.2,
         "min_por_anio": {
           "2005": {
-            "n": 46,
+            "n": 5,
+            "n_apariciones": 46,
             "prom": 18.64
           },
           "2006": {
-            "n": 18,
+            "n": 2,
+            "n_apariciones": 18,
             "prom": 18.2
           },
           "2007": {
-            "n": 56,
+            "n": 6,
+            "n_apariciones": 56,
             "prom": 19.89
           },
           "2008": {
-            "n": 23,
+            "n": 3,
+            "n_apariciones": 23,
             "prom": 12.61
           }
         }
@@ -2846,19 +3041,23 @@
         "pct_u19": 55.9,
         "min_por_anio": {
           "2005": {
-            "n": 38,
+            "n": 5,
+            "n_apariciones": 38,
             "prom": 23.52
           },
           "2006": {
-            "n": 25,
+            "n": 3,
+            "n_apariciones": 25,
             "prom": 13.88
           },
           "2007": {
-            "n": 70,
+            "n": 6,
+            "n_apariciones": 70,
             "prom": 18.52
           },
           "2008": {
-            "n": 10,
+            "n": 1,
+            "n_apariciones": 10,
             "prom": 12.6
           }
         }
@@ -2874,19 +3073,23 @@
         "pct_u19": 32.0,
         "min_por_anio": {
           "2005": {
-            "n": 25,
+            "n": 2,
+            "n_apariciones": 25,
             "prom": 12.05
           },
           "2006": {
-            "n": 77,
+            "n": 6,
+            "n_apariciones": 77,
             "prom": 18.11
           },
           "2007": {
-            "n": 34,
+            "n": 3,
+            "n_apariciones": 34,
             "prom": 23.47
           },
           "2008": {
-            "n": 14,
+            "n": 1,
+            "n_apariciones": 14,
             "prom": 14.83
           }
         }
@@ -2902,19 +3105,23 @@
         "pct_u19": 38.8,
         "min_por_anio": {
           "2005": {
-            "n": 50,
+            "n": 5,
+            "n_apariciones": 50,
             "prom": 24.97
           },
           "2006": {
-            "n": 10,
+            "n": 1,
+            "n_apariciones": 10,
             "prom": 26.61
           },
           "2007": {
-            "n": 10,
+            "n": 2,
+            "n_apariciones": 10,
             "prom": 23.46
           },
           "2008": {
-            "n": 28,
+            "n": 3,
+            "n_apariciones": 28,
             "prom": 19.68
           }
         }
@@ -2930,15 +3137,18 @@
         "pct_u19": 82.5,
         "min_por_anio": {
           "2006": {
-            "n": 17,
+            "n": 2,
+            "n_apariciones": 17,
             "prom": 22.49
           },
           "2007": {
-            "n": 24,
+            "n": 3,
+            "n_apariciones": 24,
             "prom": 24.21
           },
           "2008": {
-            "n": 56,
+            "n": 6,
+            "n_apariciones": 56,
             "prom": 25.05
           }
         }
@@ -2954,19 +3164,23 @@
         "pct_u19": 44.3,
         "min_por_anio": {
           "2005": {
-            "n": 34,
+            "n": 3,
+            "n_apariciones": 34,
             "prom": 27.94
           },
           "2006": {
-            "n": 25,
+            "n": 2,
+            "n_apariciones": 25,
             "prom": 21.86
           },
           "2007": {
-            "n": 21,
+            "n": 2,
+            "n_apariciones": 21,
             "prom": 14.18
           },
           "2008": {
-            "n": 26,
+            "n": 3,
+            "n_apariciones": 26,
             "prom": 23.55
           }
         }
@@ -2982,19 +3196,23 @@
         "pct_u19": 53.5,
         "min_por_anio": {
           "2005": {
-            "n": 34,
+            "n": 3,
+            "n_apariciones": 34,
             "prom": 22.74
           },
           "2006": {
-            "n": 19,
+            "n": 2,
+            "n_apariciones": 19,
             "prom": 25.19
           },
           "2007": {
-            "n": 24,
+            "n": 2,
+            "n_apariciones": 24,
             "prom": 13.71
           },
           "2008": {
-            "n": 37,
+            "n": 4,
+            "n_apariciones": 37,
             "prom": 23.17
           }
         }
@@ -3010,19 +3228,23 @@
         "pct_u19": 52.2,
         "min_por_anio": {
           "2005": {
-            "n": 17,
+            "n": 2,
+            "n_apariciones": 17,
             "prom": 33.6
           },
           "2006": {
-            "n": 27,
+            "n": 5,
+            "n_apariciones": 27,
             "prom": 32.15
           },
           "2007": {
-            "n": 39,
+            "n": 4,
+            "n_apariciones": 39,
             "prom": 22.82
           },
           "2008": {
-            "n": 9,
+            "n": 3,
+            "n_apariciones": 9,
             "prom": 22.55
           }
         }
@@ -3038,19 +3260,23 @@
         "pct_u19": 57.8,
         "min_por_anio": {
           "2005": {
-            "n": 29,
+            "n": 3,
+            "n_apariciones": 29,
             "prom": 21.25
           },
           "2006": {
-            "n": 25,
+            "n": 2,
+            "n_apariciones": 25,
             "prom": 22.1
           },
           "2007": {
-            "n": 46,
+            "n": 4,
+            "n_apariciones": 46,
             "prom": 22.32
           },
           "2008": {
-            "n": 28,
+            "n": 2,
+            "n_apariciones": 28,
             "prom": 16.7
           }
         }
@@ -3066,19 +3292,23 @@
         "pct_u19": 83.2,
         "min_por_anio": {
           "2005": {
-            "n": 3,
+            "n": 1,
+            "n_apariciones": 3,
             "prom": 18.39
           },
           "2006": {
-            "n": 23,
+            "n": 3,
+            "n_apariciones": 23,
             "prom": 19.75
           },
           "2007": {
-            "n": 39,
+            "n": 5,
+            "n_apariciones": 39,
             "prom": 13.6
           },
           "2008": {
-            "n": 90,
+            "n": 9,
+            "n_apariciones": 90,
             "prom": 18.22
           }
         }
@@ -3094,19 +3324,23 @@
         "pct_u19": 36.8,
         "min_por_anio": {
           "2005": {
-            "n": 14,
+            "n": 1,
+            "n_apariciones": 14,
             "prom": 32.95
           },
           "2006": {
-            "n": 58,
+            "n": 5,
+            "n_apariciones": 58,
             "prom": 25.0
           },
           "2007": {
-            "n": 15,
+            "n": 2,
+            "n_apariciones": 15,
             "prom": 13.23
           },
           "2008": {
-            "n": 27,
+            "n": 3,
+            "n_apariciones": 27,
             "prom": 18.15
           }
         }
@@ -3122,19 +3356,23 @@
         "pct_u19": 59.0,
         "min_por_anio": {
           "2005": {
-            "n": 11,
+            "n": 2,
+            "n_apariciones": 11,
             "prom": 24.31
           },
           "2006": {
-            "n": 21,
+            "n": 2,
+            "n_apariciones": 21,
             "prom": 28.18
           },
           "2007": {
-            "n": 22,
+            "n": 4,
+            "n_apariciones": 22,
             "prom": 25.27
           },
           "2008": {
-            "n": 24,
+            "n": 3,
+            "n_apariciones": 24,
             "prom": 24.25
           }
         }
@@ -3150,19 +3388,23 @@
         "pct_u19": 63.2,
         "min_por_anio": {
           "2005": {
-            "n": 27,
+            "n": 3,
+            "n_apariciones": 27,
             "prom": 11.07
           },
           "2006": {
-            "n": 29,
+            "n": 3,
+            "n_apariciones": 29,
             "prom": 25.49
           },
           "2007": {
-            "n": 46,
+            "n": 5,
+            "n_apariciones": 46,
             "prom": 19.13
           },
           "2008": {
-            "n": 50,
+            "n": 4,
+            "n_apariciones": 50,
             "prom": 16.11
           }
         }
@@ -3178,19 +3420,23 @@
         "pct_u19": 59.5,
         "min_por_anio": {
           "2005": {
-            "n": 37,
+            "n": 3,
+            "n_apariciones": 37,
             "prom": 27.79
           },
           "2006": {
-            "n": 10,
+            "n": 1,
+            "n_apariciones": 10,
             "prom": 9.21
           },
           "2007": {
-            "n": 45,
+            "n": 4,
+            "n_apariciones": 45,
             "prom": 28.52
           },
           "2008": {
-            "n": 24,
+            "n": 2,
+            "n_apariciones": 24,
             "prom": 13.1
           }
         }
@@ -3206,19 +3452,23 @@
         "pct_u19": 27.1,
         "min_por_anio": {
           "2005": {
-            "n": 37,
+            "n": 3,
+            "n_apariciones": 37,
             "prom": 21.38
           },
           "2006": {
-            "n": 57,
+            "n": 6,
+            "n_apariciones": 57,
             "prom": 19.44
           },
           "2007": {
-            "n": 5,
+            "n": 2,
+            "n_apariciones": 5,
             "prom": 8.16
           },
           "2008": {
-            "n": 30,
+            "n": 3,
+            "n_apariciones": 30,
             "prom": 22.84
           }
         }
@@ -3234,19 +3484,23 @@
         "pct_u19": 79.5,
         "min_por_anio": {
           "2005": {
-            "n": 14,
+            "n": 2,
+            "n_apariciones": 14,
             "prom": 17.03
           },
           "2006": {
-            "n": 12,
+            "n": 2,
+            "n_apariciones": 12,
             "prom": 17.69
           },
           "2007": {
-            "n": 43,
+            "n": 4,
+            "n_apariciones": 43,
             "prom": 15.62
           },
           "2008": {
-            "n": 58,
+            "n": 6,
+            "n_apariciones": 58,
             "prom": 22.83
           }
         }
@@ -3262,19 +3516,23 @@
         "pct_u19": 69.8,
         "min_por_anio": {
           "2005": {
-            "n": 14,
+            "n": 1,
+            "n_apariciones": 14,
             "prom": 31.1
           },
           "2006": {
-            "n": 12,
+            "n": 1,
+            "n_apariciones": 12,
             "prom": 28.66
           },
           "2007": {
-            "n": 45,
+            "n": 4,
+            "n_apariciones": 45,
             "prom": 22.15
           },
           "2008": {
-            "n": 15,
+            "n": 2,
+            "n_apariciones": 15,
             "prom": 33.36
           }
         }
@@ -3290,19 +3548,23 @@
         "pct_u19": 44.6,
         "min_por_anio": {
           "2005": {
-            "n": 39,
+            "n": 3,
+            "n_apariciones": 39,
             "prom": 31.49
           },
           "2006": {
-            "n": 17,
+            "n": 2,
+            "n_apariciones": 17,
             "prom": 24.0
           },
           "2007": {
-            "n": 32,
+            "n": 4,
+            "n_apariciones": 32,
             "prom": 16.11
           },
           "2008": {
-            "n": 13,
+            "n": 2,
+            "n_apariciones": 13,
             "prom": 13.17
           }
         }
@@ -3318,19 +3580,23 @@
         "pct_u19": 43.2,
         "min_por_anio": {
           "2005": {
-            "n": 20,
+            "n": 2,
+            "n_apariciones": 20,
             "prom": 22.45
           },
           "2006": {
-            "n": 30,
+            "n": 3,
+            "n_apariciones": 30,
             "prom": 25.49
           },
           "2007": {
-            "n": 11,
+            "n": 1,
+            "n_apariciones": 11,
             "prom": 30.45
           },
           "2008": {
-            "n": 27,
+            "n": 3,
+            "n_apariciones": 27,
             "prom": 16.96
           }
         }
@@ -3346,19 +3612,23 @@
         "pct_u19": 35.3,
         "min_por_anio": {
           "2005": {
-            "n": 47,
+            "n": 4,
+            "n_apariciones": 47,
             "prom": 28.31
           },
           "2006": {
-            "n": 28,
+            "n": 4,
+            "n_apariciones": 28,
             "prom": 15.42
           },
           "2007": {
-            "n": 21,
+            "n": 4,
+            "n_apariciones": 21,
             "prom": 15.75
           },
           "2008": {
-            "n": 20,
+            "n": 4,
+            "n_apariciones": 20,
             "prom": 13.26
           }
         }
@@ -3374,19 +3644,23 @@
         "pct_u19": 46.6,
         "min_por_anio": {
           "2005": {
-            "n": 35,
+            "n": 3,
+            "n_apariciones": 35,
             "prom": 24.19
           },
           "2006": {
-            "n": 35,
+            "n": 3,
+            "n_apariciones": 35,
             "prom": 17.19
           },
           "2007": {
-            "n": 39,
+            "n": 4,
+            "n_apariciones": 39,
             "prom": 17.39
           },
           "2008": {
-            "n": 22,
+            "n": 2,
+            "n_apariciones": 22,
             "prom": 13.23
           }
         }
@@ -3402,15 +3676,18 @@
         "pct_u19": 80.8,
         "min_por_anio": {
           "2006": {
-            "n": 24,
+            "n": 2,
+            "n_apariciones": 24,
             "prom": 17.42
           },
           "2007": {
-            "n": 49,
+            "n": 6,
+            "n_apariciones": 49,
             "prom": 19.27
           },
           "2008": {
-            "n": 52,
+            "n": 8,
+            "n_apariciones": 52,
             "prom": 24.1
           }
         }
@@ -3426,15 +3703,18 @@
         "pct_u19": 70.6,
         "min_por_anio": {
           "2005": {
-            "n": 25,
+            "n": 2,
+            "n_apariciones": 25,
             "prom": 31.87
           },
           "2007": {
-            "n": 46,
+            "n": 4,
+            "n_apariciones": 46,
             "prom": 22.97
           },
           "2008": {
-            "n": 14,
+            "n": 2,
+            "n_apariciones": 14,
             "prom": 27.13
           }
         }
@@ -3450,19 +3730,23 @@
         "pct_u19": 59.8,
         "min_por_anio": {
           "2005": {
-            "n": 19,
+            "n": 2,
+            "n_apariciones": 19,
             "prom": 25.57
           },
           "2006": {
-            "n": 26,
+            "n": 3,
+            "n_apariciones": 26,
             "prom": 24.98
           },
           "2007": {
-            "n": 10,
+            "n": 1,
+            "n_apariciones": 10,
             "prom": 10.99
           },
           "2008": {
-            "n": 57,
+            "n": 5,
+            "n_apariciones": 57,
             "prom": 24.08
           }
         }
@@ -3478,19 +3762,23 @@
         "pct_u19": 67.2,
         "min_por_anio": {
           "2005": {
-            "n": 25,
+            "n": 2,
+            "n_apariciones": 25,
             "prom": 24.84
           },
           "2006": {
-            "n": 20,
+            "n": 3,
+            "n_apariciones": 20,
             "prom": 17.51
           },
           "2007": {
-            "n": 37,
+            "n": 3,
+            "n_apariciones": 37,
             "prom": 18.24
           },
           "2008": {
-            "n": 55,
+            "n": 6,
+            "n_apariciones": 55,
             "prom": 17.31
           }
         }
@@ -3506,19 +3794,23 @@
         "pct_u19": 56.2,
         "min_por_anio": {
           "2005": {
-            "n": 40,
+            "n": 3,
+            "n_apariciones": 40,
             "prom": 32.42
           },
           "2006": {
-            "n": 17,
+            "n": 2,
+            "n_apariciones": 17,
             "prom": 10.83
           },
           "2007": {
-            "n": 40,
+            "n": 5,
+            "n_apariciones": 40,
             "prom": 14.07
           },
           "2008": {
-            "n": 33,
+            "n": 3,
+            "n_apariciones": 33,
             "prom": 11.59
           }
         }
@@ -3534,19 +3826,23 @@
         "pct_u19": 57.1,
         "min_por_anio": {
           "2005": {
-            "n": 30,
+            "n": 3,
+            "n_apariciones": 30,
             "prom": 28.07
           },
           "2006": {
-            "n": 18,
+            "n": 2,
+            "n_apariciones": 18,
             "prom": 16.53
           },
           "2007": {
-            "n": 39,
+            "n": 3,
+            "n_apariciones": 39,
             "prom": 19.62
           },
           "2008": {
-            "n": 25,
+            "n": 2,
+            "n_apariciones": 25,
             "prom": 20.81
           }
         }
@@ -3562,19 +3858,23 @@
         "pct_u19": 80.3,
         "min_por_anio": {
           "2005": {
-            "n": 10,
+            "n": 1,
+            "n_apariciones": 10,
             "prom": 37.6
           },
           "2006": {
-            "n": 3,
+            "n": 1,
+            "n_apariciones": 3,
             "prom": 3.51
           },
           "2007": {
-            "n": 42,
+            "n": 5,
+            "n_apariciones": 42,
             "prom": 22.17
           },
           "2008": {
-            "n": 11,
+            "n": 2,
+            "n_apariciones": 11,
             "prom": 14.18
           }
         }
@@ -3590,15 +3890,18 @@
         "pct_u19": 71.3,
         "min_por_anio": {
           "2006": {
-            "n": 25,
+            "n": 3,
+            "n_apariciones": 25,
             "prom": 24.71
           },
           "2007": {
-            "n": 21,
+            "n": 2,
+            "n_apariciones": 21,
             "prom": 23.35
           },
           "2008": {
-            "n": 41,
+            "n": 5,
+            "n_apariciones": 41,
             "prom": 20.75
           }
         }
@@ -3614,19 +3917,23 @@
         "pct_u19": 42.2,
         "min_por_anio": {
           "2005": {
-            "n": 41,
+            "n": 4,
+            "n_apariciones": 41,
             "prom": 25.05
           },
           "2006": {
-            "n": 11,
+            "n": 1,
+            "n_apariciones": 11,
             "prom": 31.4
           },
           "2007": {
-            "n": 8,
+            "n": 2,
+            "n_apariciones": 8,
             "prom": 7.01
           },
           "2008": {
-            "n": 30,
+            "n": 5,
+            "n_apariciones": 30,
             "prom": 18.02
           }
         }
@@ -3642,15 +3949,18 @@
         "pct_u19": 10.5,
         "min_por_anio": {
           "2005": {
-            "n": 11,
+            "n": 1,
+            "n_apariciones": 11,
             "prom": 23.2
           },
           "2006": {
-            "n": 74,
+            "n": 8,
+            "n_apariciones": 74,
             "prom": 20.08
           },
           "2007": {
-            "n": 10,
+            "n": 1,
+            "n_apariciones": 10,
             "prom": 16.2
           }
         }
@@ -3666,19 +3976,23 @@
         "pct_u19": 63.0,
         "min_por_anio": {
           "2005": {
-            "n": 6,
+            "n": 1,
+            "n_apariciones": 6,
             "prom": 7.08
           },
           "2006": {
-            "n": 38,
+            "n": 5,
+            "n_apariciones": 38,
             "prom": 23.37
           },
           "2007": {
-            "n": 50,
+            "n": 9,
+            "n_apariciones": 50,
             "prom": 16.48
           },
           "2008": {
-            "n": 25,
+            "n": 4,
+            "n_apariciones": 25,
             "prom": 18.82
           }
         }
@@ -3694,19 +4008,23 @@
         "pct_u19": 70.9,
         "min_por_anio": {
           "2005": {
-            "n": 17,
+            "n": 2,
+            "n_apariciones": 17,
             "prom": 28.4
           },
           "2006": {
-            "n": 13,
+            "n": 1,
+            "n_apariciones": 13,
             "prom": 24.05
           },
           "2007": {
-            "n": 44,
+            "n": 5,
+            "n_apariciones": 44,
             "prom": 23.33
           },
           "2008": {
-            "n": 29,
+            "n": 3,
+            "n_apariciones": 29,
             "prom": 18.5
           }
         }
@@ -3722,19 +4040,23 @@
         "pct_u19": 48.5,
         "min_por_anio": {
           "2005": {
-            "n": 24,
+            "n": 2,
+            "n_apariciones": 24,
             "prom": 23.68
           },
           "2006": {
-            "n": 26,
+            "n": 3,
+            "n_apariciones": 26,
             "prom": 22.37
           },
           "2007": {
-            "n": 12,
+            "n": 1,
+            "n_apariciones": 12,
             "prom": 20.88
           },
           "2008": {
-            "n": 35,
+            "n": 3,
+            "n_apariciones": 35,
             "prom": 16.34
           }
         }
@@ -3750,19 +4072,23 @@
         "pct_u19": 57.4,
         "min_por_anio": {
           "2005": {
-            "n": 20,
+            "n": 2,
+            "n_apariciones": 20,
             "prom": 20.72
           },
           "2006": {
-            "n": 20,
+            "n": 2,
+            "n_apariciones": 20,
             "prom": 16.58
           },
           "2007": {
-            "n": 22,
+            "n": 2,
+            "n_apariciones": 22,
             "prom": 23.11
           },
           "2008": {
-            "n": 32,
+            "n": 3,
+            "n_apariciones": 32,
             "prom": 19.96
           }
         }
@@ -3778,19 +4104,23 @@
         "pct_u19": 79.3,
         "min_por_anio": {
           "2005": {
-            "n": 11,
+            "n": 2,
+            "n_apariciones": 11,
             "prom": 25.61
           },
           "2006": {
-            "n": 8,
+            "n": 1,
+            "n_apariciones": 8,
             "prom": 22.55
           },
           "2007": {
-            "n": 47,
+            "n": 6,
+            "n_apariciones": 47,
             "prom": 23.26
           },
           "2008": {
-            "n": 26,
+            "n": 4,
+            "n_apariciones": 26,
             "prom": 15.34
           }
         }
@@ -3806,19 +4136,23 @@
         "pct_u19": 60.8,
         "min_por_anio": {
           "2005": {
-            "n": 15,
+            "n": 2,
+            "n_apariciones": 15,
             "prom": 23.08
           },
           "2006": {
-            "n": 36,
+            "n": 3,
+            "n_apariciones": 36,
             "prom": 17.52
           },
           "2007": {
-            "n": 20,
+            "n": 2,
+            "n_apariciones": 20,
             "prom": 20.63
           },
           "2008": {
-            "n": 59,
+            "n": 6,
+            "n_apariciones": 59,
             "prom": 20.24
           }
         }
@@ -3834,19 +4168,23 @@
         "pct_u19": 33.0,
         "min_por_anio": {
           "2005": {
-            "n": 22,
+            "n": 2,
+            "n_apariciones": 22,
             "prom": 20.36
           },
           "2006": {
-            "n": 47,
+            "n": 4,
+            "n_apariciones": 47,
             "prom": 23.9
           },
           "2007": {
-            "n": 26,
+            "n": 3,
+            "n_apariciones": 26,
             "prom": 28.59
           },
           "2008": {
-            "n": 8,
+            "n": 3,
+            "n_apariciones": 8,
             "prom": 22.68
           }
         }
@@ -3862,19 +4200,23 @@
         "pct_u19": 52.7,
         "min_por_anio": {
           "2005": {
-            "n": 14,
+            "n": 3,
+            "n_apariciones": 14,
             "prom": 14.16
           },
           "2006": {
-            "n": 47,
+            "n": 4,
+            "n_apariciones": 47,
             "prom": 24.64
           },
           "2007": {
-            "n": 13,
+            "n": 1,
+            "n_apariciones": 13,
             "prom": 14.7
           },
           "2008": {
-            "n": 55,
+            "n": 5,
+            "n_apariciones": 55,
             "prom": 19.95
           }
         }
@@ -3890,19 +4232,23 @@
         "pct_u19": 29.4,
         "min_por_anio": {
           "2005": {
-            "n": 31,
+            "n": 3,
+            "n_apariciones": 31,
             "prom": 16.37
           },
           "2006": {
-            "n": 53,
+            "n": 6,
+            "n_apariciones": 53,
             "prom": 20.98
           },
           "2007": {
-            "n": 31,
+            "n": 3,
+            "n_apariciones": 31,
             "prom": 17.8
           },
           "2008": {
-            "n": 4,
+            "n": 1,
+            "n_apariciones": 4,
             "prom": 13.74
           }
         }
@@ -3918,15 +4264,18 @@
         "pct_u19": 92.2,
         "min_por_anio": {
           "2006": {
-            "n": 8,
+            "n": 1,
+            "n_apariciones": 8,
             "prom": 18.02
           },
           "2007": {
-            "n": 34,
+            "n": 3,
+            "n_apariciones": 34,
             "prom": 28.5
           },
           "2008": {
-            "n": 61,
+            "n": 7,
+            "n_apariciones": 61,
             "prom": 19.4
           }
         }
@@ -3942,19 +4291,23 @@
         "pct_u19": 60.5,
         "min_por_anio": {
           "2005": {
-            "n": 20,
+            "n": 2,
+            "n_apariciones": 20,
             "prom": 18.84
           },
           "2006": {
-            "n": 27,
+            "n": 3,
+            "n_apariciones": 27,
             "prom": 24.37
           },
           "2007": {
-            "n": 28,
+            "n": 3,
+            "n_apariciones": 28,
             "prom": 17.41
           },
           "2008": {
-            "n": 44,
+            "n": 4,
+            "n_apariciones": 44,
             "prom": 21.84
           }
         }
@@ -3970,19 +4323,23 @@
         "pct_u19": 52.8,
         "min_por_anio": {
           "2005": {
-            "n": 20,
+            "n": 2,
+            "n_apariciones": 20,
             "prom": 30.66
           },
           "2006": {
-            "n": 31,
+            "n": 4,
+            "n_apariciones": 31,
             "prom": 18.98
           },
           "2007": {
-            "n": 38,
+            "n": 5,
+            "n_apariciones": 38,
             "prom": 12.99
           },
           "2008": {
-            "n": 19,
+            "n": 3,
+            "n_apariciones": 19,
             "prom": 15.69
           }
         }
@@ -3998,19 +4355,23 @@
         "pct_u19": 54.0,
         "min_por_anio": {
           "2005": {
-            "n": 14,
+            "n": 2,
+            "n_apariciones": 14,
             "prom": 24.74
           },
           "2006": {
-            "n": 9,
+            "n": 1,
+            "n_apariciones": 9,
             "prom": 25.87
           },
           "2007": {
-            "n": 3,
+            "n": 1,
+            "n_apariciones": 3,
             "prom": 26.01
           },
           "2008": {
-            "n": 24,
+            "n": 4,
+            "n_apariciones": 24,
             "prom": 22.86
           }
         }
@@ -4026,19 +4387,23 @@
         "pct_u19": 85.6,
         "min_por_anio": {
           "2005": {
-            "n": 3,
+            "n": 1,
+            "n_apariciones": 3,
             "prom": 24.37
           },
           "2006": {
-            "n": 13,
+            "n": 1,
+            "n_apariciones": 13,
             "prom": 29.08
           },
           "2007": {
-            "n": 13,
+            "n": 2,
+            "n_apariciones": 13,
             "prom": 15.08
           },
           "2008": {
-            "n": 82,
+            "n": 8,
+            "n_apariciones": 82,
             "prom": 25.92
           }
         }
@@ -4054,15 +4419,18 @@
         "pct_u19": 20.9,
         "min_por_anio": {
           "2005": {
-            "n": 20,
+            "n": 4,
+            "n_apariciones": 20,
             "prom": 14.27
           },
           "2006": {
-            "n": 71,
+            "n": 6,
+            "n_apariciones": 71,
             "prom": 25.88
           },
           "2008": {
-            "n": 24,
+            "n": 2,
+            "n_apariciones": 24,
             "prom": 13.34
           }
         }
@@ -4078,19 +4446,23 @@
         "pct_u19": 49.4,
         "min_por_anio": {
           "2005": {
-            "n": 22,
+            "n": 2,
+            "n_apariciones": 22,
             "prom": 25.48
           },
           "2006": {
-            "n": 23,
+            "n": 3,
+            "n_apariciones": 23,
             "prom": 20.29
           },
           "2007": {
-            "n": 8,
+            "n": 1,
+            "n_apariciones": 8,
             "prom": 14.45
           },
           "2008": {
-            "n": 36,
+            "n": 4,
+            "n_apariciones": 36,
             "prom": 23.4
           }
         }
@@ -4106,19 +4478,23 @@
         "pct_u19": 61.0,
         "min_por_anio": {
           "2005": {
-            "n": 31,
+            "n": 3,
+            "n_apariciones": 31,
             "prom": 15.16
           },
           "2006": {
-            "n": 26,
+            "n": 3,
+            "n_apariciones": 26,
             "prom": 25.64
           },
           "2007": {
-            "n": 25,
+            "n": 2,
+            "n_apariciones": 25,
             "prom": 16.86
           },
           "2008": {
-            "n": 64,
+            "n": 6,
+            "n_apariciones": 64,
             "prom": 15.46
           }
         }
@@ -4134,19 +4510,23 @@
         "pct_u19": 22.0,
         "min_por_anio": {
           "2005": {
-            "n": 70,
+            "n": 6,
+            "n_apariciones": 70,
             "prom": 23.51
           },
           "2006": {
-            "n": 22,
+            "n": 2,
+            "n_apariciones": 22,
             "prom": 20.29
           },
           "2007": {
-            "n": 14,
+            "n": 1,
+            "n_apariciones": 14,
             "prom": 26.26
           },
           "2008": {
-            "n": 12,
+            "n": 1,
+            "n_apariciones": 12,
             "prom": 14.61
           }
         }
@@ -4162,19 +4542,23 @@
         "pct_u19": 30.2,
         "min_por_anio": {
           "2005": {
-            "n": 10,
+            "n": 1,
+            "n_apariciones": 10,
             "prom": 21.09
           },
           "2006": {
-            "n": 71,
+            "n": 6,
+            "n_apariciones": 71,
             "prom": 25.11
           },
           "2007": {
-            "n": 11,
+            "n": 1,
+            "n_apariciones": 11,
             "prom": 12.33
           },
           "2008": {
-            "n": 24,
+            "n": 3,
+            "n_apariciones": 24,
             "prom": 10.15
           }
         }
@@ -4190,19 +4574,23 @@
         "pct_u19": 45.8,
         "min_por_anio": {
           "2005": {
-            "n": 19,
+            "n": 2,
+            "n_apariciones": 19,
             "prom": 23.64
           },
           "2006": {
-            "n": 26,
+            "n": 3,
+            "n_apariciones": 26,
             "prom": 25.12
           },
           "2007": {
-            "n": 34,
+            "n": 3,
+            "n_apariciones": 34,
             "prom": 26.92
           },
           "2008": {
-            "n": 4,
+            "n": 1,
+            "n_apariciones": 4,
             "prom": 13.81
           }
         }
@@ -4218,19 +4606,23 @@
         "pct_u19": 23.1,
         "min_por_anio": {
           "2005": {
-            "n": 84,
+            "n": 8,
+            "n_apariciones": 84,
             "prom": 20.51
           },
           "2006": {
-            "n": 26,
+            "n": 3,
+            "n_apariciones": 26,
             "prom": 17.18
           },
           "2007": {
-            "n": 28,
+            "n": 2,
+            "n_apariciones": 28,
             "prom": 23.39
           },
           "2008": {
-            "n": 5,
+            "n": 1,
+            "n_apariciones": 5,
             "prom": 5.04
           }
         }
@@ -4246,19 +4638,23 @@
         "pct_u19": 76.7,
         "min_por_anio": {
           "2005": {
-            "n": 12,
+            "n": 1,
+            "n_apariciones": 12,
             "prom": 24.19
           },
           "2006": {
-            "n": 12,
+            "n": 1,
+            "n_apariciones": 12,
             "prom": 16.09
           },
           "2007": {
-            "n": 7,
+            "n": 1,
+            "n_apariciones": 7,
             "prom": 12.83
           },
           "2008": {
-            "n": 72,
+            "n": 6,
+            "n_apariciones": 72,
             "prom": 22.73
           }
         }
@@ -4274,19 +4670,23 @@
         "pct_u19": 56.8,
         "min_por_anio": {
           "2005": {
-            "n": 14,
+            "n": 1,
+            "n_apariciones": 14,
             "prom": 16.85
           },
           "2006": {
-            "n": 37,
+            "n": 3,
+            "n_apariciones": 37,
             "prom": 20.72
           },
           "2007": {
-            "n": 12,
+            "n": 1,
+            "n_apariciones": 12,
             "prom": 22.64
           },
           "2008": {
-            "n": 55,
+            "n": 5,
+            "n_apariciones": 55,
             "prom": 18.45
           }
         }
@@ -4302,15 +4702,18 @@
         "pct_u19": 85.6,
         "min_por_anio": {
           "2005": {
-            "n": 13,
+            "n": 2,
+            "n_apariciones": 13,
             "prom": 33.01
           },
           "2007": {
-            "n": 22,
+            "n": 3,
+            "n_apariciones": 22,
             "prom": 25.04
           },
           "2008": {
-            "n": 55,
+            "n": 5,
+            "n_apariciones": 55,
             "prom": 23.68
           }
         }
@@ -4326,19 +4729,23 @@
         "pct_u19": 51.1,
         "min_por_anio": {
           "2005": {
-            "n": 33,
+            "n": 3,
+            "n_apariciones": 33,
             "prom": 32.85
           },
           "2006": {
-            "n": 13,
+            "n": 2,
+            "n_apariciones": 13,
             "prom": 10.18
           },
           "2007": {
-            "n": 27,
+            "n": 3,
+            "n_apariciones": 27,
             "prom": 23.89
           },
           "2008": {
-            "n": 21,
+            "n": 4,
+            "n_apariciones": 21,
             "prom": 6.99
           }
         }
@@ -4354,19 +4761,23 @@
         "pct_u19": 63.4,
         "min_por_anio": {
           "2005": {
-            "n": 18,
+            "n": 2,
+            "n_apariciones": 18,
             "prom": 28.56
           },
           "2006": {
-            "n": 8,
+            "n": 2,
+            "n_apariciones": 8,
             "prom": 7.66
           },
           "2007": {
-            "n": 30,
+            "n": 3,
+            "n_apariciones": 30,
             "prom": 27.29
           },
           "2008": {
-            "n": 15,
+            "n": 2,
+            "n_apariciones": 15,
             "prom": 18.19
           }
         }
@@ -4382,19 +4793,23 @@
         "pct_u19": 53.9,
         "min_por_anio": {
           "2005": {
-            "n": 19,
+            "n": 2,
+            "n_apariciones": 19,
             "prom": 21.82
           },
           "2006": {
-            "n": 16,
+            "n": 2,
+            "n_apariciones": 16,
             "prom": 25.6
           },
           "2007": {
-            "n": 21,
+            "n": 2,
+            "n_apariciones": 21,
             "prom": 22.63
           },
           "2008": {
-            "n": 20,
+            "n": 2,
+            "n_apariciones": 20,
             "prom": 21.08
           }
         }
@@ -4410,15 +4825,18 @@
         "pct_u19": 51.1,
         "min_por_anio": {
           "2006": {
-            "n": 44,
+            "n": 4,
+            "n_apariciones": 44,
             "prom": 24.71
           },
           "2007": {
-            "n": 35,
+            "n": 4,
+            "n_apariciones": 35,
             "prom": 20.35
           },
           "2008": {
-            "n": 11,
+            "n": 1,
+            "n_apariciones": 11,
             "prom": 17.05
           }
         }
@@ -4434,19 +4852,23 @@
         "pct_u19": 54.3,
         "min_por_anio": {
           "2005": {
-            "n": 36,
+            "n": 3,
+            "n_apariciones": 36,
             "prom": 22.07
           },
           "2006": {
-            "n": 22,
+            "n": 2,
+            "n_apariciones": 22,
             "prom": 16.52
           },
           "2007": {
-            "n": 58,
+            "n": 7,
+            "n_apariciones": 58,
             "prom": 16.56
           },
           "2008": {
-            "n": 11,
+            "n": 1,
+            "n_apariciones": 11,
             "prom": 24.8
           }
         }
@@ -4462,19 +4884,23 @@
         "pct_u19": 72.1,
         "min_por_anio": {
           "2005": {
-            "n": 29,
+            "n": 3,
+            "n_apariciones": 29,
             "prom": 19.53
           },
           "2006": {
-            "n": 9,
+            "n": 1,
+            "n_apariciones": 9,
             "prom": 12.14
           },
           "2007": {
-            "n": 68,
+            "n": 8,
+            "n_apariciones": 68,
             "prom": 17.98
           },
           "2008": {
-            "n": 30,
+            "n": 3,
+            "n_apariciones": 30,
             "prom": 16.45
           }
         }
@@ -4490,19 +4916,23 @@
         "pct_u19": 38.9,
         "min_por_anio": {
           "2005": {
-            "n": 33,
+            "n": 3,
+            "n_apariciones": 33,
             "prom": 30.0
           },
           "2006": {
-            "n": 22,
+            "n": 3,
+            "n_apariciones": 22,
             "prom": 16.8
           },
           "2007": {
-            "n": 11,
+            "n": 1,
+            "n_apariciones": 11,
             "prom": 15.03
           },
           "2008": {
-            "n": 24,
+            "n": 3,
+            "n_apariciones": 24,
             "prom": 28.48
           }
         }
@@ -4518,19 +4948,23 @@
         "pct_u19": 51.4,
         "min_por_anio": {
           "2005": {
-            "n": 41,
+            "n": 5,
+            "n_apariciones": 41,
             "prom": 24.76
           },
           "2006": {
-            "n": 10,
+            "n": 1,
+            "n_apariciones": 10,
             "prom": 20.06
           },
           "2007": {
-            "n": 24,
+            "n": 3,
+            "n_apariciones": 24,
             "prom": 16.78
           },
           "2008": {
-            "n": 30,
+            "n": 3,
+            "n_apariciones": 30,
             "prom": 14.61
           }
         }
@@ -4546,19 +4980,23 @@
         "pct_u19": 69.7,
         "min_por_anio": {
           "2005": {
-            "n": 5,
+            "n": 2,
+            "n_apariciones": 5,
             "prom": 12.93
           },
           "2006": {
-            "n": 15,
+            "n": 3,
+            "n_apariciones": 15,
             "prom": 20.04
           },
           "2007": {
-            "n": 36,
+            "n": 4,
+            "n_apariciones": 36,
             "prom": 28.76
           },
           "2008": {
-            "n": 10,
+            "n": 1,
+            "n_apariciones": 10,
             "prom": 36.76
           }
         }
@@ -4574,19 +5012,23 @@
         "pct_u19": 33.3,
         "min_por_anio": {
           "2005": {
-            "n": 20,
+            "n": 2,
+            "n_apariciones": 20,
             "prom": 14.07
           },
           "2006": {
-            "n": 60,
+            "n": 6,
+            "n_apariciones": 60,
             "prom": 19.15
           },
           "2007": {
-            "n": 20,
+            "n": 2,
+            "n_apariciones": 20,
             "prom": 15.81
           },
           "2008": {
-            "n": 20,
+            "n": 2,
+            "n_apariciones": 20,
             "prom": 20.9
           }
         }
@@ -4602,19 +5044,23 @@
         "pct_u19": 50.6,
         "min_por_anio": {
           "2005": {
-            "n": 19,
+            "n": 2,
+            "n_apariciones": 19,
             "prom": 31.56
           },
           "2006": {
-            "n": 21,
+            "n": 3,
+            "n_apariciones": 21,
             "prom": 18.04
           },
           "2007": {
-            "n": 10,
+            "n": 1,
+            "n_apariciones": 10,
             "prom": 30.65
           },
           "2008": {
-            "n": 31,
+            "n": 4,
+            "n_apariciones": 31,
             "prom": 17.85
           }
         }
@@ -4630,19 +5076,23 @@
         "pct_u19": 24.3,
         "min_por_anio": {
           "2005": {
-            "n": 67,
+            "n": 9,
+            "n_apariciones": 67,
             "prom": 21.39
           },
           "2006": {
-            "n": 17,
+            "n": 3,
+            "n_apariciones": 17,
             "prom": 16.14
           },
           "2007": {
             "n": 1,
+            "n_apariciones": 1,
             "prom": 4.4
           },
           "2008": {
-            "n": 26,
+            "n": 4,
+            "n_apariciones": 26,
             "prom": 18.04
           }
         }
@@ -4658,19 +5108,23 @@
         "pct_u19": 56.4,
         "min_por_anio": {
           "2005": {
-            "n": 24,
+            "n": 3,
+            "n_apariciones": 24,
             "prom": 25.26
           },
           "2006": {
-            "n": 10,
+            "n": 1,
+            "n_apariciones": 10,
             "prom": 33.06
           },
           "2007": {
-            "n": 16,
+            "n": 2,
+            "n_apariciones": 16,
             "prom": 15.62
           },
           "2008": {
-            "n": 28,
+            "n": 3,
+            "n_apariciones": 28,
             "prom": 25.18
           }
         }
@@ -4686,19 +5140,23 @@
         "pct_u19": 74.4,
         "min_por_anio": {
           "2005": {
-            "n": 21,
+            "n": 2,
+            "n_apariciones": 21,
             "prom": 23.22
           },
           "2006": {
-            "n": 12,
+            "n": 1,
+            "n_apariciones": 12,
             "prom": 20.1
           },
           "2007": {
-            "n": 29,
+            "n": 3,
+            "n_apariciones": 29,
             "prom": 16.68
           },
           "2008": {
-            "n": 67,
+            "n": 6,
+            "n_apariciones": 67,
             "prom": 16.33
           }
         }
@@ -4714,19 +5172,23 @@
         "pct_u19": 40.4,
         "min_por_anio": {
           "2005": {
-            "n": 41,
+            "n": 5,
+            "n_apariciones": 41,
             "prom": 25.8
           },
           "2006": {
-            "n": 21,
+            "n": 2,
+            "n_apariciones": 21,
             "prom": 17.63
           },
           "2007": {
-            "n": 27,
+            "n": 3,
+            "n_apariciones": 27,
             "prom": 18.25
           },
           "2008": {
-            "n": 15,
+            "n": 2,
+            "n_apariciones": 15,
             "prom": 16.44
           }
         }
@@ -4742,19 +5204,23 @@
         "pct_u19": 33.1,
         "min_por_anio": {
           "2005": {
-            "n": 55,
+            "n": 6,
+            "n_apariciones": 55,
             "prom": 23.68
           },
           "2006": {
-            "n": 36,
+            "n": 4,
+            "n_apariciones": 36,
             "prom": 16.18
           },
           "2007": {
-            "n": 26,
+            "n": 3,
+            "n_apariciones": 26,
             "prom": 10.3
           },
           "2008": {
-            "n": 19,
+            "n": 3,
+            "n_apariciones": 19,
             "prom": 13.02
           }
         }
@@ -4770,11 +5236,13 @@
         "pct_u19": 88.4,
         "min_por_anio": {
           "2005": {
-            "n": 11,
+            "n": 1,
+            "n_apariciones": 11,
             "prom": 29.81
           },
           "2008": {
-            "n": 84,
+            "n": 10,
+            "n_apariciones": 84,
             "prom": 22.56
           }
         }
@@ -4790,19 +5258,23 @@
         "pct_u19": 40.0,
         "min_por_anio": {
           "2005": {
-            "n": 10,
+            "n": 1,
+            "n_apariciones": 10,
             "prom": 22.11
           },
           "2006": {
-            "n": 68,
+            "n": 7,
+            "n_apariciones": 68,
             "prom": 21.58
           },
           "2007": {
-            "n": 32,
+            "n": 4,
+            "n_apariciones": 32,
             "prom": 15.72
           },
           "2008": {
-            "n": 20,
+            "n": 2,
+            "n_apariciones": 20,
             "prom": 9.19
           }
         }
@@ -4818,19 +5290,23 @@
         "pct_u19": 41.2,
         "min_por_anio": {
           "2005": {
-            "n": 21,
+            "n": 2,
+            "n_apariciones": 21,
             "prom": 33.12
           },
           "2006": {
-            "n": 39,
+            "n": 4,
+            "n_apariciones": 39,
             "prom": 25.44
           },
           "2007": {
-            "n": 18,
+            "n": 3,
+            "n_apariciones": 18,
             "prom": 16.27
           },
           "2008": {
-            "n": 24,
+            "n": 3,
+            "n_apariciones": 24,
             "prom": 17.34
           }
         }
@@ -4846,19 +5322,23 @@
         "pct_u19": 84.7,
         "min_por_anio": {
           "2005": {
-            "n": 8,
+            "n": 1,
+            "n_apariciones": 8,
             "prom": 8.12
           },
           "2006": {
-            "n": 13,
+            "n": 2,
+            "n_apariciones": 13,
             "prom": 21.86
           },
           "2007": {
-            "n": 58,
+            "n": 5,
+            "n_apariciones": 58,
             "prom": 17.52
           },
           "2008": {
-            "n": 58,
+            "n": 5,
+            "n_apariciones": 58,
             "prom": 17.84
           }
         }
@@ -4874,15 +5354,18 @@
         "pct_u19": 11.9,
         "min_por_anio": {
           "2005": {
-            "n": 48,
+            "n": 5,
+            "n_apariciones": 48,
             "prom": 17.14
           },
           "2006": {
-            "n": 41,
+            "n": 4,
+            "n_apariciones": 41,
             "prom": 22.81
           },
           "2007": {
-            "n": 12,
+            "n": 2,
+            "n_apariciones": 12,
             "prom": 22.63
           }
         }
@@ -4898,19 +5381,23 @@
         "pct_u19": 44.3,
         "min_por_anio": {
           "2005": {
-            "n": 24,
+            "n": 2,
+            "n_apariciones": 24,
             "prom": 22.62
           },
           "2006": {
-            "n": 25,
+            "n": 3,
+            "n_apariciones": 25,
             "prom": 24.08
           },
           "2007": {
-            "n": 27,
+            "n": 4,
+            "n_apariciones": 27,
             "prom": 7.72
           },
           "2008": {
-            "n": 12,
+            "n": 2,
+            "n_apariciones": 12,
             "prom": 19.84
           }
         }
@@ -4926,15 +5413,18 @@
         "pct_u19": 69.3,
         "min_por_anio": {
           "2006": {
-            "n": 35,
+            "n": 3,
+            "n_apariciones": 35,
             "prom": 19.57
           },
           "2007": {
-            "n": 4,
+            "n": 1,
+            "n_apariciones": 4,
             "prom": 17.06
           },
           "2008": {
-            "n": 75,
+            "n": 7,
+            "n_apariciones": 75,
             "prom": 19.4
           }
         }
@@ -4950,19 +5440,23 @@
         "pct_u19": 57.0,
         "min_por_anio": {
           "2005": {
-            "n": 11,
+            "n": 1,
+            "n_apariciones": 11,
             "prom": 19.17
           },
           "2006": {
-            "n": 35,
+            "n": 3,
+            "n_apariciones": 35,
             "prom": 21.51
           },
           "2007": {
-            "n": 33,
+            "n": 3,
+            "n_apariciones": 33,
             "prom": 21.4
           },
           "2008": {
-            "n": 28,
+            "n": 3,
+            "n_apariciones": 28,
             "prom": 23.98
           }
         }
@@ -4978,19 +5472,23 @@
         "pct_u19": 54.6,
         "min_por_anio": {
           "2005": {
-            "n": 19,
+            "n": 2,
+            "n_apariciones": 19,
             "prom": 18.28
           },
           "2006": {
-            "n": 35,
+            "n": 4,
+            "n_apariciones": 35,
             "prom": 25.72
           },
           "2007": {
-            "n": 9,
+            "n": 2,
+            "n_apariciones": 9,
             "prom": 8.88
           },
           "2008": {
-            "n": 56,
+            "n": 7,
+            "n_apariciones": 56,
             "prom": 15.03
           }
         }
@@ -5006,19 +5504,23 @@
         "pct_u19": 72.9,
         "min_por_anio": {
           "2005": {
-            "n": 12,
+            "n": 1,
+            "n_apariciones": 12,
             "prom": 26.81
           },
           "2006": {
-            "n": 23,
+            "n": 2,
+            "n_apariciones": 23,
             "prom": 20.98
           },
           "2007": {
-            "n": 32,
+            "n": 4,
+            "n_apariciones": 32,
             "prom": 26.16
           },
           "2008": {
-            "n": 62,
+            "n": 6,
+            "n_apariciones": 62,
             "prom": 12.24
           }
         }
@@ -5034,15 +5536,18 @@
         "pct_u19": 47.8,
         "min_por_anio": {
           "2005": {
-            "n": 15,
+            "n": 3,
+            "n_apariciones": 15,
             "prom": 16.86
           },
           "2006": {
-            "n": 33,
+            "n": 5,
+            "n_apariciones": 33,
             "prom": 23.23
           },
           "2008": {
-            "n": 44,
+            "n": 6,
+            "n_apariciones": 44,
             "prom": 22.27
           }
         }
@@ -5058,19 +5563,23 @@
         "pct_u19": 70.3,
         "min_por_anio": {
           "2005": {
-            "n": 11,
+            "n": 1,
+            "n_apariciones": 11,
             "prom": 11.74
           },
           "2006": {
-            "n": 30,
+            "n": 3,
+            "n_apariciones": 30,
             "prom": 19.25
           },
           "2007": {
-            "n": 14,
+            "n": 2,
+            "n_apariciones": 14,
             "prom": 15.97
           },
           "2008": {
-            "n": 83,
+            "n": 9,
+            "n_apariciones": 83,
             "prom": 17.71
           }
         }
@@ -5086,19 +5595,23 @@
         "pct_u19": 45.9,
         "min_por_anio": {
           "2005": {
-            "n": 12,
+            "n": 1,
+            "n_apariciones": 12,
             "prom": 27.2
           },
           "2006": {
-            "n": 41,
+            "n": 4,
+            "n_apariciones": 41,
             "prom": 29.19
           },
           "2007": {
-            "n": 31,
+            "n": 4,
+            "n_apariciones": 31,
             "prom": 18.55
           },
           "2008": {
-            "n": 14,
+            "n": 2,
+            "n_apariciones": 14,
             "prom": 15.54
           }
         }
@@ -5114,15 +5627,18 @@
         "pct_u19": 68.4,
         "min_por_anio": {
           "2006": {
-            "n": 30,
+            "n": 3,
+            "n_apariciones": 30,
             "prom": 23.13
           },
           "2007": {
-            "n": 23,
+            "n": 3,
+            "n_apariciones": 23,
             "prom": 16.77
           },
           "2008": {
-            "n": 42,
+            "n": 6,
+            "n_apariciones": 42,
             "prom": 17.87
           }
         }
@@ -5138,15 +5654,18 @@
         "pct_u19": 87.9,
         "min_por_anio": {
           "2005": {
-            "n": 12,
+            "n": 1,
+            "n_apariciones": 12,
             "prom": 24.46
           },
           "2007": {
-            "n": 35,
+            "n": 3,
+            "n_apariciones": 35,
             "prom": 18.41
           },
           "2008": {
-            "n": 52,
+            "n": 5,
+            "n_apariciones": 52,
             "prom": 22.14
           }
         }
@@ -5162,15 +5681,18 @@
         "pct_u19": 10.8,
         "min_por_anio": {
           "2005": {
-            "n": 61,
+            "n": 8,
+            "n_apariciones": 61,
             "prom": 18.74
           },
           "2006": {
-            "n": 22,
+            "n": 3,
+            "n_apariciones": 22,
             "prom": 25.87
           },
           "2007": {
-            "n": 10,
+            "n": 1,
+            "n_apariciones": 10,
             "prom": 23.05
           }
         }
@@ -5186,19 +5708,23 @@
         "pct_u19": 30.9,
         "min_por_anio": {
           "2005": {
-            "n": 31,
+            "n": 4,
+            "n_apariciones": 31,
             "prom": 22.74
           },
           "2006": {
-            "n": 36,
+            "n": 3,
+            "n_apariciones": 36,
             "prom": 26.57
           },
           "2007": {
-            "n": 22,
+            "n": 2,
+            "n_apariciones": 22,
             "prom": 26.32
           },
           "2008": {
-            "n": 8,
+            "n": 2,
+            "n_apariciones": 8,
             "prom": 6.48
           }
         }
@@ -5214,19 +5740,23 @@
         "pct_u19": 48.3,
         "min_por_anio": {
           "2005": {
-            "n": 35,
+            "n": 4,
+            "n_apariciones": 35,
             "prom": 18.67
           },
           "2006": {
-            "n": 10,
+            "n": 2,
+            "n_apariciones": 10,
             "prom": 18.57
           },
           "2007": {
-            "n": 31,
+            "n": 3,
+            "n_apariciones": 31,
             "prom": 29.5
           },
           "2008": {
-            "n": 11,
+            "n": 1,
+            "n_apariciones": 11,
             "prom": 18.97
           }
         }
@@ -5242,19 +5772,23 @@
         "pct_u19": 38.6,
         "min_por_anio": {
           "2005": {
-            "n": 34,
+            "n": 4,
+            "n_apariciones": 34,
             "prom": 18.33
           },
           "2006": {
-            "n": 44,
+            "n": 5,
+            "n_apariciones": 44,
             "prom": 17.29
           },
           "2007": {
-            "n": 15,
+            "n": 2,
+            "n_apariciones": 15,
             "prom": 15.44
           },
           "2008": {
-            "n": 34,
+            "n": 4,
+            "n_apariciones": 34,
             "prom": 16.57
           }
         }
@@ -5270,19 +5804,23 @@
         "pct_u19": 75.2,
         "min_por_anio": {
           "2005": {
-            "n": 12,
+            "n": 1,
+            "n_apariciones": 12,
             "prom": 13.22
           },
           "2006": {
-            "n": 21,
+            "n": 3,
+            "n_apariciones": 21,
             "prom": 16.83
           },
           "2007": {
-            "n": 52,
+            "n": 6,
+            "n_apariciones": 52,
             "prom": 19.58
           },
           "2008": {
-            "n": 48,
+            "n": 5,
+            "n_apariciones": 48,
             "prom": 17.37
           }
         }
@@ -5298,19 +5836,23 @@
         "pct_u19": 79.5,
         "min_por_anio": {
           "2005": {
-            "n": 12,
+            "n": 1,
+            "n_apariciones": 12,
             "prom": 17.72
           },
           "2006": {
-            "n": 11,
+            "n": 1,
+            "n_apariciones": 11,
             "prom": 23.56
           },
           "2007": {
-            "n": 76,
+            "n": 7,
+            "n_apariciones": 76,
             "prom": 21.04
           },
           "2008": {
-            "n": 13,
+            "n": 2,
+            "n_apariciones": 13,
             "prom": 19.92
           }
         }
@@ -5326,15 +5868,18 @@
         "pct_u19": 94.4,
         "min_por_anio": {
           "2006": {
-            "n": 5,
+            "n": 2,
+            "n_apariciones": 5,
             "prom": 23.74
           },
           "2007": {
-            "n": 62,
+            "n": 7,
+            "n_apariciones": 62,
             "prom": 24.01
           },
           "2008": {
-            "n": 23,
+            "n": 4,
+            "n_apariciones": 23,
             "prom": 22.07
           }
         }
@@ -5350,15 +5895,18 @@
         "pct_u19": 47.0,
         "min_por_anio": {
           "2005": {
-            "n": 30,
+            "n": 3,
+            "n_apariciones": 30,
             "prom": 17.25
           },
           "2006": {
-            "n": 31,
+            "n": 5,
+            "n_apariciones": 31,
             "prom": 20.61
           },
           "2008": {
-            "n": 54,
+            "n": 5,
+            "n_apariciones": 54,
             "prom": 16.95
           }
         }
@@ -5374,19 +5922,23 @@
         "pct_u19": 46.0,
         "min_por_anio": {
           "2005": {
-            "n": 17,
+            "n": 2,
+            "n_apariciones": 17,
             "prom": 19.86
           },
           "2006": {
-            "n": 37,
+            "n": 4,
+            "n_apariciones": 37,
             "prom": 21.01
           },
           "2007": {
-            "n": 13,
+            "n": 2,
+            "n_apariciones": 13,
             "prom": 22.45
           },
           "2008": {
-            "n": 33,
+            "n": 3,
+            "n_apariciones": 33,
             "prom": 12.87
           }
         }
@@ -5402,19 +5954,23 @@
         "pct_u19": 53.2,
         "min_por_anio": {
           "2005": {
-            "n": 34,
+            "n": 3,
+            "n_apariciones": 34,
             "prom": 24.11
           },
           "2006": {
-            "n": 31,
+            "n": 3,
+            "n_apariciones": 31,
             "prom": 22.83
           },
           "2007": {
-            "n": 37,
+            "n": 5,
+            "n_apariciones": 37,
             "prom": 12.79
           },
           "2008": {
-            "n": 37,
+            "n": 5,
+            "n_apariciones": 37,
             "prom": 11.19
           }
         }
@@ -5430,19 +5986,23 @@
         "pct_u19": 65.3,
         "min_por_anio": {
           "2005": {
-            "n": 14,
+            "n": 2,
+            "n_apariciones": 14,
             "prom": 18.5
           },
           "2006": {
-            "n": 28,
+            "n": 3,
+            "n_apariciones": 28,
             "prom": 20.1
           },
           "2007": {
-            "n": 35,
+            "n": 4,
+            "n_apariciones": 35,
             "prom": 17.15
           },
           "2008": {
-            "n": 44,
+            "n": 5,
+            "n_apariciones": 44,
             "prom": 17.22
           }
         }
@@ -5459,18 +6019,22 @@
         "min_por_anio": {
           "2005": {
             "n": 1,
+            "n_apariciones": 1,
             "prom": 17.98
           },
           "2006": {
-            "n": 31,
+            "n": 3,
+            "n_apariciones": 31,
             "prom": 21.04
           },
           "2007": {
-            "n": 26,
+            "n": 4,
+            "n_apariciones": 26,
             "prom": 26.92
           },
           "2008": {
-            "n": 39,
+            "n": 5,
+            "n_apariciones": 39,
             "prom": 21.12
           }
         }
@@ -5486,15 +6050,18 @@
         "pct_u19": 86.4,
         "min_por_anio": {
           "2005": {
-            "n": 9,
+            "n": 1,
+            "n_apariciones": 9,
             "prom": 31.93
           },
           "2007": {
-            "n": 12,
+            "n": 2,
+            "n_apariciones": 12,
             "prom": 32.25
           },
           "2008": {
-            "n": 45,
+            "n": 6,
+            "n_apariciones": 45,
             "prom": 24.51
           }
         }
@@ -5510,19 +6077,23 @@
         "pct_u19": 68.0,
         "min_por_anio": {
           "2005": {
-            "n": 12,
+            "n": 2,
+            "n_apariciones": 12,
             "prom": 30.46
           },
           "2006": {
-            "n": 27,
+            "n": 3,
+            "n_apariciones": 27,
             "prom": 12.58
           },
           "2007": {
-            "n": 41,
+            "n": 4,
+            "n_apariciones": 41,
             "prom": 19.33
           },
           "2008": {
-            "n": 42,
+            "n": 4,
+            "n_apariciones": 42,
             "prom": 22.09
           }
         }
@@ -5538,19 +6109,23 @@
         "pct_u19": 27.7,
         "min_por_anio": {
           "2005": {
-            "n": 21,
+            "n": 2,
+            "n_apariciones": 21,
             "prom": 19.65
           },
           "2006": {
-            "n": 65,
+            "n": 7,
+            "n_apariciones": 65,
             "prom": 20.85
           },
           "2007": {
-            "n": 11,
+            "n": 1,
+            "n_apariciones": 11,
             "prom": 18.76
           },
           "2008": {
-            "n": 22,
+            "n": 2,
+            "n_apariciones": 22,
             "prom": 17.62
           }
         }
@@ -5566,19 +6141,23 @@
         "pct_u19": 25.4,
         "min_por_anio": {
           "2005": {
-            "n": 31,
+            "n": 3,
+            "n_apariciones": 31,
             "prom": 23.67
           },
           "2006": {
-            "n": 63,
+            "n": 7,
+            "n_apariciones": 63,
             "prom": 16.42
           },
           "2007": {
-            "n": 22,
+            "n": 2,
+            "n_apariciones": 22,
             "prom": 21.37
           },
           "2008": {
-            "n": 10,
+            "n": 1,
+            "n_apariciones": 10,
             "prom": 16.16
           }
         }
@@ -5594,15 +6173,18 @@
         "pct_u19": 15.7,
         "min_por_anio": {
           "2005": {
-            "n": 16,
+            "n": 2,
+            "n_apariciones": 16,
             "prom": 24.33
           },
           "2006": {
-            "n": 43,
+            "n": 5,
+            "n_apariciones": 43,
             "prom": 20.69
           },
           "2008": {
-            "n": 11,
+            "n": 1,
+            "n_apariciones": 11,
             "prom": 28.25
           }
         }
@@ -5618,15 +6200,18 @@
         "pct_u19": 79.6,
         "min_por_anio": {
           "2005": {
-            "n": 19,
+            "n": 2,
+            "n_apariciones": 19,
             "prom": 31.27
           },
           "2007": {
-            "n": 45,
+            "n": 5,
+            "n_apariciones": 45,
             "prom": 20.27
           },
           "2008": {
-            "n": 29,
+            "n": 3,
+            "n_apariciones": 29,
             "prom": 19.84
           }
         }
@@ -5642,19 +6227,23 @@
         "pct_u19": 42.1,
         "min_por_anio": {
           "2005": {
-            "n": 50,
+            "n": 5,
+            "n_apariciones": 50,
             "prom": 22.03
           },
           "2006": {
-            "n": 5,
+            "n": 1,
+            "n_apariciones": 5,
             "prom": 12.87
           },
           "2007": {
-            "n": 16,
+            "n": 2,
+            "n_apariciones": 16,
             "prom": 13.83
           },
           "2008": {
-            "n": 24,
+            "n": 2,
+            "n_apariciones": 24,
             "prom": 17.84
           }
         }
@@ -5670,19 +6259,23 @@
         "pct_u19": 30.0,
         "min_por_anio": {
           "2005": {
-            "n": 31,
+            "n": 3,
+            "n_apariciones": 31,
             "prom": 24.89
           },
           "2006": {
-            "n": 32,
+            "n": 4,
+            "n_apariciones": 32,
             "prom": 16.24
           },
           "2007": {
-            "n": 24,
+            "n": 3,
+            "n_apariciones": 24,
             "prom": 22.07
           },
           "2008": {
-            "n": 3,
+            "n": 1,
+            "n_apariciones": 3,
             "prom": 9.39
           }
         }
@@ -5698,15 +6291,18 @@
         "pct_u19": 75.0,
         "min_por_anio": {
           "2006": {
-            "n": 24,
+            "n": 2,
+            "n_apariciones": 24,
             "prom": 20.62
           },
           "2007": {
-            "n": 32,
+            "n": 3,
+            "n_apariciones": 32,
             "prom": 17.25
           },
           "2008": {
-            "n": 40,
+            "n": 5,
+            "n_apariciones": 40,
             "prom": 20.17
           }
         }
@@ -5722,19 +6318,23 @@
         "pct_u19": 41.6,
         "min_por_anio": {
           "2005": {
-            "n": 17,
+            "n": 2,
+            "n_apariciones": 17,
             "prom": 26.56
           },
           "2006": {
-            "n": 35,
+            "n": 5,
+            "n_apariciones": 35,
             "prom": 29.58
           },
           "2007": {
-            "n": 16,
+            "n": 3,
+            "n_apariciones": 16,
             "prom": 11.59
           },
           "2008": {
-            "n": 21,
+            "n": 5,
+            "n_apariciones": 21,
             "prom": 14.99
           }
         }
@@ -5750,19 +6350,23 @@
         "pct_u19": 47.6,
         "min_por_anio": {
           "2005": {
-            "n": 39,
+            "n": 4,
+            "n_apariciones": 39,
             "prom": 24.12
           },
           "2006": {
-            "n": 5,
+            "n": 1,
+            "n_apariciones": 5,
             "prom": 26.71
           },
           "2007": {
-            "n": 20,
+            "n": 2,
+            "n_apariciones": 20,
             "prom": 18.07
           },
           "2008": {
-            "n": 20,
+            "n": 3,
+            "n_apariciones": 20,
             "prom": 22.41
           }
         }
@@ -5778,19 +6382,23 @@
         "pct_u19": 53.0,
         "min_por_anio": {
           "2005": {
-            "n": 34,
+            "n": 4,
+            "n_apariciones": 34,
             "prom": 29.79
           },
           "2006": {
-            "n": 20,
+            "n": 2,
+            "n_apariciones": 20,
             "prom": 24.97
           },
           "2007": {
-            "n": 19,
+            "n": 2,
+            "n_apariciones": 19,
             "prom": 13.1
           },
           "2008": {
-            "n": 42,
+            "n": 4,
+            "n_apariciones": 42,
             "prom": 14.74
           }
         }
@@ -5806,15 +6414,18 @@
         "pct_u19": 76.9,
         "min_por_anio": {
           "2005": {
-            "n": 24,
+            "n": 4,
+            "n_apariciones": 24,
             "prom": 20.54
           },
           "2007": {
-            "n": 40,
+            "n": 4,
+            "n_apariciones": 40,
             "prom": 15.38
           },
           "2008": {
-            "n": 40,
+            "n": 4,
+            "n_apariciones": 40,
             "prom": 21.64
           }
         }
@@ -5830,19 +6441,23 @@
         "pct_u19": 57.3,
         "min_por_anio": {
           "2005": {
-            "n": 17,
+            "n": 2,
+            "n_apariciones": 17,
             "prom": 17.97
           },
           "2006": {
-            "n": 44,
+            "n": 5,
+            "n_apariciones": 44,
             "prom": 17.34
           },
           "2007": {
-            "n": 28,
+            "n": 5,
+            "n_apariciones": 28,
             "prom": 11.36
           },
           "2008": {
-            "n": 54,
+            "n": 6,
+            "n_apariciones": 54,
             "prom": 18.77
           }
         }
@@ -5858,15 +6473,18 @@
         "pct_u19": 19.5,
         "min_por_anio": {
           "2005": {
-            "n": 41,
+            "n": 6,
+            "n_apariciones": 41,
             "prom": 14.8
           },
           "2006": {
-            "n": 54,
+            "n": 6,
+            "n_apariciones": 54,
             "prom": 18.31
           },
           "2007": {
-            "n": 23,
+            "n": 2,
+            "n_apariciones": 23,
             "prom": 30.13
           }
         }
@@ -5882,19 +6500,23 @@
         "pct_u19": 34.4,
         "min_por_anio": {
           "2005": {
-            "n": 49,
+            "n": 6,
+            "n_apariciones": 49,
             "prom": 22.33
           },
           "2006": {
-            "n": 14,
+            "n": 2,
+            "n_apariciones": 14,
             "prom": 19.49
           },
           "2007": {
-            "n": 17,
+            "n": 3,
+            "n_apariciones": 17,
             "prom": 17.07
           },
           "2008": {
-            "n": 16,
+            "n": 3,
+            "n_apariciones": 16,
             "prom": 17.57
           }
         }
@@ -5910,19 +6532,23 @@
         "pct_u19": 52.8,
         "min_por_anio": {
           "2005": {
-            "n": 16,
+            "n": 2,
+            "n_apariciones": 16,
             "prom": 19.6
           },
           "2006": {
-            "n": 26,
+            "n": 3,
+            "n_apariciones": 26,
             "prom": 21.01
           },
           "2007": {
-            "n": 38,
+            "n": 4,
+            "n_apariciones": 38,
             "prom": 23.09
           },
           "2008": {
-            "n": 9,
+            "n": 1,
+            "n_apariciones": 9,
             "prom": 17.74
           }
         }
@@ -5938,11 +6564,13 @@
         "pct_u19": 74.2,
         "min_por_anio": {
           "2006": {
-            "n": 25,
+            "n": 3,
+            "n_apariciones": 25,
             "prom": 22.66
           },
           "2008": {
-            "n": 72,
+            "n": 10,
+            "n_apariciones": 72,
             "prom": 19.26
           }
         }
@@ -5958,19 +6586,23 @@
         "pct_u19": 72.4,
         "min_por_anio": {
           "2005": {
-            "n": 10,
+            "n": 1,
+            "n_apariciones": 10,
             "prom": 26.59
           },
           "2006": {
-            "n": 14,
+            "n": 2,
+            "n_apariciones": 14,
             "prom": 20.27
           },
           "2007": {
-            "n": 38,
+            "n": 5,
+            "n_apariciones": 38,
             "prom": 22.8
           },
           "2008": {
-            "n": 25,
+            "n": 3,
+            "n_apariciones": 25,
             "prom": 21.37
           }
         }
@@ -5986,19 +6618,23 @@
         "pct_u19": 39.0,
         "min_por_anio": {
           "2005": {
-            "n": 23,
+            "n": 2,
+            "n_apariciones": 23,
             "prom": 26.06
           },
           "2006": {
-            "n": 52,
+            "n": 5,
+            "n_apariciones": 52,
             "prom": 20.33
           },
           "2007": {
-            "n": 30,
+            "n": 3,
+            "n_apariciones": 30,
             "prom": 17.15
           },
           "2008": {
-            "n": 18,
+            "n": 2,
+            "n_apariciones": 18,
             "prom": 12.72
           }
         }
@@ -6014,15 +6650,18 @@
         "pct_u19": 69.9,
         "min_por_anio": {
           "2006": {
-            "n": 22,
+            "n": 3,
+            "n_apariciones": 22,
             "prom": 20.86
           },
           "2007": {
-            "n": 17,
+            "n": 2,
+            "n_apariciones": 17,
             "prom": 30.04
           },
           "2008": {
-            "n": 34,
+            "n": 4,
+            "n_apariciones": 34,
             "prom": 27.12
           }
         }
@@ -6038,19 +6677,23 @@
         "pct_u19": 22.9,
         "min_por_anio": {
           "2005": {
-            "n": 39,
+            "n": 4,
+            "n_apariciones": 39,
             "prom": 24.15
           },
           "2006": {
-            "n": 15,
+            "n": 2,
+            "n_apariciones": 15,
             "prom": 17.44
           },
           "2007": {
-            "n": 5,
+            "n": 1,
+            "n_apariciones": 5,
             "prom": 16.22
           },
           "2008": {
-            "n": 11,
+            "n": 1,
+            "n_apariciones": 11,
             "prom": 14.39
           }
         }
@@ -6066,15 +6709,18 @@
         "pct_u19": 85.4,
         "min_por_anio": {
           "2006": {
-            "n": 13,
+            "n": 2,
+            "n_apariciones": 13,
             "prom": 12.64
           },
           "2007": {
-            "n": 11,
+            "n": 1,
+            "n_apariciones": 11,
             "prom": 32.96
           },
           "2008": {
-            "n": 65,
+            "n": 8,
+            "n_apariciones": 65,
             "prom": 20.95
           }
         }
@@ -6090,15 +6736,18 @@
         "pct_u19": 70.3,
         "min_por_anio": {
           "2006": {
-            "n": 35,
+            "n": 5,
+            "n_apariciones": 35,
             "prom": 16.62
           },
           "2007": {
-            "n": 68,
+            "n": 8,
+            "n_apariciones": 68,
             "prom": 17.97
           },
           "2008": {
-            "n": 15,
+            "n": 3,
+            "n_apariciones": 15,
             "prom": 13.11
           }
         }
@@ -6114,19 +6763,23 @@
         "pct_u19": 58.9,
         "min_por_anio": {
           "2005": {
-            "n": 20,
+            "n": 2,
+            "n_apariciones": 20,
             "prom": 26.9
           },
           "2006": {
-            "n": 17,
+            "n": 2,
+            "n_apariciones": 17,
             "prom": 23.63
           },
           "2007": {
-            "n": 18,
+            "n": 2,
+            "n_apariciones": 18,
             "prom": 26.89
           },
           "2008": {
-            "n": 35,
+            "n": 4,
+            "n_apariciones": 35,
             "prom": 19.37
           }
         }
@@ -6142,19 +6795,23 @@
         "pct_u19": 51.9,
         "min_por_anio": {
           "2005": {
-            "n": 30,
+            "n": 3,
+            "n_apariciones": 30,
             "prom": 25.76
           },
           "2006": {
-            "n": 22,
+            "n": 3,
+            "n_apariciones": 22,
             "prom": 23.75
           },
           "2007": {
-            "n": 20,
+            "n": 2,
+            "n_apariciones": 20,
             "prom": 10.31
           },
           "2008": {
-            "n": 36,
+            "n": 4,
+            "n_apariciones": 36,
             "prom": 13.54
           }
         }
@@ -6170,19 +6827,23 @@
         "pct_u19": 74.5,
         "min_por_anio": {
           "2005": {
-            "n": 16,
+            "n": 2,
+            "n_apariciones": 16,
             "prom": 28.39
           },
           "2006": {
-            "n": 11,
+            "n": 1,
+            "n_apariciones": 11,
             "prom": 25.22
           },
           "2007": {
-            "n": 18,
+            "n": 2,
+            "n_apariciones": 18,
             "prom": 24.86
           },
           "2008": {
-            "n": 61,
+            "n": 6,
+            "n_apariciones": 61,
             "prom": 13.13
           }
         }
@@ -6198,19 +6859,23 @@
         "pct_u19": 86.5,
         "min_por_anio": {
           "2005": {
-            "n": 10,
+            "n": 1,
+            "n_apariciones": 10,
             "prom": 25.25
           },
           "2006": {
-            "n": 4,
+            "n": 1,
+            "n_apariciones": 4,
             "prom": 24.33
           },
           "2007": {
-            "n": 44,
+            "n": 5,
+            "n_apariciones": 44,
             "prom": 13.62
           },
           "2008": {
-            "n": 46,
+            "n": 6,
+            "n_apariciones": 46,
             "prom": 22.32
           }
         }
@@ -6226,15 +6891,18 @@
         "pct_u19": 57.8,
         "min_por_anio": {
           "2005": {
-            "n": 43,
+            "n": 5,
+            "n_apariciones": 43,
             "prom": 22.93
           },
           "2007": {
-            "n": 26,
+            "n": 3,
+            "n_apariciones": 26,
             "prom": 19.32
           },
           "2008": {
-            "n": 33,
+            "n": 5,
+            "n_apariciones": 33,
             "prom": 15.0
           }
         }
@@ -6250,19 +6918,23 @@
         "pct_u19": 45.7,
         "min_por_anio": {
           "2005": {
-            "n": 32,
+            "n": 3,
+            "n_apariciones": 32,
             "prom": 24.1
           },
           "2006": {
-            "n": 38,
+            "n": 4,
+            "n_apariciones": 38,
             "prom": 15.37
           },
           "2007": {
-            "n": 28,
+            "n": 4,
+            "n_apariciones": 28,
             "prom": 13.4
           },
           "2008": {
-            "n": 31,
+            "n": 6,
+            "n_apariciones": 31,
             "prom": 15.14
           }
         }
@@ -6278,19 +6950,23 @@
         "pct_u19": 76.3,
         "min_por_anio": {
           "2005": {
-            "n": 21,
+            "n": 3,
+            "n_apariciones": 21,
             "prom": 18.85
           },
           "2006": {
-            "n": 6,
+            "n": 1,
+            "n_apariciones": 6,
             "prom": 12.11
           },
           "2007": {
-            "n": 63,
+            "n": 8,
+            "n_apariciones": 63,
             "prom": 18.82
           },
           "2008": {
-            "n": 24,
+            "n": 5,
+            "n_apariciones": 24,
             "prom": 14.41
           }
         }
@@ -6306,19 +6982,23 @@
         "pct_u19": 54.9,
         "min_por_anio": {
           "2005": {
-            "n": 9,
+            "n": 1,
+            "n_apariciones": 9,
             "prom": 25.58
           },
           "2006": {
-            "n": 28,
+            "n": 3,
+            "n_apariciones": 28,
             "prom": 21.38
           },
           "2007": {
-            "n": 28,
+            "n": 4,
+            "n_apariciones": 28,
             "prom": 23.69
           },
           "2008": {
-            "n": 17,
+            "n": 3,
+            "n_apariciones": 17,
             "prom": 19.55
           }
         }
@@ -6334,19 +7014,23 @@
         "pct_u19": 50.4,
         "min_por_anio": {
           "2005": {
-            "n": 44,
+            "n": 4,
+            "n_apariciones": 44,
             "prom": 21.28
           },
           "2006": {
-            "n": 17,
+            "n": 2,
+            "n_apariciones": 17,
             "prom": 28.32
           },
           "2007": {
-            "n": 52,
+            "n": 5,
+            "n_apariciones": 52,
             "prom": 16.14
           },
           "2008": {
-            "n": 10,
+            "n": 1,
+            "n_apariciones": 10,
             "prom": 14.32
           }
         }
@@ -6362,19 +7046,23 @@
         "pct_u19": 53.3,
         "min_por_anio": {
           "2005": {
-            "n": 9,
+            "n": 1,
+            "n_apariciones": 9,
             "prom": 13.15
           },
           "2006": {
-            "n": 40,
+            "n": 4,
+            "n_apariciones": 40,
             "prom": 23.34
           },
           "2007": {
-            "n": 18,
+            "n": 3,
+            "n_apariciones": 18,
             "prom": 19.12
           },
           "2008": {
-            "n": 38,
+            "n": 4,
+            "n_apariciones": 38,
             "prom": 21.29
           }
         }
@@ -6390,19 +7078,23 @@
         "pct_u19": 60.8,
         "min_por_anio": {
           "2005": {
-            "n": 10,
+            "n": 1,
+            "n_apariciones": 10,
             "prom": 12.07
           },
           "2006": {
-            "n": 30,
+            "n": 4,
+            "n_apariciones": 30,
             "prom": 25.51
           },
           "2007": {
-            "n": 48,
+            "n": 5,
+            "n_apariciones": 48,
             "prom": 23.13
           },
           "2008": {
-            "n": 14,
+            "n": 2,
+            "n_apariciones": 14,
             "prom": 20.11
           }
         }
@@ -6418,19 +7110,23 @@
         "pct_u19": 85.8,
         "min_por_anio": {
           "2005": {
-            "n": 11,
+            "n": 1,
+            "n_apariciones": 11,
             "prom": 22.0
           },
           "2006": {
-            "n": 7,
+            "n": 1,
+            "n_apariciones": 7,
             "prom": 16.57
           },
           "2007": {
-            "n": 18,
+            "n": 2,
+            "n_apariciones": 18,
             "prom": 25.86
           },
           "2008": {
-            "n": 91,
+            "n": 10,
+            "n_apariciones": 91,
             "prom": 18.82
           }
         }
@@ -6446,15 +7142,18 @@
         "pct_u19": 39.1,
         "min_por_anio": {
           "2005": {
-            "n": 56,
+            "n": 9,
+            "n_apariciones": 56,
             "prom": 21.73
           },
           "2006": {
-            "n": 11,
+            "n": 1,
+            "n_apariciones": 11,
             "prom": 11.61
           },
           "2007": {
-            "n": 43,
+            "n": 4,
+            "n_apariciones": 43,
             "prom": 23.7
           }
         }
@@ -6470,19 +7169,23 @@
         "pct_u19": 28.1,
         "min_por_anio": {
           "2005": {
-            "n": 40,
+            "n": 4,
+            "n_apariciones": 40,
             "prom": 27.18
           },
           "2006": {
-            "n": 24,
+            "n": 3,
+            "n_apariciones": 24,
             "prom": 16.38
           },
           "2007": {
-            "n": 15,
+            "n": 2,
+            "n_apariciones": 15,
             "prom": 20.21
           },
           "2008": {
-            "n": 10,
+            "n": 1,
+            "n_apariciones": 10,
             "prom": 21.64
           }
         }
@@ -6498,15 +7201,18 @@
         "pct_u19": 88.8,
         "min_por_anio": {
           "2006": {
-            "n": 9,
+            "n": 1,
+            "n_apariciones": 9,
             "prom": 19.74
           },
           "2007": {
-            "n": 26,
+            "n": 3,
+            "n_apariciones": 26,
             "prom": 24.18
           },
           "2008": {
-            "n": 45,
+            "n": 6,
+            "n_apariciones": 45,
             "prom": 23.7
           }
         }
@@ -6522,19 +7228,23 @@
         "pct_u19": 50.5,
         "min_por_anio": {
           "2005": {
-            "n": 35,
+            "n": 4,
+            "n_apariciones": 35,
             "prom": 15.31
           },
           "2006": {
-            "n": 18,
+            "n": 2,
+            "n_apariciones": 18,
             "prom": 21.65
           },
           "2007": {
-            "n": 30,
+            "n": 3,
+            "n_apariciones": 30,
             "prom": 22.04
           },
           "2008": {
-            "n": 24,
+            "n": 5,
+            "n_apariciones": 24,
             "prom": 11.32
           }
         }
@@ -6550,19 +7260,23 @@
         "pct_u19": 70.5,
         "min_por_anio": {
           "2005": {
-            "n": 28,
+            "n": 3,
+            "n_apariciones": 28,
             "prom": 22.59
           },
           "2006": {
-            "n": 16,
+            "n": 2,
+            "n_apariciones": 16,
             "prom": 12.24
           },
           "2007": {
-            "n": 46,
+            "n": 5,
+            "n_apariciones": 46,
             "prom": 21.35
           },
           "2008": {
-            "n": 59,
+            "n": 8,
+            "n_apariciones": 59,
             "prom": 13.38
           }
         }
@@ -6578,19 +7292,23 @@
         "pct_u19": 54.2,
         "min_por_anio": {
           "2005": {
-            "n": 18,
+            "n": 2,
+            "n_apariciones": 18,
             "prom": 18.87
           },
           "2006": {
-            "n": 26,
+            "n": 4,
+            "n_apariciones": 26,
             "prom": 15.29
           },
           "2007": {
-            "n": 18,
+            "n": 2,
+            "n_apariciones": 18,
             "prom": 20.6
           },
           "2008": {
-            "n": 34,
+            "n": 4,
+            "n_apariciones": 34,
             "prom": 19.84
           }
         }
@@ -6606,19 +7324,23 @@
         "pct_u19": 45.8,
         "min_por_anio": {
           "2005": {
-            "n": 18,
+            "n": 2,
+            "n_apariciones": 18,
             "prom": 23.49
           },
           "2006": {
-            "n": 8,
+            "n": 1,
+            "n_apariciones": 8,
             "prom": 32.26
           },
           "2007": {
-            "n": 14,
+            "n": 3,
+            "n_apariciones": 14,
             "prom": 26.83
           },
           "2008": {
-            "n": 8,
+            "n": 3,
+            "n_apariciones": 8,
             "prom": 15.67
           }
         }
@@ -6634,19 +7356,23 @@
         "pct_u19": 48.3,
         "min_por_anio": {
           "2005": {
-            "n": 36,
+            "n": 4,
+            "n_apariciones": 36,
             "prom": 26.69
           },
           "2006": {
-            "n": 10,
+            "n": 1,
+            "n_apariciones": 10,
             "prom": 17.21
           },
           "2007": {
-            "n": 30,
+            "n": 3,
+            "n_apariciones": 30,
             "prom": 23.19
           },
           "2008": {
-            "n": 13,
+            "n": 2,
+            "n_apariciones": 13,
             "prom": 15.11
           }
         }
@@ -6662,19 +7388,23 @@
         "pct_u19": 69.9,
         "min_por_anio": {
           "2005": {
-            "n": 22,
+            "n": 2,
+            "n_apariciones": 22,
             "prom": 22.89
           },
           "2006": {
-            "n": 12,
+            "n": 2,
+            "n_apariciones": 12,
             "prom": 30.95
           },
           "2007": {
-            "n": 47,
+            "n": 5,
+            "n_apariciones": 47,
             "prom": 18.2
           },
           "2008": {
-            "n": 32,
+            "n": 3,
+            "n_apariciones": 32,
             "prom": 14.21
           }
         }
@@ -6690,15 +7420,18 @@
         "pct_u19": 18.9,
         "min_por_anio": {
           "2005": {
-            "n": 41,
+            "n": 5,
+            "n_apariciones": 41,
             "prom": 19.91
           },
           "2006": {
-            "n": 36,
+            "n": 4,
+            "n_apariciones": 36,
             "prom": 21.85
           },
           "2008": {
-            "n": 18,
+            "n": 3,
+            "n_apariciones": 18,
             "prom": 16.52
           }
         }
@@ -6714,19 +7447,23 @@
         "pct_u19": 39.3,
         "min_por_anio": {
           "2005": {
-            "n": 41,
+            "n": 4,
+            "n_apariciones": 41,
             "prom": 22.97
           },
           "2006": {
-            "n": 27,
+            "n": 3,
+            "n_apariciones": 27,
             "prom": 27.82
           },
           "2007": {
-            "n": 32,
+            "n": 3,
+            "n_apariciones": 32,
             "prom": 15.77
           },
           "2008": {
-            "n": 12,
+            "n": 1,
+            "n_apariciones": 12,
             "prom": 16.85
           }
         }
@@ -6742,19 +7479,23 @@
         "pct_u19": 67.6,
         "min_por_anio": {
           "2005": {
-            "n": 11,
+            "n": 3,
+            "n_apariciones": 11,
             "prom": 16.54
           },
           "2006": {
-            "n": 11,
+            "n": 2,
+            "n_apariciones": 11,
             "prom": 28.72
           },
           "2007": {
-            "n": 15,
+            "n": 2,
+            "n_apariciones": 15,
             "prom": 28.95
           },
           "2008": {
-            "n": 31,
+            "n": 5,
+            "n_apariciones": 31,
             "prom": 19.93
           }
         }
@@ -6770,19 +7511,23 @@
         "pct_u19": 41.3,
         "min_por_anio": {
           "2005": {
-            "n": 27,
+            "n": 3,
+            "n_apariciones": 27,
             "prom": 22.93
           },
           "2006": {
-            "n": 44,
+            "n": 6,
+            "n_apariciones": 44,
             "prom": 18.38
           },
           "2007": {
-            "n": 6,
+            "n": 2,
+            "n_apariciones": 6,
             "prom": 6.77
           },
           "2008": {
-            "n": 44,
+            "n": 5,
+            "n_apariciones": 44,
             "prom": 14.79
           }
         }

@@ -291,9 +291,13 @@ def _cargar_cumplimiento() -> dict:
         mpa = {}
         for y, d in (e.get("min_por_anio") or {}).items():
             if isinstance(d, dict):
-                mpa[str(y)] = {"prom": d.get("prom"), "n": d.get("n") or 0}
+                mpa[str(y)] = {
+                    "prom": d.get("prom"),
+                    "n": d.get("n") or 0,  # jugadores únicos
+                    "n_apariciones": d.get("n_apariciones") or d.get("n") or 0,
+                }
             else:
-                mpa[str(y)] = {"prom": d, "n": 0}
+                mpa[str(y)] = {"prom": d, "n": 0, "n_apariciones": 0}
         equipos_u21.append(
             {
                 "equipo": e.get("equipo") or "",
@@ -1184,7 +1188,7 @@ _HTML_TEMPLATE = """<!DOCTYPE html>
       <h2 class="sec-title">Minutos por año de nacimiento (U19–U21)</h2>
       <p class="sec-lead">
         Promedio de minutos por aparición en acta, por equipo y año de nacimiento
-        (2005–2008), con la cantidad de jugadores entre paréntesis.
+        (2005–2008); entre paréntesis, jugadores únicos de ese año.
         U19 = 2007–2008. Filtrá por nivel: la fila TOTAL recalcula el promedio
         ponderado del filtro. Corte <span id="u21-fecha">—</span>.
       </p>
@@ -2447,24 +2451,29 @@ function renderU21(nivelActivo) {
     ? equipos.slice()
     : equipos.filter(e => e.nivel === nivelActivo);
 
-  // Promedio ponderado por apariciones (n) del filtro activo.
+  // Promedio ponderado por apariciones; (n) = jugadores únicos del filtro.
   const tot = {};
   for (const y of anios) {
-    let suma = 0, n = 0;
+    let suma = 0, apar = 0, jug = 0;
     for (const e of filtrados) {
       const d = (e.min_por_anio || {})[y];
-      if (!d || d.prom == null || !d.n) continue;
-      suma += Number(d.prom) * Number(d.n);
-      n += Number(d.n);
+      if (!d || d.prom == null) continue;
+      const na = Number(d.n_apariciones != null ? d.n_apariciones : d.n) || 0;
+      const nj = Number(d.n) || 0;
+      if (na > 0) {
+        suma += Number(d.prom) * na;
+        apar += na;
+      }
+      jug += nj;
     }
-    tot[y] = { prom: n ? suma / n : null, n };
+    tot[y] = { prom: apar ? suma / apar : null, n: jug };
   }
 
   const nota = document.getElementById("u21-nota");
   if (nota) {
     nota.textContent = filtrados.length.toLocaleString("es-AR") +
       " equipos" + (nivelActivo === "TODOS" ? " · todos los niveles" : " · " + nivelActivo) +
-      ". Formato: minutos promedio (jugadores en acta con ese año).";
+      ". Formato: minutos promedio (jugadores únicos con ese año de nacimiento).";
   }
 
   const head = ["Equipo", "Nivel", ...anios.map(y => y + (y === "2007" || y === "2008" ? " · U19" : "")), "PJ"];
