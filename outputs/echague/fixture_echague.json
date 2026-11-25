@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-11-25T02:18:46-03:00",
+  "generated_at": "2026-11-25T17:26:20-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -7507,32 +7507,6 @@
     },
     {
       "source": "febamba_ges",
-      "external_id": "hcBIEAfOi1jF3k4LenJtJw",
-      "fecha": "2026-11-29",
-      "hora": "10:00",
-      "tira": "FLEX",
-      "categoria": "U13 Flex",
-      "rival": "HARRODS GATH Y CHAVES",
-      "localia": "Visitante",
-      "direccion": "Virrey Del Pino 1480, 1426",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
-      "external_id": "yHK1auI_8BH4drAMwB2BdA",
-      "fecha": "2026-11-29",
-      "hora": "11:00",
-      "tira": "—",
-      "categoria": "U15 Fem",
-      "rival": "ARGENTINOS JUNIORS",
-      "localia": "Local",
-      "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
       "external_id": "g9rkQgPrnla6GqBXDcDsNQ",
       "fecha": "2026-11-29",
       "hora": "11:30",
@@ -7541,6 +7515,19 @@
       "rival": "HARRODS",
       "localia": "Visitante",
       "direccion": "",
+      "resultado": "",
+      "espacio": null
+    },
+    {
+      "source": "febamba_ges",
+      "external_id": "yHK1auI_8BH4drAMwB2BdA",
+      "fecha": "2026-11-29",
+      "hora": "12:00",
+      "tira": "—",
+      "categoria": "U15 Fem",
+      "rival": "ARGENTINOS JUNIORS",
+      "localia": "Local",
+      "direccion": "Portela 836, CABA (CP 1406)",
       "resultado": "",
       "espacio": null
     },
