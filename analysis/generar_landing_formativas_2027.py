@@ -1184,8 +1184,9 @@ _HTML_TEMPLATE = """<!DOCTYPE html>
       <h2 class="sec-title">Minutos por año de nacimiento (U19–U21)</h2>
       <p class="sec-lead">
         Promedio de minutos por aparición en acta, por equipo y año de nacimiento
-        (2005–2008). U19 = 2007–2008. Filtrá por nivel: la fila TOTAL recalcula
-        el promedio ponderado del filtro. Corte <span id="u21-fecha">—</span>.
+        (2005–2008), con la cantidad de jugadores entre paréntesis.
+        U19 = 2007–2008. Filtrá por nivel: la fila TOTAL recalcula el promedio
+        ponderado del filtro. Corte <span id="u21-fecha">—</span>.
       </p>
       <div class="nv-tabs" id="u21-nivel-tabs" role="tablist" aria-label="Niveles U21"></div>
       <p class="st-meta" id="u21-nota"></p>
@@ -2411,9 +2412,14 @@ function renderCumplimiento(catActiva) {
   renderCumplimiento("U9");
 })();
 
-function u21FmtMin(v) {
-  if (v == null || v === "") return "—";
-  return Number(v).toLocaleString("es-AR", { minimumFractionDigits: 1, maximumFractionDigits: 1 });
+function u21FmtMin(prom, n) {
+  if (prom == null || prom === "") return "—";
+  const p = Number(prom).toLocaleString("es-AR", {
+    minimumFractionDigits: 1,
+    maximumFractionDigits: 1,
+  });
+  if (n == null || n === "" || Number(n) <= 0) return p;
+  return `${p} (${Number(n).toLocaleString("es-AR")})`;
 }
 function renderU21(nivelActivo) {
   const u21 = (CUMPLIMIENTO && CUMPLIMIENTO.u21) || {};
@@ -2451,21 +2457,21 @@ function renderU21(nivelActivo) {
       suma += Number(d.prom) * Number(d.n);
       n += Number(d.n);
     }
-    tot[y] = n ? suma / n : null;
+    tot[y] = { prom: n ? suma / n : null, n };
   }
 
   const nota = document.getElementById("u21-nota");
   if (nota) {
     nota.textContent = filtrados.length.toLocaleString("es-AR") +
       " equipos" + (nivelActivo === "TODOS" ? " · todos los niveles" : " · " + nivelActivo) +
-      ". Minutos = promedio por aparición en acta.";
+      ". Formato: minutos promedio (jugadores en acta con ese año).";
   }
 
   const head = ["Equipo", "Nivel", ...anios.map(y => y + (y === "2007" || y === "2008" ? " · U19" : "")), "PJ"];
   const body = filtrados.map(e => {
     const cells = anios.map(y => {
       const d = (e.min_por_anio || {})[y];
-      return `<td class="num">${u21FmtMin(d && d.prom)}</td>`;
+      return `<td class="num">${u21FmtMin(d && d.prom, d && d.n)}</td>`;
     }).join("");
     return `<tr>
       <td class="club">${e.equipo || ""}</td>
@@ -2474,7 +2480,10 @@ function renderU21(nivelActivo) {
       <td class="num">${e.partidos || 0}</td>
     </tr>`;
   }).join("");
-  const totCells = anios.map(y => `<td class="num">${u21FmtMin(tot[y])}</td>`).join("");
+  const totCells = anios.map(y => {
+    const t = tot[y] || {};
+    return `<td class="num">${u21FmtMin(t.prom, t.n)}</td>`;
+  }).join("");
   const wrap = document.getElementById("u21-tabla");
   if (!wrap) return;
   wrap.innerHTML = `
