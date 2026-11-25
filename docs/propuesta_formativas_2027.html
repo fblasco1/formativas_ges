@@ -422,7 +422,6 @@
     table.cum-table td.bad { color: #b91c1c; font-weight: 600; }
     table.cum-table td.mid { color: #b45309; font-weight: 600; }
     table.cum-table td.ok { color: #047857; }
-    #cum-tabs { margin: 0 0 12px; }
     .nac-wrap thead th { position: sticky; top: 0; z-index: 1; }
     table.mock tr.total td { background: #f1f5f9; font-weight: 700; position: sticky; bottom: 0; }
 
@@ -806,9 +805,6 @@
       <div id="cum-matriz-prom"></div>
       <h3 style="margin:32px 0 10px;font-size:1.05rem">% que no completa · por nivel</h3>
       <div id="cum-matriz"></div>
-      <h3 style="margin:32px 0 10px;font-size:1.05rem">Detalle por categoría</h3>
-      <div class="nv-tabs" id="cum-tabs" role="tablist" aria-label="Categorías"></div>
-      <div id="cum-detalle"></div>
       <p class="st-meta" style="margin-top:18px">
         Minutos (10–20 / ≥10) y cuartos consecutivos o Q1+Q2 son reglas de juego aparte:
         no restan del cupo de 12. Informe técnico:
@@ -1894,10 +1890,6 @@ function cumNum(v) {
   if (v == null || v === "") return "—";
   return String(v).replace(".", ",");
 }
-function cumShare(part, whole) {
-  if (!whole) return "—";
-  return cumPct((100 * part) / whole);
-}
 function cumClsProm(v, cat) {
   if (v == null || v === "") return "";
   const n = Number(v);
@@ -1909,7 +1901,7 @@ function cumClsProm(v, cat) {
   if (n <= 15) return "ok";
   return "mid";
 }
-function renderCumplimiento(catActiva) {
+function renderCumplimiento() {
   const data = CUMPLIMIENTO || {};
   const cats = data.cats || [];
   const totales = data.totales || {};
@@ -1975,80 +1967,10 @@ function renderCumplimiento(catActiva) {
         </table>
       </div>`;
   }
-
-  const cat = catActiva || cats[0] || "U9";
-  const tabs = document.getElementById("cum-tabs");
-  if (tabs && !tabs.dataset.ready) {
-    tabs.innerHTML = cats.map(c =>
-      `<button type="button" role="tab" data-cat="${c}" class="${c === cat ? "active" : ""}">${c}</button>`
-    ).join("");
-    tabs.dataset.ready = "1";
-    tabs.addEventListener("click", (ev) => {
-      const b = ev.target.closest("button[data-cat]");
-      if (!b) return;
-      tabs.querySelectorAll("button").forEach(x => x.classList.toggle("active", x === b));
-      renderCumplimiento(b.getAttribute("data-cat"));
-    });
-  }
-  const filas = (data.tablas[cat] || []).filter(f => f.nivel !== "Otro");
-  const regla = (data.reglas || {})[
-    cat === "U9" || cat === "U11" || cat === "U13" ? "U9/U11/U13" : cat
-  ] || "";
-  const det = document.getElementById("cum-detalle");
-  if (!det) return;
-  const esMini = cat === "U9" || cat === "U11" || cat === "U13";
-  const headD = (
-    esMini
-      ? ["Nivel", "Equipo-partidos", "Prom. en acta", "% &lt;12", "% 12–15", "% &gt;15",
-         "% no completa", "% viola min", "% viola cuartos"]
-      : ["Nivel", "Equipo-partidos", "Prom. en acta", "% no completa",
-         "% &lt;12 cupo", "Share &lt;12", "% mala comp.",
-         "% viola min", "% viola cuartos"]
-  ).map((h, i) => `<th class="${i ? "num" : ""}">${h}</th>`).join("");
-  const bodyD = filas.map(f => {
-    const strong = f.nivel === "TOTAL" ? " class='total'" : "";
-    if (esMini) {
-      return `<tr${strong}>
-        <td>${f.nivel}</td>
-        <td class="num">${(f.ep || 0).toLocaleString("es-AR")}</td>
-        <td class="num">${cumNum(f.prom_acta)}</td>
-        <td class="num">${cumPct(f.pct_lt12)}</td>
-        <td class="num">${cumPct(f.pct_12_15)}</td>
-        <td class="num">${cumPct(f.pct_gt15)}</td>
-        <td class="num">${cumPct(f.pct)}</td>
-        <td class="num">${cumPct(f.pct_min)}</td>
-        <td class="num">${cumPct(f.pct_cua)}</td>
-      </tr>`;
-    }
-    return `<tr${strong}>
-      <td>${f.nivel}</td>
-      <td class="num">${(f.ep || 0).toLocaleString("es-AR")}</td>
-      <td class="num">${cumNum(f.prom_acta)}</td>
-      <td class="num">${cumPct(f.pct)}</td>
-      <td class="num">${cumPct(f.pct_m12)}</td>
-      <td class="num">${cumShare(f.m12, f.nc)}</td>
-      <td class="num">${cumPct(f.pct_comp)}</td>
-      <td class="num">${cumPct(f.pct_min)}</td>
-      <td class="num">${cumPct(f.pct_cua)}</td>
-    </tr>`;
-  }).join("");
-  det.innerHTML = `
-    <p class="st-meta" style="margin:8px 0 12px">${regla}</p>
-    <div class="mock-table-wrap" style="overflow:auto">
-      <table class="mock cum-table">
-        <thead><tr>${headD}</tr></thead>
-        <tbody>${bodyD}</tbody>
-      </table>
-    </div>
-    <p class="st-meta" style="margin-top:10px">${
-      esMini
-        ? "Bandas de tamaño de acta: &lt;12 (no completa), 12–15 (rango permitido), &gt;15 (sobre el máximo)."
-        : "Share = proporción dentro de los equipo-partidos que no completan plantilla."
-    }</p>`;
 }
 (function initCumplimiento() {
   if (!CUMPLIMIENTO || !document.getElementById("cumplimiento")) return;
-  renderCumplimiento("U9");
+  renderCumplimiento();
 })();
 
 function u21FmtMin(prom, n) {
