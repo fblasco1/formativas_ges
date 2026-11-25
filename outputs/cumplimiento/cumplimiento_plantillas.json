@@ -1,5 +1,5 @@
 {
-  "fecha": "24/11/2026",
+  "fecha": "25/11/2026",
   "n_partidos": 15660,
   "n_evaluaciones": 13862,
   "solo_segunda": false,
@@ -1616,1105 +1616,6265 @@
         "min_promedio": 18.93
       }
     },
+    "minutos_por_anio_por_nivel": {
+      "Nivel 3": {
+        "2005": {
+          "n": 847,
+          "prom": 22.07
+        },
+        "2006": {
+          "n": 786,
+          "prom": 20.28
+        },
+        "2007": {
+          "n": 1018,
+          "prom": 20.08
+        },
+        "2008": {
+          "n": 1125,
+          "prom": 18.0
+        }
+      },
+      "Nivel 2": {
+        "2005": {
+          "n": 1235,
+          "prom": 22.9
+        },
+        "2006": {
+          "n": 1410,
+          "prom": 21.0
+        },
+        "2007": {
+          "n": 1404,
+          "prom": 19.49
+        },
+        "2008": {
+          "n": 1685,
+          "prom": 18.37
+        }
+      },
+      "Nivel 1": {
+        "2005": {
+          "n": 815,
+          "prom": 23.71
+        },
+        "2006": {
+          "n": 1001,
+          "prom": 21.71
+        },
+        "2007": {
+          "n": 915,
+          "prom": 20.16
+        },
+        "2008": {
+          "n": 1241,
+          "prom": 19.57
+        }
+      },
+      "Interconferencia A": {
+        "2005": {
+          "n": 661,
+          "prom": 23.4
+        },
+        "2006": {
+          "n": 875,
+          "prom": 23.04
+        },
+        "2007": {
+          "n": 913,
+          "prom": 20.68
+        },
+        "2008": {
+          "n": 1061,
+          "prom": 19.67
+        }
+      },
+      "Interconferencia B": {
+        "2005": {
+          "n": 804,
+          "prom": 23.62
+        },
+        "2006": {
+          "n": 876,
+          "prom": 21.42
+        },
+        "2007": {
+          "n": 1248,
+          "prom": 19.71
+        },
+        "2008": {
+          "n": 970,
+          "prom": 19.34
+        }
+      },
+      "Otro": {
+        "2005": {
+          "n": 126,
+          "prom": 23.87
+        },
+        "2006": {
+          "n": 152,
+          "prom": 21.87
+        },
+        "2007": {
+          "n": 156,
+          "prom": 19.92
+        },
+        "2008": {
+          "n": 124,
+          "prom": 18.83
+        }
+      }
+    },
+    "anios": [
+      2005,
+      2006,
+      2007,
+      2008
+    ],
+    "niveles": [
+      "Interconferencia A",
+      "Interconferencia B",
+      "Nivel 1",
+      "Nivel 2",
+      "Nivel 3",
+      "Otro"
+    ],
     "equipos": [
       {
-        "equipo": "ALL BOYS NEGRO",
-        "partidos": 12,
-        "prom_jugadores_por_partido": 11.9,
-        "prom_u19_2007_2008": 6.8,
-        "prom_2005_2006": 5.1,
-        "pct_u19": 57.3,
-        "min_por_anio": {
-          "2005": 17.97,
-          "2006": 17.34,
-          "2007": 11.36,
-          "2008": 18.77
-        }
-      },
-      {
-        "equipo": "RAMOS MEJIA LTC",
-        "partidos": 10,
-        "prom_jugadores_por_partido": 11.9,
-        "prom_u19_2007_2008": 5.4,
-        "prom_2005_2006": 5.3,
-        "pct_u19": 50.5,
-        "min_por_anio": {
-          "2005": 15.31,
-          "2006": 21.65,
-          "2007": 22.04,
-          "2008": 11.32
-        }
-      },
-      {
-        "equipo": "VICTORIA BLANCO",
-        "partidos": 11,
-        "prom_jugadores_por_partido": 11.9,
-        "prom_u19_2007_2008": 4.5,
-        "prom_2005_2006": 6.5,
-        "pct_u19": 41.3,
-        "min_por_anio": {
-          "2005": 22.93,
-          "2006": 18.38,
-          "2007": 6.77,
-          "2008": 14.79
-        }
-      },
-      {
-        "equipo": "CLUB GEI GRIS(C)",
-        "partidos": 10,
-        "prom_jugadores_por_partido": 11.8,
-        "prom_u19_2007_2008": 8.3,
-        "prom_2005_2006": 3.5,
-        "pct_u19": 70.3,
-        "min_por_anio": {
-          "2006": 16.62,
-          "2007": 17.97,
-          "2008": 13.11
-        }
-      },
-      {
-        "equipo": "COMUNICACIONES NEGRO",
-        "partidos": 12,
-        "prom_jugadores_por_partido": 11.8,
-        "prom_u19_2007_2008": 8.0,
-        "prom_2005_2006": 2.8,
-        "pct_u19": 74.4,
-        "min_por_anio": {
-          "2005": 23.22,
-          "2006": 20.1,
-          "2007": 16.68,
-          "2008": 16.33
-        }
-      },
-      {
-        "equipo": "PEDRO ECHAGUE AMARILLO",
-        "partidos": 12,
-        "prom_jugadores_por_partido": 11.8,
-        "prom_u19_2007_2008": 6.2,
-        "prom_2005_2006": 5.4,
-        "pct_u19": 53.2,
-        "min_por_anio": {
-          "2005": 24.11,
-          "2006": 22.83,
-          "2007": 12.79,
-          "2008": 11.19
-        }
-      },
-      {
-        "equipo": "GIMNASIA Y ESGRIMA LA PLATA B",
-        "partidos": 11,
-        "prom_jugadores_por_partido": 11.7,
-        "prom_u19_2007_2008": 5.4,
-        "prom_2005_2006": 6.4,
-        "pct_u19": 45.7,
-        "min_por_anio": {
-          "2005": 24.1,
-          "2006": 15.37,
-          "2007": 13.4,
-          "2008": 15.14
-        }
-      },
-      {
-        "equipo": "TEMPERLEY",
-        "partidos": 14,
-        "prom_jugadores_por_partido": 11.7,
-        "prom_u19_2007_2008": 6.9,
-        "prom_2005_2006": 4.0,
-        "pct_u19": 63.2,
-        "min_por_anio": {
-          "2005": 11.07,
-          "2006": 25.49,
-          "2007": 19.13,
-          "2008": 16.11
-        }
-      },
-      {
-        "equipo": "CIUDADELA NORTE",
-        "partidos": 12,
-        "prom_jugadores_por_partido": 11.6,
-        "prom_u19_2007_2008": 4.5,
-        "prom_2005_2006": 4.2,
-        "pct_u19": 51.4,
-        "min_por_anio": {
-          "2005": 24.76,
-          "2006": 20.06,
-          "2007": 16.78,
-          "2008": 14.61
-        }
-      },
-      {
-        "equipo": "ESTUDIANTIL PORTENO B",
-        "partidos": 12,
-        "prom_jugadores_por_partido": 11.6,
-        "prom_u19_2007_2008": 6.6,
-        "prom_2005_2006": 2.9,
-        "pct_u19": 69.3,
-        "min_por_anio": {
-          "2006": 19.57,
-          "2007": 17.06,
-          "2008": 19.4
-        }
-      },
-      {
-        "equipo": "PLATENSE A",
-        "partidos": 14,
-        "prom_jugadores_por_partido": 11.6,
-        "prom_u19_2007_2008": 9.2,
-        "prom_2005_2006": 1.9,
-        "pct_u19": 83.2,
-        "min_por_anio": {
-          "2005": 18.39,
-          "2006": 19.75,
-          "2007": 13.6,
-          "2008": 18.22
-        }
-      },
-      {
-        "equipo": "CENTRO ESPANOL",
-        "partidos": 12,
-        "prom_jugadores_por_partido": 11.5,
-        "prom_u19_2007_2008": 8.2,
-        "prom_2005_2006": 3.2,
-        "pct_u19": 72.1,
-        "min_por_anio": {
-          "2005": 19.53,
-          "2006": 12.14,
-          "2007": 17.98,
-          "2008": 16.45
-        }
-      },
-      {
-        "equipo": "FERROCARRIL OESTE VERDE",
-        "partidos": 17,
-        "prom_jugadores_por_partido": 11.5,
-        "prom_u19_2007_2008": 6.0,
-        "prom_2005_2006": 2.9,
-        "pct_u19": 67.5,
-        "min_por_anio": {
-          "2005": 19.38,
-          "2006": 18.6,
-          "2007": 18.57,
-          "2008": 18.8
-        }
-      },
-      {
-        "equipo": "ITALIANO B",
-        "partidos": 12,
-        "prom_jugadores_por_partido": 11.5,
-        "prom_u19_2007_2008": 8.1,
-        "prom_2005_2006": 3.4,
-        "pct_u19": 70.3,
-        "min_por_anio": {
-          "2005": 11.74,
-          "2006": 19.25,
-          "2007": 15.97,
-          "2008": 17.71
-        }
-      },
-      {
-        "equipo": "SAN LORENZO AZUL",
-        "partidos": 18,
-        "prom_jugadores_por_partido": 11.5,
-        "prom_u19_2007_2008": 5.1,
-        "prom_2005_2006": 6.1,
-        "pct_u19": 45.5,
-        "min_por_anio": {
-          "2005": 19.84,
-          "2006": 19.34,
-          "2007": 22.77,
-          "2008": 12.32
-        }
-      },
-      {
-        "equipo": "SAN LORENZO ROJO B",
-        "partidos": 13,
-        "prom_jugadores_por_partido": 11.5,
-        "prom_u19_2007_2008": 8.1,
-        "prom_2005_2006": 3.4,
-        "pct_u19": 70.5,
-        "min_por_anio": {
-          "2005": 22.59,
-          "2006": 12.24,
-          "2007": 21.35,
-          "2008": 13.38
-        }
-      },
-      {
-        "equipo": "CLUB GEI BLANCO(B)",
-        "partidos": 11,
-        "prom_jugadores_por_partido": 11.4,
-        "prom_u19_2007_2008": 3.6,
-        "prom_2005_2006": 7.3,
-        "pct_u19": 33.3,
-        "min_por_anio": {
-          "2005": 14.07,
-          "2006": 19.15,
-          "2007": 15.81,
-          "2008": 20.9
-        }
-      },
-      {
-        "equipo": "DEFENSORES DE SANTOS LUGARES",
-        "partidos": 12,
-        "prom_jugadores_por_partido": 11.4,
-        "prom_u19_2007_2008": 9.7,
-        "prom_2005_2006": 1.8,
-        "pct_u19": 84.7,
-        "min_por_anio": {
-          "2005": 8.12,
-          "2006": 21.86,
-          "2007": 17.52,
-          "2008": 17.84
-        }
-      },
-      {
-        "equipo": "GUILLON BASQUET",
-        "partidos": 12,
-        "prom_jugadores_por_partido": 11.4,
-        "prom_u19_2007_2008": 5.4,
-        "prom_2005_2006": 4.5,
-        "pct_u19": 54.6,
-        "min_por_anio": {
-          "2005": 18.28,
-          "2006": 25.72,
-          "2007": 8.88,
-          "2008": 15.03
-        }
-      },
-      {
-        "equipo": "HURACAN DE SAN JUSTO B",
-        "partidos": 10,
-        "prom_jugadores_por_partido": 11.4,
-        "prom_u19_2007_2008": 8.7,
-        "prom_2005_2006": 2.7,
-        "pct_u19": 76.3,
-        "min_por_anio": {
-          "2005": 18.85,
-          "2006": 12.11,
-          "2007": 18.82,
-          "2008": 14.41
-        }
-      },
-      {
-        "equipo": "MUNICIPALIDAD DE HURLINGHAM",
-        "partidos": 12,
-        "prom_jugadores_por_partido": 11.4,
-        "prom_u19_2007_2008": 8.3,
-        "prom_2005_2006": 2.8,
-        "pct_u19": 75.2,
-        "min_por_anio": {
-          "2005": 13.22,
-          "2006": 16.83,
-          "2007": 19.58,
-          "2008": 17.37
-        }
-      },
-      {
-        "equipo": "VICTORIA NEGRO",
-        "partidos": 14,
-        "prom_jugadores_por_partido": 11.4,
-        "prom_u19_2007_2008": 4.8,
-        "prom_2005_2006": 3.6,
-        "pct_u19": 56.8,
-        "min_por_anio": {
-          "2005": 16.85,
-          "2006": 20.72,
-          "2007": 22.64,
-          "2008": 18.45
-        }
-      },
-      {
-        "equipo": "COMUNICACIONES AMARILLO",
-        "partidos": 14,
-        "prom_jugadores_por_partido": 11.3,
-        "prom_u19_2007_2008": 6.1,
-        "prom_2005_2006": 1.0,
-        "pct_u19": 85.9,
-        "min_por_anio": {
-          "2006": 34.48,
-          "2007": 19.25,
-          "2008": 17.63
-        }
-      },
-      {
-        "equipo": "COOPERARIOS DE QUILMES",
-        "partidos": 12,
-        "prom_jugadores_por_partido": 11.3,
-        "prom_u19_2007_2008": 3.8,
-        "prom_2005_2006": 7.6,
-        "pct_u19": 33.1,
-        "min_por_anio": {
-          "2005": 23.68,
-          "2006": 16.18,
-          "2007": 10.3,
-          "2008": 13.02
-        }
-      },
-      {
-        "equipo": "INDEPENDIENTE DE BURZACO",
-        "partidos": 14,
-        "prom_jugadores_por_partido": 11.3,
-        "prom_u19_2007_2008": 3.4,
-        "prom_2005_2006": 7.3,
-        "pct_u19": 32.0,
-        "min_por_anio": {
-          "2005": 12.05,
-          "2006": 18.11,
-          "2007": 23.47,
-          "2008": 14.83
-        }
-      },
-      {
-        "equipo": "PLATENSE B",
-        "partidos": 11,
-        "prom_jugadores_por_partido": 11.3,
-        "prom_u19_2007_2008": 7.2,
-        "prom_2005_2006": 3.8,
-        "pct_u19": 65.3,
-        "min_por_anio": {
-          "2005": 18.5,
-          "2006": 20.1,
-          "2007": 17.15,
-          "2008": 17.22
-        }
-      },
-      {
-        "equipo": "CLUB CEPA",
-        "partidos": 11,
-        "prom_jugadores_por_partido": 11.2,
-        "prom_u19_2007_2008": 0.9,
-        "prom_2005_2006": 7.7,
-        "pct_u19": 10.5,
-        "min_por_anio": {
-          "2005": 23.2,
-          "2006": 20.08,
-          "2007": 16.2
-        }
-      },
-      {
-        "equipo": "DEFENSORES DE GLEW",
-        "partidos": 12,
-        "prom_jugadores_por_partido": 11.2,
-        "prom_u19_2007_2008": 4.3,
-        "prom_2005_2006": 6.5,
-        "pct_u19": 40.0,
-        "min_por_anio": {
-          "2005": 22.11,
-          "2006": 21.58,
-          "2007": 15.72,
-          "2008": 9.19
-        }
-      },
-      {
-        "equipo": "ITALIANO",
-        "partidos": 15,
-        "prom_jugadores_por_partido": 11.2,
-        "prom_u19_2007_2008": 4.1,
-        "prom_2005_2006": 6.2,
-        "pct_u19": 40.0,
-        "min_por_anio": {
-          "2005": 26.67,
-          "2006": 16.29,
-          "2007": 8.6,
-          "2008": 10.63
-        }
-      },
-      {
-        "equipo": "JUVENTUD UNIDA",
-        "partidos": 12,
-        "prom_jugadores_por_partido": 11.2,
-        "prom_u19_2007_2008": 5.4,
-        "prom_2005_2006": 2.5,
-        "pct_u19": 68.4,
-        "min_por_anio": {
-          "2006": 23.13,
-          "2007": 16.77,
-          "2008": 17.87
-        }
-      },
-      {
-        "equipo": "PAMPERO",
-        "partidos": 12,
-        "prom_jugadores_por_partido": 11.2,
-        "prom_u19_2007_2008": 3.8,
-        "prom_2005_2006": 4.5,
-        "pct_u19": 46.0,
-        "min_por_anio": {
-          "2005": 19.86,
-          "2006": 21.01,
-          "2007": 22.45,
-          "2008": 12.87
-        }
-      },
-      {
-        "equipo": "ALL BOYS SAAVEDRA",
-        "partidos": 12,
-        "prom_jugadores_por_partido": 11.1,
-        "prom_u19_2007_2008": 1.9,
-        "prom_2005_2006": 7.9,
-        "pct_u19": 19.5,
-        "min_por_anio": {
-          "2005": 14.8,
-          "2006": 18.31,
-          "2007": 30.13
-        }
-      },
-      {
-        "equipo": "C.A.S.A PADUA B",
-        "partidos": 12,
-        "prom_jugadores_por_partido": 11.1,
-        "prom_u19_2007_2008": 5.8,
-        "prom_2005_2006": 4.8,
-        "pct_u19": 54.3,
-        "min_por_anio": {
-          "2005": 22.07,
-          "2006": 16.52,
-          "2007": 16.56,
-          "2008": 24.8
-        }
-      },
-      {
-        "equipo": "FERROCARRIL OESTE BLANCO",
-        "partidos": 14,
-        "prom_jugadores_por_partido": 11.1,
-        "prom_u19_2007_2008": 4.6,
-        "prom_2005_2006": 6.3,
-        "pct_u19": 42.5,
-        "min_por_anio": {
-          "2005": 20.17,
-          "2006": 19.16,
-          "2007": 17.68,
-          "2008": 13.27
-        }
-      },
-      {
-        "equipo": "GEBA",
-        "partidos": 12,
-        "prom_jugadores_por_partido": 11.1,
-        "prom_u19_2007_2008": 2.9,
-        "prom_2005_2006": 7.0,
-        "pct_u19": 29.4,
-        "min_por_anio": {
-          "2005": 16.37,
-          "2006": 20.98,
-          "2007": 17.8,
-          "2008": 13.74
-        }
-      },
-      {
-        "equipo": "IMPERIO BLANCO A",
-        "partidos": 17,
-        "prom_jugadores_por_partido": 11.1,
-        "prom_u19_2007_2008": 5.8,
-        "prom_2005_2006": 5.4,
-        "pct_u19": 51.9,
-        "min_por_anio": {
-          "2005": 16.11,
-          "2006": 24.88,
-          "2007": 18.02,
-          "2008": 11.44
-        }
-      },
-      {
-        "equipo": "INDEPENDIENTE",
-        "partidos": 15,
-        "prom_jugadores_por_partido": 11.1,
-        "prom_u19_2007_2008": 5.5,
-        "prom_2005_2006": 4.6,
-        "pct_u19": 54.6,
-        "min_por_anio": {
-          "2005": 23.69,
-          "2006": 14.14,
-          "2007": 18.51,
-          "2008": 12.6
-        }
-      },
-      {
-        "equipo": "ALL BOYS BLANCO",
-        "partidos": 12,
-        "prom_jugadores_por_partido": 11.0,
-        "prom_u19_2007_2008": 5.1,
-        "prom_2005_2006": 5.8,
-        "pct_u19": 46.6,
-        "min_por_anio": {
-          "2005": 24.19,
-          "2006": 17.19,
-          "2007": 17.39,
-          "2008": 13.23
-        }
-      },
-      {
-        "equipo": "ATENEO POPULAR VERSAILLES",
-        "partidos": 15,
-        "prom_jugadores_por_partido": 11.0,
-        "prom_u19_2007_2008": 2.1,
-        "prom_2005_2006": 6.1,
-        "pct_u19": 25.2,
-        "min_por_anio": {
-          "2005": 21.49,
-          "2006": 20.23,
-          "2007": 16.71,
-          "2008": 10.35
-        }
-      },
-      {
-        "equipo": "DEPORTIVO CROVARA A",
-        "partidos": 12,
-        "prom_jugadores_por_partido": 11.0,
-        "prom_u19_2007_2008": 3.9,
-        "prom_2005_2006": 4.2,
-        "pct_u19": 48.5,
-        "min_por_anio": {
-          "2005": 23.68,
-          "2006": 22.37,
-          "2007": 20.88,
-          "2008": 16.34
-        }
-      },
-      {
-        "equipo": "DEPORTIVO MORON B",
-        "partidos": 10,
-        "prom_jugadores_por_partido": 11.0,
-        "prom_u19_2007_2008": 9.0,
-        "prom_2005_2006": 1.4,
-        "pct_u19": 86.5,
-        "min_por_anio": {
-          "2005": 25.25,
-          "2006": 24.33,
-          "2007": 13.62,
-          "2008": 22.32
-        }
-      },
-      {
-        "equipo": "HURACAN DE SAN JUSTO A",
-        "partidos": 14,
-        "prom_jugadores_por_partido": 11.0,
-        "prom_u19_2007_2008": 5.6,
-        "prom_2005_2006": 4.6,
-        "pct_u19": 55.2,
-        "min_por_anio": {
-          "2005": 18.64,
-          "2006": 18.2,
-          "2007": 19.89,
-          "2008": 12.61
-        }
-      },
-      {
-        "equipo": "INSTITUCION SARMIENTO BLANCO B",
-        "partidos": 10,
-        "prom_jugadores_por_partido": 11.0,
-        "prom_u19_2007_2008": 5.7,
-        "prom_2005_2006": 5.1,
-        "pct_u19": 52.8,
-        "min_por_anio": {
-          "2005": 30.66,
-          "2006": 18.98,
-          "2007": 12.99,
-          "2008": 15.69
-        }
-      },
-      {
-        "equipo": "NOLTING",
-        "partidos": 12,
-        "prom_jugadores_por_partido": 11.0,
-        "prom_u19_2007_2008": 4.5,
-        "prom_2005_2006": 5.1,
-        "pct_u19": 47.0,
-        "min_por_anio": {
-          "2005": 17.25,
-          "2006": 20.61,
-          "2008": 16.95
-        }
-      },
-      {
+        "clave": "3 DE FEBRERO A BLANCO",
         "equipo": "3 DE FEBRERO BLANCO A",
+        "nivel": "Interconferencia A",
         "partidos": 13,
         "prom_jugadores_por_partido": 10.9,
         "prom_u19_2007_2008": 4.5,
         "prom_2005_2006": 2.2,
         "pct_u19": 67.8,
         "min_por_anio": {
-          "2006": 17.71,
-          "2007": 17.73,
-          "2008": 17.38
+          "2006": {
+            "n": 28,
+            "prom": 17.71
+          },
+          "2007": {
+            "n": 37,
+            "prom": 17.73
+          },
+          "2008": {
+            "n": 22,
+            "prom": 17.38
+          }
         }
       },
       {
-        "equipo": "BERAZATEGUI",
+        "clave": "ALEJANDRO KORN",
+        "equipo": "ALEJANDRO KORN",
+        "nivel": "Interconferencia A",
         "partidos": 13,
-        "prom_jugadores_por_partido": 10.9,
-        "prom_u19_2007_2008": 7.1,
-        "prom_2005_2006": 3.5,
-        "pct_u19": 67.2,
-        "min_por_anio": {
-          "2005": 24.84,
-          "2006": 17.51,
-          "2007": 18.24,
-          "2008": 17.31
-        }
-      },
-      {
-        "equipo": "DEFENSORES DE HURLINGHAM BLANCO",
-        "partidos": 10,
-        "prom_jugadores_por_partido": 10.9,
-        "prom_u19_2007_2008": 5.6,
-        "prom_2005_2006": 5.2,
-        "pct_u19": 51.9,
-        "min_por_anio": {
-          "2005": 25.76,
-          "2006": 23.75,
-          "2007": 10.31,
-          "2008": 13.54
-        }
-      },
-      {
-        "equipo": "EL TALAR",
-        "partidos": 13,
-        "prom_jugadores_por_partido": 10.9,
-        "prom_u19_2007_2008": 6.1,
-        "prom_2005_2006": 3.9,
-        "pct_u19": 60.8,
-        "min_por_anio": {
-          "2005": 23.08,
-          "2006": 17.52,
-          "2007": 20.63,
-          "2008": 20.24
-        }
-      },
-      {
-        "equipo": "MORON BLANCO B",
-        "partidos": 12,
-        "prom_jugadores_por_partido": 10.9,
-        "prom_u19_2007_2008": 4.1,
-        "prom_2005_2006": 6.5,
-        "pct_u19": 38.6,
-        "min_por_anio": {
-          "2005": 18.33,
-          "2006": 17.29,
-          "2007": 15.44,
-          "2008": 16.57
-        }
-      },
-      {
-        "equipo": "SPORTIVO ALSINA",
-        "partidos": 12,
-        "prom_jugadores_por_partido": 10.9,
-        "prom_u19_2007_2008": 3.3,
+        "prom_jugadores_por_partido": 10.0,
+        "prom_u19_2007_2008": 4.3,
         "prom_2005_2006": 4.6,
-        "pct_u19": 42.1,
+        "pct_u19": 48.3,
         "min_por_anio": {
-          "2005": 22.03,
-          "2006": 12.87,
-          "2007": 13.83,
-          "2008": 17.84
+          "2005": {
+            "n": 44,
+            "prom": 27.76
+          },
+          "2006": {
+            "n": 16,
+            "prom": 15.58
+          },
+          "2007": {
+            "n": 30,
+            "prom": 17.09
+          },
+          "2008": {
+            "n": 26,
+            "prom": 19.61
+          }
         }
       },
       {
-        "equipo": "UNION VILLEGAS",
+        "clave": "ARGENTINO DE CASTELAR NORTE A",
+        "equipo": "ARGENTINO DE CASTELAR NORTE A",
+        "nivel": "Interconferencia A",
         "partidos": 14,
-        "prom_jugadores_por_partido": 10.9,
-        "prom_u19_2007_2008": 5.6,
-        "prom_2005_2006": 1.7,
-        "pct_u19": 76.7,
+        "prom_jugadores_por_partido": 9.6,
+        "prom_u19_2007_2008": 6.9,
+        "prom_2005_2006": 1.9,
+        "pct_u19": 78.2,
         "min_por_anio": {
-          "2005": 24.19,
-          "2006": 16.09,
-          "2007": 12.83,
-          "2008": 22.73
+          "2006": {
+            "n": 27,
+            "prom": 27.4
+          },
+          "2007": {
+            "n": 73,
+            "prom": 20.78
+          },
+          "2008": {
+            "n": 24,
+            "prom": 19.41
+          }
         }
       },
       {
+        "clave": "BOCA JUNIORS A AZUL",
         "equipo": "BOCA JUNIORS AZUL A",
+        "nivel": "Interconferencia A",
         "partidos": 13,
         "prom_jugadores_por_partido": 10.8,
         "prom_u19_2007_2008": 5.6,
         "prom_2005_2006": 1.3,
         "pct_u19": 81.1,
         "min_por_anio": {
-          "2006": 23.84,
-          "2007": 15.43,
-          "2008": 21.06
+          "2006": {
+            "n": 17,
+            "prom": 23.84
+          },
+          "2007": {
+            "n": 6,
+            "prom": 15.43
+          },
+          "2008": {
+            "n": 67,
+            "prom": 21.06
+          }
         }
       },
       {
-        "equipo": "COPELLO",
-        "partidos": 11,
-        "prom_jugadores_por_partido": 10.8,
-        "prom_u19_2007_2008": 6.8,
-        "prom_2005_2006": 4.0,
-        "pct_u19": 63.0,
-        "min_por_anio": {
-          "2005": 7.08,
-          "2006": 23.37,
-          "2007": 16.48,
-          "2008": 18.82
-        }
-      },
-      {
-        "equipo": "DEPORTIVO CROVARA B",
-        "partidos": 13,
-        "prom_jugadores_por_partido": 10.8,
-        "prom_u19_2007_2008": 6.1,
-        "prom_2005_2006": 2.1,
-        "pct_u19": 74.5,
-        "min_por_anio": {
-          "2005": 28.39,
-          "2006": 25.22,
-          "2007": 24.86,
-          "2008": 13.13
-        }
-      },
-      {
-        "equipo": "IMPERIO NEGRO B",
-        "partidos": 12,
-        "prom_jugadores_por_partido": 10.8,
-        "prom_u19_2007_2008": 7.8,
-        "prom_2005_2006": 2.9,
-        "pct_u19": 72.9,
-        "min_por_anio": {
-          "2005": 26.81,
-          "2006": 20.98,
-          "2007": 26.16,
-          "2008": 12.24
-        }
-      },
-      {
-        "equipo": "RACING CLUB",
-        "partidos": 16,
-        "prom_jugadores_por_partido": 10.8,
-        "prom_u19_2007_2008": 5.9,
-        "prom_2005_2006": 4.0,
-        "pct_u19": 59.7,
-        "min_por_anio": {
-          "2005": 14.79,
-          "2006": 25.6,
-          "2007": 16.5,
-          "2008": 16.52
-        }
-      },
-      {
-        "equipo": "ARGENTINOS JUNIORS",
-        "partidos": 12,
-        "prom_jugadores_por_partido": 10.6,
-        "prom_u19_2007_2008": 3.4,
-        "prom_2005_2006": 2.9,
-        "pct_u19": 53.9,
-        "min_por_anio": {
-          "2005": 21.82,
-          "2006": 25.6,
-          "2007": 22.63,
-          "2008": 21.08
-        }
-      },
-      {
-        "equipo": "BANCO NACION AZUL A",
-        "partidos": 12,
-        "prom_jugadores_por_partido": 10.6,
-        "prom_u19_2007_2008": 3.8,
-        "prom_2005_2006": 3.7,
-        "pct_u19": 51.1,
-        "min_por_anio": {
-          "2006": 24.71,
-          "2007": 20.35,
-          "2008": 17.05
-        }
-      },
-      {
-        "equipo": "CLARIDAD",
-        "partidos": 17,
-        "prom_jugadores_por_partido": 10.6,
-        "prom_u19_2007_2008": 4.9,
-        "prom_2005_2006": 3.5,
-        "pct_u19": 58.7,
-        "min_por_anio": {
-          "2005": 21.28,
-          "2006": 26.11,
-          "2007": 19.69,
-          "2008": 19.63
-        }
-      },
-      {
-        "equipo": "JOSE HERNANDEZ A",
+        "clave": "CASA PADUA A",
+        "equipo": "C.A.S.A PADUA A",
+        "nivel": "Interconferencia A",
         "partidos": 14,
-        "prom_jugadores_por_partido": 10.6,
-        "prom_u19_2007_2008": 2.7,
-        "prom_2005_2006": 4.3,
-        "pct_u19": 38.8,
+        "prom_jugadores_por_partido": 10.1,
+        "prom_u19_2007_2008": 3.4,
+        "prom_2005_2006": 4.6,
+        "pct_u19": 42.0,
         "min_por_anio": {
-          "2005": 24.97,
-          "2006": 26.61,
-          "2007": 23.46,
-          "2008": 19.68
+          "2005": {
+            "n": 48,
+            "prom": 22.52
+          },
+          "2006": {
+            "n": 17,
+            "prom": 18.64
+          },
+          "2007": {
+            "n": 21,
+            "prom": 20.54
+          },
+          "2008": {
+            "n": 26,
+            "prom": 22.16
+          }
         }
       },
       {
+        "clave": "CAZA Y PESCA A AZUL",
+        "equipo": "CAZA Y PESCA AZUL A",
+        "nivel": "Interconferencia A",
+        "partidos": 13,
+        "prom_jugadores_por_partido": 9.5,
+        "prom_u19_2007_2008": 2.4,
+        "prom_2005_2006": 4.5,
+        "pct_u19": 34.4,
+        "min_por_anio": {
+          "2005": {
+            "n": 12,
+            "prom": 25.63
+          },
+          "2006": {
+            "n": 47,
+            "prom": 23.42
+          },
+          "2007": {
+            "n": 21,
+            "prom": 24.97
+          },
+          "2008": {
+            "n": 10,
+            "prom": 29.92
+          }
+        }
+      },
+      {
+        "clave": "CLUB GEI A AZUL",
+        "equipo": "CLUB GEI AZUL(A)",
+        "nivel": "Interconferencia A",
+        "partidos": 14,
+        "prom_jugadores_por_partido": 9.2,
+        "prom_u19_2007_2008": 5.1,
+        "prom_2005_2006": 2.9,
+        "pct_u19": 63.7,
+        "min_por_anio": {
+          "2005": {
+            "n": 14,
+            "prom": 18.17
+          },
+          "2006": {
+            "n": 27,
+            "prom": 29.55
+          },
+          "2007": {
+            "n": 37,
+            "prom": 20.27
+          },
+          "2008": {
+            "n": 35,
+            "prom": 22.11
+          }
+        }
+      },
+      {
+        "clave": "COMUNICACIONES A AMARILLO",
+        "equipo": "COMUNICACIONES AMARILLO",
+        "nivel": "Interconferencia A",
+        "partidos": 14,
+        "prom_jugadores_por_partido": 11.3,
+        "prom_u19_2007_2008": 6.1,
+        "prom_2005_2006": 1.0,
+        "pct_u19": 85.9,
+        "min_por_anio": {
+          "2006": {
+            "n": 14,
+            "prom": 34.48
+          },
+          "2007": {
+            "n": 36,
+            "prom": 19.25
+          },
+          "2008": {
+            "n": 49,
+            "prom": 17.63
+          }
+        }
+      },
+      {
+        "clave": "DEFENSORES DE HURLINGHAM VERDE",
+        "equipo": "DEFENSORES DE HURLINGHAM VERDE",
+        "nivel": "Interconferencia A",
+        "partidos": 13,
+        "prom_jugadores_por_partido": 9.3,
+        "prom_u19_2007_2008": 5.5,
+        "prom_2005_2006": 2.8,
+        "pct_u19": 66.7,
+        "min_por_anio": {
+          "2005": {
+            "n": 26,
+            "prom": 25.95
+          },
+          "2006": {
+            "n": 10,
+            "prom": 26.0
+          },
+          "2007": {
+            "n": 49,
+            "prom": 23.28
+          },
+          "2008": {
+            "n": 23,
+            "prom": 18.65
+          }
+        }
+      },
+      {
+        "clave": "ESTUDIANTIL PORTENO A",
+        "equipo": "ESTUDIANTIL PORTENO A",
+        "nivel": "Interconferencia A",
+        "partidos": 12,
+        "prom_jugadores_por_partido": 10.1,
+        "prom_u19_2007_2008": 3.8,
+        "prom_2005_2006": 3.4,
+        "pct_u19": 52.9,
+        "min_por_anio": {
+          "2005": {
+            "n": 32,
+            "prom": 24.77
+          },
+          "2006": {
+            "n": 9,
+            "prom": 32.29
+          },
+          "2007": {
+            "n": 22,
+            "prom": 25.04
+          },
+          "2008": {
+            "n": 24,
+            "prom": 15.39
+          }
+        }
+      },
+      {
+        "clave": "FERROCARRIL OESTE VERDE",
+        "equipo": "FERROCARRIL OESTE VERDE",
+        "nivel": "Interconferencia A",
+        "partidos": 14,
+        "prom_jugadores_por_partido": 11.5,
+        "prom_u19_2007_2008": 5.8,
+        "prom_2005_2006": 3.0,
+        "pct_u19": 65.9,
+        "min_por_anio": {
+          "2005": {
+            "n": 15,
+            "prom": 19.38
+          },
+          "2006": {
+            "n": 27,
+            "prom": 18.42
+          },
+          "2007": {
+            "n": 31,
+            "prom": 19.34
+          },
+          "2008": {
+            "n": 50,
+            "prom": 18.66
+          }
+        }
+      },
+      {
+        "clave": "GEVP A BLANCO",
+        "equipo": "GEVP BLANCO A",
+        "nivel": "Interconferencia A",
+        "partidos": 14,
+        "prom_jugadores_por_partido": 9.8,
+        "prom_u19_2007_2008": 4.3,
+        "prom_2005_2006": 3.8,
+        "pct_u19": 53.1,
+        "min_por_anio": {
+          "2005": {
+            "n": 40,
+            "prom": 27.74
+          },
+          "2006": {
+            "n": 13,
+            "prom": 26.08
+          },
+          "2007": {
+            "n": 23,
+            "prom": 12.19
+          },
+          "2008": {
+            "n": 37,
+            "prom": 23.41
+          }
+        }
+      },
+      {
+        "clave": "GIMNASIA Y ESGRIMA DE LOMAS DE ZAMORA",
+        "equipo": "GIMNASIA Y ESGRIMA DE LOMAS DE ZAMORA",
+        "nivel": "Interconferencia A",
+        "partidos": 14,
+        "prom_jugadores_por_partido": 9.6,
+        "prom_u19_2007_2008": 2.7,
+        "prom_2005_2006": 5.8,
+        "pct_u19": 31.9,
+        "min_por_anio": {
+          "2005": {
+            "n": 67,
+            "prom": 23.17
+          },
+          "2006": {
+            "n": 14,
+            "prom": 31.92
+          },
+          "2007": {
+            "n": 13,
+            "prom": 15.59
+          },
+          "2008": {
+            "n": 25,
+            "prom": 22.63
+          }
+        }
+      },
+      {
+        "clave": "GIMNASIA Y ESGRIMA LA A PLATA",
+        "equipo": "GIMNASIA Y ESGRIMA LA PLATA A",
+        "nivel": "Interconferencia A",
+        "partidos": 13,
+        "prom_jugadores_por_partido": 9.4,
+        "prom_u19_2007_2008": 6.9,
+        "prom_2005_2006": 1.0,
+        "pct_u19": 87.4,
+        "min_por_anio": {
+          "2006": {
+            "n": 13,
+            "prom": 29.94
+          },
+          "2007": {
+            "n": 24,
+            "prom": 23.74
+          },
+          "2008": {
+            "n": 66,
+            "prom": 21.95
+          }
+        }
+      },
+      {
+        "clave": "IMPERIO A BLANCO",
+        "equipo": "IMPERIO BLANCO A",
+        "nivel": "Interconferencia A",
+        "partidos": 14,
+        "prom_jugadores_por_partido": 11.1,
+        "prom_u19_2007_2008": 5.7,
+        "prom_2005_2006": 5.4,
+        "pct_u19": 51.6,
+        "min_por_anio": {
+          "2005": {
+            "n": 35,
+            "prom": 16.06
+          },
+          "2006": {
+            "n": 40,
+            "prom": 26.34
+          },
+          "2007": {
+            "n": 50,
+            "prom": 17.48
+          },
+          "2008": {
+            "n": 30,
+            "prom": 11.18
+          }
+        }
+      },
+      {
+        "clave": "INSTITUCION SARMIENTO A VERDE",
+        "equipo": "INSTITUCION SARMIENTO VERDE A",
+        "nivel": "Interconferencia A",
+        "partidos": 14,
+        "prom_jugadores_por_partido": 9.4,
+        "prom_u19_2007_2008": 3.1,
+        "prom_2005_2006": 1.4,
+        "pct_u19": 69.8,
+        "min_por_anio": {
+          "2005": {
+            "n": 19,
+            "prom": 22.57
+          },
+          "2007": {
+            "n": 33,
+            "prom": 28.99
+          },
+          "2008": {
+            "n": 11,
+            "prom": 15.38
+          }
+        }
+      },
+      {
+        "clave": "ITALIANO",
+        "equipo": "ITALIANO",
+        "nivel": "Interconferencia A",
+        "partidos": 14,
+        "prom_jugadores_por_partido": 11.3,
+        "prom_u19_2007_2008": 4.2,
+        "prom_2005_2006": 6.2,
+        "pct_u19": 40.4,
+        "min_por_anio": {
+          "2005": {
+            "n": 47,
+            "prom": 26.48
+          },
+          "2006": {
+            "n": 40,
+            "prom": 16.34
+          },
+          "2007": {
+            "n": 21,
+            "prom": 8.52
+          },
+          "2008": {
+            "n": 38,
+            "prom": 10.72
+          }
+        }
+      },
+      {
+        "clave": "LANUS A",
+        "equipo": "LANUS A",
+        "nivel": "Interconferencia A",
+        "partidos": 14,
+        "prom_jugadores_por_partido": 10.8,
+        "prom_u19_2007_2008": 3.6,
+        "prom_2005_2006": 3.1,
+        "pct_u19": 53.8,
+        "min_por_anio": {
+          "2006": {
+            "n": 43,
+            "prom": 22.93
+          },
+          "2007": {
+            "n": 36,
+            "prom": 22.91
+          },
+          "2008": {
+            "n": 14,
+            "prom": 21.59
+          }
+        }
+      },
+      {
+        "clave": "MONTE GRANDE A ROJO",
         "equipo": "MONTE GRANDE ROJO A",
+        "nivel": "Interconferencia A",
         "partidos": 14,
         "prom_jugadores_por_partido": 10.6,
         "prom_u19_2007_2008": 5.3,
         "prom_2005_2006": 3.4,
         "pct_u19": 60.7,
         "min_por_anio": {
-          "2005": 24.83,
-          "2006": 23.2,
-          "2007": 23.65,
-          "2008": 17.82
+          "2005": {
+            "n": 13,
+            "prom": 24.83
+          },
+          "2006": {
+            "n": 35,
+            "prom": 23.2
+          },
+          "2007": {
+            "n": 13,
+            "prom": 23.65
+          },
+          "2008": {
+            "n": 61,
+            "prom": 17.82
+          }
         }
       },
       {
+        "clave": "MORON A ROJO",
+        "equipo": "MORON ROJO A",
+        "nivel": "Interconferencia A",
+        "partidos": 14,
+        "prom_jugadores_por_partido": 10.3,
+        "prom_u19_2007_2008": 3.3,
+        "prom_2005_2006": 6.5,
+        "pct_u19": 33.6,
+        "min_por_anio": {
+          "2005": {
+            "n": 52,
+            "prom": 18.32
+          },
+          "2006": {
+            "n": 39,
+            "prom": 21.28
+          },
+          "2007": {
+            "n": 27,
+            "prom": 22.95
+          },
+          "2008": {
+            "n": 19,
+            "prom": 18.8
+          }
+        }
+      },
+      {
+        "clave": "OBRAS BASKET",
         "equipo": "OBRAS BASKET",
-        "partidos": 16,
+        "nivel": "Interconferencia A",
+        "partidos": 14,
         "prom_jugadores_por_partido": 10.6,
-        "prom_u19_2007_2008": 5.1,
+        "prom_u19_2007_2008": 4.9,
         "prom_2005_2006": 0.0,
         "pct_u19": 100.0,
         "min_por_anio": {
-          "2007": 16.75,
-          "2008": 24.52
+          "2007": {
+            "n": 37,
+            "prom": 16.78
+          },
+          "2008": {
+            "n": 31,
+            "prom": 23.39
+          }
         }
       },
       {
-        "equipo": "SAN ANDRES",
-        "partidos": 12,
-        "prom_jugadores_por_partido": 10.6,
-        "prom_u19_2007_2008": 2.8,
-        "prom_2005_2006": 7.2,
-        "pct_u19": 27.7,
+        "clave": "PEDRO ECHAGUE AZUL",
+        "equipo": "PEDRO ECHAGUE AZUL",
+        "nivel": "Interconferencia A",
+        "partidos": 14,
+        "prom_jugadores_por_partido": 9.9,
+        "prom_u19_2007_2008": 4.3,
+        "prom_2005_2006": 5.1,
+        "pct_u19": 45.8,
         "min_por_anio": {
-          "2005": 19.65,
-          "2006": 20.85,
-          "2007": 18.76,
-          "2008": 17.62
+          "2005": {
+            "n": 10,
+            "prom": 25.25
+          },
+          "2006": {
+            "n": 61,
+            "prom": 20.65
+          },
+          "2007": {
+            "n": 32,
+            "prom": 22.69
+          },
+          "2008": {
+            "n": 28,
+            "prom": 10.91
+          }
         }
       },
       {
-        "equipo": "ALDO BONZI",
-        "partidos": 12,
-        "prom_jugadores_por_partido": 10.5,
-        "prom_u19_2007_2008": 6.7,
-        "prom_2005_2006": 2.0,
-        "pct_u19": 76.9,
+        "clave": "PINOCHO",
+        "equipo": "PINOCHO",
+        "nivel": "Interconferencia A",
+        "partidos": 13,
+        "prom_jugadores_por_partido": 9.6,
+        "prom_u19_2007_2008": 3.0,
+        "prom_2005_2006": 6.0,
+        "pct_u19": 33.3,
         "min_por_anio": {
-          "2005": 20.54,
-          "2007": 15.38,
-          "2008": 21.64
+          "2005": {
+            "n": 42,
+            "prom": 24.18
+          },
+          "2006": {
+            "n": 36,
+            "prom": 19.43
+          },
+          "2007": {
+            "n": 10,
+            "prom": 19.79
+          },
+          "2008": {
+            "n": 29,
+            "prom": 20.63
+          }
         }
       },
       {
+        "clave": "PRESIDENTE DERQUI",
+        "equipo": "PRESIDENTE DERQUI",
+        "nivel": "Interconferencia A",
+        "partidos": 14,
+        "prom_jugadores_por_partido": 9.1,
+        "prom_u19_2007_2008": 7.1,
+        "prom_2005_2006": 1.6,
+        "pct_u19": 81.1,
+        "min_por_anio": {
+          "2005": {
+            "n": 6,
+            "prom": 19.79
+          },
+          "2006": {
+            "n": 17,
+            "prom": 16.83
+          },
+          "2007": {
+            "n": 20,
+            "prom": 11.39
+          },
+          "2008": {
+            "n": 79,
+            "prom": 26.72
+          }
+        }
+      },
+      {
+        "clave": "QUILMES ATLETICO CLUB",
+        "equipo": "QUILMES ATLETICO CLUB",
+        "nivel": "Interconferencia A",
+        "partidos": 13,
+        "prom_jugadores_por_partido": 9.2,
+        "prom_u19_2007_2008": 1.8,
+        "prom_2005_2006": 4.8,
+        "pct_u19": 27.9,
+        "min_por_anio": {
+          "2005": {
+            "n": 8,
+            "prom": 17.32
+          },
+          "2006": {
+            "n": 54,
+            "prom": 25.4
+          },
+          "2007": {
+            "n": 17,
+            "prom": 14.58
+          },
+          "2008": {
+            "n": 7,
+            "prom": 30.54
+          }
+        }
+      },
+      {
+        "clave": "RIVER PLATE",
+        "equipo": "RIVER PLATE",
+        "nivel": "Interconferencia A",
+        "partidos": 14,
+        "prom_jugadores_por_partido": 9.7,
+        "prom_u19_2007_2008": 3.6,
+        "prom_2005_2006": 4.9,
+        "pct_u19": 42.0,
+        "min_por_anio": {
+          "2005": {
+            "n": 6,
+            "prom": 20.57
+          },
+          "2006": {
+            "n": 63,
+            "prom": 24.19
+          },
+          "2007": {
+            "n": 14,
+            "prom": 23.13
+          },
+          "2008": {
+            "n": 36,
+            "prom": 17.89
+          }
+        }
+      },
+      {
+        "clave": "SAN LORENZO AZUL",
+        "equipo": "SAN LORENZO AZUL",
+        "nivel": "Interconferencia A",
+        "partidos": 14,
+        "prom_jugadores_por_partido": 11.5,
+        "prom_u19_2007_2008": 5.1,
+        "prom_2005_2006": 5.9,
+        "pct_u19": 46.8,
+        "min_por_anio": {
+          "2005": {
+            "n": 20,
+            "prom": 20.19
+          },
+          "2006": {
+            "n": 62,
+            "prom": 19.66
+          },
+          "2007": {
+            "n": 22,
+            "prom": 22.89
+          },
+          "2008": {
+            "n": 50,
+            "prom": 12.6
+          }
+        }
+      },
+      {
+        "clave": "SAN MIGUEL VERDE",
+        "equipo": "SAN MIGUEL VERDE",
+        "nivel": "Interconferencia A",
+        "partidos": 14,
+        "prom_jugadores_por_partido": 9.6,
+        "prom_u19_2007_2008": 6.0,
+        "prom_2005_2006": 1.0,
+        "pct_u19": 85.7,
+        "min_por_anio": {
+          "2006": {
+            "n": 14,
+            "prom": 35.49
+          },
+          "2007": {
+            "n": 26,
+            "prom": 22.69
+          },
+          "2008": {
+            "n": 58,
+            "prom": 23.03
+          }
+        }
+      },
+      {
+        "clave": "SOCBECCAR",
+        "equipo": "SOC.BECCAR",
+        "nivel": "Interconferencia A",
+        "partidos": 14,
+        "prom_jugadores_por_partido": 8.2,
+        "prom_u19_2007_2008": 3.7,
+        "prom_2005_2006": 3.9,
+        "pct_u19": 48.6,
+        "min_por_anio": {
+          "2005": {
+            "n": 26,
+            "prom": 35.2
+          },
+          "2006": {
+            "n": 29,
+            "prom": 19.36
+          },
+          "2007": {
+            "n": 38,
+            "prom": 26.57
+          },
+          "2008": {
+            "n": 14,
+            "prom": 19.39
+          }
+        }
+      },
+      {
+        "clave": "SPORTIVO PILAR",
+        "equipo": "SPORTIVO PILAR",
+        "nivel": "Interconferencia A",
+        "partidos": 13,
+        "prom_jugadores_por_partido": 9.2,
+        "prom_u19_2007_2008": 4.0,
+        "prom_2005_2006": 3.8,
+        "pct_u19": 51.5,
+        "min_por_anio": {
+          "2005": {
+            "n": 28,
+            "prom": 22.85
+          },
+          "2006": {
+            "n": 21,
+            "prom": 29.22
+          },
+          "2007": {
+            "n": 35,
+            "prom": 22.6
+          },
+          "2008": {
+            "n": 17,
+            "prom": 19.66
+          }
+        }
+      },
+      {
+        "clave": "TRISTAN SUAREZ",
+        "equipo": "TRISTAN SUAREZ",
+        "nivel": "Interconferencia A",
+        "partidos": 13,
+        "prom_jugadores_por_partido": 10.0,
+        "prom_u19_2007_2008": 5.5,
+        "prom_2005_2006": 2.8,
+        "pct_u19": 65.7,
+        "min_por_anio": {
+          "2005": {
+            "n": 18,
+            "prom": 13.97
+          },
+          "2006": {
+            "n": 19,
+            "prom": 21.56
+          },
+          "2007": {
+            "n": 36,
+            "prom": 24.37
+          },
+          "2008": {
+            "n": 35,
+            "prom": 20.55
+          }
+        }
+      },
+      {
+        "clave": "VELEZ SARSFIELD A BLANCO",
+        "equipo": "VELEZ SARSFIELD BLANCO - A",
+        "nivel": "Interconferencia A",
+        "partidos": 14,
+        "prom_jugadores_por_partido": 9.6,
+        "prom_u19_2007_2008": 3.1,
+        "prom_2005_2006": 4.0,
+        "pct_u19": 43.4,
+        "min_por_anio": {
+          "2005": {
+            "n": 33,
+            "prom": 24.66
+          },
+          "2006": {
+            "n": 23,
+            "prom": 25.02
+          },
+          "2007": {
+            "n": 23,
+            "prom": 21.16
+          },
+          "2008": {
+            "n": 20,
+            "prom": 21.63
+          }
+        }
+      },
+      {
+        "clave": "3 DE FEBRERO AZUL B",
+        "equipo": "3 DE FEBRERO AZUL B",
+        "nivel": "Interconferencia B",
+        "partidos": 14,
+        "prom_jugadores_por_partido": 10.0,
+        "prom_u19_2007_2008": 5.5,
+        "prom_2005_2006": 2.9,
+        "pct_u19": 65.3,
+        "min_por_anio": {
+          "2005": {
+            "n": 30,
+            "prom": 24.67
+          },
+          "2006": {
+            "n": 11,
+            "prom": 10.24
+          },
+          "2007": {
+            "n": 30,
+            "prom": 19.84
+          },
+          "2008": {
+            "n": 47,
+            "prom": 21.5
+          }
+        }
+      },
+      {
+        "clave": "ARGENTINO DE CASTELAR CENTRO B",
         "equipo": "ARGENTINO DE CASTELAR CENTRO B",
-        "partidos": 15,
+        "nivel": "Interconferencia B",
+        "partidos": 14,
         "prom_jugadores_por_partido": 10.5,
         "prom_u19_2007_2008": 9.5,
         "prom_2005_2006": 1.0,
         "pct_u19": 90.5,
         "min_por_anio": {
-          "2005": 30.25,
-          "2007": 18.23,
-          "2008": 17.45
+          "2005": {
+            "n": 14,
+            "prom": 29.8
+          },
+          "2007": {
+            "n": 61,
+            "prom": 18.26
+          },
+          "2008": {
+            "n": 72,
+            "prom": 17.62
+          }
         }
       },
       {
-        "equipo": "ARGENTINO DE CASTELAR SUR C",
-        "partidos": 10,
-        "prom_jugadores_por_partido": 10.5,
-        "prom_u19_2007_2008": 3.3,
-        "prom_2005_2006": 6.3,
-        "pct_u19": 34.4,
-        "min_por_anio": {
-          "2005": 22.33,
-          "2006": 19.49,
-          "2007": 17.07,
-          "2008": 17.57
-        }
-      },
-      {
-        "equipo": "BERNAL",
+        "clave": "ARMENIA",
+        "equipo": "ARMENIA",
+        "nivel": "Interconferencia B",
         "partidos": 14,
-        "prom_jugadores_por_partido": 10.5,
-        "prom_u19_2007_2008": 5.2,
-        "prom_2005_2006": 4.1,
-        "pct_u19": 56.2,
+        "prom_jugadores_por_partido": 9.6,
+        "prom_u19_2007_2008": 4.3,
+        "prom_2005_2006": 4.4,
+        "pct_u19": 49.6,
         "min_por_anio": {
-          "2005": 32.42,
-          "2006": 10.83,
-          "2007": 14.07,
-          "2008": 11.59
+          "2005": {
+            "n": 17,
+            "prom": 22.45
+          },
+          "2006": {
+            "n": 44,
+            "prom": 18.58
+          },
+          "2007": {
+            "n": 26,
+            "prom": 19.72
+          },
+          "2008": {
+            "n": 34,
+            "prom": 18.56
+          }
         }
       },
       {
-        "equipo": "DEPORTIVO MORON A",
-        "partidos": 11,
-        "prom_jugadores_por_partido": 10.5,
-        "prom_u19_2007_2008": 4.9,
-        "prom_2005_2006": 3.6,
-        "pct_u19": 57.4,
-        "min_por_anio": {
-          "2005": 20.72,
-          "2006": 16.58,
-          "2007": 23.11,
-          "2008": 19.96
-        }
-      },
-      {
-        "equipo": "EL FOGON",
-        "partidos": 12,
-        "prom_jugadores_por_partido": 10.5,
-        "prom_u19_2007_2008": 1.0,
-        "prom_2005_2006": 7.4,
-        "pct_u19": 11.9,
-        "min_por_anio": {
-          "2005": 17.14,
-          "2006": 22.81,
-          "2007": 22.63
-        }
-      },
-      {
-        "equipo": "EL PALOMAR",
-        "partidos": 12,
-        "prom_jugadores_por_partido": 10.5,
-        "prom_u19_2007_2008": 3.2,
-        "prom_2005_2006": 4.1,
-        "pct_u19": 44.3,
-        "min_por_anio": {
-          "2005": 22.62,
-          "2006": 24.08,
-          "2007": 7.72,
-          "2008": 19.84
-        }
-      },
-      {
-        "equipo": "FERROCARRIL OESTE NARANJA",
-        "partidos": 10,
-        "prom_jugadores_por_partido": 10.5,
-        "prom_u19_2007_2008": 5.9,
-        "prom_2005_2006": 4.3,
-        "pct_u19": 57.8,
-        "min_por_anio": {
-          "2005": 22.93,
-          "2007": 19.32,
-          "2008": 15.0
-        }
-      },
-      {
-        "equipo": "LANUS A",
-        "partidos": 17,
-        "prom_jugadores_por_partido": 10.5,
-        "prom_u19_2007_2008": 3.6,
-        "prom_2005_2006": 3.1,
-        "pct_u19": 54.4,
-        "min_por_anio": {
-          "2006": 23.47,
-          "2007": 23.74,
-          "2008": 22.81
-        }
-      },
-      {
-        "equipo": "SAN FERNANDO BLANCO",
-        "partidos": 12,
-        "prom_jugadores_por_partido": 10.5,
-        "prom_u19_2007_2008": 2.7,
-        "prom_2005_2006": 7.8,
-        "pct_u19": 25.4,
-        "min_por_anio": {
-          "2005": 23.67,
-          "2006": 16.42,
-          "2007": 21.37,
-          "2008": 16.16
-        }
-      },
-      {
-        "equipo": "SPORTIVO PILAR BLANCO B",
-        "partidos": 11,
-        "prom_jugadores_por_partido": 10.5,
-        "prom_u19_2007_2008": 7.2,
-        "prom_2005_2006": 3.1,
-        "pct_u19": 69.9,
-        "min_por_anio": {
-          "2005": 22.89,
-          "2006": 30.95,
-          "2007": 18.2,
-          "2008": 14.21
-        }
-      },
-      {
+        "clave": "ARQUITECTURA A NEGRO",
         "equipo": "ARQUITECTURA NEGRO A",
+        "nivel": "Interconferencia B",
         "partidos": 14,
         "prom_jugadores_por_partido": 10.4,
         "prom_u19_2007_2008": 4.6,
         "prom_2005_2006": 5.3,
         "pct_u19": 46.4,
         "min_por_anio": {
-          "2005": 20.09,
-          "2006": 23.1,
-          "2007": 18.55,
-          "2008": 16.92
+          "2005": {
+            "n": 36,
+            "prom": 20.09
+          },
+          "2006": {
+            "n": 38,
+            "prom": 23.1
+          },
+          "2007": {
+            "n": 59,
+            "prom": 18.55
+          },
+          "2008": {
+            "n": 5,
+            "prom": 16.92
+          }
         }
       },
       {
-        "equipo": "BANCO NACION BLANCO B",
-        "partidos": 10,
-        "prom_jugadores_por_partido": 10.4,
-        "prom_u19_2007_2008": 7.2,
-        "prom_2005_2006": 2.5,
-        "pct_u19": 74.2,
+        "clave": "ATENEO POPULAR VERSAILLES",
+        "equipo": "ATENEO POPULAR VERSAILLES",
+        "nivel": "Interconferencia B",
+        "partidos": 14,
+        "prom_jugadores_por_partido": 10.9,
+        "prom_u19_2007_2008": 2.1,
+        "prom_2005_2006": 6.0,
+        "pct_u19": 25.7,
         "min_por_anio": {
-          "2006": 22.66,
-          "2008": 19.26
+          "2005": {
+            "n": 39,
+            "prom": 21.32
+          },
+          "2006": {
+            "n": 45,
+            "prom": 20.54
+          },
+          "2007": {
+            "n": 25,
+            "prom": 17.02
+          },
+          "2008": {
+            "n": 4,
+            "prom": 10.35
+          }
         }
       },
       {
-        "equipo": "CANUELAS FC",
-        "partidos": 18,
-        "prom_jugadores_por_partido": 10.4,
+        "clave": "BANADE ROJO",
+        "equipo": "BANADE ROJO",
+        "nivel": "Interconferencia B",
+        "partidos": 14,
+        "prom_jugadores_por_partido": 9.6,
+        "prom_u19_2007_2008": 4.5,
+        "prom_2005_2006": 4.4,
+        "pct_u19": 50.8,
+        "min_por_anio": {
+          "2005": {
+            "n": 22,
+            "prom": 25.38
+          },
+          "2006": {
+            "n": 39,
+            "prom": 22.59
+          },
+          "2007": {
+            "n": 33,
+            "prom": 14.93
+          },
+          "2008": {
+            "n": 30,
+            "prom": 23.34
+          }
+        }
+      },
+      {
+        "clave": "BELLA VISTA",
+        "equipo": "BELLA VISTA",
+        "nivel": "Interconferencia B",
+        "partidos": 14,
+        "prom_jugadores_por_partido": 9.4,
         "prom_u19_2007_2008": 4.3,
-        "prom_2005_2006": 5.9,
-        "pct_u19": 41.8,
+        "prom_2005_2006": 2.2,
+        "pct_u19": 65.9,
         "min_por_anio": {
-          "2005": 26.23,
-          "2006": 20.19,
-          "2007": 12.19,
-          "2008": 24.76
+          "2005": {
+            "n": 9,
+            "prom": 37.06
+          },
+          "2006": {
+            "n": 22,
+            "prom": 22.47
+          },
+          "2007": {
+            "n": 19,
+            "prom": 17.28
+          },
+          "2008": {
+            "n": 41,
+            "prom": 24.0
+          }
         }
       },
       {
-        "equipo": "LANUS B",
-        "partidos": 12,
-        "prom_jugadores_por_partido": 10.4,
-        "prom_u19_2007_2008": 7.2,
-        "prom_2005_2006": 1.0,
-        "pct_u19": 87.9,
+        "clave": "BURZACO FC",
+        "equipo": "BURZACO FC",
+        "nivel": "Interconferencia B",
+        "partidos": 14,
+        "prom_jugadores_por_partido": 9.4,
+        "prom_u19_2007_2008": 5.6,
+        "prom_2005_2006": 2.3,
+        "pct_u19": 71.2,
         "min_por_anio": {
-          "2005": 24.46,
-          "2007": 18.41,
-          "2008": 22.14
+          "2005": {
+            "n": 19,
+            "prom": 25.26
+          },
+          "2006": {
+            "n": 13,
+            "prom": 23.03
+          },
+          "2007": {
+            "n": 60,
+            "prom": 28.73
+          },
+          "2008": {
+            "n": 19,
+            "prom": 8.47
+          }
         }
       },
       {
+        "clave": "CANUELAS FC",
+        "equipo": "CANUELAS FC",
+        "nivel": "Interconferencia B",
+        "partidos": 14,
+        "prom_jugadores_por_partido": 10.6,
+        "prom_u19_2007_2008": 4.5,
+        "prom_2005_2006": 6.0,
+        "pct_u19": 42.9,
+        "min_por_anio": {
+          "2005": {
+            "n": 26,
+            "prom": 24.71
+          },
+          "2006": {
+            "n": 58,
+            "prom": 20.05
+          },
+          "2007": {
+            "n": 45,
+            "prom": 12.58
+          },
+          "2008": {
+            "n": 18,
+            "prom": 23.09
+          }
+        }
+      },
+      {
+        "clave": "CENTRO GALICIA",
+        "equipo": "CENTRO GALICIA",
+        "nivel": "Interconferencia B",
+        "partidos": 14,
+        "prom_jugadores_por_partido": 10.1,
+        "prom_u19_2007_2008": 6.7,
+        "prom_2005_2006": 3.2,
+        "pct_u19": 67.6,
+        "min_por_anio": {
+          "2005": {
+            "n": 41,
+            "prom": 27.08
+          },
+          "2006": {
+            "n": 4,
+            "prom": 8.18
+          },
+          "2007": {
+            "n": 38,
+            "prom": 22.67
+          },
+          "2008": {
+            "n": 56,
+            "prom": 13.77
+          }
+        }
+      },
+      {
+        "clave": "CIUDAD DE BUENOS AIRES A AZUL",
+        "equipo": "CIUDAD DE BUENOS AIRES AZUL A",
+        "nivel": "Interconferencia B",
+        "partidos": 14,
+        "prom_jugadores_por_partido": 10.1,
+        "prom_u19_2007_2008": 5.1,
+        "prom_2005_2006": 2.7,
+        "pct_u19": 65.1,
+        "min_por_anio": {
+          "2006": {
+            "n": 38,
+            "prom": 25.1
+          },
+          "2007": {
+            "n": 31,
+            "prom": 22.56
+          },
+          "2008": {
+            "n": 40,
+            "prom": 19.13
+          }
+        }
+      },
+      {
+        "clave": "CLARIDAD",
+        "equipo": "CLARIDAD",
+        "nivel": "Interconferencia B",
+        "partidos": 14,
+        "prom_jugadores_por_partido": 10.9,
+        "prom_u19_2007_2008": 5.1,
+        "prom_2005_2006": 3.4,
+        "pct_u19": 60.5,
+        "min_por_anio": {
+          "2005": {
+            "n": 25,
+            "prom": 21.03
+          },
+          "2006": {
+            "n": 22,
+            "prom": 24.69
+          },
+          "2007": {
+            "n": 49,
+            "prom": 19.63
+          },
+          "2008": {
+            "n": 23,
+            "prom": 19.23
+          }
+        }
+      },
+      {
+        "clave": "COLEGIALES BLANCO",
+        "equipo": "COLEGIALES BLANCO",
+        "nivel": "Interconferencia B",
+        "partidos": 14,
+        "prom_jugadores_por_partido": 10.2,
+        "prom_u19_2007_2008": 7.9,
+        "prom_2005_2006": 2.1,
+        "pct_u19": 79.1,
+        "min_por_anio": {
+          "2005": {
+            "n": 19,
+            "prom": 24.38
+          },
+          "2006": {
+            "n": 10,
+            "prom": 14.01
+          },
+          "2007": {
+            "n": 110,
+            "prom": 19.68
+          }
+        }
+      },
+      {
+        "clave": "FERROCARRIL OESTE BLANCO",
+        "equipo": "FERROCARRIL OESTE BLANCO",
+        "nivel": "Interconferencia B",
+        "partidos": 14,
+        "prom_jugadores_por_partido": 11.1,
+        "prom_u19_2007_2008": 4.6,
+        "prom_2005_2006": 6.3,
+        "pct_u19": 42.5,
+        "min_por_anio": {
+          "2005": {
+            "n": 38,
+            "prom": 20.17
+          },
+          "2006": {
+            "n": 50,
+            "prom": 19.16
+          },
+          "2007": {
+            "n": 46,
+            "prom": 17.68
+          },
+          "2008": {
+            "n": 19,
+            "prom": 13.27
+          }
+        }
+      },
+      {
+        "clave": "HURACAN DE SAN JUSTO A",
+        "equipo": "HURACAN DE SAN JUSTO A",
+        "nivel": "Interconferencia B",
+        "partidos": 14,
+        "prom_jugadores_por_partido": 11.0,
+        "prom_u19_2007_2008": 5.6,
+        "prom_2005_2006": 4.6,
+        "pct_u19": 55.2,
+        "min_por_anio": {
+          "2005": {
+            "n": 46,
+            "prom": 18.64
+          },
+          "2006": {
+            "n": 18,
+            "prom": 18.2
+          },
+          "2007": {
+            "n": 56,
+            "prom": 19.89
+          },
+          "2008": {
+            "n": 23,
+            "prom": 12.61
+          }
+        }
+      },
+      {
+        "clave": "INDEPENDIENTE",
+        "equipo": "INDEPENDIENTE",
+        "nivel": "Interconferencia B",
+        "partidos": 14,
+        "prom_jugadores_por_partido": 11.2,
+        "prom_u19_2007_2008": 5.7,
+        "prom_2005_2006": 4.5,
+        "pct_u19": 55.9,
+        "min_por_anio": {
+          "2005": {
+            "n": 38,
+            "prom": 23.52
+          },
+          "2006": {
+            "n": 25,
+            "prom": 13.88
+          },
+          "2007": {
+            "n": 70,
+            "prom": 18.52
+          },
+          "2008": {
+            "n": 10,
+            "prom": 12.6
+          }
+        }
+      },
+      {
+        "clave": "INDEPENDIENTE DE BURZACO",
+        "equipo": "INDEPENDIENTE DE BURZACO",
+        "nivel": "Interconferencia B",
+        "partidos": 14,
+        "prom_jugadores_por_partido": 11.3,
+        "prom_u19_2007_2008": 3.4,
+        "prom_2005_2006": 7.3,
+        "pct_u19": 32.0,
+        "min_por_anio": {
+          "2005": {
+            "n": 25,
+            "prom": 12.05
+          },
+          "2006": {
+            "n": 77,
+            "prom": 18.11
+          },
+          "2007": {
+            "n": 34,
+            "prom": 23.47
+          },
+          "2008": {
+            "n": 14,
+            "prom": 14.83
+          }
+        }
+      },
+      {
+        "clave": "JOSE HERNANDEZ A",
+        "equipo": "JOSE HERNANDEZ A",
+        "nivel": "Interconferencia B",
+        "partidos": 14,
+        "prom_jugadores_por_partido": 10.6,
+        "prom_u19_2007_2008": 2.7,
+        "prom_2005_2006": 4.3,
+        "pct_u19": 38.8,
+        "min_por_anio": {
+          "2005": {
+            "n": 50,
+            "prom": 24.97
+          },
+          "2006": {
+            "n": 10,
+            "prom": 26.61
+          },
+          "2007": {
+            "n": 10,
+            "prom": 23.46
+          },
+          "2008": {
+            "n": 28,
+            "prom": 19.68
+          }
+        }
+      },
+      {
+        "clave": "LOBOS",
+        "equipo": "LOBOS ATHLETIC CLUB",
+        "nivel": "Interconferencia B",
+        "partidos": 14,
+        "prom_jugadores_por_partido": 9.1,
+        "prom_u19_2007_2008": 5.7,
+        "prom_2005_2006": 1.2,
+        "pct_u19": 82.5,
+        "min_por_anio": {
+          "2006": {
+            "n": 17,
+            "prom": 22.49
+          },
+          "2007": {
+            "n": 24,
+            "prom": 24.21
+          },
+          "2008": {
+            "n": 56,
+            "prom": 25.05
+          }
+        }
+      },
+      {
+        "clave": "LOS INDIOS A",
+        "equipo": "LOS INDIOS A",
+        "nivel": "Interconferencia B",
+        "partidos": 13,
+        "prom_jugadores_por_partido": 9.2,
+        "prom_u19_2007_2008": 3.6,
+        "prom_2005_2006": 4.5,
+        "pct_u19": 44.3,
+        "min_por_anio": {
+          "2005": {
+            "n": 34,
+            "prom": 27.94
+          },
+          "2006": {
+            "n": 25,
+            "prom": 21.86
+          },
+          "2007": {
+            "n": 21,
+            "prom": 14.18
+          },
+          "2008": {
+            "n": 26,
+            "prom": 23.55
+          }
+        }
+      },
+      {
+        "clave": "LOS INDIOS B",
         "equipo": "LOS INDIOS B",
+        "nivel": "Interconferencia B",
         "partidos": 14,
         "prom_jugadores_por_partido": 10.4,
         "prom_u19_2007_2008": 4.4,
         "prom_2005_2006": 3.8,
         "pct_u19": 53.5,
         "min_por_anio": {
-          "2005": 22.74,
-          "2006": 25.19,
-          "2007": 13.71,
-          "2008": 23.17
+          "2005": {
+            "n": 34,
+            "prom": 22.74
+          },
+          "2006": {
+            "n": 19,
+            "prom": 25.19
+          },
+          "2007": {
+            "n": 24,
+            "prom": 13.71
+          },
+          "2008": {
+            "n": 37,
+            "prom": 23.17
+          }
         }
       },
       {
+        "clave": "MIDLAND",
+        "equipo": "MIDLAND",
+        "nivel": "Interconferencia B",
+        "partidos": 14,
+        "prom_jugadores_por_partido": 8.2,
+        "prom_u19_2007_2008": 3.4,
+        "prom_2005_2006": 3.1,
+        "pct_u19": 52.2,
+        "min_por_anio": {
+          "2005": {
+            "n": 17,
+            "prom": 33.6
+          },
+          "2006": {
+            "n": 27,
+            "prom": 32.15
+          },
+          "2007": {
+            "n": 39,
+            "prom": 22.82
+          },
+          "2008": {
+            "n": 9,
+            "prom": 22.55
+          }
+        }
+      },
+      {
+        "clave": "NAUTICO HACOAJ A BLANCO",
+        "equipo": "NAUTICO HACOAJ BLANCO A",
+        "nivel": "Interconferencia B",
+        "partidos": 14,
+        "prom_jugadores_por_partido": 10.2,
+        "prom_u19_2007_2008": 5.3,
+        "prom_2005_2006": 3.9,
+        "pct_u19": 57.8,
+        "min_por_anio": {
+          "2005": {
+            "n": 29,
+            "prom": 21.25
+          },
+          "2006": {
+            "n": 25,
+            "prom": 22.1
+          },
+          "2007": {
+            "n": 46,
+            "prom": 22.32
+          },
+          "2008": {
+            "n": 28,
+            "prom": 16.7
+          }
+        }
+      },
+      {
+        "clave": "PLATENSE A",
+        "equipo": "PLATENSE A",
+        "nivel": "Interconferencia B",
+        "partidos": 14,
+        "prom_jugadores_por_partido": 11.6,
+        "prom_u19_2007_2008": 9.2,
+        "prom_2005_2006": 1.9,
+        "pct_u19": 83.2,
+        "min_por_anio": {
+          "2005": {
+            "n": 3,
+            "prom": 18.39
+          },
+          "2006": {
+            "n": 23,
+            "prom": 19.75
+          },
+          "2007": {
+            "n": 39,
+            "prom": 13.6
+          },
+          "2008": {
+            "n": 90,
+            "prom": 18.22
+          }
+        }
+      },
+      {
+        "clave": "PORTENO ATLETICO CLUB AZUL",
+        "equipo": "PORTENO ATLETICO CLUB AZUL",
+        "nivel": "Interconferencia B",
+        "partidos": 14,
+        "prom_jugadores_por_partido": 8.9,
+        "prom_u19_2007_2008": 3.0,
+        "prom_2005_2006": 5.1,
+        "pct_u19": 36.8,
+        "min_por_anio": {
+          "2005": {
+            "n": 14,
+            "prom": 32.95
+          },
+          "2006": {
+            "n": 58,
+            "prom": 25.0
+          },
+          "2007": {
+            "n": 15,
+            "prom": 13.23
+          },
+          "2008": {
+            "n": 27,
+            "prom": 18.15
+          }
+        }
+      },
+      {
+        "clave": "SPORTIVO ESCOBAR",
+        "equipo": "SPORTIVO ESCOBAR",
+        "nivel": "Interconferencia B",
+        "partidos": 13,
+        "prom_jugadores_por_partido": 9.0,
+        "prom_u19_2007_2008": 3.5,
+        "prom_2005_2006": 2.5,
+        "pct_u19": 59.0,
+        "min_por_anio": {
+          "2005": {
+            "n": 11,
+            "prom": 24.31
+          },
+          "2006": {
+            "n": 21,
+            "prom": 28.18
+          },
+          "2007": {
+            "n": 22,
+            "prom": 25.27
+          },
+          "2008": {
+            "n": 24,
+            "prom": 24.25
+          }
+        }
+      },
+      {
+        "clave": "TEMPERLEY",
+        "equipo": "TEMPERLEY",
+        "nivel": "Interconferencia B",
+        "partidos": 14,
+        "prom_jugadores_por_partido": 11.7,
+        "prom_u19_2007_2008": 6.9,
+        "prom_2005_2006": 4.0,
+        "pct_u19": 63.2,
+        "min_por_anio": {
+          "2005": {
+            "n": 27,
+            "prom": 11.07
+          },
+          "2006": {
+            "n": 29,
+            "prom": 25.49
+          },
+          "2007": {
+            "n": 46,
+            "prom": 19.13
+          },
+          "2008": {
+            "n": 50,
+            "prom": 16.11
+          }
+        }
+      },
+      {
+        "clave": "UNION FLORIDA",
+        "equipo": "UNION FLORIDA",
+        "nivel": "Interconferencia B",
+        "partidos": 14,
+        "prom_jugadores_por_partido": 9.7,
+        "prom_u19_2007_2008": 4.9,
+        "prom_2005_2006": 3.4,
+        "pct_u19": 59.5,
+        "min_por_anio": {
+          "2005": {
+            "n": 37,
+            "prom": 27.79
+          },
+          "2006": {
+            "n": 10,
+            "prom": 9.21
+          },
+          "2007": {
+            "n": 45,
+            "prom": 28.52
+          },
+          "2008": {
+            "n": 24,
+            "prom": 13.1
+          }
+        }
+      },
+      {
+        "clave": "UNIVERSIDAD DE LA MATANZA",
+        "equipo": "UNIVERSIDAD DE LA MATANZA",
+        "nivel": "Interconferencia B",
+        "partidos": 14,
+        "prom_jugadores_por_partido": 9.2,
+        "prom_u19_2007_2008": 2.5,
+        "prom_2005_2006": 6.7,
+        "pct_u19": 27.1,
+        "min_por_anio": {
+          "2005": {
+            "n": 37,
+            "prom": 21.38
+          },
+          "2006": {
+            "n": 57,
+            "prom": 19.44
+          },
+          "2007": {
+            "n": 5,
+            "prom": 8.16
+          },
+          "2008": {
+            "n": 30,
+            "prom": 22.84
+          }
+        }
+      },
+      {
+        "clave": "VARELA JRS",
+        "equipo": "VARELA JRS",
+        "nivel": "Interconferencia B",
+        "partidos": 14,
+        "prom_jugadores_por_partido": 10.1,
+        "prom_u19_2007_2008": 7.2,
+        "prom_2005_2006": 1.9,
+        "pct_u19": 79.5,
+        "min_por_anio": {
+          "2005": {
+            "n": 14,
+            "prom": 17.03
+          },
+          "2006": {
+            "n": 12,
+            "prom": 17.69
+          },
+          "2007": {
+            "n": 43,
+            "prom": 15.62
+          },
+          "2008": {
+            "n": 58,
+            "prom": 22.83
+          }
+        }
+      },
+      {
+        "clave": "VILLA MITRE",
+        "equipo": "VILLA MITRE",
+        "nivel": "Interconferencia B",
+        "partidos": 14,
+        "prom_jugadores_por_partido": 8.6,
+        "prom_u19_2007_2008": 4.3,
+        "prom_2005_2006": 1.9,
+        "pct_u19": 69.8,
+        "min_por_anio": {
+          "2005": {
+            "n": 14,
+            "prom": 31.1
+          },
+          "2006": {
+            "n": 12,
+            "prom": 28.66
+          },
+          "2007": {
+            "n": 45,
+            "prom": 22.15
+          },
+          "2008": {
+            "n": 15,
+            "prom": 33.36
+          }
+        }
+      },
+      {
+        "clave": "WILDE SPORTING",
+        "equipo": "WILDE SPORTING",
+        "nivel": "Interconferencia B",
+        "partidos": 14,
+        "prom_jugadores_por_partido": 9.6,
+        "prom_u19_2007_2008": 3.2,
+        "prom_2005_2006": 4.0,
+        "pct_u19": 44.6,
+        "min_por_anio": {
+          "2005": {
+            "n": 39,
+            "prom": 31.49
+          },
+          "2006": {
+            "n": 17,
+            "prom": 24.0
+          },
+          "2007": {
+            "n": 32,
+            "prom": 16.11
+          },
+          "2008": {
+            "n": 13,
+            "prom": 13.17
+          }
+        }
+      },
+      {
+        "clave": "AFALP A",
+        "equipo": "A.F.A.L.P. A",
+        "nivel": "Nivel 1",
+        "partidos": 11,
+        "prom_jugadores_por_partido": 9.8,
+        "prom_u19_2007_2008": 3.5,
+        "prom_2005_2006": 4.5,
+        "pct_u19": 43.2,
+        "min_por_anio": {
+          "2005": {
+            "n": 20,
+            "prom": 22.45
+          },
+          "2006": {
+            "n": 30,
+            "prom": 25.49
+          },
+          "2007": {
+            "n": 11,
+            "prom": 30.45
+          },
+          "2008": {
+            "n": 27,
+            "prom": 16.96
+          }
+        }
+      },
+      {
+        "clave": "ALEM",
+        "equipo": "ALEM",
+        "nivel": "Nivel 1",
+        "partidos": 12,
+        "prom_jugadores_por_partido": 9.9,
+        "prom_u19_2007_2008": 3.4,
+        "prom_2005_2006": 6.2,
+        "pct_u19": 35.3,
+        "min_por_anio": {
+          "2005": {
+            "n": 47,
+            "prom": 28.31
+          },
+          "2006": {
+            "n": 28,
+            "prom": 15.42
+          },
+          "2007": {
+            "n": 21,
+            "prom": 15.75
+          },
+          "2008": {
+            "n": 20,
+            "prom": 13.26
+          }
+        }
+      },
+      {
+        "clave": "ALL BOYS BLANCO",
+        "equipo": "ALL BOYS BLANCO",
+        "nivel": "Nivel 1",
+        "partidos": 12,
+        "prom_jugadores_por_partido": 11.0,
+        "prom_u19_2007_2008": 5.1,
+        "prom_2005_2006": 5.8,
+        "pct_u19": 46.6,
+        "min_por_anio": {
+          "2005": {
+            "n": 35,
+            "prom": 24.19
+          },
+          "2006": {
+            "n": 35,
+            "prom": 17.19
+          },
+          "2007": {
+            "n": 39,
+            "prom": 17.39
+          },
+          "2008": {
+            "n": 22,
+            "prom": 13.23
+          }
+        }
+      },
+      {
+        "clave": "ARQUITECTURA B BLANCO",
+        "equipo": "ARQUITECTURA BLANCO B",
+        "nivel": "Nivel 1",
+        "partidos": 13,
+        "prom_jugadores_por_partido": 9.8,
+        "prom_u19_2007_2008": 7.8,
+        "prom_2005_2006": 1.8,
+        "pct_u19": 80.8,
+        "min_por_anio": {
+          "2006": {
+            "n": 24,
+            "prom": 17.42
+          },
+          "2007": {
+            "n": 49,
+            "prom": 19.27
+          },
+          "2008": {
+            "n": 52,
+            "prom": 24.1
+          }
+        }
+      },
+      {
+        "clave": "ATLETICO PILAR",
+        "equipo": "ATLETICO PILAR",
+        "nivel": "Nivel 1",
+        "partidos": 13,
+        "prom_jugadores_por_partido": 9.5,
+        "prom_u19_2007_2008": 4.6,
+        "prom_2005_2006": 1.9,
+        "pct_u19": 70.6,
+        "min_por_anio": {
+          "2005": {
+            "n": 25,
+            "prom": 31.87
+          },
+          "2007": {
+            "n": 46,
+            "prom": 22.97
+          },
+          "2008": {
+            "n": 14,
+            "prom": 27.13
+          }
+        }
+      },
+      {
+        "clave": "BANCO PROVINCIA",
+        "equipo": "BANCO PROVINCIA",
+        "nivel": "Nivel 1",
+        "partidos": 14,
+        "prom_jugadores_por_partido": 9.1,
+        "prom_u19_2007_2008": 4.8,
+        "prom_2005_2006": 3.2,
+        "pct_u19": 59.8,
+        "min_por_anio": {
+          "2005": {
+            "n": 19,
+            "prom": 25.57
+          },
+          "2006": {
+            "n": 26,
+            "prom": 24.98
+          },
+          "2007": {
+            "n": 10,
+            "prom": 10.99
+          },
+          "2008": {
+            "n": 57,
+            "prom": 24.08
+          }
+        }
+      },
+      {
+        "clave": "BERAZATEGUI",
+        "equipo": "BERAZATEGUI",
+        "nivel": "Nivel 1",
+        "partidos": 13,
+        "prom_jugadores_por_partido": 10.9,
+        "prom_u19_2007_2008": 7.1,
+        "prom_2005_2006": 3.5,
+        "pct_u19": 67.2,
+        "min_por_anio": {
+          "2005": {
+            "n": 25,
+            "prom": 24.84
+          },
+          "2006": {
+            "n": 20,
+            "prom": 17.51
+          },
+          "2007": {
+            "n": 37,
+            "prom": 18.24
+          },
+          "2008": {
+            "n": 55,
+            "prom": 17.31
+          }
+        }
+      },
+      {
+        "clave": "BERNAL",
+        "equipo": "BERNAL",
+        "nivel": "Nivel 1",
+        "partidos": 14,
+        "prom_jugadores_por_partido": 10.5,
+        "prom_u19_2007_2008": 5.2,
+        "prom_2005_2006": 4.1,
+        "pct_u19": 56.2,
+        "min_por_anio": {
+          "2005": {
+            "n": 40,
+            "prom": 32.42
+          },
+          "2006": {
+            "n": 17,
+            "prom": 10.83
+          },
+          "2007": {
+            "n": 40,
+            "prom": 14.07
+          },
+          "2008": {
+            "n": 33,
+            "prom": 11.59
+          }
+        }
+      },
+      {
+        "clave": "BOCA JUNIORS AMARILLO B",
+        "equipo": "BOCA JUNIORS AMARILLO B",
+        "nivel": "Nivel 1",
+        "partidos": 13,
+        "prom_jugadores_por_partido": 10.1,
+        "prom_u19_2007_2008": 4.9,
+        "prom_2005_2006": 3.7,
+        "pct_u19": 57.1,
+        "min_por_anio": {
+          "2005": {
+            "n": 30,
+            "prom": 28.07
+          },
+          "2006": {
+            "n": 18,
+            "prom": 16.53
+          },
+          "2007": {
+            "n": 39,
+            "prom": 19.62
+          },
+          "2008": {
+            "n": 25,
+            "prom": 20.81
+          }
+        }
+      },
+      {
+        "clave": "CSDY MORENO C",
+        "equipo": "C.S.D.Y C. MORENO",
+        "nivel": "Nivel 1",
+        "partidos": 11,
+        "prom_jugadores_por_partido": 9.2,
+        "prom_u19_2007_2008": 4.8,
+        "prom_2005_2006": 1.2,
+        "pct_u19": 80.3,
+        "min_por_anio": {
+          "2005": {
+            "n": 10,
+            "prom": 37.6
+          },
+          "2006": {
+            "n": 3,
+            "prom": 3.51
+          },
+          "2007": {
+            "n": 42,
+            "prom": 22.17
+          },
+          "2008": {
+            "n": 11,
+            "prom": 14.18
+          }
+        }
+      },
+      {
+        "clave": "CAZA Y PESCA B VERDE",
+        "equipo": "CAZA Y PESCA VERDE B",
+        "nivel": "Nivel 1",
+        "partidos": 13,
+        "prom_jugadores_por_partido": 9.4,
+        "prom_u19_2007_2008": 4.8,
+        "prom_2005_2006": 1.9,
+        "pct_u19": 71.3,
+        "min_por_anio": {
+          "2006": {
+            "n": 25,
+            "prom": 24.71
+          },
+          "2007": {
+            "n": 21,
+            "prom": 23.35
+          },
+          "2008": {
+            "n": 41,
+            "prom": 20.75
+          }
+        }
+      },
+      {
+        "clave": "CEDEM",
+        "equipo": "CEDEM",
+        "nivel": "Nivel 1",
+        "partidos": 12,
+        "prom_jugadores_por_partido": 9.6,
+        "prom_u19_2007_2008": 3.2,
+        "prom_2005_2006": 4.3,
+        "pct_u19": 42.2,
+        "min_por_anio": {
+          "2005": {
+            "n": 41,
+            "prom": 25.05
+          },
+          "2006": {
+            "n": 11,
+            "prom": 31.4
+          },
+          "2007": {
+            "n": 8,
+            "prom": 7.01
+          },
+          "2008": {
+            "n": 30,
+            "prom": 18.02
+          }
+        }
+      },
+      {
+        "clave": "CLUB CEPA",
+        "equipo": "CLUB CEPA",
+        "nivel": "Nivel 1",
+        "partidos": 11,
+        "prom_jugadores_por_partido": 11.2,
+        "prom_u19_2007_2008": 0.9,
+        "prom_2005_2006": 7.7,
+        "pct_u19": 10.5,
+        "min_por_anio": {
+          "2005": {
+            "n": 11,
+            "prom": 23.2
+          },
+          "2006": {
+            "n": 74,
+            "prom": 20.08
+          },
+          "2007": {
+            "n": 10,
+            "prom": 16.2
+          }
+        }
+      },
+      {
+        "clave": "COPELLO",
+        "equipo": "COPELLO",
+        "nivel": "Nivel 1",
+        "partidos": 11,
+        "prom_jugadores_por_partido": 10.8,
+        "prom_u19_2007_2008": 6.8,
+        "prom_2005_2006": 4.0,
+        "pct_u19": 63.0,
+        "min_por_anio": {
+          "2005": {
+            "n": 6,
+            "prom": 7.08
+          },
+          "2006": {
+            "n": 38,
+            "prom": 23.37
+          },
+          "2007": {
+            "n": 50,
+            "prom": 16.48
+          },
+          "2008": {
+            "n": 25,
+            "prom": 18.82
+          }
+        }
+      },
+      {
+        "clave": "COUNTRY BANFIELD A",
+        "equipo": "COUNTRY BANFIELD A",
+        "nivel": "Nivel 1",
+        "partidos": 13,
+        "prom_jugadores_por_partido": 9.3,
+        "prom_u19_2007_2008": 5.6,
+        "prom_2005_2006": 2.3,
+        "pct_u19": 70.9,
+        "min_por_anio": {
+          "2005": {
+            "n": 17,
+            "prom": 28.4
+          },
+          "2006": {
+            "n": 13,
+            "prom": 24.05
+          },
+          "2007": {
+            "n": 44,
+            "prom": 23.33
+          },
+          "2008": {
+            "n": 29,
+            "prom": 18.5
+          }
+        }
+      },
+      {
+        "clave": "DEPORTIVO CROVARA A",
+        "equipo": "DEPORTIVO CROVARA A",
+        "nivel": "Nivel 1",
+        "partidos": 12,
+        "prom_jugadores_por_partido": 11.0,
+        "prom_u19_2007_2008": 3.9,
+        "prom_2005_2006": 4.2,
+        "pct_u19": 48.5,
+        "min_por_anio": {
+          "2005": {
+            "n": 24,
+            "prom": 23.68
+          },
+          "2006": {
+            "n": 26,
+            "prom": 22.37
+          },
+          "2007": {
+            "n": 12,
+            "prom": 20.88
+          },
+          "2008": {
+            "n": 35,
+            "prom": 16.34
+          }
+        }
+      },
+      {
+        "clave": "DEPORTIVO MORON A",
+        "equipo": "DEPORTIVO MORON A",
+        "nivel": "Nivel 1",
+        "partidos": 11,
+        "prom_jugadores_por_partido": 10.5,
+        "prom_u19_2007_2008": 4.9,
+        "prom_2005_2006": 3.6,
+        "pct_u19": 57.4,
+        "min_por_anio": {
+          "2005": {
+            "n": 20,
+            "prom": 20.72
+          },
+          "2006": {
+            "n": 20,
+            "prom": 16.58
+          },
+          "2007": {
+            "n": 22,
+            "prom": 23.11
+          },
+          "2008": {
+            "n": 32,
+            "prom": 19.96
+          }
+        }
+      },
+      {
+        "clave": "EL PORVENIR JOSE PAZ C",
+        "equipo": "EL PORVENIR JOSE C. PAZ",
+        "nivel": "Nivel 1",
+        "partidos": 10,
+        "prom_jugadores_por_partido": 9.6,
+        "prom_u19_2007_2008": 7.3,
+        "prom_2005_2006": 1.9,
+        "pct_u19": 79.3,
+        "min_por_anio": {
+          "2005": {
+            "n": 11,
+            "prom": 25.61
+          },
+          "2006": {
+            "n": 8,
+            "prom": 22.55
+          },
+          "2007": {
+            "n": 47,
+            "prom": 23.26
+          },
+          "2008": {
+            "n": 26,
+            "prom": 15.34
+          }
+        }
+      },
+      {
+        "clave": "EL TALAR",
+        "equipo": "EL TALAR",
+        "nivel": "Nivel 1",
+        "partidos": 13,
+        "prom_jugadores_por_partido": 10.9,
+        "prom_u19_2007_2008": 6.1,
+        "prom_2005_2006": 3.9,
+        "pct_u19": 60.8,
+        "min_por_anio": {
+          "2005": {
+            "n": 15,
+            "prom": 23.08
+          },
+          "2006": {
+            "n": 36,
+            "prom": 17.52
+          },
+          "2007": {
+            "n": 20,
+            "prom": 20.63
+          },
+          "2008": {
+            "n": 59,
+            "prom": 20.24
+          }
+        }
+      },
+      {
+        "clave": "ESTRELLA DE BOEDO",
+        "equipo": "ESTRELLA DE BOEDO",
+        "nivel": "Nivel 1",
+        "partidos": 13,
+        "prom_jugadores_por_partido": 8.8,
+        "prom_u19_2007_2008": 2.6,
+        "prom_2005_2006": 5.3,
+        "pct_u19": 33.0,
+        "min_por_anio": {
+          "2005": {
+            "n": 22,
+            "prom": 20.36
+          },
+          "2006": {
+            "n": 47,
+            "prom": 23.9
+          },
+          "2007": {
+            "n": 26,
+            "prom": 28.59
+          },
+          "2008": {
+            "n": 8,
+            "prom": 22.68
+          }
+        }
+      },
+      {
+        "clave": "EZEIZA",
+        "equipo": "EZEIZA",
+        "nivel": "Nivel 1",
+        "partidos": 13,
+        "prom_jugadores_por_partido": 10.1,
+        "prom_u19_2007_2008": 5.2,
+        "prom_2005_2006": 4.7,
+        "pct_u19": 52.7,
+        "min_por_anio": {
+          "2005": {
+            "n": 14,
+            "prom": 14.16
+          },
+          "2006": {
+            "n": 47,
+            "prom": 24.64
+          },
+          "2007": {
+            "n": 13,
+            "prom": 14.7
+          },
+          "2008": {
+            "n": 55,
+            "prom": 19.95
+          }
+        }
+      },
+      {
+        "clave": "GEBA",
+        "equipo": "GEBA",
+        "nivel": "Nivel 1",
+        "partidos": 12,
+        "prom_jugadores_por_partido": 11.1,
+        "prom_u19_2007_2008": 2.9,
+        "prom_2005_2006": 7.0,
+        "pct_u19": 29.4,
+        "min_por_anio": {
+          "2005": {
+            "n": 31,
+            "prom": 16.37
+          },
+          "2006": {
+            "n": 53,
+            "prom": 20.98
+          },
+          "2007": {
+            "n": 31,
+            "prom": 17.8
+          },
+          "2008": {
+            "n": 4,
+            "prom": 13.74
+          }
+        }
+      },
+      {
+        "clave": "GEVP B CELESTE",
+        "equipo": "GEVP CELESTE B",
+        "nivel": "Nivel 1",
+        "partidos": 12,
+        "prom_jugadores_por_partido": 10.3,
+        "prom_u19_2007_2008": 7.9,
+        "prom_2005_2006": 0.7,
+        "pct_u19": 92.2,
+        "min_por_anio": {
+          "2006": {
+            "n": 8,
+            "prom": 18.02
+          },
+          "2007": {
+            "n": 34,
+            "prom": 28.5
+          },
+          "2008": {
+            "n": 61,
+            "prom": 19.4
+          }
+        }
+      },
+      {
+        "clave": "HARRODS GATH Y CHAVES",
+        "equipo": "HARRODS GATH Y CHAVES",
+        "nivel": "Nivel 1",
+        "partidos": 13,
+        "prom_jugadores_por_partido": 10.3,
+        "prom_u19_2007_2008": 5.5,
+        "prom_2005_2006": 3.6,
+        "pct_u19": 60.5,
+        "min_por_anio": {
+          "2005": {
+            "n": 20,
+            "prom": 18.84
+          },
+          "2006": {
+            "n": 27,
+            "prom": 24.37
+          },
+          "2007": {
+            "n": 28,
+            "prom": 17.41
+          },
+          "2008": {
+            "n": 44,
+            "prom": 21.84
+          }
+        }
+      },
+      {
+        "clave": "INSTITUCION SARMIENTO B BLANCO",
+        "equipo": "INSTITUCION SARMIENTO BLANCO B",
+        "nivel": "Nivel 1",
+        "partidos": 10,
+        "prom_jugadores_por_partido": 11.0,
+        "prom_u19_2007_2008": 5.7,
+        "prom_2005_2006": 5.1,
+        "pct_u19": 52.8,
+        "min_por_anio": {
+          "2005": {
+            "n": 20,
+            "prom": 30.66
+          },
+          "2006": {
+            "n": 31,
+            "prom": 18.98
+          },
+          "2007": {
+            "n": 38,
+            "prom": 12.99
+          },
+          "2008": {
+            "n": 19,
+            "prom": 15.69
+          }
+        }
+      },
+      {
+        "clave": "JUVENCIA",
+        "equipo": "JUVENCIA",
+        "nivel": "Nivel 1",
+        "partidos": 9,
+        "prom_jugadores_por_partido": 9.3,
+        "prom_u19_2007_2008": 3.0,
+        "prom_2005_2006": 2.6,
+        "pct_u19": 54.0,
+        "min_por_anio": {
+          "2005": {
+            "n": 14,
+            "prom": 24.74
+          },
+          "2006": {
+            "n": 9,
+            "prom": 25.87
+          },
+          "2007": {
+            "n": 3,
+            "prom": 26.01
+          },
+          "2008": {
+            "n": 24,
+            "prom": 22.86
+          }
+        }
+      },
+      {
+        "clave": "LOS ANDES",
+        "equipo": "LOS ANDES",
+        "nivel": "Nivel 1",
+        "partidos": 14,
+        "prom_jugadores_por_partido": 8.3,
+        "prom_u19_2007_2008": 6.8,
+        "prom_2005_2006": 1.1,
+        "pct_u19": 85.6,
+        "min_por_anio": {
+          "2005": {
+            "n": 3,
+            "prom": 24.37
+          },
+          "2006": {
+            "n": 13,
+            "prom": 29.08
+          },
+          "2007": {
+            "n": 13,
+            "prom": 15.08
+          },
+          "2008": {
+            "n": 82,
+            "prom": 25.92
+          }
+        }
+      },
+      {
+        "clave": "OLIMPO",
+        "equipo": "OLIMPO",
+        "nivel": "Nivel 1",
+        "partidos": 13,
+        "prom_jugadores_por_partido": 10.2,
+        "prom_u19_2007_2008": 1.8,
+        "prom_2005_2006": 7.0,
+        "pct_u19": 20.9,
+        "min_por_anio": {
+          "2005": {
+            "n": 20,
+            "prom": 14.27
+          },
+          "2006": {
+            "n": 71,
+            "prom": 25.88
+          },
+          "2008": {
+            "n": 24,
+            "prom": 13.34
+          }
+        }
+      },
+      {
+        "clave": "PINOCHO BLANCO",
+        "equipo": "PINOCHO BLANCO",
+        "nivel": "Nivel 1",
+        "partidos": 11,
+        "prom_jugadores_por_partido": 10.3,
+        "prom_u19_2007_2008": 4.0,
+        "prom_2005_2006": 4.1,
+        "pct_u19": 49.4,
+        "min_por_anio": {
+          "2005": {
+            "n": 22,
+            "prom": 25.48
+          },
+          "2006": {
+            "n": 23,
+            "prom": 20.29
+          },
+          "2007": {
+            "n": 8,
+            "prom": 14.45
+          },
+          "2008": {
+            "n": 36,
+            "prom": 23.4
+          }
+        }
+      },
+      {
+        "clave": "RACING CLUB",
+        "equipo": "RACING CLUB",
+        "nivel": "Nivel 1",
+        "partidos": 14,
+        "prom_jugadores_por_partido": 11.3,
+        "prom_u19_2007_2008": 6.4,
+        "prom_2005_2006": 4.1,
+        "pct_u19": 61.0,
+        "min_por_anio": {
+          "2005": {
+            "n": 31,
+            "prom": 15.16
+          },
+          "2006": {
+            "n": 26,
+            "prom": 25.64
+          },
+          "2007": {
+            "n": 25,
+            "prom": 16.86
+          },
+          "2008": {
+            "n": 64,
+            "prom": 15.46
+          }
+        }
+      },
+      {
+        "clave": "SAN FERNANDO AZUL",
+        "equipo": "SAN FERNANDO AZUL",
+        "nivel": "Nivel 1",
+        "partidos": 14,
+        "prom_jugadores_por_partido": 9.7,
+        "prom_u19_2007_2008": 1.9,
+        "prom_2005_2006": 6.6,
+        "pct_u19": 22.0,
+        "min_por_anio": {
+          "2005": {
+            "n": 70,
+            "prom": 23.51
+          },
+          "2006": {
+            "n": 22,
+            "prom": 20.29
+          },
+          "2007": {
+            "n": 14,
+            "prom": 26.26
+          },
+          "2008": {
+            "n": 12,
+            "prom": 14.61
+          }
+        }
+      },
+      {
+        "clave": "SPORTIVO VILLA BALLESTER",
+        "equipo": "SPORTIVO VILLA BALLESTER",
+        "nivel": "Nivel 1",
+        "partidos": 13,
+        "prom_jugadores_por_partido": 9.9,
+        "prom_u19_2007_2008": 2.7,
+        "prom_2005_2006": 6.2,
+        "pct_u19": 30.2,
+        "min_por_anio": {
+          "2005": {
+            "n": 10,
+            "prom": 21.09
+          },
+          "2006": {
+            "n": 71,
+            "prom": 25.11
+          },
+          "2007": {
+            "n": 11,
+            "prom": 12.33
+          },
+          "2008": {
+            "n": 24,
+            "prom": 10.15
+          }
+        }
+      },
+      {
+        "clave": "UVVA UNION VECINAL VILLA ADELINA",
+        "equipo": "U.V.V.A UNION VECINAL VILLA ADELINA AZUL",
+        "nivel": "Nivel 1",
+        "partidos": 13,
+        "prom_jugadores_por_partido": 8.7,
+        "prom_u19_2007_2008": 2.9,
+        "prom_2005_2006": 3.5,
+        "pct_u19": 45.8,
+        "min_por_anio": {
+          "2005": {
+            "n": 19,
+            "prom": 23.64
+          },
+          "2006": {
+            "n": 26,
+            "prom": 25.12
+          },
+          "2007": {
+            "n": 34,
+            "prom": 26.92
+          },
+          "2008": {
+            "n": 4,
+            "prom": 13.81
+          }
+        }
+      },
+      {
+        "clave": "UNION VECINAL DE MUNRO",
+        "equipo": "UNION VECINAL DE MUNRO",
+        "nivel": "Nivel 1",
+        "partidos": 14,
+        "prom_jugadores_por_partido": 10.2,
+        "prom_u19_2007_2008": 2.4,
+        "prom_2005_2006": 7.9,
+        "pct_u19": 23.1,
+        "min_por_anio": {
+          "2005": {
+            "n": 84,
+            "prom": 20.51
+          },
+          "2006": {
+            "n": 26,
+            "prom": 17.18
+          },
+          "2007": {
+            "n": 28,
+            "prom": 23.39
+          },
+          "2008": {
+            "n": 5,
+            "prom": 5.04
+          }
+        }
+      },
+      {
+        "clave": "UNION VILLEGAS",
+        "equipo": "UNION VILLEGAS",
+        "nivel": "Nivel 1",
+        "partidos": 14,
+        "prom_jugadores_por_partido": 10.9,
+        "prom_u19_2007_2008": 5.6,
+        "prom_2005_2006": 1.7,
+        "pct_u19": 76.7,
+        "min_por_anio": {
+          "2005": {
+            "n": 12,
+            "prom": 24.19
+          },
+          "2006": {
+            "n": 12,
+            "prom": 16.09
+          },
+          "2007": {
+            "n": 7,
+            "prom": 12.83
+          },
+          "2008": {
+            "n": 72,
+            "prom": 22.73
+          }
+        }
+      },
+      {
+        "clave": "VICTORIA NEGRO",
+        "equipo": "VICTORIA NEGRO",
+        "nivel": "Nivel 1",
+        "partidos": 14,
+        "prom_jugadores_por_partido": 11.4,
+        "prom_u19_2007_2008": 4.8,
+        "prom_2005_2006": 3.6,
+        "pct_u19": 56.8,
+        "min_por_anio": {
+          "2005": {
+            "n": 14,
+            "prom": 16.85
+          },
+          "2006": {
+            "n": 37,
+            "prom": 20.72
+          },
+          "2007": {
+            "n": 12,
+            "prom": 22.64
+          },
+          "2008": {
+            "n": 55,
+            "prom": 18.45
+          }
+        }
+      },
+      {
+        "clave": "YUPANQUI",
+        "equipo": "YUPANQUI",
+        "nivel": "Nivel 1",
+        "partidos": 12,
+        "prom_jugadores_por_partido": 8.7,
+        "prom_u19_2007_2008": 6.4,
+        "prom_2005_2006": 1.1,
+        "pct_u19": 85.6,
+        "min_por_anio": {
+          "2005": {
+            "n": 13,
+            "prom": 33.01
+          },
+          "2007": {
+            "n": 22,
+            "prom": 25.04
+          },
+          "2008": {
+            "n": 55,
+            "prom": 23.68
+          }
+        }
+      },
+      {
+        "clave": "17 DE AGOSTO",
+        "equipo": "17 DE AGOSTO",
+        "nivel": "Nivel 2",
+        "partidos": 11,
+        "prom_jugadores_por_partido": 9.5,
+        "prom_u19_2007_2008": 4.4,
+        "prom_2005_2006": 4.2,
+        "pct_u19": 51.1,
+        "min_por_anio": {
+          "2005": {
+            "n": 33,
+            "prom": 32.85
+          },
+          "2006": {
+            "n": 13,
+            "prom": 10.18
+          },
+          "2007": {
+            "n": 27,
+            "prom": 23.89
+          },
+          "2008": {
+            "n": 21,
+            "prom": 6.99
+          }
+        }
+      },
+      {
+        "clave": "3 DE FEBRERO C CELESTE",
+        "equipo": "3 DE FEBRERO CELESTE C",
+        "nivel": "Nivel 2",
+        "partidos": 10,
+        "prom_jugadores_por_partido": 9.6,
+        "prom_u19_2007_2008": 4.5,
+        "prom_2005_2006": 2.6,
+        "pct_u19": 63.4,
+        "min_por_anio": {
+          "2005": {
+            "n": 18,
+            "prom": 28.56
+          },
+          "2006": {
+            "n": 8,
+            "prom": 7.66
+          },
+          "2007": {
+            "n": 30,
+            "prom": 27.29
+          },
+          "2008": {
+            "n": 15,
+            "prom": 18.19
+          }
+        }
+      },
+      {
+        "clave": "ARGENTINOS JUNIORS",
+        "equipo": "ARGENTINOS JUNIORS",
+        "nivel": "Nivel 2",
+        "partidos": 12,
+        "prom_jugadores_por_partido": 10.6,
+        "prom_u19_2007_2008": 3.4,
+        "prom_2005_2006": 2.9,
+        "pct_u19": 53.9,
+        "min_por_anio": {
+          "2005": {
+            "n": 19,
+            "prom": 21.82
+          },
+          "2006": {
+            "n": 16,
+            "prom": 25.6
+          },
+          "2007": {
+            "n": 21,
+            "prom": 22.63
+          },
+          "2008": {
+            "n": 20,
+            "prom": 21.08
+          }
+        }
+      },
+      {
+        "clave": "BANCO NACION A AZUL",
+        "equipo": "BANCO NACION AZUL A",
+        "nivel": "Nivel 2",
+        "partidos": 12,
+        "prom_jugadores_por_partido": 10.6,
+        "prom_u19_2007_2008": 3.8,
+        "prom_2005_2006": 3.7,
+        "pct_u19": 51.1,
+        "min_por_anio": {
+          "2006": {
+            "n": 44,
+            "prom": 24.71
+          },
+          "2007": {
+            "n": 35,
+            "prom": 20.35
+          },
+          "2008": {
+            "n": 11,
+            "prom": 17.05
+          }
+        }
+      },
+      {
+        "clave": "CASA PADUA B",
+        "equipo": "C.A.S.A PADUA B",
+        "nivel": "Nivel 2",
+        "partidos": 12,
+        "prom_jugadores_por_partido": 11.1,
+        "prom_u19_2007_2008": 5.8,
+        "prom_2005_2006": 4.8,
+        "pct_u19": 54.3,
+        "min_por_anio": {
+          "2005": {
+            "n": 36,
+            "prom": 22.07
+          },
+          "2006": {
+            "n": 22,
+            "prom": 16.52
+          },
+          "2007": {
+            "n": 58,
+            "prom": 16.56
+          },
+          "2008": {
+            "n": 11,
+            "prom": 24.8
+          }
+        }
+      },
+      {
+        "clave": "CENTRO ESPANOL",
+        "equipo": "CENTRO ESPANOL",
+        "nivel": "Nivel 2",
+        "partidos": 12,
+        "prom_jugadores_por_partido": 11.5,
+        "prom_u19_2007_2008": 8.2,
+        "prom_2005_2006": 3.2,
+        "pct_u19": 72.1,
+        "min_por_anio": {
+          "2005": {
+            "n": 29,
+            "prom": 19.53
+          },
+          "2006": {
+            "n": 9,
+            "prom": 12.14
+          },
+          "2007": {
+            "n": 68,
+            "prom": 17.98
+          },
+          "2008": {
+            "n": 30,
+            "prom": 16.45
+          }
+        }
+      },
+      {
+        "clave": "CIUDAD DE BUENOS AIRES B BLANCO",
+        "equipo": "CIUDAD DE BUENOS AIRES B BLANCO",
+        "nivel": "Nivel 2",
+        "partidos": 12,
+        "prom_jugadores_por_partido": 9.0,
+        "prom_u19_2007_2008": 2.9,
+        "prom_2005_2006": 4.6,
+        "pct_u19": 38.9,
+        "min_por_anio": {
+          "2005": {
+            "n": 33,
+            "prom": 30.0
+          },
+          "2006": {
+            "n": 22,
+            "prom": 16.8
+          },
+          "2007": {
+            "n": 11,
+            "prom": 15.03
+          },
+          "2008": {
+            "n": 24,
+            "prom": 28.48
+          }
+        }
+      },
+      {
+        "clave": "CIUDADELA NORTE",
+        "equipo": "CIUDADELA NORTE",
+        "nivel": "Nivel 2",
+        "partidos": 12,
+        "prom_jugadores_por_partido": 11.6,
+        "prom_u19_2007_2008": 4.5,
+        "prom_2005_2006": 4.2,
+        "pct_u19": 51.4,
+        "min_por_anio": {
+          "2005": {
+            "n": 41,
+            "prom": 24.76
+          },
+          "2006": {
+            "n": 10,
+            "prom": 20.06
+          },
+          "2007": {
+            "n": 24,
+            "prom": 16.78
+          },
+          "2008": {
+            "n": 30,
+            "prom": 14.61
+          }
+        }
+      },
+      {
+        "clave": "CLUB ATENEO INGENIERO RAVER",
+        "equipo": "CLUB ATENEO INGENIERO RAVER",
+        "nivel": "Nivel 2",
+        "partidos": 10,
+        "prom_jugadores_por_partido": 8.5,
+        "prom_u19_2007_2008": 4.6,
+        "prom_2005_2006": 2.0,
+        "pct_u19": 69.7,
+        "min_por_anio": {
+          "2005": {
+            "n": 5,
+            "prom": 12.93
+          },
+          "2006": {
+            "n": 15,
+            "prom": 20.04
+          },
+          "2007": {
+            "n": 36,
+            "prom": 28.76
+          },
+          "2008": {
+            "n": 10,
+            "prom": 36.76
+          }
+        }
+      },
+      {
+        "clave": "CLUB GEI B BLANCO",
+        "equipo": "CLUB GEI BLANCO(B)",
+        "nivel": "Nivel 2",
+        "partidos": 11,
+        "prom_jugadores_por_partido": 11.4,
+        "prom_u19_2007_2008": 3.6,
+        "prom_2005_2006": 7.3,
+        "pct_u19": 33.3,
+        "min_por_anio": {
+          "2005": {
+            "n": 20,
+            "prom": 14.07
+          },
+          "2006": {
+            "n": 60,
+            "prom": 19.15
+          },
+          "2007": {
+            "n": 20,
+            "prom": 15.81
+          },
+          "2008": {
+            "n": 20,
+            "prom": 20.9
+          }
+        }
+      },
+      {
+        "clave": "CLUB SOCIAL Y DEPORTIVO ARENAL",
+        "equipo": "CLUB SOCIAL Y DEPORTIVO ARENAL",
+        "nivel": "Nivel 2",
+        "partidos": 10,
+        "prom_jugadores_por_partido": 10.2,
+        "prom_u19_2007_2008": 4.1,
+        "prom_2005_2006": 4.0,
+        "pct_u19": 50.6,
+        "min_por_anio": {
+          "2005": {
+            "n": 19,
+            "prom": 31.56
+          },
+          "2006": {
+            "n": 21,
+            "prom": 18.04
+          },
+          "2007": {
+            "n": 10,
+            "prom": 30.65
+          },
+          "2008": {
+            "n": 31,
+            "prom": 17.85
+          }
+        }
+      },
+      {
+        "clave": "COLEGIALES NEGRO",
         "equipo": "COLEGIALES NEGRO",
+        "nivel": "Nivel 2",
         "partidos": 11,
         "prom_jugadores_por_partido": 10.3,
         "prom_u19_2007_2008": 2.5,
         "prom_2005_2006": 7.6,
         "pct_u19": 24.3,
         "min_por_anio": {
-          "2005": 21.39,
-          "2006": 16.14,
-          "2007": 4.4,
-          "2008": 18.04
+          "2005": {
+            "n": 67,
+            "prom": 21.39
+          },
+          "2006": {
+            "n": 17,
+            "prom": 16.14
+          },
+          "2007": {
+            "n": 1,
+            "prom": 4.4
+          },
+          "2008": {
+            "n": 26,
+            "prom": 18.04
+          }
+        }
+      },
+      {
+        "clave": "COLON FC",
+        "equipo": "COLON FC",
+        "nivel": "Nivel 2",
+        "partidos": 11,
+        "prom_jugadores_por_partido": 9.2,
+        "prom_u19_2007_2008": 4.0,
+        "prom_2005_2006": 3.1,
+        "pct_u19": 56.4,
+        "min_por_anio": {
+          "2005": {
+            "n": 24,
+            "prom": 25.26
+          },
+          "2006": {
+            "n": 10,
+            "prom": 33.06
+          },
+          "2007": {
+            "n": 16,
+            "prom": 15.62
+          },
+          "2008": {
+            "n": 28,
+            "prom": 25.18
+          }
+        }
+      },
+      {
+        "clave": "COMUNICACIONES B NEGRO",
+        "equipo": "COMUNICACIONES NEGRO",
+        "nivel": "Nivel 2",
+        "partidos": 12,
+        "prom_jugadores_por_partido": 11.8,
+        "prom_u19_2007_2008": 8.0,
+        "prom_2005_2006": 2.8,
+        "pct_u19": 74.4,
+        "min_por_anio": {
+          "2005": {
+            "n": 21,
+            "prom": 23.22
+          },
+          "2006": {
+            "n": 12,
+            "prom": 20.1
+          },
+          "2007": {
+            "n": 29,
+            "prom": 16.68
+          },
+          "2008": {
+            "n": 67,
+            "prom": 16.33
+          }
+        }
+      },
+      {
+        "clave": "COOP DE TORTUGUITAS",
+        "equipo": "COOP DE TORTUGUITAS",
+        "nivel": "Nivel 2",
+        "partidos": 11,
+        "prom_jugadores_por_partido": 9.9,
+        "prom_u19_2007_2008": 3.8,
+        "prom_2005_2006": 5.6,
+        "pct_u19": 40.4,
+        "min_por_anio": {
+          "2005": {
+            "n": 41,
+            "prom": 25.8
+          },
+          "2006": {
+            "n": 21,
+            "prom": 17.63
+          },
+          "2007": {
+            "n": 27,
+            "prom": 18.25
+          },
+          "2008": {
+            "n": 15,
+            "prom": 16.44
+          }
+        }
+      },
+      {
+        "clave": "COOPERARIOS DE QUILMES",
+        "equipo": "COOPERARIOS DE QUILMES",
+        "nivel": "Nivel 2",
+        "partidos": 12,
+        "prom_jugadores_por_partido": 11.3,
+        "prom_u19_2007_2008": 3.8,
+        "prom_2005_2006": 7.6,
+        "pct_u19": 33.1,
+        "min_por_anio": {
+          "2005": {
+            "n": 55,
+            "prom": 23.68
+          },
+          "2006": {
+            "n": 36,
+            "prom": 16.18
+          },
+          "2007": {
+            "n": 26,
+            "prom": 10.3
+          },
+          "2008": {
+            "n": 19,
+            "prom": 13.02
+          }
+        }
+      },
+      {
+        "clave": "DEFENSORES DE BANFIELD",
+        "equipo": "DEFENSORES DE BANFIELD",
+        "nivel": "Nivel 2",
+        "partidos": 11,
+        "prom_jugadores_por_partido": 8.7,
+        "prom_u19_2007_2008": 7.6,
+        "prom_2005_2006": 1.0,
+        "pct_u19": 88.4,
+        "min_por_anio": {
+          "2005": {
+            "n": 11,
+            "prom": 29.81
+          },
+          "2008": {
+            "n": 84,
+            "prom": 22.56
+          }
+        }
+      },
+      {
+        "clave": "DEFENSORES DE GLEW",
+        "equipo": "DEFENSORES DE GLEW",
+        "nivel": "Nivel 2",
+        "partidos": 12,
+        "prom_jugadores_por_partido": 11.2,
+        "prom_u19_2007_2008": 4.3,
+        "prom_2005_2006": 6.5,
+        "pct_u19": 40.0,
+        "min_por_anio": {
+          "2005": {
+            "n": 10,
+            "prom": 22.11
+          },
+          "2006": {
+            "n": 68,
+            "prom": 21.58
+          },
+          "2007": {
+            "n": 32,
+            "prom": 15.72
+          },
+          "2008": {
+            "n": 20,
+            "prom": 9.19
+          }
+        }
+      },
+      {
+        "clave": "DEFENSORES DE MORENO",
+        "equipo": "DEFENSORES DE MORENO",
+        "nivel": "Nivel 2",
+        "partidos": 12,
+        "prom_jugadores_por_partido": 8.6,
+        "prom_u19_2007_2008": 3.5,
+        "prom_2005_2006": 5.0,
+        "pct_u19": 41.2,
+        "min_por_anio": {
+          "2005": {
+            "n": 21,
+            "prom": 33.12
+          },
+          "2006": {
+            "n": 39,
+            "prom": 25.44
+          },
+          "2007": {
+            "n": 18,
+            "prom": 16.27
+          },
+          "2008": {
+            "n": 24,
+            "prom": 17.34
+          }
+        }
+      },
+      {
+        "clave": "DEFENSORES DE SANTOS LUGARES",
+        "equipo": "DEFENSORES DE SANTOS LUGARES",
+        "nivel": "Nivel 2",
+        "partidos": 12,
+        "prom_jugadores_por_partido": 11.4,
+        "prom_u19_2007_2008": 9.7,
+        "prom_2005_2006": 1.8,
+        "pct_u19": 84.7,
+        "min_por_anio": {
+          "2005": {
+            "n": 8,
+            "prom": 8.12
+          },
+          "2006": {
+            "n": 13,
+            "prom": 21.86
+          },
+          "2007": {
+            "n": 58,
+            "prom": 17.52
+          },
+          "2008": {
+            "n": 58,
+            "prom": 17.84
+          }
+        }
+      },
+      {
+        "clave": "EL FOGON",
+        "equipo": "EL FOGON",
+        "nivel": "Nivel 2",
+        "partidos": 12,
+        "prom_jugadores_por_partido": 10.5,
+        "prom_u19_2007_2008": 1.0,
+        "prom_2005_2006": 7.4,
+        "pct_u19": 11.9,
+        "min_por_anio": {
+          "2005": {
+            "n": 48,
+            "prom": 17.14
+          },
+          "2006": {
+            "n": 41,
+            "prom": 22.81
+          },
+          "2007": {
+            "n": 12,
+            "prom": 22.63
+          }
+        }
+      },
+      {
+        "clave": "EL PALOMAR",
+        "equipo": "EL PALOMAR",
+        "nivel": "Nivel 2",
+        "partidos": 12,
+        "prom_jugadores_por_partido": 10.5,
+        "prom_u19_2007_2008": 3.2,
+        "prom_2005_2006": 4.1,
+        "pct_u19": 44.3,
+        "min_por_anio": {
+          "2005": {
+            "n": 24,
+            "prom": 22.62
+          },
+          "2006": {
+            "n": 25,
+            "prom": 24.08
+          },
+          "2007": {
+            "n": 27,
+            "prom": 7.72
+          },
+          "2008": {
+            "n": 12,
+            "prom": 19.84
+          }
+        }
+      },
+      {
+        "clave": "ESTUDIANTIL PORTENO B",
+        "equipo": "ESTUDIANTIL PORTENO B",
+        "nivel": "Nivel 2",
+        "partidos": 12,
+        "prom_jugadores_por_partido": 11.6,
+        "prom_u19_2007_2008": 6.6,
+        "prom_2005_2006": 2.9,
+        "pct_u19": 69.3,
+        "min_por_anio": {
+          "2006": {
+            "n": 35,
+            "prom": 19.57
+          },
+          "2007": {
+            "n": 4,
+            "prom": 17.06
+          },
+          "2008": {
+            "n": 75,
+            "prom": 19.4
+          }
+        }
+      },
+      {
+        "clave": "GIMNASIA Y ESGRIMA DE LOMAS DE ZAMORA B",
+        "equipo": "GIMNASIA Y ESGRIMA DE LOMAS DE ZAMORA B",
+        "nivel": "Nivel 2",
+        "partidos": 12,
+        "prom_jugadores_por_partido": 9.5,
+        "prom_u19_2007_2008": 5.1,
+        "prom_2005_2006": 3.8,
+        "pct_u19": 57.0,
+        "min_por_anio": {
+          "2005": {
+            "n": 11,
+            "prom": 19.17
+          },
+          "2006": {
+            "n": 35,
+            "prom": 21.51
+          },
+          "2007": {
+            "n": 33,
+            "prom": 21.4
+          },
+          "2008": {
+            "n": 28,
+            "prom": 23.98
+          }
+        }
+      },
+      {
+        "clave": "GUILLON BASQUET",
+        "equipo": "GUILLON BASQUET",
+        "nivel": "Nivel 2",
+        "partidos": 12,
+        "prom_jugadores_por_partido": 11.4,
+        "prom_u19_2007_2008": 5.4,
+        "prom_2005_2006": 4.5,
+        "pct_u19": 54.6,
+        "min_por_anio": {
+          "2005": {
+            "n": 19,
+            "prom": 18.28
+          },
+          "2006": {
+            "n": 35,
+            "prom": 25.72
+          },
+          "2007": {
+            "n": 9,
+            "prom": 8.88
+          },
+          "2008": {
+            "n": 56,
+            "prom": 15.03
+          }
+        }
+      },
+      {
+        "clave": "IMPERIO B NEGRO",
+        "equipo": "IMPERIO NEGRO B",
+        "nivel": "Nivel 2",
+        "partidos": 12,
+        "prom_jugadores_por_partido": 10.8,
+        "prom_u19_2007_2008": 7.8,
+        "prom_2005_2006": 2.9,
+        "pct_u19": 72.9,
+        "min_por_anio": {
+          "2005": {
+            "n": 12,
+            "prom": 26.81
+          },
+          "2006": {
+            "n": 23,
+            "prom": 20.98
+          },
+          "2007": {
+            "n": 32,
+            "prom": 26.16
+          },
+          "2008": {
+            "n": 62,
+            "prom": 12.24
+          }
+        }
+      },
+      {
+        "clave": "INDEPENDIENTE DE ESCOBAR",
+        "equipo": "INDEPENDIENTE DE ESCOBAR",
+        "nivel": "Nivel 2",
+        "partidos": 12,
+        "prom_jugadores_por_partido": 10.2,
+        "prom_u19_2007_2008": 3.7,
+        "prom_2005_2006": 4.0,
+        "pct_u19": 47.8,
+        "min_por_anio": {
+          "2005": {
+            "n": 15,
+            "prom": 16.86
+          },
+          "2006": {
+            "n": 33,
+            "prom": 23.23
+          },
+          "2008": {
+            "n": 44,
+            "prom": 22.27
+          }
+        }
+      },
+      {
+        "clave": "ITALIANO B",
+        "equipo": "ITALIANO B",
+        "nivel": "Nivel 2",
+        "partidos": 12,
+        "prom_jugadores_por_partido": 11.5,
+        "prom_u19_2007_2008": 8.1,
+        "prom_2005_2006": 3.4,
+        "pct_u19": 70.3,
+        "min_por_anio": {
+          "2005": {
+            "n": 11,
+            "prom": 11.74
+          },
+          "2006": {
+            "n": 30,
+            "prom": 19.25
+          },
+          "2007": {
+            "n": 14,
+            "prom": 15.97
+          },
+          "2008": {
+            "n": 83,
+            "prom": 17.71
+          }
+        }
+      },
+      {
+        "clave": "JOSE HERNANDEZ B",
+        "equipo": "JOSE HERNANDEZ B",
+        "nivel": "Nivel 2",
+        "partidos": 12,
+        "prom_jugadores_por_partido": 9.8,
+        "prom_u19_2007_2008": 3.8,
+        "prom_2005_2006": 4.4,
+        "pct_u19": 45.9,
+        "min_por_anio": {
+          "2005": {
+            "n": 12,
+            "prom": 27.2
+          },
+          "2006": {
+            "n": 41,
+            "prom": 29.19
+          },
+          "2007": {
+            "n": 31,
+            "prom": 18.55
+          },
+          "2008": {
+            "n": 14,
+            "prom": 15.54
+          }
+        }
+      },
+      {
+        "clave": "JUVENTUD UNIDA",
+        "equipo": "JUVENTUD UNIDA",
+        "nivel": "Nivel 2",
+        "partidos": 12,
+        "prom_jugadores_por_partido": 11.2,
+        "prom_u19_2007_2008": 5.4,
+        "prom_2005_2006": 2.5,
+        "pct_u19": 68.4,
+        "min_por_anio": {
+          "2006": {
+            "n": 30,
+            "prom": 23.13
+          },
+          "2007": {
+            "n": 23,
+            "prom": 16.77
+          },
+          "2008": {
+            "n": 42,
+            "prom": 17.87
+          }
+        }
+      },
+      {
+        "clave": "LANUS B",
+        "equipo": "LANUS B",
+        "nivel": "Nivel 2",
+        "partidos": 12,
+        "prom_jugadores_por_partido": 10.4,
+        "prom_u19_2007_2008": 7.2,
+        "prom_2005_2006": 1.0,
+        "pct_u19": 87.9,
+        "min_por_anio": {
+          "2005": {
+            "n": 12,
+            "prom": 24.46
+          },
+          "2007": {
+            "n": 35,
+            "prom": 18.41
+          },
+          "2008": {
+            "n": 52,
+            "prom": 22.14
+          }
+        }
+      },
+      {
+        "clave": "LAS HERAS",
+        "equipo": "LAS HERAS",
+        "nivel": "Nivel 2",
+        "partidos": 10,
+        "prom_jugadores_por_partido": 10.1,
+        "prom_u19_2007_2008": 1.0,
+        "prom_2005_2006": 8.3,
+        "pct_u19": 10.8,
+        "min_por_anio": {
+          "2005": {
+            "n": 61,
+            "prom": 18.74
+          },
+          "2006": {
+            "n": 22,
+            "prom": 25.87
+          },
+          "2007": {
+            "n": 10,
+            "prom": 23.05
+          }
+        }
+      },
+      {
+        "clave": "LUZ Y ARTE",
+        "equipo": "LUZ Y ARTE",
+        "nivel": "Nivel 2",
+        "partidos": 12,
+        "prom_jugadores_por_partido": 9.3,
+        "prom_u19_2007_2008": 2.5,
+        "prom_2005_2006": 5.6,
+        "pct_u19": 30.9,
+        "min_por_anio": {
+          "2005": {
+            "n": 31,
+            "prom": 22.74
+          },
+          "2006": {
+            "n": 36,
+            "prom": 26.57
+          },
+          "2007": {
+            "n": 22,
+            "prom": 26.32
+          },
+          "2008": {
+            "n": 8,
+            "prom": 6.48
+          }
+        }
+      },
+      {
+        "clave": "MONTE GRANDE B NEGRO",
+        "equipo": "MONTE GRANDE NEGRO B",
+        "nivel": "Nivel 2",
+        "partidos": 11,
+        "prom_jugadores_por_partido": 9.6,
+        "prom_u19_2007_2008": 3.8,
+        "prom_2005_2006": 4.1,
+        "pct_u19": 48.3,
+        "min_por_anio": {
+          "2005": {
+            "n": 35,
+            "prom": 18.67
+          },
+          "2006": {
+            "n": 10,
+            "prom": 18.57
+          },
+          "2007": {
+            "n": 31,
+            "prom": 29.5
+          },
+          "2008": {
+            "n": 11,
+            "prom": 18.97
+          }
+        }
+      },
+      {
+        "clave": "MORON B BLANCO",
+        "equipo": "MORON BLANCO B",
+        "nivel": "Nivel 2",
+        "partidos": 12,
+        "prom_jugadores_por_partido": 10.9,
+        "prom_u19_2007_2008": 4.1,
+        "prom_2005_2006": 6.5,
+        "pct_u19": 38.6,
+        "min_por_anio": {
+          "2005": {
+            "n": 34,
+            "prom": 18.33
+          },
+          "2006": {
+            "n": 44,
+            "prom": 17.29
+          },
+          "2007": {
+            "n": 15,
+            "prom": 15.44
+          },
+          "2008": {
+            "n": 34,
+            "prom": 16.57
+          }
+        }
+      },
+      {
+        "clave": "MUNICIPALIDAD DE HURLINGHAM",
+        "equipo": "MUNICIPALIDAD DE HURLINGHAM",
+        "nivel": "Nivel 2",
+        "partidos": 12,
+        "prom_jugadores_por_partido": 11.4,
+        "prom_u19_2007_2008": 8.3,
+        "prom_2005_2006": 2.8,
+        "pct_u19": 75.2,
+        "min_por_anio": {
+          "2005": {
+            "n": 12,
+            "prom": 13.22
+          },
+          "2006": {
+            "n": 21,
+            "prom": 16.83
+          },
+          "2007": {
+            "n": 52,
+            "prom": 19.58
+          },
+          "2008": {
+            "n": 48,
+            "prom": 17.37
+          }
+        }
+      },
+      {
+        "clave": "NAUTICO BUCHARDO A",
+        "equipo": "NAUTICO BUCHARDO NORTE (A)",
+        "nivel": "Nivel 2",
+        "partidos": 12,
+        "prom_jugadores_por_partido": 10.2,
+        "prom_u19_2007_2008": 7.4,
+        "prom_2005_2006": 1.9,
+        "pct_u19": 79.5,
+        "min_por_anio": {
+          "2005": {
+            "n": 12,
+            "prom": 17.72
+          },
+          "2006": {
+            "n": 11,
+            "prom": 23.56
+          },
+          "2007": {
+            "n": 76,
+            "prom": 21.04
+          },
+          "2008": {
+            "n": 13,
+            "prom": 19.92
+          }
+        }
+      },
+      {
+        "clave": "NAUTICO HACOAJ AZUL B",
+        "equipo": "NAUTICO HACOAJ AZUL B",
+        "nivel": "Nivel 2",
+        "partidos": 12,
+        "prom_jugadores_por_partido": 8.8,
+        "prom_u19_2007_2008": 7.1,
+        "prom_2005_2006": 0.4,
+        "pct_u19": 94.4,
+        "min_por_anio": {
+          "2006": {
+            "n": 5,
+            "prom": 23.74
+          },
+          "2007": {
+            "n": 62,
+            "prom": 24.01
+          },
+          "2008": {
+            "n": 23,
+            "prom": 22.07
+          }
+        }
+      },
+      {
+        "clave": "NOLTING",
+        "equipo": "NOLTING",
+        "nivel": "Nivel 2",
+        "partidos": 12,
+        "prom_jugadores_por_partido": 11.0,
+        "prom_u19_2007_2008": 4.5,
+        "prom_2005_2006": 5.1,
+        "pct_u19": 47.0,
+        "min_por_anio": {
+          "2005": {
+            "n": 30,
+            "prom": 17.25
+          },
+          "2006": {
+            "n": 31,
+            "prom": 20.61
+          },
+          "2008": {
+            "n": 54,
+            "prom": 16.95
+          }
+        }
+      },
+      {
+        "clave": "PAMPERO",
+        "equipo": "PAMPERO",
+        "nivel": "Nivel 2",
+        "partidos": 12,
+        "prom_jugadores_por_partido": 11.2,
+        "prom_u19_2007_2008": 3.8,
+        "prom_2005_2006": 4.5,
+        "pct_u19": 46.0,
+        "min_por_anio": {
+          "2005": {
+            "n": 17,
+            "prom": 19.86
+          },
+          "2006": {
+            "n": 37,
+            "prom": 21.01
+          },
+          "2007": {
+            "n": 13,
+            "prom": 22.45
+          },
+          "2008": {
+            "n": 33,
+            "prom": 12.87
+          }
+        }
+      },
+      {
+        "clave": "PEDRO ECHAGUE AMARILLO",
+        "equipo": "PEDRO ECHAGUE AMARILLO",
+        "nivel": "Nivel 2",
+        "partidos": 12,
+        "prom_jugadores_por_partido": 11.8,
+        "prom_u19_2007_2008": 6.2,
+        "prom_2005_2006": 5.4,
+        "pct_u19": 53.2,
+        "min_por_anio": {
+          "2005": {
+            "n": 34,
+            "prom": 24.11
+          },
+          "2006": {
+            "n": 31,
+            "prom": 22.83
+          },
+          "2007": {
+            "n": 37,
+            "prom": 12.79
+          },
+          "2008": {
+            "n": 37,
+            "prom": 11.19
+          }
+        }
+      },
+      {
+        "clave": "PLATENSE B",
+        "equipo": "PLATENSE B",
+        "nivel": "Nivel 2",
+        "partidos": 11,
+        "prom_jugadores_por_partido": 11.3,
+        "prom_u19_2007_2008": 7.2,
+        "prom_2005_2006": 3.8,
+        "pct_u19": 65.3,
+        "min_por_anio": {
+          "2005": {
+            "n": 14,
+            "prom": 18.5
+          },
+          "2006": {
+            "n": 28,
+            "prom": 20.1
+          },
+          "2007": {
+            "n": 35,
+            "prom": 17.15
+          },
+          "2008": {
+            "n": 44,
+            "prom": 17.22
+          }
+        }
+      },
+      {
+        "clave": "PORTENO ATLETICO CLUB B BLANCO",
+        "equipo": "PORTENO ATLETICO CLUB BLANCO B",
+        "nivel": "Nivel 2",
+        "partidos": 12,
+        "prom_jugadores_por_partido": 8.2,
+        "prom_u19_2007_2008": 5.4,
+        "prom_2005_2006": 2.7,
+        "pct_u19": 67.0,
+        "min_por_anio": {
+          "2005": {
+            "n": 1,
+            "prom": 17.98
+          },
+          "2006": {
+            "n": 31,
+            "prom": 21.04
+          },
+          "2007": {
+            "n": 26,
+            "prom": 26.92
+          },
+          "2008": {
+            "n": 39,
+            "prom": 21.12
+          }
+        }
+      },
+      {
+        "clave": "PORTUGUES DEL GRAN BUENOS AIRES",
+        "equipo": "PORTUGUES DEL GRAN BUENOS AIRES",
+        "nivel": "Nivel 2",
+        "partidos": 12,
+        "prom_jugadores_por_partido": 8.5,
+        "prom_u19_2007_2008": 4.8,
+        "prom_2005_2006": 0.8,
+        "pct_u19": 86.4,
+        "min_por_anio": {
+          "2005": {
+            "n": 9,
+            "prom": 31.93
+          },
+          "2007": {
+            "n": 12,
+            "prom": 32.25
+          },
+          "2008": {
+            "n": 45,
+            "prom": 24.51
+          }
+        }
+      },
+      {
+        "clave": "RACING ANEXO",
+        "equipo": "RACING ANEXO",
+        "nivel": "Nivel 2",
+        "partidos": 12,
+        "prom_jugadores_por_partido": 10.2,
+        "prom_u19_2007_2008": 6.9,
+        "prom_2005_2006": 3.2,
+        "pct_u19": 68.0,
+        "min_por_anio": {
+          "2005": {
+            "n": 12,
+            "prom": 30.46
+          },
+          "2006": {
+            "n": 27,
+            "prom": 12.58
+          },
+          "2007": {
+            "n": 41,
+            "prom": 19.33
+          },
+          "2008": {
+            "n": 42,
+            "prom": 22.09
+          }
+        }
+      },
+      {
+        "clave": "SAN ANDRES",
+        "equipo": "SAN ANDRES",
+        "nivel": "Nivel 2",
+        "partidos": 12,
+        "prom_jugadores_por_partido": 10.6,
+        "prom_u19_2007_2008": 2.8,
+        "prom_2005_2006": 7.2,
+        "pct_u19": 27.7,
+        "min_por_anio": {
+          "2005": {
+            "n": 21,
+            "prom": 19.65
+          },
+          "2006": {
+            "n": 65,
+            "prom": 20.85
+          },
+          "2007": {
+            "n": 11,
+            "prom": 18.76
+          },
+          "2008": {
+            "n": 22,
+            "prom": 17.62
+          }
+        }
+      },
+      {
+        "clave": "SAN FERNANDO BLANCO",
+        "equipo": "SAN FERNANDO BLANCO",
+        "nivel": "Nivel 2",
+        "partidos": 12,
+        "prom_jugadores_por_partido": 10.5,
+        "prom_u19_2007_2008": 2.7,
+        "prom_2005_2006": 7.8,
+        "pct_u19": 25.4,
+        "min_por_anio": {
+          "2005": {
+            "n": 31,
+            "prom": 23.67
+          },
+          "2006": {
+            "n": 63,
+            "prom": 16.42
+          },
+          "2007": {
+            "n": 22,
+            "prom": 21.37
+          },
+          "2008": {
+            "n": 10,
+            "prom": 16.16
+          }
+        }
+      },
+      {
+        "clave": "SITAS ROJO",
+        "equipo": "SITAS ROJO",
+        "nivel": "Nivel 2",
+        "partidos": 11,
+        "prom_jugadores_por_partido": 10.1,
+        "prom_u19_2007_2008": 1.0,
+        "prom_2005_2006": 5.4,
+        "pct_u19": 15.7,
+        "min_por_anio": {
+          "2005": {
+            "n": 16,
+            "prom": 24.33
+          },
+          "2006": {
+            "n": 43,
+            "prom": 20.69
+          },
+          "2008": {
+            "n": 11,
+            "prom": 28.25
+          }
+        }
+      },
+      {
+        "clave": "SOCIAL LANUS",
+        "equipo": "SOCIAL LANUS",
+        "nivel": "Nivel 2",
+        "partidos": 11,
+        "prom_jugadores_por_partido": 9.4,
+        "prom_u19_2007_2008": 6.7,
+        "prom_2005_2006": 1.7,
+        "pct_u19": 79.6,
+        "min_por_anio": {
+          "2005": {
+            "n": 19,
+            "prom": 31.27
+          },
+          "2007": {
+            "n": 45,
+            "prom": 20.27
+          },
+          "2008": {
+            "n": 29,
+            "prom": 19.84
+          }
+        }
+      },
+      {
+        "clave": "SPORTIVO ALSINA",
+        "equipo": "SPORTIVO ALSINA",
+        "nivel": "Nivel 2",
+        "partidos": 12,
+        "prom_jugadores_por_partido": 10.9,
+        "prom_u19_2007_2008": 3.3,
+        "prom_2005_2006": 4.6,
+        "pct_u19": 42.1,
+        "min_por_anio": {
+          "2005": {
+            "n": 50,
+            "prom": 22.03
+          },
+          "2006": {
+            "n": 5,
+            "prom": 12.87
+          },
+          "2007": {
+            "n": 16,
+            "prom": 13.83
+          },
+          "2008": {
+            "n": 24,
+            "prom": 17.84
+          }
+        }
+      },
+      {
+        "clave": "SPORTIVO HAEDO",
+        "equipo": "SPORTIVO HAEDO",
+        "nivel": "Nivel 2",
+        "partidos": 11,
+        "prom_jugadores_por_partido": 10.1,
+        "prom_u19_2007_2008": 2.5,
+        "prom_2005_2006": 5.7,
+        "pct_u19": 30.0,
+        "min_por_anio": {
+          "2005": {
+            "n": 31,
+            "prom": 24.89
+          },
+          "2006": {
+            "n": 32,
+            "prom": 16.24
+          },
+          "2007": {
+            "n": 24,
+            "prom": 22.07
+          },
+          "2008": {
+            "n": 3,
+            "prom": 9.39
+          }
+        }
+      },
+      {
+        "clave": "TAMBEROS UNIDOS",
+        "equipo": "TAMBEROS UNIDOS",
+        "nivel": "Nivel 2",
+        "partidos": 12,
+        "prom_jugadores_por_partido": 10.2,
+        "prom_u19_2007_2008": 6.0,
+        "prom_2005_2006": 2.0,
+        "pct_u19": 75.0,
+        "min_por_anio": {
+          "2006": {
+            "n": 24,
+            "prom": 20.62
+          },
+          "2007": {
+            "n": 32,
+            "prom": 17.25
+          },
+          "2008": {
+            "n": 40,
+            "prom": 20.17
+          }
+        }
+      },
+      {
+        "clave": "UNIVERSIDAD DE BUENOS AIRES",
+        "equipo": "UNIVERSIDAD DE BUENOS AIRES",
+        "nivel": "Nivel 2",
+        "partidos": 10,
+        "prom_jugadores_por_partido": 9.9,
+        "prom_u19_2007_2008": 3.7,
+        "prom_2005_2006": 5.2,
+        "pct_u19": 41.6,
+        "min_por_anio": {
+          "2005": {
+            "n": 17,
+            "prom": 26.56
+          },
+          "2006": {
+            "n": 35,
+            "prom": 29.58
+          },
+          "2007": {
+            "n": 16,
+            "prom": 11.59
+          },
+          "2008": {
+            "n": 21,
+            "prom": 14.99
+          }
+        }
+      },
+      {
+        "clave": "VELEZ SARSFIELD AZUL B",
+        "equipo": "VELEZ SARSFIELD AZUL - B",
+        "nivel": "Nivel 2",
+        "partidos": 11,
+        "prom_jugadores_por_partido": 9.8,
+        "prom_u19_2007_2008": 3.6,
+        "prom_2005_2006": 4.0,
+        "pct_u19": 47.6,
+        "min_por_anio": {
+          "2005": {
+            "n": 39,
+            "prom": 24.12
+          },
+          "2006": {
+            "n": 5,
+            "prom": 26.71
+          },
+          "2007": {
+            "n": 20,
+            "prom": 18.07
+          },
+          "2008": {
+            "n": 20,
+            "prom": 22.41
+          }
+        }
+      },
+      {
+        "clave": "VILLA ESPANA",
+        "equipo": "VILLA ESPANA",
+        "nivel": "Nivel 2",
+        "partidos": 12,
+        "prom_jugadores_por_partido": 9.8,
+        "prom_u19_2007_2008": 5.1,
+        "prom_2005_2006": 4.5,
+        "pct_u19": 53.0,
+        "min_por_anio": {
+          "2005": {
+            "n": 34,
+            "prom": 29.79
+          },
+          "2006": {
+            "n": 20,
+            "prom": 24.97
+          },
+          "2007": {
+            "n": 19,
+            "prom": 13.1
+          },
+          "2008": {
+            "n": 42,
+            "prom": 14.74
+          }
+        }
+      },
+      {
+        "clave": "ALDO BONZI",
+        "equipo": "ALDO BONZI",
+        "nivel": "Nivel 3",
+        "partidos": 12,
+        "prom_jugadores_por_partido": 10.5,
+        "prom_u19_2007_2008": 6.7,
+        "prom_2005_2006": 2.0,
+        "pct_u19": 76.9,
+        "min_por_anio": {
+          "2005": {
+            "n": 24,
+            "prom": 20.54
+          },
+          "2007": {
+            "n": 40,
+            "prom": 15.38
+          },
+          "2008": {
+            "n": 40,
+            "prom": 21.64
+          }
+        }
+      },
+      {
+        "clave": "ALL BOYS NEGRO",
+        "equipo": "ALL BOYS NEGRO",
+        "nivel": "Nivel 3",
+        "partidos": 12,
+        "prom_jugadores_por_partido": 11.9,
+        "prom_u19_2007_2008": 6.8,
+        "prom_2005_2006": 5.1,
+        "pct_u19": 57.3,
+        "min_por_anio": {
+          "2005": {
+            "n": 17,
+            "prom": 17.97
+          },
+          "2006": {
+            "n": 44,
+            "prom": 17.34
+          },
+          "2007": {
+            "n": 28,
+            "prom": 11.36
+          },
+          "2008": {
+            "n": 54,
+            "prom": 18.77
+          }
+        }
+      },
+      {
+        "clave": "ALL BOYS SAAVEDRA",
+        "equipo": "ALL BOYS SAAVEDRA",
+        "nivel": "Nivel 3",
+        "partidos": 12,
+        "prom_jugadores_por_partido": 11.1,
+        "prom_u19_2007_2008": 1.9,
+        "prom_2005_2006": 7.9,
+        "pct_u19": 19.5,
+        "min_por_anio": {
+          "2005": {
+            "n": 41,
+            "prom": 14.8
+          },
+          "2006": {
+            "n": 54,
+            "prom": 18.31
+          },
+          "2007": {
+            "n": 23,
+            "prom": 30.13
+          }
+        }
+      },
+      {
+        "clave": "ARGENTINO DE CASTELAR SUR C",
+        "equipo": "ARGENTINO DE CASTELAR SUR C",
+        "nivel": "Nivel 3",
+        "partidos": 10,
+        "prom_jugadores_por_partido": 10.5,
+        "prom_u19_2007_2008": 3.3,
+        "prom_2005_2006": 6.3,
+        "pct_u19": 34.4,
+        "min_por_anio": {
+          "2005": {
+            "n": 49,
+            "prom": 22.33
+          },
+          "2006": {
+            "n": 14,
+            "prom": 19.49
+          },
+          "2007": {
+            "n": 17,
+            "prom": 17.07
+          },
+          "2008": {
+            "n": 16,
+            "prom": 17.57
+          }
+        }
+      },
+      {
+        "clave": "ATLETICO BOULOGNE",
+        "equipo": "ATLETICO BOULOGNE",
+        "nivel": "Nivel 3",
+        "partidos": 10,
+        "prom_jugadores_por_partido": 10.0,
+        "prom_u19_2007_2008": 4.7,
+        "prom_2005_2006": 4.2,
+        "pct_u19": 52.8,
+        "min_por_anio": {
+          "2005": {
+            "n": 16,
+            "prom": 19.6
+          },
+          "2006": {
+            "n": 26,
+            "prom": 21.01
+          },
+          "2007": {
+            "n": 38,
+            "prom": 23.09
+          },
+          "2008": {
+            "n": 9,
+            "prom": 17.74
+          }
+        }
+      },
+      {
+        "clave": "BANCO NACION B BLANCO",
+        "equipo": "BANCO NACION BLANCO B",
+        "nivel": "Nivel 3",
+        "partidos": 10,
+        "prom_jugadores_por_partido": 10.4,
+        "prom_u19_2007_2008": 7.2,
+        "prom_2005_2006": 2.5,
+        "pct_u19": 74.2,
+        "min_por_anio": {
+          "2006": {
+            "n": 25,
+            "prom": 22.66
+          },
+          "2008": {
+            "n": 72,
+            "prom": 19.26
+          }
+        }
+      },
+      {
+        "clave": "BECCAR AZUL",
+        "equipo": "BECCAR AZUL",
+        "nivel": "Nivel 3",
+        "partidos": 10,
+        "prom_jugadores_por_partido": 9.6,
+        "prom_u19_2007_2008": 6.3,
+        "prom_2005_2006": 2.4,
+        "pct_u19": 72.4,
+        "min_por_anio": {
+          "2005": {
+            "n": 10,
+            "prom": 26.59
+          },
+          "2006": {
+            "n": 14,
+            "prom": 20.27
+          },
+          "2007": {
+            "n": 38,
+            "prom": 22.8
+          },
+          "2008": {
+            "n": 25,
+            "prom": 21.37
+          }
+        }
+      },
+      {
+        "clave": "CIRCULO URQUIZA",
+        "equipo": "CIRCULO URQUIZA",
+        "nivel": "Nivel 3",
+        "partidos": 12,
+        "prom_jugadores_por_partido": 10.2,
+        "prom_u19_2007_2008": 4.0,
+        "prom_2005_2006": 6.2,
+        "pct_u19": 39.0,
+        "min_por_anio": {
+          "2005": {
+            "n": 23,
+            "prom": 26.06
+          },
+          "2006": {
+            "n": 52,
+            "prom": 20.33
+          },
+          "2007": {
+            "n": 30,
+            "prom": 17.15
+          },
+          "2008": {
+            "n": 18,
+            "prom": 12.72
+          }
+        }
+      },
+      {
+        "clave": "CLUB ATLETICO 9 DE JULIO DE LANUS",
+        "equipo": "CLUB ATLETICO 9 DE JULIO DE LANUS",
+        "nivel": "Nivel 3",
+        "partidos": 11,
+        "prom_jugadores_por_partido": 8.8,
+        "prom_u19_2007_2008": 4.6,
+        "prom_2005_2006": 2.0,
+        "pct_u19": 69.9,
+        "min_por_anio": {
+          "2006": {
+            "n": 22,
+            "prom": 20.86
+          },
+          "2007": {
+            "n": 17,
+            "prom": 30.04
+          },
+          "2008": {
+            "n": 34,
+            "prom": 27.12
+          }
+        }
+      },
+      {
+        "clave": "CLUB ATLETICO HURACAN DE PARQUE PATRICIOS",
+        "equipo": "CLUB ATLETICO HURACAN DE PARQUE PATRICIOS",
+        "nivel": "Nivel 3",
+        "partidos": 13,
+        "prom_jugadores_por_partido": 8.9,
+        "prom_u19_2007_2008": 1.2,
+        "prom_2005_2006": 4.2,
+        "pct_u19": 22.9,
+        "min_por_anio": {
+          "2005": {
+            "n": 39,
+            "prom": 24.15
+          },
+          "2006": {
+            "n": 15,
+            "prom": 17.44
+          },
+          "2007": {
+            "n": 5,
+            "prom": 16.22
+          },
+          "2008": {
+            "n": 11,
+            "prom": 14.39
+          }
+        }
+      },
+      {
+        "clave": "CLUB ATLETICO Y PROGRESO DE BRANDSEN",
+        "equipo": "CLUB ATLETICO Y PROGRESO DE BRANDSEN",
+        "nivel": "Nivel 3",
+        "partidos": 12,
+        "prom_jugadores_por_partido": 9.4,
+        "prom_u19_2007_2008": 6.3,
+        "prom_2005_2006": 1.1,
+        "pct_u19": 85.4,
+        "min_por_anio": {
+          "2006": {
+            "n": 13,
+            "prom": 12.64
+          },
+          "2007": {
+            "n": 11,
+            "prom": 32.96
+          },
+          "2008": {
+            "n": 65,
+            "prom": 20.95
+          }
+        }
+      },
+      {
+        "clave": "CLUB GEI C GRIS",
+        "equipo": "CLUB GEI GRIS(C)",
+        "nivel": "Nivel 3",
+        "partidos": 10,
+        "prom_jugadores_por_partido": 11.8,
+        "prom_u19_2007_2008": 8.3,
+        "prom_2005_2006": 3.5,
+        "pct_u19": 70.3,
+        "min_por_anio": {
+          "2006": {
+            "n": 35,
+            "prom": 16.62
+          },
+          "2007": {
+            "n": 68,
+            "prom": 17.97
+          },
+          "2008": {
+            "n": 15,
+            "prom": 13.11
+          }
+        }
+      },
+      {
+        "clave": "COUNTRY BANFIELD B",
+        "equipo": "COUNTRY BANFIELD B",
+        "nivel": "Nivel 3",
+        "partidos": 11,
+        "prom_jugadores_por_partido": 9.1,
+        "prom_u19_2007_2008": 4.8,
+        "prom_2005_2006": 3.4,
+        "pct_u19": 58.9,
+        "min_por_anio": {
+          "2005": {
+            "n": 20,
+            "prom": 26.9
+          },
+          "2006": {
+            "n": 17,
+            "prom": 23.63
+          },
+          "2007": {
+            "n": 18,
+            "prom": 26.89
+          },
+          "2008": {
+            "n": 35,
+            "prom": 19.37
+          }
+        }
+      },
+      {
+        "clave": "DEFENSORES DE HURLINGHAM BLANCO",
+        "equipo": "DEFENSORES DE HURLINGHAM BLANCO",
+        "nivel": "Nivel 3",
+        "partidos": 10,
+        "prom_jugadores_por_partido": 10.9,
+        "prom_u19_2007_2008": 5.6,
+        "prom_2005_2006": 5.2,
+        "pct_u19": 51.9,
+        "min_por_anio": {
+          "2005": {
+            "n": 30,
+            "prom": 25.76
+          },
+          "2006": {
+            "n": 22,
+            "prom": 23.75
+          },
+          "2007": {
+            "n": 20,
+            "prom": 10.31
+          },
+          "2008": {
+            "n": 36,
+            "prom": 13.54
+          }
+        }
+      },
+      {
+        "clave": "DEPORTIVO CROVARA B",
+        "equipo": "DEPORTIVO CROVARA B",
+        "nivel": "Nivel 3",
+        "partidos": 13,
+        "prom_jugadores_por_partido": 10.8,
+        "prom_u19_2007_2008": 6.1,
+        "prom_2005_2006": 2.1,
+        "pct_u19": 74.5,
+        "min_por_anio": {
+          "2005": {
+            "n": 16,
+            "prom": 28.39
+          },
+          "2006": {
+            "n": 11,
+            "prom": 25.22
+          },
+          "2007": {
+            "n": 18,
+            "prom": 24.86
+          },
+          "2008": {
+            "n": 61,
+            "prom": 13.13
+          }
+        }
+      },
+      {
+        "clave": "DEPORTIVO MORON B",
+        "equipo": "DEPORTIVO MORON B",
+        "nivel": "Nivel 3",
+        "partidos": 10,
+        "prom_jugadores_por_partido": 11.0,
+        "prom_u19_2007_2008": 9.0,
+        "prom_2005_2006": 1.4,
+        "pct_u19": 86.5,
+        "min_por_anio": {
+          "2005": {
+            "n": 10,
+            "prom": 25.25
+          },
+          "2006": {
+            "n": 4,
+            "prom": 24.33
+          },
+          "2007": {
+            "n": 44,
+            "prom": 13.62
+          },
+          "2008": {
+            "n": 46,
+            "prom": 22.32
+          }
+        }
+      },
+      {
+        "clave": "FERROCARRIL OESTE NARANJA",
+        "equipo": "FERROCARRIL OESTE NARANJA",
+        "nivel": "Nivel 3",
+        "partidos": 10,
+        "prom_jugadores_por_partido": 10.5,
+        "prom_u19_2007_2008": 5.9,
+        "prom_2005_2006": 4.3,
+        "pct_u19": 57.8,
+        "min_por_anio": {
+          "2005": {
+            "n": 43,
+            "prom": 22.93
+          },
+          "2007": {
+            "n": 26,
+            "prom": 19.32
+          },
+          "2008": {
+            "n": 33,
+            "prom": 15.0
+          }
+        }
+      },
+      {
+        "clave": "GIMNASIA Y ESGRIMA LA B PLATA",
+        "equipo": "GIMNASIA Y ESGRIMA LA PLATA B",
+        "nivel": "Nivel 3",
+        "partidos": 11,
+        "prom_jugadores_por_partido": 11.7,
+        "prom_u19_2007_2008": 5.4,
+        "prom_2005_2006": 6.4,
+        "pct_u19": 45.7,
+        "min_por_anio": {
+          "2005": {
+            "n": 32,
+            "prom": 24.1
+          },
+          "2006": {
+            "n": 38,
+            "prom": 15.37
+          },
+          "2007": {
+            "n": 28,
+            "prom": 13.4
+          },
+          "2008": {
+            "n": 31,
+            "prom": 15.14
+          }
+        }
+      },
+      {
+        "clave": "HURACAN DE SAN JUSTO B",
+        "equipo": "HURACAN DE SAN JUSTO B",
+        "nivel": "Nivel 3",
+        "partidos": 10,
+        "prom_jugadores_por_partido": 11.4,
+        "prom_u19_2007_2008": 8.7,
+        "prom_2005_2006": 2.7,
+        "pct_u19": 76.3,
+        "min_por_anio": {
+          "2005": {
+            "n": 21,
+            "prom": 18.85
+          },
+          "2006": {
+            "n": 6,
+            "prom": 12.11
+          },
+          "2007": {
+            "n": 63,
+            "prom": 18.82
+          },
+          "2008": {
+            "n": 24,
+            "prom": 14.41
+          }
+        }
+      },
+      {
+        "clave": "ITALIANO DE JOSE PAZ C",
+        "equipo": "ITALIANO DE JOSE C PAZ",
+        "nivel": "Nivel 3",
+        "partidos": 10,
+        "prom_jugadores_por_partido": 9.2,
+        "prom_u19_2007_2008": 4.5,
+        "prom_2005_2006": 3.7,
+        "pct_u19": 54.9,
+        "min_por_anio": {
+          "2005": {
+            "n": 9,
+            "prom": 25.58
+          },
+          "2006": {
+            "n": 28,
+            "prom": 21.38
+          },
+          "2007": {
+            "n": 28,
+            "prom": 23.69
+          },
+          "2008": {
+            "n": 17,
+            "prom": 19.55
+          }
+        }
+      },
+      {
+        "clave": "LA UNION",
+        "equipo": "LA UNION",
+        "nivel": "Nivel 3",
+        "partidos": 12,
+        "prom_jugadores_por_partido": 10.2,
+        "prom_u19_2007_2008": 5.2,
+        "prom_2005_2006": 5.1,
+        "pct_u19": 50.4,
+        "min_por_anio": {
+          "2005": {
+            "n": 44,
+            "prom": 21.28
+          },
+          "2006": {
+            "n": 17,
+            "prom": 28.32
+          },
+          "2007": {
+            "n": 52,
+            "prom": 16.14
+          },
+          "2008": {
+            "n": 10,
+            "prom": 14.32
+          }
+        }
+      },
+      {
+        "clave": "MACABI",
+        "equipo": "MACABI",
+        "nivel": "Nivel 3",
+        "partidos": 12,
+        "prom_jugadores_por_partido": 9.5,
+        "prom_u19_2007_2008": 4.7,
+        "prom_2005_2006": 4.1,
+        "pct_u19": 53.3,
+        "min_por_anio": {
+          "2005": {
+            "n": 9,
+            "prom": 13.15
+          },
+          "2006": {
+            "n": 40,
+            "prom": 23.34
+          },
+          "2007": {
+            "n": 18,
+            "prom": 19.12
+          },
+          "2008": {
+            "n": 38,
+            "prom": 21.29
+          }
+        }
+      },
+      {
+        "clave": "MUNICAVELLANEDA",
+        "equipo": "MUNIC.AVELLANEDA",
+        "nivel": "Nivel 3",
+        "partidos": 12,
+        "prom_jugadores_por_partido": 9.4,
+        "prom_u19_2007_2008": 5.2,
+        "prom_2005_2006": 3.3,
+        "pct_u19": 60.8,
+        "min_por_anio": {
+          "2005": {
+            "n": 10,
+            "prom": 12.07
+          },
+          "2006": {
+            "n": 30,
+            "prom": 25.51
+          },
+          "2007": {
+            "n": 48,
+            "prom": 23.13
+          },
+          "2008": {
+            "n": 14,
+            "prom": 20.11
+          }
+        }
+      },
+      {
+        "clave": "NAUTICO BUCHARDO CENTRO B",
+        "equipo": "NAUTICO BUCHARDO CENTRO (B)",
+        "nivel": "Nivel 3",
+        "partidos": 13,
+        "prom_jugadores_por_partido": 10.2,
+        "prom_u19_2007_2008": 8.4,
+        "prom_2005_2006": 1.4,
+        "pct_u19": 85.8,
+        "min_por_anio": {
+          "2005": {
+            "n": 11,
+            "prom": 22.0
+          },
+          "2006": {
+            "n": 7,
+            "prom": 16.57
+          },
+          "2007": {
+            "n": 18,
+            "prom": 25.86
+          },
+          "2008": {
+            "n": 91,
+            "prom": 18.82
+          }
+        }
+      },
+      {
+        "clave": "NUEVA CHICAGO",
+        "equipo": "NUEVA CHICAGO",
+        "nivel": "Nivel 3",
+        "partidos": 12,
+        "prom_jugadores_por_partido": 9.7,
+        "prom_u19_2007_2008": 3.6,
+        "prom_2005_2006": 5.6,
+        "pct_u19": 39.1,
+        "min_por_anio": {
+          "2005": {
+            "n": 56,
+            "prom": 21.73
+          },
+          "2006": {
+            "n": 11,
+            "prom": 11.61
+          },
+          "2007": {
+            "n": 43,
+            "prom": 23.7
+          }
+        }
+      },
+      {
+        "clave": "PASO DEL REY",
+        "equipo": "PASO DEL REY",
+        "nivel": "Nivel 3",
+        "partidos": 10,
+        "prom_jugadores_por_partido": 8.9,
+        "prom_u19_2007_2008": 2.5,
+        "prom_2005_2006": 6.4,
+        "pct_u19": 28.1,
+        "min_por_anio": {
+          "2005": {
+            "n": 40,
+            "prom": 27.18
+          },
+          "2006": {
+            "n": 24,
+            "prom": 16.38
+          },
+          "2007": {
+            "n": 15,
+            "prom": 20.21
+          },
+          "2008": {
+            "n": 10,
+            "prom": 21.64
+          }
+        }
+      },
+      {
+        "clave": "PINOCHO VERDE",
+        "equipo": "PINOCHO VERDE",
+        "nivel": "Nivel 3",
+        "partidos": 10,
+        "prom_jugadores_por_partido": 9.1,
+        "prom_u19_2007_2008": 7.1,
+        "prom_2005_2006": 0.9,
+        "pct_u19": 88.8,
+        "min_por_anio": {
+          "2006": {
+            "n": 9,
+            "prom": 19.74
+          },
+          "2007": {
+            "n": 26,
+            "prom": 24.18
+          },
+          "2008": {
+            "n": 45,
+            "prom": 23.7
+          }
+        }
+      },
+      {
+        "clave": "RAMOS MEJIA LTC",
+        "equipo": "RAMOS MEJIA LTC",
+        "nivel": "Nivel 3",
+        "partidos": 10,
+        "prom_jugadores_por_partido": 11.9,
+        "prom_u19_2007_2008": 5.4,
+        "prom_2005_2006": 5.3,
+        "pct_u19": 50.5,
+        "min_por_anio": {
+          "2005": {
+            "n": 35,
+            "prom": 15.31
+          },
+          "2006": {
+            "n": 18,
+            "prom": 21.65
+          },
+          "2007": {
+            "n": 30,
+            "prom": 22.04
+          },
+          "2008": {
+            "n": 24,
+            "prom": 11.32
+          }
+        }
+      },
+      {
+        "clave": "SAN LORENZO B ROJO",
+        "equipo": "SAN LORENZO ROJO B",
+        "nivel": "Nivel 3",
+        "partidos": 13,
+        "prom_jugadores_por_partido": 11.5,
+        "prom_u19_2007_2008": 8.1,
+        "prom_2005_2006": 3.4,
+        "pct_u19": 70.5,
+        "min_por_anio": {
+          "2005": {
+            "n": 28,
+            "prom": 22.59
+          },
+          "2006": {
+            "n": 16,
+            "prom": 12.24
+          },
+          "2007": {
+            "n": 46,
+            "prom": 21.35
+          },
+          "2008": {
+            "n": 59,
+            "prom": 13.38
+          }
+        }
+      },
+      {
+        "clave": "SAN MIGUEL BLANCO",
+        "equipo": "SAN MIGUEL BLANCO",
+        "nivel": "Nivel 3",
+        "partidos": 10,
+        "prom_jugadores_por_partido": 9.9,
+        "prom_u19_2007_2008": 5.2,
+        "prom_2005_2006": 4.4,
+        "pct_u19": 54.2,
+        "min_por_anio": {
+          "2005": {
+            "n": 18,
+            "prom": 18.87
+          },
+          "2006": {
+            "n": 26,
+            "prom": 15.29
+          },
+          "2007": {
+            "n": 18,
+            "prom": 20.6
+          },
+          "2008": {
+            "n": 34,
+            "prom": 19.84
+          }
+        }
+      },
+      {
+        "clave": "SITAS VERDE",
+        "equipo": "SITAS VERDE",
+        "nivel": "Nivel 3",
+        "partidos": 10,
+        "prom_jugadores_por_partido": 10.0,
+        "prom_u19_2007_2008": 2.2,
+        "prom_2005_2006": 2.6,
+        "pct_u19": 45.8,
+        "min_por_anio": {
+          "2005": {
+            "n": 18,
+            "prom": 23.49
+          },
+          "2006": {
+            "n": 8,
+            "prom": 32.26
+          },
+          "2007": {
+            "n": 14,
+            "prom": 26.83
+          },
+          "2008": {
+            "n": 8,
+            "prom": 15.67
+          }
+        }
+      },
+      {
+        "clave": "SOCIEDAD HEBRAICA ARGENTINA",
+        "equipo": "SOCIEDAD HEBRAICA ARGENTINA",
+        "nivel": "Nivel 3",
+        "partidos": 10,
+        "prom_jugadores_por_partido": 8.9,
+        "prom_u19_2007_2008": 4.3,
+        "prom_2005_2006": 4.6,
+        "pct_u19": 48.3,
+        "min_por_anio": {
+          "2005": {
+            "n": 36,
+            "prom": 26.69
+          },
+          "2006": {
+            "n": 10,
+            "prom": 17.21
+          },
+          "2007": {
+            "n": 30,
+            "prom": 23.19
+          },
+          "2008": {
+            "n": 13,
+            "prom": 15.11
+          }
+        }
+      },
+      {
+        "clave": "SPORTIVO PILAR B BLANCO",
+        "equipo": "SPORTIVO PILAR BLANCO B",
+        "nivel": "Nivel 3",
+        "partidos": 11,
+        "prom_jugadores_por_partido": 10.5,
+        "prom_u19_2007_2008": 7.2,
+        "prom_2005_2006": 3.1,
+        "pct_u19": 69.9,
+        "min_por_anio": {
+          "2005": {
+            "n": 22,
+            "prom": 22.89
+          },
+          "2006": {
+            "n": 12,
+            "prom": 30.95
+          },
+          "2007": {
+            "n": 47,
+            "prom": 18.2
+          },
+          "2008": {
+            "n": 32,
+            "prom": 14.21
+          }
+        }
+      },
+      {
+        "clave": "TALLERES",
+        "equipo": "TALLERES",
+        "nivel": "Nivel 3",
+        "partidos": 11,
+        "prom_jugadores_por_partido": 9.6,
+        "prom_u19_2007_2008": 1.6,
+        "prom_2005_2006": 7.0,
+        "pct_u19": 18.9,
+        "min_por_anio": {
+          "2005": {
+            "n": 41,
+            "prom": 19.91
+          },
+          "2006": {
+            "n": 36,
+            "prom": 21.85
+          },
+          "2008": {
+            "n": 18,
+            "prom": 16.52
+          }
+        }
+      },
+      {
+        "clave": "TAPONAZO FUTBOL CLUB",
+        "equipo": "TAPONAZO FUTBOL CLUB",
+        "nivel": "Nivel 3",
+        "partidos": 12,
+        "prom_jugadores_por_partido": 9.3,
+        "prom_u19_2007_2008": 3.7,
+        "prom_2005_2006": 5.7,
+        "pct_u19": 39.3,
+        "min_por_anio": {
+          "2005": {
+            "n": 41,
+            "prom": 22.97
+          },
+          "2006": {
+            "n": 27,
+            "prom": 27.82
+          },
+          "2007": {
+            "n": 32,
+            "prom": 15.77
+          },
+          "2008": {
+            "n": 12,
+            "prom": 16.85
+          }
+        }
+      },
+      {
+        "clave": "UNITARIOS DE MARCOS PAZ",
+        "equipo": "UNITARIOS DE MARCOS PAZ",
+        "nivel": "Nivel 3",
+        "partidos": 10,
+        "prom_jugadores_por_partido": 8.5,
+        "prom_u19_2007_2008": 4.6,
+        "prom_2005_2006": 2.2,
+        "pct_u19": 67.6,
+        "min_por_anio": {
+          "2005": {
+            "n": 11,
+            "prom": 16.54
+          },
+          "2006": {
+            "n": 11,
+            "prom": 28.72
+          },
+          "2007": {
+            "n": 15,
+            "prom": 28.95
+          },
+          "2008": {
+            "n": 31,
+            "prom": 19.93
+          }
+        }
+      },
+      {
+        "clave": "VICTORIA BLANCO",
+        "equipo": "VICTORIA BLANCO",
+        "nivel": "Nivel 3",
+        "partidos": 11,
+        "prom_jugadores_por_partido": 11.9,
+        "prom_u19_2007_2008": 4.5,
+        "prom_2005_2006": 6.5,
+        "pct_u19": 41.3,
+        "min_por_anio": {
+          "2005": {
+            "n": 27,
+            "prom": 22.93
+          },
+          "2006": {
+            "n": 44,
+            "prom": 18.38
+          },
+          "2007": {
+            "n": 6,
+            "prom": 6.77
+          },
+          "2008": {
+            "n": 44,
+            "prom": 14.79
+          }
+        }
+      },
+      {
+        "clave": "ALEJANDRO KORN",
+        "equipo": "ALEJANDRO KORN",
+        "nivel": "Otro",
+        "partidos": 2,
+        "prom_jugadores_por_partido": 10.0,
+        "prom_u19_2007_2008": 4.5,
+        "prom_2005_2006": 4.5,
+        "pct_u19": 50.0,
+        "min_por_anio": {
+          "2005": {
+            "n": 6,
+            "prom": 24.96
+          },
+          "2006": {
+            "n": 3,
+            "prom": 21.09
+          },
+          "2007": {
+            "n": 5,
+            "prom": 18.71
+          },
+          "2008": {
+            "n": 4,
+            "prom": 19.88
+          }
+        }
+      },
+      {
+        "clave": "ARGENTINO DE CASTELAR CENTRO B",
+        "equipo": "ARGENTINO DE CASTELAR CENTRO B",
+        "nivel": "Otro",
+        "partidos": 1,
+        "prom_jugadores_por_partido": 11.0,
+        "prom_u19_2007_2008": 10.0,
+        "prom_2005_2006": 1.0,
+        "pct_u19": 90.9,
+        "min_por_anio": {
+          "2005": {
+            "n": 1,
+            "prom": 36.62
+          },
+          "2007": {
+            "n": 4,
+            "prom": 17.73
+          },
+          "2008": {
+            "n": 6,
+            "prom": 15.41
+          }
+        }
+      },
+      {
+        "clave": "ATENEO POPULAR VERSAILLES",
+        "equipo": "ATENEO POPULAR VERSAILLES",
+        "nivel": "Otro",
+        "partidos": 1,
+        "prom_jugadores_por_partido": 12.0,
+        "prom_u19_2007_2008": 2.0,
+        "prom_2005_2006": 8.0,
+        "pct_u19": 20.0,
+        "min_por_anio": {
+          "2005": {
+            "n": 4,
+            "prom": 23.1
+          },
+          "2006": {
+            "n": 4,
+            "prom": 16.76
+          },
+          "2007": {
+            "n": 2,
+            "prom": 12.93
+          }
+        }
+      },
+      {
+        "clave": "ATLETICO PILAR",
+        "equipo": "ATLETICO PILAR",
+        "nivel": "Otro",
+        "partidos": 1,
+        "prom_jugadores_por_partido": 10.0,
+        "prom_u19_2007_2008": 5.0,
+        "prom_2005_2006": 2.0,
+        "pct_u19": 71.4,
+        "min_por_anio": {
+          "2005": {
+            "n": 2,
+            "prom": 35.77
+          },
+          "2007": {
+            "n": 3,
+            "prom": 23.82
+          },
+          "2008": {
+            "n": 2,
+            "prom": 24.52
+          }
+        }
+      },
+      {
+        "clave": "BANADE ROJO",
+        "equipo": "BANADE ROJO",
+        "nivel": "Otro",
+        "partidos": 1,
+        "prom_jugadores_por_partido": 10.0,
+        "prom_u19_2007_2008": 4.0,
+        "prom_2005_2006": 5.0,
+        "pct_u19": 44.4,
+        "min_por_anio": {
+          "2005": {
+            "n": 2,
+            "prom": 25.98
+          },
+          "2006": {
+            "n": 3,
+            "prom": 24.27
+          },
+          "2007": {
+            "n": 2,
+            "prom": 9.8
+          },
+          "2008": {
+            "n": 2,
+            "prom": 18.79
+          }
+        }
+      },
+      {
+        "clave": "BURZACO FC",
+        "equipo": "BURZACO FC",
+        "nivel": "Otro",
+        "partidos": 1,
+        "prom_jugadores_por_partido": 11.0,
+        "prom_u19_2007_2008": 8.0,
+        "prom_2005_2006": 1.0,
+        "pct_u19": 88.9,
+        "min_por_anio": {
+          "2005": {
+            "n": 1,
+            "prom": 17.43
+          },
+          "2007": {
+            "n": 5,
+            "prom": 21.72
+          },
+          "2008": {
+            "n": 3,
+            "prom": 15.77
+          }
+        }
+      },
+      {
+        "clave": "CASA PADUA A",
+        "equipo": "C.A.S.A PADUA A",
+        "nivel": "Otro",
+        "partidos": 2,
+        "prom_jugadores_por_partido": 9.5,
+        "prom_u19_2007_2008": 2.5,
+        "prom_2005_2006": 6.0,
+        "pct_u19": 29.4,
+        "min_por_anio": {
+          "2005": {
+            "n": 10,
+            "prom": 23.47
+          },
+          "2006": {
+            "n": 2,
+            "prom": 20.53
+          },
+          "2007": {
+            "n": 3,
+            "prom": 19.91
+          },
+          "2008": {
+            "n": 2,
+            "prom": 19.02
+          }
+        }
+      },
+      {
+        "clave": "CANUELAS FC",
+        "equipo": "CANUELAS FC",
+        "nivel": "Otro",
+        "partidos": 4,
+        "prom_jugadores_por_partido": 9.8,
+        "prom_u19_2007_2008": 3.5,
+        "prom_2005_2006": 5.8,
+        "pct_u19": 37.8,
+        "min_por_anio": {
+          "2005": {
+            "n": 8,
+            "prom": 31.17
+          },
+          "2006": {
+            "n": 15,
+            "prom": 20.76
+          },
+          "2007": {
+            "n": 10,
+            "prom": 10.45
+          },
+          "2008": {
+            "n": 4,
+            "prom": 32.28
+          }
+        }
+      },
+      {
+        "clave": "CAZA Y PESCA A AZUL",
+        "equipo": "CAZA Y PESCA AZUL A",
+        "nivel": "Otro",
+        "partidos": 3,
+        "prom_jugadores_por_partido": 9.0,
+        "prom_u19_2007_2008": 2.3,
+        "prom_2005_2006": 5.0,
+        "pct_u19": 31.8,
+        "min_por_anio": {
+          "2005": {
+            "n": 3,
+            "prom": 20.41
+          },
+          "2006": {
+            "n": 12,
+            "prom": 23.79
+          },
+          "2007": {
+            "n": 7,
+            "prom": 30.3
+          }
+        }
+      },
+      {
+        "clave": "CLARIDAD",
+        "equipo": "CLARIDAD",
+        "nivel": "Otro",
+        "partidos": 3,
+        "prom_jugadores_por_partido": 9.3,
+        "prom_u19_2007_2008": 4.0,
+        "prom_2005_2006": 4.0,
+        "pct_u19": 50.0,
+        "min_por_anio": {
+          "2005": {
+            "n": 8,
+            "prom": 22.03
+          },
+          "2006": {
+            "n": 4,
+            "prom": 33.93
+          },
+          "2007": {
+            "n": 9,
+            "prom": 20.03
+          },
+          "2008": {
+            "n": 3,
+            "prom": 22.67
+          }
+        }
+      },
+      {
+        "clave": "CLUB GEI A AZUL",
+        "equipo": "CLUB GEI AZUL(A)",
+        "nivel": "Otro",
+        "partidos": 2,
+        "prom_jugadores_por_partido": 10.5,
+        "prom_u19_2007_2008": 6.0,
+        "prom_2005_2006": 2.0,
+        "pct_u19": 75.0,
+        "min_por_anio": {
+          "2005": {
+            "n": 2,
+            "prom": 9.72
+          },
+          "2006": {
+            "n": 2,
+            "prom": 27.52
+          },
+          "2007": {
+            "n": 6,
+            "prom": 23.21
+          },
+          "2008": {
+            "n": 6,
+            "prom": 24.9
+          }
+        }
+      },
+      {
+        "clave": "COLEGIALES BLANCO",
+        "equipo": "COLEGIALES BLANCO",
+        "nivel": "Otro",
+        "partidos": 1,
+        "prom_jugadores_por_partido": 8.0,
+        "prom_u19_2007_2008": 5.0,
+        "prom_2005_2006": 2.0,
+        "pct_u19": 71.4,
+        "min_por_anio": {
+          "2005": {
+            "n": 1,
+            "prom": 39.13
+          },
+          "2006": {
+            "n": 1,
+            "prom": 20.73
+          },
+          "2007": {
+            "n": 5,
+            "prom": 27.29
+          }
+        }
+      },
+      {
+        "clave": "ESTUDIANTIL PORTENO A",
+        "equipo": "ESTUDIANTIL PORTENO A",
+        "nivel": "Otro",
+        "partidos": 1,
+        "prom_jugadores_por_partido": 11.0,
+        "prom_u19_2007_2008": 5.0,
+        "prom_2005_2006": 3.0,
+        "pct_u19": 62.5,
+        "min_por_anio": {
+          "2005": {
+            "n": 2,
+            "prom": 21.38
+          },
+          "2006": {
+            "n": 1,
+            "prom": 34.65
+          },
+          "2007": {
+            "n": 2,
+            "prom": 16.93
+          },
+          "2008": {
+            "n": 3,
+            "prom": 12.03
+          }
+        }
+      },
+      {
+        "clave": "FERROCARRIL OESTE VERDE",
+        "equipo": "FERROCARRIL OESTE VERDE",
+        "nivel": "Otro",
+        "partidos": 3,
+        "prom_jugadores_por_partido": 11.7,
+        "prom_u19_2007_2008": 7.0,
+        "prom_2005_2006": 2.3,
+        "pct_u19": 75.0,
+        "min_por_anio": {
+          "2006": {
+            "n": 7,
+            "prom": 19.31
+          },
+          "2007": {
+            "n": 9,
+            "prom": 15.92
+          },
+          "2008": {
+            "n": 12,
+            "prom": 19.35
+          }
+        }
+      },
+      {
+        "clave": "GEVP A BLANCO",
+        "equipo": "GEVP BLANCO A",
+        "nivel": "Otro",
+        "partidos": 1,
+        "prom_jugadores_por_partido": 11.0,
+        "prom_u19_2007_2008": 3.0,
+        "prom_2005_2006": 3.0,
+        "pct_u19": 50.0,
+        "min_por_anio": {
+          "2005": {
+            "n": 2,
+            "prom": 35.52
+          },
+          "2006": {
+            "n": 1,
+            "prom": 35.18
+          },
+          "2007": {
+            "n": 1,
+            "prom": 13.27
+          },
+          "2008": {
+            "n": 2,
+            "prom": 27.18
+          }
+        }
+      },
+      {
+        "clave": "GIMNASIA Y ESGRIMA DE LOMAS DE ZAMORA",
+        "equipo": "GIMNASIA Y ESGRIMA DE LOMAS DE ZAMORA",
+        "nivel": "Otro",
+        "partidos": 2,
+        "prom_jugadores_por_partido": 9.0,
+        "prom_u19_2007_2008": 3.0,
+        "prom_2005_2006": 6.0,
+        "pct_u19": 33.3,
+        "min_por_anio": {
+          "2005": {
+            "n": 10,
+            "prom": 21.07
+          },
+          "2006": {
+            "n": 2,
+            "prom": 35.12
+          },
+          "2007": {
+            "n": 2,
+            "prom": 15.18
+          },
+          "2008": {
+            "n": 4,
+            "prom": 22.16
+          }
+        }
+      },
+      {
+        "clave": "IMPERIO A BLANCO",
+        "equipo": "IMPERIO BLANCO A",
+        "nivel": "Otro",
+        "partidos": 3,
+        "prom_jugadores_por_partido": 11.3,
+        "prom_u19_2007_2008": 6.0,
+        "prom_2005_2006": 5.3,
+        "pct_u19": 52.9,
+        "min_por_anio": {
+          "2005": {
+            "n": 7,
+            "prom": 16.37
+          },
+          "2006": {
+            "n": 9,
+            "prom": 18.39
+          },
+          "2007": {
+            "n": 12,
+            "prom": 20.3
+          },
+          "2008": {
+            "n": 6,
+            "prom": 12.72
+          }
+        }
+      },
+      {
+        "clave": "INDEPENDIENTE",
+        "equipo": "INDEPENDIENTE",
+        "nivel": "Otro",
+        "partidos": 1,
+        "prom_jugadores_por_partido": 9.0,
+        "prom_u19_2007_2008": 3.0,
+        "prom_2005_2006": 6.0,
+        "pct_u19": 33.3,
+        "min_por_anio": {
+          "2005": {
+            "n": 5,
+            "prom": 24.94
+          },
+          "2006": {
+            "n": 1,
+            "prom": 20.52
+          },
+          "2007": {
+            "n": 3,
+            "prom": 18.27
+          }
+        }
+      },
+      {
+        "clave": "INSTITUCION SARMIENTO A VERDE",
+        "equipo": "INSTITUCION SARMIENTO VERDE A",
+        "nivel": "Otro",
+        "partidos": 1,
+        "prom_jugadores_por_partido": 11.0,
+        "prom_u19_2007_2008": 4.0,
+        "prom_2005_2006": 2.0,
+        "pct_u19": 66.7,
+        "min_por_anio": {
+          "2005": {
+            "n": 2,
+            "prom": 22.36
+          },
+          "2007": {
+            "n": 3,
+            "prom": 20.27
+          },
+          "2008": {
+            "n": 1,
+            "prom": 7.87
+          }
+        }
+      },
+      {
+        "clave": "ITALIANO",
+        "equipo": "ITALIANO",
+        "nivel": "Otro",
+        "partidos": 1,
+        "prom_jugadores_por_partido": 10.0,
+        "prom_u19_2007_2008": 3.0,
+        "prom_2005_2006": 6.0,
+        "pct_u19": 33.3,
+        "min_por_anio": {
+          "2005": {
+            "n": 3,
+            "prom": 29.72
+          },
+          "2006": {
+            "n": 3,
+            "prom": 15.68
+          },
+          "2007": {
+            "n": 1,
+            "prom": 10.17
+          },
+          "2008": {
+            "n": 2,
+            "prom": 8.97
+          }
+        }
+      },
+      {
+        "clave": "LANUS A",
+        "equipo": "LANUS A",
+        "nivel": "Otro",
+        "partidos": 3,
+        "prom_jugadores_por_partido": 9.3,
+        "prom_u19_2007_2008": 4.0,
+        "prom_2005_2006": 3.0,
+        "pct_u19": 57.1,
+        "min_por_anio": {
+          "2006": {
+            "n": 9,
+            "prom": 26.07
+          },
+          "2007": {
+            "n": 9,
+            "prom": 27.06
+          },
+          "2008": {
+            "n": 3,
+            "prom": 28.51
+          }
+        }
+      },
+      {
+        "clave": "MIDLAND",
+        "equipo": "MIDLAND",
+        "nivel": "Otro",
+        "partidos": 1,
+        "prom_jugadores_por_partido": 9.0,
+        "prom_u19_2007_2008": 5.0,
+        "prom_2005_2006": 2.0,
+        "pct_u19": 71.4,
+        "min_por_anio": {
+          "2005": {
+            "n": 2,
+            "prom": 36.66
+          },
+          "2007": {
+            "n": 2,
+            "prom": 26.93
+          },
+          "2008": {
+            "n": 3,
+            "prom": 13.33
+          }
+        }
+      },
+      {
+        "clave": "MORON A ROJO",
+        "equipo": "MORON ROJO A",
+        "nivel": "Otro",
+        "partidos": 2,
+        "prom_jugadores_por_partido": 10.5,
+        "prom_u19_2007_2008": 4.0,
+        "prom_2005_2006": 6.0,
+        "pct_u19": 40.0,
+        "min_por_anio": {
+          "2005": {
+            "n": 7,
+            "prom": 24.61
+          },
+          "2006": {
+            "n": 5,
+            "prom": 17.89
+          },
+          "2007": {
+            "n": 4,
+            "prom": 20.08
+          },
+          "2008": {
+            "n": 4,
+            "prom": 13.04
+          }
+        }
+      },
+      {
+        "clave": "OBRAS BASKET",
+        "equipo": "OBRAS BASKET",
+        "nivel": "Otro",
+        "partidos": 2,
+        "prom_jugadores_por_partido": 10.5,
+        "prom_u19_2007_2008": 6.5,
+        "prom_2005_2006": 0.0,
+        "pct_u19": 100.0,
+        "min_por_anio": {
+          "2007": {
+            "n": 3,
+            "prom": 16.38
+          },
+          "2008": {
+            "n": 10,
+            "prom": 28.05
+          }
+        }
+      },
+      {
+        "clave": "PEDRO ECHAGUE AZUL",
+        "equipo": "PEDRO ECHAGUE AZUL",
+        "nivel": "Otro",
+        "partidos": 2,
+        "prom_jugadores_por_partido": 10.5,
+        "prom_u19_2007_2008": 4.5,
+        "prom_2005_2006": 5.5,
+        "pct_u19": 45.0,
+        "min_por_anio": {
+          "2005": {
+            "n": 2,
+            "prom": 22.98
+          },
+          "2006": {
+            "n": 9,
+            "prom": 21.97
+          },
+          "2007": {
+            "n": 5,
+            "prom": 20.02
+          },
+          "2008": {
+            "n": 4,
+            "prom": 11.23
+          }
+        }
+      },
+      {
+        "clave": "PINOCHO",
+        "equipo": "PINOCHO",
+        "nivel": "Otro",
+        "partidos": 1,
+        "prom_jugadores_por_partido": 11.0,
+        "prom_u19_2007_2008": 3.0,
+        "prom_2005_2006": 6.0,
+        "pct_u19": 33.3,
+        "min_por_anio": {
+          "2005": {
+            "n": 2,
+            "prom": 21.67
+          },
+          "2006": {
+            "n": 4,
+            "prom": 17.91
+          },
+          "2007": {
+            "n": 2,
+            "prom": 17.59
+          },
+          "2008": {
+            "n": 1,
+            "prom": 22.03
+          }
+        }
+      },
+      {
+        "clave": "QUILMES ATLETICO CLUB",
+        "equipo": "QUILMES ATLETICO CLUB",
+        "nivel": "Otro",
+        "partidos": 1,
+        "prom_jugadores_por_partido": 10.0,
+        "prom_u19_2007_2008": 3.0,
+        "prom_2005_2006": 6.0,
+        "pct_u19": 33.3,
+        "min_por_anio": {
+          "2005": {
+            "n": 1,
+            "prom": 13.32
+          },
+          "2006": {
+            "n": 5,
+            "prom": 25.27
+          },
+          "2007": {
+            "n": 2,
+            "prom": 13.9
+          },
+          "2008": {
+            "n": 1,
+            "prom": 17.95
+          }
+        }
+      },
+      {
+        "clave": "RACING CLUB",
+        "equipo": "RACING CLUB",
+        "nivel": "Otro",
+        "partidos": 2,
+        "prom_jugadores_por_partido": 7.5,
+        "prom_u19_2007_2008": 3.0,
+        "prom_2005_2006": 3.5,
+        "pct_u19": 46.2,
+        "min_por_anio": {
+          "2005": {
+            "n": 1,
+            "prom": 3.32
+          },
+          "2006": {
+            "n": 6,
+            "prom": 25.43
+          },
+          "2007": {
+            "n": 2,
+            "prom": 12.07
+          },
+          "2008": {
+            "n": 4,
+            "prom": 33.42
+          }
+        }
+      },
+      {
+        "clave": "RIVER PLATE",
+        "equipo": "RIVER PLATE",
+        "nivel": "Otro",
+        "partidos": 2,
+        "prom_jugadores_por_partido": 10.0,
+        "prom_u19_2007_2008": 4.0,
+        "prom_2005_2006": 4.5,
+        "pct_u19": 47.1,
+        "min_por_anio": {
+          "2006": {
+            "n": 9,
+            "prom": 24.73
+          },
+          "2007": {
+            "n": 2,
+            "prom": 30.15
+          },
+          "2008": {
+            "n": 6,
+            "prom": 15.89
+          }
+        }
+      },
+      {
+        "clave": "SAN LORENZO AZUL",
+        "equipo": "SAN LORENZO AZUL",
+        "nivel": "Otro",
+        "partidos": 4,
+        "prom_jugadores_por_partido": 11.5,
+        "prom_u19_2007_2008": 4.8,
+        "prom_2005_2006": 6.8,
+        "pct_u19": 41.3,
+        "min_por_anio": {
+          "2005": {
+            "n": 8,
+            "prom": 18.96
+          },
+          "2006": {
+            "n": 19,
+            "prom": 18.3
+          },
+          "2007": {
+            "n": 8,
+            "prom": 22.44
+          },
+          "2008": {
+            "n": 11,
+            "prom": 11.02
+          }
+        }
+      },
+      {
+        "clave": "SAN MIGUEL VERDE",
+        "equipo": "SAN MIGUEL VERDE",
+        "nivel": "Otro",
+        "partidos": 1,
+        "prom_jugadores_por_partido": 12.0,
+        "prom_u19_2007_2008": 6.0,
+        "prom_2005_2006": 1.0,
+        "pct_u19": 85.7,
+        "min_por_anio": {
+          "2006": {
+            "n": 1,
+            "prom": 27.15
+          },
+          "2007": {
+            "n": 2,
+            "prom": 18.98
+          },
+          "2008": {
+            "n": 4,
+            "prom": 23.51
+          }
+        }
+      },
+      {
+        "clave": "SOCBECCAR",
+        "equipo": "SOC.BECCAR",
+        "nivel": "Otro",
+        "partidos": 2,
+        "prom_jugadores_por_partido": 10.0,
+        "prom_u19_2007_2008": 4.0,
+        "prom_2005_2006": 4.0,
+        "pct_u19": 50.0,
+        "min_por_anio": {
+          "2005": {
+            "n": 4,
+            "prom": 36.0
+          },
+          "2006": {
+            "n": 4,
+            "prom": 14.61
+          },
+          "2007": {
+            "n": 6,
+            "prom": 24.13
+          },
+          "2008": {
+            "n": 2,
+            "prom": 14.06
+          }
+        }
+      },
+      {
+        "clave": "SPORTIVO PILAR",
+        "equipo": "SPORTIVO PILAR",
+        "nivel": "Otro",
+        "partidos": 3,
+        "prom_jugadores_por_partido": 10.7,
+        "prom_u19_2007_2008": 5.0,
+        "prom_2005_2006": 4.7,
+        "pct_u19": 51.7,
+        "min_por_anio": {
+          "2005": {
+            "n": 9,
+            "prom": 23.16
+          },
+          "2006": {
+            "n": 5,
+            "prom": 24.08
+          },
+          "2007": {
+            "n": 9,
+            "prom": 15.6
+          },
+          "2008": {
+            "n": 6,
+            "prom": 12.32
+          }
+        }
+      },
+      {
+        "clave": "UNION VECINAL DE MUNRO",
+        "equipo": "UNION VECINAL DE MUNRO",
+        "nivel": "Otro",
+        "partidos": 1,
+        "prom_jugadores_por_partido": 12.0,
+        "prom_u19_2007_2008": 3.0,
+        "prom_2005_2006": 9.0,
+        "pct_u19": 25.0,
+        "min_por_anio": {
+          "2005": {
+            "n": 7,
+            "prom": 18.92
+          },
+          "2006": {
+            "n": 2,
+            "prom": 12.58
+          },
+          "2007": {
+            "n": 2,
+            "prom": 19.17
+          },
+          "2008": {
+            "n": 1,
+            "prom": 4.07
+          }
+        }
+      },
+      {
+        "clave": "VELEZ SARSFIELD A BLANCO",
+        "equipo": "VELEZ SARSFIELD BLANCO - A",
+        "nivel": "Otro",
+        "partidos": 2,
+        "prom_jugadores_por_partido": 10.5,
+        "prom_u19_2007_2008": 3.0,
+        "prom_2005_2006": 4.0,
+        "pct_u19": 42.9,
+        "min_por_anio": {
+          "2005": {
+            "n": 4,
+            "prom": 30.55
+          },
+          "2006": {
+            "n": 4,
+            "prom": 22.23
+          },
+          "2007": {
+            "n": 4,
+            "prom": 19.8
+          },
+          "2008": {
+            "n": 2,
+            "prom": 18.93
+          }
         }
       }
     ],
@@ -3278,6 +8438,797 @@
         "u19_unicos": 9,
         "y2005_2006_unicos": 3,
         "pct_u19": 75.0
+      },
+      {
+        "equipo": "COOP DE TORTUGUITAS",
+        "plantel_unico": 12,
+        "u19_unicos": 5,
+        "y2005_2006_unicos": 7,
+        "pct_u19": 41.7
+      },
+      {
+        "equipo": "DEFENSORES DE HURLINGHAM BLANCO",
+        "plantel_unico": 12,
+        "u19_unicos": 6,
+        "y2005_2006_unicos": 6,
+        "pct_u19": 50.0
+      },
+      {
+        "equipo": "DEFENSORES DE MORENO",
+        "plantel_unico": 12,
+        "u19_unicos": 6,
+        "y2005_2006_unicos": 6,
+        "pct_u19": 50.0
+      },
+      {
+        "equipo": "ESTRELLA DE BOEDO",
+        "plantel_unico": 12,
+        "u19_unicos": 6,
+        "y2005_2006_unicos": 6,
+        "pct_u19": 50.0
+      },
+      {
+        "equipo": "HARRODS GATH Y CHAVES",
+        "plantel_unico": 12,
+        "u19_unicos": 7,
+        "y2005_2006_unicos": 5,
+        "pct_u19": 58.3
+      },
+      {
+        "equipo": "INDEPENDIENTE DE BURZACO",
+        "plantel_unico": 12,
+        "u19_unicos": 4,
+        "y2005_2006_unicos": 8,
+        "pct_u19": 33.3
+      },
+      {
+        "equipo": "ITALIANO",
+        "plantel_unico": 12,
+        "u19_unicos": 5,
+        "y2005_2006_unicos": 7,
+        "pct_u19": 41.7
+      },
+      {
+        "equipo": "JUVENTUD UNIDA",
+        "plantel_unico": 12,
+        "u19_unicos": 9,
+        "y2005_2006_unicos": 3,
+        "pct_u19": 75.0
+      },
+      {
+        "equipo": "LA UNION",
+        "plantel_unico": 12,
+        "u19_unicos": 6,
+        "y2005_2006_unicos": 6,
+        "pct_u19": 50.0
+      },
+      {
+        "equipo": "LAS HERAS",
+        "plantel_unico": 12,
+        "u19_unicos": 1,
+        "y2005_2006_unicos": 11,
+        "pct_u19": 8.3
+      },
+      {
+        "equipo": "LOS ANDES",
+        "plantel_unico": 12,
+        "u19_unicos": 10,
+        "y2005_2006_unicos": 2,
+        "pct_u19": 83.3
+      },
+      {
+        "equipo": "MACABI",
+        "plantel_unico": 12,
+        "u19_unicos": 7,
+        "y2005_2006_unicos": 5,
+        "pct_u19": 58.3
+      },
+      {
+        "equipo": "MONTE GRANDE ROJO A",
+        "plantel_unico": 12,
+        "u19_unicos": 8,
+        "y2005_2006_unicos": 4,
+        "pct_u19": 66.7
+      },
+      {
+        "equipo": "MUNIC.AVELLANEDA",
+        "plantel_unico": 12,
+        "u19_unicos": 7,
+        "y2005_2006_unicos": 5,
+        "pct_u19": 58.3
+      },
+      {
+        "equipo": "OLIMPO",
+        "plantel_unico": 12,
+        "u19_unicos": 2,
+        "y2005_2006_unicos": 10,
+        "pct_u19": 16.7
+      },
+      {
+        "equipo": "RIVER PLATE",
+        "plantel_unico": 12,
+        "u19_unicos": 5,
+        "y2005_2006_unicos": 7,
+        "pct_u19": 41.7
+      },
+      {
+        "equipo": "SAN ANDRES",
+        "plantel_unico": 12,
+        "u19_unicos": 3,
+        "y2005_2006_unicos": 9,
+        "pct_u19": 25.0
+      },
+      {
+        "equipo": "SAN MIGUEL BLANCO",
+        "plantel_unico": 12,
+        "u19_unicos": 6,
+        "y2005_2006_unicos": 6,
+        "pct_u19": 50.0
+      },
+      {
+        "equipo": "SPORTIVO PILAR",
+        "plantel_unico": 12,
+        "u19_unicos": 5,
+        "y2005_2006_unicos": 7,
+        "pct_u19": 41.7
+      },
+      {
+        "equipo": "SPORTIVO PILAR BLANCO B",
+        "plantel_unico": 12,
+        "u19_unicos": 8,
+        "y2005_2006_unicos": 4,
+        "pct_u19": 66.7
+      },
+      {
+        "equipo": "TALLERES",
+        "plantel_unico": 12,
+        "u19_unicos": 3,
+        "y2005_2006_unicos": 9,
+        "pct_u19": 25.0
+      },
+      {
+        "equipo": "UNITARIOS DE MARCOS PAZ",
+        "plantel_unico": 12,
+        "u19_unicos": 7,
+        "y2005_2006_unicos": 5,
+        "pct_u19": 58.3
+      },
+      {
+        "equipo": "VILLA ESPANA",
+        "plantel_unico": 12,
+        "u19_unicos": 6,
+        "y2005_2006_unicos": 6,
+        "pct_u19": 50.0
+      },
+      {
+        "equipo": "ALEJANDRO KORN",
+        "plantel_unico": 11,
+        "u19_unicos": 5,
+        "y2005_2006_unicos": 6,
+        "pct_u19": 45.5
+      },
+      {
+        "equipo": "BANADE ROJO",
+        "plantel_unico": 11,
+        "u19_unicos": 6,
+        "y2005_2006_unicos": 5,
+        "pct_u19": 54.5
+      },
+      {
+        "equipo": "BANCO PROVINCIA",
+        "plantel_unico": 11,
+        "u19_unicos": 6,
+        "y2005_2006_unicos": 5,
+        "pct_u19": 54.5
+      },
+      {
+        "equipo": "BECCAR AZUL",
+        "plantel_unico": 11,
+        "u19_unicos": 8,
+        "y2005_2006_unicos": 3,
+        "pct_u19": 72.7
+      },
+      {
+        "equipo": "BURZACO FC",
+        "plantel_unico": 11,
+        "u19_unicos": 8,
+        "y2005_2006_unicos": 3,
+        "pct_u19": 72.7
+      },
+      {
+        "equipo": "CLUB ATLETICO Y PROGRESO DE BRANDSEN",
+        "plantel_unico": 11,
+        "u19_unicos": 9,
+        "y2005_2006_unicos": 2,
+        "pct_u19": 81.8
+      },
+      {
+        "equipo": "CLUB GEI AZUL(A)",
+        "plantel_unico": 11,
+        "u19_unicos": 6,
+        "y2005_2006_unicos": 5,
+        "pct_u19": 54.5
+      },
+      {
+        "equipo": "COUNTRY BANFIELD A",
+        "plantel_unico": 11,
+        "u19_unicos": 8,
+        "y2005_2006_unicos": 3,
+        "pct_u19": 72.7
+      },
+      {
+        "equipo": "DEFENSORES DE BANFIELD",
+        "plantel_unico": 11,
+        "u19_unicos": 10,
+        "y2005_2006_unicos": 1,
+        "pct_u19": 90.9
+      },
+      {
+        "equipo": "DEPORTIVO CROVARA B",
+        "plantel_unico": 11,
+        "u19_unicos": 8,
+        "y2005_2006_unicos": 3,
+        "pct_u19": 72.7
+      },
+      {
+        "equipo": "EL FOGON",
+        "plantel_unico": 11,
+        "u19_unicos": 2,
+        "y2005_2006_unicos": 9,
+        "pct_u19": 18.2
+      },
+      {
+        "equipo": "EL PALOMAR",
+        "plantel_unico": 11,
+        "u19_unicos": 6,
+        "y2005_2006_unicos": 5,
+        "pct_u19": 54.5
+      },
+      {
+        "equipo": "ESTUDIANTIL PORTENO B",
+        "plantel_unico": 11,
+        "u19_unicos": 8,
+        "y2005_2006_unicos": 3,
+        "pct_u19": 72.7
+      },
+      {
+        "equipo": "GEVP CELESTE B",
+        "plantel_unico": 11,
+        "u19_unicos": 10,
+        "y2005_2006_unicos": 1,
+        "pct_u19": 90.9
+      },
+      {
+        "equipo": "ITALIANO DE JOSE C PAZ",
+        "plantel_unico": 11,
+        "u19_unicos": 7,
+        "y2005_2006_unicos": 4,
+        "pct_u19": 63.6
+      },
+      {
+        "equipo": "JOSE HERNANDEZ A",
+        "plantel_unico": 11,
+        "u19_unicos": 5,
+        "y2005_2006_unicos": 6,
+        "pct_u19": 45.5
+      },
+      {
+        "equipo": "JOSE HERNANDEZ B",
+        "plantel_unico": 11,
+        "u19_unicos": 6,
+        "y2005_2006_unicos": 5,
+        "pct_u19": 54.5
+      },
+      {
+        "equipo": "LOBOS ATHLETIC CLUB",
+        "plantel_unico": 11,
+        "u19_unicos": 9,
+        "y2005_2006_unicos": 2,
+        "pct_u19": 81.8
+      },
+      {
+        "equipo": "LOS INDIOS B",
+        "plantel_unico": 11,
+        "u19_unicos": 6,
+        "y2005_2006_unicos": 5,
+        "pct_u19": 54.5
+      },
+      {
+        "equipo": "LUZ Y ARTE",
+        "plantel_unico": 11,
+        "u19_unicos": 4,
+        "y2005_2006_unicos": 7,
+        "pct_u19": 36.4
+      },
+      {
+        "equipo": "MORON ROJO A",
+        "plantel_unico": 11,
+        "u19_unicos": 4,
+        "y2005_2006_unicos": 7,
+        "pct_u19": 36.4
+      },
+      {
+        "equipo": "NAUTICO BUCHARDO NORTE (A)",
+        "plantel_unico": 11,
+        "u19_unicos": 9,
+        "y2005_2006_unicos": 2,
+        "pct_u19": 81.8
+      },
+      {
+        "equipo": "NAUTICO HACOAJ BLANCO A",
+        "plantel_unico": 11,
+        "u19_unicos": 6,
+        "y2005_2006_unicos": 5,
+        "pct_u19": 54.5
+      },
+      {
+        "equipo": "OBRAS BASKET",
+        "plantel_unico": 11,
+        "u19_unicos": 11,
+        "y2005_2006_unicos": 0,
+        "pct_u19": 100.0
+      },
+      {
+        "equipo": "PAMPERO",
+        "plantel_unico": 11,
+        "u19_unicos": 5,
+        "y2005_2006_unicos": 6,
+        "pct_u19": 45.5
+      },
+      {
+        "equipo": "PORTENO ATLETICO CLUB AZUL",
+        "plantel_unico": 11,
+        "u19_unicos": 5,
+        "y2005_2006_unicos": 6,
+        "pct_u19": 45.5
+      },
+      {
+        "equipo": "SPORTIVO ESCOBAR",
+        "plantel_unico": 11,
+        "u19_unicos": 7,
+        "y2005_2006_unicos": 4,
+        "pct_u19": 63.6
+      },
+      {
+        "equipo": "SPORTIVO HAEDO",
+        "plantel_unico": 11,
+        "u19_unicos": 4,
+        "y2005_2006_unicos": 7,
+        "pct_u19": 36.4
+      },
+      {
+        "equipo": "SPORTIVO VILLA BALLESTER",
+        "plantel_unico": 11,
+        "u19_unicos": 4,
+        "y2005_2006_unicos": 7,
+        "pct_u19": 36.4
+      },
+      {
+        "equipo": "TAPONAZO FUTBOL CLUB",
+        "plantel_unico": 11,
+        "u19_unicos": 4,
+        "y2005_2006_unicos": 7,
+        "pct_u19": 36.4
+      },
+      {
+        "equipo": "WILDE SPORTING",
+        "plantel_unico": 11,
+        "u19_unicos": 6,
+        "y2005_2006_unicos": 5,
+        "pct_u19": 54.5
+      },
+      {
+        "equipo": "ARGENTINO DE CASTELAR NORTE A",
+        "plantel_unico": 10,
+        "u19_unicos": 8,
+        "y2005_2006_unicos": 2,
+        "pct_u19": 80.0
+      },
+      {
+        "equipo": "ATLETICO BOULOGNE",
+        "plantel_unico": 10,
+        "u19_unicos": 5,
+        "y2005_2006_unicos": 5,
+        "pct_u19": 50.0
+      },
+      {
+        "equipo": "BOCA JUNIORS AMARILLO B",
+        "plantel_unico": 10,
+        "u19_unicos": 5,
+        "y2005_2006_unicos": 5,
+        "pct_u19": 50.0
+      },
+      {
+        "equipo": "CAZA Y PESCA VERDE B",
+        "plantel_unico": 10,
+        "u19_unicos": 7,
+        "y2005_2006_unicos": 3,
+        "pct_u19": 70.0
+      },
+      {
+        "equipo": "CIUDAD DE BUENOS AIRES B BLANCO",
+        "plantel_unico": 10,
+        "u19_unicos": 4,
+        "y2005_2006_unicos": 6,
+        "pct_u19": 40.0
+      },
+      {
+        "equipo": "CLUB ATENEO INGENIERO RAVER",
+        "plantel_unico": 10,
+        "u19_unicos": 5,
+        "y2005_2006_unicos": 5,
+        "pct_u19": 50.0
+      },
+      {
+        "equipo": "CLUB CEPA",
+        "plantel_unico": 10,
+        "u19_unicos": 1,
+        "y2005_2006_unicos": 9,
+        "pct_u19": 10.0
+      },
+      {
+        "equipo": "CLUB SOCIAL Y DEPORTIVO ARENAL",
+        "plantel_unico": 10,
+        "u19_unicos": 5,
+        "y2005_2006_unicos": 5,
+        "pct_u19": 50.0
+      },
+      {
+        "equipo": "COUNTRY BANFIELD B",
+        "plantel_unico": 10,
+        "u19_unicos": 6,
+        "y2005_2006_unicos": 4,
+        "pct_u19": 60.0
+      },
+      {
+        "equipo": "DEFENSORES DE HURLINGHAM VERDE",
+        "plantel_unico": 10,
+        "u19_unicos": 7,
+        "y2005_2006_unicos": 3,
+        "pct_u19": 70.0
+      },
+      {
+        "equipo": "ESTUDIANTIL PORTENO A",
+        "plantel_unico": 10,
+        "u19_unicos": 6,
+        "y2005_2006_unicos": 4,
+        "pct_u19": 60.0
+      },
+      {
+        "equipo": "GIMNASIA Y ESGRIMA DE LOMAS DE ZAMORA B",
+        "plantel_unico": 10,
+        "u19_unicos": 6,
+        "y2005_2006_unicos": 4,
+        "pct_u19": 60.0
+      },
+      {
+        "equipo": "LOS INDIOS A",
+        "plantel_unico": 10,
+        "u19_unicos": 5,
+        "y2005_2006_unicos": 5,
+        "pct_u19": 50.0
+      },
+      {
+        "equipo": "MONTE GRANDE NEGRO B",
+        "plantel_unico": 10,
+        "u19_unicos": 4,
+        "y2005_2006_unicos": 6,
+        "pct_u19": 40.0
+      },
+      {
+        "equipo": "PASO DEL REY",
+        "plantel_unico": 10,
+        "u19_unicos": 3,
+        "y2005_2006_unicos": 7,
+        "pct_u19": 30.0
+      },
+      {
+        "equipo": "PINOCHO BLANCO",
+        "plantel_unico": 10,
+        "u19_unicos": 5,
+        "y2005_2006_unicos": 5,
+        "pct_u19": 50.0
+      },
+      {
+        "equipo": "PINOCHO VERDE",
+        "plantel_unico": 10,
+        "u19_unicos": 9,
+        "y2005_2006_unicos": 1,
+        "pct_u19": 90.0
+      },
+      {
+        "equipo": "SAN FERNANDO AZUL",
+        "plantel_unico": 10,
+        "u19_unicos": 2,
+        "y2005_2006_unicos": 8,
+        "pct_u19": 20.0
+      },
+      {
+        "equipo": "SAN MIGUEL VERDE",
+        "plantel_unico": 10,
+        "u19_unicos": 9,
+        "y2005_2006_unicos": 1,
+        "pct_u19": 90.0
+      },
+      {
+        "equipo": "SOCIAL LANUS",
+        "plantel_unico": 10,
+        "u19_unicos": 8,
+        "y2005_2006_unicos": 2,
+        "pct_u19": 80.0
+      },
+      {
+        "equipo": "SOCIEDAD HEBRAICA ARGENTINA",
+        "plantel_unico": 10,
+        "u19_unicos": 5,
+        "y2005_2006_unicos": 5,
+        "pct_u19": 50.0
+      },
+      {
+        "equipo": "SPORTIVO ALSINA",
+        "plantel_unico": 10,
+        "u19_unicos": 4,
+        "y2005_2006_unicos": 6,
+        "pct_u19": 40.0
+      },
+      {
+        "equipo": "TAMBEROS UNIDOS",
+        "plantel_unico": 10,
+        "u19_unicos": 8,
+        "y2005_2006_unicos": 2,
+        "pct_u19": 80.0
+      },
+      {
+        "equipo": "UNION FLORIDA",
+        "plantel_unico": 10,
+        "u19_unicos": 6,
+        "y2005_2006_unicos": 4,
+        "pct_u19": 60.0
+      },
+      {
+        "equipo": "VELEZ SARSFIELD AZUL - B",
+        "plantel_unico": 10,
+        "u19_unicos": 5,
+        "y2005_2006_unicos": 5,
+        "pct_u19": 50.0
+      },
+      {
+        "equipo": "VELEZ SARSFIELD BLANCO - A",
+        "plantel_unico": 10,
+        "u19_unicos": 5,
+        "y2005_2006_unicos": 5,
+        "pct_u19": 50.0
+      },
+      {
+        "equipo": "VICTORIA NEGRO",
+        "plantel_unico": 10,
+        "u19_unicos": 6,
+        "y2005_2006_unicos": 4,
+        "pct_u19": 60.0
+      },
+      {
+        "equipo": "YUPANQUI",
+        "plantel_unico": 10,
+        "u19_unicos": 8,
+        "y2005_2006_unicos": 2,
+        "pct_u19": 80.0
+      },
+      {
+        "equipo": "3 DE FEBRERO BLANCO A",
+        "plantel_unico": 9,
+        "u19_unicos": 6,
+        "y2005_2006_unicos": 3,
+        "pct_u19": 66.7
+      },
+      {
+        "equipo": "3 DE FEBRERO CELESTE C",
+        "plantel_unico": 9,
+        "u19_unicos": 5,
+        "y2005_2006_unicos": 4,
+        "pct_u19": 55.6
+      },
+      {
+        "equipo": "A.F.A.L.P. A",
+        "plantel_unico": 9,
+        "u19_unicos": 4,
+        "y2005_2006_unicos": 5,
+        "pct_u19": 44.4
+      },
+      {
+        "equipo": "BANCO NACION AZUL A",
+        "plantel_unico": 9,
+        "u19_unicos": 5,
+        "y2005_2006_unicos": 4,
+        "pct_u19": 55.6
+      },
+      {
+        "equipo": "BELLA VISTA",
+        "plantel_unico": 9,
+        "u19_unicos": 6,
+        "y2005_2006_unicos": 3,
+        "pct_u19": 66.7
+      },
+      {
+        "equipo": "C.S.D.Y C. MORENO",
+        "plantel_unico": 9,
+        "u19_unicos": 7,
+        "y2005_2006_unicos": 2,
+        "pct_u19": 77.8
+      },
+      {
+        "equipo": "CAZA Y PESCA AZUL A",
+        "plantel_unico": 9,
+        "u19_unicos": 4,
+        "y2005_2006_unicos": 5,
+        "pct_u19": 44.4
+      },
+      {
+        "equipo": "CIUDAD DE BUENOS AIRES AZUL A",
+        "plantel_unico": 9,
+        "u19_unicos": 6,
+        "y2005_2006_unicos": 3,
+        "pct_u19": 66.7
+      },
+      {
+        "equipo": "CLUB ATLETICO 9 DE JULIO DE LANUS",
+        "plantel_unico": 9,
+        "u19_unicos": 6,
+        "y2005_2006_unicos": 3,
+        "pct_u19": 66.7
+      },
+      {
+        "equipo": "COLON FC",
+        "plantel_unico": 9,
+        "u19_unicos": 5,
+        "y2005_2006_unicos": 4,
+        "pct_u19": 55.6
+      },
+      {
+        "equipo": "COMUNICACIONES AMARILLO",
+        "plantel_unico": 9,
+        "u19_unicos": 8,
+        "y2005_2006_unicos": 1,
+        "pct_u19": 88.9
+      },
+      {
+        "equipo": "DEPORTIVO CROVARA A",
+        "plantel_unico": 9,
+        "u19_unicos": 4,
+        "y2005_2006_unicos": 5,
+        "pct_u19": 44.4
+      },
+      {
+        "equipo": "DEPORTIVO MORON A",
+        "plantel_unico": 9,
+        "u19_unicos": 5,
+        "y2005_2006_unicos": 4,
+        "pct_u19": 55.6
+      },
+      {
+        "equipo": "GEVP BLANCO A",
+        "plantel_unico": 9,
+        "u19_unicos": 5,
+        "y2005_2006_unicos": 4,
+        "pct_u19": 55.6
+      },
+      {
+        "equipo": "GIMNASIA Y ESGRIMA DE LOMAS DE ZAMORA",
+        "plantel_unico": 9,
+        "u19_unicos": 3,
+        "y2005_2006_unicos": 6,
+        "pct_u19": 33.3
+      },
+      {
+        "equipo": "GIMNASIA Y ESGRIMA LA PLATA A",
+        "plantel_unico": 9,
+        "u19_unicos": 8,
+        "y2005_2006_unicos": 1,
+        "pct_u19": 88.9
+      },
+      {
+        "equipo": "LANUS B",
+        "plantel_unico": 9,
+        "u19_unicos": 8,
+        "y2005_2006_unicos": 1,
+        "pct_u19": 88.9
+      },
+      {
+        "equipo": "PORTUGUES DEL GRAN BUENOS AIRES",
+        "plantel_unico": 9,
+        "u19_unicos": 8,
+        "y2005_2006_unicos": 1,
+        "pct_u19": 88.9
+      },
+      {
+        "equipo": "QUILMES ATLETICO CLUB",
+        "plantel_unico": 9,
+        "u19_unicos": 3,
+        "y2005_2006_unicos": 6,
+        "pct_u19": 33.3
+      },
+      {
+        "equipo": "SITAS VERDE",
+        "plantel_unico": 9,
+        "u19_unicos": 6,
+        "y2005_2006_unicos": 3,
+        "pct_u19": 66.7
+      },
+      {
+        "equipo": "SOC.BECCAR",
+        "plantel_unico": 9,
+        "u19_unicos": 4,
+        "y2005_2006_unicos": 5,
+        "pct_u19": 44.4
+      },
+      {
+        "equipo": "U.V.V.A UNION VECINAL VILLA ADELINA AZUL",
+        "plantel_unico": 9,
+        "u19_unicos": 4,
+        "y2005_2006_unicos": 5,
+        "pct_u19": 44.4
+      },
+      {
+        "equipo": "UNION VILLEGAS",
+        "plantel_unico": 9,
+        "u19_unicos": 7,
+        "y2005_2006_unicos": 2,
+        "pct_u19": 77.8
+      },
+      {
+        "equipo": "ARGENTINOS JUNIORS",
+        "plantel_unico": 8,
+        "u19_unicos": 4,
+        "y2005_2006_unicos": 4,
+        "pct_u19": 50.0
+      },
+      {
+        "equipo": "ATLETICO PILAR",
+        "plantel_unico": 8,
+        "u19_unicos": 6,
+        "y2005_2006_unicos": 2,
+        "pct_u19": 75.0
+      },
+      {
+        "equipo": "CLUB ATLETICO HURACAN DE PARQUE PATRICIOS",
+        "plantel_unico": 8,
+        "u19_unicos": 2,
+        "y2005_2006_unicos": 6,
+        "pct_u19": 25.0
+      },
+      {
+        "equipo": "JUVENCIA",
+        "plantel_unico": 8,
+        "u19_unicos": 5,
+        "y2005_2006_unicos": 3,
+        "pct_u19": 62.5
+      },
+      {
+        "equipo": "LANUS A",
+        "plantel_unico": 8,
+        "u19_unicos": 4,
+        "y2005_2006_unicos": 4,
+        "pct_u19": 50.0
+      },
+      {
+        "equipo": "SITAS ROJO",
+        "plantel_unico": 8,
+        "u19_unicos": 1,
+        "y2005_2006_unicos": 7,
+        "pct_u19": 12.5
+      },
+      {
+        "equipo": "VILLA MITRE",
+        "plantel_unico": 8,
+        "u19_unicos": 6,
+        "y2005_2006_unicos": 2,
+        "pct_u19": 75.0
+      },
+      {
+        "equipo": "INSTITUCION SARMIENTO VERDE A",
+        "plantel_unico": 7,
+        "u19_unicos": 5,
+        "y2005_2006_unicos": 2,
+        "pct_u19": 71.4
       }
     ]
   },
