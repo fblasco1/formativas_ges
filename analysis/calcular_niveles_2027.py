@@ -87,6 +87,7 @@ REGION_OVERRIDES_2027: Dict[str, str] = {
     clave_equipo("UNIVERSIDAD DE BUENOS AIRES"): "CENTRO",
     clave_equipo("VELEZ SARSFIELD AZUL - B"): "CENTRO",
     clave_equipo("JOSE HERNANDEZ B"): "CENTRO",
+    clave_equipo("GEVP BLANCO A"): "CENTRO",
 }
 
 # Forzar nivel 2027 (clave → nivel). Se aplica antes del reequilibrio 8/región.

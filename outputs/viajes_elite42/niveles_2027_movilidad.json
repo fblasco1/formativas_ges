@@ -100,6 +100,12 @@
           "region_2027": "CENTRO",
           "nivel_2027": 5,
           "status": "DESCIENDE"
+        },
+        {
+          "clave": "GEVP A BLANCO",
+          "region_2027": "CENTRO",
+          "nivel_2027": 2,
+          "status": "DESCIENDE"
         }
       ],
       "clampados_tope_descenso": 25,
@@ -135,7 +141,8 @@
         "PORTENO ATLETICO CLUB B BLANCO": "NORTE",
         "UNIVERSIDAD DE BUENOS AIRES": "CENTRO",
         "VELEZ SARSFIELD AZUL B": "CENTRO",
-        "JOSE HERNANDEZ B": "CENTRO"
+        "JOSE HERNANDEZ B": "CENTRO",
+        "GEVP A BLANCO": "CENTRO"
       },
       "nivel_overrides_2027": {
         "VELEZ SARSFIELD AZUL B": 3,
@@ -161,8 +168,8 @@
     "2": {
       "SUR": 12,
       "OESTE": 9,
-      "NORTE": 6,
-      "CENTRO": 5
+      "NORTE": 5,
+      "CENTRO": 6
     },
     "3": {
       "NORTE": 8,
@@ -1045,10 +1052,10 @@
           "ganados": 15,
           "nivel_2026": "INTERCONFERENCIA_A",
           "zona_2026": "ZONA A3",
-          "region": "NORTE",
+          "region": "CENTRO",
           "status": "DESCIENDE",
           "nivel_2027": 2,
-          "detalle": "Desciende a Interconferencia B / Nivel 2"
+          "detalle": "Desciende a Interconferencia B / Nivel 2 · región 2027 NORTE→CENTRO (ajuste)"
         },
         {
           "equipo": "SOC.BECCAR",
@@ -3690,8 +3697,8 @@
       "status": "DESCIENDE",
       "nivel_2027": 2,
       "nivel_2026": "INTERCONFERENCIA_A",
-      "region": "NORTE",
-      "detalle": "Desciende a Interconferencia B / Nivel 2"
+      "region": "CENTRO",
+      "detalle": "Desciende a Interconferencia B / Nivel 2 · región 2027 NORTE→CENTRO (ajuste)"
     },
     "SOCBECCAR": {
       "status": "DESCIENDE",
