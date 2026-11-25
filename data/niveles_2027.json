@@ -94,6 +94,12 @@
           "region_2027": "CENTRO",
           "nivel_2027": 3,
           "status": "ASCIENDE"
+        },
+        {
+          "clave": "JOSE HERNANDEZ B",
+          "region_2027": "CENTRO",
+          "nivel_2027": 5,
+          "status": "DESCIENDE"
         }
       ],
       "clampados_tope_descenso": 25,
@@ -128,7 +134,8 @@
         "SAN MIGUEL BLANCO": "NORTE",
         "PORTENO ATLETICO CLUB B BLANCO": "NORTE",
         "UNIVERSIDAD DE BUENOS AIRES": "CENTRO",
-        "VELEZ SARSFIELD AZUL B": "CENTRO"
+        "VELEZ SARSFIELD AZUL B": "CENTRO",
+        "JOSE HERNANDEZ B": "CENTRO"
       },
       "nivel_overrides_2027": {
         "VELEZ SARSFIELD AZUL B": 3,
@@ -2435,10 +2442,10 @@
           "ganados": 28,
           "nivel_2026": "NIVEL_2",
           "zona_2026": "CENTRO",
-          "region": "CENTRO",
+          "region": "NORTE",
           "status": "DESCIENDE",
           "nivel_2027": 5,
-          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 20"
+          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 20 · reequilibrio región → NORTE"
         },
         {
           "equipo": "JOSE HERNANDEZ B",
@@ -2451,10 +2458,10 @@
           "ganados": 16,
           "nivel_2026": "NIVEL_2",
           "zona_2026": "CENTRO",
-          "region": "NORTE",
+          "region": "CENTRO",
           "status": "DESCIENDE",
           "nivel_2027": 5,
-          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 22 · reequilibrio región → NORTE"
+          "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 22"
         },
         {
           "equipo": "ARGENTINOS JUNIORS",
@@ -4285,15 +4292,15 @@
       "status": "DESCIENDE",
       "nivel_2027": 5,
       "nivel_2026": "NIVEL_2",
-      "region": "CENTRO",
-      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 20"
+      "region": "NORTE",
+      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 20 · reequilibrio región → NORTE"
     },
     "JOSE HERNANDEZ B": {
       "status": "DESCIENDE",
       "nivel_2027": 5,
       "nivel_2026": "NIVEL_2",
-      "region": "NORTE",
-      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 22 · reequilibrio región → NORTE"
+      "region": "CENTRO",
+      "detalle": "Desciende a Nivel 5 (venía de NIVEL_2) · pos regional 22"
     },
     "ARGENTINOS JUNIORS": {
       "status": "DESCIENDE",
