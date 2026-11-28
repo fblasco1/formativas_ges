@@ -1,7 +1,7 @@
 {
   "version": 1,
   "source": "febamba_ges",
-  "generated_at": "2026-11-28T01:36:48-03:00",
+  "generated_at": "2026-11-28T15:44:20-03:00",
   "club": "PEDRO ECHAGUE",
   "partidos": [
     {
@@ -7143,19 +7143,6 @@
     },
     {
       "source": "febamba_ges",
-      "external_id": "r_3RIsPnbmMEhzNhP-eL4w",
-      "fecha": "2026-11-12",
-      "hora": "21:00",
-      "tira": "A",
-      "categoria": "Liga Metro",
-      "rival": "CLUB DEPORTIVO y SOCIAL COLEGIALES",
-      "localia": "Local",
-      "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "73-71",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
       "external_id": "2XYVKNDPToehUf0F5-omuA",
       "fecha": "2026-11-14",
       "hora": "9:30",
@@ -7230,19 +7217,6 @@
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
       "resultado": "30-39",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
-      "external_id": "phkwkz3kTQ5EYBhPYCksJQ",
-      "fecha": "2026-11-14",
-      "hora": "21:30",
-      "tira": "A",
-      "categoria": "Liga Metro",
-      "rival": "CLUB ATLETICO CAZA y PESCA",
-      "localia": "Visitante",
-      "direccion": "Balbastro Y Ruta 202, CP 1611",
-      "resultado": "52-97",
       "espacio": null
     },
     {
@@ -7338,19 +7312,6 @@
     },
     {
       "source": "febamba_ges",
-      "external_id": "rwPj9rH3jb20tMYpCAc_aQ",
-      "fecha": "2026-11-16",
-      "hora": "21:30",
-      "tira": "A",
-      "categoria": "Liga Metro",
-      "rival": "CLUB ATLETICO CAZA y PESCA",
-      "localia": "Local",
-      "direccion": "Portela 836, CABA (CP 1406)",
-      "resultado": "66-91",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
       "external_id": "XjdfVedg-Fia2yZFfhDFpQ",
       "fecha": "2026-11-18",
       "hora": "21:30",
@@ -7373,19 +7334,6 @@
       "localia": "Local",
       "direccion": "Portela 836, CABA (CP 1406)",
       "resultado": "66-61",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
-      "external_id": "ygpMhIHB0LBNkmoPB19UJA",
-      "fecha": "2026-11-21",
-      "hora": "21:00",
-      "tira": "AZUL",
-      "categoria": "U21",
-      "rival": "RIVER PLATE",
-      "localia": "Visitante",
-      "direccion": "Figueroa Alcorta 7597, 1428",
-      "resultado": "41-79",
       "espacio": null
     },
     {
@@ -7442,19 +7390,6 @@
     },
     {
       "source": "febamba_ges",
-      "external_id": "iAp-H3a9cVp7bt2JKjbMfw",
-      "fecha": "2026-11-23",
-      "hora": "14:00",
-      "tira": "AZUL",
-      "categoria": "U11",
-      "rival": "BOCA JUNIORS AZUL A",
-      "localia": "Visitante",
-      "direccion": "Arzobispo Espinosa 602, 1157",
-      "resultado": "58-66",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
       "external_id": "cgnJqw0MO8BlpTYP7lkltA",
       "fecha": "2026-11-23",
       "hora": "18:00",
@@ -7477,19 +7412,6 @@
       "localia": "Visitante",
       "direccion": "manual",
       "resultado": "49-41",
-      "espacio": null
-    },
-    {
-      "source": "febamba_ges",
-      "external_id": "SOtTRpWoftfrT1j0UsGajQ",
-      "fecha": "2026-11-23",
-      "hora": "21:30",
-      "tira": "A",
-      "categoria": "Liga Metro",
-      "rival": "CLUB SAN FERNANDO",
-      "localia": "Visitante",
-      "direccion": "Sarmiento Y Escalada S/N, CP 1646",
-      "resultado": "74-82",
       "espacio": null
     },
     {
